@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_index">IVS Global Teacher Hub</title>
+    <meta name="description" content="IVS JSC - Tổ chức tiên phong tại Việt Nam trong lĩnh vực giáo dục (IVS Academy, IVS Kindergarten), EdTech (IVS Celestech), sức khỏe cộng đồng và hợp tác quốc tế." data-lang-key="meta_description_index">
+    <meta name="keywords" content="IVS JSC, giáo dục, công nghệ giáo dục, EdTech, STEAM, sức khỏe, hợp tác quốc tế, Đồng Nai, IVS Academy, IVS Celestech, đào tạo ngoại ngữ, kỹ năng sống" data-lang-key="meta_keywords_index">
+    <meta property="og:title" content="IVS JSC - Giáo dục, Công nghệ, Sức khỏe, Hợp tác Quốc tế" data-lang-key="og_title_index">
+    <meta property="og:description" content="Khám phá các giải pháp toàn diện về đào tạo ngoại ngữ, STEAM, kỹ năng sống, EdTech, chăm sóc sức khỏe và cơ hội hợp tác cùng IVS JSC." data-lang-key="og_description_index">
+    <meta property="og:image" content="/images/logo/logo-192.png">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/ivs-global-teacher-hub.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#004080', 
+                        'primary-dark': '#003366',
+                        'secondary': '#ffc107', 
+                        'secondary-dark': '#e0a800',
+                        'header-orange': '#F97316', 
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-600': '#4B5563',
+                        'ivs-neutral-300': '#D1D5DB',
+                        'ivs-neutral-200': '#e5e7eb',
+                        'ivs-neutral-100': '#f3f4f6',
+                        'ivs-neutral-50': '#f9fafb',
+                        'purple-accent': '#8b5cf6',
+                        'warning': '#f59e0b',
+                        'blue-50': '#eff6ff',
+                        'blue-200': '#bfdbfe',
+                        'blue-500': '#3b82f6',
+                        'blue-600': '#2563eb', 
+                        'blue-700': '#1d4ed8',
+                        'blue-800': '#1e40af',
+                        'purple-50': '#faf5ff',
+                        'purple-500': '#a855f7',
+                        'purple-600': '#9333ea',
+                        'purple-700': '#7e2d87',
+                        'emerald-50': '#ecfdf5',
+                        'emerald-200': '#a7f3d0',
+                        'emerald-500': '#10b981',
+                        'emerald-600': '#059669',
+                        'amber-200': '#fde68a',
+                        'amber-500': '#f59e0b',
+                        'orange-200': '#fed7aa',
+                        'orange-500': '#f97316',
+                        'teal-600': '#0d9488',
+                        'indigo-600': '#4f46e5',
+                        'indigo-700': '#4338ca',
+                        'pink-500': '#ec4899'
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <link rel="stylesheet" href="/dist/output.css">
+    <style>
+        /* Custom styles for chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #004080; /* primary color */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.05);
+            background-color: #003366; /* primary-dark */
+        }
+
+        .chatbot-window {
+            width: 350px; /* Default width for desktop */
+            height: 500px;
+            background-color: #f9fafb; /* ivs-neutral-50 */
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 15px; /* Space between window and button */
+            transform: translateY(10px); /* Initial slight offset */
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .chatbot-window.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-header {
+            background-color: #004080; /* primary */
+            color: white;
+            padding: 1rem;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header .close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #ffffff; /* white */
+            border-bottom: 1px solid #e5e7eb; /* ivs-neutral-200 */
+        }
+
+        .message {
+            margin-bottom: 0.75rem;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background-color: #bfdbfe; /* blue-200 */
+            color: #1f2937; /* ivs-neutral-800 */
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            background-color: #e5e7eb; /* ivs-neutral-200 */
+            color: #1f2937; /* ivs-neutral-800 */
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            padding: 1rem;
+            background-color: #f9fafb; /* ivs-neutral-50 */
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .chatbot-input-area input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; /* ivs-neutral-300 */
+            border-radius: 8px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .chatbot-input-area input:focus {
+            border-color: #3b82f6; /* blue-500 */
+        }
+
+        .chatbot-input-area button {
+            background-color: #004080; /* primary */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-input-area button:hover {
+            background-color: #003366; /* primary-dark */
+        }
+
+        .chatbot-input-area button:disabled {
+            background-color: #9ca3af; /* gray-400 */
+            cursor: not-allowed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                bottom: 15px;
+                right: 15px;
+            }
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            .chatbot-window {
+                width: 90vw; /* Occupy most of the viewport width */
+                height: 70vh; /* Occupy most of the viewport height */
+                max-width: 400px; /* Max width for larger mobile devices */
+                max-height: 600px; /* Max height */
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300 antialiased font-inter" id="page-index">
+    
+    <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-primary dark:text-primary-dark mb-4" data-lang-key="welcome_title">Chào mừng đến với IVS Global Teacher Hub</h1>
+            <p class="text-lg md
+            
+    
+    </main>
+
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder" data-loading-text="Đang tải chân trang..."></div>
+    
+    <button id="scrollToTopBtn" class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-neutral-600 dark:hover:bg-neutral-500" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
+    </button>
+
+    <div class="chatbot-container">
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <span>IVS AI Assistant</span>
+                <button id="chatbot-close-button" class="close-button">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages flex flex-col space-y-3">
+                <div class="message bot">Chào mừng bạn đến với IVS JSC! Tôi có thể giúp gì cho bạn hôm nay?</div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn của bạn...">
+                <button id="chatbot-send-button"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button id="chatbot-open-button" class="chatbot-button">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/posts-loader.js"></script>
+    <script src="/js/chatbot.js"></script> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+     <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 200) {
+                    scrollToTopBtn.classList.remove('hidden');
+                    scrollToTopBtn.classList.add('flex');
+                } else {
+                    scrollToTopBtn.classList.remove('flex');
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            }, { passive: true });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            if (window.pageYOffset <= 200) {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

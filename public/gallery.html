@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_gallery">Thư Viện IVS - Tài Nguyên & Ứng Dụng</title>
+    <meta name="description" content="Khám phá Thư viện IVS: Tài liệu giáo dục, Kho truyện, Bộ ứng dụng IVS Apps Suite và Khu trò chơi IVS Games Arcade." data-lang-key="meta_description_gallery">
+    <meta name="keywords" content="IVS JSC, thư viện, tài liệu giáo dục, kho truyện, ứng dụng giáo dục, trò chơi giáo dục, IVS Apps, IVS Games" data-lang-key="meta_keywords_gallery">
+    <meta property="og:title" content="Thư Viện IVS - Tài Nguyên & Ứng Dụng" data-lang-key="og_title_gallery">
+    <meta property="og:description" content="Khám phá kho tàng tri thức, ứng dụng và trò chơi giáo dục tại Thư viện IVS." data-lang-key="og_description_gallery">
+    <meta property="og:image" content="/images/banners/library_og_banner_v2.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/gallery.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#004080', 
+                        'primary-dark': '#003366',
+                        'secondary': '#ffc107', 
+                        'secondary-dark': '#e0a800',
+                        'header-orange': '#F97316', 
+                        'ivs-neutral-900': '#111827',
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-600': '#4B5563',
+                        'ivs-neutral-500': '#6b7280',
+                        'ivs-neutral-400':'#9ca3af',
+                        'ivs-neutral-300': '#D1D5DB',
+                        'ivs-neutral-200': '#e5e7eb',
+                        'ivs-neutral-100': '#f3f4f6',
+                        'ivs-neutral-50': '#f9fafb',
+                        'blue-50': '#eff6ff',
+                        'blue-100': '#dbeafe',
+                        'blue-200': '#bfdbfe',
+                        'blue-300': '#93c5fd',
+                        'blue-400': '#60a5fa',
+                        'blue-500': '#3b82f6',
+                        'blue-600': '#2563eb', 
+                        'blue-700': '#1d4ed8',
+                        'purple-100': '#f3e8ff',
+                        'purple-400': '#c084fc',
+                        'purple-600': '#9333ea',
+                        'purple-900': '#581c87',
+                        'green-100': '#dcfce7',
+                        'green-400': '#4ade80',
+                        'green-600': '#16a34a',
+                        'green-900': '#14532d',
+                        'yellow-100': '#fef9c3',
+                        'yellow-400': '#facc15',
+                        'yellow-600': '#ca8a04',
+                        'pink-100': '#fce7f3',
+                        'pink-400': '#f472b6',
+                        'pink-600': '#db2777',
+                        'teal-100': '#ccfbf1',
+                        'teal-400': '#2dd4bf',
+                        'teal-600': '#0d9488',
+                        'orange-400':'#fb923c'
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <link rel="stylesheet" href="/dist/output.css">
+    <style>
+        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+        .section-padding { padding-top: 4rem; padding-bottom: 4rem; } /* 64px 64px */
+        @media (min-width: 768px) { .section-padding { padding-top: 6rem; padding-bottom: 6rem; } } /* 96px 96px */
+
+        .overview-card {
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 2rem; /* p-8 */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .dark .overview-card {
+            background-color: var(--ivs-neutral-800);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.15);
+        }
+        .overview-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); /* shadow-2xl */
+        }
+        .dark .overview-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.25);
+        }
+        .overview-card-icon-wrapper {
+            width: 4rem; /* w-16 */
+            height: 4rem; /* h-16 */
+            border-radius: 9999px; /* rounded-full */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem; /* mb-5 */
+            font-size: 1.875rem; /* text-3xl */
+        }
+        .overview-card-title {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .dark .overview-card-title { color: white; }
+        .overview-card-description {
+            font-size: 0.875rem; /* text-sm */
+            color: var(--ivs-neutral-600);
+            margin-bottom: 1rem; /* mb-4 */
+            flex-grow: 1;
+        }
+        .dark .overview-card-description { color: var(--ivs-neutral-400); }
+        .overview-card-link {
+            margin-top: auto;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem; /* gap-1 */
+        }
+        .overview-card-link .fas { font-size: 0.75rem; /* text-xs */ }
+
+        .card-item {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .dark .card-item { background-color: var(--ivs-neutral-800); }
+        .card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .card-item-icon-wrapper {
+             width: 4rem; height: 4rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto; margin-bottom: 1.25rem; font-size: 1.875rem; flex-shrink: 0;
+        }
+        .card-item-title {
+            font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;
+            color: var(--ivs-neutral-800);
+        }
+        .dark .card-item-title { color: white; }
+        .card-item-description {
+            font-size: 0.875rem; color: var(--ivs-neutral-600); margin-bottom: 1rem; flex-grow: 1;
+        }
+        .dark .card-item-description { color: var(--ivs-neutral-400); }
+        .card-item-link {
+            margin-top: auto; font-size: 0.875rem; font-weight: 500;
+        }
+        .card-item-link .fas { font-size: 0.75rem; margin-left: 0.25rem; }
+    </style>
+</head>
+<body class="bg-ivs-neutral-50 dark:bg-ivs-neutral-900 text-ivs-neutral-700 dark:text-ivs-neutral-300 flex flex-col min-h-screen">
+    <header id="header-placeholder" data-loading-text="Đang tải menu..." aria-live="polite"></header>
+    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-white/80 dark:bg-gray-900/80 z-[200] transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+    </div>
+
+    <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)] opacity-0 transition-opacity duration-500">
+        <section class="relative bg-gradient-to-br from-primary via-blue-700 to-purple-600 text-white py-24 md:py-36 overflow-hidden">
+            <div class="absolute inset-0 opacity-15">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
+                    <pattern id="pattern-circles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.2)"></circle>
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+                </svg>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 hero-text-shadow" data-lang-key="gallery_hero_title" data-aos="fade-down">Thư Viện IVS</h1>
+                <p class="text-lg md:text-xl lg:text-2xl opacity-90 max-w-3xl mx-auto hero-text-shadow" data-lang-key="gallery_hero_subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Khám phá kho tàng tri thức với tài liệu giáo dục chuyên sâu, ứng dụng tiện ích và những trò chơi sáng tạo.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-12 text-center" data-aos="fade-up" data-lang-key="gallery_overview_title">Tổng Quan Thư Viện</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <a href="#ivs-apps-suite" class="overview-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="overview-card-icon-wrapper bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="overview-card-title text-primary dark:text-blue-300" data-lang-key="gallery_overview_apps_title">IVS Apps Suite</h3>
+                        <p class="overview-card-description" data-lang-key="gallery_overview_apps_desc">Bộ sưu tập các ứng dụng tiện ích và giáo dục được phát triển bởi IVS và đối tác.</p>
+                        <span class="overview-card-link text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300" data-lang-key="gallery_explore_now">Khám phá ngay <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="#ivs-games-arcade" class="overview-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="overview-card-icon-wrapper bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="overview-card-title text-primary dark:text-blue-300" data-lang-key="gallery_overview_games_title">IVS Games Arcade</h3>
+                        <p class="overview-card-description" data-lang-key="gallery_overview_games_desc">Giải trí và học hỏi qua các trò chơi giáo dục tương tác và sáng tạo.</p>
+                        <span class="overview-card-link text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300" data-lang-key="gallery_play_now">Chơi ngay <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="#edu-documents" class="overview-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="overview-card-icon-wrapper bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="overview-card-title text-primary dark:text-blue-300" data-lang-key="gallery_overview_docs_title">Tài liệu Giáo dục</h3>
+                        <p class="overview-card-description" data-lang-key="gallery_overview_docs_desc">Giáo trình, bài giảng, nghiên cứu và tài liệu tham khảo đa dạng cho mọi cấp độ.</p>
+                        <span class="overview-card-link text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300" data-lang-key="gallery_view_documents">Xem tài liệu <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="#story-repository" class="overview-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="overview-card-icon-wrapper bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400">
+                           <i class="fas fa-scroll"></i>
+                        </div>
+                        <h3 class="overview-card-title text-primary dark:text-blue-300" data-lang-key="gallery_overview_stories_title">Kho Truyện</h3>
+                        <p class="overview-card-description" data-lang-key="gallery_overview_stories_desc">Những câu chuyện cổ tích, tản văn và bài học cuộc sống truyền cảm hứng.</p>
+                        <span class="overview-card-link text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300" data-lang-key="gallery_read_stories">Đọc truyện <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="ivs-apps-suite" class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-10 text-center" data-aos="fade-up" data-lang-key="gallery_apps_suite_title">IVS Apps Suite</h2>
+                <p class="text-md md:text-lg text-ivs-neutral-600 dark:text-ivs-neutral-400 mb-12 text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="gallery_apps_suite_intro">
+                    Khám phá bộ ứng dụng đa dạng từ IVS, được thiết kế để hỗ trợ học tập, quản lý công việc và nâng cao hiệu suất cá nhân.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Example App Card 1 -->
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-item-icon-wrapper bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_app1_title">IVS TaskMaster</h3>
+                        <p class="card-item-description" data-lang-key="gallery_app1_desc">Ứng dụng quản lý công việc và dự án hiệu quả, giúp bạn theo dõi tiến độ và cộng tác dễ dàng.</p>
+                        <a href="#" class="card-item-link text-purple-600 dark:text-purple-400 hover:underline" data-lang-key="gallery_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <!-- Example App Card 2 -->
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-item-icon-wrapper bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_app2_title">IVS EduAnalytics</h3>
+                        <p class="card-item-description" data-lang-key="gallery_app2_desc">Công cụ phân tích dữ liệu học tập, cung cấp cái nhìn sâu sắc về hiệu quả giảng dạy và học tập.</p>
+                        <a href="#" class="card-item-link text-blue-600 dark:text-blue-400 hover:underline" data-lang-key="gallery_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                     <!-- Example App Card 3 -->
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-item-icon-wrapper bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_app3_title">IVS LinguaBoost</h3>
+                        <p class="card-item-description" data-lang-key="gallery_app3_desc">Ứng dụng học ngoại ngữ tương tác với AI, giúp cải thiện phát âm và từ vựng nhanh chóng.</p>
+                        <a href="#" class="card-item-link text-teal-600 dark:text-teal-400 hover:underline" data-lang-key="gallery_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="text-center mt-12" data-aos="fade-up">
+                    <a href="/apps/" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105 shadow-md" data-lang-key="gallery_view_all_apps">
+                        Khám phá tất cả Ứng dụng
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="ivs-games-arcade" class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-10 text-center" data-aos="fade-up" data-lang-key="gallery_games_arcade_title">IVS Games Arcade</h2>
+                <p class="text-md md:text-lg text-ivs-neutral-600 dark:text-ivs-neutral-400 mb-12 text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="gallery_games_arcade_intro">
+                    Bước vào thế giới giải trí giáo dục của IVS Games! Rèn luyện tư duy, khám phá kiến thức mới qua những trò chơi hấp dẫn và bổ ích.
+                </p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-item-icon-wrapper bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_game1_title">IVS Memory Match</h3>
+                        <p class="card-item-description" data-lang-key="gallery_game1_desc">Rèn luyện trí nhớ và khả năng tập trung với trò chơi lật thẻ kinh điển, đa dạng chủ đề.</p>
+                        <a href="/games/memory-match/index.html" class="card-item-link text-green-600 dark:text-green-400 hover:underline" data-lang-key="gallery_play_now_game">Chơi ngay <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                     <div class="card-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-item-icon-wrapper bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400">
+                           <i class="fas fa-spell-check"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_game2_title">IVS Word Quest</h3>
+                        <p class="card-item-description" data-lang-key="gallery_game2_desc">Mở rộng vốn từ vựng tiếng Anh qua các thử thách tìm từ và ghép chữ thú vị. (Sắp ra mắt)</p>
+                        <span class="card-item-link text-ivs-neutral-500 dark:text-ivs-neutral-400" data-lang-key="gallery_coming_soon">Sắp ra mắt</span>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-item-icon-wrapper bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_game3_title">IVS Math Maze</h3>
+                        <p class="card-item-description" data-lang-key="gallery_game3_desc">Phiêu lưu trong mê cung toán học, giải các bài toán để tìm đường ra. (Sắp ra mắt)</p>
+                        <span class="card-item-link text-ivs-neutral-500 dark:text-ivs-neutral-400" data-lang-key="gallery_coming_soon">Sắp ra mắt</span>
+                    </div>
+                </div>
+                <div class="text-center mt-12" data-aos="fade-up">
+                    <a href="/games/ivsgames.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105 shadow-md" data-lang-key="gallery_visit_games_arcade">
+                        Truy cập IVS Games Arcade
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="edu-documents" class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-10 text-center" data-aos="fade-up" data-lang-key="gallery_edu_docs_title">Tài liệu Giáo dục</h2>
+                <p class="text-md md:text-lg text-ivs-neutral-600 dark:text-ivs-neutral-400 mb-12 text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="gallery_edu_docs_intro">
+                    Truy cập vào bộ sưu tập tài liệu giáo dục phong phú của chúng tôi, bao gồm giáo trình, bài giảng, nghiên cứu và tài liệu tham khảo hữu ích cho mọi cấp độ.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-item-icon-wrapper bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_doc_type_curriculum">Giáo trình & Bài giảng</h3>
+                        <p class="card-item-description" data-lang-key="gallery_doc_type_curriculum_desc">
+                            Bộ giáo trình chuẩn quốc tế và các bài giảng được biên soạn bởi đội ngũ chuyên gia.
+                        </p>
+                        <a href="/Pages/document-library.html?category=curriculum" class="card-item-link text-primary dark:text-blue-400 hover:underline" data-lang-key="gallery_view_more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-item-icon-wrapper bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_doc_type_research">Nghiên cứu & Báo cáo</h3>
+                        <p class="card-item-description" data-lang-key="gallery_doc_type_research_desc">
+                            Các công trình nghiên cứu chuyên sâu và báo cáo phân tích về xu hướng giáo dục mới nhất.
+                        </p>
+                        <a href="/Pages/document-library.html?category=research" class="card-item-link text-primary dark:text-blue-400 hover:underline" data-lang-key="gallery_view_more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-item-icon-wrapper bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_doc_type_resources">Tài liệu tham khảo</h3>
+                        <p class="card-item-description" data-lang-key="gallery_doc_type_resources_desc">
+                            Thư viện tài liệu tham khảo đa dạng, hỗ trợ học tập và nghiên cứu hiệu quả.
+                        </p>
+                        <a href="/Pages/document-library.html?category=resources" class="card-item-link text-primary dark:text-blue-400 hover:underline" data-lang-key="gallery_view_more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story-repository" class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary dark:text-yellow-400 mb-10 text-center" data-aos="fade-up" data-lang-key="gallery_story_repo_title">Kho Truyện</h2>
+                <p class="text-md md:text-lg text-ivs-neutral-600 dark:text-ivs-neutral-400 mb-12 text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="gallery_story_repo_intro">
+                    Đắm mình vào thế giới của những câu chuyện, từ truyện cổ tích, truyện ngắn đến những câu chuyện truyền cảm hứng về giáo dục và cuộc sống.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-item-icon-wrapper bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_story_type_folktales">Truyện cổ tích & Dân gian</h3>
+                        <p class="card-item-description" data-lang-key="gallery_story_type_folktales_desc">
+                            Những câu chuyện vượt thời gian, nuôi dưỡng tâm hồn và trí tưởng tượng.
+                        </p>
+                        <a href="/apps/story-repository.html?category=folktales" class="card-item-link text-secondary dark:text-yellow-400 hover:underline" data-lang-key="gallery_read_now">Đọc ngay <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                     <div class="card-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-item-icon-wrapper bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_story_type_short_stories">Truyện ngắn & Tản văn</h3>
+                        <p class="card-item-description" data-lang-key="gallery_story_type_short_stories_desc">
+                            Các tác phẩm văn học ngắn gọn, sâu sắc, phản ánh cuộc sống và con người.
+                        </p>
+                        <a href="/apps/story-repository.html?category=shortstories" class="card-item-link text-secondary dark:text-yellow-400 hover:underline" data-lang-key="gallery_read_now">Đọc ngay <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-item-icon-wrapper bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400">
+                           <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="card-item-title" data-lang-key="gallery_story_type_inspirational">Truyện truyền cảm hứng</h3>
+                        <p class="card-item-description" data-lang-key="gallery_story_type_inspirational_desc">
+                            Những câu chuyện về nỗ lực, thành công và bài học cuộc sống ý nghĩa.
+                        </p>
+                        <a href="/apps/story-repository.html?category=inspirational" class="card-item-link text-secondary dark:text-yellow-400 hover:underline" data-lang-key="gallery_read_now">Đọc ngay <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                 <div class="text-center mt-12" data-aos="fade-up">
+                    <a href="/apps/story-repository.html" class="inline-block bg-secondary hover:bg-yellow-500 text-white dark:text-ivs-neutral-900 font-semibold py-3 px-8 rounded-lg text-md transition duration-300 ease-in-out transform hover:scale-105 shadow-md" data-lang-key="gallery_view_all_stories">
+                        Xem tất cả Kho Truyện
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-primary text-white text-center">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up" data-lang-key="gallery_cta_title">Bạn muốn đóng góp vào thư viện của IVS?</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-90" data-aos="fade-up" data-aos-delay="100" data-lang-key="gallery_cta_subtitle">
+                    Chúng tôi luôn chào đón các tài liệu, bài viết hoặc câu chuyện có giá trị để làm phong phú thêm kho tri thức chung.
+                </p>
+                <a href="/contact.html" class="inline-block bg-secondary hover:bg-yellow-500 text-primary-dark dark:text-ivs-neutral-900 font-semibold py-3 px-8 rounded-lg text-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md" data-aos="fade-up" data-aos-delay="200" data-lang-key="gallery_cta_button">
+                    Liên Hệ Đóng Góp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder" data-loading-text="Đang tải chân trang..."></div>
+
+    <script src="/js/language.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script> 
+    <script src="/js/script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                offset: 100, 
+                duration: 700, 
+                easing: 'ease-out-quad', 
+                once: true, 
+                mirror: false, 
+                anchorPlacement: 'top-bottom', 
+            });
+            if (typeof window.initializeLanguageSystem === 'function') {
+                window.initializeLanguageSystem(localStorage.getItem('selectedLanguage') || 'en'); // Default to English
+            } else if (typeof window.applyTranslations === 'function' && typeof currentTranslationData !== 'undefined') {
+                 window.applyTranslations(localStorage.getItem('selectedLanguage') || 'en');
+            } else {
+                 console.error("Hệ thống ngôn ngữ chưa sẵn sàng trên trang gallery.");
+            }
+             // Hide spinner and show content after everything is set up
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mainContent = document.querySelector('main');
+            if (loadingSpinner) loadingSpinner.classList.add('opacity-0', 'pointer-events-none');
+            if (mainContent) mainContent.classList.remove('opacity-0');
+
+        };
+
+         document.addEventListener('DOMContentLoaded', function() {
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mainContent = document.querySelector('main');
+            if(loadingSpinner) loadingSpinner.classList.remove('opacity-0', 'pointer-events-none');
+            if(mainContent) mainContent.classList.add('opacity-0');
+
+
+            // Fallback if onPageComponentsLoadedCallback is not called by loadComponents.js
+             setTimeout(() => {
+                if (!window.pageComponentsCallbackCalled) { // Assuming loadComponents.js sets this flag
+                    console.warn("[Gallery Fallback] onPageComponentsLoadedCallback not called. Initializing AOS and language manually.");
+                    AOS.init({
+                        offset: 100, 
+                        duration: 700, 
+                        easing: 'ease-out-quad', 
+                        once: true, 
+                        mirror: false, 
+                        anchorPlacement: 'top-bottom', 
+                    });
+                    if (typeof window.initializeLanguageSystem === 'function') {
+                        window.initializeLanguageSystem(localStorage.getItem('selectedLanguage') || 'en'); // Default to English
+                    } else if (typeof window.applyTranslations === 'function' && typeof currentTranslationData !== 'undefined') {
+                         window.applyTranslations(localStorage.getItem('selectedLanguage') || 'en');
+                    } else {
+                         console.error("Fallback: Hệ thống ngôn ngữ chưa sẵn sàng trên trang gallery.");
+                    }
+                    if (loadingSpinner) loadingSpinner.classList.add('opacity-0', 'pointer-events-none');
+                    if (mainContent) mainContent.classList.remove('opacity-0');
+                }
+            }, 1500); // Adjust timeout as needed
+        });
+    </script>
+</body>
+</html>

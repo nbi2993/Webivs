@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_haynoi_full">IVS Media - "Hãy Nói" - Diễn đàn Tiếng nói Tuổi trẻ Đồng Nai</title>
+    <meta name="description" content="Tìm hiểu về chương trình 'Hãy Nói' - Diễn đàn Chia sẻ Tiếng nói Tuổi trẻ Đồng Nai, một sáng kiến ý nghĩa từ IVS Academy (IVS JSC)." data-lang-key="meta_description_haynoi">
+    <meta property="og:title" content="Hãy Nói - Diễn đàn Chia sẻ Tiếng nói Tuổi trẻ Đồng Nai" data-lang-key="og_title_haynoi">
+    <meta property="og:description" content="Khám phá mục tiêu, hoạt động và cách tham gia chương trình 'Hãy Nói' dành cho học sinh Đồng Nai từ lớp 4 đến 12." data-lang-key="og_description_haynoi">
+    <meta property="og:image" content="https://ivsjsc.github.io/images/haynoi_banner.png"> <meta property="og:url" content="https://ivsjsc.github.io/hay-noi.html">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config (giữ nguyên và bổ sung nếu cần)
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+                'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'secondary-dark': '#059669', 'purple-accent': '#8b5cf6', 'purple-accent-dark': '#7c3aed', 'warning': '#f59e0b', 'warning-dark': '#d97706',
+                'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db', 'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937',
+                'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-200': '#e5e7eb', 'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563', 'gray-700': '#374151', 'gray-800': '#1f2937',
+                'blue-50': '#eff6ff', 'blue-200': '#bfdbfe', 'blue-500': '#3b82f6', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8', 'blue-800': '#1e40af', 'blue-900': '#1e3a8a',
+                'purple-50':'#faf5ff', 'purple-200':'#e9d5ff', 'purple-300':'#d8b4fe', 'purple-500':'#a855f7', 'purple-600': '#9333ea', 'purple-700': '#7e22ce', // Adjusted purple-700
+                'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0', 'emerald-500': '#10b981', 'emerald-800': '#065f46',
+                'amber-200': '#fde68a', 'amber-500': '#f59e0b', 'amber-600': '#d97706',
+                'orange-200': '#fed7aa', 'orange-500': '#f97316',
+                'sky-200': '#bae6fd', 'teal-600': '#0d9488',
+                'indigo-500': '#6366f1', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca',
+                'pink-500': '#ec4899', 'pink-600': '#db2777',
+                'red-500': '#ef4444', 'red-600': '#dc2626' // Added red colors
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-text-shadow { text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+        .timeline { list-style: none; padding: 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 1.5rem; width: 3px; background-color: #d1d5db; /* gray-300 */ margin-left: -1.5px; }
+        .timeline li { position: relative; margin-bottom: 2.5rem; /* Increased spacing */ padding-left: 4rem; }
+        .timeline li::before { content: attr(data-icon); /* Use data-icon for Font Awesome */ font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 1.5rem; top: 0.1rem; width: 2rem; height: 2rem; line-height: 2rem; text-align: center; border-radius: 50%; background-color: theme('colors.primary'); color: white; margin-left: -1rem; z-index: 1; font-size: 1rem; box-shadow: 0 0 0 4px theme('colors.gray.50'); }
+        .testimonial-card { background-color: white; border-left: 5px solid theme('colors.purple.500'); padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+        .testimonial-quote { font-style: italic; color: theme('colors.gray.600'); margin-bottom: 1rem; position: relative; padding-left: 2.5rem; }
+        .testimonial-quote::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: -0.1rem; font-size: 1.75rem; color: theme('colors.purple.300'); opacity: 0.9; }
+        .testimonial-author { font-weight: 600; color: theme('colors.gray.800'); margin-top: 0.5rem; }
+        .testimonial-role { font-size: 0.875rem; color: theme('colors.gray.500'); }
+        .impact-card i { transition: transform 0.3s ease; }
+        .impact-card:hover i { transform: rotate(-10deg) scale(1.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-neutral-700 font-sans antialiased" id="page-haynoi">
+    <header id="header-placeholder"></header>
+    <main>
+        <section class="bg-gradient-to-r from-pink-600 via-purple-700 to-indigo-800 text-white py-20 md:py-28 text-center" aria-labelledby="page-title-haynoi" data-aos="fade-in" data-aos-duration="1000">
+            <div class="container mx-auto px-4">
+                <h1 id="page-title-haynoi" class="text-4xl md:text-6xl font-bold mb-4 flex items-center justify-center gap-4 hero-text-shadow" data-aos="fade-down" data-aos-delay="200">
+                    <i class="fas fa-microphone-alt"></i> Hãy Nói
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90 mb-3 hero-text-shadow" data-aos="fade-up" data-aos-delay="400">Diễn đàn Chia sẻ Tiếng nói Tuổi trẻ Đồng Nai</p>
+                <p class="text-md opacity-80 hero-text-shadow" data-aos="fade-up" data-aos-delay="500">Một Sáng kiến Cộng đồng Ý nghĩa từ IVS Academy (IVS JSC)</p>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6" data-lang-key="haynoi_intro_title">Giới thiệu Chương trình "Hãy Nói"</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6" data-lang-key="haynoi_intro_p1">
+                    "Hãy Nói" không chỉ là một sân chơi giáo dục, mà là một hành trình đầy cảm hứng, nơi thế hệ trẻ Đồng Nai (từ lớp 4 đến lớp 12) được trao quyền để cất lên tiếng nói, chia sẻ ước mơ, bày tỏ quan điểm trong một không gian an toàn, sáng tạo và đầy tôn trọng.
+                </p>
+                 <p class="text-lg text-gray-700 leading-relaxed" data-lang-key="haynoi_intro_p2">
+                    Được khởi xướng bởi IVS Academy, chương trình mong muốn xây dựng cầu nối thấu hiểu giữa các thế hệ, rèn luyện những kỹ năng mềm thiết yếu của thế kỷ 21, và vun đắp một cộng đồng năng động, gắn kết, nơi mọi ý tưởng đều được trân trọng.
+                 </p>
+            </div>
+        </section>
+
+        <section class="bg-blue-50 py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 md:mb-14" data-lang-key="haynoi_goals_title" data-aos="fade-up">4 Mục tiêu Cốt lõi của "Hãy Nói"</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 border-b-4 border-blue-500" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="text-blue-500 mb-5 text-5xl">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-key="haynoi_goal1_title">Phát triển Kỹ năng Vượt trội</h3>
+                        <p class="text-gray-600 text-sm" data-lang-key="haynoi_goal1_desc">Rèn luyện kỹ năng giao tiếp tự tin, thuyết trình lôi cuốn, lắng nghe hiệu quả và tư duy phản biện sắc bén.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 border-b-4 border-purple-500" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="text-purple-500 mb-5 text-5xl">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-key="haynoi_goal2_title">Kiến tạo Diễn đàn Mở</h3>
+                        <p class="text-gray-600 text-sm" data-lang-key="haynoi_goal2_desc">Xây dựng không gian an toàn, khuyến khích học sinh tự do thể hiện bản thân, chia sẻ ý tưởng và quan điểm cá nhân.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 border-b-4 border-emerald-500" data-aos="zoom-in-up" data-aos-delay="300">
+                        <div class="text-emerald-500 mb-5 text-5xl">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-key="haynoi_goal3_title">Gắn kết Cộng đồng</h3>
+                        <p class="text-gray-600 text-sm" data-lang-key="haynoi_goal3_desc">Tăng cường sự thấu hiểu và kết nối ý nghĩa giữa học sinh, gia đình, nhà trường và toàn xã hội.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 border-b-4 border-amber-500" data-aos="zoom-in-up" data-aos-delay="400">
+                        <div class="text-amber-500 mb-5 text-5xl">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2" data-lang-key="haynoi_goal4_title">Lan tỏa Giá trị Tích cực</h3>
+                        <p class="text-gray-600 text-sm" data-lang-key="haynoi_goal4_desc">Nuôi dưỡng lòng dũng cảm, sự chân thành, tinh thần trách nhiệm và sự đồng cảm trong cộng đồng trẻ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 md:mb-14" data-lang-key="haynoi_benefits_title" data-aos="fade-up">"Hãy Nói" Mang Lại Điều Gì?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="bg-emerald-50 p-8 rounded-xl border border-emerald-200 text-center shadow-lg" data-aos="fade-right" data-aos-delay="100">
+                        <div class="text-emerald-500 mb-5 text-5xl">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-emerald-800 mb-3" data-lang-key="haynoi_benefit_students_title">Cho Học Sinh</h3>
+                        <ul class="text-gray-700 text-sm space-y-2 text-left list-none pl-0">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600"></i><span data-lang-key="haynoi_benefit_students_1">Tự tin thể hiện bản thân.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600"></i><span data-lang-key="haynoi_benefit_students_2">Thành thạo kỹ năng mềm thế kỷ 21.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600"></i><span data-lang-key="haynoi_benefit_students_3">Học cách lắng nghe và tôn trọng.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600"></i><span data-lang-key="haynoi_benefit_students_4">Mở rộng vòng tròn bạn bè tích cực.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600"></i><span data-lang-key="haynoi_benefit_students_5">Khám phá tiềm năng, định hướng rõ ràng.</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-8 rounded-xl border border-blue-200 text-center shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-blue-500 mb-5 text-5xl">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-3" data-lang-key="haynoi_benefit_parents_title">Cho Phụ Huynh</h3>
+                         <ul class="text-gray-700 text-sm space-y-2 text-left list-none pl-0">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-600"></i><span data-lang-key="haynoi_benefit_parents_1">Thấu hiểu tâm tư, nguyện vọng của con.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-600"></i><span data-lang-key="haynoi_benefit_parents_2">Đồng hành hiệu quả cùng con trưởng thành.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-600"></i><span data-lang-key="haynoi_benefit_parents_3">Nâng cao kỹ năng làm cha mẹ hiện đại.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-600"></i><span data-lang-key="haynoi_benefit_parents_4">Giao lưu, chia sẻ kinh nghiệm với phụ huynh khác.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-blue-600"></i><span data-lang-key="haynoi_benefit_parents_5">Xây dựng gia đình hạnh phúc, thấu hiểu.</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-xl border border-purple-200 text-center shadow-lg" data-aos="fade-left" data-aos-delay="300">
+                        <div class="text-purple-500 mb-5 text-5xl">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-purple-800 mb-3" data-lang-key="haynoi_benefit_community_title">Cho Nhà trường & Cộng đồng</h3>
+                         <ul class="text-gray-700 text-sm space-y-2 text-left list-none pl-0">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-purple-600"></i><span data-lang-key="haynoi_benefit_community_1">Kiến tạo môi trường học đường tích cực.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-purple-600"></i><span data-lang-key="haynoi_benefit_community_2">Nâng tầm chất lượng giáo dục toàn diện.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-purple-600"></i><span data-lang-key="haynoi_benefit_community_3">Tăng cường gắn kết Gia đình - Nhà trường - Xã hội.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-purple-600"></i><span data-lang-key="haynoi_benefit_community_4">Phát hiện, bồi dưỡng thế hệ tài năng tương lai.</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-purple-600"></i><span data-lang-key="haynoi_benefit_community_5">Xây dựng cộng đồng Đồng Nai văn minh, tiến bộ.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-gray-50">
+             <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl font-bold text-primary mb-8" data-lang-key="haynoi_join_title">Tham gia "Hãy Nói" Ngay Hôm Nay!</h2>
+                    <div class="mb-8 bg-white p-6 rounded-lg shadow-md border-l-4 border-secondary">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-user-check text-secondary"></i><span data-lang-key="haynoi_who_can_join">Đối tượng tham gia</span></h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1 ml-5 text-sm">
+                            <li data-lang-key="haynoi_target_students">Học sinh từ lớp 4 đến lớp 12 đang học tập tại tỉnh Đồng Nai.</li>
+                            <li data-lang-key="haynoi_target_others">Giáo viên, phụ huynh, chuyên gia tâm lý và cộng đồng quan tâm đến sự phát triển của thế hệ trẻ.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-secondary">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-edit text-secondary"></i><span data-lang-key="haynoi_how_to_register">Cách thức đăng ký</span></h3>
+                         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-5 mb-5 text-sm">
+                            <li data-lang-key="haynoi_register_step1">Đăng ký trực tuyến qua Google Form được cung cấp trên Fanpage hoặc qua Email chương trình.</li>
+                            <li data-lang-key="haynoi_register_step2">Cung cấp đầy đủ thông tin cá nhân và người đồng hành (nếu đăng ký theo nhóm hoặc có phụ huynh/giáo viên hỗ trợ).</li>
+                            <li data-lang-key="haynoi_register_step3">Nộp một video ngắn (3-5 phút) tự quay giới thiệu bản thân, chia sẻ về một chủ đề yêu thích hoặc thể hiện năng khiếu (chi tiết sẽ có trong form đăng ký).</li>
+                            <li data-lang-key="haynoi_register_step4">Ban tổ chức tiếp nhận đăng ký liên tục và sẽ sắp xếp lịch tham gia phù hợp theo từng giai đoạn của chương trình.</li>
+                        </ul>
+                        <p class="font-semibold text-gray-700 mb-3 text-md" data-lang-key="haynoi_contact_info">Thông tin liên hệ đăng ký và tư vấn:</p>
+                        <div class="space-y-2">
+                            <p class="flex items-center gap-3 text-sm">
+                                <i class="fab fa-facebook text-blue-600 w-5 text-center fa-lg"></i>
+                                <span class="font-medium">Fanpage:</span>
+                                <a href="https://www.facebook.com/haynoi.tuoitredongnai" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-800 hover:underline break-all font-medium">fb.com/haynoi.tuoitredongnai</a>
+                            </p>
+                            <p class="flex items-center gap-3 text-sm">
+                                <i class="fas fa-envelope text-red-500 w-5 text-center fa-lg"></i>
+                                <span class="font-medium">Email:</span>
+                                <a href="mailto:letsspeak.ivs@hotmail.com" class="text-blue-700 hover:text-blue-800 hover:underline break-all font-medium">letsspeak.ivs@hotmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-8 md:mt-0" data-aos="fade-left" data-aos-delay="100">
+                    <img src="images/pages/haynoi_banner.png" alt="Học sinh tham gia chương trình Hãy Nói" data-lang-key="haynoi_image_alt" class="rounded-xl shadow-xl w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x450/cccccc/ffffff?text=Hãy+Nói+Image';">
+                </div>
+            </div>
+         </section>
+
+        <section class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 md:mb-14" data-lang-key="haynoi_structure_title" data-aos="fade-up">Lộ trình Hoạt động Đầy Hứng Khởi</h2>
+                <ol class="timeline max-w-3xl mx-auto">
+                    <li data-icon="📅" data-aos="fade-right" data-aos-delay="100">
+                        <h4 class="font-semibold text-lg text-gray-900 mb-1" data-lang-key="haynoi_phase1_title">Giai đoạn 1: Khởi Động & Chuẩn Bị (Tháng 8 – 9)</h4>
+                        <p class="text-gray-700 text-sm mb-3" data-lang-key="haynoi_phase1_desc">Khảo sát nhu cầu thực tế, xây dựng mạng lưới hợp tác với các trường, tiếp nhận đăng ký, tuyển chọn và tập huấn đội ngũ Mentor nhiệt huyết, đồng thời hoàn thiện khung nội dung chi tiết.</p>
+                        <ul class="list-disc list-inside text-gray-600 text-xs space-y-1 ml-4">
+                            <li data-lang-key="haynoi_phase1_activity1"><strong>Hoạt động chính:</strong> Khảo sát online/offline, làm việc với Ban Giám Hiệu các trường, mở cổng đăng ký chính thức, tổ chức buổi tập huấn Mentor đầu tiên.</li>
+                        </ul>
+                    </li>
+                    <li data-icon="🚀" data-aos="fade-right" data-aos-delay="150">
+                        <h4 class="font-semibold text-lg text-gray-900 mb-1" data-lang-key="haynoi_phase2_title">Giai đoạn 2: Triển Khai Sôi Nổi (Tháng 10 – 4 Năm Sau)</h4>
+                        <p class="text-gray-700 text-sm mb-3" data-lang-key="haynoi_phase2_desc">Tổ chức chuỗi hoạt động đa dạng, tạo không gian học hỏi, thực hành và chia sẻ liên tục cho tất cả thành viên tham gia.</p>
+                        <ul class="list-disc list-inside text-gray-600 text-xs space-y-1 ml-4">
+                            <li data-lang-key="haynoi_phase2_activity1"><strong>Workshop Kỹ năng (Hàng tháng):</strong> Tổ chức trực tiếp tại các trường điểm (kết hợp livestream cho các trường khác). Chủ đề xoay quanh giao tiếp, thuyết trình, phản biện, làm việc nhóm...</li>
+                            <li data-lang-key="haynoi_phase2_activity2"><strong>Diễn đàn "Hãy Nói" Tại Trường:</strong> Sân khấu nhỏ ấm cúng để học sinh tự tin chia sẻ câu chuyện, quan điểm (Tháng 10-12).</li>
+                            <li data-lang-key="haynoi_phase2_activity3"><strong>Dự án Cộng đồng Mini:</strong> Học sinh tự đề xuất ý tưởng và thực hiện các dự án nhỏ mang lại giá trị cho trường lớp, cộng đồng.</li>
+                            <li data-lang-key="haynoi_phase2_activity4"><strong>Talkshow "Lắng nghe để thấu hiểu":</strong> Mời chuyên gia, phụ huynh, học sinh cùng đối thoại về các chủ đề tâm lý, giáo dục (Định kỳ 2 tháng/lần).</li>
+                            <li data-lang-key="haynoi_phase2_activity5"><strong>Hoạt động trải nghiệm "Đổi vai":</strong> Giúp học sinh và người lớn hiểu hơn về góc nhìn của nhau.</li>
+                            <li data-lang-key="haynoi_phase2_activity6"><strong>Gala Tổng kết & Vinh danh (Tháng 4):</strong> Nhìn lại hành trình, vinh danh các cá nhân, tập thể xuất sắc và lan tỏa thông điệp chương trình.</li>
+                        </ul>
+                    </li>
+                    <li data-icon="🏆" data-aos="fade-right" data-aos-delay="200">
+                        <h4 class="font-semibold text-lg text-gray-900 mb-1" data-lang-key="haynoi_phase3_title">Giai đoạn 3: Tổng Kết & Phát Triển Bền Vững (Tháng 5)</h4>
+                        <p class="text-gray-700 text-sm mb-3" data-lang-key="haynoi_phase3_desc">Đánh giá toàn diện hiệu quả chương trình và đặt nền móng cho sự phát triển lâu dài, nhân rộng mô hình.</p>
+                         <ul class="list-disc list-inside text-gray-600 text-xs space-y-1 ml-4">
+                            <li data-lang-key="haynoi_phase3_activity1"><strong>Lễ Tổng kết & Triển lãm thành quả:</strong> Trưng bày sản phẩm dự án, vinh danh cá nhân/nhóm tiêu biểu.</li>
+                            <li data-lang-key="haynoi_phase3_activity2"><strong>Đánh giá & Báo cáo:</strong> Thu thập phản hồi từ các bên, phân tích dữ liệu và báo cáo kết quả.</li>
+                            <li data-lang-key="haynoi_phase3_activity3"><strong>Xây dựng Cộng đồng Bền vững:</strong> Thành lập Câu lạc bộ "Hãy Nói" tại các trường và duy trì hoạt động trên nền tảng online.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-purple-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 md:mb-14" data-lang-key="haynoi_testimonials_title" data-aos="fade-up">Lắng Nghe Chia Sẻ từ "Hãy Nói"</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <p class="testimonial-quote" data-lang-key="haynoi_testimonial1_quote">
+                            Tham gia 'Hãy Nói', em đã tự tin hơn rất nhiều khi đứng trước đám đông. Em học được cách trình bày ý kiến rõ ràng và lắng nghe người khác. Chương trình thật sự bổ ích!
+                        </p>
+                        <p class="testimonial-author" data-lang-key="haynoi_testimonial1_author">Nguyễn Ngọc Mai</p>
+                        <p class="testimonial-role" data-lang-key="haynoi_testimonial1_role">Học sinh lớp 8, THCS Long Phước</p>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <p class="testimonial-quote" data-lang-key="haynoi_testimonial2_quote">
+                            Chương trình thực sự ý nghĩa, giúp tôi hiểu con mình hơn. Con cởi mở chia sẻ và chúng tôi có thể trò chuyện nhiều hơn trước. Cảm ơn IVS Academy!
+                        </p>
+                        <p class="testimonial-author" data-lang-key="haynoi_testimonial2_author">Chị Hoàng Thu Trang</p>
+                        <p class="testimonial-role" data-lang-key="haynoi_testimonial2_role">Phụ huynh học sinh</p>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <p class="testimonial-quote" data-lang-key="haynoi_testimonial3_quote">
+                            Là một mentor, tôi thấy hạnh phúc khi chứng kiến các em tiến bộ từng ngày, dám nói lên suy nghĩ và thực hiện những dự án nhỏ ý nghĩa cho cộng đồng.
+                        </p>
+                        <p class="testimonial-author" data-lang-key="haynoi_testimonial3_author">Anh Phạm Minh Quân</p>
+                        <p class="testimonial-role" data-lang-key="haynoi_testimonial3_role">Mentor chương trình</p>
+                    </div>
+                </div>
+                 <p class="text-center text-gray-600 mt-10 italic text-sm" data-aos="fade-up"><span data-lang-key="haynoi_share_story_prompt">Bạn có câu chuyện muốn chia sẻ về "Hãy Nói"?</span> <a href="mailto:letsspeak.ivs@hotmail.com" class="text-primary hover:underline font-medium" data-lang-key="haynoi_share_story_link">Hãy liên hệ với chúng tôi</a>!</p>
+            </div>
+        </section>
+        <section class="py-12 md:py-16 bg-gray-50" aria-labelledby="communication-heading">
+            <div class="container mx-auto px-4">
+            <h2 id="communication-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10" data-lang-key="communication_title">Chương trình "Hãy Nói" - Phát triển Kỹ năng Giao tiếp</h2>
+            <div class="prose max-w-none text-gray-700 text-center text-lg leading-relaxed mb-10">
+                <p data-lang-key="communication_desc">
+                "Hãy Nói" là chương trình đặc biệt của IVS Academy, giúp học sinh THCS & THPT phát triển kỹ năng giao tiếp tự tin, tư duy phản biện và khả năng thuyết trình trước đám đông. Chương trình được thiết kế với các hoạt động thực hành sáng tạo, tương tác cao, phù hợp với lứa tuổi học sinh trung học.
+                </p>
+            </div>
+            <div class="w-full"></div>
+                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/-U9JQvUYB94?si=sEtbTLxlxHMNilch&amp;start=8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            </div>
+        </section>
+        <section class="py-12 md:py-16 bg-white">
+             <div class="container mx-auto px-4 max-w-4xl text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6" data-lang-key="haynoi_impact_title">Tầm Ảnh Hưởng Chúng Tôi Hướng Tới</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-10" data-lang-key="haynoi_impact_desc">
+                    "Hãy Nói" không chỉ dừng lại ở việc phát triển kỹ năng cá nhân mà còn khát khao tạo ra những thay đổi tích cực, lan tỏa giá trị nhân văn và xây dựng một cộng đồng Đồng Nai ngày càng tốt đẹp hơn.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-stretch gap-8 text-left">
+                    <div class="impact-card flex-1 bg-gray-100 p-6 rounded-lg flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fas fa-seedling text-5xl text-secondary"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-lg" data-lang-key="haynoi_impact1_title">Ươm mầm thế hệ tự tin</h4>
+                            <p class="text-sm text-gray-700" data-lang-key="haynoi_impact1_desc">Xây dựng một thế hệ trẻ Đồng Nai bản lĩnh, sáng tạo, tự tin thể hiện quan điểm và đóng góp tích cực cho xã hội.</p>
+                        </div>
+                    </div>
+                    <div class="impact-card flex-1 bg-gray-100 p-6 rounded-lg flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-people-arrows text-5xl text-blue-500"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-lg" data-lang-key="haynoi_impact2_title">Cầu nối thấu hiểu</h4>
+                            <p class="text-sm text-gray-700" data-lang-key="haynoi_impact2_desc">Thu hẹp khoảng cách thế hệ, tăng cường sự lắng nghe, chia sẻ và thấu hiểu giữa học sinh, gia đình và nhà trường.</p>
+                        </div>
+                    </div>
+                     <div class="impact-card flex-1 bg-gray-100 p-6 rounded-lg flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-lightbulb text-5xl text-amber-500"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-lg" data-lang-key="haynoi_impact3_title">Lan tỏa trách nhiệm</h4>
+                            <p class="text-sm text-gray-700" data-lang-key="haynoi_impact3_desc">Khuyến khích các dự án cộng đồng ý nghĩa, nuôi dưỡng ý thức trách nhiệm xã hội và tinh thần cống hiến từ sớm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </section>
+
+        <section class="py-16 md:py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+            <div class="container mx-auto px-4 text-center max-w-3xl" data-aos="zoom-in-up">
+                <h2 class="text-4xl font-bold mb-6 hero-text-shadow" data-lang-key="haynoi_cta_final_title">Hãy Để Tiếng Nói Của Bạn Được Lắng Nghe!</h2>
+                <p class="text-xl opacity-90 mb-10 hero-text-shadow" data-lang-key="haynoi_cta_final_desc">
+                    Tham gia cộng đồng "Hãy Nói" ngay hôm nay để cùng học hỏi, chia sẻ, kết nối và tạo nên sự khác biệt. Mỗi tiếng nói đều mang một giá trị riêng!
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <a href="https://forms.gle/TH9n3MV5Ty4E46TL7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 text-md" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fas fa-pen-alt"></i> <span data-lang-key="haynoi_cta_register">Đăng ký Tham gia</span>
+                    </a>
+                    <a href="https://www.facebook.com/haynoi.tuoitredongnai" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 text-md" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fab fa-facebook-f"></i> <span data-lang-key="haynoi_cta_fanpage">Truy cập Fanpage</span>
+                    </a>
+                     <a href="mailto:letsspeak.ivs@hotmail.com" class="inline-flex items-center justify-center gap-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 text-md" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-envelope"></i> <span data-lang-key="haynoi_cta_email">Gửi Email Liên hệ</span>
+                    </a>
+                     <a href="mailto:letsspeak.ivs@hotmail.com?subject=Đăng ký Mentor chương trình Hãy Nói" class="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 text-md" data-aos="zoom-in" data-aos-delay="400">
+                        <i class="fas fa-hands-helping"></i> <span data-lang-key="haynoi_cta_mentor">Trở thành Mentor</span>
+                    </a>
+                     <a href="mailto:ivs.jsc@outlook.com?subject=Đề nghị Đồng hành/Tài trợ chương trình Hãy Nói" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 text-md" data-aos="zoom-in" data-aos-delay="500">
+                        <i class="fas fa-handshake"></i> <span data-lang-key="haynoi_cta_sponsor">Đồng hành cùng CT</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
+        <a href="https://m.me/hr.ivsacademy" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors duration-200"
+           aria-label="Chat on Messenger" data-aos="fade-left" data-aos-delay="500" data-aos-anchor="#page-haynoi">
+            <i class="fab fa-facebook-messenger text-xl" aria-hidden="true"></i>
+        </a>
+        <a href="tel:+84795555789"
+           class="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition-colors duration-200"
+           aria-label="Call Company Phone" data-aos="fade-left" data-aos-delay="600" data-aos-anchor="#page-haynoi">
+            <i class="fas fa-phone-alt text-xl" aria-hidden="true"></i>
+        </a>
+         <button id="scrollToTopBtn"
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Scroll to top" data-aos="fade-left" data-aos-delay="700" data-aos-anchor="#page-haynoi">
+            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 100, 
+        duration: 700, 
+        easing: 'ease-out-quad', 
+        once: true, 
+        mirror: false, 
+        anchorPlacement: 'top-bottom', 
+      });
+
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      if (scrollToTopBtn) {
+          scrollToTopBtn.addEventListener('click', () => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+      }
+    </script>
+
+        <button id="scrollToTopBtn"
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Scroll to top">
+            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
+        </button>
+    
+    </div>
+    
+    <script src="js/language.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script>
+        // Script tải Header/Footer và gọi AOS.refresh()
+        function loadComponent(url, placeholderId, callback) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`);
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) {
+                        placeholder.innerHTML = data;
+                        if (callback && typeof callback === 'function') {
+                            setTimeout(() => {
+                                callback();
+                                if (typeof AOS !== 'undefined') AOS.refresh();
+                            }, 0);
+                        } else {
+                             if (typeof AOS !== 'undefined') AOS.refresh();
+                        }
+                    }
+                })
+                .catch(error => console.error(`Error loading component ${url}:`, error));
+        }
+
+        function applyLanguageIfReady() {
+            if (typeof window.applyLanguage === 'function') {
+                window.applyLanguage(localStorage.getItem('preferredLanguage') || 'vi');
+                 if (typeof AOS !== 'undefined') AOS.refreshHard();
+            } else {
+                console.warn('applyLanguage function not ready yet.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('header.html', 'header-placeholder', () => {
+                if (typeof initializeMenu === 'function') initializeMenu();
+                applyLanguageIfReady();
+            });
+            loadComponent('footer.html', 'footer-placeholder', () => {
+                applyLanguageIfReady();
+            });
+            applyLanguageIfReady();
+        });
+    </script>
+
+</body>
+</html>

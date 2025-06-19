@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_index">IVS Global Teacher Hub</title>
+    <meta name="description" content="IVS JSC - A pioneering organization in Vietnam in education (IVS Academy, IVS Kindergarten), EdTech (IVS Celestech), public health, and international cooperation." data-lang-key="meta_description_index">
+    <meta name="keywords" content="IVS JSC, education, educational technology, EdTech, STEAM, health, international cooperation, Dong Nai, IVS Academy, IVS Celestech, foreign language training, life skills" data-lang-key="meta_keywords_index">
+    <meta property="og:title" content="IVS JSC - Education, Technology, Health, International Cooperation" data-lang-key="og_title_index">
+    <meta property="og:description" content="Discover comprehensive solutions in foreign language training, STEAM, life skills, EdTech, healthcare, and cooperation opportunities with IVS JSC." data-lang-key="og_description_index">
+    <meta property="og:image" content="/images/logo/logo-192.png">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/ivs-global-teacher-hub.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#004080', 
+                        'primary-dark': '#003366',
+                        'secondary': '#ffc107', 
+                        'secondary-dark': '#e0a800',
+                        'header-orange': '#F97316', 
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-600': '#4B5563',
+                        'ivs-neutral-300': '#D1D5DB',
+                        'ivs-neutral-200': '#e5e7eb',
+                        'ivs-neutral-100': '#f3f4f6',
+                        'ivs-neutral-50': '#f9fafb',
+                        'purple-accent': '#8b5cf6',
+                        'warning': '#f59e0b',
+                        'blue-50': '#eff6ff',
+                        'blue-200': '#bfdbfe',
+                        'blue-500': '#3b82f6',
+                        'blue-600': '#2563eb', 
+                        'blue-700': '#1d4ed8',
+                        'blue-800': '#1e40af',
+                        'purple-50': '#faf5ff',
+                        'purple-500': '#a855f7',
+                        'purple-600': '#9333ea',
+                        'purple-700': '#7e2d87',
+                        'emerald-50': '#ecfdf5',
+                        'emerald-200': '#a7f3d0',
+                        'emerald-500': '#10b981',
+                        'emerald-600': '#059669',
+                        'amber-200': '#fde68a',
+                        'amber-500': '#f59e0b',
+                        'orange-200': '#fed7aa',
+                        'orange-500': '#f97316',
+                        'teal-600': '#0d9488',
+                        'indigo-600': '#4f46e5',
+                        'indigo-700': '#4338ca',
+                        'pink-500': '#ec4899'
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <link rel="stylesheet" href="/dist/output.css">
+    <style>
+        /* Custom CSS Variables for IVS Tailwind Colors */
+        :root {
+            --primary-color: #004080;
+            --primary-dark-color: #003366;
+            --ivs-neutral-800-color: #1f2937;
+            --ivs-neutral-700-color: #374151;
+            --ivs-neutral-300-color: #D1D5DB;
+            --ivs-neutral-200-color: #e5e7eb;
+            --ivs-neutral-50-color: #f9fafb;
+        }
+
+        /* Styles for IVS Global Teacher Hub App */
+        .container {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        .button-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .button-primary:hover {
+            background-color: var(--primary-dark-color);
+        }
+        .button-secondary {
+            background-color: var(--ivs-neutral-700-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .button-secondary:hover {
+            background-color: var(--ivs-neutral-800-color);
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--ivs-neutral-300-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .textarea-field {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--ivs-neutral-300-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+        }
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .modal-content button {
+            margin-top: 1rem;
+        }
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background-color: var(--ivs-neutral-200-color);
+            color: var(--ivs-neutral-800-color);
+            transition: background-color 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .teacher-card {
+            background-color: var(--ivs-neutral-50-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .teacher-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        /* Custom styles for chatbot (from user's original HTML) */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #004080; /* primary color */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.05);
+            background-color: #003366; /* primary-dark */
+        }
+
+        .chatbot-window {
+            width: 350px; /* Default width for desktop */
+            height: 500px;
+            background-color: #f9fafb; /* ivs-neutral-50 */
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 15px; /* Space between window and button */
+            transform: translateY(10px); /* Initial slight offset */
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .chatbot-window.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-header {
+            background-color: #004080; /* primary */
+            color: white;
+            padding: 1rem;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header .close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #ffffff; /* white */
+            border-bottom: 1px solid #e5e7eb; /* ivs-neutral-200 */
+        }
+
+        .message {
+            margin-bottom: 0.75rem;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background-color: #bfdbfe; /* blue-200 */
+            color: #1f2937; /* ivs-neutral-800 */
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            background-color: #e5e7eb; /* ivs-neutral-200 */
+            color: #1f2937; /* ivs-neutral-800 */
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            padding: 1rem;
+            background-color: #f9fafb; /* ivs-neutral-50 */
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .chatbot-input-area input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; /* ivs-neutral-300 */
+            border-radius: 8px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .chatbot-input-area input:focus {
+            border-color: #3b82f6; /* blue-500 */
+        }
+
+        .chatbot-input-area button {
+            background-color: #004080; /* primary */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-input-area button:hover {
+            background-color: #003366; /* primary-dark */
+        }
+
+        .chatbot-input-area button:disabled {
+            background-color: #9ca3af; /* gray-400 */
+            cursor: not-allowed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                bottom: 15px;
+                right: 15px;
+            }
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            .chatbot-window {
+                width: 90vw; /* Occupy most of the viewport width */
+                height: 70vh; /* Occupy most of the viewport height */
+                max-width: 400px; /* Max width for larger mobile devices */
+                max-height: 600px; /* Max height */
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300 antialiased font-inter" id="page-index">
+    
+    <div id="header-placeholder" data-loading-text="Loading menu..."></div>
+
+    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-75 z-50 hidden">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+    </div>
+
+    <div id="custom-modal" class="modal">
+        <div class="modal-content">
+            <p id="modal-message" class="text-lg font-medium text-gray-800"></p>
+            <button id="modal-close-button" class="button-primary">Close</button>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="container">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">IVS Global Teacher Hub</h1>
+            <p class="text-gray-600 mb-4">IVS – Strategic Thinking, Practical Action, Global Value.</p>
+            <p id="user-id-display" class="text-sm text-gray-500 mb-4">User ID: Loading...</p>
+
+            <div class="flex justify-center space-x-4 mb-6">
+                <button id="apply-tab-button" class="tab-button active">Teacher Application</button>
+                <button id="view-teachers-tab-button" class="tab-button">View Teachers</button>
+            </div>
+
+            <div id="teacher-application-section">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Submit Teacher Application</h2>
+                <p class="text-gray-700 mb-6">Please fill in the information below to become part of IVS's international teaching team.</p>
+
+                <form id="teacher-application-form" class="text-left">
+                    <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                    <input type="text" id="fullName" class="input-field" placeholder="Your full name" required>
+
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                    <input type="email" id="email" class="input-field" placeholder="Your email address" required>
+
+                    <label for="phoneNumber" class="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                    <input type="tel" id="phoneNumber" class="input-field" placeholder="Contact phone number" required>
+
+                    <label for="nationality" class="block text-gray-700 text-sm font-bold mb-2">Nationality:</label>
+                    <input type="text" id="nationality" class="input-field" placeholder="Your nationality" required>
+
+                    <label for="qualification" class="block text-gray-700 text-sm font-bold mb-2">Highest Qualification:</label>
+                    <input type="text" id="qualification" class="input-field" placeholder="e.g., Master of Education, Bachelor of English" required>
+
+                    <label for="experience" class="block text-gray-700 text-sm font-bold mb-2">Years of Teaching Experience:</label>
+                    <input type="number" id="experience" class="input-field" placeholder="Years of experience" min="0" required>
+
+                    <label for="subjects" class="block text-gray-700 text-sm font-bold mb-2">Subjects You Can Teach (comma-separated):</label>
+                    <input type="text" id="subjects" class="input-field" placeholder="e.g., English, Math, Science" required>
+
+                    <label for="bio" class="block text-gray-700 text-sm font-bold mb-2">Brief Introduction About Yourself:</label>
+                    <textarea id="bio" class="textarea-field" placeholder="Highlight your teaching experience and style (max 200 words)" maxlength="200" required></textarea>
+
+                    <p class="text-gray-700 text-sm mt-4 mb-2">To submit your CV, profile photo, or other documents (video, PDF), please prepare these files on a cloud storage service (e.g., Google Drive, Dropbox) and provide public or appropriately accessible links in the fields below.</p>
+
+                    <label for="resumeUrl" class="block text-gray-700 text-sm font-bold mb-2">CV/Online Portfolio Link (optional):</label>
+                    <input type="url" id="resumeUrl" class="input-field" placeholder="URL to your CV or portfolio">
+
+                    <label for="photoUrl" class="block text-gray-700 text-sm font-bold mb-2">Profile Photo Link (optional):</label>
+                    <input type="url" id="photoUrl" class="input-field" placeholder="URL to your profile photo">
+
+                    <button type="submit" class="button-primary w-full mt-4">Submit Application</button>
+                </form>
+            </div>
+
+            <div id="teacher-overview-section" class="hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">IVS Teacher List</h2>
+                <p class="text-gray-700 mb-6">This is a list of foreign teachers collaborating with IVS, carefully selected to meet the needs of our partners.</p>
+                <div id="teachers-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <p id="no-teachers-message" class="text-gray-500 text-center col-span-full hidden">No teachers currently displayed.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder" data-loading-text="Loading footer..."></div>
+    
+    <button id="scrollToTopBtn" class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-neutral-600 dark:hover:bg-neutral-500" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
+    </button>
+
+    <div class="chatbot-container">
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <span>IVS AI Assistant</span>
+                <button id="chatbot-close-button" class="close-button">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages flex flex-col space-y-3">
+                <div class="message bot">Welcome to IVS JSC! How can I help you today?</div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Type your message...">
+                <button id="chatbot-send-button"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button id="chatbot-open-button" class="chatbot-button">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/posts-loader.js"></script>
+    <script src="/js/chatbot.js"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, collection, serverTimestamp, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let app;
+        let db;
+        let auth;
+        let userId = 'Loading...';
+        let isAuthReady = false;
+
+        const applyTabButton = document.getElementById('apply-tab-button');
+        const viewTeachersTabButton = document.getElementById('view-teachers-tab-button');
+        const teacherApplicationSection = document.getElementById('teacher-application-section');
+        const teacherOverviewSection = document.getElementById('teacher-overview-section');
+        const teacherApplicationForm = document.getElementById('teacher-application-form');
+        const teachersList = document.getElementById('teachers-list');
+        const noTeachersMessage = document.getElementById('no-teachers-message');
+        const userIdDisplay = document.getElementById('user-id-display');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        const customModal = document.getElementById('custom-modal');
+        const modalMessage = document.getElementById('modal-message');
+        const modalCloseButton = document.getElementById('modal-close-button');
+
+        function showModal(message) {
+            modalMessage.innerHTML = message; // Use innerHTML to render HTML links
+            customModal.classList.add('show');
+        }
+
+        function hideModal() {
+            customModal.classList.remove('show');
+        }
+
+        modalCloseButton.addEventListener('click', hideModal);
+
+        function showLoadingSpinner() {
+            loadingSpinner.classList.remove('hidden');
+        }
+
+        function hideLoadingSpinner() {
+            loadingSpinner.classList.add('hidden');
+        }
+
+        window.onload = async function() {
+            showLoadingSpinner();
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        userIdDisplay.textContent = `User ID: ${userId}`;
+                        isAuthReady = true;
+                        if (!teacherApplicationSection.classList.contains('hidden')) {
+                        } else {
+                            loadApprovedTeachers();
+                        }
+                    } else {
+                        try {
+                            const anonymousUser = await signInAnonymously(auth);
+                            userId = anonymousUser.user.uid;
+                            userIdDisplay.textContent = `User ID: ${userId}`;
+                            isAuthReady = true;
+                            if (!teacherApplicationSection.classList.contains('hidden')) {
+                            } else {
+                                loadApprovedTeachers();
+                            }
+                        } catch (error) {
+                            console.error("Anonymous sign-in error:", error);
+                            showModal("Unable to sign in anonymously. Please try again.");
+                            userIdDisplay.textContent = `User ID: Error`;
+                        }
+                    }
+                    hideLoadingSpinner();
+                });
+
+                if (initialAuthToken) {
+                    try {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } catch (error) {
+                        console.error("Custom token sign-in error:", error);
+                        showModal("Unable to authenticate user. Please try again.");
+                    }
+                } else {
+                }
+            } catch (error) {
+                console.error("Firebase initialization error:", error);
+                showModal("Unable to initialize the application. Please check your internet connection.");
+                hideLoadingSpinner();
+            }
+
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 200) {
+                        scrollToTopBtn.classList.remove('hidden');
+                        scrollToTopBtn.classList.add('flex');
+                    } else {
+                        scrollToTopBtn.classList.remove('flex');
+                        scrollToTopBtn.classList.add('hidden');
+                    }
+                }, { passive: true });
+
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                if (window.pageYOffset <= 200) {
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            }
+        };
+
+        applyTabButton.addEventListener('click', () => {
+            applyTabButton.classList.add('active');
+            viewTeachersTabButton.classList.remove('active');
+            teacherApplicationSection.classList.remove('hidden');
+            teacherOverviewSection.classList.add('hidden');
+        });
+
+        viewTeachersTabButton.addEventListener('click', () => {
+            viewTeachersTabButton.classList.add('active');
+            applyTabButton.classList.remove('active');
+            teacherApplicationSection.classList.add('hidden');
+            teacherOverviewSection.classList.remove('hidden');
+            if (isAuthReady) {
+                loadApprovedTeachers();
+            } else {
+                showModal("Loading teacher data. Please wait for authentication.");
+            }
+        });
+
+        teacherApplicationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showLoadingSpinner();
+
+            if (!db || !userId || !isAuthReady) {
+                showModal("System not ready. Please wait or try again.");
+                hideLoadingSpinner();
+                return;
+            }
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const nationality = document.getElementById('nationality').value;
+            const qualification = document.getElementById('qualification').value;
+            const experience = parseInt(document.getElementById('experience').value);
+            const subjects = document.getElementById('subjects').value.split(',').map(s => s.trim());
+            const bio = document.getElementById('bio').value;
+            const resumeUrl = document.getElementById('resumeUrl').value;
+            const photoUrl = document.getElementById('photoUrl').value;
+
+            const applicationId = doc(collection(db, `artifacts/${appId}/users/${userId}/teacher_applications`)).id;
+
+            const teacherData = {
+                fullName,
+                email,
+                phoneNumber,
+                nationality,
+                qualification,
+                experience,
+                subjects,
+                bio,
+                resumeUrl: resumeUrl || null,
+                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo',
+                submissionTimestamp: serverTimestamp(),
+                userId: userId,
+                applicationId: applicationId
+            };
+
+            const publicTeacherData = {
+                fullName,
+                nationality,
+                qualification,
+                experience,
+                subjects,
+                bio,
+                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo',
+                isApprovedForPublicDisplay: false,
+                applicationId: applicationId,
+                userId: userId
+            };
+
+            try {
+                await setDoc(doc(db, `artifacts/${appId}/users/${userId}/teacher_applications`, applicationId), teacherData);
+
+                await setDoc(doc(db, `artifacts/${appId}/public/data/teacher_applications`, applicationId), publicTeacherData);
+
+                showModal("Your application has been submitted successfully! Please visit this <a href='https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=sharing&ouid=109196735657445874239' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>link</a> to upload your CV, photo, and other documents.");
+                teacherApplicationForm.reset();
+            } catch (error) {
+                console.error("Error submitting application: ", error);
+                showModal("An error occurred while submitting the application. Please try again.");
+            } finally {
+                hideLoadingSpinner();
+            }
+        });
+
+        function loadApprovedTeachers() {
+            if (!db || !isAuthReady) {
+                console.warn("Firestore or Auth not ready to load teachers.");
+                return;
+            }
+
+            const q = query(collection(db, `artifacts/${appId}/public/data/teacher_applications`), where("isApprovedForPublicDisplay", "==", true));
+
+            onSnapshot(q, (snapshot) => {
+                teachersList.innerHTML = '';
+                if (snapshot.empty) {
+                    noTeachersMessage.classList.remove('hidden');
+                } else {
+                    noTeachersMessage.classList.add('hidden');
+                    snapshot.forEach((doc) => {
+                        const teacher = doc.data();
+                        const teacherCard = `
+                            <div class="teacher-card flex flex-col items-center">
+                                <img src="${teacher.photoUrl}" alt="${teacher.fullName}" class="mb-4">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">${teacher.fullName}</h3>
+                                <p class="text-gray-600 mb-1"><strong>Nationality:</strong> ${teacher.nationality}</p>
+                                <p class="text-gray-600 mb-1"><strong>Qualification:</strong> ${teacher.qualification}</p>
+                                <p class="text-gray-600 mb-1"><strong>Experience:</strong> ${teacher.experience} years</p>
+                                <p class="text-gray-600 mb-1"><strong>Subjects:</strong> ${teacher.subjects.join(', ')}</p>
+                                <p class="text-gray-700 mt-2 text-sm italic">"${teacher.bio}"</p>
+                            </div>
+                        `;
+                        teachersList.insertAdjacentHTML('beforeend', teacherCard);
+                    });
+                }
+            }, (error) => {
+                console.error("Error loading teacher list: ", error);
+                showModal("Unable to load teacher list. Please try again.");
+            });
+        }
+    </script>
+</body>
+</html>

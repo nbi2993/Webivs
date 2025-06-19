@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="lkmamnon_page_title">IVS Healths - Sức khỏe Thể chất | IVS JSC</title>
+    <meta name="description" content="IVS Kindergarten - Trường mầm non tiên phong tại Long Thành, Đồng Nai áp dụng mô hình STEAM+Intelligence Model, ươm mầm tài năng Việt." data-lang-key="lkmamnon_meta_description">
+    <meta property="og:title" content="IVS Kindergarten - Nền Tảng Vững Chắc Cho Tương Lai" data-lang-key="lkmamnon_og_title">
+    <meta property="og:description" content="Khám phá môi trường học tập an toàn, yêu thương, đầy cảm hứng với mô hình giáo dục sớm độc đáo tại IVS Kindergarten." data-lang-key="lkmamnon_og_description">
+    <meta property="og:image" content="images/ivs-kindergarten.jpeg"> <meta property="og:url" content="https://ivs.id.vn/lkmamnon.html"> <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config (giữ nguyên)
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'purple-accent': '#8b5cf6', 'warning': '#f59e0b', 'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db', 'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937', 'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563', 'gray-700': '#374151', 'gray-800': '#1f2937', 'blue-50': '#eff6ff', 'blue-200': '#bfdbfe', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8', 'blue-800': '#1e40af', 'purple-50':'#faf5ff', 'purple-500':'#a855f7', 'purple-600': '#9333ea', 'purple-700': '#7e2d87', 'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0', 'emerald-500': '#10b981', 'amber-200': '#fde68a', 'amber-500': '#f59e0b', 'orange-200': '#fed7aa', 'orange-500': '#f97316', 'sky-200': '#bae6fd', 'teal-600': '#0d9488', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca', 'pink-500': '#ec4899', 'pink-accent': '#ec4899' // Thêm pink-accent nếu dùng
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* CSS giữ nguyên */
+        body { font-family: 'Inter', sans-serif; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; width: 100%; background-color: #000; border-radius: 0.5rem; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .timeline { list-style: none; padding: 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 1.5rem; width: 2px; background-color: #cbd5e1; margin-left: -1px; }
+        .timeline li { position: relative; margin-bottom: 2rem; padding-left: 3.5rem; }
+        .timeline li::before { content: ''; position: absolute; left: 1.5rem; top: 0.25rem; width: 1rem; height: 1rem; border-radius: 50%; background-color: var(--primary-color, #3b82f6); margin-left: -0.5rem; z-index: 1; }
+        .horizontal-scroll-gallery::-webkit-scrollbar { height: 8px; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 10px; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-thumb { background-color: #9ca3af; border-radius: 10px; border: 2px solid #e5e7eb; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-thumb:hover { background-color: #6b7280; }
+        .scroll-snap-type-x-mandatory { scroll-snap-type: x mandatory; }
+        .scroll-snap-align-start { scroll-snap-align: start; }
+        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .commitment-list li { padding-left: 1.75rem; position: relative; margin-bottom: 0.75rem;}
+        .commitment-list li::before { content: '🤝'; position: absolute; left: 0; color: theme('colors.secondary', '#10b981'); font-size: 1em; top: 0.1em; }
+        header#navbar button:disabled[data-lang] { color: white !important; opacity: 1 !important; }
+        header#navbar button[data-lang]:not(:disabled) { color: theme('colors.blue.200', '#bfdbfe') !important; opacity: 0.8 !important; }
+        header#navbar button[data-lang]:not(:disabled):hover { color: white !important; opacity: 1 !important; }
+    </style>
+</head>
+<body class="bg-gray-100 text-neutral-700 font-sans antialiased">
+
+    <header id="header-placeholder"></header>
+
+
+    <main>
+        <section class="relative text-center bg-health-secondary text-white">
+            <img src="images/pages/healths/yensaocover.png" alt="Yến Sào Thanh Yến Cover" class="w-full h-64 md:h-80 object-cover opacity-80">
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-40 p-4">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">YẾN SÀO THANH YẾN</h1>
+                <p class="text-lg md:text-xl opacity-90">Tinh hoa yến sào từ Long Thành, Đồng Nai</p>
+                <p class="text-sm opacity-80 mt-1">(Một sản phẩm thuộc dự án IVS Health & Wellness)</p>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
+            <section class="mb-10 md:mb-12">
+                <h2 class="text-3xl font-semibold text-health-primary mb-4 text-center md:text-left">Giới Thiệu Yến Sào Thanh Yến</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Yến Sào Thanh Yến tại Long Thành, Đồng Nai, một phần của dự án IVS Health & Wellness, tự hào là đơn vị cung cấp yến sào chất lượng cao, mang đến giá trị dinh dưỡng vượt trội. Chúng tôi tận dụng lợi thế tự nhiên của địa phương để phát triển nguồn yến sào sạch, an toàn, giữ trọn dưỡng chất quý giá như protein, axit amin và khoáng chất. Với sứ mệnh "Kết nối tri thức, phát triển bền vững", Thanh Yến hướng tới nâng cao chất lượng cuộc sống cho cộng đồng thông qua các sản phẩm chăm sóc sức khỏe từ thiên nhiên.
+                </p>
+            </section>
+
+            <section class="mb-10 md:mb-12">
+                <h2 class="text-3xl font-semibold text-health-primary mb-6 text-center">Sản Phẩm Nổi Bật</h2>
+                <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                    <ul class="space-y-3 list-disc list-inside text-gray-700">
+                        <li><strong>Tổ yến tinh chế:</strong> Nguyên chất 100%, được làm sạch tỉ mỉ, giàu dinh dưỡng, hỗ trợ sức khỏe tổng thể và làm đẹp da hiệu quả.</li>
+                        <li><strong>Yến chưng sẵn:</strong> Tiện lợi, đa dạng hương vị (đường phèn, táo đỏ, long nhãn...), giữ nguyên hương vị tự nhiên, phù hợp với người bận rộn.</li>
+                        <li><strong>Tổ yến thô:</strong> Giữ nguyên hình dáng tổ yến ban đầu, chưa qua xử lý làm sạch, dành cho khách hàng yêu thích sự nguyên bản và muốn tự tay chế biến.</li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <img src="images/pages/healths/yensao1.png" alt="Sản phẩm yến sào tinh chế" class="w-full h-64 object-cover rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x300/eee/ccc?text=Yến+Sào+1';">
+                    <img src="images/pages/healths/yensao2.jpg" alt="Sản phẩm yến chưng sẵn" class="w-full h-64 object-cover rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x300/eee/ccc?text=Yến+Sào+2';">
+                </div>
+            </section>
+
+            <section class="mb-10 md:mb-12">
+                <h2 class="text-3xl font-semibold text-health-primary mb-4 text-center md:text-left">Lợi Ích Vượt Trội Của Yến Sào</h2>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-gray-700 leading-relaxed">
+                        Yến sào Thanh Yến không chỉ là một món ăn bổ dưỡng mà còn là liệu pháp tự nhiên giúp tăng cường sức đề kháng, hỗ trợ phục hồi sức khỏe nhanh chóng sau khi ốm hoặc phẫu thuật. Sử dụng yến sào đều đặn còn giúp cải thiện chất lượng giấc ngủ, giảm căng thẳng, và đặc biệt mang lại làn da căng mịn, tươi trẻ, làm chậm quá trình lão hóa. Đây thực sự là món quà sức khỏe ý nghĩa và sang trọng dành tặng gia đình, người thân và đối tác.
+                    </p>
+                 </div>
+            </section>
+
+            <section class="mb-10 md:mb-12">
+                <h2 class="text-3xl font-semibold text-health-primary mb-6 text-center">Bài Viết Nổi Bật Về Sức Khỏe & Yến Sào</h2>          
+                <div class="video-wrapper rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fyensaothanhyenlongthanh%2Fposts%2F1805471503643064%3A1805471503643064&show_text=true&width=500" width="500" height="615" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </section>
+
+            <section>
+                <h2 class="text-3xl font-semibold text-health-primary mb-4 text-center md:text-left">Liên Hệ Đặt Hàng & Tư Vấn</h2>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-gray-700 leading-relaxed">
+                        Địa chỉ: Long Thành, Đồng Nai<br>
+                        Hotline/Zalo: <a href="tel:0909xxxxxx" class="text-health-primary hover:underline">0977 591 559 - 0792 575 095</a>                 
+                        Theo dõi chúng tôi trên:
+                        <a href="https://www.facebook.com/yensaothanhyenlongthanh" class="text-health-primary hover:underline ml-1">Facebook</a>                        
+                    </p>
+                 </div>
+            </section>
+        </div>
+    </main>
+
+     <footer id="footer-placeholder"></footer>
+
+    <script src="js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselInner = document.querySelector('#post-carousel .carousel-inner');
+            const carouselControls = document.querySelector('#post-carousel .carousel-controls');
+            let currentIndex = 0;
+            let postsData = []; // Dữ liệu bài viết sẽ được lưu ở đây
+            let intervalId = null; // ID cho auto-play
+
+            // --- Dữ liệu bài viết giả lập ---
+            // Trong thực tế, bạn sẽ fetch từ posts.json hoặc API
+            const mockPosts = [
+                { title: "Công dụng tuyệt vời của Yến Sào", excerpt: "Khám phá những lợi ích sức khỏe không ngờ tới từ tổ yến...", image: "https://placehold.co/600x400/f4a261/white?text=Bài+Viết+1", link: "#" },
+                { title: "Cách chưng yến giữ trọn dinh dưỡng", excerpt: "Bí quyết chế biến yến sào đúng cách để không làm mất đi dưỡng chất quý giá...", image: "https://placehold.co/600x400/e76f51/white?text=Bài+Viết+2", link: "#" },
+                { title: "Yến sào - Món quà sức khỏe cho người lớn tuổi", excerpt: "Tại sao yến sào lại là lựa chọn hàng đầu để bồi bổ sức khỏe cho ông bà, cha mẹ?", image: "https://placehold.co/600x400/2a9d8f/white?text=Bài+Viết+3", link: "#" }
+            ];
+            // --- Kết thúc dữ liệu giả lập ---
+
+            function renderCarousel() {
+                if (!carouselInner || !carouselControls) return;
+                carouselInner.innerHTML = '';
+                carouselControls.innerHTML = '';
+
+                postsData.forEach((post, index) => {
+                    // Tạo slide item
+                    const item = document.createElement('div');
+                    item.className = 'carousel-item w-full flex-shrink-0 p-4 box-border relative'; // Thêm relative cho hot-label
+                    item.innerHTML = `
+                        <div class="post-preview bg-gray-50 p-4 rounded-lg shadow-sm">
+                             ${index === 0 ? '<span class="hot-label absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">HOT</span>' : ''}
+                            <div class="post-image mb-3">
+                                <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover rounded-md" onerror="this.onerror=null; this.src='https://placehold.co/600x400/eee/ccc?text=Image+Error';">
+                            </div>
+                            <h4 class="font-semibold text-lg mb-1 text-gray-800">${post.title}</h4>
+                            <p class="text-sm text-gray-600 mb-2">${post.excerpt}</p>
+                            <a href="${post.link}" class="text-sm text-health-primary hover:underline font-medium">Đọc thêm <i class="fas fa-arrow-right fa-xs ml-1"></i></a>
+                        </div>
+                    `;
+                    carouselInner.appendChild(item);
+
+                    // Tạo control button (dot)
+                    const btn = document.createElement('span');
+                    btn.className = 'carousel-btn';
+                    btn.dataset.index = index;
+                    if (index === currentIndex) {
+                        btn.classList.add('active');
+                    }
+                    btn.addEventListener('click', () => {
+                        goToSlide(index);
+                        stopAutoPlay(); // Dừng auto play khi người dùng tương tác
+                        startAutoPlay(); // Khởi động lại auto play
+                    });
+                    carouselControls.appendChild(btn);
+                });
+                updateCarouselTransform();
+            }
+
+            function updateCarouselTransform() {
+                 if (!carouselInner) return;
+                const offset = -currentIndex * 100;
+                carouselInner.style.transform = `translateX(${offset}%)`;
+
+                // Cập nhật trạng thái active cho control buttons
+                const buttons = carouselControls?.querySelectorAll('.carousel-btn');
+                buttons?.forEach((btn, index) => {
+                    btn.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                 if (!postsData || postsData.length === 0) return;
+                currentIndex = (index + postsData.length) % postsData.length; // Wrap around
+                updateCarouselTransform();
+            }
+
+             function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function startAutoPlay(interval = 5000) {
+                 stopAutoPlay(); // Clear interval cũ trước khi tạo mới
+                 if (postsData && postsData.length > 1) { // Chỉ chạy nếu có nhiều hơn 1 slide
+                     intervalId = setInterval(nextSlide, interval);
+                 }
+            }
+
+            function stopAutoPlay() {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+
+            // --- Khởi tạo ---
+            // Trong thực tế, thay mockPosts bằng fetch('posts.json') hoặc API call
+            postsData = mockPosts;
+            if (postsData && postsData.length > 0) {
+                 renderCarousel();
+                 startAutoPlay(); // Bắt đầu auto play
+            } else {
+                 if(carouselInner) carouselInner.innerHTML = '<div class="carousel-item text-center text-gray-500 p-8">Không có bài viết nào.</div>';
+            }
+        });
+    </script>
+
+        <button id="scrollToTopBtn"
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Scroll to top">
+            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
+        </button>
+    
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="webdesign_page_title">IVS Celestech - Thiết Kế Website Chuyên nghiệp | IVS JSC</title>
+    <meta name="description" content="IVS Celestech cung cấp dịch vụ thiết kế website chuyên nghiệp, hiện đại, tối ưu SEO và responsive, giúp doanh nghiệp nâng tầm thương hiệu và tối ưu hiệu quả kinh doanh." data-lang-key="webdesign_meta_description">
+    <meta name="keywords" content="IVS Celestech, thiết kế website, web design, responsive web design, SEO, website doanh nghiệp, website giáo dục, e-commerce website" data-lang-key="webdesign_meta_keywords">
+    <meta property="og:title" content="IVS Celestech - Thiết Kế Website Chuyên nghiệp | Nâng Tầm Thương Hiệu" data-lang-key="webdesign_og_title">
+    <meta property="og:description" content="Khám phá giải pháp thiết kế website toàn diện từ IVS Celestech, đảm bảo giao diện ấn tượng, hiệu suất vượt trội và khả năng tương tác tối ưu." data-lang-key="webdesign_og_description">
+    <meta property="og:image" content="/images/banners/webdesign_og_banner_v2.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/Pages/webdesign.html"> 
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC - IVS Celestech">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#004080', 
+                        'primary-dark': '#003366',
+                        'secondary': '#ffc107', 
+                        'secondary-dark': '#e0a800',
+                        'header-orange': '#F97316', 
+                        'ivs-neutral-900': '#111827',
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-600': '#4B5563',
+                        'ivs-neutral-500': '#6b7280',
+                        'ivs-neutral-400':'#9ca3af',
+                        'ivs-neutral-300': '#D1D5DB',
+                        'ivs-neutral-200': '#e5e7eb',
+                        'ivs-neutral-100': '#f3f4f6',
+                        'ivs-neutral-50': '#f9fafb',
+                        'blue-50': '#eff6ff',
+                        'blue-100': '#dbeafe',
+                        'blue-400': '#60a5fa',
+                        'blue-500': '#3b82f6',
+                        'blue-600': '#2563eb', 
+                        'blue-700': '#1d4ed8',
+                        'purple-100': '#f3e8ff',
+                        'purple-400': '#c084fc',
+                        'purple-500': '#a855f7',
+                        'purple-600': '#9333ea',
+                        'purple-900': '#581c87',
+                        'green-100': '#dcfce7',
+                        'green-400': '#4ade80',
+                        'green-500': '#22c55e',
+                        'green-600': '#16a34a',
+                        'amber-400': '#facc15',
+                        'amber-500': '#f59e0b',
+                        'amber-600': '#ca8a04',
+                        'red-400': '#f87171',
+                        'red-600': '#dc2626',
+                        'teal-400': '#2dd4bf',
+                        'teal-600': '#0d9488',
+                        'orange-400':'#fb923c'
+                    }
+                }
+            },
+            plugins: [
+                // Removed: require('@tailwindcss/typography'),
+                // Removed: require('@tailwindcss/aspect-ratio'), as they are loaded via CDN
+            ],
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <link rel="stylesheet" href="/dist/output.css">
+     <style>
+        .hero-text-shadow { text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+        .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
+        @media (min-width: 768px) { .section-padding { padding-top: 4rem; padding-bottom: 4rem; } }
+        
+        .service-card-item { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-md */
+        }
+        .dark .service-card-item { background-color: var(--ivs-neutral-800); }
+        .service-card-item:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* shadow-lg */
+        }
+        .process-list-item::before {
+            content: attr(data-step);
+            position: absolute;
+            left: -1.75rem; 
+            top: 0;
+            width: 2.5rem; 
+            height: 2.5rem; 
+            border-radius: 9999px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+        }
+        .process-list-item:nth-child(1)::before { background-color: var(--blue-600); }
+        .process-list-item:nth-child(2)::before { background-color: var(--green-600); }
+        .process-list-item:nth-child(3)::before { background-color: var(--purple-600); }
+        .process-list-item:nth-child(4)::before { background-color: var(--teal-600); }
+        .process-list-item:nth-child(5)::before { background-color: var(--amber-600); }
+        .process-list-item:nth-child(6)::before { background-color: var(--red-600); }
+
+        .dark .process-list-item:nth-child(1)::before { background-color: var(--blue-500); }
+        .dark .process-list-item:nth-child(2)::before { background-color: var(--green-500); }
+        .dark .process-list-item:nth-child(3)::before { background-color: var(--purple-500); }
+        .dark .process-list-item:nth-child(4)::before { background-color: var(--teal-500); }
+        .dark .process-list-item:nth-child(5)::before { background-color: var(--amber-500); }
+        .dark .process-list-item:nth-child(6)::before { background-color: var(--red-500); }
+
+        .check-list li::before {
+            content: '\f00c'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 0.75rem;
+            color: var(--green-500);
+        }
+        .dark .check-list li::before {
+            color: var(--green-400); 
+        }
+        .testimonial-card {
+             background-color: #f9fafb; /* neutral-50 */
+             border: 1px solid #e5e7eb; /* neutral-200 */
+             padding: 1.5rem;
+             border-radius: 0.75rem; /* rounded-xl */
+             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+        }
+        .dark .testimonial-card {
+            background-color: var(--ivs-neutral-800);
+            border-color: var(--ivs-neutral-700);
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .dark .testimonial-author {
+            color: var(--blue-400);
+        }
+        .carousel-container { overflow: hidden; }
+        .carousel { display: flex; transition: transform 0.5s ease-in-out; gap: 1rem; } 
+        .carousel-item { min-width: 100%; box-sizing: border-box; }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.25rem;
+        }
+        .dark .carousel-btn { background-color: rgba(255,255,255,0.2); }
+        .carousel-btn.prev { left: 0.5rem; }
+        .carousel-btn.next { right: 0.5rem; }
+    </style>
+</head>
+<body class="bg-ivs-neutral-100 dark:bg-ivs-neutral-900 text-ivs-neutral-700 dark:text-ivs-neutral-300 font-sans antialiased flex flex-col min-h-screen">
+
+    <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
+    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-white/80 dark:bg-gray-900/80 z-[200] transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+    </div>
+
+    <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)] opacity-0 transition-opacity duration-500">
+        <section class="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20 md:py-32 overflow-hidden rounded-b-3xl shadow-xl">
+            <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('/images/banners/webdesign_hero_banner.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/1920x480/1e3a8a/ffffff?text=IVS+WebDesign)'; this.classList.add('bg-slate-700');"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h1 id="page-title-webdesign" class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 hero-text-shadow" data-lang-key="webdesign_hero_title" data-aos="fade-up">Thiết Kế Website Chuyên Nghiệp</h1>
+                <p class="text-md sm:text-lg md:text-xl opacity-90 hero-text-shadow max-w-2xl mx-auto" data-lang-key="webdesign_hero_subtitle" data-aos="fade-up" data-aos-delay="100">Giải pháp toàn diện từ IVS Celestech - Nâng tầm thương hiệu, tối ưu hiệu quả</p>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                    <div class="md:w-3/5" data-aos="fade-right">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-4" data-lang-key="webdesign_intro_heading">Tại sao Website là bộ mặt của Doanh nghiệp & Tổ chức?</h2>
+                        <div class="prose prose-sm sm:prose-base dark:prose-invert max-w-none text-ivs-neutral-700 dark:text-ivs-neutral-300 leading-relaxed space-y-4">
+                            <p data-lang-key="webdesign_intro_p1">
+                                Trong kỷ nguyên số, website không chỉ là nơi giới thiệu thông tin mà còn là công cụ marketing mạnh mẽ, kênh bán hàng/cung cấp dịch vụ hiệu quả và cầu nối trực tiếp với khách hàng, đối tác, học viên. Một website chuyên nghiệp, chuẩn SEO, thân thiện và tương thích mọi thiết bị (responsive) sẽ giúp tổ chức của bạn khẳng định vị thế, nâng cao uy tín và đạt được mục tiêu đề ra.
+                            </p>
+                            <p data-lang-key="webdesign_intro_p2">
+                                IVS Celestech (thuộc IVS JSC) cung cấp dịch vụ thiết kế website trọn gói, từ tư vấn chiến lược, thiết kế giao diện đến lập trình, triển khai và bảo trì, đảm bảo mang đến sản phẩm hoàn hảo, đáp ứng mọi yêu cầu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="md:w-2/5" data-aos="fade-left" data-aos-delay="100">
+                        <img src="/images/pages/tkwb.png"
+                             alt="Minh họa dịch vụ thiết kế website chuyên nghiệp của IVS Celestech" class="rounded-lg shadow-xl w-full h-auto object-cover"
+                             loading="lazy" data-lang-key="webdesign_intro_img_alt"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x450/E0E7FF/3B82F6?text=IVS+Celestech'; this.alt='Hình ảnh minh họa IVS Celestech'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900/70">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_video_showcase_title" data-aos="fade-up">
+                    Khám Phá Dự Án Thiết Kế Website Thực Tế
+                </h2>
+                <div class="max-w-3xl mx-auto rounded-lg shadow-xl overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg">
+                        <video controls poster="/images/ivs-celestech.jpg" class="w-full h-full object-contain rounded-lg"
+                               onerror="this.poster='https://placehold.co/1280x720/111827/FFFFFF?text=Video+Placeholder'; this.style.backgroundColor='#111827';"> 
+                            <source src="/videos/videowebdesign.mp4" type="video/mp4">
+                            <p class="p-4 text-center text-white" data-lang-key="webdesign_video_fallback">
+                                Trình duyệt của bạn không hỗ trợ thẻ video. Vui lòng nâng cấp trình duyệt để xem nội dung này.
+                            </p>
+                        </video>
+                    </div>
+                </div>
+                <p class="text-center text-ivs-neutral-600 dark:text-ivs-neutral-400 mt-6 text-base sm:text-lg" data-lang-key="webdesign_video_caption_text" data-aos="fade-up" data-aos-delay="200">
+                    Xem cách IVS Celestech hiện thực hóa ý tưởng website của khách hàng thành những sản phẩm ấn tượng và hiệu quả.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_khadock_title">
+                    KhaDock.com - Dự Án Phát Triển Website Nổi bật
+                </h2>
+                <p class="text-center text-ivs-neutral-600 dark:text-ivs-neutral-300 mb-8 md:mb-12 max-w-2xl mx-auto text-sm sm:text-base" data-lang-key="webdesign_khadock_intro">
+                    Khám phá KhaDock.com, website chuyên nghiệp về thiết kế, xây dựng và cải tạo bến tàu tại Florida, Mỹ. Được phát triển bởi IVS Celestech, dự án này thể hiện sự kết hợp giữa công nghệ tiên tiến, tối ưu SEO, và thiết kế responsive, mang lại giá trị toàn cầu.
+                </p>
+                <div class="flex flex-col lg:flex-row gap-6 md:gap-8 items-stretch">
+                    <div class="lg:w-1/2 card-item p-0 overflow-hidden" data-aos="fade-right" data-aos-delay="100">
+                        <img src="/images/pages/webs/KhaDock.com/khadock-home.png" alt="Trang Chủ KhaDock.com" class="w-full h-64 sm:h-80 object-cover object-top"
+                             loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=KhaDock+Home'; this.alt='Ảnh trang chủ KhaDock'">
+                        <div class="p-4 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_khadock_home_title">Trang Chủ - Ấn tượng Ban Đầu</h3>
+                            <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_khadock_home_desc">
+                                Nổi bật với logo, thông điệp "Your Trusted Partner in Florida", và nút "View Our Portfolio", tạo ấn tượng mạnh mẽ.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left" data-aos-delay="200">
+                        <div class="carousel-container relative h-full">
+                            <div class="carousel h-full">
+                                <div class="carousel-item card-item p-0 overflow-hidden">
+                                    <img src="/images/pages/webs/KhaDock.com/khadock-projects.jpg" alt="Trang Dự án KhaDock.com" class="w-full h-64 sm:h-80 object-cover object-center" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=KhaDock+Projects'; this.alt='Ảnh dự án KhaDock'">
+                                    <div class="p-4 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_khadock_projects_title">Trang Dự án</h3>
+                                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_khadock_projects_desc">
+                                            Giới thiệu các bến tàu, cầu cảng độc đáo, phản ánh chất lượng từ KhaDock.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item card-item p-0 overflow-hidden">
+                                    <img src="/images/pages/webs/KhaDock.com/khadock-services.jpg" alt="Trang Dịch vụ KhaDock.com" class="w-full h-64 sm:h-80 object-cover object-center" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=KhaDock+Services'; this.alt='Ảnh dịch vụ KhaDock'">
+                                    <div class="p-4 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_khadock_services_title">Trang Dịch vụ</h3>
+                                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_khadock_services_desc">
+                                            Liệt kê các dịch vụ xây dựng, sửa chữa, cải tạo bến tàu, tối ưu UX.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item card-item p-0 overflow-hidden">
+                                    <img src="/images/pages/webs/KhaDock.com/khadock-contact.jpg" alt="Trang Liên hệ KhaDock.com" class="w-full h-64 sm:h-80 object-cover object-center" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=KhaDock+Contact'; this.alt='Ảnh liên hệ KhaDock'">
+                                    <div class="p-4 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_khadock_contact_title">Trang Liên hệ</h3>
+                                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_khadock_contact_desc">
+                                            Thông tin chi tiết, bản đồ, tích hợp Formspree cho bản tin.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item card-item p-0 overflow-hidden">
+                                    <img src="/images/pages/webs/KhaDock.com/khadock-design.jpg" alt="Trang Thiết kế KhaDock.com" class="w-full h-64 sm:h-80 object-cover object-center" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/1f2937/FFFFFF?text=KhaDock+Design'; this.alt='Ảnh thiết kế KhaDock'">
+                                    <div class="p-4 sm:p-6">
+                                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_khadock_design_title">Trang Thiết kế AI</h3>
+                                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_khadock_design_desc">
+                                            Giới thiệu AI Designer, phát triển bởi IVS Celestech, cho ý tưởng thiết kế độc đáo.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev">&larr;</button>
+                            <button class="carousel-btn next">&rarr;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://khadock.com" target="_blank" rel="noopener noreferrer" class="bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 px-6 rounded-full text-sm sm:text-base transition duration-300 inline-block" data-lang-key="webdesign_visit_khadock">
+                        Tham Khảo Website KhaDock.com
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900/70">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_gallery_heading" data-aos="fade-up">
+                    Các Dự Án Website Tiêu Biểu Khác
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="card-item p-0 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <img src="/images/pages/webs/webgd.jpeg" alt="Thiết kế Website Giáo dục" class="w-full h-48 object-cover object-center" loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E7FF/3B82F6?text=Website+Education'; this.alt='Ảnh website giáo dục'">
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_project_edu_title">Dự án Website Giáo dục</h3>
+                            <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_project_edu_desc">Thiết kế website cho trung tâm giáo dục, tập trung vào trải nghiệm người dùng thân thiện và tích hợp hệ thống quản lý khóa học.</p>
+                        </div>
+                    </div>
+                    <div class="card-item p-0 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <img src="/images/pages/webs/webbds.jpeg" alt="Thiết kế Website Bất động sản" class="w-full h-48 object-cover object-center" loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E7FF/3B82F6?text=Website+Real+Estate'; this.alt='Ảnh website bất động sản'">
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_project_estate_title">Website Bất động sản</h3>
+                            <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_project_estate_desc">Hiển thị dự án, tích hợp bản đồ, bộ lọc tìm kiếm và thông tin chi tiết từng sản phẩm.</p>
+                        </div>
+                    </div>
+                    <div class="card-item p-0 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <img src="/images/pages/webs/webblog.jpeg" alt="Thiết kế Website Cá nhân/Blog" class="w-full h-48 object-cover object-center" loading="lazy"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E7FF/3B82F6?text=Website+Blog';this.alt='Ảnh website blog cá nhân'">
+                        <div class="p-4 sm:p-5">
+                            <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-white mb-2" data-lang-key="webdesign_project_blog_title">Website Cá nhân/Blog</h3>
+                            <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_project_blog_desc">Thiết kế portfolio cá nhân chuyên nghiệp hoặc nền tảng blog, nổi bật dự án và kỹ năng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_services_heading" data-aos="fade-up">Các Gói Dịch Vụ Thiết Kế Website</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-primary dark:text-blue-400 mb-4 text-3xl sm:text-4xl"><i class="fas fa-palette" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service1_title">Thiết kế theo yêu cầu</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service1_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Phân tích nhu cầu, đối tượng mục tiêu.</li>
+                            <li data-lang-key="webdesign_service1_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Thiết kế giao diện độc đáo, đúng nhận diện thương hiệu.</li>
+                            <li data-lang-key="webdesign_service1_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Đảm bảo trải nghiệm người dùng (UX/UI) tối ưu.</li>
+                            <li data-lang-key="webdesign_service1_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Lập trình các tính năng riêng biệt theo yêu cầu.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                     <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-secondary dark:text-amber-400 mb-4 text-3xl sm:text-4xl"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service2_title">Thiết kế Responsive</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service2_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Hiển thị hoàn hảo trên mọi thiết bị (PC, tablet, mobile).</li>
+                            <li data-lang-key="webdesign_service2_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tối ưu tốc độ tải trang trên tất cả các nền tảng.</li>
+                            <li data-lang-key="webdesign_service2_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Nâng cao trải nghiệm người dùng di động, tăng tương tác.</li>
+                            <li data-lang-key="webdesign_service2_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Đáp ứng tiêu chí ưu tiên của Google cho thiết bị di động.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-purple-600 dark:text-purple-400 mb-4 text-3xl sm:text-4xl"><i class="fas fa-shopping-cart" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service3_title">Website Thương mại Điện tử</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service3_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Thiết kế gian hàng trực tuyến chuyên nghiệp, thu hút.</li>
+                            <li data-lang-key="webdesign_service3_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tích hợp giỏ hàng, thanh toán online an toàn, đa dạng.</li>
+                            <li data-lang-key="webdesign_service3_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Hệ thống quản lý sản phẩm, đơn hàng, khách hàng trực quan.</li>
+                            <li data-lang-key="webdesign_service3_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tối ưu hóa SEO cho sản phẩm và danh mục.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-teal-600 dark:text-teal-400 mb-4 text-3xl sm:text-4xl"><i class="fab fa-wordpress" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service4_title">Website trên nền tảng CMS</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service4_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Triển khai trên CMS phổ biến (WordPress...).</li>
+                            <li data-lang-key="webdesign_service4_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Giao diện quản trị thân thiện, dễ cập nhật nội dung.</li>
+                            <li data-lang-key="webdesign_service4_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Kho giao diện và plugin phong phú, mở rộng linh hoạt.</li>
+                            <li data-lang-key="webdesign_service4_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Hỗ trợ đào tạo sử dụng và quản trị website.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="text-amber-500 dark:text-amber-400 mb-4 text-3xl sm:text-4xl"><i class="fas fa-search" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service5_title">Tối ưu hóa SEO</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service5_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Xây dựng cấu trúc website chuẩn SEO từ nền tảng.</li>
+                            <li data-lang-key="webdesign_service5_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tối ưu on-page: thẻ meta, tiêu đề, hình ảnh, nội dung.</li>
+                            <li data-lang-key="webdesign_service5_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Cài đặt Google Analytics, Search Console.</li>
+                            <li data-lang-key="webdesign_service5_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tư vấn chiến lược từ khóa và nội dung chuẩn SEO.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card-item p-6" data-aos="fade-up" data-aos-delay="600">
+                        <div class="text-red-500 dark:text-red-400 mb-4 text-3xl sm:text-4xl"><i class="fas fa-tools" aria-hidden="true"></i></div>
+                        <h3 class="text-lg sm:text-xl font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-3" data-lang-key="webdesign_service6_title">Bảo trì & Nâng cấp</h3>
+                        <ul class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 space-y-1 flex-grow mb-4 text-left">
+                            <li data-lang-key="webdesign_service6_li1"><i class="fas fa-check-circle text-green-500 mr-2"></i>Sao lưu dữ liệu định kỳ, đảm bảo an toàn thông tin.</li>
+                            <li data-lang-key="webdesign_service6_li2"><i class="fas fa-check-circle text-green-500 mr-2"></i>Cập nhật phiên bản mã nguồn, vá lỗi bảo mật.</li>
+                            <li data-lang-key="webdesign_service6_li3"><i class="fas fa-check-circle text-green-500 mr-2"></i>Hỗ trợ khắc phục sự cố kỹ thuật nhanh chóng.</li>
+                            <li data-lang-key="webdesign_service6_li4"><i class="fas fa-check-circle text-green-500 mr-2"></i>Tư vấn nâng cấp, phát triển tính năng mới.</li>
+                        </ul>
+                        <a href="#contact-cta" class="card-item-link text-primary dark:text-blue-400 hover:underline mt-auto" data-lang-key="webdesign_service_cta">Tìm hiểu thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900/70">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_process_heading" data-aos="fade-up">Quy trình làm việc chuyên nghiệp</h2>
+                <ol class="relative border-l-2 border-ivs-neutral-300 dark:border-ivs-neutral-700 space-y-8 sm:space-y-10 pl-4 md:pl-6">                  
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="1" data-aos="fade-left" data-aos-delay="100">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process1_title">Tiếp nhận & Tư vấn</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process1_desc">Lắng nghe yêu cầu, phân tích mục tiêu kinh doanh/giáo dục, tư vấn giải pháp website phù hợp.</p>
+                    </li>
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="2" data-aos="fade-left" data-aos-delay="200">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process2_title">Lập kế hoạch & Báo giá</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process2_desc">Xây dựng kế hoạch chi tiết về cấu trúc, tính năng, tiến độ và báo giá minh bạch.</p>
+                    </li>
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="3" data-aos="fade-left" data-aos-delay="300">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process3_title">Thiết kế Giao diện</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process3_desc">Phác thảo wireframe, thiết kế mockup UI/UX sáng tạo, chuyên nghiệp và duyệt mẫu với khách hàng.</p>
+                    </li>
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="4" data-aos="fade-left" data-aos-delay="400">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process4_title">Lập trình & Phát triển</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process4_desc">Chuyển đổi thiết kế thành website sống động, lập trình các tính năng đã thống nhất.</p>
+                    </li>
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="5" data-aos="fade-left" data-aos-delay="500">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process5_title">Kiểm thử & Tối ưu</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process5_desc">Kiểm tra kỹ lưỡng các chức năng, hiển thị trên đa thiết bị, tối ưu tốc độ và bảo mật.</p>
+                    </li>
+                    <li class="ml-6 md:ml-8 process-list-item" data-step="6" data-aos="fade-left" data-aos-delay="600">
+                        <h4 class="text-md sm:text-lg font-semibold text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-1" data-lang-key="webdesign_process6_title">Bàn giao & Hướng dẫn</h4>
+                        <p class="text-xs sm:text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400" data-lang-key="webdesign_process6_desc">Triển khai website lên hosting, bàn giao tài khoản quản trị và hướng dẫn sử dụng chi tiết.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white dark:bg-ivs-neutral-800">
+            <div class="container mx-auto px-4 max-w-7xl" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-ivs-neutral-800 dark:text-ivs-neutral-100 mb-8 md:mb-12" data-lang-key="webdesign_why_heading">Tại sao chọn Dịch vụ Thiết kế Website của IVS Celestech?</h2>
+                <ul class="space-y-4 sm:space-y-5 check-list max-w-3xl mx-auto text-sm sm:text-base">
+                    <li data-lang-key="webdesign_why_item1" data-aos="fade-right" data-aos-delay="100"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Kinh nghiệm & Chuyên môn:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Đội ngũ IVS Celestech am hiểu cả về công nghệ lẫn nghiệp vụ giáo dục và kinh doanh.</span></li>
+                    <li data-lang-key="webdesign_why_item2" data-aos="fade-right" data-aos-delay="200"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Thiết kế Sáng tạo & Hiện đại:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Giao diện đẹp mắt, chuyên nghiệp, cập nhật xu hướng UI/UX mới nhất.</span></li>
+                    <li data-lang-key="webdesign_why_item3" data-aos="fade-right" data-aos-delay="300"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Giải pháp Tùy chỉnh:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Website được thiết kế "may đo" theo đúng nhu cầu và mục tiêu riêng của từng khách hàng.</span></li>
+                    <li data-lang-key="webdesign_why_item4" data-aos="fade-right" data-aos-delay="400"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Tối ưu Hiệu suất & SEO:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Website tốc độ nhanh, cấu trúc chuẩn SEO, thân thiện với công cụ tìm kiếm và người dùng.</span></li>
+                    <li data-lang-key="webdesign_why_item5" data-aos="fade-right" data-aos-delay="500"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Bảo mật & Ổn định:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Cam kết website hoạt động an toàn, bảo mật thông tin và ổn định trên mọi nền tảng.</span></li>
+                    <li data-lang-key="webdesign_why_item6" data-aos="fade-right" data-aos-delay="600"><strong class="font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100">Hỗ trợ Tận tâm:</strong> <span class="text-ivs-neutral-700 dark:text-ivs-neutral-300">Đồng hành cùng bạn trong suốt quá trình từ tư vấn, triển khai đến bảo trì, nâng cấp.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-padding bg-ivs-neutral-100 dark:bg-ivs-neutral-900/70">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-100 mb-8 text-center" data-lang-key="webdesign_testimonials_heading" data-aos="fade-up">Khách hàng nói gì</h2>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+                        <p class="text-md sm:text-lg text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-3 sm:mb-4" data-lang-key="webdesign_testimonial1_text">"IVS Celestech đã vượt mong đợi của chúng tôi với một website chuyên nghiệp, hiện đại và tối ưu SEO. Rất hài lòng với dịch vụ!"</p>
+                        <p class="testimonial-author text-sm" data-lang-key="webdesign_testimonial1_author">- Đại diện Công ty TNHH MTV ST</p>
+                    </div>
+                    <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+                        <p class="text-md sm:text-lg text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-3 sm:mb-4" data-lang-key="webdesign_testimonial2_text">"The KhaDock.com website is optimized for UI and SEO, and the design was delivered extremely fast. Very professional. I will recommend IVS to my clients and partners in the US."</p>
+                        <p class="testimonial-author text-sm" data-lang-key="webdesign_testimonial2_author">- Mr Kha - Founder & Director of KhaDock - Florida, USA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-cta" class="section-padding bg-gradient-to-r from-primary to-blue-700 dark:from-blue-800 dark:to-blue-900 text-white" data-aos="fade-up">
+            <div class="container mx-auto px-4 max-w-3xl text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 hero-text-shadow" data-lang-key="webdesign_cta_heading">Sẵn sàng sở hữu một website ấn tượng?</h2>
+                <p class="text-md sm:text-lg opacity-90 mb-8 hero-text-shadow" data-lang-key="webdesign_cta_desc">
+                    Liên hệ IVS Celestech ngay để nhận tư vấn miễn phí và báo giá chi tiết cho dự án website của bạn!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+                    <a href="/contact.html?service=web_design"
+                       class="inline-flex items-center justify-center gap-2 bg-white text-primary-dark dark:text-blue-800 font-semibold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full shadow-md hover:bg-ivs-neutral-100 dark:hover:bg-ivs-neutral-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-primary transition duration-300 text-sm sm:text-base"
+                       data-lang-key="webdesign_cta_button1">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i> Yêu cầu Tư vấn
+                    </a>
+                    <a href="mailto:ivscorp.vn@gmail.com?subject=Yeu cau thiet ke website"
+                       class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-amber-500 text-primary-dark font-semibold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition duration-300 text-sm sm:text-base"
+                       data-lang-key="webdesign_cta_button2">
+                        <i class="fas fa-envelope" aria-hidden="true"></i> Gửi Email yêu cầu
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="fab-container-placeholder"></div>
+    <footer id="footer-placeholder" data-loading-text="Đang tải chân trang..."></footer>
+
+    <script src="/js/language.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script> 
+    <script src="/js/script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                offset: 80, 
+                duration: 700, 
+                easing: 'ease-out-quad', 
+                once: true, 
+            });
+            if (typeof window.initializeLanguageSystem === 'function') {
+                window.initializeLanguageSystem(localStorage.getItem('selectedLanguage') || 'en');
+            } else if (typeof window.applyTranslations === 'function' && typeof currentTranslationData !== 'undefined') {
+                 window.applyTranslations(localStorage.getItem('selectedLanguage') || 'en');
+            } else {
+                 console.error("Hệ thống ngôn ngữ chưa sẵn sàng trên trang Web Design.");
+            }
+            
+            const carousel = document.querySelector('.carousel');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            let currentIndex = 0;
+            let autoSlideInterval;
+
+            function updateCarousel(smooth = true) {
+                if (!carousel || items.length === 0) return;
+                const itemWidth = items[0].offsetWidth + (parseFloat(getComputedStyle(carousel).gap) || 16); 
+                carousel.style.transition = smooth ? 'transform 0.5s ease-in-out' : 'none';
+                carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide(); 
+                autoSlideInterval = setInterval(() => {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarousel();
+                }, 5000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            if (prevBtn && nextBtn && carousel) {
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarousel();
+                    startAutoSlide(); 
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarousel();
+                    startAutoSlide(); 
+                });
+                
+                carousel.addEventListener('mouseenter', stopAutoSlide);
+                carousel.addEventListener('mouseleave', startAutoSlide);
+            }
+            
+            window.addEventListener('resize', () => updateCarousel(false)); 
+            updateCarousel(false); 
+            startAutoSlide(); 
+
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mainContent = document.querySelector('main');
+            if (loadingSpinner) loadingSpinner.classList.add('opacity-0', 'pointer-events-none');
+            if (mainContent) mainContent.classList.remove('opacity-0');
+        };
+         document.addEventListener('DOMContentLoaded', function() {
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const mainContent = document.querySelector('main');
+            if(loadingSpinner) loadingSpinner.classList.remove('opacity-0', 'pointer-events-none');
+            if(mainContent) mainContent.classList.add('opacity-0');
+
+             setTimeout(() => {
+                if (!window.pageComponentsCallbackCalled) { 
+                    console.warn("[WebDesign Fallback] onPageComponentsLoadedCallback not called. Initializing manually.");
+                    AOS.init({ offset: 80, duration: 700, easing: 'ease-out-quad', once: true });
+                     if (typeof window.initializeLanguageSystem === 'function') {
+                        window.initializeLanguageSystem(localStorage.getItem('selectedLanguage') || 'en');
+                    } else if (typeof window.applyTranslations === 'function' && typeof currentTranslationData !== 'undefined') {
+                         window.applyTranslations(localStorage.getItem('selectedLanguage') || 'en');
+                    }else {
+                         console.error("Fallback: Hệ thống ngôn ngữ chưa sẵn sàng.");
+                    }
+                    if (loadingSpinner) loadingSpinner.classList.add('opacity-0', 'pointer-events-none');
+                    if (mainContent) mainContent.classList.remove('opacity-0');
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

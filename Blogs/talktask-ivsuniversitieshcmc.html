@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk & Task – Cộng đồng Tiếng Anh cho Sinh viên TP.HCM | IVS JSC</title>
+    <meta name="description" content="Tham gia Talk & Task, cộng đồng học tiếng Anh giao tiếp thực tế với giáo viên nước ngoài qua nhóm nhỏ (6-10 bạn) dành cho sinh viên TP.HCM. Nâng cao kỹ năng, tự tin hơn!" data-lang-key="talktask_meta_description">
+    <meta property="og:title" content="Talk & Task – Cộng đồng Tiếng Anh cho Sinh viên TP.HCM | IVS Education" data-lang-key="talktask_og_title">
+    <meta property="og:description" content="Học tiếng Anh giao tiếp hiệu quả qua các buổi học nhóm nhỏ, tương tác trực tiếp với giáo viên bản xứ. Chương trình Talk & Task của IVS Education dành riêng cho sinh viên TP.HCM." data-lang-key="talktask_og_description">
+    <meta property="og:image" content="https://ivsjsc.github.io/images/banners/talktask_og_image.jpg"> <meta property="og:url" content="https://ivsjsc.github.io/talktask-ivsuniversitieshcmc.html"> <meta property="og:type" content="website">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: { // Comprehensive color palette
+              'primary': '#3b82f6', 'primary-dark': '#2563eb', 
+              'secondary': '#10b981', 'secondary-dark': '#059669', 
+              'purple-accent': '#8b5cf6', 'purple-accent-dark': '#7c3aed', 
+              'warning': '#f59e0b', 'warning-dark': '#d97706',
+              'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db', 'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937',
+              'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-200': '#e5e7eb', 'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563', 'gray-700': '#374151', 'gray-800': '#1f2937', 'gray-900': '#111827',
+              'blue-50': '#eff6ff', 'blue-200': '#bfdbfe', 'blue-500': '#3b82f6', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8', 'blue-800': '#1e40af',
+              'purple-50':'#faf5ff', 'purple-200':'#e9d5ff', 'purple-500':'#a855f7', 'purple-600': '#9333ea', 'purple-700': '#7e22ce', 'purple-800': '#6b21a8',
+              'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0', 'emerald-500': '#10b981', 'emerald-800': '#065f46',
+              'amber-50': '#fffbeb', 'amber-200': '#fde68a', 'amber-500': '#f59e0b', 'amber-800': '#92400e',
+              'orange-50': '#fff7ed', 'orange-100': '#ffedd5', 'orange-200': '#fed7aa', 'orange-400':'#fb923c', 'orange-500': '#f97316', 'orange-600': '#ea580c', 'orange-700':'#c2410c',
+              'sky-200': '#bae6fd', 'teal-600': '#0d9488',
+              'indigo-600': '#4f46e5', 'indigo-700': '#4338ca',
+              'pink-500': '#ec4899', 'pink-accent': '#ec4899',
+              'red-50': '#fef2f2', 'red-100':'#fee2e2', 'red-200': '#fecaca', 'red-500': '#ef4444', 'red-600':'#dc2626', 'red-800': '#991b1b',
+              'green-50': '#f0fdf4', 'green-200': '#bbf7d0', 'green-500': '#22c55e', 'green-600': '#16a34a', 'green-700':'#15803d',
+              'yellow-500': '#eab308',
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/styles.css"> <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.5); } /* Slightly stronger shadow */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://ivsjsc.github.io/images/banners/talktask_hero_banner.jpg') no-repeat center center; /* UPDATE THIS PATH: Replace with actual hero image */
+            background-size: cover;
+        }
+        .section-icon {
+            font-size: 1.5em; 
+            margin-right: 0.75rem; /* Increased margin */
+        }
+        .list-check li i.fa-check-circle { /* Specificity for check icons */
+            min-width: 1.25em; 
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        /* Add any other critical styles from your old inline style block if needed */
+    </style>
+</head>
+<body class="bg-gray-100 text-neutral-700 font-sans antialiased" id="page-talktask-hcmc">
+
+    <header id="header-placeholder"></header>
+
+    <section class="hero-section text-white py-20 sm:py-28" data-aos="fade-in">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 hero-text-shadow" data-lang-key="talktask_hero_title">
+                <span class="text-orange-400">🚀 Talk & Task</span> – Cộng đồng Tiếng Anh cho Sinh Viên TP.HCM
+            </h1>
+            <p class="text-xl sm:text-2xl md:text-3xl mb-10 hero-text-shadow max-w-3xl mx-auto" data-lang-key="talktask_hero_subtitle">
+                Học nhóm nhỏ 6-10 bạn cùng giáo viên nước ngoài – Giao tiếp thực tế, loại bỏ nỗi sợ thi cử!
+            </p>
+            <a href="#register" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg text-lg sm:text-xl transition duration-300 shadow-md hover:shadow-lg transform hover:scale-105" data-lang-key="talktask_hero_cta">
+                Tìm hiểu thêm & Đăng Ký
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <article class="bg-white shadow-xl rounded-lg p-6 md:p-10">
+            <section class="hero-section relative text-center mb-12 overflow-hidden rounded-b-lg shadow-xl bg-gray-200" data-aos="fade-in" data-aos-duration="1000">
+                <img src="images/logo/webbanner.png" alt="IVS JSC Banner" class="hidden md:block w-full h-auto object-cover z-0 mx-auto" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#3b82f6';">
+                <img src="images/logo/webbannermo.png" alt="IVS JSC Banner Mobile" class="block md:hidden w-full h-auto object-cover z-0 mx-auto" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#3b82f6';">
+            </section>
+            <section class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-8 flex items-center" data-lang-key="talktask_section1_title">
+                    <i class="fas fa-bullseye-pointer section-icon text-orange-500"></i>
+                    Tiếng Anh là cách bạn tỏa sáng, không chỉ là kỳ thi!
+                </h2>
+                <p class="text-lg mb-4 text-gray-700 leading-relaxed" data-lang-key="talktask_section1_intro">Bạn có từng:</p>
+                <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700 pl-4 text-lg leading-relaxed">
+                    <li data-lang-key="talktask_section1_point1">Học tiếng Anh chỉ để thi, nhưng ra ngoài đời không dám nói?</li>
+                    <li data-lang-key="talktask_section1_point2">Ngại giao tiếp vì sợ sai, sợ bị cười?</li>
+                    <li data-lang-key="talktask_section1_point3">Chán nản với sách vở khô khan và lớp học đông đúc?</li>
+                </ul>
+                <p class="text-2xl md:text-3xl font-semibold text-blue-600 mb-4 flex items-center" data-lang-key="talktask_section1_solution_intro">
+                    <i class="fas fa-comments section-icon text-blue-500"></i>
+                    Talk & Task thay đổi tất cả!
+                </p>
+                <p class="text-lg mb-4 text-gray-700 leading-relaxed" data-lang-key="talktask_section1_solution_desc">
+                    Với lớp học nhóm nhỏ 6-10 bạn cùng giáo viên nước ngoài, chúng tôi giúp bạn:
+                </p>
+                <ul class="list-check list-inside space-y-3 text-gray-700 pl-4 text-lg leading-relaxed">
+                    <li class="flex items-start" data-lang-key="talktask_section1_benefit1"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Tự tin giao tiếp thực tế: Dùng tiếng Anh như người bản xứ trong đời sống hàng ngày.</span></li>
+                    <li class="flex items-start" data-lang-key="talktask_section1_benefit2"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Loại bỏ nỗi sợ thi cử: Kỹ năng speaking, listening lên level, điểm số tự khắc theo sau.</span></li>
+                    <li class="flex items-start" data-lang-key="talktask_section1_benefit3"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Xây dựng cộng đồng hỗ trợ: Học cùng bạn bè, tiến bộ cùng nhau!</span></li>
+                </ul>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-10 flex items-center" data-lang-key="talktask_section2_title">
+                    <i class="fas fa-star section-icon text-orange-500"></i>
+                    Tại sao Sinh viên TP.HCM cần Talk & Task?
+                </h2>
+                <div class="space-y-10">
+                    <div data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 flex items-center" data-lang-key="talktask_section2_reason1_title"><span class="bg-orange-500 text-white rounded-full h-10 w-10 flex items-center justify-center mr-4 text-xl flex-shrink-0">1</span>Giao tiếp thực tế – Chìa khóa thành công</h3>
+                        <ul class="list-disc list-inside space-y-2 pl-12 text-gray-700 text-lg leading-relaxed">
+                            <li data-lang-key="talktask_section2_reason1_point1">Không chỉ học để thi, mà học để dùng: Trò chuyện với bạn bè quốc tế, phỏng vấn xin việc, hay tự tin du học.</li>
+                            <li data-lang-key="talktask_section2_reason1_point2">Giáo viên nước ngoài hướng dẫn từng bước, sửa lỗi phát âm, giúp bạn nói chuẩn ngay từ đầu.</li>
+                        </ul>
+                    </div>
+                    <div data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 flex items-center" data-lang-key="talktask_section2_reason2_title"><span class="bg-orange-500 text-white rounded-full h-10 w-10 flex items-center justify-center mr-4 text-xl flex-shrink-0">2</span>Học nhóm nhỏ 6-10 bạn – Hiệu quả tối đa</h3>
+                        <p class="mb-3 text-gray-700 pl-12 text-lg leading-relaxed" data-lang-key="talktask_section2_reason2_intro">Lớp đông 20-30 người? Quên đi! Với 6-10 bạn/nhóm, bạn được:</p>
+                        <ul class="list-disc list-inside space-y-2 pl-12 text-gray-700 text-lg leading-relaxed">
+                            <li data-lang-key="talktask_section2_reason2_point1">Tương tác trực tiếp với giáo viên bản xứ.</li>
+                            <li data-lang-key="talktask_section2_reason2_point2">Thực hành nhiều hơn, sửa lỗi chi tiết hơn.</li>
+                            <li data-lang-key="talktask_section2_reason2_point3">Không gian thoải mái, dễ dàng đặt câu hỏi.</li>
+                        </ul>
+                    </div>
+                    <div data-aos="fade-right" data-aos-delay="300">
+                        <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 flex items-center" data-lang-key="talktask_section2_reason3_title"><span class="bg-orange-500 text-white rounded-full h-10 w-10 flex items-center justify-center mr-4 text-xl flex-shrink-0">3</span>Cộng đồng năng động – Không ai tiến bộ một mình</h3>
+                        <ul class="list-disc list-inside space-y-2 pl-12 text-gray-700 text-lg leading-relaxed">
+                            <li data-lang-key="talktask_section2_reason3_point1">Kết nối với các sinh viên cùng chí hướng tại TP.HCM.</li>
+                            <li data-lang-key="talktask_section2_reason3_point2">Cùng học, cùng chơi, cùng vượt qua nỗi sợ tiếng Anh.</li>
+                            <li data-lang-key="talktask_section2_reason3_point3">Mở rộng mạng lưới quan hệ – cơ hội nghề nghiệp trong tầm tay!</li>
+                            <li data-lang-key="talktask_section2_reason3_fbgroup"><i class="fab fa-facebook-square text-blue-600 mr-2"></i>Tham gia <a href="https://www.facebook.com/groups/talktask" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-semibold underline">Group Facebook Talk & Task</a> để cập nhật thông tin và giao lưu.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-10 flex items-center" data-lang-key="talktask_section3_title">
+                    <i class="fas fa-tasks section-icon text-orange-500"></i>
+                    Talk & Task hoạt động như thế nào?
+                </h2>
+                <ul class="space-y-8">
+                    <li class="p-6 bg-orange-50 rounded-lg border border-orange-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-aos="zoom-in-up">
+                        <h4 class="font-semibold text-xl md:text-2xl text-orange-700 mb-3 flex items-center" data-lang-key="talktask_section3_how1_title"><i class="fas fa-users mr-3 text-orange-600 text-2xl"></i>Lớp học nhóm nhỏ 6-10 bạn</h4>
+                        <p class="text-gray-700 leading-relaxed text-lg" data-lang-key="talktask_section3_how1_desc">Mỗi nhóm được dẫn dắt bởi giáo viên nước ngoài tận tâm. Tương tác tối đa, không ai bị bỏ lại phía sau.</p>
+                    </li>
+                    <li class="p-6 bg-blue-50 rounded-lg border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-aos="zoom-in-up" data-aos-delay="100">
+                        <h4 class="font-semibold text-xl md:text-2xl text-blue-700 mb-3 flex items-center" data-lang-key="talktask_section3_how2_title"><i class="fas fa-microphone-alt mr-3 text-blue-600 text-2xl"></i>Phương pháp “Talk & Task” độc đáo</h4>
+                        <ul class="list-disc list-inside pl-6 text-gray-700 space-y-1 leading-relaxed text-lg">
+                            <li data-lang-key="talktask_section3_how2_talk"><span class="font-medium">Talk:</span> Trò chuyện thoải mái với giáo viên bản xứ về các chủ đề thực tế.</li>
+                            <li data-lang-key="talktask_section3_how2_task"><span class="font-medium">Task:</span> Thực hiện nhiệm vụ thú vị – phỏng vấn, thuyết trình, đóng vai.</li>
+                        </ul>
+                    </li>
+                    <li class="p-6 bg-green-50 rounded-lg border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-aos="zoom-in-up" data-aos-delay="200">
+                        <h4 class="font-semibold text-xl md:text-2xl text-green-700 mb-3 flex items-center" data-lang-key="talktask_section3_how3_title"><i class="fas fa-street-view mr-3 text-green-600 text-2xl"></i>Học qua trải nghiệm thực tế</h4>
+                        <p class="text-gray-700 leading-relaxed text-lg" data-lang-key="talktask_section3_how3_desc">Học ở quán cà phê, công viên, hay bất cứ đâu thoải mái. Giao tiếp với người lạ, rèn phản xạ tự nhiên.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-10 flex items-center" data-lang-key="talktask_section4_title">
+                    <i class="fas fa-lightbulb-on section-icon text-orange-500"></i>
+                    Lợi ích không thể bỏ lỡ
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg flex items-start shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up-right">
+                        <i class="fas fa-volume-up text-4xl text-orange-500 mr-5 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-semibold text-xl text-gray-800 mb-2" data-lang-key="talktask_section4_benefit1_title">Phát âm chuẩn, phản xạ nhanh</h4>
+                            <p class="text-gray-600 leading-relaxed" data-lang-key="talktask_section4_benefit1_desc">Giáo viên nước ngoài sửa lỗi từng câu.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg flex items-start shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up-left">
+                        <i class="fas fa-briefcase text-4xl text-orange-500 mr-5 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-semibold text-xl text-gray-800 mb-2" data-lang-key="talktask_section4_benefit2_title">Kỹ năng thực tế</h4>
+                            <p class="text-gray-600 leading-relaxed" data-lang-key="talktask_section4_benefit2_desc">Dùng tiếng Anh trong công việc, học tập, và cuộc sống.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg flex items-start shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up-right" data-aos-delay="100">
+                        <i class="fas fa-user-friends text-4xl text-orange-500 mr-5 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-semibold text-xl text-gray-800 mb-2" data-lang-key="talktask_section4_benefit3_title">Bạn đồng hành</h4>
+                            <p class="text-gray-600 leading-relaxed" data-lang-key="talktask_section4_benefit3_desc">Nhóm nhỏ thân thiện, hỗ trợ nhau mỗi ngày.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg flex items-start shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up-left" data-aos-delay="100">
+                        <i class="fas fa-smile-beam text-4xl text-orange-500 mr-5 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-semibold text-xl text-gray-800 mb-2" data-lang-key="talktask_section4_benefit4_title">Vui vẻ, không áp lực</h4>
+                            <p class="text-gray-600 leading-relaxed" data-lang-key="talktask_section4_benefit4_desc">Học mà như chơi, quên đi nỗi sợ thi cử!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-10 flex items-center" data-lang-key="talktask_section5_title">
+                    <i class="fas fa-comment-alt-lines section-icon text-orange-500"></i>
+                    Sinh viên nói gì về Talk & Task?
+                </h2>
+                <div class="space-y-8">
+                    <blockquote class="p-8 bg-gray-50 rounded-xl border-l-4 border-orange-500 shadow-lg" data-aos="flip-left">
+                        <p class="text-gray-700 italic text-xl mb-4 leading-relaxed" data-lang-key="talktask_testimonial1_text">“Nhóm nhỏ nên mình được nói nhiều, giáo viên nước ngoài sửa lỗi tận tình. Giờ mình tự tin hơn hẳn!”</p>
+                        <footer class="text-gray-600 font-semibold text-right text-lg" data-lang-key="talktask_testimonial1_author">— Đây là 1 ví dụ - Các bạn hãyy là người đầu tiên nói gì về Talk-Task đi nào </footer>
+                    </blockquote>
+                    <blockquote class="p-8 bg-gray-50 rounded-xl border-l-4 border-orange-500 shadow-lg" data-aos="flip-left" data-aos-delay="100">
+                        <p class="text-gray-700 italic text-xl mb-4 leading-relaxed" data-lang-key="talktask_testimonial2_text">“Học ở quán cà phê vui lắm, không giống lớp học bình thường. Bạn nào cũng nhiệt tình!”</p>
+                        <footer class="text-gray-600 font-semibold text-right text-lg" data-lang-key="talktask_testimonial2_author">— Đây là 1 ví dụ - Các bạn hãy là người đầu tiên nói gì về Talk-Task đi nào </footer>
+                    </blockquote>
+                </div>
+            </section>
+
+            <hr class="my-12 border-gray-300">
+
+            <section id="register" class="text-center py-16 bg-gradient-to-br from-orange-600 via-red-500 to-purple-600 rounded-xl shadow-2xl" data-aos="zoom-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 hero-text-shadow" data-lang-key="talktask_cta_title">
+                    <i class="fas fa-rocket mr-3"></i>
+                    Tham gia ngay hôm nay!
+                </h2>
+                <p class="text-xl text-orange-100 mb-8 max-w-2xl mx-auto hero-text-shadow leading-relaxed" data-lang-key="talktask_cta_subtitle">
+                    Đừng để tiếng Anh là rào cản – hãy biến nó thành lợi thế của bạn!
+                </p>
+                <p class="text-lg text-white mb-10 max-w-3xl mx-auto leading-relaxed" data-lang-key="talktask_cta_description">
+                    Talk & Task – Cộng đồng học tiếng Anh nhóm nhỏ (6-10 bạn) cùng giáo viên nước ngoài, dành riêng cho sinh viên TP.HCM.
+                </p>
+                <div class="space-y-4 sm:space-y-0 sm:flex sm:flex-wrap sm:justify-center sm:space-x-4">
+                    <a href="https://ivs.id.vn/dangkytuvan.html?program=TalkAndTaskHCMC" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-orange-600 font-bold py-4 px-8 sm:px-10 rounded-lg text-lg sm:text-xl hover:bg-orange-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 mb-3 sm:mb-0" data-lang-key="talktask_cta_button_register">
+                        <i class="fas fa-edit mr-2"></i> Đăng ký Tư vấn
+                    </a>
+                    <a href="https://www.facebook.com/groups/talktask" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-bold py-4 px-8 sm:px-10 rounded-lg text-lg sm:text-xl hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" data-lang-key="talktask_cta_button_fbgroup">
+                        <i class="fab fa-facebook-square mr-2"></i> Tham gia Group FB
+                    </a>
+                </div>
+            </section>
+
+            <section class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-2xl md:text-3xl font-semibold text-gray-700" data-lang-key="talktask_closing_remark">
+                    <span class="text-yellow-500 text-4xl">🌟</span> Hẹn bạn tại buổi học nhóm nhỏ đầu tiên – nơi tiếng Anh trở nên dễ dàng và thú vị!
+                </p>
+            </section>
+
+        </article>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+    
+        <button id="scrollToTopBtn"
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Scroll to top">
+            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/loadComponents.js" defer></script>
+    <script>
+      // Initialize AOS (Animation On Scroll)
+      AOS.init({
+        offset: 120, 
+        duration: 700, 
+        easing: 'ease-out-quad', 
+        once: true, 
+        mirror: false, 
+        anchorPlacement: 'top-bottom', 
+      });
+
+      // Scroll to Top Button Functionality
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      if (scrollToTopBtn) {
+          window.addEventListener('scroll', () => {
+              if (window.pageYOffset > 300) { 
+                  scrollToTopBtn.classList.remove('hidden'); 
+                  scrollToTopBtn.classList.add('flex'); 
+              } else {
+                  scrollToTopBtn.classList.remove('flex');
+                  scrollToTopBtn.classList.add('hidden');
+              }
+          }, { passive: true }); 
+
+          scrollToTopBtn.addEventListener('click', () => {
+              window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+              });
+          });
+          if (window.pageYOffset <= 300) {
+            scrollToTopBtn.classList.add('hidden');
+          }
+      }
+    </script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/script.js" defer></script>
+    </body>
+</html>

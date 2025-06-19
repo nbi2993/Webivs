@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="lkmamnon_page_title">IVS - Chứng chỉ Sư phạm | IVS JSC</title>
+    <meta name="description" content="IVS Kindergarten - Trường mầm non tiên phong tại Long Thành, Đồng Nai áp dụng mô hình STEAM+Intelligence Model, ươm mầm tài năng Việt." data-lang-key="lkmamnon_meta_description">
+    <meta property="og:title" content="IVS Kindergarten - Nền Tảng Vững Chắc Cho Tương Lai" data-lang-key="lkmamnon_og_title">
+    <meta property="og:description" content="Khám phá môi trường học tập an toàn, yêu thương, đầy cảm hứng với mô hình giáo dục sớm độc đáo tại IVS Kindergarten." data-lang-key="lkmamnon_og_description">
+    <meta property="og:image" content="images/ivs-kindergarten.jpeg"> <meta property="og:url" content="https://ivs.id.vn/lkmamnon.html"> <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config (giữ nguyên)
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'purple-accent': '#8b5cf6', 'warning': '#f59e0b', 'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db', 'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937', 'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563', 'gray-700': '#374151', 'gray-800': '#1f2937', 'blue-50': '#eff6ff', 'blue-200': '#bfdbfe', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8', 'blue-800': '#1e40af', 'purple-50':'#faf5ff', 'purple-500':'#a855f7', 'purple-600': '#9333ea', 'purple-700': '#7e2d87', 'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0', 'emerald-500': '#10b981', 'amber-200': '#fde68a', 'amber-500': '#f59e0b', 'orange-200': '#fed7aa', 'orange-500': '#f97316', 'sky-200': '#bae6fd', 'teal-600': '#0d9488', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca', 'pink-500': '#ec4899', 'pink-accent': '#ec4899' // Thêm pink-accent nếu dùng
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* CSS giữ nguyên */
+        body { font-family: 'Inter', sans-serif; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; width: 100%; background-color: #000; border-radius: 0.5rem; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .timeline { list-style: none; padding: 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 1.5rem; width: 2px; background-color: #cbd5e1; margin-left: -1px; }
+        .timeline li { position: relative; margin-bottom: 2rem; padding-left: 3.5rem; }
+        .timeline li::before { content: ''; position: absolute; left: 1.5rem; top: 0.25rem; width: 1rem; height: 1rem; border-radius: 50%; background-color: var(--primary-color, #3b82f6); margin-left: -0.5rem; z-index: 1; }
+        .horizontal-scroll-gallery::-webkit-scrollbar { height: 8px; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 10px; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-thumb { background-color: #9ca3af; border-radius: 10px; border: 2px solid #e5e7eb; }
+        .horizontal-scroll-gallery::-webkit-scrollbar-thumb:hover { background-color: #6b7280; }
+        .scroll-snap-type-x-mandatory { scroll-snap-type: x mandatory; }
+        .scroll-snap-align-start { scroll-snap-align: start; }
+        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .commitment-list li { padding-left: 1.75rem; position: relative; margin-bottom: 0.75rem;}
+        .commitment-list li::before { content: '🤝'; position: absolute; left: 0; color: theme('colors.secondary', '#10b981'); font-size: 1em; top: 0.1em; }
+        header#navbar button:disabled[data-lang] { color: white !important; opacity: 1 !important; }
+        header#navbar button[data-lang]:not(:disabled) { color: theme('colors.blue.200', '#bfdbfe') !important; opacity: 0.8 !important; }
+        header#navbar button[data-lang]:not(:disabled):hover { color: white !important; opacity: 1 !important; }
+    </style>
+</head>
+<body class="bg-gray-100 text-neutral-700 font-sans antialiased">
+
+    <header id="header-placeholder"></header>
+
+
+    <main>
+        <section class="relative bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-20 md:py-28 text-center overflow-hidden">
+             <div class="absolute inset-0 bg-black opacity-40 z-10"></div> <div class="container mx-auto px-4 relative z-20">
+                <h1 class="text-4xl md:text-5xl font-bold mb-3 hero-text-shadow" data-lang-key="bscn_heading">Bổ sung Chứng chỉ Nghiệp vụ Sư phạm & Quản lý Giáo dục</h1>
+                <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto hero-text-shadow" data-lang-key="bscn_subheading">Hoàn thiện hồ sơ - Nâng tầm sự nghiệp cùng IVS Academy và các đối tác uy tín</p>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-8" data-lang-key="bscn_intro_title">Tại sao cần Chứng chỉ Nghiệp vụ?</h2>
+                 <p class="text-center text-gray-600 leading-relaxed mb-10" data-lang-key="bscn_intro_desc">
+                    Trong môi trường giáo dục ngày càng chuyên nghiệp hóa, việc sở hữu các chứng chỉ nghiệp vụ sư phạm (NVSP) và quản lý giáo dục (QLGD) không chỉ là yêu cầu bắt buộc theo quy định mà còn là bước đệm quan trọng giúp bạn khẳng định năng lực, nâng cao chuyên môn và mở rộng cơ hội thăng tiến. IVS Academy tự hào liên kết với các đơn vị đào tạo hàng đầu để mang đến cho bạn những khóa học chất lượng, uy tín.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-gray-50" aria-labelledby="certificates-heading">
+            <div class="container mx-auto px-4">
+                <h2 id="certificates-heading" class="text-3xl font-bold text-center text-gray-800 mb-10 md:mb-12" data-lang-key="bscn_available_certs_title">Các Chương trình Liên kết Đào tạo Chứng chỉ</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+                    <div class="certificate-card flex flex-col bg-white p-6 rounded-lg shadow-md border-t-4 border-primary">
+                        <div class="mb-4 text-primary text-4xl"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 flex-grow" data-lang-key="bscn_cert_nvsp_ta_th_title">Chứng chỉ NVSP Tiếng Anh Tiểu Học</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-lang-key="bscn_cert_nvsp_ta_th_provider">Đào tạo bởi: <strong class="font-semibold">Đại học Sư phạm Hà Nội 2</strong></p>
+                        <p class="text-sm text-gray-600 mb-4" data-lang-key="bscn_cert_nvsp_ta_th_desc">Trang bị kiến thức và kỹ năng sư phạm cần thiết theo chuẩn quy định cho giáo viên tiếng Anh cấp Tiểu học.</p>
+                        <a href="contact.html?interest=nvsp_ta_th" class="mt-auto inline-block bg-primary/10 text-primary hover:bg-primary/20 font-medium text-sm py-2 px-4 rounded-md transition duration-300 text-center" data-lang-key="learn_more_button">Tìm hiểu thêm</a>
+                    </div>
+
+                     <div class="certificate-card flex flex-col bg-white p-6 rounded-lg shadow-md border-t-4 border-pink-500">
+                        <div class="mb-4 text-pink-500 text-4xl"><i class="fas fa-child"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 flex-grow" data-lang-key="bscn_cert_nvsp_mn_title">Chứng chỉ NVSP Mầm Non</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-lang-key="bscn_cert_nvsp_mn_provider">Đào tạo bởi: <strong class="font-semibold">Đại học Sư phạm Hà Nội 2</strong></p>
+                        <p class="text-sm text-gray-600 mb-4" data-lang-key="bscn_cert_nvsp_mn_desc">Cung cấp nghiệp vụ sư phạm mầm non theo tiêu chuẩn, giúp bạn tự tin làm việc trong môi trường giáo dục sớm.</p>
+                         <a href="contact.html?interest=nvsp_mn" class="mt-auto inline-block bg-pink-500/10 text-pink-500 hover:bg-pink-500/20 font-medium text-sm py-2 px-4 rounded-md transition duration-300 text-center" data-lang-key="learn_more_button">Tìm hiểu thêm</a>
+                    </div>
+
+                     <div class="certificate-card flex flex-col bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
+                        <div class="mb-4 text-secondary text-4xl"><i class="fas fa-language"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 flex-grow" data-lang-key="bscn_cert_nvsp_ta_tt_title">Chứng chỉ NVSP GV Tiếng Anh tại Trung tâm</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-lang-key="bscn_cert_nvsp_ta_tt_provider">Đào tạo bởi: <strong class="font-semibold">Đại học Sư phạm Hà Nội 2</strong></p>
+                        <p class="text-sm text-gray-600 mb-4" data-lang-key="bscn_cert_nvsp_ta_tt_desc">Chứng chỉ cần thiết cho giáo viên tiếng Anh muốn giảng dạy tại các trung tâm ngoại ngữ theo quy định.</p>
+                         <a href="contact.html?interest=nvsp_ta_tt" class="mt-auto inline-block bg-secondary/10 text-secondary hover:bg-secondary/20 font-medium text-sm py-2 px-4 rounded-md transition duration-300 text-center" data-lang-key="learn_more_button">Tìm hiểu thêm</a>
+                    </div>
+
+                     <div class="certificate-card flex flex-col bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-accent">
+                        <div class="mb-4 text-purple-accent text-4xl"><i class="fas fa-user-tie"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 flex-grow" data-lang-key="bscn_cert_qlgd_title">Chứng chỉ Quản lý Giáo dục</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-lang-key="bscn_cert_qlgd_provider">Đào tạo bởi: <strong class="font-semibold">Trường Cán bộ Quản lý Giáo dục TPHCM</strong></p>
+                        <p class="text-sm text-gray-600 mb-4" data-lang-key="bscn_cert_qlgd_desc">Phát triển năng lực quản lý chuyên nghiệp cho cán bộ quản lý tại các cơ sở giáo dục.</p>
+                         <a href="contact.html?interest=qlgd" class="mt-auto inline-block bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 font-medium text-sm py-2 px-4 rounded-md transition duration-300 text-center" data-lang-key="learn_more_button">Tìm hiểu thêm</a>
+                    </div>
+
+                     <div class="certificate-card flex flex-col bg-white p-6 rounded-lg shadow-md border-t-4 border-warning">
+                        <div class="mb-4 text-warning text-4xl"><i class="fas fa-globe-americas"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 flex-grow" data-lang-key="bscn_cert_tesol_vn_title">Certificate for English Teaching in Vietnam (For Foreign Teachers)</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-lang-key="bscn_cert_tesol_vn_provider">Cấp bởi: <strong class="font-semibold" data-lang-key="bscn_cert_tesol_vn_provider_name">IVS Academy (Phối hợp)</strong></p>
+                        <p class="text-sm text-gray-600 mb-4" data-lang-key="bscn_cert_tesol_vn_desc">Chứng nhận cần thiết, giúp giáo viên nước ngoài đáp ứng yêu cầu giảng dạy tiếng Anh tại Việt Nam.</p>
+                         <a href="contact.html?interest=tesol_vn" class="mt-auto inline-block bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 font-medium text-sm py-2 px-4 rounded-md transition duration-300 text-center" data-lang-key="learn_more_button">Tìm hiểu thêm</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+         <section class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-3xl text-center">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4" data-lang-key="bscn_contact_general_title">Sẵn sàng Nâng tầm Sự nghiệp Giáo dục?</h2>
+                <p class="text-gray-600 mb-6" data-lang-key="bscn_contact_general_desc">
+                    Hoàn thiện các chứng chỉ cần thiết là bước đầu tư quan trọng cho tương lai nghề nghiệp của bạn. Hãy để IVS Academy đồng hành và hỗ trợ bạn trên con đường này.
+                </p>
+                <a href="contact.html?interest=certificates" class="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg hover:shadow-xl" data-lang-key="contact_us_button_certs">
+                    Liên hệ Tư vấn Chứng chỉ
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/language.js" defer></script>
+    <script>
+        // Script tải Header/Footer (Giữ nguyên)
+        function loadComponent(url, placeholderId, callback) {
+             fetch(url)
+                 .then(response => {
+                     if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`);
+                     return response.text();
+                 })
+                 .then(data => {
+                     const placeholder = document.getElementById(placeholderId);
+                     if (placeholder) {
+                         placeholder.innerHTML = data;
+                         if (callback && typeof callback === 'function') {
+                             setTimeout(callback, 0);
+                         }
+                     }
+                 })
+                 .catch(error => console.error(`Error loading component ${url}:`, error));
+        }
+
+        function applyLanguageIfReady() {
+            if (typeof window.applyLanguage === 'function') {
+                 window.applyLanguage(localStorage.getItem('preferredLanguage') || 'vi');
+            } else {
+                 console.warn('applyLanguage function not ready yet.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let headerLoaded = false;
+            let footerLoaded = false;
+
+            loadComponent('header.html', 'header-placeholder', () => {
+                if (typeof initializeMenu === 'function') initializeMenu();
+                headerLoaded = true;
+                applyLanguageIfReady();
+            });
+
+            loadComponent('footer.html', 'footer-placeholder', () => {
+                 footerLoaded = true;
+                 applyLanguageIfReady();
+            });
+
+            applyLanguageIfReady(); // Apply for static content
+        });
+    </script>;
+
+<script>
+    // Get the button element
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // Removed the scroll event listener that controlled display
+
+    // Scroll to top when the button is clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Smooth scrolling animation
+        });
+    });
+</script>
+
+        <button id="scrollToTopBtn"
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Scroll to top">
+            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
+        </button>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="tuvan_page_title">We are ready to help and support | IVS JSC</title>
+    <meta name="description" content="IVS JSC cung cấp dịch vụ tư vấn chuyên nghiệp (pháp lý, thành lập trung tâm, web, EdTech, Work Permit) và đào tạo (ngoại ngữ, kỹ năng, giáo viên, liên kết giáo dục)." data-lang-key="tuvan_meta_description">
+    <meta property="og:title" content="IVS JSC - Tư Vấn & Đào Tạo Toàn Diện Cho Doanh Nghiệp & Giáo Dục" data-lang-key="tuvan_og_title">
+    <meta property="og:description" content="Khám phá các dịch vụ tư vấn chuyên sâu và chương trình đào tạo đa dạng từ IVS JSC, giúp bạn tối ưu hóa hoạt động và phát triển bền vững." data-lang-key="tuvan_og_description">
+    <meta property="og:image" content="https://ivsjsc.github.io/images/ivs-consulting-training-og.png"> 
+    <meta property="og:url" content="https://ivsjsc.github.io/consulting.html"> <meta property="og:type" content="website">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+             colors: {
+                'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'secondary-dark': '#059669', 'purple-accent': '#8b5cf6', 'purple-accent-dark': '#7c3aed', 'warning': '#f59e0b', 'warning-dark': '#d97706',
+                'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db', 'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937', 'neutral-900': '#111827',
+                'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-200': '#e5e7eb', 'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563', 'gray-700': '#374151', 'gray-800': '#1f2937', 'gray-900': '#111827',
+                'blue-50': '#eff6ff', 'blue-200': '#bfdbfe', 'blue-500': '#3b82f6', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8', 'blue-800': '#1e40af',
+                'purple-50':'#faf5ff', 'purple-200':'#e9d5ff', 'purple-500':'#a855f7', 'purple-600': '#9333ea', 'purple-700': '#7e22ce',
+                'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0', 'emerald-500': '#10b981', 'emerald-800': '#065f46',
+                'amber-50': '#fffbeb', 'amber-200': '#fde68a', 'amber-500': '#f59e0b', 'amber-600': '#d97706',
+                'orange-50': '#fff7ed', 'orange-200': '#fed7aa', 'orange-400':'#fb923c', 'orange-500': '#f97316', 'orange-600': '#ea580c', 
+                'sky-50': '#f0f9ff', 'sky-200': '#bae6fd', 'sky-500': '#0ea5e9', 'sky-600': '#0284c7',
+                'indigo-50': '#eef2ff', 'indigo-200': '#c7d2fe', 'indigo-500': '#6366f1', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca',
+                'pink-50': '#fdf2f8', 'pink-200': '#fbcfe8', 'pink-500': '#ec4899', 'pink-accent': '#ec4899', 'pink-600': '#db2777',
+                'red-500': '#ef4444', 'red-600': '#dc2626',
+                'teal-50': '#f0fdfa', 'teal-200': '#99f6e4', 'teal-500': '#14b8a6', 'teal-600': '#0d9488',
+                'yellow-50': '#fffbeb', 'yellow-200': '#fef08a', 'yellow-400': '#facc15', 'yellow-500': '#eab308'
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+        .service-card { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Đảm bảo các card có chiều cao bằng nhau trong grid */
+        }
+        .service-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1); 
+        }
+        .service-card-content {
+            flex-grow: 1; /* Cho phép nội dung co giãn */
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card-content p {
+            flex-grow: 1; /* Đẩy link "Xem chi tiết" xuống dưới */
+        }
+        .service-card i.fa-solid, .service-card i.fa-brands { /* Áp dụng cho cả fas và fab */
+            transition: transform 0.3s ease; 
+        }
+        .service-card:hover i.fa-solid, .service-card:hover i.fa-brands { 
+            transform: scale(1.1); 
+        }
+        .cta-button { 
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out; 
+        }
+        .cta-button:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+        }
+         /* Dark mode specific styles */
+        .dark body {
+            background-color: #111827; /* neutral-900 */
+            color: #d1d5db; /* neutral-300 */
+        }
+        .dark .bg-white { background-color: #1f2937; /* neutral-800 */ }
+        .dark .text-gray-800 { color: #f3f4f6; /* neutral-100 */ }
+        .dark .text-gray-600 { color: #9ca3af; /* neutral-400 */ }
+        .dark .text-primary { color: #60a5fa; /* blue-400 */ }
+        .dark .border-blue-500 { border-color: #2563eb; /* blue-600 */ }
+        .dark .text-blue-600 { color: #3b82f6; /* blue-500 */ }
+        .dark .bg-blue-50 { background-color: #1e3a8a; } /* Darker blue, e.g., blue-800 or custom */
+
+        .dark .border-pink-500 { border-color: #db2777; /* pink-600 */ }
+        .dark .text-pink-500 { color: #f472b6; /* pink-400 */ }
+        .dark .text-pink-600 { color: #ec4899; /* pink-500 */ }
+        .dark .bg-pink-50 { background-color: #500724; } /* Darker pink */
+
+        .dark .border-orange-500 { border-color: #ea580c; /* orange-600 */ }
+        .dark .text-orange-500 { color: #fb923c; /* orange-400 */ }
+        .dark .text-orange-600 { color: #f97316; /* orange-500 */ }
+        .dark .bg-orange-50 { background-color: #7c2d12; } /* Darker orange */
+
+        .dark .border-teal-500 { border-color: #0d9488; /* teal-600 */ }
+        .dark .text-teal-500 { color: #2dd4bf; /* teal-400 */ }
+        .dark .text-teal-600 { color: #14b8a6; /* teal-500 */ }
+        .dark .bg-teal-50 { background-color: #0f766e; } /* Darker teal */
+        
+        .dark .border-sky-500 { border-color: #0284c7; /* sky-600 */ }
+        .dark .text-sky-500 { color: #38bdf8; /* sky-400 */ }
+        .dark .text-sky-600 { color: #0ea5e9; /* sky-500 */ }
+        .dark .bg-sky-50 { background-color: #0c4a6e; } /* Darker sky */
+
+        .dark .border-purple-500 { border-color: #9333ea; /* purple-600 */ }
+        .dark .text-purple-500 { color: #c084fc; /* purple-400 */ }
+        .dark .text-purple-600 { color: #a855f7; /* purple-500 */ }
+        .dark .bg-purple-50 { background-color: #581c87; } /* Darker purple */
+
+        .dark .border-yellow-400 { border-color: #eab308; /* yellow-500 */ }
+        .dark .text-yellow-500 { color: #facc15; /* yellow-400 */ }
+        .dark .text-amber-600 { color: #f59e0b; /* amber-500 */ }
+        .dark .bg-yellow-50 { background-color: #713f12; } /* Darker yellow/amber */
+
+        .dark .border-gray-500 { border-color: #6b7280; /* gray-500 */ }
+        .dark .text-gray-500 { color: #9ca3af; /* gray-400 */ }
+        .dark .text-gray-600 { color: #d1d5db; /* gray-300 */ }
+        .dark .bg-gray-100 { background-color: #1f2937; /* gray-800 */ }
+        
+        .dark .border-indigo-500 { border-color: #4f46e5; /* indigo-600 */ }
+        .dark .text-indigo-500 { color: #818cf8; /* indigo-400 */ }
+        .dark .text-indigo-600 { color: #6366f1; /* indigo-500 */ }
+        .dark .bg-indigo-50 { background-color: #3730a3; } /* Darker indigo */
+
+        .dark .border-amber-500 { border-color: #d97706; /* amber-600 */ }
+        .dark .text-amber-500 { color: #fcd34d; /* amber-300 */ }
+        /* .dark .text-amber-600 is already defined for yellow-50 */
+        .dark .bg-amber-50 { background-color: #78350f; } /* Darker amber */
+
+        .dark .border-rose-500 { border-color: #e11d48; /* rose-600 */ }
+        .dark .text-rose-500 { color: #fb7185; /* rose-400 */ }
+        .dark .text-rose-600 { color: #f43f5e; /* rose-500 */ }
+        .dark .bg-rose-50 { background-color: #881337; } /* Darker rose */
+
+        .dark .text-gray-800 { color: #f3f4f6; } /* neutral-100 */
+        .dark .text-gray-600 { color: #9ca3af; } /* neutral-400 */
+        .dark .border-t { border-color: #374151; } /* neutral-700 */
+
+    </style>
+</head>
+<body class="bg-gray-50 text-neutral-700 font-sans antialiased dark:bg-neutral-900 dark:text-neutral-100" id="page-consulting">
+
+    <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
+
+    <main class="flex-grow">
+        <section class="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white py-20 md:py-28 text-center" aria-labelledby="page-title-tuvan" data-aos="fade-in" data-aos-duration="800">
+            <div class="container mx-auto px-4">
+                <h1 id="page-title-tuvan" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 hero-text-shadow" data-lang-key="tuvan_hero_title" data-aos="fade-down" data-aos-delay="200">Dịch Vụ Tư Vấn & Đào Tạo Toàn Diện</h1>
+                <p class="text-lg md:text-xl lg:text-2xl opacity-95 max-w-3xl mx-auto hero-text-shadow" data-lang-key="tuvan_hero_subtitle" data-aos="fade-up" data-aos-delay="400">Giải pháp Chuyên nghiệp - Đồng hành Phát triển Cùng IVS JSC</p>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-white dark:bg-neutral-800">
+            <div class="container mx-auto px-4 max-w-7xl">
+
+                <div class="space-y-16">
+
+                    <div data-aos="fade-up">
+                        <h2 class="text-3xl font-bold text-center text-primary dark:text-blue-400 mb-10 flex items-center justify-center gap-3">
+                            <i class="fas fa-briefcase"></i>
+                            <span data-lang-key="tuvan_section_business_title">Lĩnh vực Tư vấn Pháp luật</span>
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <a href="/Pages/psb_introduction.html" class="service-card block bg-blue-50 dark:bg-blue-800 p-6 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-600">
+                                <div class="service-card-content">
+                                    <div class="text-blue-500 dark:text-blue-400 text-4xl mb-4"><i class="fas fa-gavel"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_legal">Tư vấn Thủ tục & Pháp lý (Doanh nghiệp)</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_legal">Hỗ trợ thành lập doanh nghiệp, thay đổi ĐKKD, tư vấn pháp lý thường xuyên.</p>
+                                </div>
+                                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Pages/litigation_consulting.html" class="service-card block bg-blue-50 dark:bg-blue-800 p-6 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-600">
+                                <div class="service-card-content">
+                                    <div class="text-blue-500 dark:text-blue-400 text-4xl mb-4"><i class="fas fa-balance-scale"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_legal_litigation">Tư vấn Pháp lý (Cá nhân)</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_legal_litigation">Tư vấn và hỗ trợ giải quyết các vấn đề pháp lý dân sự, hình sự, hành chính.</p>
+                                </div>
+                                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Pages/thanhlaptrungtam.html" class="service-card block bg-blue-50 dark:bg-blue-800 p-6 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-600">
+                                <div class="service-card-content">
+                                    <div class="text-blue-500 dark:text-blue-400 text-4xl mb-4"><i class="fas fa-building"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_center_establish">Thành lập Trung tâm Đào tạo</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_center_establish">Tư vấn, soạn thảo đề án, thực hiện thủ tục thành lập TT Ngoại ngữ, Tin học, Kỹ năng.</p>
+                                </div>
+                                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Pages/foreign-teacher-services.html" class="service-card block bg-blue-50 dark:bg-blue-800 p-6 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-600">
+                                <div class="service-card-content">
+                                    <div class="text-blue-500 dark:text-blue-400 text-4xl mb-4"><i class="fas fa-passport"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_workpermit">Giáo viên NN & Work Permit</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_workpermit">Tuyển dụng GVNN chất lượng, hỗ trợ thủ tục Work Permit, visa, thẻ tạm trú.</p>
+                                </div>
+                                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-up">
+                        <h2 class="text-3xl font-bold text-center text-primary dark:text-blue-400 mb-10 flex items-center justify-center gap-3"><i class="fas fa-graduation-cap"></i><span data-lang-key="tuvan_section_education_title">Lĩnh vực Giáo dục & Đào tạo</span></h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <a href="/Pages/lkmamnon.html" class="service-card block bg-pink-50 dark:bg-pink-900 p-6 rounded-xl shadow-lg border-t-4 border-pink-500 dark:border-pink-600">
+                                <div class="service-card-content">
+                                    <div class="text-pink-500 dark:text-pink-400 text-4xl mb-4"><i class="fas fa-child"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_lkmamnon">Liên kết Mầm non</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_lkmamnon">Phát triển chương trình STEAM+Intelligence, đào tạo GV, chuyển giao mô hình.</p>
+                                </div>
+                                <span class="text-pink-600 dark:text-pink-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Pages/lktieuhoc.html" class="service-card block bg-orange-50 dark:bg-orange-900 p-6 rounded-xl shadow-lg border-t-4 border-orange-500 dark:border-orange-600">
+                                <div class="service-card-content">
+                                    <div class="text-orange-500 dark:text-orange-400 text-4xl mb-4"><i class="fas fa-school"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_lktieuhoc">Liên kết Tiểu học</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_lktieuhoc">Tích hợp Tiếng Anh Cambridge, Kỹ năng sống LIFEMinds, hoạt động STEAM.</p>
+                                </div>
+                                <span class="text-orange-600 dark:text-orange-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/lkthcsthpt.html" class="service-card block bg-teal-50 dark:bg-teal-900 p-6 rounded-xl shadow-lg border-t-4 border-teal-500 dark:border-teal-600">
+                                <div class="service-card-content">
+                                    <div class="text-teal-500 dark:text-teal-400 text-4xl mb-4"><i class="fas fa-user-graduate"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_lkthcsthpt">Liên kết THCS & THPT</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_lkthcsthpt">Chương trình ngoại ngữ, kỹ năng, hướng nghiệp, tư vấn du học, EdTech.</p>
+                                </div>
+                                <span class="text-teal-600 dark:text-teal-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/lkttnn.html" class="service-card block bg-sky-50 dark:bg-sky-900 p-6 rounded-xl shadow-lg border-t-4 border-sky-500 dark:border-sky-600">
+                                <div class="service-card-content">
+                                    <div class="text-sky-500 dark:text-sky-400 text-4xl mb-4"><i class="fas fa-comments"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_lkttnn">Liên kết TT Ngoại ngữ</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_lkttnn">Cung cấp chương trình, giáo viên, hỗ trợ vận hành, marketing, nhượng quyền.</p>
+                                </div>
+                                <span class="text-sky-600 dark:text-sky-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/ivslanguages.html" class="service-card block bg-blue-50 dark:bg-blue-800 p-6 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-600">
+                                <div class="service-card-content">
+                                    <div class="text-blue-500 dark:text-blue-400 text-4xl mb-4"><i class="fas fa-language"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_languages">Đào tạo Ngoại ngữ</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_languages">Các khóa học Tiếng Anh (Cambridge, IELTS...), Tiếng Trung (HSK) mọi cấp độ.</p>
+                                </div>
+                                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/ivslifeminds.html" class="service-card block bg-purple-50 dark:bg-purple-900 p-6 rounded-xl shadow-lg border-t-4 border-purple-500 dark:border-purple-600">
+                                <div class="service-card-content">
+                                    <div class="text-purple-500 dark:text-purple-400 text-4xl mb-4"><i class="fas fa-brain"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_lifeskills">Đào tạo Kỹ năng sống</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_lifeskills">Chương trình LIFEMinds phát triển tư duy, cảm xúc, kỹ năng xã hội.</p>
+                                </div>
+                                <span class="text-purple-600 dark:text-purple-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/teachertrain.html" class="service-card block bg-yellow-50 dark:bg-yellow-800 p-6 rounded-xl shadow-lg border-t-4 border-yellow-400 dark:border-yellow-500">
+                                <div class="service-card-content">
+                                    <div class="text-yellow-500 dark:text-yellow-400 text-4xl mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_teachertrain">Đào tạo Giáo viên</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_teachertrain">Bồi dưỡng chuyên môn, phương pháp giảng dạy hiện đại, ứng dụng EdTech.</p>
+                                </div>
+                                <span class="text-amber-600 dark:text-amber-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Pages/bosungchungchi.html" class="service-card block bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow-lg border-t-4 border-gray-500 dark:border-gray-600">
+                                <div class="service-card-content">
+                                    <div class="text-gray-500 dark:text-gray-400 text-4xl mb-4"><i class="fas fa-certificate"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_certificate">Bổ sung Chứng chỉ NVSP</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_certificate">Tư vấn, hướng dẫn thủ tục hoàn thiện chứng chỉ Nghiệp vụ Sư phạm.</p>
+                                </div>
+                                <span class="text-gray-600 dark:text-gray-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                            <a href="/Blogs/talktask-ivsuniversitieshcmc.html" class="service-card block bg-orange-50 dark:bg-orange-900 p-6 rounded-xl shadow-lg border-t-4 border-orange-500 dark:border-orange-600">
+                                <div class="service-card-content">
+                                    <div class="text-orange-500 dark:text-orange-400 text-4xl mb-4"><i class="fas fa-comments"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_talktask_hcmc">Talk & Task – Sinh viên TP.HCM</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_talktask_hcmc">Cộng đồng học tiếng Anh giao tiếp thực tế với GVNN, nhóm nhỏ 6-10 bạn.</p>
+                                </div>
+                                <span class="text-orange-600 dark:text-orange-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-up">
+                         <h2 class="text-3xl font-bold text-center text-primary dark:text-blue-400 mb-10 flex items-center justify-center gap-3"><i class="fas fa-desktop"></i><span data-lang-key="tuvan_section_tech_design_title">Lĩnh vực Công nghệ & Thiết kế</span></h2>
+                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                             <a href="/Pages/webdesign.html" class="service-card block bg-indigo-50 dark:bg-indigo-800 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 dark:border-indigo-600">
+                                <div class="service-card-content">
+                                    <div class="text-indigo-500 dark:text-indigo-400 text-4xl mb-4"><i class="fas fa-laptop-code"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_webdesign">Thiết kế Website Chuyên nghiệp</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_webdesign">Thiết kế website theo yêu cầu, responsive, tối ưu SEO, TMĐT.</p>
+                                </div>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/rnd-curriculum.html" class="service-card block bg-indigo-50 dark:bg-indigo-800 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 dark:border-indigo-600">
+                                <div class="service-card-content">
+                                    <div class="text-indigo-500 dark:text-indigo-400 text-4xl mb-4"><i class="fas fa-flask"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_rnd">R&D - Học liệu & EdTech</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_rnd">Thiết kế chương trình, học liệu số, phát triển giải pháp EdTech theo yêu cầu.</p>
+                                </div>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Pages/ivscelestech.html" class="service-card block bg-indigo-50 dark:bg-indigo-800 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 dark:border-indigo-600">
+                                <div class="service-card-content">
+                                    <div class="text-indigo-500 dark:text-indigo-400 text-4xl mb-4"><i class="fas fa-cogs"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_celestech">IVS Celestech - Giải pháp EdTech</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_celestech">Tư vấn, cung cấp thiết bị tương tác, LMS, giải pháp học tập trực tuyến.</p>
+                                </div>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                         </div>
+                    </div>
+
+                     <div data-aos="fade-up">
+                         <h2 class="text-3xl font-bold text-center text-primary dark:text-blue-400 mb-10 flex items-center justify-center gap-3"><i class="fas fa-heartbeat"></i><span data-lang-key="tuvan_section_health_title">Lĩnh vực Sức khỏe & An sinh</span></h2>
+                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                             <a href="/Blogs/health-yensao.html" class="service-card block bg-amber-50 dark:bg-amber-800 p-6 rounded-xl shadow-lg border-t-4 border-amber-500 dark:border-amber-600">
+                                <div class="service-card-content">
+                                    <div class="text-amber-500 dark:text-amber-400 text-4xl mb-4"><i class="fas fa-leaf"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_yensao">Yến Sào Thanh Yến</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_yensao">Cung cấp sản phẩm yến sào nguyên chất, chất lượng cao từ Long Thành.</p>
+                                </div>
+                                <span class="text-amber-600 dark:text-amber-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                             <a href="/Blogs/health-luvyoga.html" class="service-card block bg-rose-50 dark:bg-rose-900 p-6 rounded-xl shadow-lg border-t-4 border-rose-500 dark:border-rose-600">
+                                <div class="service-card-content">
+                                    <div class="text-rose-500 dark:text-rose-400 text-4xl mb-4"><i class="fas fa-spa"></i></div>
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_title_luvyoga">LuvYoga Lộc Hòa</h3>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-300 mb-4" data-lang-key="service_desc_luvyoga">Trung tâm yoga chuyên nghiệp, không gian thư giãn, bài tập khoa học.</p>
+                                </div>
+                                <span class="text-rose-600 dark:text-rose-500 font-medium text-sm inline-flex items-center gap-1 mt-auto pt-2">Xem chi tiết <i class="fas fa-arrow-right text-xs"></i></span>
+                            </a>
+                         </div>
+                    </div>
+
+                </div>
+
+                 <section class="mt-16 pt-12 border-t border-gray-200 dark:border-neutral-700 text-center" data-aos="fade-up">
+                     <h2 class="text-3xl font-bold text-gray-800 dark:text-neutral-100 mb-6" data-lang-key="tuvan_cta_title">Kết nối với IVS JSC ngay hôm nay!</h2>
+                     <p class="text-lg text-gray-600 dark:text-neutral-300 mb-8 max-w-2xl mx-auto" data-lang-key="tuvan_cta_desc">
+                         Dù bạn cần tư vấn chiến lược, giải pháp đào tạo chuyên sâu hay hỗ trợ về công nghệ và pháp lý, đội ngũ chuyên gia của IVS JSC luôn sẵn sàng lắng nghe và đồng hành cùng bạn.
+                     </p>
+                     <a href="/contact.html" class="cta-button inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg">
+                         <i class="fas fa-comments"></i> <span data-lang-key="contact_us_general_button">Liên hệ Tư vấn</span>
+                     </a>
+                 </section>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder" data-loading-text="Đang tải chân trang..."></footer>
+    <div id="fab-container-placeholder"></div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
+    <script>
+      AOS.init({
+        offset: 80,
+        duration: 700,
+        easing: 'ease-out-quad',
+        once: true,
+        mirror: false,
+        anchorPlacement: 'top-bottom',
+      });
+
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      if (scrollToTopBtn) {
+          window.addEventListener('scroll', () => {
+              if (window.pageYOffset > 200) {
+                  scrollToTopBtn.classList.remove('hidden');
+                  scrollToTopBtn.classList.add('flex');
+              } else {
+                  scrollToTopBtn.classList.remove('flex');
+                  scrollToTopBtn.classList.add('hidden');
+              }
+          }, { passive: true });
+
+          scrollToTopBtn.addEventListener('click', () => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          if (window.pageYOffset <= 200) {
+            scrollToTopBtn.classList.add('hidden');
+          }
+      }
+    </script>
+</body>
+</html>
