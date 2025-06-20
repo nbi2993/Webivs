@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0EA5E9" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0c4a6e" media="(prefers-color-scheme: dark)">
-
-    <title>KhaDock - Florida's Premier Boat Dock Solutions</title>
-    <meta name="description" content="KhaDock specializes in custom boat dock design, robust construction, professional remodeling, and boat lift installations across Florida. Your trusted marine construction partner.">
-    <meta name="keywords" content="boat docks Florida, dock design, dock construction, dock repair, dock remodeling, boat lifts, marine construction Florida, KhaDock, AI dock design">
-
-    <meta property="og:title" content="KhaDock - Florida's Premier Dock Solutions with AI Design">
-    <meta property="og:description" content="Expert dock design, construction, remodeling, and maintenance services in Florida by KhaDock. Try our AI Design Generator!">
-    <meta property="og:image" content="images/logo/logoicon_512.png">
-    <meta property="og:url" content="https://khadock.com">
+    <title data-lang-key="page_title_index">IVS JSC - Giáo dục, Công nghệ, Tư vấn & Hợp tác Quốc tế</title>
+    <meta name="description" content="IVS JSC - Tổ chức tiên phong tại Việt Nam trong lĩnh vực giáo dục (IVS Academy), công nghệ (IVS Celestech), tư vấn toàn diện và hợp tác quốc tế." data-lang-key="meta_description_index">
+    <meta name="keywords" content="IVS JSC, giáo dục, công nghệ giáo dục, EdTech, STEAM, tư vấn doanh nghiệp, tư vấn pháp lý, hợp tác quốc tế, Đồng Nai, IVS Academy, IVS Celestech, thiết kế website" data-lang-key="meta_keywords_index">
+    <meta property="og:title" content="IVS JSC - Hiện thực hóa Tầm nhìn Giáo dục Toàn cầu" data-lang-key="og_title_index">
+    <meta property="og:description" content="Khám phá hệ sinh thái giải pháp toàn diện về giáo dục, công nghệ, tư vấn và hợp tác quốc tế từ IVS JSC." data-lang-key="og_description_index">
+    <meta property="og:image" content="https://ivsacademy.edu.vn/images/banners/ivs_og_banner.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/index.html">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="KhaDock">
+    <meta name="author" content="IVS JSC">
 
-    <link rel="icon" href="images/logo/logo.jpg" type="image/jpeg">
-    <link rel="apple-touch-icon" href="images/logo/logoicon_512.png">
-    <link rel="manifest" href="manifest.json">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        sky: {
-                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
-                            400: '#38bdf8', 500: '#0EA5E9', 600: '#0284C7', 700: '#0369A1',
-                            800: '#075985', 900: '#0c4a6e'
-                        },
-                        slate: {
-                            50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1',
-                            400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155',
-                            800: '#1e293b', 900: '#0f172a'
-                        }
-                    },
                     fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
                     },
-                    animation: {
-                        'spin-slow': 'spin 2s linear infinite',
+                    colors: {
+                        'ivs-dark': '#0D1117',
+                        'ivs-dark-blue': '#010409',
+                        'ivs-blue': '#3b82f6',
+                        'ivs-blue-dark': '#2563eb',
+                        'ivs-gold': '#ffc107',
+                        'ivs-gold-dark': '#e0a800',
+                        'ivs-light-gray': '#e5e7eb',
+                        'ivs-gray': '#9ca3af',
+                        'ivs-dark-gray': '#4b5563',
+                        'ivs-card-dark': '#161B22',
+                        'ivs-border-dark': '#30363d',
                     }
                 }
             }
@@ -55,307 +52,519 @@
     </script>
     <style>
         body {
-            font-family: 'inter', sans-serif;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', sans-serif;
+            background-color: #010409;
+            color: #e5e7eb;
+        }
+        .font-display { font-family: 'Lexend', sans-serif; }
+        .hero-section {
+            background: linear-gradient(to right, rgba(1, 4, 9, 0.8), rgba(1, 4, 9, 0.6)), url('/images/logo/webbanner.png') no-repeat center center/cover;
+            border-bottom: 1px solid #30363d;
+        }
+        .glass-card {
+            background: rgba(22, 27, 34, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #30363d;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .glass-card:hover {
+            background: rgba(30, 36, 44, 0.7);
+            border-color: #4b5563;
+            transform: translateY(-8px);
+        }
+        .section-title {
+            font-family: 'Lexend', sans-serif;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+        }
+        .section-subtitle {
+            color: #9ca3af;
+            max-width: 60rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            transform: perspective(1px) translateZ(0);
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(1, 4, 9, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+        .testimonial-quote {
+            border-left: 3px solid #3b82f6;
+            padding-left: 1rem;
+            font-style: italic;
+        }
+        .eov-section-bg {
+            background: linear-gradient(to right, rgba(1, 4, 9, 0.8), rgba(1, 4, 9, 0.6)), url('/images/banners/eov_section_bg.jpg') no-repeat center center/cover;
+        }        
+        /* CSS cho FAB Container */
+        #fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .fab-button {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 9999px; /* Vòng tròn */
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none; /* Đảm bảo không có gạch chân cho thẻ <a> */
+        }
+        .fab-button:hover {
+            background-color: #2563eb;
+            transform: scale(1.1);
+        }
+        .fab-button.chat { background-color: #28a745; } /* Màu xanh lá cho chat */
+        .fab-button.chat:hover { background-color: #218838; }
+        .fab-button.phone { background-color: #dc3545; } /* Màu đỏ cho phone */
+        .fab-button.phone:hover { background-color: #c82333; }
+        .fab-button.main {
+            background-color: #58a6ff; /* Màu chính cho nút FAB */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .fab-button.main:hover {
+            background-color: #3b82f6;
+        }
+        .fab-menu {
+            display: none; /* Mặc định ẩn */
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .fab-container.open .fab-menu {
+            display: flex; /* Hiện khi có class 'open' */
+        }
+        .fab-button span {
+            display: none; /* Ẩn văn bản trên mobile theo mặc định, chỉ hiển thị icon */
+        }
+
+        /* Responsive adjustments for FAB */
+        @media (min-width: 768px) { /* On larger screens, show text for sub-buttons */
+            .fab-button {
+                width: auto;
+                padding: 10px 20px;
+                border-radius: 28px; /* Slightly less rounded for wider buttons */
+                font-size: 18px;
+            }
+            .fab-button i {
+                margin-right: 8px;
+            }
+            .fab-button span {
+                display: inline;
+            }
+            .fab-button.main {
+                width: 56px;
+                height: 56px;
+                padding: 0;
+            }
+            .fab-button.main i {
+                margin-right: 0;
+            }
+            .fab-button.main span {
+                display: none;
+            }
         }
     </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased font-inter">
-
-    <div id="header-placeholder"></div>
-
-    <main id="main-content-area">
-        <section class="full-width-image-section" data-aos="fade-in">
-            <img
-                src="images/logo/logo1.jpg"
-                alt="KhaDock Logo Banner"
-                class="w-full h-auto object-cover block"
-                loading="eager"
-                width="1920"
-                height="400"
-            >
-        </section>
-
-        <section class="hero-banner-container" data-aos="fade-in">
-            <picture>
-                <source srcset="images/albums/dock15.jpg" media="(min-width: 768px)">
-                <img
-                    src="images/albums/dock15.jpg"
-                    alt="KhaDock - Florida's Premier Boat Dock Solutions"
-                    class="hero-banner-image"
-                    loading="eager"
-                >
-            </picture>
-            <div class="hero-banner-content">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
-                    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
-                        <a href="projects.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                            Our Projects
-                        </a>
-                        <a href="design.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                            KhaDock's Design
-                        </a>
-                        <a href="about.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                            About Us
-                        </a>
-                    </div>
-                    <div class="mt-4 flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="500">
-                        <a href="services.html#design" class="bg-white text-sky-700 font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:bg-sky-100 hover:text-sky-900 transition duration-300 transform hover:scale-105 border border-sky-500">
-                            Custom Dock Design
-                        </a>
-                        <a href="services.html#construction" class="bg-white text-sky-700 font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:bg-sky-100 hover:text-sky-900 transition duration-300 transform hover:scale-105 border border-sky-500">
-                            Dock Construction
-                        </a>
-                        <a href="services.html#remodel" class="bg-white text-sky-700 font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:bg-sky-100 hover:text-sky-900 transition duration-300 transform hover:scale-105 border border-sky-500">
-                            Dock Remodeling
-                        </a>
-                         <a href="services.html#repair" class="bg-white text-sky-700 font-semibold py-3 px-8 rounded-lg text-base shadow-md hover:bg-sky-100 hover:text-sky-900 transition duration-300 transform hover:scale-105 border border-sky-500">
-                            Repair & Maintenance
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="w-full flex justify-center my-0">
-            <div class="h-0.5 w-3/4 bg-sky-400 rounded-full shadow-lg opacity-80"></div>
-        </div>
-
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up" id="design-summary">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Innovative Dock Design</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                    <div class="design-album-image-wrapper" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="images/designs/design1.jpg" alt="KhaDock Design Inspiration 1" class="design-album-image" loading="lazy">
-                    </div>
-                    <div class="design-album-image-wrapper" data-aos="zoom-in" data-aos-delay="150">
-                        <img src="images/designs/design2.jpg" alt="KhaDock Design Inspiration 2" class="design-album-image" loading="lazy">
-                    </div>
-                    <div class="design-album-image-wrapper" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="images/designs/design3.jpg" alt="KhaDock Design Inspiration 3" class="design-album-image" loading="lazy">
-                    </div>
-                    <div class="design-album-image-wrapper" data-aos="zoom-in" data-aos-delay="250">
-                        <img src="images/designs/design4.jpg" alt="KhaDock Design Inspiration 4" class="design-album-image" loading="lazy">
-                    </div>
-                </div>
-                <div class="text-center mt-12 md:mt-16">
-                    <a href="design.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-lg">Explore Designs</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up" id="projects-overview">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Featured Projects</h2>
-                </div>
-                <div class="album-scroll-container overflow-x-auto whitespace-nowrap py-4 px-1 scrollbar-thin">
-                    <div class="flex gap-4 md:gap-5">
-                        <div class="album-image-item" data-aos="fade-right" data-aos-delay="100">
-                            <img src="images/albums/dock1.jpg" alt="Completed dock project 1" class="album-image-horizontal" loading="lazy"/>
-                        </div>
-                        <div class="album-image-item" data-aos="fade-right" data-aos-delay="150">
-                            <img src="images/albums/dock2.jpg" alt="Completed dock project 2" class="album-image-horizontal" loading="lazy"/>
-                        </div>
-                        <div class="album-image-item" data-aos="fade-right" data-aos-delay="200">
-                            <img src="images/albums/dock3.jpg" alt="Completed dock project 3" class="album-image-horizontal" loading="lazy"/>
-                        </div>
-                        <div class="album-image-item" data-aos="fade-right" data-aos-delay="250">
-                            <img src="images/albums/dock4.jpg" alt="Completed dock project 4" class="album-image-horizontal" loading="lazy"/>
-                        </div>
-                        <div class="album-image-item" data-aos="fade-right" data-aos-delay="300">
-                            <img src="images/albums/dock5.jpg" alt="Completed dock project 5" class="album-image-horizontal" loading="lazy"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12 md:mt-16">
-                    <a href="projects.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-lg">View All Projects</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-slate-50" data-aos="fade-up" id="about-us-overview">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <div data-aos="fade-right" data-aos-delay="100" class="md:pr-8">
-                        <img src="images/albums/dock14.jpg" alt="KhaDock - Team planning a dock project" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" loading="lazy" width="800" height="600">
-                    </div>
-                    <div data-aos="fade-left" data-aos-delay="200">
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">About Us: Crafting Coastal Dreams</h2>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            At KhaDock.com, our journey began with a singular passion: to craft exceptional boat dock solutions that elevate Florida's unique coastal lifestyle.
-                        </p>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Our seasoned team brings years of dedicated industry experience to every project. KhaDock is defined by our meticulous attention to detail, unwavering commitment to client satisfaction, and deep expertise in all facets of marine construction.
-                        </p>
-                        <div class="text-center md:text-left mt-8">
-                            <a href="about.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-lg">Learn More About Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up" id="contact-overview">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl" data-aos="fade-right" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-white mb-8 text-center md:text-left">Direct Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="contact-info-item flex items-start group">
-                                <div class="contact-icon-circle flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 shadow-md">
-                                    <i class="fas fa-map-marker-alt fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Our Office</h4>
-                                    <p class="text-slate-300">3850 Rollingsford Cir, Lakeland, FL 33810, USA</p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item flex items-start group">
-                                <div class="contact-icon-circle flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 shadow-md">
-                                    <i class="fas fa-phone fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Phone</h4>
-                                    <a href="tel:+18139393989" class="text-slate-300 hover:text-sky-300 transition-colors duration-300">+1 813-939-3989</a>
-                                </div>
-                            </div>
-                            <div class="contact-info-item flex items-start group">
-                                <div class="contact-icon-circle flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 shadow-md">
-                                    <i class="fas fa-envelope fa-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Email</h4>
-                                    <a href="mailto:doduykha007@gmail.com" class="text-slate-300 hover:text-sky-300 transition-colors duration-300">doduykha007@gmail.com</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 p-8 rounded-xl shadow-2xl" data-aos="fade-left" data-aos-delay="200">
-                        <div class="flex flex-col items-center mb-8">
-                            <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-sky-500 shadow-lg mb-3">
-                                <img src="images/logo/doduykha.png" alt="Mr. Kha Do - KhaDock" class="w-full h-full object-cover">
-                            </div>
-                            <span class="text-lg font-semibold text-slate-700">Mr. Kha Do</span>
-                            <span class="text-sm text-sky-600">Founder & Director</span>
-                        </div>
-                        <div class="flex justify-center gap-6">
-                            <a href="https://www.facebook.com/profile.php?id=61575043076973" target="_blank" rel="noopener noreferrer" aria-label="KhaDock Facebook" class="social-icon-link text-slate-500 hover:text-blue-600">
-                                <i class="fab fa-facebook-f fa-3x"></i>
-                            </a>
-                            <a href="http://m.me/doduy.kha" target="_blank" rel="noopener noreferrer" aria-label="KhaDock Messenger" class="social-icon-link text-slate-500 hover:text-blue-500">
-                                <i class="fab fa-facebook-messenger fa-3x"></i>
-                            </a>
-                            <a href="https://www.instagram.com/khadock/" target="_blank" rel="noopener noreferrer" aria-label="KhaDock Instagram" class="social-icon-link text-slate-500 hover:text-pink-600">
-                                <i class="fab fa-instagram fa-3x"></i>
-                            </a>
-                            <a href="https://wa.me/18139393989" target="_blank" rel="noopener noreferrer" aria-label="KhaDock WhatsApp" class="social-icon-link text-slate-500 hover:text-green-500">
-                                <i class="fab fa-whatsapp fa-3x"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12 md:mt-16">
-                    <a href="contact.html" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-lg">Contact Us Now</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 md:py-32 bg-gradient-to-r from-blue-700 to-sky-800 text-white text-center relative overflow-hidden" data-aos="zoom-in">
-            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 0V0h2v36h-2zM0 0h2v36H0V0zm0 36h36v2H0v-2z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow-strong">Ready to Transform Your boat-dock?</h2>
-                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-slate-100 leading-relaxed text-shadow">
-                    Explore innovative dock designs with our AI tool or contact us for a personalized consultation and a free estimate.
+<body class="bg-ivs-dark-blue">
+    <header id="header-placeholder"></header>
+    <div id="star-background"></div>
+    <div id="overlay"></div>
+    <main>
+        <section class="hero-section py-24 md:py-36 text-white text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold font-display leading-tight mb-4" data-aos="fade-down" data-lang-key="index_hero_title">
+                    IVS JSC: Hiện Thực Hóa Tầm Nhìn Giáo Dục Toàn Cầu
+                </h1>
+                <p class="text-lg md:text-xl section-subtitle mb-8" data-aos="fade-up" data-aos-delay="200" data-lang-key="index_hero_subtitle">
+                    IVS – Tư duy chiến lược, Hành động thực tiễn, Giá trị toàn cầu. Khám phá hệ sinh thái giải pháp toàn diện về giáo dục, công nghệ và tư vấn.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="design.html" class="bg-white text-sky-700 font-bold py-4 px-10 sm:py-5 sm:px-12 rounded-xl text-lg sm:text-xl shadow-2xl transition-all duration-300 transform hover:scale-105 hover:bg-sky-50 inline-flex items-center">
-                        <i class="fas fa-drafting-compass mr-3"></i>
-                        Start Designing Today
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="profile-company-ivsjsc.html" class="btn-primary font-semibold py-3 px-8 rounded-lg w-full sm:w-auto">
+                        <i class="fas fa-building mr-2"></i> <span data-lang-key="index_hero_cta_profile">Hồ Sơ Năng Lực</span>
                     </a>
-                    <a href="contact.html" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-10 sm:py-5 sm:px-12 rounded-xl text-lg sm:text-xl shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center">
-                        <i class="fas fa-phone-alt mr-3"></i>
-                        Request a Free Quote
+                    <a href="consulting.html" class="btn-secondary font-semibold py-3 px-8 rounded-lg w-full sm:w-auto">
+                        <i class="fas fa-concierge-bell mr-2"></i> <span data-lang-key="index_hero_cta_services">Khám Phá Dịch Vụ</span>
                     </a>
                 </div>
             </div>
         </section>
-    
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-10">
-                <div class="w-full md:w-2/3" data-aos="zoom-in-right">
-                    <div class="project-video-wrapper rounded-xl shadow-lg">
-                        <video
-                            src="videos/project1.mp4"
-                            controls
-                            poster="images/albums/dock15.jpg"
-                            preload="metadata"
-                            autoplay muted playsinline
-                        >
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3" data-aos="fade-left" data-aos-delay="200">
-                    <h2 class="text-2xl md:text-3xl font-bold text-sky-700 mb-4">KhaDock Project Resilience</h2>
-                    <ul class="list-disc pl-5 text-lg text-slate-700 space-y-3">
-                        <li>
-                            <span class="font-semibold">Our project remains 100% intact after a major storm.</span>
-                        </li>
-                        <li>
-                            <span class="font-semibold">KhaDock Commitment:</span> Quality, durability, and peace of mind for every client.
-                        </li>
-                        <li>
-                            <span class="font-semibold">Guaranteed craftsmanship</span> for all marine construction.
-                        </li>
-                        <li>
-                            <span class="font-semibold">Trusted by Florida boat-dock owners.</span>
-                        </li>
-                    </ul>
+   
+        <section class="py-20 md:py-28 eov-section-bg text-white text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+                    English Olympics of Vietnam (EOV) 2025
+                </h2>
+                <p class="section-subtitle text-lg mb-8" data-aos="fade-up" data-aos-delay="100">
+                    Sân chơi tầm cỡ quốc tế "Empowering Young Leaders" – Nơi tài năng tiếng Anh và bản lĩnh lãnh đạo trẻ được tỏa sáng.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <a href="/Blogs/eov2025.html" class="btn-primary font-bold text-lg py-4 px-10 rounded-lg">
+                        <i class="fas fa-trophy mr-2"></i> Khám phá Cuộc thi
+                    </a>
                 </div>
             </div>
-        </section>    
+        </section>
 
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_pillars_title">Hệ Sinh Thái Toàn Diện IVS</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_pillars_subtitle">
+                        Chúng tôi kiến tạo giá trị thông qua bốn trụ cột chính, kết hợp chặt chẽ để mang lại giải pháp đột phá và bền vững.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_education">Giáo Dục Tiên Tiến</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_education_desc">Cung cấp chương trình liên kết các cấp, đào tạo kỹ năng và ngoại ngữ theo chuẩn quốc tế.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_tech">Công Nghệ Đột Phá</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_tech_desc">Phát triển giải pháp EdTech, thiết kế website chuyên nghiệp dưới thương hiệu IVS Celestech.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_consulting">Tư Vấn Chuyên Sâu</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_consulting_desc">Hỗ trợ toàn diện về pháp lý, thành lập doanh nghiệp, và chiến lược phát triển giáo dục.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_global">Hợp Tác Quốc Tế</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_global_desc">Xây dựng cầu nối du học, trao đổi văn hóa và cung cấp nhân sự giáo dục toàn cầu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="py-20 md:py-28 bg-ivs-card-dark border-y border-ivs-border-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Giải Pháp Quản Lý Giáo Dục Toàn Diện</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100">
+                        Tối ưu hóa vận hành, nâng cao chất lượng quản lý với các ứng dụng chuyên biệt của IVS.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-right">
+                        <img src="/images/apps/ivskinderlink.png" class="rounded-lg mb-6 w-full h-48 object-cover" alt="Hình ảnh minh họa IVS KinderLink" onerror="this.onerror=null; this.src='https://placehold.co/400x200/161B22/FFFFFF?text=IVS+KinderLink';">
+                        <h3 class="font-display text-xl font-semibold mb-3 text-white">IVS KinderLink: Ứng Dụng Quản Lý Mầm Non</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed mb-5 flex-grow">
+                            Giải pháp toàn diện giúp các trường mầm non quản lý học sinh, lịch học, thông báo, tương tác phụ huynh hiệu quả, mang lại trải nghiệm số liền mạch.
+                        </p>
+                        <a href="/apps/ivskinderlink.html" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-auto">Tìm hiểu thêm <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-left">
+                        <img src="/images/apps/centercare.png" class="rounded-lg mb-6 w-full h-48 object-cover" alt="Hình ảnh minh họa IVS CenterCare" onerror="this.onerror=null; this.src='https://placehold.co/400x200/161B22/FFFFFF?text=IVS+CenterCare';">
+                        <h3 class="font-display text-xl font-semibold mb-3 text-white">IVS CenterCare: Ứng Dụng Quản Lý Trung Tâm Ngoại Ngữ</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed mb-5 flex-grow">
+                            Hệ thống chuyên biệt hỗ trợ trung tâm ngoại ngữ quản lý khóa học, giảng viên, học viên, tài chính và tự động hóa các quy trình hành chính.
+                        </p>
+                        <a href="/apps/ivscentercare.html" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-auto">Tìm hiểu thêm <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Liên kết Giáo dục với IVS Academy -->
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Liên Kết Giáo Dục Cùng IVS Academy</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100">
+                        IVS Academy mở rộng cơ hội học tập thông qua các chương trình liên kết đa dạng, chuẩn bị hành trang vững chắc cho học sinh.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white">Liên Kết Mầm Non</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed">Phát triển chương trình song ngữ, STEM và kỹ năng sống cho các trường mầm non theo chuẩn quốc tế.</p>
+                        <a href="education.html#kindergarten" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-4">Chi tiết <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white">Liên Kết Tiểu Học & Trung Học</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed">Chương trình tích hợp tiếng Anh chuyên sâu, STEAM, và kỹ năng tư duy phản biện cho học sinh phổ thông.</p>
+                        <a href="education.html#k12" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-4">Chi tiết <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white">Chuyển Tiếp Đại Học & Du Học</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed">Tư vấn và hỗ trợ học sinh chuyển tiếp vào các trường đại học quốc tế, cung cấp chương trình dự bị chất lượng cao.</p>
+                        <a href="education.html#higher-ed" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-4">Chi tiết <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_core_services_title">Dịch Vụ Cốt Lõi Của IVS</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_core_services_subtitle">
+                        Từ giáo dục nền tảng đến các giải pháp công nghệ và tư vấn chiến lược, IVS cung cấp một hệ sinh thái dịch vụ toàn diện.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-5 text-2xl"><i class="fas fa-school"></i></div>
+                        <h3 class="font-display text-xl font-semibold mb-3 text-white" data-lang-key="index_service_edupartnership_title">Giáo Dục Liên Kết</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed mb-5 flex-grow" data-lang-key="index_service_edupartnership_desc">Hợp tác triển khai các chương trình giáo dục tiên tiến từ Mầm non đến THPT, tích hợp STEAM và kỹ năng tương lai.</p>
+                        <a href="education.html" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-auto">Tìm hiểu thêm <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-2xl"><i class="fas fa-cogs"></i></div>
+                        <h3 class="font-display text-xl font-semibold mb-3 text-white" data-lang-key="index_service_tech_title">Giải Pháp Công Nghệ</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed mb-5 flex-grow" data-lang-key="index_service_tech_desc">Cung cấp dịch vụ thiết kế website chuyên nghiệp và phát triển giải pháp EdTech đột phá dưới thương hiệu IVS Celestech.</p>
+                        <a href="webdesign.html" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-auto">Tìm hiểu thêm <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-2xl"><i class="fas fa-gavel"></i></div>
+                        <h3 class="font-display text-xl font-semibold mb-3 text-white" data-lang-key="index_service_legalbiz_title">Tư Vấn Doanh Nghiệp & Pháp Lý</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed mb-5 flex-grow" data-lang-key="index_service_legalbiz_desc">Tư vấn thành lập trung tâm, doanh nghiệp; hỗ trợ thủ tục pháp lý, giấy phép lao động (Work Permit) và các vấn đề dân sự.</p>
+                        <a href="consulting.html" class="font-semibold text-ivs-blue hover:text-ivs-blue-dark text-sm mt-auto">Tìm hiểu thêm <i class="fas fa-chevron-right ml-1 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section class="py-20 md:py-28 bg-ivs-card-dark border-y border-ivs-border-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data_lang_key="explore_ivs_areas_title">Khám Phá Các Lĩnh Vực Của IVS</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data_lang_key="explore_ivs_areas_subtitle">
+                        Tìm hiểu sâu hơn về các giải pháp và dịch vụ chuyên biệt của chúng tôi.
+                    </p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <a href="consulting.html" class="glass-card p-8 rounded-2xl flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data_lang_key="consulting_area_title">Tư Vấn</h3>
+                        <p class="text-ivs-gray text-sm flex-grow" data_lang_key="consulting_area_desc">Giải pháp tư vấn chiến lược, pháp lý và doanh nghiệp.</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                    <a href="education.html" class="glass-card p-8 rounded-2xl flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data_lang_key="education_area_title">Giáo Dục</h3>
+                        <p class="text-ivs-gray text-sm flex-grow" data_lang_key="education_area_desc">Chương trình liên kết, đào tạo kỹ năng và ngoại ngữ.</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                    <a href="solutions.html" class="glass-card p-8 rounded-2xl flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data_lang_key="solutions_area_title">Giải Pháp</h3>
+                        <p class="text-ivs-gray text-sm flex-grow" data_lang_key="solutions_area_desc">Ứng dụng quản lý, công nghệ giáo dục (EdTech).</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                    <a href="ivs-partners.html" class="glass-card p-8 rounded-2xl flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data_lang_key="international_area_title">Đối Tác Quốc Tế</h3>
+                        <p class="text-ivs-gray text-sm flex-grow" data_lang_key="international_area_desc">Mở rộng hợp tác, cơ hội du học và trao đổi văn hóa.</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_ecosystem_title">Khám Phá Hệ Sinh Thái Số Của IVS</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_ecosystem_subtitle">
+                        Nơi tri thức, công cụ và giải trí hội tụ. Truy cập kho tài nguyên, ứng dụng và trò chơi giáo dục độc quyền từ IVS.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                    <a href="gallery.html" class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                        <img src="images/games/ivslibrary.png" class="rounded-lg mb-6 w-full h-40 object-cover" alt="[Ảnh minh họa Thư viện IVS]" onerror="this.onerror=null; this.src='https://placehold.co/400x200/161B22/FFFFFF?text=IVS+Library';">
+                        <h3 class="font-display text-xl font-semibold text-white mb-2" data-lang-key="index_ecosystem_gallery">Thư Viện Số</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_ecosystem_gallery_desc">Truy cập kho tài liệu, giáo trình và các bài viết chuyên sâu về giáo dục và công nghệ.</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Khám Phá Ngay <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                    <a href="/apps/ivsapps.html" class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                        <img src="images/games/ivsapps.png" class="rounded-lg mb-6 w-full h-40 object-cover" alt="[Ảnh minh họa IVS Apps]" onerror="this.onerror=null; this.src='https://placehold.co/400x200/161B22/FFFFFF?text=IVS+Apps';">
+                        <h3 class="font-display text-xl font-semibold text-white mb-2" data-lang-key="index_ecosystem_apps">Bộ Ứng Dụng IVS</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_ecosystem_apps_desc">Các công cụ hỗ trợ giáo viên và học viên, từ quản lý lớp học đến kết nối cơ hội nghề nghiệp.</p>
+                        <span class="mt-4 font-semibold text-ivs-blue text-sm">Khám Phá Ngay <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                    <a href="/games/ivsgames.html" class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                        <img src="images/games/ivsgames.png" class="rounded-lg mb-6 w-full h-40 object-cover" alt="[Ảnh minh họa IVS Games]" onerror="this.onerror=null; this.src='https://placehold.co/400x200/161B22/FFFFFF?text=IVS+Games';">
+                        <h3 class="font-display text-xl font-semibold text-white mb-2" data-lang-key="index_ecosystem_games">IVS Games Arcade</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_ecosystem_games_desc">Học mà chơi, chơi mà học với bộ sưu tập trò chơi giáo dục tương tác và sáng tạo độc quyền.</p>
+                         <span class="mt-4 font-semibold text-ivs-blue text-sm">Khám Phá Ngay <i class="fas fa-arrow-right ml-1"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 md:py-28 bg-ivs-card-dark border-y border-ivs-border-dark">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_testimonial_title">Đối Tác & Cộng Đồng Nói Gì Về IVS</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_testimonial_subtitle">
+                        Niềm tin của đối tác và sự hài lòng của khách hàng là thước đo thành công và là động lực để chúng tôi không ngừng hoàn thiện.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card flex flex-col p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <p class="text-sm font-semibold text-ivs-blue mb-4 uppercase tracking-wider" data-lang-key="testimonial_category_edtech">Lĩnh vực: Thiết kế Website & EdTech</p>
+                        <blockquote class="text-ivs-light-gray mb-6 flex-grow">
+                            <i class="fas fa-quote-left text-ivs-gray opacity-50 mr-2"></i>
+                            <span data-lang-key="testimonial_quote_st">IVS Celestech đã vượt mong đợi của chúng tôi với một website chuyên nghiệp, hiện đại và tối ưu SEO. Rất hài lòng với dịch vụ!</span>
+                        </blockquote>
+                        <div class="mt-auto pt-4 border-t border-ivs-border-dark">
+                            <p class="font-semibold text-white" data-lang-key="testimonial_author_st">Đại diện Công ty TNHH MTV ST</p>
+                        </div>
+                    </div>
+                    <div class="glass-card flex flex-col p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                        <p class="text-sm font-semibold text-ivs-blue mb-4 uppercase tracking-wider" data-lang-key="testimonial_category_international">Lĩnh vực: Hợp tác Quốc tế (USA)</p>
+                        <blockquote class="text-ivs-light-gray mb-6 flex-grow">
+                            <i class="fas fa-quote-left text-ivs-gray opacity-50 mr-2"></i>
+                            <span data-lang-key="testimonial_quote_khadock">The KhaDock.com website is optimized for UI and SEO, and the design was delivered extremely fast. Very professional. I will recommend IVS to my clients and partners in the US.</span>
+                        </blockquote>
+                        <div class="mt-auto pt-4 border-t border-ivs-border-dark">
+                            <p class="font-semibold text-white" data-lang-key="testimonial_author_khadock">Mr. Kha</p>
+                            <p class="text-xs text-ivs-gray" data-lang-key="testimonial_title_khadock">Founder & Director of KhaDock - Florida, USA</p>
+                        </div>
+                    </div>
+                    <div class="glass-card flex flex-col p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                        <p class="text-sm font-semibold text-ivs-blue mb-4 uppercase tracking-wider" data-lang-key="testimonial_category_academy">Lĩnh vực: Đào tạo (IVS Academy)</p>
+                        <blockquote class="text-ivs-light-gray mb-6 flex-grow">
+                            <i class="fas fa-quote-left text-ivs-gray opacity-50 mr-2"></i>
+                            <span data-lang-key="testimonial_quote_thomas">Chương trình tại IVS Academy linh động và thực tế. Đội ngũ giảng viên chất lượng đã kết hợp chương trình của Mỹ để dạy cho con trai tôi chỉ trong 3 tháng, thật tuyệt vời.</span>
+                        </blockquote>
+                        <div class="mt-auto pt-4 border-t border-ivs-border-dark">
+                            <p class="font-semibold text-white" data-lang-key="testimonial_author_thomas">Phụ huynh bé Thomas</p>
+                            <p class="text-xs text-ivs-gray" data-lang-key="testimonial_title_thomas">Học viên quốc tịch Mỹ tại IVS Academy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_news_title">Tin Tức & Sự Kiện Mới Nhất</h2>
+                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_news_subtitle">
+                        Cập nhật những hoạt động, dự án và thành tựu nổi bật từ hệ sinh thái IVS JSC.
+                    </p>
+                </div>
+                <div class="text-center mt-12" data-aos="fade-up">
+                    <a href="news-archive.html" class="btn-secondary font-semibold py-3 px-8 rounded-lg">
+                        <span data-lang-key="index_news_cta">Xem Toàn Bộ Tin Tức</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 md:py-28 bg-ivs-dark-blue border-t border-ivs-border-dark">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_cta_title">Bắt Đầu Hành Trình Cùng IVS</h2>
+                <p class="section-subtitle text-lg mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_cta_subtitle">
+                    Dù bạn là học viên, giáo viên, đối tác hay nhà đầu tư, IVS luôn có những cơ hội và giải pháp phù hợp dành cho bạn. Hãy kết nối để cùng nhau kiến tạo tương lai.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <a href="contact.html" class="btn-primary font-bold text-lg py-4 px-10 rounded-lg">
+                        <i class="fas fa-paper-plane mr-2"></i> <span data-lang-key="index_cta_button">Liên Hệ Ngay</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <div id="footer-placeholder"></div>
-
-    <button id="scrollToTopBtn" title="Go to top" class="hidden fixed bottom-6 right-6 bg-sky-500 hover:bg-sky-600 text-white w-12 h-12 rounded-full shadow-lg items-center justify-center focus:outline-none transition-opacity duration-300 z-40">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- PHẦN SCRIPT ĐÃ ĐƯỢC SỬA LỖI VÀ TỐI ƯU -->
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
+   
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/loadComponents.js"></script>
-    <script src="js/app.js"></script>
-    
+    <script src="/js/language.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/posts-loader.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gọi hàm để tải header/footer và khởi tạo các chức năng phụ thuộc
-            if (typeof loadAppComponents === 'function') {
-                loadAppComponents();
-            } else {
-                console.error('Lỗi: Hàm loadAppComponents không được tìm thấy. Vui lòng kiểm tra tệp js/loadComponents.js.');
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic',
+            });
+            
+            if (typeof window.loadPosts === 'function') {
+                window.loadPosts('news-container', '/data/posts.json', 3);
             }
 
-            // Khởi tạo thư viện AOS (Animate on Scroll)
-            // Đảm bảo AOS đã được tải từ CDN
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    offset: 120,
-                    duration: 900,
-                    easing: 'ease-out-quad',
-                    once: true,
-                    mirror: false,
-                    anchorPlacement: 'top-bottom',
-                });
-            } else {
-                console.error('Lỗi: Thư viện AOS không được tải.');
-            }
+            // JavaScript cho FAB
+            const fabToggle = document.getElementById('fab-toggle');
+            const fabContainer = document.getElementById('fab-container');
+
+            fabToggle.addEventListener('click', () => {
+                fabContainer.classList.toggle('open');
+            });
         });
     </script>
 </body>
