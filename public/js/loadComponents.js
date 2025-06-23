@@ -165,9 +165,9 @@ function initializeHeaderInternal() {
             container.addEventListener('mouseenter', openMenu);
             container.addEventListener('mouseleave', () => closeMenu());
             button.addEventListener('focus', openMenu);
-             container.addEventListener('focusout', (e) => {
-                 if (!container.contains(e.relatedTarget)) closeMenu(50);
-             });
+              container.addEventListener('focusout', (e) => {
+                  if (!container.contains(e.relatedTarget)) closeMenu(50);
+              });
         });
 
         window.componentState.headerInitialized = true;
