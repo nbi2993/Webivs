@@ -253,9 +253,50 @@
     <main class="container mx-auto px-4 py-8">
         <div class="text-center mb-12">
             <h1 class="text-3xl md:text-4xl font-bold text-primary dark:text-primary-dark mb-4" data-lang-key="welcome_title">Chào mừng đến với IVS Global Teacher Hub</h1>
-            <p class="text-lg md
-            
-    
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400" data-lang-key="welcome_subtitle">
+                Cổng thông tin và tài nguyên toàn diện dành cho giáo viên toàn cầu.
+            </p>
+        </div>
+        
+        <!-- Nội dung chính của trang sẽ được đặt ở đây -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_1_title">Tài liệu Giáo trình</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_1_description">
+                    Truy cập kho tài liệu giáo trình phong phú, được thiết kế chuyên biệt cho từng cấp độ và môn học.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_2_title">Khóa học Phát triển Kỹ năng</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_2_description">
+                    Tham gia các khóa học nâng cao kỹ năng giảng dạy, quản lý lớp học và ứng dụng công nghệ.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_3_title">Cộng đồng & Hỗ trợ</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_3_description">
+                    Kết nối với cộng đồng giáo viên quốc tế, chia sẻ kinh nghiệm và nhận hỗ trợ chuyên môn.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="300">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_4_title">Tin tức và Xu hướng Giáo dục</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_4_description">
+                    Cập nhật những tin tức mới nhất về các xu hướng và đổi mới trong ngành giáo dục toàn cầu.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="400">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_5_title">Học liệu Đa phương tiện</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_5_description">
+                    Khám phá thư viện video, hình ảnh và tài nguyên âm thanh phong phú để làm phong phú bài giảng của bạn.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="500">
+                <h2 class="text-xl font-semibold text-primary dark:text-secondary mb-3" data-lang-key="feature_6_title">Hỗ trợ Công nghệ Giáo dục</h2>
+                <p class="text-gray-700 dark:text-gray-300" data-lang-key="feature_6_description">
+                    Nhận tư vấn và hỗ trợ triển khai các giải pháp công nghệ giáo dục tiên tiến vào lớp học.
+                </p>
+            </div>
+        </section>
     </main>
 
     <div id="fab-container-placeholder"></div>
@@ -265,30 +306,16 @@
         <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
     </button>
 
-    <div class="chatbot-container">
-        <div id="chatbot-window" class="chatbot-window">
-            <div class="chatbot-header">
-                <span>IVS AI Assistant</span>
-                <button id="chatbot-close-button" class="close-button">&times;</button>
-            </div>
-            <div id="chatbot-messages" class="chatbot-messages flex flex-col space-y-3">
-                <div class="message bot">Chào mừng bạn đến với IVS JSC! Tôi có thể giúp gì cho bạn hôm nay?</div>
-            </div>
-            <div class="chatbot-input-area">
-                <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn của bạn...">
-                <button id="chatbot-send-button"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <button id="chatbot-open-button" class="chatbot-button">
-            <i class="fas fa-robot"></i>
-        </button>
-    </div>
-
+    <!-- Lưu ý: Phần chatbot này đã được chuyển vào fab-container.html để giữ một nơi duy nhất cho FABs và liên quan.
+         Nếu bạn muốn nó nằm riêng trong layout.html, bạn có thể di chuyển nó trở lại đây. -->
+    
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/posts-loader.js"></script>
-    <script src="/js/chatbot.js"></script> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Script cho chatbot (nếu chatbot nằm trong fab-container.html, script này có thể cần được điều chỉnh vị trí hoặc cách tải) -->
+    <script src="/js/chatbot.js"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
      <script>
         AOS.init({
