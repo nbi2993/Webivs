@@ -5,6 +5,24 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/components/**",
+        "destination": "/components/**.html"
+      },
+      {
+        "source": "/Blogs/**",
+        "destination": "/Blogs/**.html"
+      },
+      {
+        "source": "/Pages/**",
+        "destination": "/Pages/**.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
