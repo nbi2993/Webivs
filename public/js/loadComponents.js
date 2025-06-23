@@ -32,13 +32,10 @@ const componentLog = (message, type = 'log') => {
 const loadComponent = async (componentName, placeholderId, filePath) => {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
-        // Đây không phải là lỗi nếu một số trang không có tất cả các placeholder.
-        // Hoặc có thể phần tử placeholder bị thiếu trong cấu trúc HTML.
         componentLog(`Placeholder #${placeholderId} cho ${componentName} không tìm thấy. Component này sẽ không được tải trên trang này.`, 'warn');
-        return true; // Resolved true để không làm hỏng chuỗi Promise.all nếu placeholder là tùy chọn.
+        return true; 
     }
     
-    // Hiển thị văn bản đang tải nếu có
     const loadingText = placeholder.dataset.loadingText || `Đang tải ${componentName}...`;
     placeholder.innerHTML = `<div style="text-align:center;padding:1rem;color:#9ca3af;">${loadingText}</div>`;
     
@@ -46,7 +43,6 @@ const loadComponent = async (componentName, placeholderId, filePath) => {
     try {
         const response = await fetch(filePath);
         if (!response.ok) {
-            // Log lỗi HTTP cụ thể
             throw new Error(`Lỗi HTTP ${response.status} (${response.statusText}) cho ${filePath}`);
         }
         placeholder.innerHTML = await response.text();
@@ -67,7 +63,6 @@ const loadComponent = async (componentName, placeholderId, filePath) => {
  */
 const loadScript = (scriptPath) => {
     return new Promise((resolve, reject) => {
-        // Kiểm tra nếu script đã có sẵn để tránh tải lại
         if (document.querySelector(`script[src="${scriptPath}"]`)) {
             componentLog(`Script ${scriptPath} đã có trong DOM.`, 'log');
             resolve();
@@ -76,7 +71,6 @@ const loadScript = (scriptPath) => {
         componentLog(`Đang tải script: ${scriptPath}...`);
         const script = document.createElement('script');
         script.src = scriptPath;
-        // Sử dụng defer để đảm bảo các script thực thi theo thứ tự sau khi HTML được phân tích cú pháp.
         script.defer = true; 
         script.onload = () => {
             componentLog(`Script ${scriptPath} đã tải thành công.`);
@@ -101,11 +95,11 @@ const initializeSite = async () => {
     componentLog('Bắt đầu chuỗi khởi tạo.');
 
     // 1. Tải tất cả các component HTML cùng lúc.
-    // Các đường dẫn là tương đối so với thư mục gốc của trang web, giả sử 'public' là thư mục được phục vụ.
+    // Đã điều chỉnh đường dẫn để phù hợp với cấu trúc thư mục /public/components/
     const componentFilePaths = {
-        header: '/components/header.html',
-        footer: '/components/footer.html',
-        fabContainer: '/components/fab-container.html'
+        header: '/public/components/header.html',
+        footer: '/public/components/footer.html',
+        fabContainer: '/public/components/fab-container.html'
     };
 
     const componentsLoadPromises = [
@@ -116,11 +110,8 @@ const initializeSite = async () => {
 
     const componentsLoadedResults = await Promise.all(componentsLoadPromises);
 
-    // Kiểm tra xem có bất kỳ component nào bị lỗi tải (trả về false) hay không.
     if (componentsLoadedResults.includes(false)) {
         componentLog('Một hoặc nhiều component HTML không tải thành công. Các script phụ thuộc vẫn sẽ cố gắng tải, nhưng một số yếu tố hình ảnh có thể bị thiếu hoặc bị hỏng.', 'warn');
-        // Chúng tôi sẽ *không* dừng lại ở đây để cho phép các script khác có thể tải và cung cấp một số chức năng,
-        // nhưng cảnh báo này làm nổi bật vấn đề.
     } else {
         componentLog('Tất cả các component HTML đã tải thành công (hoặc các placeholder của chúng không có mặt, điều này là chấp nhận được).');
     }
@@ -129,27 +120,21 @@ const initializeSite = async () => {
 
     // 2. Tải các script quan trọng theo một trình tự đã định nghĩa.
     try {
-        // language.js thường được yêu cầu bởi script.js và phần còn lại của trang web.
-        await loadScript('/js/language.js');
-        // script.js chứa logic tương tác chung cho header, menu di động, FABs, v.v.
-        await loadScript('/js/script.js');
-        // posts-loader.js là một tiện ích chung có thể được yêu cầu.
-        await loadScript('/js/posts-loader.js');
-        // contact-page.js nếu nó được sử dụng toàn cầu (nó thường dành riêng cho trang, nhưng nếu cần luôn luôn, tải ở đây).
-        // Nếu contact-page.js chỉ dành cho contact.html, nó nên được tải riêng trên trang đó.
-        // Hiện tại, chỉ giữ các script chung ở đây.
-        // await loadScript('/js/contact-page.js'); 
+        // Đã điều chỉnh đường dẫn để phù hợp với cấu trúc thư mục /public/js/
+        await loadScript('/public/js/language.js');
+        await loadScript('/public/js/script.js');
+        await loadScript('/public/js/posts-loader.js');
+        // Script chatbot cũng có thể cần được điều chỉnh nếu nó không được tự động tải từ FABs
+        await loadScript('/public/js/chatbot.js'); 
+
     } catch (error) {
         componentLog(`Một script quan trọng không tải được: ${error.message}. Chức năng của trang web có thể bị hạn chế nghiêm trọng.`, 'error');
-        // Không dừng lại ở đây, cho phép phần còn lại của script chạy để phục vụ mục đích gỡ lỗi/chức năng một phần.
     }
 
     componentLog('Các script cốt lõi đã tải. Đang khởi tạo tương tác và hệ thống ngôn ngữ...');
 
     // 3. Khởi tạo các chức năng của component đã tải.
-    // Đảm bảo các hàm này tồn tại (ví dụ: được định nghĩa trong script.js hoặc language.js)
     if (typeof window.initializeLanguageSystem === 'function') {
-        // Khởi tạo hệ thống ngôn ngữ trước vì các component khác có thể phụ thuộc vào nó.
         await window.initializeLanguageSystem();
         componentLog('Hệ thống ngôn ngữ đã khởi tạo.');
     } else {
@@ -170,13 +155,10 @@ const initializeSite = async () => {
         componentLog('Không tìm thấy hàm window.initializeFabButtons. Các nút FAB có thể không hoạt động.', 'warn');
     }
 
-    // Khởi tạo footer nếu nó có bất kỳ tương tác JS cụ thể nào (ví dụ: năm hiện tại, biểu mẫu nhận bản tin).
-    // Footer hiện tại có script nội tuyến riêng cho năm, nhưng nếu cần logic khác, thêm vào đây.
     if (typeof window.initializeFooter === 'function') {
         window.initializeFooter();
         componentLog('Footer đã khởi tạo.');
     } else {
-        // Nếu initializeFooter không quan trọng hoặc không tồn tại, cảnh báo này có thể bị loại bỏ.
         componentLog('Không tìm thấy hàm window.initializeFooter. Hiển thị footer cơ bản vẫn sẽ hoạt động.', 'warn');
     }
     
