@@ -92,10 +92,10 @@ function loadComponent(name, url, placeholderId) {
 function loadCommonComponents() {
     componentLog("Bắt đầu chuỗi tải các thành phần chung...");
 
-    const headerPromise = loadComponent('Header', './components/header.html', '#header-placeholder');
-    const footerPromise = loadComponent('Footer', './components/footer.html', '#footer-placeholder');
-    const fabPromise = loadComponent('FABs', './components/fab-container.html', '#fab-container-placeholder');
-
+    // Sau khi thay đổi
+    const headerPromise = loadComponent('Header', '/components/header.html', '#header-placeholder');
+    const footerPromise = loadComponent('Footer', '/components/footer.html', '#footer-placeholder');
+    const fabPromise = loadComponent('FABs', '/components/fab-container.html', '#fab-container-placeholder');
     // Handle header loading and subsequent language system initialization
     headerPromise.then(headerHtml => {
         if (headerHtml) {

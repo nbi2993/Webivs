@@ -1,0 +1,87 @@
+ivs/
+├── firebase.json
+└── public/
+    ├── 404.html
+    ├── about.html
+    ├── consulting.html
+    ├── contact.html
+    ├── education.html
+    ├── gallery.html
+    ├── index.html
+    ├── ivs-global-teacher-hub.html
+    ├── layout.html
+    ├── news-archive.html
+    ├── profile-company-ivsjsc.html
+    ├── solutions.html
+    ├── Blogs/
+    │   ├── aboutkimballallenthomson.html
+    │   ├── aboutthepowertoinsprie.html
+    │   ├── ai-thinking-guide.html
+    │   ├── chinhsach2025ivs.html
+    │   ├── eov2025.html
+    │   ├── health-luvyoga.html
+    │   ├── health-yensao.html
+    │   ├── IntlMastersHCMC.html
+    │   ├── letstalkdongnai.html
+    │   └── talktask-ivsuniversitieshcmc.html
+    ├── components/
+    │   ├── fab-container.html
+    │   ├── footer.html
+    │   ├── header copy.html
+    │   └── header.html
+    ├── css/
+    │   └── styles.css
+    ├── games/
+    │   ├── htmlivsgame_memorymatch.html
+    │   └── ivsgames.html
+    ├── images/
+    │   └── baitest/
+    │       └── index.html
+    ├── js/
+    │   ├── check-translations.js
+    │   ├── contact-page.js
+    │   ├── language.js
+    │   ├── loadComponents.js
+    │   ├── posts-loader.js
+    │   ├── rss-loader.js
+    │   ├── script.js
+    │   ├── tailwind.config.js
+    │   └── typescript.js
+    ├── lang/
+    │   ├── en.json
+    │   ├── missing-vi.json
+    │   └── vi.json
+    └── Pages/
+        ├── bosungchungchi.html
+        ├── careervn.html
+        ├── document-library.html
+        ├── english-placement.html
+        ├── foreign-teacher-services.html
+        ├── ivscelestech.html
+        ├── ivslanguages.html
+        ├── ivslifeminds.html
+        ├── ivsmedia.html
+        ├── legal_consulting.html
+        ├── letstalkdongnai.html
+        ├── litigation_consulting.html
+        ├── lkmamnon.html
+        ├── lkthcsthpt.html
+        ├── lktieuhoc.html
+        ├── lkttnn.html
+        ├── privacy.html
+        ├── psb_introduction.html
+        ├── rnd-curriculum.html
+        ├── steambyivs.html
+        ├── teachertrain.html
+        ├── terms.html
+        ├── thanhlaptrungtam.html
+        ├── upskill.html
+        ├── webdesign.html
+        └── Novels/
+            ├── author-about.html
+            ├── legnaxeintheuniver.html
+            ├── read-legnaxe_part1_en.html
+            ├── read-legnaxe_part1_vi.html
+            ├── read-legnaxe_part2_en.html
+            ├── read-legnaxe_part2_vi.html
+            └── read-legnaxe_part2s_en.html
