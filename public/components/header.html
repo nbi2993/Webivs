@@ -1,192 +1,428 @@
-<!-- === HEADER COMPONENT START === -->
-<!-- File: /public/components/header.html -->
-<!-- Chỉ chứa mã HTML cho Header và Bottom Nav. Toàn bộ CSS và JS đã được tách ra. -->
-<header id="main-header" class="fixed top-0 left-0 right-0 z-40 text-white">
-    <div class="max-w-7xl mx-auto px-4 h-full">
-        <div class="flex items-center justify-between h-full">
-            
-            <!-- Logo -->
-            <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group" aria-label="IVS JSC Homepage">
-                <img src="/images/logo/logo.png" 
-                     alt="IVS JSC Logo" 
-                     class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
-                     onerror="this.onerror=null; this.src='https://placehold.co/40x40/1f2937/ffffff?text=IVS';">
-                <span class="hidden sm:inline text-lg md:text-xl font-bold group-hover:text-ivs-accent transition-colors">
-                    IVS <span class="text-ivs-accent">JSC</span>
-                </span>
-            </a>
+<!DOCTYPE html>
+<html lang="vi">
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
-                <a href="/index.html" class="nav-link">Trang Chủ</a>
-                <a href="/about.html" class="nav-link">Về IVS</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVS JSC - Header Component (Final Optimized)</title>
+    
+    <!-- External Libraries: TailwindCSS and FontAwesome for icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-                <!-- Services Dropdown -->
-                <div class="relative nav-item">
-                    <button type="button" class="nav-link-dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>Dịch Vụ</span>
-                        <i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </button>
-                    <div class="nav-dropdown">
-                        <a href="/consulting.html" class="nav-dropdown-item">Tư vấn Giáo dục</a>
-                        <a href="/Pages/legal_consulting.html" class="nav-dropdown-item">Tư vấn Pháp lý</a>
-                        <a href="/Pages/foreign-teacher-services.html" class="nav-dropdown-item">Cung ứng Giáo viên</a>
-                    </div>
-                </div>
+    <!-- 
+      STYLE BLOCK: All necessary CSS for the header component.
+      - Mobile-first design approach.
+      - Smooth transitions for interactive elements.
+      - Accessibility support with focus states.
+      - Contains styles for Header, Mobile Menu, Bottom Navigation, and Desktop Mega Menu.
+    -->
+    <style>
+        :root {
+            --header-height: 64px;
+            --desktop-header-height: 72px;
+            --bottom-nav-height: 60px;
+            --ivs-bg-dark: #111827; /* Tailwind gray-900 */
+            --ivs-bg-medium: #1f2937; /* Tailwind gray-800 */
+            --ivs-bg-light: #374151; /* Tailwind gray-700 */
+            --ivs-text-primary: #f9fafb; /* Tailwind gray-50 */
+            --ivs-text-secondary: #d1d5db; /* Tailwind gray-300 */
+            --ivs-accent: #F97316; /* Tailwind orange-500 */
+            --ivs-accent-dark: #ea580c; /* Tailwind orange-600 */
+            --ivs-link-active-bg: rgba(249, 115, 22, 0.15);
+        }
 
-                <!-- Solutions Dropdown -->
-                 <div class="relative nav-item">
-                    <button type="button" class="nav-link-dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>Giải pháp</span>
-                         <i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </button>
-                    <div class="nav-dropdown">
-                        <a href="/solutions.html" class="nav-dropdown-item">Tổng quan Giải pháp</a>
-                        <a href="/Pages/ivscelestech.html" class="nav-dropdown-item">Công nghệ Giáo dục</a>
-                        <a href="/Pages/upskill.html" class="nav-dropdown-item">Nâng cao Trình độ</a>
-                        <a href="/Pages/webdesign.html" class="nav-dropdown-item">Thiết kế Website</a>
-                    </div>
-                </div>
+        /* Prevent layout shift caused by scrollbar */
+        html {
+            scrollbar-gutter: stable;
+        }
 
-                <!-- Library Dropdown -->
-                <div class="relative nav-item">
-                    <button type="button" class="nav-link-dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>Thư Viện</span>
-                        <i class="fas fa-chevron-down text-xs ml-2"></i>
-                    </button>
-                    <div class="nav-dropdown">
-                        <a href="/gallery.html" class="nav-dropdown-item">Thư viện Ảnh</a>
-                        <a href="/Pages/document-library.html" class="nav-dropdown-item">Tài liệu</a>
-                        <a href="/apps/story-repository.html" class="nav-dropdown-item">Kho truyện</a>
-                        <a href="/games/ivsgames.html" class="nav-dropdown-item">IVS Games</a>
-                    </div>
-                </div>
-                
-                <a href="/news-archive.html" class="nav-link">Tin tức</a>
-                <a href="/contact.html" class="nav-link contact-button">Liên Hệ</a>
+        body {
+            /* Reserve space for the fixed bottom nav on mobile */
+            padding-bottom: var(--bottom-nav-height);
+        }
 
-                <!-- Language Selector -->
-                <div class="relative nav-item">
-                    <button type="button" class="nav-link-dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-globe"></i>
-                        <span id="current-lang-desktop" class="mx-2">VI</span>
-                        <i class="fas fa-chevron-down text-xs"></i>
-                    </button>
-                    <div class="nav-dropdown right-0">
-                        <button class="lang-option" data-lang="vi">
-                            <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="lang-flag-icon" onerror="this.onerror=null; this.src='https://placehold.co/20x12/cccccc/333333?text=VN';"> Tiếng Việt
-                        </button>
-                         <button class="lang-option" data-lang="en">
-                            <img src="/images/flags/en.png" alt="English Flag" class="lang-flag-icon" onerror="this.onerror=null; this.src='https://placehold.co/20x12/cccccc/333333?text=EN';"> English
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-toggle" type="button" class="lg:hidden p-2 rounded-lg hover:bg-ivs-neutral-700 transition-colors" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-panel">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </div>
-    </div>
-</header>
-
-<!-- Mobile Menu Panel -->
-<div id="mobile-menu-scrim" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
-<div id="mobile-menu-panel" class="fixed top-0 -right-full w-full max-w-sm h-full bg-ivs-neutral-800 z-50 transition-all duration-300 ease-in-out overflow-y-auto">
-    <div class="p-4 border-b border-ivs-neutral-700 flex items-center justify-between">
-        <span class="text-lg font-semibold text-ivs-accent">Menu</span>
-        <button id="mobile-menu-close" type="button" class="p-2 rounded-lg hover:bg-ivs-neutral-600" aria-label="Close menu">
-            <i class="fas fa-times text-xl"></i>
-        </button>
-    </div>
-    <nav id="mobile-menu-nav" class="p-4 flex flex-col h-[calc(100%-65px)]">
-        <div class="flex-grow space-y-2">
-             <a href="/index.html" class="mobile-nav-link">Trang Chủ</a>
-             <a href="/about.html" class="mobile-nav-link">Về IVS</a>
-
-             <!-- Mobile Submenus -->
-             <div class="mobile-submenu">
-                <button class="mobile-submenu-toggle" data-target="mobile-services-submenu">
-                    <span>Dịch Vụ</span>
-                    <i class="fas fa-chevron-down mobile-submenu-icon"></i>
-                </button>
-                <div id="mobile-services-submenu" class="mobile-submenu-content">
-                    <a href="/consulting.html" class="mobile-nav-link-sub">Tư vấn Giáo dục</a>
-                    <a href="/Pages/legal_consulting.html" class="mobile-nav-link-sub">Tư vấn Pháp lý</a>
-                    <a href="/Pages/foreign-teacher-services.html" class="mobile-nav-link-sub">Cung ứng Giáo viên</a>
-                </div>
-            </div>
-            <div class="mobile-submenu">
-                <button class="mobile-submenu-toggle" data-target="mobile-solutions-submenu">
-                    <span>Giải pháp</span>
-                    <i class="fas fa-chevron-down mobile-submenu-icon"></i>
-                </button>
-                <div id="mobile-solutions-submenu" class="mobile-submenu-content">
-                    <a href="/solutions.html" class="mobile-nav-link-sub">Tổng quan</a>
-                    <a href="/Pages/ivscelestech.html" class="mobile-nav-link-sub">Công nghệ Giáo dục</a>
-                    <a href="/Pages/upskill.html" class="mobile-nav-link-sub">Nâng cao Trình độ</a>
-                    <a href="/Pages/webdesign.html" class="mobile-nav-link-sub">Thiết kế Website</a>
-                </div>
-            </div>
-             <div class="mobile-submenu">
-                <button class="mobile-submenu-toggle" data-target="mobile-library-submenu">
-                    <span>Thư Viện</span>
-                    <i class="fas fa-chevron-down mobile-submenu-icon"></i>
-                </button>
-                <div id="mobile-library-submenu" class="mobile-submenu-content">
-                    <a href="/gallery.html" class="mobile-nav-link-sub">Thư viện Ảnh</a>
-                    <a href="/Pages/document-library.html" class="mobile-nav-link-sub">Tài liệu</a>
-                    <a href="/apps/story-repository.html" class="mobile-nav-link-sub">Kho truyện</a>
-                    <a href="/games/ivsgames.html" class="mobile-nav-link-sub">IVS Games</a>
-                </div>
-            </div>
-
-            <a href="/news-archive.html" class="mobile-nav-link">Tin tức</a>
-        </div>
+        /* --- Main Header Styling --- */
+        #ivs-main-header {
+            height: var(--header-height);
+            background-color: var(--ivs-bg-dark);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #ivs-main-header.scrolled {
+            background-color: rgba(17, 24, 39, 0.85); /* Dark with transparency */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
         
-        <div class="pt-4 mt-auto border-t border-ivs-neutral-700">
-             <div class="mobile-submenu">
-                <button class="mobile-submenu-toggle" data-target="mobile-language-submenu-items">
-                    <span class="flex items-center"><i class="fas fa-globe mr-2"></i> <span>Languages</span></span>
-                    <i class="fas fa-chevron-down mobile-submenu-icon"></i>
+        /* --- Desktop Navigation --- */
+        .desktop-nav-link, .desktop-nav-dropdown-toggle {
+            display: inline-flex; align-items: center; padding: 6px 12px;
+            font-size: 0.95rem; font-weight: 500; color: var(--ivs-text-secondary);
+            border-radius: 0.375rem; transition: color 0.2s, background-color 0.2s;
+        }
+        .desktop-nav-link:hover, .desktop-nav-dropdown-toggle:hover {
+            color: var(--ivs-text-primary); background-color: var(--ivs-bg-light);
+        }
+        .desktop-nav-link.active {
+            color: var(--ivs-accent); font-weight: 600;
+            background-color: var(--ivs-link-active-bg);
+        }
+
+        /* Desktop Dropdowns & Mega Menu */
+        .desktop-dropdown, .desktop-mega-menu {
+            position: absolute; top: 100%; left: 0; z-index: 50;
+            background-color: var(--ivs-bg-medium);
+            border: 1px solid var(--ivs-bg-light); border-radius: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+            margin-top: 8px;
+            opacity: 0; visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+        }
+        .desktop-dropdown-container:hover .desktop-dropdown,
+        .desktop-mega-menu-container:hover .desktop-mega-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0) scale(1);
+            transition-delay: 0s;
+        }
+
+        .desktop-dropdown { width: 240px; }
+        .desktop-mega-menu { width: 520px; }
+
+        .dropdown-item {
+            display: flex; align-items: center; width: 100%; text-align: left;
+            padding: 10px 14px; color: var(--ivs-text-secondary);
+            border-radius: 0.375rem; transition: background-color 0.2s, color 0.2s;
+        }
+        .dropdown-item:hover {
+            background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
+        }
+        
+        /* --- Mobile Navigation --- */
+        #ivs-mobile-menu-panel {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        #ivs-mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+
+        .mobile-submenu-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        /* JS will set max-height to scrollHeight when opened */
+        
+        /* --- Bottom Navigation --- */
+        #ivs-bottom-nav {
+            background-color: rgba(17, 24, 39, 0.9); /* Dark with more transparency */
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--ivs-bg-light);
+        }
+        .bottom-nav-item.active {
+            color: var(--ivs-accent);
+        }
+        
+        /* --- Accessibility --- */
+        *:focus-visible {
+            outline: 2px solid var(--ivs-accent);
+            outline-offset: 2px;
+            border-radius: 0.375rem;
+        }
+
+        /* --- Responsive Overrides --- */
+        @media (min-width: 1024px) {
+            body { padding-bottom: 0; } /* Remove padding on desktop */
+            #ivs-main-header { height: var(--desktop-header-height); }
+            #ivs-bottom-nav { display: none; }
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 
+      HEADER COMPONENT: 
+      - Fixed position, always visible.
+      - Uses flexbox for alignment.
+      - Responsive: shows full nav on desktop (lg), mobile toggle on smaller screens.
+    -->
+    <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 h-full">
+            <div class="flex items-center justify-between h-full">
+                <!-- Logo -->
+                <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group" aria-label="IVS JSC Homepage">
+                    <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/40x40/1f2937/ffffff?text=IVS';">
+                    <span class="hidden sm:inline text-lg md:text-xl font-bold group-hover:text-ivs-accent transition-colors">IVS <span class="text-ivs-accent">JSC</span></span>
+                </a>
+
+                <!-- Desktop Navigation (hidden on mobile) -->
+                <nav class="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
+                    <a href="/index.html" class="desktop-nav-link">Trang Chủ</a>
+                    
+                    <!-- Mega Menu: Dịch Vụ -->
+                    <div class="relative desktop-mega-menu-container">
+                        <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                            <span>Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                        </button>
+                        <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
+                            <div class="grid grid-cols-2 gap-x-6 p-5">
+                                <div class="space-y-2">
+                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2">Tư vấn Pháp lý</h3>
+                                    <a href="/Pages/legal_consulting.html" class="dropdown-item"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
+                                    <a href="/Pages/psb_introduction.html" class="dropdown-item"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
+                                </div>
+                                <div class="space-y-2">
+                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2">Liên kết Giáo dục</h3>
+                                    <a href="/consulting.html" class="dropdown-item"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
+                                    <a href="/Pages/foreign-teacher-services.html" class="dropdown-item"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown: Giải pháp -->
+                    <div class="relative desktop-dropdown-container">
+                        <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                            <span>Giải pháp</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                        </button>
+                        <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
+                            <a href="/solutions.html" class="dropdown-item">Tổng quan Giải pháp</a>
+                            <a href="/Pages/ivscelestech.html" class="dropdown-item">Công nghệ Giáo dục</a>
+                            <a href="/Pages/upskill.html" class="dropdown-item">Nâng cao Trình độ</a>
+                            <a href="/Pages/webdesign.html" class="dropdown-item">Thiết kế Website</a>
+                        </div>
+                    </div>
+
+                    <a href="/news-archive.html" class="desktop-nav-link">Tin tức</a>
+                    <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold">Liên Hệ</a>
+
+                    <!-- Language Selector -->
+                    <div class="relative desktop-dropdown-container">
+                        <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-desktop" class="mx-2">VI</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1">
+                            <button class="dropdown-item lang-option" data-lang="vi">
+                                <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
+                            </button>
+                            <button class="dropdown-item lang-option" data-lang="en">
+                                <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">English
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-open-btn" type="button" class="lg:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
-                <div id="mobile-language-submenu-items" class="mobile-submenu-content">
-                    <button data-lang="vi" class="lang-option-mobile">
-                        <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="lang-flag-icon-mobile" onerror="this.onerror=null; this.src='https://placehold.co/20x12/cccccc/333333?text=VN';"> <span>Tiếng Việt (VI)</span>
-                    </button>
-                    <button data-lang="en" class="lang-option-mobile">
-                        <img src="/images/flags/en.png" alt="English Flag" class="lang-flag-icon-mobile" onerror="this.onerror=null; this.src='https://placehold.co/20x12/cccccc/333333?text=EN';"> <span>English (EN)</span>
-                    </button>
-                </div>
             </div>
-            <a href="/contact.html" class="block px-3 py-3 mt-3 rounded-lg bg-ivs-accent hover:bg-orange-600 text-white font-semibold text-center w-full transition-colors">Liên Hệ</a>
         </div>
+    </header>
+
+    <!-- 
+      MOBILE MENU PANEL: 
+      - A full-screen panel that slides in from the right.
+      - Contains a backdrop to dim the main content.
+      - Contains the main navigation structure for mobile.
+      - Uses ARIA attributes for accessibility.
+    -->
+    <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 lg:hidden" aria-modal="true" role="dialog">
+        <!-- Backdrop -->
+        <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <!-- Menu Content -->
+        <div class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
+                <span class="text-lg font-semibold text-ivs-accent">Menu</span>
+                <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Close menu">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <!-- Navigation -->
+            <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
+                <a href="/index.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Trang Chủ</a>
+                
+                <!-- Submenu: Dịch Vụ -->
+                <div>
+                    <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
+                        <span>Dịch Vụ</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                    </button>
+                    <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
+                        <a href="/consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tổng quan Giáo dục</a>
+                        <a href="/Pages/legal_consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tư vấn Pháp lý</a>
+                    </div>
+                </div>
+
+                <!-- Submenu: Giải pháp -->
+                <div>
+                    <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
+                        <span>Giải pháp</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                    </button>
+                    <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
+                        <a href="/solutions.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tổng quan Giải pháp</a>
+                        <a href="/Pages/ivscelestech.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Công nghệ Giáo dục</a>
+                        <a href="/Pages/upskill.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Nâng cao Trình độ</a>
+                        <a href="/Pages/webdesign.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Thiết kế Website</a>
+                    </div>
+                </div>
+
+                <a href="/news-archive.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Tin tức</a>
+                <a href="/contact.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Liên Hệ</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- 
+        BOTTOM NAVIGATION:
+        - Fixed to the bottom for easy one-handed operation on mobile.
+        - Hidden on desktop screens (lg and up).
+        - Icons provide quick visual cues.
+    -->
+    <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch">
+        <a href="/index.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
+            <i class="fas fa-home text-xl"></i><span class="text-xs mt-1">Home</span>
+        </a>
+        <a href="/solutions.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
+            <i class="fas fa-lightbulb text-xl"></i><span class="text-xs mt-1">Giải pháp</span>
+        </a>
+        <a href="/games/ivsgames.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
+            <i class="fas fa-gamepad text-xl"></i><span class="text-xs mt-1">Games</span>
+        </a>
+        <a href="/apps/ivsapps.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
+            <i class="fas fa-shapes text-xl"></i><span class="text-xs mt-1">Apps</span>
+        </a>
+        <button id="bottom-nav-menu-btn" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
+            <i class="fas fa-bars text-xl"></i><span class="text-xs mt-1">Menu</span>
+        </button>
     </nav>
-</div>
+    
+    <!-- Dummy content to make page scrollable for demo -->
+    <main class="pt-[var(--header-height)] lg:pt-[var(--desktop-header-height)] p-5">
+        <div class="h-[200vh] bg-gray-200 rounded-lg flex items-center justify-center">
+            <h1 class="text-2xl font-bold text-center">IVS Website Content<br>Scroll down to see header effects.</h1>
+        </div>
+    </main>
 
+    <!-- 
+      SCRIPT BLOCK: All necessary JavaScript for the header component.
+      - Encapsulated in an IVSHeader object to prevent global scope pollution.
+      - Manages mobile menu, submenus, header scroll effect, active link highlighting, and language switching.
+    -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-<!-- Bottom Navigation (Mobile & Tablet) -->
-<nav id="bottom-nav" class="lg:hidden fixed bottom-0 left-0 right-0 h-[var(--bottom-nav-height)] bg-ivs-neutral-800/90 backdrop-blur-sm border-t border-ivs-neutral-700 z-30 flex justify-around" role="navigation" aria-label="Bottom navigation">
-    <a href="/index.html" class="bottom-nav-item">
-        <i class="fas fa-home bottom-nav-icon"></i>
-        <span class="bottom-nav-text">Home</span>
-    </a>
-    <a href="/solutions.html" class="bottom-nav-item">
-        <i class="fas fa-lightbulb bottom-nav-icon"></i>
-        <span class="bottom-nav-text">Giải pháp</span>
-    </a>
-    <a href="/games/ivsgames.html" class="bottom-nav-item">
-        <i class="fas fa-gamepad bottom-nav-icon"></i>
-        <span class="bottom-nav-text">Games</span>
-    </a>
-    <a href="/apps/ivsapps.html" class="bottom-nav-item">
-        <i class="fas fa-shapes bottom-nav-icon"></i>
-        <span class="bottom-nav-text">Apps</span>
-    </a>
-    <button id="bottom-nav-menu-button" type="button" class="bottom-nav-item" aria-label="Open menu">
-        <i class="fas fa-bars bottom-nav-icon"></i>
-        <span class="bottom-nav-text">Menu</span>
-    </button>
-</nav>
-<!-- === HEADER COMPONENT END === -->
+        const IVSHeader = {
+            init() {
+                this.cacheDOM();
+                this.bindEvents();
+                this.updateActiveLinks();
+                this.onScroll(); // Initial check
+            },
+
+            cacheDOM() {
+                this.header = document.getElementById('ivs-main-header');
+                this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
+                this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
+                this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+                this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+                this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
+                this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+                this.langOptions = document.querySelectorAll('.lang-option');
+                this.currentLangDesktop = document.getElementById('current-lang-desktop');
+                this.navLinks = document.querySelectorAll('.desktop-nav-link, .dropdown-item, .mobile-submenu-content a, .bottom-nav-item');
+            },
+
+            bindEvents() {
+                window.addEventListener('scroll', () => this.onScroll());
+                this.mobileOpenBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+                this.mobileCloseBtn.addEventListener('click', () => this.toggleMobileMenu(false));
+                this.mobileBackdrop.addEventListener('click', () => this.toggleMobileMenu(false));
+                this.bottomNavMenuBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.mobilePanel.classList.contains('open')) {
+                        this.toggleMobileMenu(false);
+                    }
+                });
+
+                this.submenuToggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+                });
+                
+                this.langOptions.forEach(option => {
+                    option.addEventListener('click', () => this.setLanguage(option.dataset.lang));
+                });
+            },
+
+            onScroll() {
+                if (window.scrollY > 10) {
+                    this.header.classList.add('scrolled');
+                } else {
+                    this.header.classList.remove('scrolled');
+                }
+            },
+
+            toggleMobileMenu(open) {
+                if (open) {
+                    this.mobilePanel.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    this.mobilePanel.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            },
+
+            toggleSubmenu(toggle) {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+                toggle.setAttribute('aria-expanded', !isExpanded);
+                icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+
+                if (!isExpanded) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = '0';
+                }
+            },
+            
+            setLanguage(lang) {
+                console.log(`Language selected: ${lang}`);
+                if(this.currentLangDesktop) {
+                    this.currentLangDesktop.textContent = lang.toUpperCase();
+                }
+                // Here, you would call your actual language switching function
+                // e.g., window.system.setLanguage(lang);
+
+                // Close mobile menu if open
+                this.toggleMobileMenu(false);
+            },
+
+            updateActiveLinks() {
+                const currentPath = window.location.pathname;
+
+                this.navLinks.forEach(link => {
+                    const linkPath = link.getAttribute('href');
+                    if (linkPath === currentPath) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        };
+
+        IVSHeader.init();
+
+    });
+    </script>
+
+</body>
+
+</html>
