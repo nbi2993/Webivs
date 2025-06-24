@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_ivsapps">IVS Applications - Powering Education & Collaboration</title>
+    <meta name="description" content="Explore a suite of powerful applications developed by IVS JSC, designed to enhance education, streamline collaboration, and empower users." data-lang-key="meta_description_ivsapps">
+    <meta name="keywords" content="IVS Applications, IVS Apps, educational software, collaboration tools, EdTech platforms, IVS Global Teacher Hub" data-lang-key="meta_keywords_ivsapps">
+    <meta property="og:title" content="IVS Applications - Innovative Tools for a Brighter Future" data-lang-key="og_title_ivsapps">
+    <meta property="og:description" content="Discover IVS JSC's range of applications, including the IVS Global Teacher Hub, built to support educators and learners worldwide." data-lang-key="og_description_ivsapps">
+    <meta property="og:image" content="/images/ivs-apps-banner.png"> <!-- Suggested: Create a banner for IVS Apps -->
+    <meta property="og:url" content="https://ivsacademy.edu.vn/apps/ivsapps.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-primary': '#004080', 
+                        'ivs-primary-dark': '#003366',
+                        'ivs-secondary': '#ffc107', 
+                        'ivs-secondary-dark': '#e0a800',
+                        'ivs-accent': '#F97316',
+                        'ivs-neutral-900': '#111827',
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-100': '#F3F4F6',
+                        'ivs-neutral-50': '#F9FAFB',
+                        'app-card-bg': 'white',
+                        'app-card-shadow': 'rgba(0, 64, 128, 0.08)',
+                        'app-button-primary': '#0059b3',
+                        'app-button-hover': '#004080',
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <style>
+        .app-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -5px var(--app-card-shadow, rgba(0, 64, 128, 0.15));
+        }
+        .btn-access-app {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-access-app:hover {
+            transform: scale(1.03);
+        }
+        .dark .app-card {
+             background-color: theme('colors.ivs-neutral-800');
+             border: 1px solid theme('colors.ivs-neutral-700');
+        }
+         .dark .app-card:hover {
+            box-shadow: 0 15px 30px -5px rgba(0,0,0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-ivs-neutral-100 dark:bg-ivs-neutral-900 text-ivs-neutral-800 dark:text-ivs-neutral-200 antialiased" id="page-ivsapps">
+    
+    <div id="header-placeholder" data-loading-text="Loading menu..."></div>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <section class="text-center mb-12 md:mb-16" data-aos="fade-down">
+            <span class="inline-block p-3 bg-ivs-primary-light/20 dark:bg-ivs-secondary/20 rounded-xl mb-4">
+                <i class="fas fa-shapes fa-2x text-ivs-primary dark:text-ivs-secondary"></i>
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-display font-bold text-ivs-primary dark:text-ivs-secondary mb-4" data-lang-key="ivsapps_main_title">
+                IVS Application Suite
+            </h1>
+            <p class="text-lg text-ivs-neutral-600 dark:text-ivs-neutral-300 max-w-3xl mx-auto" data-lang-key="ivsapps_main_subtitle">
+                Discover our ecosystem of applications designed to enhance learning, streamline collaboration, and empower our global community of educators and learners.
+            </p>
+        </section>
+
+        <section id="apps-list" aria-labelledby="apps-list-title">
+            <h2 id="apps-list-title" class="sr-only" data-lang-key="ivsapps_list_title">Available Applications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                
+                <!-- App Card 1: IVS Global Teacher Hub -->
+                <article class="app-card bg-app-card-bg dark:bg-ivs-neutral-800 rounded-2xl shadow-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="https://placehold.co/600x338/004080/FFFFFF?text=IVS+Teacher+Hub&font=lexend" 
+                             alt="IVS Global Teacher Hub Application" 
+                             class="object-cover w-full h-full"
+                             onerror="this.src='https://placehold.co/600x338/374151/FFFFFF?text=App+Image&font=lexend';">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-display font-semibold text-ivs-primary dark:text-ivs-secondary mb-3" data-lang-key="ivs_kinderlink_title">IVS Kinderlink</h3>
+                        <p class="text-ivs-neutral-600 dark:text-ivs-neutral-400 text-sm mb-5 line-clamp-3 flex-grow" data-lang-key="ivs_kinderlink_desc">
+                            IVS Kinderlink.
+                        </p>
+                        <a href="/apps/ivskinderlink.html" 
+                           class="btn-access-app mt-auto inline-block text-center bg-app-button-primary hover:bg-app-button-hover text-white font-medium py-3 px-6 rounded-lg text-base shadow-md"
+                           data-lang-key="button_access_app">
+                           <i class="fas fa-arrow-right-to-bracket mr-2"></i>Access Hub
+                        </a>
+                    </div>
+                </article>
+
+                <!-- App Card 1: IVS Global Teacher Hub -->
+                <article class="app-card bg-app-card-bg dark:bg-ivs-neutral-800 rounded-2xl shadow-xl overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img src="https://placehold.co/600x338/004080/FFFFFF?text=IVS+Teacher+Hub&font=lexend" 
+                             alt="IVS Global Teacher Hub Application" 
+                             class="object-cover w-full h-full"
+                             onerror="this.src='https://placehold.co/600x338/374151/FFFFFF?text=App+Image&font=lexend';">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-display font-semibold text-ivs-primary dark:text-ivs-secondary mb-3" data-lang-key="app_teacher_hub_title">IVS Global Teacher Hub</h3>
+                        <p class="text-ivs-neutral-600 dark:text-ivs-neutral-400 text-sm mb-5 line-clamp-3 flex-grow" data-lang-key="app_teacher_hub_desc">
+                            A dedicated platform for international educators to connect with IVS JSC, explore teaching opportunities, and manage their professional profiles.
+                        </p>
+                        <a href="/apps/ivs-global-teacher-hub.html" 
+                           class="btn-access-app mt-auto inline-block text-center bg-app-button-primary hover:bg-app-button-hover text-white font-medium py-3 px-6 rounded-lg text-base shadow-md"
+                           data-lang-key="button_access_app">
+                           <i class="fas fa-arrow-right-to-bracket mr-2"></i>Access Hub
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Placeholder for Future App Card 2 -->
+                <article class="app-card bg-ivs-neutral-200 dark:bg-ivs-neutral-700/50 rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-ivs-neutral-300 dark:border-ivs-neutral-600" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <i class="fas fa-cogs fa-3x text-ivs-neutral-400 dark:text-ivs-neutral-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-2" data-lang-key="app_coming_soon_title">New Application Coming Soon!</h3>
+                    <p class="text-ivs-neutral-500 dark:text-ivs-neutral-400 text-sm" data-lang-key="app_coming_soon_desc">
+                        We are constantly developing innovative tools. Stay tuned for our next release.
+                    </p>
+                </article>
+
+                <!-- Placeholder for Future App Card 3 -->
+                 <article class="app-card bg-ivs-neutral-200 dark:bg-ivs-neutral-700/50 rounded-2xl shadow-lg overflow-hidden flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-ivs-neutral-300 dark:border-ivs-neutral-600" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-4">
+                         <i class="fas fa-lightbulb fa-3x text-ivs-neutral-400 dark:text-ivs-neutral-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-semibold text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-2" data-lang-key="app_placeholder_title">Future IVS Innovation</h3>
+                    <p class="text-ivs-neutral-500 dark:text-ivs-neutral-400 text-sm" data-lang-key="app_placeholder_desc">
+                        Exciting developments are underway to further support our educational mission.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder" data-loading-text="Loading footer..."></div>
+    
+    <script>
+      // Dummy applyLanguage as a fallback
+      if (typeof window.applyLanguage === 'undefined') {
+        window.applyLanguage = function(lang) { /* console.log('Dummy applyLanguage (IVS Apps) for:', lang); */ };
+      }
+    </script>
+    <script src="/js/language.js"></script> 
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/script.js"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            const checkScrollTopVisibility = () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.remove('hidden');
+                    scrollToTopBtn.classList.add('flex');
+                } else {
+                    scrollToTopBtn.classList.remove('flex');
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            };
+            window.addEventListener('scroll', checkScrollTopVisibility, { passive: true });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            checkScrollTopVisibility(); // Initial check
+        }
+        
+        // Ensure language is applied after components might be loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadCommonComponents === 'function') {
+                 // Assuming loadCommonComponents might call applyLanguage itself after loading
+            } else if (typeof applyLanguage === 'function') {
+                 // Fallback if loadCommonComponents isn't defined or doesn't handle language
+                applyLanguage(localStorage.getItem('currentLanguage') || 'en'); 
+            }
+        });
+    </script>
+</body>
+</html>

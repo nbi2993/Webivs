@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title_teacher_hub">IVS Global Teacher Hub - Platform for Global Educators</title>
+    <meta name="description" content="Join IVS Global Teacher Hub - An elite community of international educators. Discover teaching opportunities, career development, and global education collaboration with IVS JSC." data-lang-key="meta_description_teacher_hub_enhanced">
+    <meta name="keywords" content="IVS JSC, teacher hub, global teachers, teaching jobs Vietnam, international education, apply for teaching, EdTech careers, ESL jobs" data-lang-key="meta_keywords_teacher_hub_enhanced">
+    <meta property="og:title" content="IVS Global Teacher Hub - Connecting Talent, Shaping the Future of Education" data-lang-key="og_title_teacher_hub_enhanced">
+    <meta property="og:description" content="IVS Global Teacher Hub brings together outstanding international educators, offering opportunities for professional development and teaching in IVS JSC's leading educational projects." data-lang-key="og_description_teacher_hub_enhanced">
+    <meta property="og:image" content="/images/ivs-teacher-hub-og-banner.png">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/apps/ivs-global-teacher-hub.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-primary': '#004080', 
+                        'ivs-primary-dark': '#003366',
+                        'ivs-primary-light': '#0059b3',
+                        'ivs-secondary': '#ffc107', 
+                        'ivs-secondary-dark': '#e0a800',
+                        'ivs-accent': '#F97316', 
+                        'ivs-accent-dark': '#DD6B20',
+                        'ivs-neutral-900': '#111827',
+                        'ivs-neutral-800': '#1f2937',
+                        'ivs-neutral-700': '#374151',
+                        'ivs-neutral-600': '#4B5563',
+                        'ivs-neutral-500': '#6B7280',
+                        'ivs-neutral-400': '#9CA3AF',
+                        'ivs-neutral-300': '#D1D5DB',
+                        'ivs-neutral-200': '#E5E7EB',
+                        'ivs-neutral-100': '#F3F4F6',
+                        'ivs-neutral-50': '#F9FAFB', 
+                        'ivs-success': '#10B981',
+                        'ivs-success-dark': '#059669',
+                        'ivs-warning': '#F59E0B',
+                        'ivs-danger': '#EF4444',
+                        'ivs-info': '#3B82F6',
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1, h2, h3, .font-display { font-family: 'Lexend', sans-serif; }
+        
+        .hub-app-container {
+            background-color: theme('colors.ivs-neutral-50');
+            width: 100%;
+            min-height: calc(100vh - var(--header-height, 60px) - var(--footer-height, 60px));
+        }
+        .dark .hub-app-container { background-color: theme('colors.ivs-neutral-900'); }
+
+        .tab-button {
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.15s ease-in-out;
+            border-bottom: 4px solid transparent;
+            padding-top: 0.75rem; padding-bottom: 0.75rem; 
+        }
+        .tab-button:hover {
+            background-color: theme('colors.ivs-neutral-100');
+            color: theme('colors.ivs-primary-dark');
+        }
+        .dark .tab-button:hover {
+            background-color: theme('colors.ivs-neutral-700');
+            color: theme('colors.ivs-secondary');
+        }
+        .tab-button-active {
+            color: theme('colors.ivs-primary') !important;
+            border-bottom-color: theme('colors.ivs-primary') !important;
+            font-weight: 700;
+        }
+        .dark .tab-button-active {
+             color: theme('colors.ivs-secondary') !important;
+             border-bottom-color: theme('colors.ivs-secondary') !important;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            background-color: theme('colors.white');
+            border-color: theme('colors.ivs-neutral-300');
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            padding: 0.75rem 1rem; 
+        }
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-color: theme('colors.ivs-primary');
+            box-shadow: 0 0 0 3px theme('colors.ivs-primary / 20%');
+            outline: none;
+        }
+        .dark .form-input, .dark .form-textarea, .dark .form-select {
+            background-color: theme('colors.ivs-neutral-700');
+            border-color: theme('colors.ivs-neutral-600');
+            color: theme('colors.ivs-neutral-100');
+        }
+        .dark .form-input::placeholder, .dark .form-textarea::placeholder { color: theme('colors.ivs-neutral-400'); }
+        .dark .form-input:focus, .dark .form-textarea:focus, .dark .form-select:focus {
+            border-color: theme('colors.ivs-secondary');
+            box-shadow: 0 0 0 3px theme('colors.ivs-secondary / 25%');
+        }
+        label.required::after {
+            content: '*';
+            color: theme('colors.ivs-danger');
+            margin-left: 0.25rem;
+        }
+                
+        .modal-backdrop { transition: opacity 0.3s ease-in-out; }
+        .modal-panel { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease-in-out; }
+        .modal-panel.entering { opacity: 0; transform: translateY(30px) scale(0.95); }
+        .modal-panel.entered { opacity: 1; transform: translateY(0) scale(1); }
+        .modal-panel.exiting { opacity: 0; transform: translateY(30px) scale(0.95); }
+
+        #header-placeholder:empty, #footer-placeholder:empty { min-height: 60px; background-color: theme('colors.ivs-neutral-100'); display: flex; align-items: center; justify-content: center; }
+        .dark #header-placeholder:empty, .dark #footer-placeholder:empty { background-color: theme('colors.ivs-neutral-800'); }
+        #header-placeholder:empty::before, #footer-placeholder:empty::before { content: attr(data-loading-text); color: theme('colors.ivs-neutral-500'); font-style: italic; }
+    </style>
+</head>
+<body class="bg-ivs-neutral-50 dark:bg-ivs-neutral-900 text-ivs-neutral-700 dark:text-ivs-neutral-200 antialiased" id="page-teacher-hub">
+    
+    <div id="header-placeholder" data-loading-text="Loading menu..."></div>
+
+    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-white/70 dark:bg-ivs-neutral-900/70 backdrop-blur-md z-[1100] hidden transition-opacity duration-300">
+        <div class="animate-spin rounded-full h-14 w-14 border-t-4 border-b-4 border-ivs-primary dark:border-ivs-secondary"></div>
+        <p class="ml-4 text-lg font-medium text-ivs-primary dark:text-ivs-secondary" data-lang-key="loading_text">Processing...</p>
+    </div>
+
+    <div id="custom-modal" class="fixed inset-0 z-[1050] overflow-y-auto hidden modal-backdrop bg-ivs-neutral-900/60 dark:bg-black/75">
+        <div class="flex items-end sm:items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="modal-panel entering inline-block w-full max-w-md p-6 sm:p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-ivs-neutral-800 shadow-2xl rounded-xl">
+                <div class="flex items-start">
+                    <div id="modal-icon-container" class="flex-shrink-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full mr-3 sm:mr-4">
+                    </div>
+                    <div class="flex-grow">
+                        <h3 id="modal-title" class="text-xl font-display font-semibold leading-6 text-ivs-neutral-900 dark:text-white" data-lang-key="modal_default_title">Notification</h3>
+                        <div class="mt-2">
+                            <p id="modal-message" class="text-sm text-ivs-neutral-600 dark:text-ivs-neutral-300" data-lang-key="modal_default_message">Details here.</p>
+                        </div>
+                    </div>
+                    <button id="modal-close-button-x" type="button" class="ml-auto -mr-2 -mt-2 p-2 text-ivs-neutral-400 hover:text-ivs-neutral-600 dark:text-ivs-neutral-500 dark:hover:text-ivs-neutral-300 rounded-full focus:outline-none focus:ring-2 focus:ring-ivs-primary dark:focus:ring-ivs-secondary" aria-label="Close modal">
+                         <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+                <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row-reverse gap-3">
+                    <button id="modal-confirm-button" type="button"
+                            class="w-full sm:w-auto inline-flex justify-center rounded-lg border border-transparent bg-ivs-primary px-6 py-2.5 text-base font-medium text-white hover:bg-ivs-primary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-ivs-primary focus-visible:ring-offset-2 dark:bg-ivs-secondary dark:text-ivs-neutral-900 dark:hover:bg-ivs-secondary-dark dark:focus-visible:ring-ivs-secondary dark:focus-visible:ring-offset-ivs-neutral-800 transition-colors duration-150"
+                            data-lang-key="modal_confirm_button">
+                        Confirm
+                    </button>
+                    <button id="modal-cancel-button" type="button"
+                            class="w-full sm:w-auto inline-flex justify-center rounded-lg border border-ivs-neutral-300 dark:border-ivs-neutral-600 bg-white dark:bg-ivs-neutral-700 px-6 py-2.5 text-base font-medium text-ivs-neutral-700 dark:text-ivs-neutral-200 hover:bg-ivs-neutral-50 dark:hover:bg-ivs-neutral-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-ivs-primary focus-visible:ring-offset-2 dark:focus-visible:ring-ivs-secondary dark:focus-visible:ring-offset-ivs-neutral-800 transition-colors duration-150"
+                            data-lang-key="modal_cancel_button">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hub-app-container pt-[var(--header-height, 60px)]">
+        <header class="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-ivs-primary via-blue-800 to-indigo-700 dark:from-ivs-neutral-800 dark:via-ivs-neutral-900 dark:to-black text-white shadow-xl">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4 leading-tight" data-lang-key="hub_main_title_enhanced">IVS Global Teacher Hub</h1>
+                <p class="text-lg sm:text-xl text-blue-100 dark:text-ivs-neutral-300 max-w-3xl mx-auto leading-relaxed" data-lang-key="hub_subtitle_enhanced">
+                    Connecting talented international educators with premier teaching and career development opportunities at IVS JSC.
+                </p>
+            </div>
+        </header>
+
+        <nav class="bg-white dark:bg-ivs-neutral-800/80 backdrop-blur-sm shadow-md sticky top-[var(--header-height, 60px)] z-40 border-b border-ivs-neutral-200 dark:border-ivs-neutral-700">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center items-stretch h-14 sm:h-16 space-x-0 sm:space-x-1">
+                    <button id="apply-tab-button" 
+                            class="tab-button flex-1 sm:flex-none px-4 sm:px-8 py-2 text-sm font-medium rounded-t-lg" 
+                            data-lang-key="hub_tab_apply">
+                        <i class="fas fa-user-plus mr-1.5 sm:mr-2 text-base"></i>Apply Now
+                    </button>
+                    <a href="apps/teacherlistsavailable.html" 
+                            id="view-teachers-tab-link"
+                            class="tab-button flex-1 sm:flex-none px-4 sm:px-8 py-2 text-sm font-medium rounded-t-lg text-ivs-neutral-700 dark:text-ivs-neutral-300 hover:text-ivs-primary-dark dark:hover:text-ivs-secondary no-underline flex items-center justify-center" 
+                            data-lang-key="hub_tab_view_teachers">
+                        <i class="fas fa-users mr-1.5 sm:mr-2 text-base"></i>View Teacher Roster
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+            <section id="teacher-application-section" class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <header class="mb-8 md:mb-10 text-center">
+                    <h2 class="text-3xl sm:text-4xl font-display font-semibold text-ivs-primary dark:text-ivs-secondary mb-3" data-lang-key="hub_apply_form_title_enhanced">Become an IVS Global Educator</h2>
+                    <p class="text-ivs-neutral-600 dark:text-ivs-neutral-400 text-sm sm:text-base" data-lang-key="hub_apply_form_desc_enhanced">Complete the form below to unlock exciting career opportunities. Your information will be directed to a Google Form for completion.</p>
+                </header>
+
+                <form id="teacher-application-form" class="space-y-6 sm:space-y-8 bg-white dark:bg-ivs-neutral-800 p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl border border-ivs-neutral-200 dark:border-ivs-neutral-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                        <div>
+                            <label for="fullName" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_fullName">Full Name</label>
+                            <input type="text" id="fullName" name="entry.1517655153" class="form-input block w-full rounded-lg shadow-sm" placeholder="e.g., John Doe" required>
+                        </div>
+                        <div>
+                            <label for="email" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_email">Email Address</label>
+                            <input type="email" id="email" name="entry.1839894741" class="form-input block w-full rounded-lg shadow-sm" placeholder="your.email@example.com" required>
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_phoneNumber">Phone Number</label>
+                            <input type="tel" id="phoneNumber" name="entry.138806801" class="form-input block w-full rounded-lg shadow-sm" placeholder="+1 123 456 7890" required>
+                        </div>
+                        <div>
+                            <label for="nationality" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_nationality">Nationality</label>
+                            <input type="text" id="nationality" name="entry.396944312" class="form-input block w-full rounded-lg shadow-sm" placeholder="e.g., American, British" required>
+                        </div>
+                        <div>
+                            <label for="qualification" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_qualification">Highest Qualification</label>
+                            <input type="text" id="qualification" name="entry.1179730929" class="form-input block w-full rounded-lg shadow-sm" placeholder="e.g., Master's in Education, TESOL" required>
+                        </div>
+                        <div>
+                            <label for="experience" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_experience">Years of Teaching Experience</label>
+                            <input type="number" id="experience" name="entry.1300349392" class="form-input block w-full rounded-lg shadow-sm" placeholder="e.g., 5" min="0" step="0.5" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="subjects" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_subjects">Subjects You Can Teach (comma-separated)</label>
+                        <input type="text" id="subjects" name="entry.1936339032" class="form-input block w-full rounded-lg shadow-sm" placeholder="e.g., General English, IELTS, Math, Science" required>
+                    </div>
+
+                    <div>
+                        <label for="bio" class="required block text-sm font-medium text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-1.5" data-lang-key="form_bio">Short Bio (max 1500 characters)</label>
+                        <textarea id="bio" name="entry.1101686570" rows="5" class="form-textarea block w-full rounded-lg shadow-sm" placeholder="Highlight your teaching experience, style, and relevant certifications..." maxlength="1500" required></textarea>
+                        <p id="bio-char-count" class="text-xs text-ivs-neutral-500 dark:text-ivs-neutral-400 mt-1 text-right">0/1500</p>
+                    </div>
+
+                    <div class="border-t border-ivs-neutral-200 dark:border-ivs-neutral-700 pt-6 space-y-5">
+                        <p class="text-sm text-ivs-neutral-600 dark:text-ivs-neutral-400 leading-relaxed" data-lang-key="form_upload_notice_enhanced_gform">CV/Resume and Photo information will be requested directly on the Google Form.</p>
+                    </div>
+
+                    <div class="pt-5">
+                        <button type="submit" 
+                                class="w-full flex items-center justify-center py-3.5 px-6 border border-transparent rounded-xl shadow-lg text-base font-semibold text-white bg-ivs-accent hover:bg-ivs-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ivs-accent dark:focus:ring-offset-ivs-neutral-800 transition-all duration-200 ease-in-out group transform hover:scale-105 active:scale-95" 
+                                data-lang-key="form_button_proceed_gform">
+                            <i class="fab fa-google mr-2.5"></i>Proceed to Google Form
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder" data-loading-text="Loading footer..."></div>
+       
+    <script src="/js/language.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script>
+    <script src="/js/script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script type="module">
+        const el = {
+            applyTabButton: document.getElementById('apply-tab-button'),
+            viewTeachersTabLink: document.getElementById('view-teachers-tab-link'),
+            teacherApplicationSection: document.getElementById('teacher-application-section'),
+            teacherApplicationForm: document.getElementById('teacher-application-form'),
+            loadingSpinner: document.getElementById('loading-spinner'),
+            modal: document.getElementById('custom-modal'),
+            modalTitle: document.getElementById('modal-title'),
+            modalMessage: document.getElementById('modal-message'),
+            modalConfirmButton: document.getElementById('modal-confirm-button'),
+            modalCancelButton: document.getElementById('modal-cancel-button'),
+            modalCloseButtonX: document.getElementById('modal-close-button-x'),
+            modalIconContainer: document.getElementById('modal-icon-container'),
+            bioTextarea: document.getElementById('bio'),
+            bioCharCount: document.getElementById('bio-char-count'),
+        };
+
+        const GOOGLE_FORM_PREFILL_VIEW_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform";
+
+        function showAppModal(title, message, type = 'info', { showConfirm = false, confirmText = 'OK', onConfirm = () => {}, showCancel = false, cancelText = 'Cancel', onCancel = () => {} } = {}) {
+            if (el.modalTitle) el.modalTitle.textContent = title;
+            if (el.modalMessage) el.modalMessage.innerHTML = message; 
+
+            if (el.modalIconContainer) {
+                let iconClass = 'fas fa-info-circle';
+                let iconBgColorClass = 'bg-ivs-info/10 dark:bg-ivs-info/20';
+                let iconTextColorClass = 'text-ivs-info';
+                if (type === 'success') { iconClass = 'fas fa-check-circle'; iconBgColorClass = 'bg-ivs-success/10 dark:bg-ivs-success/20'; iconTextColorClass = 'text-ivs-success'; }
+                else if (type === 'error') { iconClass = 'fas fa-times-circle'; iconBgColorClass = 'bg-ivs-danger/10 dark:bg-ivs-danger/20'; iconTextColorClass = 'text-ivs-danger'; } 
+                else if (type === 'warning') { iconClass = 'fas fa-exclamation-triangle'; iconBgColorClass = 'bg-ivs-warning/10 dark:bg-ivs-warning/20'; iconTextColorClass = 'text-ivs-warning'; }
+                el.modalIconContainer.className = `flex-shrink-0 flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full mr-3 sm:mr-4 ${iconBgColorClass}`;
+                el.modalIconContainer.innerHTML = `<i class="${iconClass} text-xl sm:text-2xl ${iconTextColorClass}"></i>`;
+            }
+            
+            el.modalConfirmButton.classList.toggle('hidden', !showConfirm);
+            el.modalConfirmButton.textContent = confirmText;
+            el.modalConfirmButton.onclick = () => { onConfirm(); hideAppModal(); };
+
+            el.modalCancelButton.classList.toggle('hidden', !showCancel);
+            el.modalCancelButton.textContent = cancelText;
+            el.modalCancelButton.onclick = () => { onCancel(); hideAppModal(); };
+            
+            if(showConfirm && !showCancel) {
+                el.modalConfirmButton.classList.add('sm:w-auto', 'w-full');
+            } else {
+                 el.modalConfirmButton.classList.remove('w-full');
+                 el.modalConfirmButton.classList.add('sm:w-auto');
+            }
+
+            if (el.modal) {
+                 el.modal.classList.remove('hidden');
+                 const panel = el.modal.querySelector('.modal-panel');
+                 if(panel) {
+                    panel.classList.remove('exiting', 'opacity-0', 'scale-95', 'translate-y-5');
+                    panel.classList.add('entering');
+                    requestAnimationFrame(() => {
+                        panel.classList.remove('entering');
+                        panel.classList.add('entered', 'opacity-100', 'scale-100', 'translate-y-0');
+                    });
+                 }
+            }
+        }
+
+        function hideAppModal() {
+            if (el.modal) {
+                const panel = el.modal.querySelector('.modal-panel');
+                if(panel) {
+                    panel.classList.remove('entered', 'opacity-100', 'scale-100', 'translate-y-0');
+                    panel.classList.add('exiting');
+                    setTimeout(() => { el.modal.classList.add('hidden'); panel.classList.remove('exiting');}, 300);
+                } else { el.modal.classList.add('hidden');}
+            }
+        }
+        
+        if (el.modalCloseButtonX) el.modalCloseButtonX.addEventListener('click', hideAppModal);
+        if (el.bioTextarea && el.bioCharCount) {
+            el.bioTextarea.addEventListener('input', () => {
+                const maxLength = parseInt(el.bioTextarea.getAttribute('maxlength')) || 1500;
+                el.bioCharCount.textContent = `${el.bioTextarea.value.length}/${maxLength}`;
+            });
+        }
+        
+        function toggleLoadingSpinner(show) {
+            if(el.loadingSpinner) {
+                if(show) {
+                    el.loadingSpinner.classList.remove('hidden', 'opacity-0');
+                    el.loadingSpinner.classList.add('opacity-100');
+                } else {
+                    el.loadingSpinner.classList.remove('opacity-100');
+                    el.loadingSpinner.classList.add('opacity-0');
+                    setTimeout(() => el.loadingSpinner.classList.add('hidden'), 300);
+                }
+            }
+        }
+
+        function setActiveTab(tabName) {
+            if (tabName === 'apply') {
+                el.applyTabButton?.classList.add('tab-button-active');
+                el.viewTeachersTabLink?.classList.remove('tab-button-active');
+                el.teacherApplicationSection?.classList.remove('hidden');
+            } 
+            AOS.refreshHard();
+        }
+
+        el.applyTabButton?.addEventListener('click', () => setActiveTab('apply'));
+        
+        if(el.viewTeachersTabLink) {
+            el.viewTeachersTabLink.addEventListener('click', function(e) {
+                el.applyTabButton?.classList.remove('tab-button-active');
+                el.viewTeachersTabLink?.classList.add('tab-button-active');
+            });
+        }
+
+        function initializeAppCore() {
+            AOS.init({ duration: 700, once: true, offset: 30, easing: 'ease-out-cubic' });
+            initializeScrollToTop();
+            setActiveTab('apply'); 
+            toggleLoadingSpinner(false); 
+        }
+        
+        window.onPageComponentsLoadedCallback = async () => {
+            if (window.langSystem && window.langSystem.initialized) {
+                if (typeof window.applyTranslations === 'function') {
+                    window.applyTranslations(document.body); 
+                }
+            }
+            initializeAppCore(); 
+            window.pageComponentsCallbackCalled = true; 
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (!window.pageComponentsCallbackCalled) { 
+                    if (typeof window.initializeLanguageSystem === 'function') {
+                        window.initializeLanguageSystem('en').then(() => { 
+                             if (typeof window.applyTranslations === 'function') {
+                                window.applyTranslations(document.body);
+                             }
+                             initializeAppCore();
+                        }).catch(err => {
+                            initializeAppCore(); 
+                        });
+                    } else {
+                         initializeAppCore(); 
+                    }
+                }
+            }, 1500); 
+        });
+
+        function initializeScrollToTop(){
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            if (scrollToTopBtn) {
+                const checkVisibility = () => {
+                    if (window.pageYOffset > 200) scrollToTopBtn.classList.replace('hidden', 'flex');
+                    else scrollToTopBtn.classList.replace('flex', 'hidden');
+                };
+                window.addEventListener('scroll', checkVisibility, { passive: true });
+                scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                checkVisibility(); 
+            }
+        }
+
+        el.teacherApplicationForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            toggleLoadingSpinner(true);
+
+            const formData = new FormData(el.teacherApplicationForm);
+            const params = new URLSearchParams();
+            
+            for (let [name, value] of formData.entries()) {
+                if (name.startsWith('entry.')) {
+                     if (value.trim()) { 
+                        params.append(name, value);
+                    }
+                }
+            }
+            
+            const prefilledGoogleFormUrl = `${GOOGLE_FORM_PREFILL_VIEW_URL}?${params.toString()}`;
+            
+            showAppModal(
+                "Proceed to Google Form", 
+                "You will be redirected to a Google Form to complete your application. Please review and submit your details there. The information you've entered here will be pre-filled.",
+                "info", 
+                { 
+                    showConfirm: true, 
+                    confirmText: "Go to Google Form", 
+                    onConfirm: () => {
+                        window.open(prefilledGoogleFormUrl, '_blank');
+                        el.teacherApplicationForm.reset();
+                        if(el.bioCharCount) el.bioCharCount.textContent = "0/1500";
+                    },
+                    showCancel: true,
+                    cancelText: "Stay on Page"
+                }
+            );
+            toggleLoadingSpinner(false);
+        });
+    </script>
+</body>
+</html>
