@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 3.0 - Integrated FAB Controller.
+ * @version 4.0 - Centralized UI Controller.
  * @author IVS-Technical-Team
  */
 
@@ -31,11 +31,74 @@ function debounce(func, wait) {
 // =================================================================
 
 /**
- * All logic related to the Header component.
+ * All logic related to the Header and Mobile Menu.
  */
 const IVSHeaderController = {
-    // ... (Toàn bộ logic của Header sẽ được đặt ở đây nếu cần, hiện tại đang được xử lý trong bản demo header_final)
-    // ... For brevity, assuming header logic is handled elsewhere or is self-contained.
+    init() {
+        this.cacheDOM();
+        if (!this.header) {
+            componentLog("Header element not found. UI logic will not run.", "warn");
+            return;
+        }
+        this.bindEvents();
+        this.onScroll(); // Initial check
+        componentLog("Header Controller Initialized.", "info");
+    },
+
+    cacheDOM() {
+        this.header = document.getElementById('ivs-main-header');
+        this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
+        this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
+        this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+        this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+        this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
+        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+    },
+
+    bindEvents() {
+        window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
+        
+        this.mobileOpenBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+        this.mobileCloseBtn?.addEventListener('click', () => this.toggleMobileMenu(false));
+        this.mobileBackdrop?.addEventListener('click', () => this.toggleMobileMenu(false));
+        this.bottomNavMenuBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
+                this.toggleMobileMenu(false);
+            }
+        });
+
+        this.submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+        });
+    },
+
+    onScroll() {
+        if (this.header) {
+            this.header.classList.toggle('scrolled', window.scrollY > 10);
+        }
+    },
+    
+    toggleMobileMenu(open) {
+        if (!this.mobilePanel) return;
+        this.mobilePanel.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    },
+
+    toggleSubmenu(toggle) {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('i.fa-chevron-down');
+        if (!content) return;
+        
+        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        if (icon) {
+            icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
+    }
 };
 
 /**
@@ -58,7 +121,7 @@ const IVSFabController = {
         this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
         this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
     },
-
+    
     populateMenus() {
         const contactMenu = document.getElementById('contact-options');
         const shareMenu = document.getElementById('share-options');
@@ -74,12 +137,7 @@ const IVSFabController = {
             { key: "fab_chat_zalo", text: "Chat Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
             { key: "fab_fanpage_fb", text: "Fanpage Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
         ];
-        element.innerHTML = contacts.map(c => `
-            <a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-                <i class="${c.icon} fa-fw ${c.color}"></i>
-                <span>${c.text}</span>
-            </a>
-        `).join('');
+        element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
     },
 
     populateShareOptions(element) {
@@ -89,78 +147,48 @@ const IVSFabController = {
             { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${currentUrl}', '_blank', 'noopener,noreferrer')` },
             { text: "Sao chép", icon: "fas fa-link", color: "text-gray-500", action: `navigator.clipboard.writeText(decodeURIComponent('${currentUrl}')).then(() => alert('Đã sao chép liên kết!'), () => alert('Không thể sao chép liên kết.'))` }
         ];
-        element.innerHTML = shares.map(s => `
-            <button role="menuitem" class="fab-submenu-item group w-full" onclick="${s.action}">
-                <i class="${s.icon} fa-fw ${s.color}"></i>
-                <span>${s.text}</span>
-            </button>
-        `).join('');
+        element.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item group w-full" onclick="${s.action}"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`).join('');
     },
 
     bindEvents() {
-        // Scroll-to-top button logic
         if (this.scrollToTopBtn) {
-            const handleScroll = () => {
-                const isVisible = window.scrollY > 200;
-                this.scrollToTopBtn.classList.toggle('hidden', !isVisible);
-                this.scrollToTopBtn.classList.toggle('opacity-0', !isVisible);
-            };
+            const handleScroll = () => this.scrollToTopBtn.classList.toggle('hidden', window.scrollY < 200);
             window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Initial check
+            handleScroll();
         }
 
-        // Submenu logic
-        this.buttonsWithSubmenu.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.toggleSubmenu(btn);
-            });
-        });
+        this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
+            e.stopPropagation();
+            this.toggleSubmenu(btn);
+        }));
 
-        // Global click to close submenus
-        document.addEventListener('click', (e) => {
-            this.buttonsWithSubmenu.forEach(btn => {
-                const menu = document.getElementById(btn.getAttribute('aria-controls'));
-                if (!btn.contains(e.target) && !menu.contains(e.target)) {
-                    this.closeSubmenu(btn);
-                }
-            });
-        });
+        document.addEventListener('click', () => this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn)));
     },
 
     toggleSubmenu(btn) {
         const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-        // Close all other submenus first
-        this.buttonsWithSubmenu.forEach(otherBtn => {
-            if (otherBtn !== btn) this.closeSubmenu(otherBtn);
-        });
-        // Toggle the clicked one
-        if (isCurrentlyOpen) {
-            this.closeSubmenu(btn);
-        } else {
-            this.openSubmenu(btn);
-        }
+        this.buttonsWithSubmenu.forEach(otherBtn => this.closeSubmenu(otherBtn));
+        if (!isCurrentlyOpen) this.openSubmenu(btn);
     },
 
     openSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
         menu.classList.remove('hidden');
-        requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-            menu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
-        });
+        requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
         btn.setAttribute('aria-expanded', 'true');
     },
 
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
-        menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-        // The `hidden` class is added via a transitionend listener if desired for performance,
-        // but for simplicity, we can let it be controlled by the open/close state.
+        menu.classList.add('opacity-0', 'scale-95');
+        const onTransitionEnd = () => {
+            if (menu.classList.contains('opacity-0')) menu.classList.add('hidden');
+            menu.removeEventListener('transitionend', onTransitionEnd);
+        };
+        menu.addEventListener('transitionend', onTransitionEnd);
         btn.setAttribute('aria-expanded', 'false');
     }
 };
@@ -168,13 +196,6 @@ const IVSFabController = {
 // =================================================================
 //  MAIN COMPONENT LOADER
 // =================================================================
-
-/**
- * Fetches and injects an HTML component into a specified placeholder.
- * @param {string} url - The URL of the component's HTML file.
- * @param {string} placeholderId - The CSS selector for the placeholder element.
- * @returns {Promise<boolean>} A promise that resolves with true on success.
- */
 async function loadAndInject(url, placeholderId) {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
@@ -183,57 +204,34 @@ async function loadAndInject(url, placeholderId) {
     }
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         placeholder.innerHTML = await response.text();
-        componentLog(`Component from ${url} loaded into #${placeholderId}.`);
         return true;
     } catch (error) {
-        componentLog(`Failed to load component from ${url}: ${error.message}`, 'error');
-        placeholder.innerHTML = `<div class="text-red-500 p-4 text-center">[Component failed to load]</div>`;
+        componentLog(`Failed to load ${url}: ${error.message}`, 'error');
         return false;
     }
 }
 
-/**
- * Main function to orchestrate the loading of all common page components.
- */
 async function loadCommonComponents() {
-    componentLog("Initializing common component loading sequence...");
-
-    // Define all components to be loaded
+    componentLog("Initializing component sequence...");
     const components = [
         { id: 'header-placeholder', url: '/components/header.html', controller: IVSHeaderController },
-        { id: 'footer-placeholder', url: '/components/footer.html', controller: null }, // Assuming footer has no complex JS
+        { id: 'footer-placeholder', url: '/components/footer.html', controller: null },
         { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: IVSFabController }
     ];
 
-    const loadingPromises = components.map(async (comp) => {
+    await Promise.all(components.map(async (comp) => {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
-            if (success && comp.controller && typeof comp.controller.init === 'function') {
-                // Initialize the controller right after its HTML is loaded
-                comp.controller.init();
-            }
-            return success;
+            if (success && comp.controller) comp.controller.init();
         }
-        return true; // Resolve as true if placeholder doesn't exist
-    });
+    }));
 
-    await Promise.all(loadingPromises);
+    if (window.system?.init) window.system.init({ language: 'vi', translationUrl: '/lang/' });
 
-    // Initialize language system after all HTML is in place
-    if (window.system && typeof window.system.init === 'function') {
-        window.system.init({ language: 'vi', translationUrl: '/lang/' });
-        componentLog("Language system initialized.");
-    } else {
-        componentLog("Language system (window.system) not found.", "warn");
-    }
-
-    componentLog("Component loading sequence complete.");
-    if (typeof window.onPageComponentsLoadedCallback === 'function') {
-        window.onPageComponentsLoadedCallback();
-    }
+    componentLog("Component sequence complete.");
+    window.onPageComponentsLoadedCallback?.();
 }
 
-// Start the process once the DOM is ready.
 document.addEventListener('DOMContentLoaded', loadCommonComponents);

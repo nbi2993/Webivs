@@ -1,4 +1,18 @@
+/*
+ * IVS CSS Styles - Optimized Version
+ *
+ * This CSS file contains styles for the IVS website,
+ * including global settings, header, mobile navigation,
+ * and bottom navigation.
+ *
+ * Author: Gemini
+ * Date: 2025-06-24
+ */
+
+/* === ROOT VARIABLES === */
+/* Defines global CSS variables for colors, fonts, spacing, shadows, and transitions. */
 :root {
+    /* Colors */
     --ivs-primary: #004080;
     --ivs-primary-dark: #003366;
     --ivs-primary-light: #0059b3;
@@ -7,6 +21,8 @@
     --ivs-secondary-light: #ffe066;
     --ivs-accent: #F97316;
     --ivs-accent-dark: #DD6B20;
+
+    /* Neutral Colors (Grayscale) */
     --ivs-neutral-900: #111827;
     --ivs-neutral-800: #1f2937;
     --ivs-neutral-700: #374151;
@@ -16,26 +32,46 @@
     --ivs-neutral-200: #E5E7EB;
     --ivs-neutral-100: #F3F4F6;
     --ivs-neutral-50: #F9FAFB;
+
+    /* Text Colors */
     --ivs-text-light: #f8fafc;
     --ivs-text-dark: #0f172a;
     --ivs-text-white: #ffffff;
+    --ivs-text-secondary: var(--ivs-neutral-300); /* Alias for neutral-300 often used for secondary text */
+    --ivs-bg-light: var(--ivs-neutral-700); /* Alias for neutral-700 often used for light background */
+
+    /* Layout & Sizing */
     --header-target-height-mobile: 64px;
-    --header-target-height-desktop: 72px;
+    --header-target-height-desktop: 80px; /* Updated from 72px for consistency with second root block */
+    --bottom-nav-height: 60px; /* Updated from mobile header height */
+
+    /* Fonts */
     --font-sans: 'Inter', sans-serif;
     --font-display: 'Lexend', sans-serif;
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.375rem;
-    --border-radius-lg: 0.5rem;
+
+    /* Border Radii */
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.375rem; /* 6px */
+    --border-radius-lg: 0.5rem; /* 8px */
     --border-radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Added as it was used in .nav-contact-btn */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-top-strong: 0 -4px 6px -1px rgba(0,0,0,0.1), 0 -2px 4px -1px rgba(0,0,0,0.06);
+
+    /* Transitions */
     --transition-fast: 150ms;
     --transition-base: 250ms;
     --transition-slow: 400ms;
+    --ivs-transition-ease: ease-out; /* Common ease-out timing function */
+    --ivs-link-active-bg: rgba(249, 115, 22, 0.15); /* Accent color with opacity for active link background */
 }
 
+/* === BASE STYLES === */
+/* Resets default browser styles and sets global typography and layout. */
 * {
     margin: 0;
     padding: 0;
@@ -58,40 +94,57 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-bottom: var(--bottom-nav-height); /* Applied universally for mobile bottom nav */
 }
 
 main {
     flex-grow: 1;
-    padding-bottom: var(--header-target-height-mobile);
+    /* padding-bottom removed from here as it's handled by body padding-bottom */
 }
 
+/* Placeholder for header height to prevent content jump under fixed header */
 #header-placeholder {
     height: var(--header-target-height-mobile);
     flex-shrink: 0;
 }
 
+/* === MAIN HEADER === */
+/* Styles for the fixed main header, including desktop and mobile variations. */
 #main-header {
     background-color: var(--ivs-neutral-900);
     color: var(--ivs-text-white);
     box-shadow: var(--shadow-lg);
     position: fixed;
-    top:0; left:0; right:0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1001;
-    transition: transform var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: var(--header-target-height-mobile);
+    transition: transform var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease; /* Combined transitions */
+    min-height: var(--header-target-height-mobile); /* Mobile height */
+    height: var(--header-target-height-mobile); /* Explicit height for smooth transitions */
 }
 
+/* State when header is hidden (e.g., on scroll down) */
 #main-header.header-hidden {
     transform: translateY(-100%);
 }
 
+/* State when header is scrolled (applies blur and stronger shadow) */
+#main-header.scrolled {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background-color: rgba(17, 24, 39, 0.85); /* Slightly transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+}
+
+/* === MOBILE MENU TOGGLE BUTTON === */
+/* Styles for the button that opens/closes the mobile menu. */
 .mobile-menu-toggle-btn {
     color: var(--ivs-text-light);
     background-color: transparent;
     border: none;
     padding: 0.5rem;
     border-radius: var(--border-radius-full);
-    transition: background-color var(--transition-fast) ease-out, color var(--transition-fast) ease-out;
+    transition: background-color var(--transition-fast) var(--ivs-transition-ease), color var(--transition-fast) var(--ivs-transition-ease);
     width: 2.75rem;
     height: 2.75rem;
     display: flex;
@@ -107,6 +160,8 @@ main {
     font-size: 1.375rem;
 }
 
+/* === MOBILE MENU PANEL === */
+/* Base styles for the mobile menu overlay and its backdrop. */
 .mobile-menu-panel-base {
     position: fixed;
     top: 0;
@@ -114,27 +169,34 @@ main {
     width: 100%;
     height: 100vh;
     z-index: 1050;
-    visibility: hidden;
-    transition: visibility 0s linear var(--transition-slow);
+    visibility: hidden; /* Hidden by default */
+    transition: visibility 0s linear var(--transition-slow); /* Delay visibility transition for smooth close */
 }
-.mobile-menu-panel-base.active {
+/* When active, make panel visible immediately */
+.mobile-menu-panel-base.active,
+#ivs-mobile-menu-panel.is-open { /* Combined with specific ID for consistency */
     visibility: visible;
     transition-delay: 0s;
 }
 
+/* Backdrop for the mobile menu */
 .mobile-menu-backdrop-base {
     position: absolute;
     inset: 0;
     background-color: rgba(17, 24, 39, 0.85);
     opacity: 0;
     backdrop-filter: blur(4px);
-    transition: opacity var(--transition-base) ease-out;
+    transition: opacity var(--transition-base) var(--ivs-transition-ease);
 }
-.mobile-menu-panel-base.active .mobile-menu-backdrop-base {
+/* When panel is active, backdrop becomes opaque */
+.mobile-menu-panel-base.active .mobile-menu-backdrop-base,
+#ivs-mobile-menu-panel.is-open #ivs-mobile-menu-backdrop { /* Combined with specific ID */
     opacity: 1;
 }
 
-#mobile-menu-container {
+/* Mobile Menu Container (the sliding side panel) */
+#mobile-menu-container,
+#ivs-mobile-menu-container { /* Combined with specific ID for consistency */
     position: fixed;
     top: 0;
     right: 0;
@@ -144,132 +206,178 @@ main {
     background-color: var(--ivs-neutral-800);
     color: var(--ivs-neutral-100);
     box-shadow: var(--shadow-xl);
-    transform: translateX(100%);
+    transform: translateX(100%); /* Off-screen by default */
     transition: transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
-.mobile-menu-panel-base.active #mobile-menu-container {
+/* When panel is active, container slides into view */
+.mobile-menu-panel-base.active #mobile-menu-container,
+#ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container { /* Combined with specific ID */
     transform: translateX(0);
 }
 
+/* === MOBILE NAVIGATION LINKS & SUBMENUS === */
+/* Styles for main navigation links and submenu toggles within the mobile menu. */
 .mobile-nav-link,
 .mobile-submenu-toggle {
-    display: block;
+    display: flex; /* Changed from block to flex for spacing with icons */
+    justify-content: space-between; /* Added for submenu toggle icon alignment */
+    align-items: center; /* Vertically align content */
     width: 100%;
-    text-align: left;
-    padding: 0.8rem 1.25rem;
+    padding: 0.8rem 1.25rem; /* Original padding */
     border-radius: var(--border-radius-md);
     font-weight: 500;
-    color: var(--ivs-neutral-200);
-    transition: background-color var(--transition-fast) ease-out, color var(--transition-fast) ease-out;
+    color: var(--ivs-neutral-200); /* Original color */
+    transition: background-color var(--transition-fast) var(--ivs-transition-ease), color var(--transition-fast) var(--ivs-transition-ease);
     font-size: 1rem;
+    text-align: left; /* Ensure text aligns left */
 }
 
-.mobile-submenu-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mobile-nav-link:hover, 
-.mobile-submenu-toggle:hover,
-.mobile-nav-link.active-mobile-link {
+.mobile-nav-link:hover,
+.mobile-submenu-toggle:hover {
     background-color: var(--ivs-neutral-700);
     color: var(--ivs-secondary);
 }
 
+/* Active state for mobile navigation links */
+.mobile-nav-link.active-mobile-link,
+.mobile-nav-link.active { /* Combined active classes */
+    background-color: var(--ivs-link-active-bg); /* Use specific active background color */
+    color: var(--ivs-accent); /* Use accent color for active link text */
+}
+
+/* Icon within mobile submenu toggle */
 .mobile-submenu-icon {
     font-size: 0.8rem;
     color: var(--ivs-neutral-400);
-    transition: transform var(--transition-base) ease-out;
+    transition: transform var(--transition-base) var(--ivs-transition-ease);
 }
 
+/* Rotate icon when submenu is expanded */
 .mobile-submenu-toggle[aria-expanded="true"] .mobile-submenu-icon {
     transform: rotate(90deg);
 }
 
+/* Mobile submenu content area */
 .mobile-submenu-content {
     padding-left: 1rem;
     overflow: hidden;
     max-height: 0;
-    opacity: 0;
+    opacity: 0; /* Initially hidden */
     padding-bottom: 0;
     transition: max-height var(--transition-slow) ease-in-out,
                 opacity var(--transition-base) ease-in-out,
                 padding-bottom var(--transition-slow) ease-in-out;
 }
 
+/* Expanded state for mobile submenu content */
 .mobile-submenu-content.expanded,
-.mobile-submenu-toggle[aria-expanded="true"] + .mobile-submenu-content {
-    max-height: 700px;
+.mobile-submenu-toggle[aria-expanded="true"] + .mobile-submenu-content,
+.mobile-submenu-content.active { /* Combined active classes */
+    max-height: 700px; /* Sufficient height for content, adjust if needed */
     opacity: 1;
     padding-bottom: 0.5rem;
 }
 
-.mobile-submenu-item {
+/* Individual items within a mobile submenu */
+.mobile-submenu-item,
+.mobile-nav-link-sub { /* Combined submenu item classes */
     display: block;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 1rem; /* Original padding */
     border-radius: var(--border-radius-sm);
     color: var(--ivs-neutral-300);
     font-size: 0.9rem;
-    transition: background-color var(--transition-fast) ease-out, color var(--transition-fast) ease-out;
+    transition: background-color var(--transition-fast) var(--ivs-transition-ease), color var(--transition-fast) var(--ivs-transition-ease);
 }
-.mobile-submenu-item:hover {
+.mobile-submenu-item:hover,
+.mobile-nav-link-sub:hover { /* Combined hover states */
     background-color: var(--ivs-neutral-600);
     color: var(--ivs-secondary-light);
 }
+/* Indented submenu item (if needed for deeper nesting) */
 .mobile-submenu-item.indent-1 {
     padding-left: 1.75rem;
 }
 
-#bottom-nav-bar {
+/* Mobile language option styles */
+.lang-option-mobile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px; /* Consistent padding */
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-md); /* Use MD for consistency */
+    color: var(--ivs-neutral-300); /* Consistent color */
+}
+.lang-option-mobile:hover {
+    background-color: var(--ivs-neutral-700); /* Consistent hover background */
+    color: var(--ivs-text-white); /* Consistent hover text color */
+}
+.lang-flag-icon-mobile {
+    width: 20px;
+    height: auto;
+    margin-right: 12px;
+    border-radius: 2px; /* Small border-radius for flags */
+}
+
+
+/* === BOTTOM NAVIGATION BAR (MOBILE ONLY) === */
+/* Styles for the fixed bottom navigation bar on mobile. */
+#bottom-nav-bar,
+#bottom-nav { /* Combined IDs for bottom navigation */
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(31, 41, 55, 0.95);
+    background-color: rgba(31, 41, 55, 0.95); /* Semi-transparent dark background */
     box-shadow: var(--shadow-top-strong);
     z-index: 1000;
-    height: var(--header-target-height-mobile);
+    height: var(--bottom-nav-height); /* Use dedicated bottom nav height */
     border-top: 1px solid var(--ivs-neutral-700);
     transition: transform var(--transition-base) ease-in-out;
-    transform: translateY(0);
+    transform: translateY(0); /* Visible by default */
     display: flex;
     justify-content: space-around;
-    align-items: stretch;
+    align-items: stretch; /* Stretch items vertically */
 }
+/* Backdrop filter for blurred background on supported browsers */
 @supports (backdrop-filter: blur(0.5rem)) {
-  #bottom-nav-bar {
-    background-color: rgba(31, 41, 55, 0.8);
-    backdrop-filter: blur(0.5rem);
-  }
+    #bottom-nav-bar {
+        background-color: rgba(31, 41, 55, 0.8);
+        backdrop-filter: blur(0.5rem);
+    }
 }
 
+/* State when bottom nav is hidden (e.g., on scroll up) */
 #bottom-nav-bar.bottom-nav-hidden {
     transform: translateY(100%);
 }
 
+/* Individual items within the bottom navigation bar */
 .bottom-nav-item {
-    flex: 1 1 0%;
-    padding: 0.5rem 0.25rem;
+    flex: 1 1 0%; /* Allow items to grow and shrink */
+    padding: 0.5rem 0.25rem; /* Original padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--ivs-neutral-300);
-    transition: color var(--transition-fast) ease-out, background-color var(--transition-fast) ease-out;
+    transition: color var(--transition-fast) var(--ivs-transition-ease), background-color var(--transition-fast) var(--ivs-transition-ease);
     height: 100%;
     text-decoration: none;
     position: relative;
     background-color: transparent;
     border: none;
 }
-.bottom-nav-item:hover, .bottom-nav-item.active-bottom-nav {
-    color: var(--ivs-secondary);
+.bottom-nav-item:hover,
+.bottom-nav-item.active-bottom-nav,
+.bottom-nav-item.active { /* Combined active classes */
+    color: var(--ivs-accent);
     background-color: var(--ivs-neutral-700);
 }
+/* Indicator line for active bottom navigation item */
 .bottom-nav-item.active-bottom-nav::before {
     content: '';
     position: absolute;
@@ -279,239 +387,232 @@ main {
     height: 2px;
     background-color: var(--ivs-secondary);
 }
+/* Icon within bottom navigation item */
 .bottom-nav-icon {
-    font-size: 1.375rem;
-    margin-bottom: 0.125rem;
+    font-size: 1.375rem; /* Original size */
+    margin-bottom: 0.125rem; /* Original margin */
 }
+/* Text label within bottom navigation item */
 .bottom-nav-text {
-    font-size: 0.6875rem;
+    font-size: 0.6875rem; /* Original size */
     line-height: 1.2;
     font-weight: 500;
     letter-spacing: 0.01em;
     white-space: nowrap;
+    margin-top: 2px; /* Adjusted from 4px to align better with original margin-bottom of icon */
 }
 
-
+/* === MEDIA QUERIES (DESKTOP) === */
+/* Styles that apply to screens wider than 768px (md breakpoint). */
 @media (min-width: 768px) {
     html {
         scroll-padding-top: var(--header-target-height-desktop);
     }
-    
-    main {
-        padding-bottom: 0;
+
+    body {
+        padding-bottom: 0; /* Remove bottom padding on desktop */
     }
-    
+
+    main {
+        padding-bottom: 0; /* Ensure no extra padding on main content */
+    }
+
+    /* Adjust header height for desktop */
     #main-header,
     #header-placeholder {
         min-height: var(--header-target-height-desktop);
         height: var(--header-target-height-desktop);
     }
 
-    .nav-link, .nav-link-dropdown {
-        padding: 0.5rem 0.875rem;
-        font-weight: 500;
-        font-size: 0.9rem;
-        color: var(--ivs-neutral-200);
-        border-radius: var(--border-radius-md);
-        transition: color var(--transition-fast) ease-out, background-color var(--transition-fast) ease-out;
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        height: calc(var(--header-target-height-desktop) - 1rem);
-        box-sizing: border-box;
+    /* Hide mobile-specific elements on desktop */
+    .mobile-menu-toggle-btn,
+    .mobile-menu-panel-base,
+    #bottom-nav-bar,
+    #bottom-nav { /* Ensure all bottom nav references are hidden */
+        display: none;
     }
-
-    .nav-link:hover, .nav-link-dropdown:hover,
-    .nav-link.active, .nav-link-dropdown.active {
-        color: var(--ivs-text-white);
-        background-color: var(--ivs-neutral-700);
-    }
-
-    .nav-link-dropdown .nav-link-icon {
-        margin-left: 0.35rem;
-        font-size: 0.65rem;
-        transition: transform var(--transition-base) ease-out;
-    }
-    .group:hover .nav-link-dropdown .nav-link-icon,
-    .nav-link-dropdown[aria-expanded="true"] .nav-link-icon {
-        transform: rotate(180deg);
-    }
-
-    .desktop-dropdown-content, .mega-menu-content {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--ivs-neutral-800);
-        color: var(--ivs-neutral-200);
-        border: 1px solid var(--ivs-neutral-700);
-        border-top: none;
-        border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-        box-shadow: var(--shadow-xl);
-        z-index: 50;
-        min-width: 240px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(5px) scale(0.98);
-        pointer-events: none;
-        transition: opacity var(--transition-fast) ease-out,
-                    transform var(--transition-fast) ease-out,
-                    visibility 0s linear var(--transition-fast);
-    }
-    .group:hover > .desktop-dropdown-content,
-    .group:focus-within > .desktop-dropdown-content,
-    .group:hover > .mega-menu-content,
-    .group:focus-within > .mega-menu-content {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-        transition-delay: 0s;
-    }
-
-    .mega-menu-content {
-        min-width: 550px;
-        left: 50%;
-        transform: translateX(-50%) translateY(5px) scale(0.98);
-    }
-    .group:hover > .mega-menu-content,
-    .group:focus-within > .mega-menu-content {
-        transform: translateX(-50%) translateY(0) scale(1);
-    }
-
-    .desktop-dropdown-item, .mega-menu-item {
-        display: flex;
-        align-items: center;
-        padding: 0.6rem 1rem;
-        font-size: 0.875rem;
-        color: var(--ivs-neutral-200);
-        border-radius: var(--border-radius-sm);
-        transition: background-color var(--transition-fast) ease-out, color var(--transition-fast) ease-out;
-    }
-    .desktop-dropdown-item:hover, .mega-menu-item:hover {
-        background-color: var(--ivs-primary);
-        color: var(--ivs-text-white);
-    }
-    .mega-menu-item:hover .mega-menu-icon {
-        color: var(--ivs-secondary);
-    }
-    .mega-menu-heading {
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--ivs-secondary);
-        margin-bottom: 0.75rem;
-        padding: 0 1rem;
-    }
-    .mega-menu-icon {
-        margin-right: 0.75rem;
-        color: var(--ivs-secondary-dark);
-        transition: color var(--transition-fast) ease-out;
-        width: 1em;
-        text-align: center;
-    }
-
-    .nav-contact-btn {
-        background-color: var(--ivs-accent);
-        color: var(--ivs-text-white);
-        padding: 0.6rem 1.1rem;
-        font-weight: 600;
-        font-size: 0.9rem;
-        border-radius: var(--border-radius-md);
-        transition: background-color var(--transition-fast) ease-out, transform var(--transition-fast) ease-out, box-shadow var(--transition-fast) ease-out;
-        box-shadow: var(--shadow-sm);
-        display: flex;
-        align-items: center;
-        height: calc(var(--header-target-height-desktop) - 1.2rem);
-        box-sizing: border-box;
-    }
-    
-    .nav-contact-btn:hover {
-        background-color: var(--ivs-accent-dark);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-    }
-    
-}
-/* === IVS HEADER STYLES START === */
-:root {
-    --header-target-height-mobile: 64px;
-    --header-target-height-desktop: 80px;
-    --bottom-nav-height: 60px;
-    --ivs-neutral-900: #111827;
-    --ivs-neutral-800: #1f2937;
-    --ivs-neutral-700: #374151;
-    --ivs-neutral-400: #9ca3af;
-    --ivs-neutral-300: #d1d5db;
-    --ivs-accent: #F97316;
-    --ivs-link-active-bg: rgba(249, 115, 22, 0.15);
 }
 
-#main-header {
-    height: var(--header-target-height-mobile);
-    background-color: var(--ivs-neutral-900);
-    transition: box-shadow 0.3s ease;
-}
-#main-header.scrolled {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    background-color: rgba(17, 24, 39, 0.85);
-    backdrop-filter: blur(10px);
-}
+/* Styles that apply to screens wider than 1024px (lg breakpoint) for specific header adjustments. */
 @media (min-width: 1024px) {
-    #main-header {
-        height: var(--header-target-height-desktop);
-    }
-}
-body { padding-bottom: var(--bottom-nav-height); }
-@media (min-width: 1024px) {
-    body { padding-bottom: 0; }
+    /* desktop header height is already set at 768px, keeping this empty for now unless needed */
+    /* original was just setting main-header height again, which is redundant */
 }
 
-/* Desktop Nav */
-.nav-link, .nav-link-dropdown {
-    display: inline-flex; align-items: center; padding: 6px 12px; font-size: 0.95rem; font-weight: 500;
-    color: var(--ivs-neutral-300); transition: color 0.2s, background-color 0.2s; border-radius: 0.375rem;
+
+/* === DESKTOP NAVIGATION LINKS & DROPDOWNS === */
+/* Styles for main navigation links and dropdown toggles on desktop. */
+.nav-link,
+.nav-link-dropdown {
+    padding: 0.5rem 0.875rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ivs-neutral-200);
+    border-radius: var(--border-radius-md);
+    transition: color var(--transition-fast) var(--ivs-transition-ease), background-color var(--transition-fast) var(--ivs-transition-ease);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: calc(var(--header-target-height-desktop) - 1rem); /* Calculated height for alignment */
+    box-sizing: border-box;
 }
-.nav-link:hover, .nav-link-dropdown:hover { color: white; background-color: var(--ivs-neutral-700); }
-.nav-link.active { color: var(--ivs-accent); font-weight: 600; background-color: var(--ivs-link-active-bg); }
-.contact-button { background-color: var(--ivs-accent); color: white !important; }
-.contact-button:hover { background-color: #ea580c; }
 
-.nav-item .nav-dropdown {
-    position: absolute; top: 100%; left: 0; background-color: var(--ivs-neutral-800);
-    border: 1px solid var(--ivs-neutral-700); border-radius: 0.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.25);
-    opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease;
-    z-index: 50; min-width: 220px; padding: 8px;
+.nav-link:hover,
+.nav-link-dropdown:hover {
+    color: var(--ivs-text-white);
+    background-color: var(--ivs-neutral-700);
 }
-.nav-item.dropdown-active .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(5px); }
-.nav-dropdown-item {
-    display: block; width: 100%; text-align: left; padding: 8px 12px; font-size: 0.9rem;
-    color: var(--ivs-neutral-300); border-radius: 0.25rem;
+
+/* Active state for desktop navigation links */
+.nav-link.active,
+.nav-link-dropdown.active {
+    color: var(--ivs-accent); /* Use accent for active text */
+    font-weight: 600; /* Bolder for active */
+    background-color: var(--ivs-link-active-bg); /* Use specific active background */
 }
-.nav-dropdown-item:hover { background-color: var(--ivs-neutral-700); color: white; }
-.lang-option { display: flex; align-items: center; width: 100%; padding: 8px 12px; color: var(--ivs-neutral-300); }
-.lang-option:hover { background-color: var(--ivs-neutral-700); color: white; }
-.lang-flag-icon { width: 20px; height: auto; margin-right: 8px; border-radius: 2px; }
 
-/* Mobile Menu */
-.mobile-nav-link { display: block; padding: 10px; border-radius: 0.375rem; font-weight: 500; }
-.mobile-nav-link:hover { background-color: var(--ivs-neutral-700); }
-.mobile-nav-link.active { background-color: var(--ivs-link-active-bg); color: var(--ivs-accent); }
+/* Icon within desktop dropdown toggle */
+.nav-link-dropdown .nav-link-icon {
+    margin-left: 0.35rem;
+    font-size: 0.65rem;
+    transition: transform var(--transition-base) var(--ivs-transition-ease);
+}
+/* Rotate icon on hover or when expanded */
+.group:hover .nav-link-dropdown .nav-link-icon,
+.nav-link-dropdown[aria-expanded="true"] .nav-link-icon {
+    transform: rotate(180deg);
+}
 
-.mobile-submenu-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px; border-radius: 0.375rem; font-weight: 500; }
-.mobile-submenu-icon { transition: transform 0.3s ease; }
-.mobile-submenu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; padding-left: 16px; }
-.mobile-submenu-content.active { max-height: 500px; /* Adjust as needed */ }
-.mobile-nav-link-sub { display: block; padding: 8px; font-size: 0.9rem; border-radius: 0.375rem; }
-.mobile-nav-link-sub:hover { background-color: var(--ivs-neutral-600); }
-.mobile-nav-link-sub.active { background-color: var(--ivs-link-active-bg); color: var(--ivs-accent); }
-.lang-option-mobile { display: flex; align-items: center; width: 100%; padding: 8px; font-size: 0.9rem; border-radius: 0.375rem; }
-.lang-flag-icon-mobile { width: 20px; height: auto; margin-right: 12px; }
+/* Base styles for desktop dropdown and mega menu content */
+.desktop-dropdown-content,
+.mega-menu-content {
+    position: absolute;
+    top: 100%; /* Position below the parent */
+    left: 0;
+    background-color: var(--ivs-neutral-800);
+    color: var(--ivs-neutral-200);
+    border: 1px solid var(--ivs-neutral-700);
+    border-top: none; /* No top border, connects visually to header */
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg); /* Rounded bottom corners */
+    box-shadow: var(--shadow-xl);
+    z-index: 50;
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(5px) scale(0.98); /* Slight translate and scale for animation */
+    pointer-events: none; /* Disable interaction when hidden */
+    transition: opacity var(--transition-fast) var(--ivs-transition-ease),
+                transform var(--transition-fast) var(--ivs-transition-ease),
+                visibility 0s linear var(--transition-fast); /* Delay visibility for smooth close */
+}
+/* Show dropdown/mega menu on group hover or focus-within */
+.group:hover > .desktop-dropdown-content,
+.group:focus-within > .desktop-dropdown-content,
+.group:hover > .mega-menu-content,
+.group:focus-within > .mega-menu-content,
+.nav-item.dropdown-active .nav-dropdown { /* Combined for consistency */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    transition-delay: 0s; /* No delay on show */
+}
 
-/* Bottom Nav */
-#bottom-nav { height: var(--bottom-nav-height); }
-.bottom-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ivs-neutral-400); text-decoration: none; transition: color 0.2s ease; padding: 4px; }
-.bottom-nav-item:hover, .bottom-nav-item.active { color: var(--ivs-accent); }
-.bottom-nav-icon { font-size: 1.25rem; margin-bottom: 2px; }
-.bottom-nav-text { font-size: 0.7rem; font-weight: 500; }
-/* === IVS HEADER STYLES END === */
+/* Specific styles for mega menu content */
+.mega-menu-content {
+    min-width: 550px;
+    left: 50%; /* Center the mega menu */
+    transform: translateX(-50%) translateY(5px) scale(0.98); /* Adjusted transform for centering */
+}
+.group:hover > .mega-menu-content,
+.group:focus-within > .mega-menu-content {
+    transform: translateX(-50%) translateY(0) scale(1); /* Adjusted transform on show */
+}
+
+/* Individual items within desktop dropdowns and mega menus */
+.desktop-dropdown-item,
+.mega-menu-item,
+.nav-dropdown-item { /* Combined dropdown item classes */
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    color: var(--ivs-neutral-200);
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast) var(--ivs-transition-ease), color var(--transition-fast) var(--ivs-transition-ease);
+}
+.desktop-dropdown-item:hover,
+.mega-menu-item:hover,
+.nav-dropdown-item:hover { /* Combined hover states */
+    background-color: var(--ivs-primary); /* Primary color on hover */
+    color: var(--ivs-text-white);
+}
+/* Hover effect for icon within mega menu item */
+.mega-menu-item:hover .mega-menu-icon {
+    color: var(--ivs-secondary);
+}
+/* Heading within a mega menu column */
+.mega-menu-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ivs-secondary);
+    margin-bottom: 0.75rem;
+    padding: 0 1rem; /* Padding for the heading itself */
+}
+/* Icon within a mega menu item */
+.mega-menu-icon {
+    margin-right: 0.75rem;
+    color: var(--ivs-secondary-dark);
+    transition: color var(--transition-fast) var(--ivs-transition-ease);
+    width: 1em; /* Ensures consistent icon width */
+    text-align: center;
+}
+
+/* Desktop language option styles */
+.lang-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px; /* Consistent padding */
+    color: var(--ivs-neutral-300); /* Consistent color */
+}
+.lang-option:hover {
+    background-color: var(--ivs-neutral-700); /* Consistent hover background */
+    color: white; /* Consistent hover text color */
+}
+.lang-flag-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 8px;
+    border-radius: 2px; /* Small border-radius for flags */
+}
+
+
+/* === CONTACT BUTTON === */
+/* Styles for the contact button in the header. */
+.nav-contact-btn,
+.contact-button { /* Combined contact button classes */
+    background-color: var(--ivs-accent);
+    color: var(--ivs-text-white) !important; /* !important to override other link styles */
+    padding: 0.6rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-md);
+    transition: background-color var(--transition-fast) var(--ivs-transition-ease),
+                transform var(--transition-fast) var(--ivs-transition-ease),
+                box-shadow var(--transition-fast) var(--ivs-transition-ease);
+    box-shadow: var(--shadow-sm); /* Initial shadow */
+    display: flex;
+    align-items: center;
+    height: calc(var(--header-target-height-desktop) - 1.2rem); /* Calculated height for alignment */
+    box-sizing: border-box;
+}
+
+.nav-contact-btn:hover,
+.contact-button:hover {
+    background-color: var(--ivs-accent-dark);
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: var(--shadow-md); /* Stronger shadow on hover */
+}
