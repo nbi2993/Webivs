@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVS JSC - Header Component (Final Optimized)</title>
+    <title>IVS JSC - Header Component (Final Optimized & Fixed)</title>
     
     <!-- External Libraries: TailwindCSS and FontAwesome for icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -98,12 +98,25 @@
             background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
         }
         
-        /* --- Mobile Navigation --- */
+        /* --- Mobile Navigation (FIXED) --- */
         #ivs-mobile-menu-panel {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(100%);
+            visibility: hidden; /* Hide panel completely by default */
         }
-        #ivs-mobile-menu-panel.open {
+        #ivs-mobile-menu-panel.is-open {
+            visibility: visible; /* Make panel visible when open */
+        }
+        #ivs-mobile-menu-backdrop {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-backdrop {
+            opacity: 1;
+        }
+        #ivs-mobile-menu-container {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container {
             transform: translateX(0);
         }
 
@@ -142,12 +155,6 @@
 
 <body class="bg-gray-100 text-gray-800">
 
-    <!-- 
-      HEADER COMPONENT: 
-      - Fixed position, always visible.
-      - Uses flexbox for alignment.
-      - Responsive: shows full nav on desktop (lg), mobile toggle on smaller screens.
-    -->
     <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
         <div class="max-w-7xl mx-auto px-4 h-full">
             <div class="flex items-center justify-between h-full">
@@ -160,6 +167,8 @@
                 <!-- Desktop Navigation (hidden on mobile) -->
                 <nav class="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
                     <a href="/index.html" class="desktop-nav-link">Trang Chủ</a>
+                    <!-- RESTORED: "Về IVS" link -->
+                    <a href="/about.html" class="desktop-nav-link">Về IVS</a>
                     
                     <!-- Mega Menu: Dịch Vụ -->
                     <div class="relative desktop-mega-menu-container">
@@ -195,6 +204,19 @@
                         </div>
                     </div>
 
+                    <!-- RESTORED: "Thư Viện" dropdown -->
+                    <div class="relative desktop-dropdown-container">
+                        <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                            <span>Thư Viện</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                        </button>
+                        <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
+                            <a href="/gallery.html" class="dropdown-item">Thư viện Ảnh</a>
+                            <a href="/Pages/document-library.html" class="dropdown-item">Tài liệu</a>
+                            <a href="/apps/story-repository.html" class="dropdown-item">Kho truyện</a>
+                            <a href="/games/ivsgames.html" class="dropdown-item">IVS Games</a>
+                        </div>
+                    </div>
+
                     <a href="/news-archive.html" class="desktop-nav-link">Tin tức</a>
                     <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold">Liên Hệ</a>
 
@@ -226,16 +248,14 @@
 
     <!-- 
       MOBILE MENU PANEL: 
-      - A full-screen panel that slides in from the right.
-      - Contains a backdrop to dim the main content.
-      - Contains the main navigation structure for mobile.
-      - Uses ARIA attributes for accessibility.
+      - HTML structure is correct. JS will now toggle the 'is-open' class on this main panel.
+      - Initially hidden via CSS `visibility: hidden`.
     -->
     <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 lg:hidden" aria-modal="true" role="dialog">
         <!-- Backdrop -->
-        <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        <!-- Menu Content -->
-        <div class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
+        <div id="ivs-mobile-menu-backdrop" class="absolute inset-0"></div>
+        <!-- Menu Content Container -->
+        <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
                 <span class="text-lg font-semibold text-ivs-accent">Menu</span>
@@ -246,6 +266,8 @@
             <!-- Navigation -->
             <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
                 <a href="/index.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Trang Chủ</a>
+                <!-- RESTORED: "Về IVS" link for mobile -->
+                <a href="/about.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Về IVS</a>
                 
                 <!-- Submenu: Dịch Vụ -->
                 <div>
@@ -271,18 +293,25 @@
                     </div>
                 </div>
 
+                <!-- RESTORED: "Thư Viện" submenu for mobile -->
+                <div>
+                    <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
+                        <span>Thư Viện</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                    </button>
+                    <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
+                        <a href="/gallery.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Thư viện Ảnh</a>
+                        <a href="/Pages/document-library.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tài liệu</a>
+                        <a href="/apps/story-repository.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Kho truyện</a>
+                        <a href="/games/ivsgames.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">IVS Games</a>
+                    </div>
+                </div>
+
                 <a href="/news-archive.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Tin tức</a>
                 <a href="/contact.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Liên Hệ</a>
             </nav>
         </div>
     </div>
     
-    <!-- 
-        BOTTOM NAVIGATION:
-        - Fixed to the bottom for easy one-handed operation on mobile.
-        - Hidden on desktop screens (lg and up).
-        - Icons provide quick visual cues.
-    -->
     <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch">
         <a href="/index.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
             <i class="fas fa-home text-xl"></i><span class="text-xs mt-1">Home</span>
@@ -301,18 +330,12 @@
         </button>
     </nav>
     
-    <!-- Dummy content to make page scrollable for demo -->
     <main class="pt-[var(--header-height)] lg:pt-[var(--desktop-header-height)] p-5">
         <div class="h-[200vh] bg-gray-200 rounded-lg flex items-center justify-center">
             <h1 class="text-2xl font-bold text-center">IVS Website Content<br>Scroll down to see header effects.</h1>
         </div>
     </main>
 
-    <!-- 
-      SCRIPT BLOCK: All necessary JavaScript for the header component.
-      - Encapsulated in an IVSHeader object to prevent global scope pollution.
-      - Manages mobile menu, submenus, header scroll effect, active link highlighting, and language switching.
-    -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -334,7 +357,7 @@
                 this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
                 this.langOptions = document.querySelectorAll('.lang-option');
                 this.currentLangDesktop = document.getElementById('current-lang-desktop');
-                this.navLinks = document.querySelectorAll('.desktop-nav-link, .dropdown-item, .mobile-submenu-content a, .bottom-nav-item');
+                this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, nav[aria-label="Main mobile navigation"] a, a.bottom-nav-item');
             },
 
             bindEvents() {
@@ -345,7 +368,7 @@
                 this.bottomNavMenuBtn.addEventListener('click', () => this.toggleMobileMenu(true));
                 
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.mobilePanel.classList.contains('open')) {
+                    if (e.key === 'Escape' && this.mobilePanel.classList.contains('is-open')) {
                         this.toggleMobileMenu(false);
                     }
                 });
@@ -366,28 +389,35 @@
                     this.header.classList.remove('scrolled');
                 }
             },
-
+            
+            // --- REVISED MOBILE MENU LOGIC ---
             toggleMobileMenu(open) {
+                // Uses a single class 'is-open' on the main panel to control state.
+                // CSS handles the transitions of child elements (backdrop and container).
                 if (open) {
-                    this.mobilePanel.classList.add('open');
+                    this.mobilePanel.classList.add('is-open');
                     document.body.style.overflow = 'hidden';
                 } else {
-                    this.mobilePanel.classList.remove('open');
+                    this.mobilePanel.classList.remove('is-open');
                     document.body.style.overflow = '';
                 }
             },
 
             toggleSubmenu(toggle) {
                 const content = toggle.nextElementSibling;
-                const icon = toggle.querySelector('i');
+                const icon = toggle.querySelector('i.fa-chevron-down');
                 const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
 
                 toggle.setAttribute('aria-expanded', !isExpanded);
-                icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                if(icon) {
+                    icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
 
                 if (!isExpanded) {
+                    // Set max-height to its natural scroll height to expand
                     content.style.maxHeight = content.scrollHeight + 'px';
                 } else {
+                    // Collapse by setting max-height to 0
                     content.style.maxHeight = '0';
                 }
             },
@@ -400,7 +430,6 @@
                 // Here, you would call your actual language switching function
                 // e.g., window.system.setLanguage(lang);
 
-                // Close mobile menu if open
                 this.toggleMobileMenu(false);
             },
 
@@ -408,11 +437,18 @@
                 const currentPath = window.location.pathname;
 
                 this.navLinks.forEach(link => {
-                    const linkPath = link.getAttribute('href');
-                    if (linkPath === currentPath) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
+                    // Use getAttribute for reliable href value
+                    const linkPath = link.getAttribute('href'); 
+                    
+                    // Reset first
+                    link.classList.remove('active');
+
+                    if (linkPath && linkPath !== '/') {
+                        if (currentPath.startsWith(linkPath)) {
+                            link.classList.add('active');
+                        }
+                    } else if (linkPath === '/' && currentPath === '/') {
+                         link.classList.add('active');
                     }
                 });
             }
