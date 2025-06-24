@@ -25,13 +25,14 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Cấu hình Tailwind CSS, bao gồm các màu sắc và font tùy chỉnh của IVS
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: 'class', // Hỗ trợ chế độ tối
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Lexend', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'], // Font chữ mặc định
+                        display: ['Lexend', 'sans-serif'], // Font chữ cho tiêu đề lớn
                     },
                     colors: {
                         'ivs-dark': '#0D1117',
@@ -50,66 +51,93 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Tệp CSS tùy chỉnh bổ sung -->
     <style>
+        /* Các biến CSS tùy chỉnh cho chiều cao header */
+        :root {
+            --header-height: 4rem; /* Chiều cao mặc định của header trên mobile */
+        }
+
+        @media (min-width: 768px) { /* Cho màn hình lớn hơn hoặc bằng md */
+            :root {
+                --header-height: 5rem; /* Chiều cao header lớn hơn trên desktop */
+            }
+        }
+
+        /* Hero section với hình nền và gradient */
         .hero-section {
             background: linear-gradient(to right, rgba(1, 4, 9, 0.8), rgba(1, 4, 9, 0.6)), url('/images/logo/webbanner.png') no-repeat center center/cover;
             border-bottom: 1px solid #30363d;
         }
+        /* Card với hiệu ứng "glassmorphism" */
         .glass-card {
             background: rgba(22, 27, 34, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid #30363d;
             transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-            height: 100%;
+            height: 100%; /* Đảm bảo chiều cao đồng nhất cho các card */
             display: flex;
             flex-direction: column;
+            justify-content: flex-start; /* Căn trên cùng */
+            align-items: center; /* Căn giữa nội dung theo chiều ngang */
+            padding: 2rem; /* Padding mặc định */
         }
         .glass-card:hover {
             background: rgba(30, 36, 44, 0.7);
             border-color: #4b5563;
-            transform: translateY(-8px);
+            transform: translateY(-8px); /* Hiệu ứng nâng lên khi hover */
         }
+        /* Phong cách tiêu đề chính các section */
         .section-title {
             font-family: 'Lexend', sans-serif;
             letter-spacing: -0.025em;
             color: #ffffff;
         }
+        /* Phong cách tiêu đề phụ các section */
         .section-subtitle {
             color: #9ca3af;
             max-width: 60rem;
             margin-left: auto;
             margin-right: auto;
+            text-align: center; /* Đảm bảo căn giữa trên mọi màn hình */
         }
+        /* Nút chính */
         .btn-primary {
             background-color: #3b82f6;
             color: white;
             transition: background-color 0.3s ease, transform 0.2s ease;
             transform: perspective(1px) translateZ(0);
+            @apply py-3 px-8 rounded-lg; /* Áp dụng các lớp Tailwind */
         }
         .btn-primary:hover {
             background-color: #2563eb;
             transform: scale(1.05);
         }
+        /* Nút phụ */
         .btn-secondary {
             background-color: transparent;
             color: #3b82f6;
             border: 2px solid #3b82f6;
             transition: all 0.3s ease;
+            @apply py-3 px-8 rounded-lg; /* Áp dụng các lớp Tailwind */
         }
         .btn-secondary:hover {
             background-color: #3b82f6;
             color: white;
         }
+        /* Icon đặc trưng trong các card */
         .feature-icon {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(1, 4, 9, 0.1));
             border: 1px solid rgba(59, 130, 246, 0.2);
             color: #60a5fa;
+            @apply w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl; /* Áp dụng các lớp Tailwind */
         }
+        /* Nền cho phần EOV */
         .eov-section-bg {
             background: linear-gradient(to right, rgba(1, 4, 9, 0.8), rgba(1, 4, 9, 0.6)), url('/images/banners/eov_section_bg.jpg') no-repeat center center/cover;
         }
+        /* Nền sao động và lớp phủ */
         #star-background, #overlay {
             position: fixed;
             top: 0;
@@ -121,116 +149,128 @@
         main {
             position: relative;
             z-index: 1;
+            padding-top: var(--header-height); /* Đảm bảo nội dung không bị che bởi header cố định */
+        }
+
+        /* Lớp padding cho các section - Tối ưu cho Mobile First */
+        .section-padding {
+            @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8;
+        }
+        /* Lớp container cho nội dung - Tối ưu cho Mobile First */
+        .container-padding {
+            @apply px-4 sm:px-6 lg:px-8;
         }
     </style>
 </head>
-<body class="bg-ivs-dark-blue">
-    <header id="header-placeholder"></header>
+<body class="bg-ivs-dark-blue text-ivs-light-gray antialiased">
+    <!-- Placeholder cho Header, giả định rằng nó được tải động -->
+    <header id="header-placeholder" class="fixed top-0 left-0 w-full z-50 bg-ivs-dark-blue shadow-lg">
+        <!-- Thêm một thanh tải hoặc spinner tại đây nếu cần -->
+        <div class="h-[var(--header-height)] flex items-center justify-center text-ivs-gray">Đang tải Header...</div>
+    </header>
     <div id="star-background"></div>
     <div id="overlay"></div>
     
     <main>
-        <section class="hero-section py-24 md:py-36 text-white text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl font-extrabold font-display leading-tight mb-4" data-aos="fade-down" data-lang-key="index_hero_title">
+        <!-- Phần Hero Section -->
+        <section class="hero-section section-padding text-white text-center">
+            <div class="container mx-auto container-padding">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display leading-tight mb-4" data-aos="fade-down" data-lang-key="index_hero_title">
                     IVS JSC: Hiện Thực Hóa Tầm Nhìn Giáo Dục Toàn Cầu
                 </h1>
-                <p class="text-lg md:text-xl section-subtitle mb-8" data-aos="fade-up" data-aos-delay="200" data-lang-key="index_hero_subtitle">
+                <p class="text-base sm:text-lg md:text-xl section-subtitle mb-8" data-aos="fade-up" data-aos-delay="200" data-lang-key="index_hero_subtitle">
                     IVS – Tư duy chiến lược, Hành động thực tiễn, Giá trị toàn cầu. Khám phá hệ sinh thái giải pháp toàn diện về giáo dục, công nghệ và tư vấn.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
-                    <a href="profile-company-ivsjsc.html" class="btn-primary font-semibold py-3 px-8 rounded-lg w-full sm:w-auto">
+                    <a href="profile-company-ivsjsc.html" class="btn-primary font-semibold w-full sm:w-auto">
                         <i class="fas fa-building mr-2"></i> <span data-lang-key="index_hero_cta_profile">Hồ Sơ Năng Lực</span>
                     </a>
-                    <a href="consulting.html" class="btn-secondary font-semibold py-3 px-8 rounded-lg w-full sm:w-auto">
+                    <a href="consulting.html" class="btn-secondary font-semibold w-full sm:w-auto">
                         <i class="fas fa-concierge-bell mr-2"></i> <span data-lang-key="index_hero_cta_services">Khám Phá Dịch Vụ</span>
                     </a>
                 </div>
             </div>
         </section>
    
-        <section class="py-20 md:py-28 eov-section-bg text-white text-center">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="eov_section_title">
+        <!-- Phần EOV (English Olympics of Vietnam) -->
+        <section class="section-padding eov-section-bg text-white text-center">
+            <div class="container mx-auto container-padding">
+                <h2 class="section-title text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="eov_section_title">
                     English Olympics of Vietnam (EOV) 2025
                 </h2>
-                <p class="section-subtitle text-lg mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="eov_section_subtitle">
+                <p class="section-subtitle text-base sm:text-lg mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="eov_section_subtitle">
                     Sân chơi tầm cỡ quốc tế "Empowering Young Leaders" – Nơi tài năng tiếng Anh và bản lĩnh lãnh đạo trẻ được tỏa sáng.
                 </p>
                 <div data-aos="fade-up" data-aos-delay="200">
-                    <a href="/Blogs/eov2025.html" class="btn-primary font-bold text-lg py-4 px-10 rounded-lg">
+                    <a href="/Blogs/eov2025.html" class="btn-primary font-bold text-lg">
                         <i class="fas fa-trophy mr-2"></i> <span data-lang-key="eov_section_cta">Khám phá Cuộc thi</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 md:py-28">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_pillars_title">Hệ Sinh Thái Toàn Diện IVS</h2>
-                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_pillars_subtitle">
+        <!-- Phần Hệ Sinh Thái Toàn Diện IVS -->
+        <section class="section-padding">
+            <div class="container mx-auto container-padding">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="section-title text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_pillars_title">Hệ Sinh Thái Toàn Diện IVS</h2>
+                    <p class="section-subtitle text-base sm:text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_pillars_subtitle">
                         Chúng tôi kiến tạo giá trị thông qua bốn trụ cột chính, kết hợp chặt chẽ để mang lại giải pháp đột phá và bền vững.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_education">Giáo Dục Tiên Tiến</h3>
-                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_education_desc">Cung cấp chương trình liên kết các cấp, đào tạo kỹ năng và ngoại ngữ theo chuẩn quốc tế.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    <div class="glass-card rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="font-display text-xl sm:text-2xl font-semibold mb-2 text-white" data-lang-key="index_pillar_education">Giáo Dục Tiên Tiến</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_pillar_education_desc">Cung cấp chương trình liên kết các cấp, đào tạo kỹ năng và ngoại ngữ theo chuẩn quốc tế.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_tech">Công Nghệ Đột Phá</h3>
-                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_tech_desc">Phát triển giải pháp EdTech, thiết kế website chuyên nghiệp dưới thương hiệu IVS Celestech.</p>
+                    <div class="glass-card rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="font-display text-xl sm:text-2xl font-semibold mb-2 text-white" data-lang-key="index_pillar_tech">Công Nghệ Đột Phá</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_pillar_tech_desc">Phát triển giải pháp EdTech, thiết kế website chuyên nghiệp dưới thương hiệu IVS Celestech.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
-                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_consulting">Tư Vấn Chuyên Sâu</h3>
-                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_consulting_desc">Hỗ trợ toàn diện về pháp lý, thành lập doanh nghiệp, và chiến lược phát triển giáo dục.</p>
+                    <div class="glass-card rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon"><i class="fas fa-hands-helping"></i></div>
+                        <h3 class="font-display text-xl sm:text-2xl font-semibold mb-2 text-white" data-lang-key="index_pillar_consulting">Tư Vấn Chuyên Sâu</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_pillar_consulting_desc">Hỗ trợ toàn diện về pháp lý, thành lập doanh nghiệp, và chiến lược phát triển giáo dục.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="500">
-                        <div class="feature-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                            <i class="fas fa-globe-americas"></i>
-                        </div>
-                        <h3 class="font-display text-xl font-semibold mb-2 text-white" data-lang-key="index_pillar_global">Hợp Tác Quốc Tế</h3>
-                        <p class="text-ivs-gray text-sm leading-relaxed" data-lang-key="index_pillar_global_desc">Xây dựng cầu nối du học, trao đổi văn hóa và cung cấp nhân sự giáo dục toàn cầu.</p>
+                    <div class="glass-card rounded-2xl text-center" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                        <h3 class="font-display text-xl sm:text-2xl font-semibold mb-2 text-white" data-lang-key="index_pillar_global">Hợp Tác Quốc Tế</h3>
+                        <p class="text-ivs-gray text-sm leading-relaxed flex-grow" data-lang-key="index_pillar_global_desc">Xây dựng cầu nối du học, trao đổi văn hóa và cung cấp nhân sự giáo dục toàn cầu.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section class="py-20 md:py-28 bg-ivs-card-dark border-y border-ivs-border-dark">
-             <div class="container mx-auto px-6">
-                 <div class="text-center mb-16">
-                    <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_news_title">Tin Tức & Sự Kiện Mới Nhất</h2>
-                    <p class="section-subtitle text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_news_subtitle">
+        <!-- Phần Tin Tức & Sự Kiện Mới Nhất -->
+        <section class="section-padding bg-ivs-card-dark border-y border-ivs-border-dark">
+             <div class="container mx-auto container-padding">
+                 <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="section-title text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_news_title">Tin Tức & Sự Kiện Mới Nhất</h2>
+                    <p class="section-subtitle text-base sm:text-lg" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_news_subtitle">
                         Cập nhật những hoạt động, dự án và thành tựu nổi bật từ hệ sinh thái IVS JSC.
                     </p>
                 </div>
-                <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-                <div class="text-center mt-12" data-aos="fade-up">
-                    <a href="news-archive.html" class="btn-secondary font-semibold py-3 px-8 rounded-lg">
+                <!-- Vùng chứa tin tức, được tải động bằng JS -->
+                <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+                <div class="text-center mt-10 sm:mt-12" data-aos="fade-up">
+                    <a href="news-archive.html" class="btn-secondary font-semibold">
                         <span data-lang-key="index_news_cta">Xem Toàn Bộ Tin Tức</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 md:py-28 bg-ivs-dark-blue border-t border-ivs-border-dark">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_cta_title">Bắt Đầu Hành Trình Cùng IVS</h2>
-                <p class="section-subtitle text-lg mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_cta_subtitle">
+        <!-- Phần Kêu gọi hành động cuối cùng -->
+        <section class="section-padding bg-ivs-dark-blue border-t border-ivs-border-dark">
+            <div class="container mx-auto container-padding text-center">
+                <h2 class="section-title text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-lang-key="index_cta_title">Bắt Đầu Hành Trình Cùng IVS</h2>
+                <p class="section-subtitle text-base sm:text-lg mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="index_cta_subtitle">
                     Dù bạn là học viên, giáo viên, đối tác hay nhà đầu tư, IVS luôn có những cơ hội và giải pháp phù hợp dành cho bạn. Hãy kết nối để cùng nhau kiến tạo tương lai.
                 </p>
                 <div data-aos="fade-up" data-aos-delay="200">
-                    <a href="contact.html" class="btn-primary font-bold text-lg py-4 px-10 rounded-lg">
+                    <a href="contact.html" class="btn-primary font-bold text-lg">
                         <i class="fas fa-paper-plane mr-2"></i> <span data-lang-key="index_cta_button">Liên Hệ Ngay</span>
                     </a>
                 </div>
@@ -238,7 +278,10 @@
         </section>
     </main>
 
-    <footer id="footer-placeholder"></footer>
+    <!-- Placeholder cho Footer và FAB Container, giả định rằng chúng được tải động -->
+    <footer id="footer-placeholder" class="w-full bg-ivs-dark text-ivs-gray py-8 text-center">
+        <div class="h-16 flex items-center justify-center">Đang tải Footer...</div>
+    </footer>
     <div id="fab-container-placeholder"></div>
    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -247,16 +290,19 @@
     <script src="/js/posts-loader.js" defer></script>
 
     <script>
+        // Callback sau khi các thành phần trang được tải (header, footer, v.v.)
         window.onPageComponentsLoadedCallback = function() {
+            // Khởi tạo AOS (Animate On Scroll)
             AOS.init({
-                duration: 700,
-                once: true,
-                offset: 50,
-                easing: 'ease-out-cubic',
+                duration: 700, // Thời gian animation
+                once: true,    // Chỉ chạy animation một lần khi cuộn qua
+                offset: 50,    // Offset để kích hoạt animation sớm hơn
+                easing: 'ease-out-cubic', // Kiểu animation
             });
             
+            // Tải các bài viết nếu hàm loadPosts tồn tại
             if (typeof window.loadPosts === 'function') {
-                window.loadPosts('news-container', 3);
+                window.loadPosts('news-container', 3); // Tải 3 bài viết vào 'news-container'
             }
         };
     </script>
