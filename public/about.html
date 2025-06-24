@@ -1,292 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0EA5E9">
-    
-    <title>About KhaDock.com - Florida's Premier Dock Experts | Our Story</title>
-    <meta name="description" content="Learn about KhaDock's commitment to excellence in dock construction and meet our director Mr. Kha Do. Discover why we're Florida's trusted dock experts.">
-    <meta property="og:title" content="About KhaDock - Our Story & Florida's Dock Experts">
-    <meta property="og:description" content="KhaDock: Led by the dedicated Mr. Kha Do, we are committed to delivering innovative and high-quality dock solutions across Florida.">
-    <meta property="og:image" content="images/logo/logoicon_512.png">
-    <meta property="og:url" content="https://KhaDock.com/about.html">
+    <title data-lang-key="about_page_title">Về IVS JSC - Tầm Nhìn & Sứ Mệnh</title>
+    <meta name="description" content="Khám phá câu chuyện, tầm nhìn, sứ mệnh, triết lý hoạt động và đội ngũ lãnh đạo của IVS JSC - Tổ chức tiên phong kiến tạo hệ sinh thái giáo dục toàn cầu." data-lang-key="about_meta_description">
+    <meta name="keywords" content="IVS JSC, về chúng tôi, tầm nhìn, sứ mệnh, integrate vision synergy, Nguyễn Minh Triết, giáo dục, EdTech, hồ sơ năng lực" data-lang-key="about_meta_keywords">
+    <meta property="og:title" content="Về IVS JSC - Tầm Nhìn & Sứ Mệnh" data-lang-key="about_og_title">
+    <meta property="og:description" content="Tìm hiểu sâu hơn về IVS JSC: triết lý Integrate-Vision-Synergy, hành trình phát triển, đội ngũ chuyên gia và cam kết đối với một nền giáo dục toàn cầu." data-lang-key="about_og_description">
+    <meta property="og:image" content="https://ivsacademy.edu.vn/images/banners/ivs_about_og.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/about.html">
     <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
 
-    <link rel="preload" href="images/logo/logo.jpg" as="image">
-    <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" crossorigin="anonymous">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/logo/logoicon_512.png">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
     
-    <link rel="stylesheet" href="css/styles.css">    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: #f1f5f9;
-        }
-        .about-banner-bg {
-             background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('images/logo/logo.jpg');
-             background-size: cover;
-             background-position: center;
-        }
-        .text-shadow {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        .profile-image-container {
-            width: 220px;
-            height: 220px;
-            overflow: hidden;
-        }
-        .profile-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        @media (min-width: 768px) {
-            .profile-image-container {
-                width: 280px;
-                height: 280px;
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                    }
+                }
             }
         }
-        .value-card {
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    </script>
+    <style>
+        .font-display { font-family: 'Lexend', sans-serif; }
+        .hero-section {
+            background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
         }
-        .value-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.06);
+        .timeline::before {
+            content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px;
+            background-image: linear-gradient(to bottom, #58a6ff, #30363d 70%);
         }
-        .value-card:hover .value-icon {
-            transform: scale(1.1) rotate(-5deg);
-            color: #0ea5e9;
+        .timeline-dot {
+            position: absolute; left: 0; top: 0; transform: translateX(-50%);
+            width: 1rem; height: 1rem; border-radius: 9999px;
         }
-        .value-icon {
-            transition: transform 0.3s ease-out, color 0.3s ease-out;
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            width: 100%;
         }
-        .feature-item:hover .feature-icon-bg {
-             background-color: #0ea5e9;
-             color: white;
-        }
-        .feature-icon-bg {
-            transition: background-color 0.3s ease, color 0.3s ease;
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .feature-icon {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(13, 17, 23, 0.1));
+            border: 1px solid rgba(88, 166, 255, 0.2);
         }
     </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased">
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
+    <header id="header-placeholder"></header>
 
-    <div id="header-placeholder"></div>
-
-    <main class="pt-20">
-        <section class="about-banner-bg text-white py-24 md:py-36" data-aos="fade-in">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-shadow leading-tight" data-aos="fade-down" data-aos-delay="200">
-                    About KhaDock.com
+    <main>
+        <section class="hero-section pt-28 pb-16 md:pt-40 md:pb-24 border-b border-ivs-border">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4" data-aos="fade-down" data-lang-key="about_hero_title">
+                    Về IVS JSC: Kiến Tạo Giá Trị Toàn Cầu
                 </h1>
-                <p class="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-slate-100 text-shadow font-medium" data-aos="fade-up" data-aos-delay="400">
-                    Building trust and outstanding dock structures, shaping Florida's coastal experience with passion and precision.
+                <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200" data-lang-key="about_hero_subtitle">
+                    Chúng tôi không chỉ cung cấp dịch vụ. Chúng tôi kiến tạo hệ sinh thái, tích hợp tầm nhìn và hợp lực sức mạnh để định hình tương lai giáo dục Việt Nam vươn tầm thế giới.
                 </p>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <div data-aos="fade-right" data-aos-delay="100" class="md:pr-8">
-                        <img src="images/albums/dock14.jpg" alt="KhaDock - Team planning a dock project" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-[4/3]" loading="lazy" width="800" height="600">
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="section-title text-3xl md:text-4xl font-semibold text-white mb-4" data-lang-key="about_vision_title">Tầm Nhìn & Sứ Mệnh</h2>
+                        <p class="text-ivs-text-secondary mb-8 leading-relaxed" data-lang-key="about_vision_desc">
+                            Trở thành nhà cung cấp giải pháp giáo dục hàng đầu Việt Nam và là thương hiệu được công nhận trên toàn cầu, tiên phong hiện thực hóa một tầm nhìn giáo dục đẳng cấp quốc tế. Sứ mệnh của chúng tôi là cung cấp các giải pháp giáo dục-đào tạo sáng tạo, chất lượng cao, kết hợp hài hòa giữa bản sắc dân tộc và tiêu chuẩn quốc tế, giúp mỗi cá nhân và cộng đồng phát huy tối đa tiềm năng.
+                        </p>
+                        <a href="profile-company-ivsjsc.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            <span data-lang-key="about_cta_view_profile">Xem Hồ sơ năng lực chi tiết</span>
+                        </a>
                     </div>
-                    <div data-aos="fade-left" data-aos-delay="200">
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Our Story: Crafting Coastal Dreams</h2>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            At KhaDock.com, our journey began with a singular passion: to craft exceptional boat dock solutions that elevate Florida's unique coastal lifestyle. We believe a dock is more than a structure; it's the heart of your boat-dock experience, a gateway to relaxation, recreation, and lasting memories.
-                        </p>
-                        <p class="text-slate-600 leading-relaxed mb-4">
-                            Our seasoned team brings years of dedicated industry experience to every project. At KhaDock, we are defined by our meticulous attention to detail, unwavering commitment to client satisfaction, and deep expertise in all facets of marine construction.
-                        </p>
-                        <p class="text-slate-600 leading-relaxed">
-                            From innovative design and robust new builds to transformative remodels and diligent maintenance. Your vision is our blueprint.
-                        </p>
+                    <div class="video-wrapper bg-black rounded-xl shadow-2xl border border-ivs-border" data-aos="fade-left">
+                        <iframe src="https://www.youtube.com/embed/WSFdBq4vprY?si=X1lIscHb06k3eJK_" title="YouTube video player: IVS JSC Company Profile" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-sky-700 text-white" data-aos="fade-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                    <div class="md:w-2/5 lg:w-1/3 flex justify-center md:justify-start" data-aos="fade-right" data-aos-delay="100">
-                        <div class="profile-image-container rounded-full shadow-2xl border-4 border-sky-400 p-1 bg-white">
-                             <img src="images/logo/doduykha.png" alt="Mr. Kha Do - Director of KhaDock" class="rounded-full" loading="lazy" width="280" height="280">
-                        </div>
-                    </div>
-                    <div class="md:w-3/5 lg:w-2/3 text-center md:text-left" data-aos="fade-left" data-aos-delay="200">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-3">Meet Our Dedicated Leader</h2>
-                        <p class="text-2xl md:text-3xl font-semibold text-sky-300 mb-2">Mr. Kha Do</p>
-                        <p class="text-lg font-medium text-sky-100 mb-6 tracking-wider">KhaDock.com</p>
-
-                        <p class="text-lg leading-relaxed mb-4 text-slate-100">
-                            Behind every successful KhaDock project is the vision and tireless dedication of Director Mr. Kha Do. With a fervent passion for the marine construction industry and a desire to deliver outstanding structures.
-                        </p>
-                        <p class="text-lg leading-relaxed mb-4 text-slate-100">
-                            He is not only a leader but also a very hard worker, always encouraging the team to explore <strong class="font-semibold text-sky-200 hover:text-white transition-colors">breakthrough ideas</strong> and apply the latest technical solutions. Mr. Kha Do's <strong class="font-semibold text-sky-200 hover:text-white transition-colors">dedication and passion</strong> are evident in every detail of each project, from conception and design to completion and handover.
-                        </p>
-                        <blockquote class="text-lg italic leading-relaxed text-sky-200 border-l-4 border-sky-400 pl-6 py-2 my-6">
-                            "At KhaDock, we don't just build docks; we create vibrant boat-dock spaces where every moment becomes precious."
-                        </blockquote>
-                        <p class="text-md text-slate-200">- Mr. Kha Do</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-slate-50" data-aos="fade-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6">
                 <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Philosophy</h2>
-                    <p class="text-lg text-slate-600 max-w-2xl mx-auto">The foundation for all of KhaDock's success and sustainable growth.</p>
+                    <h2 class="section-title text-3xl md:text-4xl font-semibold text-white" data-aos="fade-up" data-lang-key="about_philosophy_title">Triết Lý Cốt Lõi: I-V-S</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="value-card bg-white p-8 rounded-xl shadow-xl flex flex-col items-center text-center" data-aos="zoom-in-up" data-aos-delay="100">
-                        <div class="value-icon text-slate-400 mb-6">
-                            <i class="fas fa-bullseye fa-4x"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-slate-800 mb-3">Our Mission</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            To provide safe, durable, aesthetic, and convenient dock solutions, from new designs to complete remodels, enhancing the value and boat-dock living experience for our clients in Florida.
-                        </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-2xl text-ivs-blue"><i class="fas fa-project-diagram"></i></div>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2" data-lang-key="about_philosophy_integrate">Integrate (Tích hợp)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="about_philosophy_integrate_desc">Kết nối chặt chẽ công nghệ, chương trình giáo dục và nhu cầu thực tiễn để tạo ra một hệ thống vận hành đồng bộ, hiệu quả và mang lại giá trị vượt trội.</p>
                     </div>
-                    <div class="value-card bg-white p-8 rounded-xl shadow-xl flex flex-col items-center text-center" data-aos="zoom-in-up" data-aos-delay="200">
-                        <div class="value-icon text-slate-400 mb-6">
-                            <i class="fas fa-eye fa-4x"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-slate-800 mb-3">Our Vision</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            To be the leading dock design, construction, and remodeling company in Florida, known for superior quality, professional service, and continuous innovation.
-                        </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-2xl text-ivs-blue"><i class="fas fa-eye"></i></div>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2" data-lang-key="about_philosophy_vision">Vision (Tầm nhìn)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="about_philosophy_vision_desc">Tiên phong định hình tương lai học tập, ứng dụng công nghệ để mở ra cơ hội phát triển toàn diện, giúp học viên sẵn sàng cho các thách thức của thế kỷ 21.</p>
                     </div>
-                    <div class="value-card bg-white p-8 rounded-xl shadow-xl flex flex-col items-center text-center" data-aos="zoom-in-up" data-aos-delay="300">
-                        <div class="value-icon text-slate-400 mb-6">
-                            <i class="fas fa-heart-pulse fa-4x"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-slate-800 mb-3">Core Values</h3>
-                        <ul class="text-slate-600 text-sm space-y-2 list-none text-left self-start w-full pl-4 sm:pl-6">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Superior Quality</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Absolute Safety</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Client Reliability</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Utmost Professionalism</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Dedicated Service</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-sky-500 fa-sm mr-3"></i>Creative Innovation</li>
-                        </ul>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-2xl text-ivs-blue"><i class="fas fa-hands-helping"></i></div>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2" data-lang-key="about_philosophy_synergy">Synergy (Hợp lực)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="about_philosophy_synergy_desc">Tạo dựng sức mạnh cộng hưởng từ mạng lưới đối tác, chuyên gia và cộng đồng để thúc đẩy sự phát triển bền vững và cùng nhau vươn xa.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-white" data-aos="fade-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-16 md:py-24">
+             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Why We Specialize in Florida</h2>
-                    <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                        KhaDock doesn't just build or remodel docks; we build trust and peace of mind tailored to Florida's unique environment.
+                    <h2 class="section-title text-3xl md:text-4xl font-semibold" data-aos="fade-up" data-lang-key="about_values_title">Giá Trị Cốt Lõi</h2>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <div class="glass-card p-6 text-center hover:border-ivs-blue" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-ivs-blue"><i class="fas fa-medal"></i></div>
+                        <h4 class="text-lg font-semibold text-white" data-lang-key="about_value_quality">Chất Lượng</h4>
+                    </div>
+                     <div class="glass-card p-6 text-center hover:border-ivs-blue" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-ivs-blue"><i class="fas fa-heart"></i></div>
+                        <h4 class="text-lg font-semibold text-white" data-lang-key="about_value_dedication">Tận Tâm</h4>
+                    </div>
+                     <div class="glass-card p-6 text-center hover:border-ivs-blue" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-ivs-blue"><i class="fas fa-lightbulb"></i></div>
+                        <h4 class="text-lg font-semibold text-white" data-lang-key="about_value_creativity">Sáng Tạo</h4>
+                    </div>
+                     <div class="glass-card p-6 text-center hover:border-ivs-blue" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-ivs-blue"><i class="fas fa-balance-scale"></i></div>
+                        <h4 class="text-lg font-semibold text-white" data-lang-key="about_value_equality">Bình Đẳng</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-semibold" data-aos="fade-up" data-lang-key="about_journey_title">Hành Trình Phát Triển</h2>
+                </div>
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="timeline">
+                        <div class="relative pl-8 pb-8" data-aos="fade-left">
+                            <div class="timeline-dot bg-ivs-bg border-2 border-ivs-blue"></div>
+                            <p class="text-sm text-ivs-blue font-semibold" data-lang-key="about_journey_phase1_date">Giai đoạn 1: 2024 - 2026</p>
+                            <h4 class="font-semibold text-white mt-1" data-lang-key="about_journey_phase1_title">Nền Tảng Vững Chắc</h4>
+                            <p class="text-ivs-text-secondary text-sm mt-1" data-lang-key="about_journey_phase1_desc">Hoàn thiện hệ sinh thái dịch vụ cốt lõi, mở rộng IVS Kindergarten, và khởi động chương trình IVS Primary School, tập trung vào song ngữ và STEAM.</p>
+                        </div>
+                        <div class="relative pl-8 pb-8" data-aos="fade-left">
+                            <div class="timeline-dot bg-ivs-bg border-2 border-ivs-blue"></div>
+                            <p class="text-sm text-ivs-blue font-semibold" data-lang-key="about_journey_phase2_date">Giai đoạn 2: 2027 - 2030</p>
+                            <h4 class="font-semibold text-white mt-1" data-lang-key="about_journey_phase2_title">Tăng Tốc & Mở Rộng</h4>
+                            <p class="text-ivs-text-secondary text-sm mt-1" data-lang-key="about_journey_phase2_desc">Xây dựng IVS Secondary & High School. Tăng cường hợp tác quốc tế, triển khai chương trình trao đổi và định hướng nghề nghiệp chuyên sâu.</p>
+                        </div>
+                        <div class="relative pl-8" data-aos="fade-left">
+                            <div class="timeline-dot bg-ivs-bg border-2 border-ivs-blue"></div>
+                            <p class="text-sm text-ivs-blue font-semibold" data-lang-key="about_journey_phase3_date">Giai đoạn 3: 2031 - 2034</p>
+                            <h4 class="font-semibold text-white mt-1" data-lang-key="about_journey_phase3_title">Dẫn Đầu Toàn Cầu</h4>
+                            <p class="text-ivs-text-secondary text-sm mt-1" data-lang-key="about_journey_phase3_desc">IVS Global School trở thành hệ thống giáo dục liên cấp hoàn chỉnh, được công nhận quốc tế, mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-semibold" data-aos="fade-up" data-lang-key="about_team_title">Đội Ngũ Lãnh Đạo</h2>
+                    <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="100" data-lang-key="about_team_subtitle">
+                        Thành công của IVS được dẫn dắt bởi đội ngũ chuyên gia tận tâm, giàu kinh nghiệm và chung một tầm nhìn chiến lược.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <div class="order-last md:order-first md:pr-8" data-aos="fade-right" data-aos-delay="200">
-                        <ul class="space-y-6">
-                            <li class="feature-item flex items-start p-6 bg-slate-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                                <div class="feature-icon-bg flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 text-xl shadow">
-                                    <i class="fas fa-water"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-semibold text-slate-700 mb-1">Local Environmental Expertise</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">
-                                        We possess extensive knowledge of Florida's specific hydrological conditions, climate patterns, and marine ecosystem, crucial for optimizing design, materials, and construction methods.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="feature-item flex items-start p-6 bg-slate-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                                <div class="feature-icon-bg flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 text-xl shadow">
-                                    <i class="fas fa-file-contract"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-semibold text-slate-700 mb-1">Strict Regulatory Adherence</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">
-                                        Our team is well-versed in and strictly adheres to all Florida state and local county building codes, permitting processes, and environmental regulations, ensuring your project is fully compliant.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="feature-item flex items-start p-6 bg-slate-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                                <div class="feature-icon-bg flex-shrink-0 w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mr-5 text-xl shadow">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-semibold text-slate-700 mb-1">Hurricane-Resistant Solutions</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">
-                                        We employ advanced engineering techniques and robust materials specifically chosen to enhance your dock's resilience against Florida's challenging weather, including frequent hurricanes.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center leader-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4 transition-all duration-300 border-ivs-border" src="/images/team/nguyen-minh-triet.png" alt="[Ảnh chân dung ông Nguyễn Minh Triết]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=NMT';">
+                        <h4 class="font-semibold text-white" data-lang-key="about_team_member1_name">Ông Nguyễn Minh Triết</h4>
+                        <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member1_title">CEO & Chủ tịch HĐQT</p>
                     </div>
-                     <div data-aos="fade-left" data-aos-delay="100" class="md:pl-8">
-                        <img src="images/pages/waterways.png" alt="Florida Coastline and Waterways - KhaDock Expertise" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-square md:aspect-[4/3]" loading="lazy" width="600" height="600">
+                    <div class="text-center leader-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4 transition-all duration-300 border-ivs-border" src="/images/team/rachid-belferar.png" alt="[Ảnh chân dung ông Rachid Belferar]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=RB';">
+                        <h4 class="font-semibold text-white" data-lang-key="about_team_member2_name">Ông Rachid Belferar</h4>
+                        <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member2_title">Giám đốc Kỹ thuật, ParagonCoder</p>
+                    </div>
+                    <div class="text-center leader-card transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4 transition-all duration-300 border-ivs-border" src="/images/team/salma-mahzoum.png" alt="[Ảnh chân dung bà Salma Mahzoum]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=SM';">
+                        <h4 class="font-semibold text-white" data-lang-key="about_team_member3_name">Bà Salma Mahzoum</h4>
+                        <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member3_title">Giám đốc R&D</p>
+                    </div>
+                    <div class="text-center leader-card transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4 transition-all duration-300 border-ivs-border" src="/images/team/kimball-allen-thomson.png" alt="[Ảnh chân dung ông Kimball Allen Thomson]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=KAT';">
+                        <h4 class="font-semibold text-white" data-lang-key="about_team_member4_name">Ông Kimball Allen Thomson</h4>
+                        <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member4_title">Đại diện IIVSA tại Hoa Kỳ</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-24 bg-sky-600 text-white" data-aos="zoom-in-up">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's Build Your Perfect boat-dock Space With KhaDock</h2>
-                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-                    Contact KhaDock today for a free consultation and let us help you realize your ideal dock project in Florida.
-                </p>
-                <a href="contact.html" class="bg-white text-sky-600 font-bold py-3.5 px-10 rounded-lg text-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-slate-100">
-                    Get in Touch
-                </a>
+        <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6">
+                <div class="glass-card p-8 md:p-12 rounded-2xl text-center">
+                    <h2 class="section-title text-2xl md:text-3xl font-semibold text-white mb-4" data-aos="fade-up" data-lang-key="about_cta_final_title">Sẵn Sàng Đồng Hành Cùng IVS?</h2>
+                    <p class="text-ivs-text-secondary max-w-2xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="100" data-lang-key="about_cta_final_desc">
+                        Dù bạn là một tổ chức giáo dục, một doanh nghiệp đang tìm kiếm giải pháp, hay một cá nhân đầy nhiệt huyết, hãy kết nối với chúng tôi để cùng nhau kiến tạo những giá trị bền vững.
+                    </p>
+                    <a href="contact.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker font-semibold text-white py-3 px-8 rounded-lg transition-colors" data-aos="fade-up" data-aos-delay="200" data-lang-key="about_cta_final_button">
+                        Liên Hệ Hợp Tác
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <button id="scrollToTopBtn" title="Go to top"
-            class="hidden fixed bottom-8 right-8 bg-sky-500 hover:bg-sky-600 text-white
-                   w-14 h-14 rounded-full shadow-xl items-center justify-center
-                   focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75
-                   transition-all duration-300 z-40 text-xl">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-   
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/loadComponents.js" type="module" defer></script>
-    <script src="js/app.js" type="module" defer></script>
+    <script src="/js/language.js"></script>
+    <script src="/js/loadComponents.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof window.loadAppComponents === 'function') {
-                window.loadAppComponents();
-            } else {
-                console.error('loadAppComponents function not found on window object.');
-            }
-        });
-
-        AOS.init({
-            offset: 120,
-            duration: 900,
-            easing: 'ease-out-quad',
-            once: true,
-            mirror: false,
-            anchorPlacement: 'top-bottom',
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-quad',
+            });
         });
     </script>
 </body>
