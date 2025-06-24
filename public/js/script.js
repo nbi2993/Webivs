@@ -160,3 +160,247 @@ function initializeFooter() {
     }
 }
 window.initializeFooter = initializeFooter;
+/**
+ * @fileoverview IVS Header Logic - Controls all header, dropdown, and menu interactions.
+ * This script should be loaded after the main components (header, footer) are in the DOM.
+ * @version 2.0
+ * @author IVS-Technical-Team
+ */
+
+// Encapsulate all header logic in a single object to avoid global scope pollution.
+const IVSHeader = {
+    // State properties
+    isMobileMenuOpen: false,
+    activeDesktopDropdown: null,
+
+    /**
+     * Initializes all event listeners and dynamic states for the header.
+     * This function should be called once the header component is loaded.
+     */
+    init() {
+        console.log('[IVSHeader] Initializing...');
+        this.addEventListeners();
+        this.updateActiveLinks();
+        this.updateLanguageDisplay();
+        this.handleHeaderScroll();
+    },
+
+    /**
+     * Centralized function for adding all necessary event listeners.
+     */
+    addEventListeners() {
+        // --- Mobile Menu Listeners ---
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuScrim = document.getElementById('mobile-menu-scrim');
+        const bottomNavMenuButton = document.getElementById('bottom-nav-menu-button');
+
+        mobileMenuToggle?.addEventListener('click', () => this.toggleMobileMenu());
+        mobileMenuClose?.addEventListener('click', () => this.toggleMobileMenu(false));
+        mobileMenuScrim?.addEventListener('click', () => this.toggleMobileMenu(false));
+        bottomNavMenuButton?.addEventListener('click', () => this.toggleMobileMenu());
+
+        // --- Mobile Submenu Listeners ---
+        document.querySelectorAll('.mobile-submenu-toggle').forEach(button => {
+            button.addEventListener('click', (e) => this.toggleMobileSubmenu(e.currentTarget));
+        });
+
+        // --- Desktop Dropdown Listeners ---
+        document.querySelectorAll('.nav-item').forEach(item => {
+            const button = item.querySelector('button');
+            if (button) {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleDesktopDropdown(item);
+                });
+            }
+        });
+        
+        // --- Language Switcher Listeners ---
+        document.querySelectorAll('.lang-option, .lang-option-mobile').forEach(button => {
+            button.addEventListener('click', (e) => this.setLanguage(e.currentTarget.dataset.lang));
+        });
+
+        // --- Global Listeners ---
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (this.activeDesktopDropdown && !this.activeDesktopDropdown.contains(e.target)) {
+                this.toggleDesktopDropdown(this.activeDesktopDropdown, false);
+            }
+        });
+        
+        // Close menus with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (this.isMobileMenuOpen) this.toggleMobileMenu(false);
+                if (this.activeDesktopDropdown) this.toggleDesktopDropdown(this.activeDesktopDropdown, false);
+            }
+        });
+    },
+
+    /**
+     * Toggles the mobile menu open or closed.
+     * @param {boolean} [forceState] - Force a specific state (true for open, false for close).
+     */
+    toggleMobileMenu(forceState = !this.isMobileMenuOpen) {
+        this.isMobileMenuOpen = forceState;
+        const panel = document.getElementById('mobile-menu-panel');
+        const scrim = document.getElementById('mobile-menu-scrim');
+        const toggleButton = document.getElementById('mobile-menu-toggle');
+
+        if (this.isMobileMenuOpen) {
+            scrim.classList.remove('hidden');
+            panel.classList.remove('-right-full');
+            panel.classList.add('right-0');
+            document.body.style.overflow = 'hidden';
+            toggleButton.setAttribute('aria-expanded', 'true');
+        } else {
+            scrim.classList.add('hidden');
+            panel.classList.remove('right-0');
+            panel.classList.add('-right-full');
+            document.body.style.overflow = '';
+            toggleButton.setAttribute('aria-expanded', 'false');
+        }
+    },
+
+    /**
+     * Toggles a mobile submenu.
+     * @param {HTMLElement} toggleButton - The button that was clicked.
+     */
+    toggleMobileSubmenu(toggleButton) {
+        const targetId = toggleButton.dataset.target;
+        const content = document.getElementById(targetId);
+        const icon = toggleButton.querySelector('.mobile-submenu-icon');
+        const wasActive = content.classList.contains('active');
+
+        // Close all other submenus first
+        document.querySelectorAll('.mobile-submenu-content.active').forEach(activeContent => {
+            if (activeContent !== content) {
+                activeContent.classList.remove('active');
+                activeContent.style.maxHeight = null;
+                const otherIcon = activeContent.previousElementSibling.querySelector('.mobile-submenu-icon');
+                if(otherIcon) otherIcon.classList.remove('rotate-180');
+            }
+        });
+        
+        // Toggle the clicked one
+        if (wasActive) {
+            content.classList.remove('active');
+            content.style.maxHeight = null;
+            if(icon) icon.classList.remove('rotate-180');
+        } else {
+            content.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            if(icon) icon.classList.add('rotate-180');
+        }
+    },
+
+    /**
+     * Toggles a desktop dropdown menu.
+     * @param {HTMLElement} navItem - The parent .nav-item element.
+     * @param {boolean} [forceState] - Force a specific state.
+     */
+    toggleDesktopDropdown(navItem, forceState) {
+        const isCurrentlyActive = navItem.classList.contains('dropdown-active');
+        const shouldBeActive = forceState !== undefined ? forceState : !isCurrentlyActive;
+        const button = navItem.querySelector('button');
+
+        // Close any other active dropdown
+        if (this.activeDesktopDropdown && this.activeDesktopDropdown !== navItem) {
+            this.activeDesktopDropdown.classList.remove('dropdown-active');
+             const otherButton = this.activeDesktopDropdown.querySelector('button');
+             if(otherButton) otherButton.setAttribute('aria-expanded', 'false');
+        }
+
+        // Toggle the target dropdown
+        if (shouldBeActive) {
+            navItem.classList.add('dropdown-active');
+            if(button) button.setAttribute('aria-expanded', 'true');
+            this.activeDesktopDropdown = navItem;
+        } else {
+            navItem.classList.remove('dropdown-active');
+            if(button) button.setAttribute('aria-expanded', 'false');
+            this.activeDesktopDropdown = null;
+        }
+    },
+
+    /**
+     * Sets the language by calling the global language system.
+     * @param {string} lang - The language code ('vi' or 'en').
+     */
+    setLanguage(lang) {
+        // This is the functional hook. It calls the method from language.js
+        if (window.system && typeof window.system.setLanguage === 'function') {
+            window.system.setLanguage(lang);
+        } else {
+            console.warn('[IVSHeader] Language system (window.system.setLanguage) not found.');
+        }
+
+        this.updateLanguageDisplay(lang);
+        
+        // Close any open menus
+        if (this.activeDesktopDropdown) this.toggleDesktopDropdown(this.activeDesktopDropdown, false);
+        if (this.isMobileMenuOpen) this.toggleMobileMenu(false);
+    },
+
+    /**
+     * Updates the language display in the header.
+     * @param {string} [currentLang] - The current language code.
+     */
+    updateLanguageDisplay(currentLang) {
+        const lang = currentLang || (window.system ? window.system.getCurrentLanguage() : 'vi');
+        const desktopLangDisplay = document.getElementById('current-lang-desktop');
+        if (desktopLangDisplay) {
+            desktopLangDisplay.textContent = lang.toUpperCase();
+        }
+    },
+
+    /**
+     * Finds and applies 'active' class to links matching the current page URL.
+     */
+    updateActiveLinks() {
+        const currentPath = window.location.pathname;
+        const allLinks = document.querySelectorAll('a.nav-link, a.mobile-nav-link, a.mobile-nav-link-sub, a.bottom-nav-item');
+
+        allLinks.forEach(link => {
+            // Perfect match or if it's a parent path (e.g., /solutions for /solutions/tech)
+            if (link.getAttribute('href') === currentPath || (link.getAttribute('href') !== '/' && currentPath.startsWith(link.getAttribute('href')))) {
+                link.classList.add('active');
+                
+                // If it's a submenu link, also open the parent submenu
+                const parentSubmenuContent = link.closest('.mobile-submenu-content');
+                if(parentSubmenuContent) {
+                    const toggleButton = parentSubmenuContent.previousElementSibling;
+                    this.toggleMobileSubmenu(toggleButton);
+                }
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    },
+
+    /**
+     * Adds a subtle shadow to the header when the user scrolls down.
+     */
+    handleHeaderScroll() {
+        const header = document.getElementById('main-header');
+        if (!header) return;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+};
+
+// --- Initialization ---
+// The component loader should ensure this runs after the header is in the DOM.
+// We can use the callback from loadComponents.js or simply defer this script.
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => IVSHeader.init());
+} else {
+    IVSHeader.init();
+}

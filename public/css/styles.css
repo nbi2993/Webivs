@@ -433,3 +433,85 @@ main {
     }
     
 }
+/* === IVS HEADER STYLES START === */
+:root {
+    --header-target-height-mobile: 64px;
+    --header-target-height-desktop: 80px;
+    --bottom-nav-height: 60px;
+    --ivs-neutral-900: #111827;
+    --ivs-neutral-800: #1f2937;
+    --ivs-neutral-700: #374151;
+    --ivs-neutral-400: #9ca3af;
+    --ivs-neutral-300: #d1d5db;
+    --ivs-accent: #F97316;
+    --ivs-link-active-bg: rgba(249, 115, 22, 0.15);
+}
+
+#main-header {
+    height: var(--header-target-height-mobile);
+    background-color: var(--ivs-neutral-900);
+    transition: box-shadow 0.3s ease;
+}
+#main-header.scrolled {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background-color: rgba(17, 24, 39, 0.85);
+    backdrop-filter: blur(10px);
+}
+@media (min-width: 1024px) {
+    #main-header {
+        height: var(--header-target-height-desktop);
+    }
+}
+body { padding-bottom: var(--bottom-nav-height); }
+@media (min-width: 1024px) {
+    body { padding-bottom: 0; }
+}
+
+/* Desktop Nav */
+.nav-link, .nav-link-dropdown {
+    display: inline-flex; align-items: center; padding: 6px 12px; font-size: 0.95rem; font-weight: 500;
+    color: var(--ivs-neutral-300); transition: color 0.2s, background-color 0.2s; border-radius: 0.375rem;
+}
+.nav-link:hover, .nav-link-dropdown:hover { color: white; background-color: var(--ivs-neutral-700); }
+.nav-link.active { color: var(--ivs-accent); font-weight: 600; background-color: var(--ivs-link-active-bg); }
+.contact-button { background-color: var(--ivs-accent); color: white !important; }
+.contact-button:hover { background-color: #ea580c; }
+
+.nav-item .nav-dropdown {
+    position: absolute; top: 100%; left: 0; background-color: var(--ivs-neutral-800);
+    border: 1px solid var(--ivs-neutral-700); border-radius: 0.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.25);
+    opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.2s ease;
+    z-index: 50; min-width: 220px; padding: 8px;
+}
+.nav-item.dropdown-active .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(5px); }
+.nav-dropdown-item {
+    display: block; width: 100%; text-align: left; padding: 8px 12px; font-size: 0.9rem;
+    color: var(--ivs-neutral-300); border-radius: 0.25rem;
+}
+.nav-dropdown-item:hover { background-color: var(--ivs-neutral-700); color: white; }
+.lang-option { display: flex; align-items: center; width: 100%; padding: 8px 12px; color: var(--ivs-neutral-300); }
+.lang-option:hover { background-color: var(--ivs-neutral-700); color: white; }
+.lang-flag-icon { width: 20px; height: auto; margin-right: 8px; border-radius: 2px; }
+
+/* Mobile Menu */
+.mobile-nav-link { display: block; padding: 10px; border-radius: 0.375rem; font-weight: 500; }
+.mobile-nav-link:hover { background-color: var(--ivs-neutral-700); }
+.mobile-nav-link.active { background-color: var(--ivs-link-active-bg); color: var(--ivs-accent); }
+
+.mobile-submenu-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px; border-radius: 0.375rem; font-weight: 500; }
+.mobile-submenu-icon { transition: transform 0.3s ease; }
+.mobile-submenu-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; padding-left: 16px; }
+.mobile-submenu-content.active { max-height: 500px; /* Adjust as needed */ }
+.mobile-nav-link-sub { display: block; padding: 8px; font-size: 0.9rem; border-radius: 0.375rem; }
+.mobile-nav-link-sub:hover { background-color: var(--ivs-neutral-600); }
+.mobile-nav-link-sub.active { background-color: var(--ivs-link-active-bg); color: var(--ivs-accent); }
+.lang-option-mobile { display: flex; align-items: center; width: 100%; padding: 8px; font-size: 0.9rem; border-radius: 0.375rem; }
+.lang-flag-icon-mobile { width: 20px; height: auto; margin-right: 12px; }
+
+/* Bottom Nav */
+#bottom-nav { height: var(--bottom-nav-height); }
+.bottom-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ivs-neutral-400); text-decoration: none; transition: color 0.2s ease; padding: 4px; }
+.bottom-nav-item:hover, .bottom-nav-item.active { color: var(--ivs-accent); }
+.bottom-nav-icon { font-size: 1.25rem; margin-bottom: 2px; }
+.bottom-nav-text { font-size: 0.7rem; font-weight: 500; }
+/* === IVS HEADER STYLES END === */
