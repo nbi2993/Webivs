@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.0 - Centralized UI Controller.
+ * @version 4.1 - Feature Complete Centralized UI Controller.
  * @author IVS-Technical-Team
  */
 
@@ -32,6 +32,7 @@ function debounce(func, wait) {
 
 /**
  * All logic related to the Header and Mobile Menu.
+ * Handles responsive menu, submenus, and scroll effects.
  */
 const IVSHeaderController = {
     init() {
@@ -41,6 +42,7 @@ const IVSHeaderController = {
             return;
         }
         this.bindEvents();
+        this.updateActiveLinks(); // Added back to ensure functionality
         this.onScroll(); // Initial check
         componentLog("Header Controller Initialized.", "info");
     },
@@ -53,6 +55,7 @@ const IVSHeaderController = {
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+        this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
     },
 
     bindEvents() {
@@ -98,6 +101,18 @@ const IVSHeaderController = {
         }
 
         content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
+    },
+
+    updateActiveLinks() {
+        const currentPath = window.location.pathname.replace(/\/$/, ""); // Remove trailing slash
+        this.navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href')?.replace(/\/$/, "");
+            link.classList.remove('active');
+
+            if (linkPath === currentPath || (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+                link.classList.add('active');
+            }
+        });
     }
 };
 

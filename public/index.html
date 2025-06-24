@@ -545,27 +545,6 @@
     <script src="/js/language.js"></script>
     <script src="/js/loadComponents.js"></script>
     <script src="/js/posts-loader.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            AOS.init({
-                duration: 700,
-                once: true,
-                offset: 50,
-                easing: 'ease-out-cubic',
-            });
-            
-            if (typeof window.loadPosts === 'function') {
-                window.loadPosts('news-container', '/data/posts.json', 3);
-            }
 
-            // JavaScript cho FAB
-            const fabToggle = document.getElementById('fab-toggle');
-            const fabContainer = document.getElementById('fab-container');
-
-            fabToggle.addEventListener('click', () => {
-                fabContainer.classList.toggle('open');
-            });
-        });
-    </script>
 </body>
 </html>
