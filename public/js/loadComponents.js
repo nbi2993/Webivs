@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.2 - Improved FAB controller logic for scroll-to-top visibility.
+ * @version 4.3 - Integrated language switching logic into the main header controller.
  * @author IVS-Technical-Team
  */
 
@@ -56,6 +56,8 @@ const IVSHeaderController = {
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
+        // Bổ sung: Lấy các nút chọn ngôn ngữ
+        this.langOptions = document.querySelectorAll('.lang-option');
     },
 
     bindEvents() {
@@ -75,6 +77,29 @@ const IVSHeaderController = {
         this.submenuToggles.forEach(toggle => {
             toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
         });
+
+        // Bổ sung: Gán sự kiện cho các nút chọn ngôn ngữ
+        this.langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                const lang = e.currentTarget.dataset.lang;
+                if (lang) {
+                    this.setLanguage(lang);
+                }
+            });
+        });
+    },
+    
+    // Bổ sung: Thêm hàm xử lý chuyển đổi ngôn ngữ
+    setLanguage(lang) {
+        componentLog(`Attempting to set language to: ${lang}`);
+        // Gọi đến hệ thống quản lý ngôn ngữ chính (giả định tồn tại trên window.system)
+        if (window.system && typeof window.system.setLanguage === 'function') {
+            window.system.setLanguage(lang);
+        } else {
+            componentLog('Language system (window.system.setLanguage) not found.', 'warn');
+        }
+        // Đóng menu di động sau khi chọn
+        this.toggleMobileMenu(false);
     },
 
     onScroll() {
@@ -104,12 +129,14 @@ const IVSHeaderController = {
     },
 
     updateActiveLinks() {
-        const currentPath = window.location.pathname.replace(/\/$/, ""); // Remove trailing slash
+        const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
         this.navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href')?.replace(/\/$/, "");
+            const linkPath = (link.getAttribute('href') || "").replace(/\/$/, "") || "/";
             link.classList.remove('active');
-
-            if (linkPath === currentPath || (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+            if (linkPath === currentPath) {
+                link.classList.add('active');
+            } else if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
+                // Also activate parent link if on a child page
                 link.classList.add('active');
             }
         });
@@ -166,7 +193,6 @@ const IVSFabController = {
     },
 
     bindEvents() {
-        // Thay đổi: Cập nhật logic để xử lý hiệu ứng cho nút scroll-to-top
         if (this.scrollToTopBtn) {
             const handleScroll = () => {
                 if (window.scrollY > 200) {
@@ -177,7 +203,7 @@ const IVSFabController = {
             };
             window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Kiểm tra trạng thái ban đầu khi tải trang
+            handleScroll(); 
         }
 
         this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
