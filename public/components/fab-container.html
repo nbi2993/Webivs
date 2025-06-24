@@ -1,11 +1,13 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.0 - Correct FAB structure -->
+<!-- VERSION: 2.1 - Responsive positioning and activated scroll-to-top -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons. All logic is handled externally. -->
 
-<div id="fab-container" class="fixed bottom-4 right-4 z-30 flex flex-col items-end space-y-3">
-    <!-- Nút Cuộn Lên Đầu Trang -->
+<!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
+<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
+    
+    <!-- Thay đổi: Xóa class 'hidden' để JS có thể kiểm soát hiệu ứng chuyển động -->
     <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
-            class="fab-item hidden opacity-0 scale-90 pointer-events-none flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90">
+            class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
         <i class="fas fa-arrow-up text-base sm:text-lg"></i>
     </button>
 

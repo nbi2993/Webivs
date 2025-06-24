@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.1 - Feature Complete Centralized UI Controller.
+ * @version 4.2 - Improved FAB controller logic for scroll-to-top visibility.
  * @author IVS-Technical-Team
  */
 
@@ -42,8 +42,8 @@ const IVSHeaderController = {
             return;
         }
         this.bindEvents();
-        this.updateActiveLinks(); // Added back to ensure functionality
-        this.onScroll(); // Initial check
+        this.updateActiveLinks();
+        this.onScroll(); 
         componentLog("Header Controller Initialized.", "info");
     },
 
@@ -166,11 +166,18 @@ const IVSFabController = {
     },
 
     bindEvents() {
+        // Thay đổi: Cập nhật logic để xử lý hiệu ứng cho nút scroll-to-top
         if (this.scrollToTopBtn) {
-            const handleScroll = () => this.scrollToTopBtn.classList.toggle('hidden', window.scrollY < 200);
+            const handleScroll = () => {
+                if (window.scrollY > 200) {
+                    this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                } else {
+                    this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                }
+            };
             window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll();
+            handleScroll(); // Kiểm tra trạng thái ban đầu khi tải trang
         }
 
         this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
