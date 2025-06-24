@@ -5,7 +5,7 @@
  * including global settings, header, mobile navigation,
  * and bottom navigation.
  *
- * VERSION: 2.0 - Merged desktop styles and retained mobile visibility enhancements.
+ * VERSION: 2.1 - Enhanced mobile submenu text clarity.
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-25
  */
@@ -270,9 +270,10 @@ main {
 .mobile-nav-link-sub {
     display: block;
     border-radius: var(--border-radius-sm);
-    color: var(--ivs-neutral-300);
     transition: background-color var(--transition-fast) var(--ivs-transition-ease), color var(--transition-fast) var(--ivs-transition-ease);
-    /* CHANGE: Retained enhanced padding and font size for visibility */
+    /* CHANGE: Enhanced text visibility */
+    color: var(--ivs-neutral-100); /* Brighter text color */
+    font-weight: 500; /* Medium font weight for clarity */
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
 }
