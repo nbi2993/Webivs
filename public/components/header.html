@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVS JSC - Header Component (Final Optimized & Fixed)</title>
+    <title>IVS JSC - Header Component (Final Optimized & i18n Ready)</title>
     
     <!-- External Libraries: TailwindCSS and FontAwesome for icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -166,26 +166,25 @@
 
                 <!-- Desktop Navigation (hidden on mobile) -->
                 <nav class="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
-                    <a href="/index.html" class="desktop-nav-link">Trang Chủ</a>
-                    <!-- RESTORED: "Về IVS" link -->
-                    <a href="/about.html" class="desktop-nav-link">Về IVS</a>
+                    <a href="/index.html" class="desktop-nav-link" data-lang-key="nav_home">Trang Chủ</a>
+                    <a href="/about.html" class="desktop-nav-link" data-lang-key="nav_about">Về IVS</a>
                     
                     <!-- Mega Menu: Dịch Vụ -->
                     <div class="relative desktop-mega-menu-container">
                         <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
-                            <span>Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                            <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                         </button>
                         <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
                             <div class="grid grid-cols-2 gap-x-6 p-5">
                                 <div class="space-y-2">
-                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2">Tư vấn Pháp lý</h3>
-                                    <a href="/Pages/legal_consulting.html" class="dropdown-item"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
-                                    <a href="/Pages/psb_introduction.html" class="dropdown-item"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
+                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
+                                    <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
+                                    <a href="/Pages/psb_introduction.html" class="dropdown-item" data-lang-key="nav_services_legal_corporate"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
                                 </div>
                                 <div class="space-y-2">
-                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2">Liên kết Giáo dục</h3>
-                                    <a href="/consulting.html" class="dropdown-item"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
-                                    <a href="/Pages/foreign-teacher-services.html" class="dropdown-item"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
+                                    <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
+                                    <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
+                                    <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
                                 </div>
                             </div>
                         </div>
@@ -194,31 +193,31 @@
                     <!-- Dropdown: Giải pháp -->
                     <div class="relative desktop-dropdown-container">
                         <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
-                            <span>Giải pháp</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                            <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                         </button>
                         <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
-                            <a href="/solutions.html" class="dropdown-item">Tổng quan Giải pháp</a>
-                            <a href="/Pages/ivscelestech.html" class="dropdown-item">Công nghệ Giáo dục</a>
-                            <a href="/Pages/upskill.html" class="dropdown-item">Nâng cao Trình độ</a>
-                            <a href="/Pages/webdesign.html" class="dropdown-item">Thiết kế Website</a>
+                            <a href="/solutions.html" class="dropdown-item" data-lang-key="nav_solutions_overview">Tổng quan Giải pháp</a>
+                            <a href="/Pages/ivscelestech.html" class="dropdown-item" data-lang-key="nav_solutions_edtech">Công nghệ Giáo dục</a>
+                            <a href="/Pages/upskill.html" class="dropdown-item" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
+                            <a href="/Pages/webdesign.html" class="dropdown-item" data-lang-key="nav_solutions_webdesign">Thiết kế Website</a>
                         </div>
                     </div>
 
-                    <!-- RESTORED: "Thư Viện" dropdown -->
+                    <!-- Dropdown: Thư Viện -->
                     <div class="relative desktop-dropdown-container">
                         <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
-                            <span>Thư Viện</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                            <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                         </button>
                         <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
-                            <a href="/gallery.html" class="dropdown-item">Thư viện Ảnh</a>
-                            <a href="/Pages/document-library.html" class="dropdown-item">Tài liệu</a>
-                            <a href="/apps/story-repository.html" class="dropdown-item">Kho truyện</a>
-                            <a href="/games/ivsgames.html" class="dropdown-item">IVS Games</a>
+                            <a href="/gallery.html" class="dropdown-item" data-lang-key="nav_library_gallery">Thư viện Ảnh</a>
+                            <a href="/Pages/document-library.html" class="dropdown-item" data-lang-key="nav_library_docs">Tài liệu</a>
+                            <a href="/apps/story-repository.html" class="dropdown-item" data-lang-key="nav_library_stories">Kho truyện</a>
+                            <a href="/games/ivsgames.html" class="dropdown-item" data-lang-key="nav_library_games">IVS Games</a>
                         </div>
                     </div>
 
-                    <a href="/news-archive.html" class="desktop-nav-link">Tin tức</a>
-                    <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold">Liên Hệ</a>
+                    <a href="/news-archive.html" class="desktop-nav-link" data-lang-key="nav_news">Tin tức</a>
+                    <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
 
                     <!-- Language Selector -->
                     <div class="relative desktop-dropdown-container">
@@ -228,10 +227,10 @@
                             <i class="fas fa-chevron-down text-xs"></i>
                         </button>
                         <div class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1">
-                            <button class="dropdown-item lang-option" data-lang="vi">
+                            <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi">
                                 <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
                             </button>
-                            <button class="dropdown-item lang-option" data-lang="en">
+                            <button class="dropdown-item lang-option" data-lang="en" data-lang-key="lang_en">
                                 <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">English
                             </button>
                         </div>
@@ -246,87 +245,81 @@
         </div>
     </header>
 
-    <!-- 
-      MOBILE MENU PANEL: 
-      - HTML structure is correct. JS will now toggle the 'is-open' class on this main panel.
-      - Initially hidden via CSS `visibility: hidden`.
-    -->
     <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 lg:hidden" aria-modal="true" role="dialog">
         <!-- Backdrop -->
-        <div id="ivs-mobile-menu-backdrop" class="absolute inset-0"></div>
+        <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
         <!-- Menu Content Container -->
         <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
-                <span class="text-lg font-semibold text-ivs-accent">Menu</span>
+                <span class="text-lg font-semibold text-ivs-accent" data-lang-key="mobile_menu_title">Menu</span>
                 <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Close menu">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
             <!-- Navigation -->
-            <nav class="flex-grow p-4 space-y-2 overflow-y-auto">
-                <a href="/index.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Trang Chủ</a>
-                <!-- RESTORED: "Về IVS" link for mobile -->
-                <a href="/about.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Về IVS</a>
+            <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto">
+                <a href="/index.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium" data-lang-key="nav_home">Trang Chủ</a>
+                <a href="/about.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium" data-lang-key="nav_about">Về IVS</a>
                 
                 <!-- Submenu: Dịch Vụ -->
                 <div>
                     <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
-                        <span>Dịch Vụ</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                        <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
                     </button>
                     <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
-                        <a href="/consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tổng quan Giáo dục</a>
-                        <a href="/Pages/legal_consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tư vấn Pháp lý</a>
+                        <a href="/consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_services_education_overview_mobile">Tổng quan Giáo dục</a>
+                        <a href="/Pages/legal_consulting.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_services_legal_consulting_mobile">Tư vấn Pháp lý</a>
                     </div>
                 </div>
 
                 <!-- Submenu: Giải pháp -->
                 <div>
                     <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
-                        <span>Giải pháp</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                        <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
                     </button>
                     <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
-                        <a href="/solutions.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tổng quan Giải pháp</a>
-                        <a href="/Pages/ivscelestech.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Công nghệ Giáo dục</a>
-                        <a href="/Pages/upskill.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Nâng cao Trình độ</a>
-                        <a href="/Pages/webdesign.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Thiết kế Website</a>
+                        <a href="/solutions.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_solutions_overview">Tổng quan Giải pháp</a>
+                        <a href="/Pages/ivscelestech.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_solutions_edtech">Công nghệ Giáo dục</a>
+                        <a href="/Pages/upskill.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
+                        <a href="/Pages/webdesign.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_solutions_webdesign">Thiết kế Website</a>
                     </div>
                 </div>
 
-                <!-- RESTORED: "Thư Viện" submenu for mobile -->
+                <!-- Submenu: Thư Viện -->
                 <div>
                     <button class="w-full flex justify-between items-center p-3 rounded-lg hover:bg-ivs-bg-light font-medium mobile-submenu-toggle">
-                        <span>Thư Viện</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
+                        <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down text-sm transition-transform"></i>
                     </button>
                     <div class="mobile-submenu-content pl-4 mt-1 space-y-1">
-                        <a href="/gallery.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Thư viện Ảnh</a>
-                        <a href="/Pages/document-library.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Tài liệu</a>
-                        <a href="/apps/story-repository.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">Kho truyện</a>
-                        <a href="/games/ivsgames.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light">IVS Games</a>
+                        <a href="/gallery.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_library_gallery">Thư viện Ảnh</a>
+                        <a href="/Pages/document-library.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_library_docs">Tài liệu</a>
+                        <a href="/apps/story-repository.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_library_stories">Kho truyện</a>
+                        <a href="/games/ivsgames.html" class="block p-2 rounded-lg hover:bg-ivs-bg-light" data-lang-key="nav_library_games">IVS Games</a>
                     </div>
                 </div>
 
-                <a href="/news-archive.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Tin tức</a>
-                <a href="/contact.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium">Liên Hệ</a>
+                <a href="/news-archive.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium" data-lang-key="nav_news">Tin tức</a>
+                <a href="/contact.html" class="block p-3 rounded-lg hover:bg-ivs-bg-light font-medium" data-lang-key="nav_contact">Liên Hệ</a>
             </nav>
         </div>
     </div>
     
     <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch">
         <a href="/index.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
-            <i class="fas fa-home text-xl"></i><span class="text-xs mt-1">Home</span>
+            <i class="fas fa-home text-xl"></i><span class="text-xs mt-1" data-lang-key="bottom_nav_home">Home</span>
         </a>
         <a href="/solutions.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
-            <i class="fas fa-lightbulb text-xl"></i><span class="text-xs mt-1">Giải pháp</span>
+            <i class="fas fa-lightbulb text-xl"></i><span class="text-xs mt-1" data-lang-key="bottom_nav_solutions">Giải pháp</span>
         </a>
         <a href="/games/ivsgames.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
-            <i class="fas fa-gamepad text-xl"></i><span class="text-xs mt-1">Games</span>
+            <i class="fas fa-gamepad text-xl"></i><span class="text-xs mt-1" data-lang-key="bottom_nav_games">Games</span>
         </a>
         <a href="/apps/ivsapps.html" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
-            <i class="fas fa-shapes text-xl"></i><span class="text-xs mt-1">Apps</span>
+            <i class="fas fa-shapes text-xl"></i><span class="text-xs mt-1" data-lang-key="bottom_nav_apps">Apps</span>
         </a>
         <button id="bottom-nav-menu-btn" class="bottom-nav-item flex-1 flex flex-col items-center justify-center text-ivs-text-secondary">
-            <i class="fas fa-bars text-xl"></i><span class="text-xs mt-1">Menu</span>
+            <i class="fas fa-bars text-xl"></i><span class="text-xs mt-1" data-lang-key="bottom_nav_menu">Menu</span>
         </button>
     </nav>
     
@@ -357,7 +350,8 @@
                 this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
                 this.langOptions = document.querySelectorAll('.lang-option');
                 this.currentLangDesktop = document.getElementById('current-lang-desktop');
-                this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, nav[aria-label="Main mobile navigation"] a, a.bottom-nav-item');
+                // FIXED: More robust selector for nav links
+                this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
             },
 
             bindEvents() {
