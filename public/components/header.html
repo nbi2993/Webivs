@@ -199,6 +199,23 @@
 
                     <a href="/news-archive.html" class="desktop-nav-link" data-lang-key="nav_news">Tin tức</a>
                     <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
+                    
+                    <!-- Language Selector (ADDED) -->
+                    <div class="desktop-dropdown-container">
+                        <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-desktop" class="mx-2">VI</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1">
+                            <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi">
+                                <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
+                            </button>
+                            <button class="dropdown-item lang-option" data-lang="en" data-lang-key="lang_en">
+                                <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">English
+                            </button>
+                        </div>
+                    </div>
                 </nav>
 
                 <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
@@ -258,6 +275,17 @@
 
                 <a href="/news-archive.html" class="mobile-nav-link" data-lang-key="nav_news">Tin tức</a>
                 <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
+                
+                <!-- Language Selector (ADDED FOR MOBILE) -->
+                <div class="pt-4 mt-4 border-t border-ivs-bg-light">
+                    <button class="mobile-submenu-toggle">
+                        <span data-lang-key="nav_language">Ngôn ngữ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                    </button>
+                    <div class="mobile-submenu-content">
+                        <button class="mobile-submenu-item w-full text-left lang-option" data-lang="vi" data-lang-key="lang_vi">Tiếng Việt</button>
+                        <button class="mobile-submenu-item w-full text-left lang-option" data-lang="en" data-lang-key="lang_en">English</button>
+                    </div>
+                </div>
             </nav>
         </div>
     </div>
@@ -306,6 +334,8 @@
                 this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
                 this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
                 this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
+                this.langOptions = document.querySelectorAll('.lang-option'); // Added
+                this.currentLangDesktop = document.getElementById('current-lang-desktop'); // Added
             },
 
             bindEvents() {
@@ -323,6 +353,13 @@
 
                 this.submenuToggles.forEach(toggle => {
                     toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+                });
+
+                // Added language option events
+                this.langOptions.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        this.setLanguage(e.currentTarget.dataset.lang);
+                    });
                 });
             },
 
@@ -350,6 +387,19 @@
                 content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
             },
             
+            // Added language function
+            setLanguage(lang) {
+                console.log(`Language selected: ${lang}`);
+                if(this.currentLangDesktop) {
+                    this.currentLangDesktop.textContent = lang.toUpperCase();
+                }
+                // Call the main language system (assumed to be in language.js)
+                // if (window.system && typeof window.system.setLanguage === 'function') {
+                //     window.system.setLanguage(lang);
+                // }
+                this.toggleMobileMenu(false); // Close menu after selection
+            },
+
             updateActiveLinks() {
                 const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
                 this.navLinks.forEach(link => {
