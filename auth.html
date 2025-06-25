@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVS Auth - Đăng nhập / Đăng ký</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Dark mode styles - Ensure these match your main site's dark mode */
+        html.dark {
+            background-color: #1f2937; /* neutral-800 */
+            color: #d1d5db; /* neutral-300 */
+        }
+        html.dark .bg-white { background-color: #374151; /* neutral-700 */ }
+        html.dark .text-gray-900 { color: #e5e7eb; }
+        html.dark .text-gray-700 { color: #d1d5db; }
+        html.dark input {
+            background-color: #4b5563; /* neutral-600 */
+            border-color: #6b7280; /* neutral-500 */
+            color: #e5e7eb;
+        }
+        html.dark input:focus {
+            border-color: #60a5fa; /* blue-400 */
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); /* blue-400 with opacity */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6" id="auth-title">Đăng nhập</h2>
+        
+        <form id="auth-form" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                <input type="email" id="email" name="email" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mật khẩu</label>
+                <input type="password" id="password" name="password" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            </div>
+            
+            <button type="submit" id="submit-btn"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                Đăng nhập
+            </button>
+            
+            <p class="text-center text-sm text-gray-700 dark:text-gray-300 mt-4">
+                Bạn chưa có tài khoản? 
+                <button type="button" id="toggle-auth-mode" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none">
+                    Đăng ký ngay
+                </button>
+            </p>
+            <div id="auth-message" class="mt-4 p-3 text-center text-sm rounded-md hidden"></div>
+        </form>
+    </div>
+
+    <!-- Firebase SDK (Client-side) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        // Import các hàm cần thiết khác nếu sử dụng Firestore hoặc các dịch vụ khác
+
+        // DÁN CẤU HÌNH DỰ ÁN FIREBASE CỦA BẠN VÀO ĐÂY
+        // Ví dụ (thay thế bằng cấu hình thực tế của bạn từ Firebase Console):
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY", // <-- THAY THẾ BẰNG API KEY THẬT CỦA BẠN
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Khởi tạo Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const authForm = document.getElementById('auth-form');
+        const authTitle = document.getElementById('auth-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleAuthModeBtn = document.getElementById('toggle-auth-mode');
+        const authMessage = document.getElementById('auth-message');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        let isRegisterMode = false;
+
+        // Hàm hiển thị thông báo
+        function showMessage(message, type = 'info') {
+            authMessage.textContent = message;
+            authMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'bg-blue-100', 'text-blue-700');
+            if (type === 'error') {
+                authMessage.classList.add('bg-red-100', 'text-red-700');
+            } else if (type === 'success') {
+                authMessage.classList.add('bg-green-100', 'text-green-700');
+            } else {
+                authMessage.classList.add('bg-blue-100', 'text-blue-700');
+            }
+        }
+
+        // Chuyển đổi giữa chế độ Đăng nhập và Đăng ký
+        toggleAuthModeBtn.addEventListener('click', () => {
+            isRegisterMode = !isRegisterMode;
+            authTitle.textContent = isRegisterMode ? 'Đăng ký' : 'Đăng nhập';
+            submitBtn.textContent = isRegisterMode ? 'Đăng ký' : 'Đăng nhập';
+            toggleAuthModeBtn.textContent = isRegisterMode ? 'Đăng nhập ngay' : 'Đăng ký ngay';
+            authMessage.classList.add('hidden'); // Ẩn thông báo khi chuyển đổi
+        });
+
+        // Xử lý gửi form
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (isRegisterMode) {
+                // Logic đăng ký (sử dụng Firebase Client SDK)
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    showMessage('Đăng ký thành công! Đang đăng nhập...', 'success');
+                    // Sau khi đăng ký và đăng nhập thành công, bạn có thể chuyển hướng người dùng
+                    // hoặc lấy ID Token và gửi về backend để tạo custom token hoặc lưu session.
+                    const idToken = await userCredential.user.getIdToken();
+                    // Gửi idToken này về backend nếu bạn muốn backend tạo custom token hoặc xác minh.
+                    // const backendResponse = await fetch('/api/login', {
+                    //    method: 'POST',
+                    //    headers: { 'Content-Type': 'application/json' },
+                    //    body: JSON.stringify({ idToken: idToken }) // gửi ID Token
+                    // });
+                    // Nếu backend trả về custom token, dùng signInWithCustomToken ở đây
+                    // ví dụ: await signInWithCustomToken(auth, customToken);
+                    
+                    // Để đơn giản, sau khi đăng ký thành công, tự động chuyển hướng về trang chính
+                    window.location.href = '/'; 
+
+                } catch (error) {
+                    let errorMessage = 'Đăng ký không thành công.';
+                    if (error.code === 'auth/email-already-in-use') {
+                        errorMessage = 'Email này đã được sử dụng.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'Email không hợp lệ.';
+                    } else if (error.code === 'auth/weak-password') {
+                        errorMessage = 'Mật khẩu quá yếu (tối thiểu 6 ký tự).';
+                    }
+                    showMessage(errorMessage, 'error');
+                    console.error("Lỗi đăng ký:", error);
+                }
+            } else {
+                // Logic đăng nhập (sử dụng Firebase Client SDK)
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    showMessage('Đăng nhập thành công!', 'success');
+                    
+                    // Lấy ID Token sau khi đăng nhập thành công
+                    const idToken = await userCredential.user.getIdToken();
+                    
+                    // Tùy chọn: Gửi ID Token này về backend để backend xác minh hoặc quản lý session
+                    // Đây là cách an toàn để frontend thông báo cho backend về việc đăng nhập thành công.
+                    const response = await fetch('/api/login', {
+                       method: 'POST',
+                       headers: { 
+                           'Content-Type': 'application/json',
+                           'Authorization': `Bearer ${idToken}` // Gửi ID Token lên backend
+                       },
+                       body: JSON.stringify({ email: email }) // Chỉ gửi email, password không nên gửi lên backend qua đường này
+                    });
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Lỗi từ server.');
+                    }
+                    // Nếu backend trả về custom token (mặc dù không cần thiết nếu đã đăng nhập bằng Client SDK)
+                    // Hoặc bạn chỉ cần biết backend xác nhận đăng nhập thành công.
+
+                    // Chuyển hướng người dùng về trang chính sau khi đăng nhập thành công
+                    window.location.href = '/'; 
+
+                } catch (error) {
+                    let errorMessage = 'Đăng nhập không thành công.';
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                        errorMessage = 'Email hoặc mật khẩu không đúng.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'Email không hợp lệ.';
+                    }
+                    showMessage(errorMessage, 'error');
+                    console.error("Lỗi đăng nhập:", error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
