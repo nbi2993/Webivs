@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.0 - Cleaned, logic handled by external script -->
-<!-- DESCRIPTION: Optimized HTML structure for the main header. All JS logic is now exclusively in loadComponents.js -->
+<!-- VERSION: 2.1 - Cleaned, logic handled by external script -->
+<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -21,15 +21,22 @@
                     </button>
                     <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
                         <div class="grid grid-cols-2 gap-x-6 p-5">
+                            <!-- Cột trái: Liên kết Giáo dục -->
+                            <div class="space-y-2">
+                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
+                                <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
+                                <a href="/Pages/lkmamnon.html" class="dropdown-item" data-lang-key="nav_services_education_kindergarten"><i class="fas fa-child fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Mầm non</a>
+                                <a href="/Pages/lktieuhoc.html" class="dropdown-item" data-lang-key="nav_services_education_primary"><i class="fas fa-book-reader fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Tiểu học</a>
+                                <a href="/Pages/lkthcsthpt.html" class="dropdown-item" data-lang-key="nav_services_education_secondary_high"><i class="fas fa-user-graduate fa-fw mr-3 text-ivs-accent/70"></i>Liên kết THCS & THPT</a>
+                                <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers"><i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ</a>
+                                <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
+                            </div>
+                            <!-- Cột phải: Tư vấn Pháp lý -->
                             <div class="space-y-2">
                                 <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
                                 <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
                                 <a href="/Pages/psb_introduction.html" class="dropdown-item" data-lang-key="nav_services_legal_corporate"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
-                            </div>
-                            <div class="space-y-2">
-                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
-                                <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
-                                <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
+                                <a href="/Pages/litigation_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_civil"><i class="fas fa-landmark fa-fw mr-3 text-ivs-accent/70"></i>Pháp luật Dân sự</a>
                             </div>
                         </div>
                     </div>
@@ -106,9 +113,19 @@
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
-                    <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tư vấn Giáo dục</a>
-                    <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Pháp lý</a>
+                    <!-- Updated Mobile Services Submenu -->
+                    <h4 class="text-ivs-text-primary px-3 py-2 font-semibold" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h4>
+                    <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tổng quan</a>
+                    <a href="/Pages/lkmamnon.html" class="mobile-submenu-item" data-lang-key="nav_services_education_kindergarten">Liên kết Mầm non</a>
+                    <a href="/Pages/lktieuhoc.html" class="mobile-submenu-item" data-lang-key="nav_services_education_primary">Liên kết Tiểu học</a>
+                    <a href="/Pages/lkthcsthpt.html" class="mobile-submenu-item" data-lang-key="nav_services_education_secondary_high">Liên kết THCS & THPT</a>
+                    <a href="/Pages/lkttnn.html" class="mobile-submenu-item" data-lang-key="nav_services_education_language_centers">Liên kết Trung tâm Ngoại ngữ</a>
                     <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
+                    
+                    <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h4>
+                    <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
+                    <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
+                    <a href="/Pages/litigation_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_civil">Pháp luật Dân sự</a>
                 </div>
             </div>
 
@@ -223,7 +240,7 @@
     }
 
     .desktop-dropdown { width: 240px; }
-    .desktop-mega-menu { width: 520px; }
+    .desktop-mega-menu { width: 520px; } /* Đảm bảo đủ rộng cho 2 cột */
 
     .dropdown-item {
         display: flex; align-items: center; width: 100%; text-align: left;
@@ -253,6 +270,37 @@
         padding-left: 1rem;
     }
     
+    .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
+        display: flex; justify-content: space-between; align-items: center;
+        width: 100%; padding: 0.5rem 0.75rem; font-weight: 500;
+        color: var(--ivs-text-secondary); border-radius: 0.375rem;
+        transition: background-color 0.2s, color 0.2s;
+        text-align: left; /* Ensure text aligns left */
+    }
+
+    .mobile-submenu-toggle:hover {
+        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
+    }
+
+    .mobile-submenu-icon {
+        transition: transform 0.3s ease;
+    }
+    .mobile-submenu-toggle[aria-expanded="true"] .mobile-submenu-icon {
+        transform: rotate(180deg);
+    }
+
+    .mobile-submenu-item { /* Style for individual items inside mobile submenus */
+        display: block; /* Ensure it takes full width */
+        padding: 0.5rem 1rem; /* Adjust padding for nested items */
+        color: var(--ivs-text-secondary); border-radius: 0.375rem;
+        transition: background-color 0.2s, color 0.2s;
+        text-align: left; /* Ensure text aligns left */
+    }
+
+    .mobile-submenu-item:hover {
+        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
+    }
+
     #ivs-bottom-nav {
         background-color: rgba(17, 24, 39, 0.9);
         backdrop-filter: blur(12px);
