@@ -68,8 +68,8 @@
 </div>
 
 <!-- 
-  CSS cho các mục con của FAB. 
-  Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt lập.
+ CSS cho các mục con của FAB. 
+ Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt lập.
 -->
 <style>
     .fab-submenu-item {
@@ -182,6 +182,29 @@
 </style>
 
 <script>
+    // =================================================================
+    //  UTILITIES (Included here for robustness, in case loadComponents.js isn't fully loaded first)
+    // =================================================================
+    function componentLog(message, level = 'info') {
+        console[level](`[IVS Components] ${message}`);
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func.apply(this, args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // =================================================================
+    //  CHATBOT & FAB LOGIC
+    // =================================================================
+
     // Khởi tạo lịch sử trò chuyện ngoài hàm sendMessage để duy trì ngữ cảnh
     let chatHistory = [
         {
@@ -199,12 +222,12 @@
         init() {
             this.cacheDOM();
             if (!this.fabContainer) {
-                console.warn("[IVS Components] FAB container not found. FAB logic will not run.");
+                componentLog("FAB container not found. FAB logic will not run.", "warn");
                 return;
             }
             this.populateMenus();
             this.bindEvents();
-            console.log("[IVS Components] FAB Controller Initialized.");
+            componentLog("FAB Controller Initialized.", "info");
             // Khởi tạo chatbot sau khi FAB Controller đã init
             this.initChatbotFunctionality(); 
         },
@@ -261,9 +284,9 @@
                             textarea.select();
                             document.execCommand('copy');
                             document.body.removeChild(textarea);
-                            console.log('Đã sao chép liên kết vào clipboard!'); 
+                            componentLog('Đã sao chép liên kết vào clipboard!'); 
                         } catch (err) {
-                            console.error('Không thể sao chép liên kết:', err); 
+                            componentLog('Không thể sao chép liên kết: ' + err, 'error'); 
                         }
                     ` 
                 }
@@ -276,7 +299,7 @@
             shares.forEach((s, index) => {
                 const btn = document.getElementById(`share-action-${index}`);
                 if (btn && s.action) {
-                    if (s.text === "Copy Link") { // Corrected from "Sao chép" to "Copy Link"
+                    if (s.text === "Copy Link") { 
                         btn.addEventListener('click', () => {
                             try {
                                 const textarea = document.createElement('textarea');
@@ -285,9 +308,9 @@
                                 textarea.select();
                                 document.execCommand('copy');
                                 document.body.removeChild(textarea);
-                                console.log('[IVS Components] Đã sao chép liên kết vào clipboard!');
+                                componentLog('Đã sao chép liên kết vào clipboard!');
                             } catch (err) {
-                                console.error('[IVS Components] Không thể sao chép liên kết: ' + err);
+                                componentLog('Không thể sao chép liên kết: ' + err, 'error');
                             }
                         });
                     } else {
@@ -359,8 +382,8 @@
         // New method to encapsulate chatbot initialization
         initChatbotFunctionality() {
             // Check if all necessary elements exist
-            if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn) {
-                console.warn("[IVS Components] Chatbot elements not fully found during init. Skipping chatbot functionality.");
+            if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
+                componentLog("Chatbot elements not fully found during init. Skipping chatbot functionality.", "warn");
                 return;
             }
 
@@ -375,6 +398,7 @@
                     this.chatbotContainer.classList.remove('chatbot-container-closed');
                     this.chatbotContainer.classList.add('chatbot-container-open');
                     this.chatbotInput.focus();
+                    this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight; // Scroll to bottom on open
                 }, 50);
             };
 
@@ -408,6 +432,7 @@
                 addMessage(messageText, 'user');
                 this.chatbotInput.value = '';
 
+                // Add "Đang gõ..." message
                 addMessage('Đang gõ...', 'ai');
 
                 try {
@@ -424,7 +449,8 @@
                     });
                     const result = await response.json();
 
-                    if (this.chatbotMessages.lastChild) {
+                    // Remove "Đang gõ..." message before adding actual response
+                    if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
                         this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
                     }
 
@@ -439,7 +465,8 @@
                     }
                 } catch (error) {
                     console.error("Lỗi khi gọi API Gemini:", error);
-                    if (this.chatbotMessages.lastChild) {
+                    // Remove "Đang gõ..." message even if error occurs
+                    if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
                         this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
                     }
                     addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
@@ -452,7 +479,7 @@
                     sendMessage();
                 }
             });
-            console.log("[IVS Components] Chatbot Functionality Initialized.");
+            componentLog("Chatbot Functionality Initialized.", "info");
         }
     };
 
