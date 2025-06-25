@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.7 - Chatbot display fix for dynamic loading -->
+<!-- VERSION: 2.8 - Guaranteed Chatbot Initialization -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
@@ -182,132 +182,281 @@
 </style>
 
 <script>
-    // Define the initialization function for the chatbot
-    window.initChatbot = function() {
-        const chatbotOpenBtn = document.getElementById('chatbot-open-button');
-        const chatbotContainer = document.getElementById('chatbot-container');
-        const chatbotCloseBtn = document.getElementById('chatbot-close-button');
-        const chatbotMessages = document.getElementById('chatbot-messages');
-        const chatbotInput = document.getElementById('chatbot-input');
-        const chatbotSendBtn = document.getElementById('chatbot-send-button');
-
-        // Check if elements exist before proceeding
-        if (!chatbotOpenBtn || !chatbotContainer || !chatbotMessages || !chatbotInput || !chatbotSendBtn) {
-            console.warn("Chatbot elements not found. Skipping initialization.");
-            return;
+    // Khởi tạo lịch sử trò chuyện ngoài hàm sendMessage để duy trì ngữ cảnh
+    let chatHistory = [
+        {
+            role: "user",
+            parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
+        },
+        {
+            role: "model",
+            parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
         }
+    ];
 
-        // Initial setup to ensure it's hidden correctly
-        chatbotContainer.classList.add('chatbot-container-closed');
-        chatbotContainer.style.display = 'none'; // Ensure it starts hidden
-
-
-        // Function to open the chatbot
-        function openChatbot() {
-            chatbotContainer.style.display = 'flex'; // Make it visible first
-            setTimeout(() => {
-                chatbotContainer.classList.remove('chatbot-container-closed');
-                chatbotContainer.classList.add('chatbot-container-open');
-                if (chatbotInput) { // Ensure input exists before focusing
-                    chatbotInput.focus(); 
-                }
-            }, 50); // Small delay for transition to work
-        }
-
-        // Function to close the chatbot
-        function closeChatbot() {
-            chatbotContainer.classList.remove('chatbot-container-open');
-            chatbotContainer.classList.add('chatbot-container-closed');
-            setTimeout(() => {
-                chatbotContainer.style.display = 'none'; // Hide after transition
-            }, 300); // Match CSS transition duration
-        }
-
-        // Event listeners for opening and closing
-        chatbotOpenBtn.addEventListener('click', openChatbot);
-        chatbotCloseBtn.addEventListener('click', closeChatbot);
-       
-        // Function to add a message to the chat
-        function addMessage(text, sender) {
-            const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender, 'mb-2');
-            messageBubble.textContent = text;
-            chatbotMessages.appendChild(messageBubble);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Scroll to bottom
-        }
-
-        // Initialize chat history outside of sendMessage to maintain context across messages
-        let chatHistory = [
-            {
-                role: "user",
-                parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
-            },
-            {
-                role: "model",
-                parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
+    // Cần định nghĩa IVSFabController để loadComponents.js có thể gọi
+    const IVSFabController = {
+        init() {
+            this.cacheDOM();
+            if (!this.fabContainer) {
+                console.warn("[IVS Components] FAB container not found. FAB logic will not run.");
+                return;
             }
-        ];
+            this.populateMenus();
+            this.bindEvents();
+            console.log("[IVS Components] FAB Controller Initialized.");
+            // Khởi tạo chatbot sau khi FAB Controller đã init
+            this.initChatbotFunctionality(); 
+        },
 
-        // Handle sending messages
-        async function sendMessage() {
-            const messageText = chatbotInput.value.trim();
-            if (messageText === '') return;
+        cacheDOM() {
+            this.fabContainer = document.getElementById('fab-container');
+            this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
 
-            addMessage(messageText, 'user');
-            chatbotInput.value = ''; // Clear input
-
-            // Simulate AI response
-            addMessage('Đang gõ...', 'ai'); // Show typing indicator
-
-            try {
-                // Add current user message to history
-                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-                
-                const payload = { contents: chatHistory };
-                // API Key for Gemini API. Set to empty string, Canvas will provide it at runtime.
-                // You should ensure your actual API key is secured via environment variables
-                // or a backend service in your production deployment.
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-
-                // Remove typing indicator
-                if (chatbotMessages.lastChild) {
-                    chatbotMessages.removeChild(chatbotMessages.lastChild);
-                }
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponseText = result.candidates[0].content.parts[0].text;
-                    addMessage(aiResponseText, 'ai');
-                    // Add AI response to history
-                    chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
-                } else {
-                    addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
-                }
-            } catch (error) {
-                console.error("Lỗi khi gọi API Gemini:", error);
-                // Remove typing indicator
-                if (chatbotMessages.lastChild) {
-                    chatbotMessages.removeChild(chatbotMessages.lastChild);
-                }
-                addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
-            }
-        }
-
-        chatbotSendBtn.addEventListener('click', sendMessage);
+            // Cache chatbot elements
+            this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
+            this.chatbotContainer = document.getElementById('chatbot-container');
+            this.chatbotCloseBtn = document.getElementById('chatbot-close-button');
+            this.chatbotMessages = document.getElementById('chatbot-messages');
+            this.chatbotInput = document.getElementById('chatbot-input');
+            this.chatbotSendBtn = document.getElementById('chatbot-send-button');
+        },
         
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
+        populateMenus() {
+            const contactMenu = document.getElementById('contact-options');
+            const shareMenu = document.getElementById('share-options');
+
+            if (contactMenu) this.populateContactOptions(contactMenu);
+            if (shareMenu) this.populateShareOptions(shareMenu);
+        },
+
+        populateContactOptions(element) {
+            const contacts = [
+                { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
+                { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
+                { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
+                { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
+            ];
+            element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
+        },
+
+        populateShareOptions(element) {
+            const currentUrl = window.location.href; 
+            const pageTitle = document.title; 
+
+            const shares = [
+                { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}', '_blank', 'noopener,noreferrer')` },
+                { text: "X (Twitter)", icon: "fab fa-x-twitter", color: "text-neutral-500", action: `window.open('https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
+                { text: "LinkedIn", icon: "fab fa-linkedin", color: "text-blue-700", action: `window.open('https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
+                { 
+                    text: "Copy Link", 
+                    icon: "fas fa-link", 
+                    color: "text-gray-500", 
+                    action: `
+                        try {
+                            const textarea = document.createElement('textarea');
+                            textarea.value = '${currentUrl}'; 
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            console.log('Đã sao chép liên kết vào clipboard!'); 
+                        } catch (err) {
+                            console.error('Không thể sao chép liên kết:', err); 
+                        }
+                    ` 
+                }
+            ];
+            element.innerHTML = shares.map((s, index) => {
+                const btnId = `share-action-${index}`;
+                return `<button id="${btnId}" role="menuitem" class="fab-submenu-item group w-full"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`;
+            }).join('');
+
+            shares.forEach((s, index) => {
+                const btn = document.getElementById(`share-action-${index}`);
+                if (btn && s.action) {
+                    if (s.text === "Copy Link") { // Corrected from "Sao chép" to "Copy Link"
+                        btn.addEventListener('click', () => {
+                            try {
+                                const textarea = document.createElement('textarea');
+                                textarea.value = currentUrl;
+                                document.body.appendChild(textarea);
+                                textarea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(textarea);
+                                console.log('[IVS Components] Đã sao chép liên kết vào clipboard!');
+                            } catch (err) {
+                                console.error('[IVS Components] Không thể sao chép liên kết: ' + err);
+                            }
+                        });
+                    } else {
+                        btn.addEventListener('click', () => eval(s.action));
+                    }
+                }
+            });
+        },
+
+        bindEvents() {
+            if (this.scrollToTopBtn) {
+                const handleScroll = () => {
+                    if (window.scrollY > 200) {
+                        this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                    } else {
+                        this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                    }
+                };
+                window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
+                this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                handleScroll(); 
             }
-        });
-    }; // End of window.initChatbot function
+
+            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
+                e.stopPropagation();
+                this.toggleSubmenu(btn);
+            }));
+
+            document.addEventListener('click', (e) => {
+                if (!this.fabContainer.contains(e.target)) {
+                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
+                }
+            });
+        },
+
+        toggleSubmenu(btn) {
+            const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
+            this.buttonsWithSubmenu.forEach(otherBtn => {
+                if (otherBtn !== btn) { 
+                    this.closeSubmenu(otherBtn);
+                }
+            });
+            if (!isCurrentlyOpen) this.openSubmenu(btn);
+            else this.closeSubmenu(btn); 
+        },
+
+        openSubmenu(btn) {
+            const menu = document.getElementById(btn.getAttribute('aria-controls'));
+            if (!menu) return;
+            menu.classList.remove('hidden', 'pointer-events-none'); 
+            requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
+            btn.setAttribute('aria-expanded', 'true');
+        },
+
+        closeSubmenu(btn) {
+            const menu = document.getElementById(btn.getAttribute('aria-controls'));
+            if (!menu) return;
+            menu.classList.add('opacity-0', 'scale-95');
+            const onTransitionEnd = () => {
+                if (menu.classList.contains('opacity-0')) {
+                    menu.classList.add('hidden', 'pointer-events-none'); 
+                }
+                menu.removeEventListener('transitionend', onTransitionEnd);
+            };
+            menu.addEventListener('transitionend', onTransitionEnd);
+            btn.setAttribute('aria-expanded', 'false');
+        },
+
+        // New method to encapsulate chatbot initialization
+        initChatbotFunctionality() {
+            // Check if all necessary elements exist
+            if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn) {
+                console.warn("[IVS Components] Chatbot elements not fully found during init. Skipping chatbot functionality.");
+                return;
+            }
+
+            // Initial setup to ensure it's hidden correctly
+            this.chatbotContainer.classList.add('chatbot-container-closed');
+            this.chatbotContainer.style.display = 'none';
+
+            // Function to open the chatbot
+            const openChatbot = () => {
+                this.chatbotContainer.style.display = 'flex';
+                setTimeout(() => {
+                    this.chatbotContainer.classList.remove('chatbot-container-closed');
+                    this.chatbotContainer.classList.add('chatbot-container-open');
+                    this.chatbotInput.focus();
+                }, 50);
+            };
+
+            // Function to close the chatbot
+            const closeChatbot = () => {
+                this.chatbotContainer.classList.remove('chatbot-container-open');
+                this.chatbotContainer.classList.add('chatbot-container-closed');
+                setTimeout(() => {
+                    this.chatbotContainer.style.display = 'none';
+                }, 300);
+            };
+
+            // Event listeners for opening and closing
+            this.chatbotOpenBtn.addEventListener('click', openChatbot);
+            this.chatbotCloseBtn.addEventListener('click', closeChatbot);
+            
+            // Function to add a message to the chat
+            const addMessage = (text, sender) => {
+                const messageBubble = document.createElement('div');
+                messageBubble.classList.add('message-bubble', sender, 'mb-2');
+                messageBubble.textContent = text;
+                this.chatbotMessages.appendChild(messageBubble);
+                this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
+            };
+
+            // Handle sending messages
+            const sendMessage = async () => {
+                const messageText = this.chatbotInput.value.trim();
+                if (messageText === '') return;
+
+                addMessage(messageText, 'user');
+                this.chatbotInput.value = '';
+
+                addMessage('Đang gõ...', 'ai');
+
+                try {
+                    chatHistory.push({ role: "user", parts: [{ text: messageText }] });
+                    
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (this.chatbotMessages.lastChild) {
+                        this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
+                    }
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const aiResponseText = result.candidates[0].content.parts[0].text;
+                        addMessage(aiResponseText, 'ai');
+                        chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
+                    } else {
+                        addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
+                    }
+                } catch (error) {
+                    console.error("Lỗi khi gọi API Gemini:", error);
+                    if (this.chatbotMessages.lastChild) {
+                        this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
+                    }
+                    addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
+                }
+            };
+
+            this.chatbotSendBtn.addEventListener('click', sendMessage);
+            this.chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            console.log("[IVS Components] Chatbot Functionality Initialized.");
+        }
+    };
+
+    // Xuất IVSFabController để loadComponents.js có thể truy cập
+    window.IVSFabController = IVSFabController;
+
 </script>
