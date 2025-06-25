@@ -1948,10 +1948,5 @@
   "firebase_read_public_title": "Đọc Dữ liệu Chung",
   "firebase_read_button": "Đọc dữ liệu",
   "firebase_write_test_title": "Ghi Dữ liệu Kiểm thử",
-  "firebase_write_button": "Ghi dữ liệu mới",
-  "footer_youtube_link": "Liên kết YouTube",
-  "footer_tiktok_link": "Liên kết TikTok",
-  "footer_instagram_link": "Liên kết Instagram",
-  "footer_zalo_oa_link": "Liên kết Zalo OA",
-  "footer_facebook_company_link": "Liên kết Fanpage Facebook Công ty"
+  "firebase_write_button": "Ghi dữ liệu mới"
 }
