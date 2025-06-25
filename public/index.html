@@ -126,155 +126,6 @@
         #firebase-data-section button:hover, #firebase-ai-section button:hover {
             background-color: #3182ce;
         }
-
-        /* Chatbot specific styles */
-        #chatbot-container {
-            position: fixed;
-            bottom: 6rem; /* Vị trí phía trên nút mở chatbot */
-            right: 1rem;
-            width: 320px;
-            height: 450px;
-            background-color: #161B22; /* ivs-card */
-            border: 1px solid #30363d; /* ivs-border */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transform: translateY(100%); /* Bắt đầu ẩn */
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 0; /* Bắt đầu ẩn */
-            z-index: 50; /* Đảm bảo nó nổi trên các nội dung khác */
-            visibility: hidden; /* Ẩn hoàn toàn khi không mở */
-        }
-        #chatbot-container.open {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-        #chatbot-header {
-            background-color: #0D1117; /* ivs-bg */
-            color: #e6edf3; /* ivs-text-primary */
-            padding: 1rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #30363d;
-        }
-        #chatbot-close-button {
-            background: none;
-            border: none;
-            color: #a1aab4; /* ivs-text-secondary */
-            font-size: 1.25rem;
-            cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.2s;
-        }
-        #chatbot-close-button:hover {
-            background-color: #30363d;
-        }
-        #chatbot-messages {
-            flex-grow: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background-color: #1a202c; /* slightly lighter than ivs-bg for chat area */
-            display: flex; /* Dùng flexbox cho tin nhắn */
-            flex-direction: column; /* Sắp xếp tin nhắn theo chiều dọc */
-            gap: 0.5rem; /* Khoảng cách giữa các tin nhắn */
-        }
-        .message-bubble {
-            padding: 0.75rem 1rem;
-            border-radius: 0.75rem; /* rounded-lg */
-            max-width: 85%;
-            word-wrap: break-word;
-            font-size: 0.9rem;
-        }
-        .message-bubble.user {
-            background-color: #58a6ff; /* ivs-blue */
-            color: white;
-            align-self: flex-end; /* Tin nhắn người dùng căn phải */
-            margin-left: auto; /* Đẩy sang phải */
-        }
-        .message-bubble.ai {
-            background-color: #30363d; /* ivs-border */
-            color: #e6edf3;
-            align-self: flex-start; /* Tin nhắn AI căn trái */
-            margin-right: auto; /* Đẩy sang trái */
-        }
-        #chatbot-input-area {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid #30363d;
-            background-color: #161B22;
-        }
-        #chatbot-input {
-            flex-grow: 1;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            background-color: #0D1117; /* ivs-bg */
-            border: 1px solid #30363d;
-            color: #e6edf3;
-            margin-right: 0.5rem;
-            outline: none; /* Loại bỏ outline mặc định */
-            transition: border-color 0.2s;
-        }
-        #chatbot-input:focus {
-            border-color: #58a6ff; /* ivs-blue */
-        }
-        #chatbot-send-button {
-            background-color: #58a6ff; /* ivs-blue */
-            color: white;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            white-space: nowrap;
-        }
-        #chatbot-send-button:hover {
-            background-color: #3b82f6; /* ivs-blue-darker */
-        }
-        #chatbot-open-button {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            background-color: #34d399; /* ivs-green */
-            color: white;
-            border-radius: 9999px; /* full rounded */
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-            z-index: 50;
-        }
-        #chatbot-open-button:hover {
-            background-color: #22c55e;
-            transform: scale(1.05);
-        }
-
-        /* Responsive adjustments for chatbot */
-        @media (max-width: 640px) {
-            #chatbot-container {
-                width: 90%;
-                max-width: 320px; /* Giữ kích thước tối đa */
-                height: 70vh; /* Chiều cao tương đối trên di động */
-                bottom: 5rem; /* Adjust for smaller screens */
-                right: 5%;
-                left: 5%; /* Canh giữa */
-                margin-left: auto;
-                margin-right: auto;
-            }
-            #chatbot-open-button {
-                bottom: 1rem;
-                right: 1rem;
-            }
-        }
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -515,11 +366,11 @@
             <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
                 <h2 class="text-center text-2xl font-bold font-display text-white mb-12" data-lang-key="partners_title">Đối tác Chiến lược & Liên kết Quốc tế</h2>
                 <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="The Power to Inspire"><img src="https://placehold.co/150x60/161B22/999999?text=Power+to+Inspire" alt="[Logo The Power to Inspire]"></a>
-                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="IIVSA"><img src="https://placehold.co/150x60/161B22/999999?text=IIVSA" alt="[Logo IIVSA]"></a>
-                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="Celestech"><img src="https://placehold.co/150x60/161B22/999999?text=Celestech" alt="[Logo Celestech]"></a>
-                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="LifeMinds"><img src="https://placehold.co/150x60/161B22/999999?text=LifeMinds" alt="[Logo LifeMinds]"></a>
-                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="Global Teacher Hub"><img src="https://placehold.co/150x60/161B22/999999?text=Teacher+Hub" alt="[Logo Global Teacher Hub]"></a>
+                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="The Power to Inspire"><img src="https://placehold.co/150x60/161B22/999999?text=Power+to+Inspire" alt="[Hình ảnh The Power to Inspire]"></a>
+                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="IIVSA"><img src="https://placehold.co/150x60/161B22/999999?text=IIVSA" alt="[Hình ảnh IIVSA]"></a>
+                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="Celestech"><img src="https://placehold.co/150x60/161B22/999999?text=Celestech" alt="[Hình ảnh Celestech]"></a>
+                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="LifeMinds"><img src="https://placehold.co/150x60/161B22/999999?text=LifeMinds" alt="[Hình ảnh LifeMinds]"></a>
+                    <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="Global Teacher Hub"><img src="https://placehold.co/150x60/161B22/999999?text=Teacher+Hub" alt="[Hình ảnh Global Teacher Hub]"></a>
                 </div>
             </div>
         </section>
@@ -533,7 +384,7 @@
             <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
                 <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-ivs-card p-8 md:p-12 rounded-2xl border border-ivs-border">
                     <figure class="md:w-1/3 text-center">
-                        <img src="/images/team/nguyen-minh-triet.png" onerror="this.onerror=null; this.src='https://placehold.co/200x200/30363d/e6edf3?text=CEO';" alt="[Chân dung CEO Nguyễn Minh Triết]" class="rounded-full w-48 h-48 mx-auto shadow-2xl ring-4 ring-ivs-border">
+                        <img src="/images/team/nguyen-minh-triet.png" onerror="this.onerror=null; this.src='https://placehold.co/200x200/30363d/e6edf3?text=CEO';" alt="[Hình ảnh CEO Nguyễn Minh Triết]" class="rounded-full w-48 h-48 mx-auto shadow-2xl ring-4 ring-ivs-border">
                         <figcaption class="mt-4">
                             <div class="font-bold text-lg text-white" data-lang-key="ceo_name">Nguyễn Minh Triết</div>
                             <div class="text-sm text-ivs-blue" data-lang-key="ceo_title">CEO & Chairman, IVS JSC</div>
@@ -598,7 +449,7 @@
             </div>
         </section>
 
-        <!-- Firebase AI Logic Section -->
+        <!-- Firebase AI Logic Section (Still here for demo purposes, but chatbot uses its own logic) -->
         <section id="firebase-ai-section" class="container mx-auto px-6 py-20 lg:py-24 mt-8 rounded-lg shadow-lg">
             <h3 class="text-center font-bold font-display">Tương Tác AI Firebase (Ví dụ)</h3>
 
@@ -642,9 +493,6 @@
         // Biến toàn cục để lưu trạng thái xác thực và userID
         let currentUserId = null;
         let isAuthReady = false;
-        // Lịch sử trò chuyện cho chatbot
-        let chatbotHistory = [{ role: "model", parts: [{ text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?" }] }];
-
 
         // Xử lý xác thực người dùng
         async function authenticateFirebase() {
@@ -690,34 +538,6 @@
 
             const generateAiButton = document.getElementById('generate-ai-button');
             if (generateAiButton) generateAiButton.addEventListener('click', generateAIText);
-
-            // Chatbot event listeners
-            const chatbotOpenButton = document.getElementById('chatbot-open-button');
-            const chatbotCloseButton = document.getElementById('chatbot-close-button');
-            const chatbotContainer = document.getElementById('chatbot-container');
-            const chatbotInput = document.getElementById('chatbot-input');
-            const chatbotSendButton = document.getElementById('chatbot-send-button');
-
-            if (chatbotOpenButton) {
-                chatbotOpenButton.addEventListener('click', () => {
-                    chatbotContainer.classList.toggle('open');
-                });
-            }
-            if (chatbotCloseButton) {
-                chatbotCloseButton.addEventListener('click', () => {
-                    chatbotContainer.classList.remove('open');
-                });
-            }
-            if (chatbotSendButton) {
-                chatbotSendButton.addEventListener('click', sendMessage);
-            }
-            if (chatbotInput) {
-                chatbotInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        sendMessage();
-                    }
-                });
-            }
         });
 
         // Hàm kiểm tra trạng thái auth và trả về userId
@@ -873,82 +693,6 @@
                 statusElement.style.color = '#f43f5e';
             }
         };
-
-        // Hàm thêm tin nhắn vào giao diện chatbot
-        function addMessage(text, sender) {
-            const messagesContainer = document.getElementById('chatbot-messages');
-            const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender);
-            messageBubble.textContent = text;
-            messagesContainer.appendChild(messageBubble);
-            // Cuộn xuống cuối tin nhắn
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        // Hàm gửi tin nhắn và nhận phản hồi từ AI
-        async function sendMessage() {
-            const chatbotInput = document.getElementById('chatbot-input');
-            const userMessage = chatbotInput.value.trim();
-
-            if (!userMessage) {
-                return;
-            }
-
-            addMessage(userMessage, 'user');
-            chatbotInput.value = ''; // Xóa input sau khi gửi
-
-            // Thêm tin nhắn người dùng vào lịch sử trò chuyện
-            chatbotHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
-            // Thêm tin nhắn "Đang gõ..." từ AI
-            const messagesContainer = document.getElementById('chatbot-messages');
-            const typingIndicator = document.createElement('div');
-            typingIndicator.classList.add('message-bubble', 'ai');
-            typingIndicator.textContent = 'AI đang gõ...';
-            typingIndicator.id = 'typing-indicator';
-            messagesContainer.appendChild(typingIndicator);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-
-            try {
-                const payload = { contents: chatbotHistory };
-                const apiKey = ""; // API Key sẽ được Canvas tự động cung cấp trong runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                
-                // Xóa tin nhắn "Đang gõ..."
-                if (typingIndicator && typingIndicator.parentNode) {
-                    typingIndicator.parentNode.removeChild(typingIndicator);
-                }
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponseText = result.candidates[0].content.parts[0].text;
-                    addMessage(aiResponseText, 'ai');
-                    // Thêm phản hồi của AI vào lịch sử trò chuyện
-                    chatbotHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
-                } else {
-                    addMessage('Xin lỗi, tôi không thể tạo phản hồi lúc này.', 'ai');
-                    console.error("Phản hồi AI không hợp lệ:", result);
-                }
-            } catch (error) {
-                // Xóa tin nhắn "Đang gõ..." khi có lỗi
-                if (typingIndicator && typingIndicator.parentNode) {
-                    typingIndicator.parentNode.removeChild(typingIndicator);
-                }
-                addMessage('Có lỗi xảy ra. Vui lòng thử lại sau.', 'ai');
-                console.error("Lỗi khi gọi API Gemini cho chatbot:", error);
-            }
-        }
-
     </script>
 
     <script>

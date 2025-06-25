@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.2 - Added AI Chatbot integration -->
-<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
+<!-- VERSION: 2.3 - Integrated AI Chatbot and all its logic -->
+<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including a self-contained AI Chatbot. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
 <div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
@@ -182,11 +182,87 @@
 </style>
 
 <script>
+    // Lịch sử trò chuyện cho chatbot
+    let chatbotHistory = [{ role: "model", parts: [{ text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?" }] }];
+
+    // Hàm thêm tin nhắn vào giao diện chatbot
+    function addMessage(text, sender) {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const messageBubble = document.createElement('div');
+        messageBubble.classList.add('message-bubble', sender);
+        messageBubble.textContent = text;
+        messagesContainer.appendChild(messageBubble);
+        // Cuộn xuống cuối tin nhắn
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Hàm gửi tin nhắn và nhận phản hồi từ AI
+    async function sendMessage() {
+        const chatbotInput = document.getElementById('chatbot-input');
+        const userMessage = chatbotInput.value.trim();
+
+        if (!userMessage) {
+            return;
+        }
+
+        addMessage(userMessage, 'user');
+        chatbotInput.value = ''; // Xóa input sau khi gửi
+
+        // Thêm tin nhắn người dùng vào lịch sử trò chuyện
+        chatbotHistory.push({ role: "user", parts: [{ text: userMessage }] });
+
+        // Thêm tin nhắn "Đang gõ..." từ AI
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('message-bubble', 'ai');
+        typingIndicator.textContent = 'AI đang gõ...';
+        typingIndicator.id = 'typing-indicator';
+        messagesContainer.appendChild(typingIndicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            const payload = { contents: chatbotHistory };
+            const apiKey = ""; // API Key sẽ được Canvas tự động cung cấp trong runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            
+            // Xóa tin nhắn "Đang gõ..."
+            if (typingIndicator && typingIndicator.parentNode) {
+                typingIndicator.parentNode.removeChild(typingIndicator);
+            }
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const aiResponseText = result.candidates[0].content.parts[0].text;
+                addMessage(aiResponseText, 'ai');
+                // Thêm phản hồi của AI vào lịch sử trò chuyện
+                chatbotHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
+            } else {
+                addMessage('Xin lỗi, tôi không thể tạo phản hồi lúc này.', 'ai');
+                console.error("Phản hồi AI không hợp lệ:", result);
+            }
+        } catch (error) {
+            // Xóa tin nhắn "Đang gõ..." khi có lỗi
+            if (typingIndicator && typingIndicator.parentNode) {
+                typingIndicator.parentNode.removeChild(typingIndicator);
+            }
+            addMessage('Có lỗi xảy ra. Vui lòng thử lại sau.', 'ai');
+            console.error("Lỗi khi gọi API Gemini cho chatbot:", error);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const chatbotOpenBtn = document.getElementById('chatbot-open-button');
         const chatbotContainer = document.getElementById('chatbot-container');
         const chatbotCloseBtn = document.getElementById('chatbot-close-button');
-        const chatbotMessages = document.getElementById('chatbot-messages');
         const chatbotInput = document.getElementById('chatbot-input');
         const chatbotSendBtn = document.getElementById('chatbot-send-button');
 
@@ -215,60 +291,6 @@
         }
         if (chatbotCloseBtn) {
             chatbotCloseBtn.addEventListener('click', closeChatbot);
-        }
-
-        // Function to add a message to the chat
-        function addMessage(text, sender) {
-            const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender, 'mb-2');
-            messageBubble.textContent = text;
-            chatbotMessages.appendChild(messageBubble);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Scroll to bottom
-        }
-
-        // Handle sending messages
-        async function sendMessage() {
-            const messageText = chatbotInput.value.trim();
-            if (messageText === '') return;
-
-            addMessage(messageText, 'user');
-            chatbotInput.value = ''; // Clear input
-
-            // Simulate AI response
-            addMessage('Đang gõ...', 'ai'); // Show typing indicator
-
-            try {
-                // Call the LLM to generate text (using gemini-2.0-flash as default)
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-
-                // Remove typing indicator
-                chatbotMessages.removeChild(chatbotMessages.lastChild);
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponseText = result.candidates[0].content.parts[0].text;
-                    addMessage(aiResponseText, 'ai');
-                } else {
-                    addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
-                }
-            } catch (error) {
-                console.error("Lỗi khi gọi API Gemini:", error);
-                // Remove typing indicator
-                chatbotMessages.removeChild(chatbotMessages.lastChild);
-                addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
-            }
         }
 
         if (chatbotSendBtn) {
