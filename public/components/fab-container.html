@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.5 - Updated Gemini API Key -->
+<!-- VERSION: 2.6 - Google AI Key security fix -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
@@ -254,11 +254,13 @@
                 chatHistory.push({ role: "user", parts: [{ text: messageText }] });
                 
                 const payload = { contents: chatHistory };
-                // API Key for Gemini API (provided by the user)
-                const GEMINI_API_KEY = "AIzaSyCbqtsWVcJIq0DomxvDtNgs29RKUxDsNfw"; 
-                const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+                // API Key for Gemini API. Set to empty string, Canvas will provide it at runtime.
+                // You should ensure your actual API key is secured via environment variables
+                // or a backend service in your production deployment.
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                const response = await fetch(GEMINI_API_URL, {
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
