@@ -1,7 +1,8 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.3 - Integrated language switching logic into the main header controller.
+ * @version 4.4 - Fixed FAB button click issues, replaced alert with console.log,
+ * and used document.execCommand for clipboard copy.
  * @author IVS-Technical-Team
  */
 
@@ -183,13 +184,62 @@ const IVSFabController = {
     },
 
     populateShareOptions(element) {
-        const currentUrl = encodeURIComponent(window.location.href);
-        const pageTitle = encodeURIComponent(document.title);
+        const currentUrl = window.location.href; // Không cần encodeURIComponent cho sao chép, trình duyệt tự xử lý.
         const shares = [
-            { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${currentUrl}', '_blank', 'noopener,noreferrer')` },
-            { text: "Sao chép", icon: "fas fa-link", color: "text-gray-500", action: `navigator.clipboard.writeText(decodeURIComponent('${currentUrl}')).then(() => alert('Đã sao chép liên kết!'), () => alert('Không thể sao chép liên kết.'))` }
+            { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}', '_blank', 'noopener,noreferrer')` },
+            { 
+                text: "Sao chép", 
+                icon: "fas fa-link", 
+                color: "text-gray-500", 
+                action: `
+                    try {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = '${currentUrl}'; // Chỉ sao chép URL gốc
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        console.log('Đã sao chép liên kết vào clipboard!'); // Thay alert bằng console.log
+                    } catch (err) {
+                        console.error('Không thể sao chép liên kết:', err); // Thay alert bằng console.error
+                    }
+                ` 
+            }
         ];
-        element.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item group w-full" onclick="${s.action}"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`).join('');
+        // Sử dụng một hàm để gán event listener thay vì onclick trực tiếp trong innerHTML nếu muốn phức tạp hơn.
+        // Tuy nhiên, với ví dụ đơn giản này, onclick vẫn hoạt động.
+        element.innerHTML = shares.map((s, index) => {
+            // Gán một ID duy nhất cho nút để có thể đính kèm event listener sau
+            const btnId = `share-action-${index}`;
+            return `<button id="${btnId}" role="menuitem" class="fab-submenu-item group w-full"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`;
+        }).join('');
+
+        // Đính kèm event listeners cho các nút Sao chép sau khi chúng đã được thêm vào DOM
+        shares.forEach((s, index) => {
+            const btn = document.getElementById(`share-action-${index}`);
+            if (btn && s.action) {
+                // Đối với nút sao chép, chúng ta sẽ gán hàm trực tiếp để thực thi
+                if (s.text === "Sao chép") {
+                    btn.addEventListener('click', () => {
+                        try {
+                            const textarea = document.createElement('textarea');
+                            textarea.value = currentUrl;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            componentLog('Đã sao chép liên kết vào clipboard!');
+                            // Có thể thêm một tin nhắn tạm thời trên UI nếu cần
+                        } catch (err) {
+                            componentLog('Không thể sao chép liên kết: ' + err, 'error');
+                        }
+                    });
+                } else {
+                    // Đối với các nút khác (ví dụ: Facebook), chúng ta vẫn sử dụng window.open
+                    btn.addEventListener('click', () => eval(s.action)); // Sử dụng eval cho action chuỗi
+                }
+            }
+        });
     },
 
     bindEvents() {
@@ -211,19 +261,30 @@ const IVSFabController = {
             this.toggleSubmenu(btn);
         }));
 
-        document.addEventListener('click', () => this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn)));
+        document.addEventListener('click', (e) => {
+            // Đóng tất cả các submenu nếu click vào bên ngoài FAB container hoặc submenu
+            if (!this.fabContainer.contains(e.target)) {
+                this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
+            }
+        });
     },
 
     toggleSubmenu(btn) {
         const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-        this.buttonsWithSubmenu.forEach(otherBtn => this.closeSubmenu(otherBtn));
+        // Đóng tất cả các submenu khác trước khi mở submenu mới
+        this.buttonsWithSubmenu.forEach(otherBtn => {
+            if (otherBtn !== btn) { // Tránh đóng chính nút đang được click
+                this.closeSubmenu(otherBtn);
+            }
+        });
         if (!isCurrentlyOpen) this.openSubmenu(btn);
+        else this.closeSubmenu(btn); // Đóng nếu đang mở
     },
 
     openSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.remove('hidden');
+        menu.classList.remove('hidden', 'pointer-events-none'); // Xóa hidden và pointer-events-none
         requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
         btn.setAttribute('aria-expanded', 'true');
     },
@@ -233,7 +294,9 @@ const IVSFabController = {
         if (!menu) return;
         menu.classList.add('opacity-0', 'scale-95');
         const onTransitionEnd = () => {
-            if (menu.classList.contains('opacity-0')) menu.classList.add('hidden');
+            if (menu.classList.contains('opacity-0')) {
+                menu.classList.add('hidden', 'pointer-events-none'); // Thêm lại hidden và pointer-events-none
+            }
             menu.removeEventListener('transitionend', onTransitionEnd);
         };
         menu.addEventListener('transitionend', onTransitionEnd);
