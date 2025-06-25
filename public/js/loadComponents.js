@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.6 - Refined FAB and Chatbot component loading for reliability.
+ * @version 4.7 - Improved dynamic script execution for injected HTML.
  * @author IVS-Technical-Team
  */
 
@@ -145,6 +145,14 @@ const IVSHeaderController = {
 // =================================================================
 //  MAIN COMPONENT LOADER
 // =================================================================
+
+/**
+ * Loads an HTML component and injects it into a placeholder,
+ * ensuring that any <script> tags within the injected HTML are executed.
+ * @param {string} url The URL of the HTML component to load.
+ * @param {string} placeholderId The ID of the element to inject the component into.
+ * @returns {Promise<boolean>} A promise that resolves to true if successful, false otherwise.
+ */
 async function loadAndInject(url, placeholderId) {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
@@ -156,34 +164,38 @@ async function loadAndInject(url, placeholderId) {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const text = await response.text();
-        placeholder.innerHTML = text;
+        
+        // Create a temporary div to parse the HTML and extract scripts
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = text;
 
-        // Manually execute scripts within the injected HTML
-        // This is crucial for dynamically loaded components to run their JS.
-        // Create new script elements from the innerHTML of the old ones
-        // to ensure they are parsed and executed by the browser.
-        const scripts = Array.from(placeholder.querySelectorAll('script')); // Use Array.from for live NodeList
+        const scripts = Array.from(tempDiv.querySelectorAll('script'));
+
+        // Remove scripts from tempDiv's innerHTML before injecting to avoid double execution
+        scripts.forEach(script => script.parentNode?.removeChild(script));
+        
+        // Inject the HTML content (without scripts first)
+        placeholder.innerHTML = tempDiv.innerHTML;
+
+        // Execute scripts sequentially
         for (const oldScript of scripts) {
             const newScript = document.createElement('script');
-            // Copy all attributes from the old script to the new one
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
             
-            // Transfer content. Handle both inline script and external src.
+            // Handle both inline scripts and external scripts
             if (oldScript.src) {
                 newScript.src = oldScript.src;
+                await new Promise((resolve, reject) => {
+                    newScript.onload = resolve;
+                    newScript.onerror = reject;
+                    placeholder.appendChild(newScript); // Append to trigger load
+                });
             } else {
                 newScript.textContent = oldScript.textContent;
-            }
-            
-            // Replace the old script element with the new one to trigger execution
-            if (oldScript.parentNode) {
-                oldScript.parentNode.replaceChild(newScript, oldScript);
-            } else {
-                // If no parent, just append to placeholder (unlikely for well-formed HTML)
-                placeholder.appendChild(newScript);
+                placeholder.appendChild(newScript); // Append to execute inline scripts
             }
         }
-
+        
         return true;
     } catch (error) {
         componentLog(`Failed to load ${url}: ${error.message}`, 'error');
@@ -195,9 +207,7 @@ async function loadCommonComponents() {
     componentLog("Initializing component sequence...");
     const components = [
         { id: 'header-placeholder', url: '/components/header.html', controller: IVSHeaderController },
-        // For fab-container.html, we rely on the component itself to define IVSFabController globally
-        // and then we call its init method after injection.
-        { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: null }, 
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: null }, // Controller is defined within this HTML
         { id: 'footer-placeholder', url: '/components/footer.html', controller: null }
     ];
 
@@ -205,11 +215,10 @@ async function loadCommonComponents() {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
-                // If a controller is provided directly (like IVSHeaderController)
                 if (comp.controller) {
                     comp.controller.init();
                 } 
-                // Special handling for FAB Controller which is defined inside its HTML
+                // Special handling for FAB Controller which is defined globally inside its HTML
                 else if (comp.id === 'fab-container-placeholder' && window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                     window.IVSFabController.init();
                 }
