@@ -90,42 +90,8 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
         }
-        /* Style for Firebase Data Section */
-        #firebase-data-section { /* Removed #firebase-ai-section */
-            background-color: #1a202c; /* Màu nền tối hơn cho phần Firebase */
-            border-top: 1px solid #2d3748; /* Đường viền nhẹ */
-            padding: 2.5rem 0; /* Khoảng cách trên dưới */
-            color: #e2e8f0; /* Màu chữ sáng */
-        }
-        #firebase-data-section h3, #firebase-ai-section h3 { /* Kept #firebase-ai-section h3 for existing content that might still reference it temporarily */
-            color: #4299e1; /* Màu xanh cho tiêu đề */
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        #firebase-data-section p, #firebase-ai-section p { /* Kept #firebase-ai-section p for existing content that might still reference it temporarily */
-            margin-bottom: 0.5rem;
-        }
-        #firebase-data-section pre, #firebase-ai-section pre { /* Kept #firebase-ai-section pre for existing content that might still reference it temporarily */
-            background-color: #2d3748;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            white-space: pre-wrap; /* Ngắt dòng dài */
-            word-break: break-all; /* Ngắt từ */
-            font-size: 0.875rem;
-        }
-        #firebase-data-section button, #firebase-ai-section button { /* Kept #firebase-ai-section button for existing content that might still reference it temporarily */
-            background-color: #4299e1;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-        #firebase-data-section button:hover, #firebase-ai-section button:hover { /* Kept #firebase-ai-section button:hover for existing content that might still reference it temporarily */
-            background-color: #3182ce;
-        }
+        /* Loại bỏ các style cũ của #firebase-data-section và #firebase-ai-section nếu chúng không còn cần thiết */
+        /* Nếu các phần đó đã bị xóa hoàn toàn khỏi HTML, các style này sẽ không ảnh hưởng */
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -413,248 +379,125 @@
                     </a>
                 </div>
             </section>
-
-            <!-- Firebase Data Interaction Section -->
-            <section id="firebase-data-section" class="container mx-auto px-6 py-20 lg:py-24 mt-8 rounded-lg shadow-lg">
-                <h3 class="text-center font-bold font-display" data-lang-key="firebase_system_status_title">Trạng thái Hệ thống & Dữ liệu Firestore</h3>
-
-                <div class="grid md:grid-cols-2 gap-8 mt-8">
-                    <!-- User ID Display -->
-                    <div>
-                        <h4 class="text-xl font-semibold mb-3" data-lang-key="firebase_user_info_title">Thông Tin Người Dùng</h4>
-                        <p>
-                            UID Người dùng hiện tại: <span id="current-user-id" class="font-mono text-ivs-cyan">Đang tải...</span>
-                        </p>
-                        <p class="text-sm text-ivs-text-secondary mt-2">
-                            Để lưu dữ liệu riêng tư, UID này sẽ là một phần của đường dẫn Firestore.
-                        </p>
-                    </div>
-
-                    <!-- Read Data Example -->
-                    <div>
-                        <h4 class="text-xl font-semibold mb-3" data-lang-key="firebase_read_public_title">Đọc Dữ liệu Chung</h4>
-                        <p>Đọc tài liệu `testDocument` từ collection `examplePublicData`.</p>
-                        <pre id="read-data-output" class="mt-2 text-sm">Đang chờ dữ liệu...</pre>
-                        <button id="read-data-button" data-lang-key="firebase_read_button">Đọc dữ liệu</button>
-                    </div>
-
-                    <!-- Write Data Example -->
-                    <div>
-                        <h4 class="text-xl font-semibold mb-3" data-lang-key="firebase_write_test_title">Ghi Dữ liệu Kiểm thử</h4>
-                        <input type="text" id="data-input" placeholder="Nhập tin nhắn của bạn" class="w-full p-2 rounded-md bg-ivs-card border border-ivs-border text-ivs-text-primary focus:border-ivs-blue focus:ring-ivs-blue" />
-                        <button id="write-data-button" class="mt-4" data-lang-key="firebase_write_button">Ghi dữ liệu mới</button>
-                        <p id="write-status-output" class="text-sm mt-2 text-ivs-text-secondary"></p>
-                    </div>
-                </div>
-            </section>
             
         </main>
 
-    <footer id="footer-placeholder"></footer>
-    <div id="fab-container-placeholder"></div>
+        <footer id="footer-placeholder"></footer>
+        <div id="fab-container-placeholder"></div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/js/language.js" defer></script>
-    <script src="/js/loadComponents.js" defer></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="/js/language.js" defer></script>
+        <script src="/js/loadComponents.js" defer></script>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; 
-        
-        // Firebase configuration (lấy từ biến toàn cục __firebase_config)
-        // Đảm bảo __firebase_config tồn tại và hợp lệ trước khi parse
-        const firebaseConfig = (typeof __firebase_config !== 'undefined' && __firebase_config && __firebase_config !== 'null' && __firebase_config !== '') 
-                             ? JSON.parse(__firebase_config) 
-                             : {
-                                // Cấu hình Firebase mẫu (CHỈ DÙNG CHO MỤC ĐÍCH PHÁT TRIỂN/TEST CỤC BỘ)
-                                // THAY THẾ BẰNG CẤU HÌNH THỰC TẾ CỦA BẠN NẾU CHẠY NGOÀI MÔI TRƯỜNG CANVAS ĐƯỢC CẤU HÌNH SẴN
-                                apiKey: "YOUR_FIREBASE_API_KEY", 
-                                authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-                                projectId: "YOUR_PROJECT_ID",
-                                storageBucket: "YOUR_PROJECT_ID.appspot.com",
-                                messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-                                appId: "YOUR_APP_ID",
-                                // measurementId: "YOUR_MEASUREMENT_ID" // Có thể không cần nếu không dùng Analytics
-                             };
-
-        // Khởi tạo Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Biến toàn cục để lưu trạng thái xác thực và userID
-        let currentUserId = null;
-        let isAuthReady = false;
-
-        // Xử lý xác thực người dùng
-        async function authenticateFirebase() {
-            try {
-                // Cố gắng đăng nhập bằng custom token nếu có
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token !== '') {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                    console.log("Đăng nhập Firebase bằng custom token thành công.");
-                } else {
-                    // Nếu không có custom token, đăng nhập ẩn danh
-                    await signInAnonymously(auth);
-                    console.log("Đăng nhập Firebase ẩn danh thành công.");
-                }
-            } catch (error) {
-                console.error("Lỗi khi xác thực Firebase:", error);
-                // Hiển thị thông báo lỗi thân thiện hơn trên UI nếu cần
-                document.getElementById('current-user-id').textContent = 'Lỗi xác thực!';
-            }
-        }
-
-        // Lắng nghe trạng thái xác thực
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                currentUserId = user.uid;
-                document.getElementById('current-user-id').textContent = currentUserId;
-                console.log("Người dùng đã đăng nhập. UID:", currentUserId);
-            } else {
-                currentUserId = null;
-                document.getElementById('current-user-id').textContent = 'Chưa đăng nhập (hoặc ẩn danh)';
-                console.log("Người dùng đã đăng xuất.");
-            }
-            isAuthReady = true; // Đánh dấu rằng trạng thái xác thực đã sẵn sàng
-        });
-
-        // Đảm bảo Firebase được khởi tạo và xác thực khi trang tải xong
-        document.addEventListener('DOMContentLoaded', () => {
-            authenticateFirebase();
-            // Đính kèm trình lắng nghe sự kiện sau khi DOM đã tải hoàn chỉnh
-            const readButton = document.getElementById('read-data-button');
-            if (readButton) readButton.addEventListener('click', readExampleData);
-
-            const writeButton = document.getElementById('write-data-button'); // Corrected ID
-            if (writeButton) writeButton.addEventListener('click', writeExampleData);
-
-            // Removed generateAiButton related listeners from here as AI logic moved
-        });
-
-        // Hàm kiểm tra trạng thái auth và trả về userId
-        window.getFirebaseUserId = () => {
-            if (isAuthReady) {
-                return currentUserId;
-            } else {
-                console.warn("Firebase Auth chưa sẵn sàng. Đang chờ xác thực.");
-                return null;
-            }
-        };
-
-        // Hàm lấy một tài liệu từ Firestore (ví dụ)
-        window.getFirestoreDocument = async (collectionName, documentId) => {
-            if (!isAuthReady) {
-                console.error("Firebase Auth chưa sẵn sàng. Vui lòng chờ xác thực.");
-                return null;
-            }
-            // Chỉ cần currentUserId nếu truy cập private data
-            // if (!currentUserId) {
-            //     console.error("Người dùng chưa được xác thực. Không thể truy cập dữ liệu Firestore riêng tư.");
-            //     return null;
-            // }
-
-            // Ví dụ đường dẫn cho dữ liệu công khai (public)
-            const docRef = doc(db, `artifacts/${__app_id}/public/data/${collectionName}`, documentId);
+        <!-- Firebase SDKs -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+            import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+            import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; 
             
-            // Hoặc cho dữ liệu riêng tư (private)
-            // const docRef = doc(db, `artifacts/${__app_id}/users/${currentUserId}/${collectionName}`, documentId);
+            // Firebase configuration (Cấu hình Firebase thực tế từ dự án của bạn)
+            const firebaseConfig = {
+                apiKey: "AIzaSyC_CH2324l6-32508z0wKIE8uW9hI23grQJY", 
+                authDomain: "ivsjsc-6362f.firebaseapp.com",
+                projectId: "ivsjsc-6362f",
+                storageBucket: "ivsjsc-6362f.appspot.com",
+                messagingSenderId: "910278613224",
+                appId: "1:910278613224:web:1b80ff0a1fac5703115d"
+            };
 
-            try {
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    console.log("Dữ liệu tài liệu:", docSnap.data());
-                    return docSnap.data();
+            // Khởi tạo Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+
+            // Biến toàn cục để lưu trạng thái xác thực và userID
+            let currentUserId = null;
+            let isAuthReady = false;
+
+            // Xử lý xác thực người dùng
+            async function authenticateFirebase() {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token !== '') {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                        console.log("Đăng nhập Firebase bằng custom token thành công.");
+                    } else {
+                        await signInAnonymously(auth);
+                        console.log("Đăng nhập Firebase ẩn danh thành công.");
+                    }
+                } catch (error) {
+                    console.error("Lỗi khi xác thực Firebase:", error);
+                    // Không hiển thị lỗi trực tiếp lên UID người dùng nếu đã loại bỏ phần test UI
+                }
+            }
+
+            // Lắng nghe trạng thái xác thực
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    currentUserId = user.uid;
+                    console.log("Người dùng đã đăng nhập. UID:", currentUserId);
                 } else {
-                    console.log("Không tìm thấy tài liệu!");
+                    currentUserId = null;
+                    console.log("Người dùng đã đăng xuất.");
+                }
+                isAuthReady = true; // Đánh dấu rằng trạng thái xác thực đã sẵn sàng
+            });
+
+            // Đảm bảo Firebase được khởi tạo và xác thực khi trang tải xong
+            document.addEventListener('DOMContentLoaded', () => {
+                authenticateFirebase();
+            });
+
+            // Hàm kiểm tra trạng thái auth và trả về userId (để dùng nội bộ bởi các component khác)
+            window.getFirebaseUserId = () => {
+                if (isAuthReady) {
+                    return currentUserId;
+                } else {
+                    console.warn("Firebase Auth chưa sẵn sàng. Đang chờ xác thực.");
                     return null;
                 }
-            } catch (error) {
-                console.error("Lỗi khi lấy tài liệu Firestore:", error);
-                return null;
-            }
-        };
+            };
 
-        // Hàm ví dụ đọc dữ liệu từ Firestore và hiển thị
-        async function readExampleData() { 
-            const outputElement = document.getElementById('read-data-output');
-            outputElement.textContent = 'Đang đọc dữ liệu...';
-            if (!isAuthReady || !currentUserId) { // Kiểm tra currentUserId cho cả public data vì authentication là cần thiết cho rules
-                outputElement.textContent = 'Xác thực Firebase chưa sẵn sàng hoặc người dùng chưa đăng nhập.';
-                return;
-            }
+            // Hàm lấy một tài liệu từ Firestore (được dùng nội bộ bởi các component khác hoặc logic ẩn)
+            window.getFirestoreDocument = async (collectionName, documentId) => {
+                if (!isAuthReady || !currentUserId) { // Cần xác thực và UID để tương tác Firestore
+                    console.error("Firebase Auth chưa sẵn sàng hoặc người dùng chưa đăng nhập. Không thể truy cập dữ liệu Firestore.");
+                    return null;
+                }
 
-            // Đọc một tài liệu mẫu từ collection 'examplePublicData' với document ID là 'testDocument'
-            // Lưu ý: Nếu document 'testDocument' không tồn tại, bạn sẽ cần ghi nó trước.
-            const data = await window.getFirestoreDocument('examplePublicData', 'testDocument');
+                const docRef = doc(db, `artifacts/${__app_id}/public/data/${collectionName}`, documentId);
+                
+                try {
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        console.log("Dữ liệu tài liệu Firestore:", docSnap.data());
+                        return docSnap.data();
+                    } else {
+                        console.log("Không tìm thấy tài liệu Firestore!");
+                        return null;
+                    }
+                } catch (error) {
+                    console.error("Lỗi khi lấy tài liệu Firestore:", error);
+                    return null;
+                }
+            };
             
-            if (data) {
-                outputElement.textContent = JSON.stringify(data, null, 2);
-            } else {
-                outputElement.textContent = 'Không tìm thấy dữ liệu hoặc có lỗi. Vui lòng ghi dữ liệu trước!';
-            }
-        };
+            // Các hàm readExampleData, writeExampleData, generateAIText đã được xóa khỏi đây
+            // vì các phần UI test đã được loại bỏ.
+        </script>
 
-        // Hàm ví dụ ghi dữ liệu vào Firestore
-        async function writeExampleData() { 
-            const inputElement = document.getElementById('data-input');
-            const statusElement = document.getElementById('write-status-output');
-            const message = inputElement.value.trim();
-
-            if (!message) {
-                statusElement.textContent = 'Vui lòng nhập tin nhắn!';
-                statusElement.style.color = '#f43f5e'; // Màu đỏ
-                return;
-            }
-            if (!isAuthReady || !currentUserId) { // Kiểm tra currentUserId vì Authentication cần thiết cho rules
-                statusElement.textContent = 'Xác thực Firebase chưa sẵn sàng hoặc người dùng chưa đăng nhập.';
-                statusElement.style.color = '#f43f5e'; // Màu đỏ
-                return;
-            }
-
-            statusElement.textContent = 'Đang ghi dữ liệu...';
-            statusElement.style.color = '#a1aab4'; // Màu xám
-
-            try {
-                // Ghi dữ liệu vào collection 'examplePublicData' với một ID tự động tạo
-                const docRef = await addDoc(collection(db, `artifacts/${__app_id}/public/data/examplePublicData`), {
-                    message: message,
-                    timestamp: serverTimestamp(), // Thêm thời gian tạo server
-                    userId: currentUserId // Thêm userId của người tạo
+        <script>
+            // Callback function to initialize scripts after components are loaded
+            window.onPageComponentsLoadedCallback = function() {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 50, // trigger animations a bit sooner
+                    easing: 'ease-out-quad',
                 });
-                statusElement.textContent = `Ghi dữ liệu thành công! ID tài liệu: ${docRef.id}`;
-                statusElement.style.color = '#34d399'; // Màu xanh lá
-                inputElement.value = ''; // Xóa nội dung input sau khi ghi thành công
+            };
+        </script>
 
-                readExampleData(); // Đọc lại dữ liệu để cập nhật hiển thị
-            } catch (e) {
-                console.error("Lỗi khi ghi tài liệu: ", e);
-                statusElement.textContent = `Lỗi khi ghi dữ liệu: ${e.message}`;
-                statusElement.style.color = '#f43f5e'; // Màu đỏ
-            }
-        };
-
-        // Hàm generateAIText đã được di chuyển hoàn toàn khỏi đây.
-        // Chức năng AI chính giờ đây nằm trong chatbot ở fab-container.html.
-        // Bạn có thể xóa hoàn toàn phần #firebase-ai-section từ HTML nếu muốn.
-
-    </script>
-
-    <script>
-        // Callback function to initialize scripts after components are loaded
-        window.onPageComponentsLoadedCallback = function() {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 50, // trigger animations a bit sooner
-                easing: 'ease-out-quad',
-            });
-        };
-    </script>
-
-</body>
-</html>
+    </body>
+    </html>
