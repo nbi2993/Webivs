@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="">
+<html lang="vi" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -478,13 +478,21 @@
                 if (!window.pageComponentsCallbackCalled) { 
                     console.warn("Fallback DOMContentLoaded: onPageComponentsLoadedCallback không được gọi. Khởi tạo thủ công.");
                     AOS.init({ duration: 800, once: true, offset: 50 });
+                    
+                    // [FIXED] Sửa lỗi logic: Tách riêng việc khởi tạo và áp dụng ngôn ngữ
+                    // 1. Cố gắng khởi tạo hệ thống ngôn ngữ trước, nếu có.
                     if (typeof window.initializeLanguageSystem === 'function') {
-                         window.initializeLanguageSystem('en'); // Default to EN in fallback
-                    } else if (typeof window.applyTranslations === 'function') {
+                         window.initializeLanguageSystem('en'); // Mặc định 'en' trong fallback
+                    }
+                    
+                    // 2. Sau đó, luôn cố gắng áp dụng bản dịch.
+                    if (typeof window.applyTranslations === 'function') {
                          window.applyTranslations(localStorage.getItem('selectedLanguage') || 'en');
                     } else {
                         console.error('Lỗi nghiêm trọng (Fallback): Hàm applyTranslations KHÔNG TÌM THẤY.');
                     }
+
+                    // 3. Thiết lập tabs
                     if (typeof setupTabs === 'function') {
                         setupTabs();
                     } else {
