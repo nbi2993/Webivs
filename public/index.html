@@ -395,17 +395,12 @@
             import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
             import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; 
             
-            // Firebase configuration (Cấu hình Firebase thực tế từ dự án của bạn)
-            const firebaseConfig = {
-                apiKey: "AIzaSyChU416-32-DD8CbvXlE8aKbWHjQ3goOJY", 
-                authDomain: "ivsjsc-6362f.firebaseapp.com",
-                databaseURL: "https://ivsjsc-6362f-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "ivsjsc-6362f",
-                storageBucket: "ivsjsc-6362f.firebasestorage.app",
-                messagingSenderId: "910278613224",
-                appId: "1:910278613224:web:16b3f0faf041ac5703115d",
-                measurementId: "G-SEP5LC4EMB"
-            };
+            // Firebase configuration
+            // LƯU Ý QUAN TRỌNG: KHÔNG ĐẶT API KEY TRỰC TIẾP TẠI ĐÂY KHI TRIỂN KHAI CÔNG KHAI.
+            // Trong môi trường Canvas này, cấu hình Firebase sẽ được cung cấp tự động thông qua __firebase_config.
+            // Khi triển khai lên môi trường production của riêng bạn, bạn NÊN sử dụng các biến môi trường
+            // hoặc cấu hình phía server để bảo vệ API Key của mình.
+            const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 
             // Khởi tạo Firebase
             const app = initializeApp(firebaseConfig);
