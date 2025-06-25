@@ -191,11 +191,16 @@
         const chatbotInput = document.getElementById('chatbot-input');
         const chatbotSendBtn = document.getElementById('chatbot-send-button');
 
-        // Initial setup to ensure it's hidden correctly
-        if (chatbotContainer) {
-            chatbotContainer.classList.add('chatbot-container-closed');
-            chatbotContainer.style.display = 'none'; // Ensure it starts hidden
+        // Check if elements exist before proceeding
+        if (!chatbotOpenBtn || !chatbotContainer || !chatbotMessages || !chatbotInput || !chatbotSendBtn) {
+            console.warn("Chatbot elements not found. Skipping initialization.");
+            return;
         }
+
+        // Initial setup to ensure it's hidden correctly
+        chatbotContainer.classList.add('chatbot-container-closed');
+        chatbotContainer.style.display = 'none'; // Ensure it starts hidden
+
 
         // Function to open the chatbot
         function openChatbot() {
@@ -219,13 +224,9 @@
         }
 
         // Event listeners for opening and closing
-        if (chatbotOpenBtn) {
-            chatbotOpenBtn.addEventListener('click', openChatbot);
-        }
-        if (chatbotCloseBtn) {
-            chatbotCloseBtn.addEventListener('click', closeChatbot);
-        }
-
+        chatbotOpenBtn.addEventListener('click', openChatbot);
+        chatbotCloseBtn.addEventListener('click', closeChatbot);
+       
         // Function to add a message to the chat
         function addMessage(text, sender) {
             const messageBubble = document.createElement('div');
@@ -234,6 +235,18 @@
             chatbotMessages.appendChild(messageBubble);
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Scroll to bottom
         }
+
+        // Initialize chat history outside of sendMessage to maintain context across messages
+        let chatHistory = [
+            {
+                role: "user",
+                parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
+            },
+            {
+                role: "model",
+                parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
+            }
+        ];
 
         // Handle sending messages
         async function sendMessage() {
@@ -247,18 +260,6 @@
             addMessage('Đang gõ...', 'ai'); // Show typing indicator
 
             try {
-                // Call the LLM to generate text (using gemini-2.0-flash as default)
-                let chatHistory = [
-                    {
-                        role: "user",
-                        parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
-                    },
-                    {
-                        role: "model",
-                        parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
-                    }
-                ]; // Reinitialize chat history for each message to manage context
-
                 // Add current user message to history
                 chatHistory.push({ role: "user", parts: [{ text: messageText }] });
                 
@@ -277,7 +278,6 @@
                 const result = await response.json();
 
                 // Remove typing indicator
-                // Ensure chatbotMessages.lastChild exists before removing
                 if (chatbotMessages.lastChild) {
                     chatbotMessages.removeChild(chatbotMessages.lastChild);
                 }
@@ -302,16 +302,12 @@
             }
         }
 
-        if (chatbotSendBtn) {
-            chatbotSendBtn.addEventListener('click', sendMessage);
-        }
-
-        if (chatbotInput) {
-            chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-        }
+        chatbotSendBtn.addEventListener('click', sendMessage);
+        
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
     }; // End of window.initChatbot function
 </script>
