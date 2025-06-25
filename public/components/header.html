@@ -6,7 +6,8 @@
     <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
         <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group">
             <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1f2937/ffffff?text=IVS';">
-         </a>
+            <span class="hidden sm:inline text-xl md:text-2xl font-bold group-hover:text-ivs-accent transition-colors">IVS <span class="text-ivs-accent">JSC</span></span>
+        </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
@@ -644,7 +645,7 @@
                     if (dropdown.classList.contains('opacity-0')) { // Ensure transition finished
                          dropdown.classList.add('hidden');
                     }
-                    dropdown.removeEventListener('transitionend', handler);
+                    this.removeEventListener('transitionend', handler);
                 }, { once: true });
                 button.setAttribute('aria-expanded', 'false');
             }
@@ -659,7 +660,7 @@
                      if (dropdown.classList.contains('opacity-0')) { // Ensure transition finished
                          dropdown.classList.add('hidden');
                      }
-                     dropdown.removeEventListener('transitionend', handler);
+                     this.removeEventListener('transitionend', handler);
                  }, { once: true });
                  button.setAttribute('aria-expanded', 'false');
             }
@@ -689,10 +690,10 @@
                 this.mobileLangDropdownContent.classList.remove('hidden');
                 // Force reflow and then apply transitions for smoother open
                 void this.mobileLangDropdownContent.offsetWidth; 
-                setTimeout(() => {
+                requestAnimationFrame(() => { // Changed setTimeout to requestAnimationFrame
                     this.mobileLangDropdownContent.classList.remove('opacity-0', 'translate-y-[-10px]');
                     this.mobileLangDropdownContent.classList.add('opacity-100', 'translate-y-0');
-                }, 0); // Use setTimeout(0) for next tick
+                });
                 
                 this.mobileLangToggle.setAttribute('aria-expanded', 'true');
                 this.mobileLangArrowIcon.style.transform = 'rotate(180deg)';
