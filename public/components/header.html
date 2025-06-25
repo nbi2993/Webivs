@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.7 - Fixed Mobile Nested Submenu Expansion -->
+<!-- VERSION: 2.8 - Fixed Mobile Language Dropdown Display -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and modern aesthetics. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg transition-all duration-300 ease-in-out">
@@ -688,10 +688,13 @@
 
             if (shouldBeOpen) {
                 this.mobileLangDropdownContent.classList.remove('hidden');
-                requestAnimationFrame(() => {
+                // Force reflow and then apply transitions for smoother open
+                void this.mobileLangDropdownContent.offsetWidth; 
+                setTimeout(() => {
                     this.mobileLangDropdownContent.classList.remove('opacity-0', 'translate-y-[-10px]');
                     this.mobileLangDropdownContent.classList.add('opacity-100', 'translate-y-0');
-                });
+                }, 0); // Use setTimeout(0) for next tick
+                
                 this.mobileLangToggle.setAttribute('aria-expanded', 'true');
                 this.mobileLangArrowIcon.style.transform = 'rotate(180deg)';
             } else {
