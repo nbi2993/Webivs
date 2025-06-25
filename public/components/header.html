@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.4 - Added Login Button to Header -->
+<!-- VERSION: 2.6 - Fixed Mobile Language Selector -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and modern aesthetics. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg transition-all duration-300 ease-in-out">
@@ -103,13 +103,13 @@
 
         <!-- Mobile Language Selector & Menu Button -->
         <div class="flex items-center md:hidden space-x-2">
-            <div class="relative desktop-dropdown-container group">
-                <button type="button" id="mobile-lang-toggle" class="p-2 rounded-lg text-ivs-text-primary hover:bg-ivs-bg-light transition-colors" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-lang-dropdown">
+            <div id="mobile-lang-dropdown-container" class="relative"> <!-- Added ID for easier targeting -->
+                <button type="button" id="mobile-lang-toggle" class="p-2 rounded-lg text-ivs-text-primary hover:bg-ivs-bg-light transition-colors" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-lang-dropdown-content">
                     <i class="fas fa-globe text-xl"></i>
                     <span id="current-lang-mobile" class="ml-1 mr-1 text-sm font-semibold">VI</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="mobile-lang-arrow-icon"></i>
                 </button>
-                <div id="mobile-lang-dropdown" class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1 hidden">
+                <div id="mobile-lang-dropdown-content" class="absolute top-full right-0 mt-2 p-2 space-y-1 bg-ivs-card border border-ivs-border rounded-lg shadow-xl hidden opacity-0 translate-y-[-10px] transition-all duration-200 ease-out transform origin-top-right">
                     <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi">
                         <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
                     </button>
@@ -144,25 +144,40 @@
                 <i class="fas fa-info-circle mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Về IVS
             </a>
             
+            <!-- Mobile Services Menu - NOW NESTED -->
             <div>
                 <button class="mobile-submenu-toggle group">
                     <i class="fas fa-th-large mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i>
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                 </button>
                 <div class="mobile-submenu-content space-y-1">
-                    <!-- Updated Mobile Services Submenu -->
-                    <h4 class="text-ivs-text-primary px-3 py-2 font-semibold" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h4>
-                    <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tổng quan</a>
-                    <a href="/Pages/lkmamnon.html" class="mobile-submenu-item" data-lang-key="nav_services_education_kindergarten">Liên kết Mầm non</a>
-                    <a href="/Pages/lktieuhoc.html" class="mobile-submenu-item" data-lang-key="nav_services_education_primary">Liên kết Tiểu học</a>
-                    <a href="/Pages/lkthcsthpt.html" class="mobile-submenu-item" data-lang-key="nav_services_education_secondary_high">Liên kết THCS & THPT</a>
-                    <a href="/Pages/lkttnn.html" class="mobile-submenu-item" data-lang-key="nav_services_education_language_centers">Liên kết Trung tâm Ngoại ngữ</a>
-                    <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
-                    
-                    <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h4>
-                    <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
-                    <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
-                    <a href="/Pages/litigation_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_civil">Pháp luật Dân sự</a>
+                    <!-- Nested Submenu for Education Links -->
+                    <div>
+                        <button class="mobile-submenu-toggle nested-level group">
+                            <i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>
+                            <span data-lang-key="nav_services_education_title">Liên kết Giáo dục</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
+                        </button>
+                        <div class="mobile-submenu-content nested-level-content space-y-1" style="padding-left: 1.5rem;">
+                            <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tổng quan</a>
+                            <a href="/Pages/lkmamnon.html" class="mobile-submenu-item" data-lang-key="nav_services_education_kindergarten">Liên kết Mầm non</a>
+                            <a href="/Pages/lktieuhoc.html" class="mobile-submenu-item" data-lang-key="nav_services_education_primary">Liên kết Tiểu học</a>
+                            <a href="/Pages/lkthcsthpt.html" class="mobile-submenu-item" data-lang-key="nav_services_education_secondary_high">Liên kết THCS & THPT</a>
+                            <a href="/Pages/lkttnn.html" class="mobile-submenu-item" data-lang-key="nav_services_education_language_centers">Liên kết Trung tâm Ngoại ngữ</a>
+                            <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
+                        </div>
+                    </div>
+                    <!-- Nested Submenu for Legal Consulting -->
+                    <div>
+                        <button class="mobile-submenu-toggle nested-level group">
+                            <i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>
+                            <span data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
+                        </button>
+                        <div class="mobile-submenu-content nested-level-content space-y-1" style="padding-left: 1.5rem;">
+                            <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
+                            <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
+                            <a href="/Pages/litigation_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_civil">Pháp luật Dân sự</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -349,6 +364,10 @@
         transition: max-height 0.4s ease-out;
         padding-left: 1rem;
     }
+    /* Add extra padding for nested mobile submenu content */
+    .mobile-submenu-content.nested-level-content {
+        padding-left: 2.5rem; /* Increase padding for nested items */
+    }
     
     .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
         display: flex; justify-content: space-between; align-items: center;
@@ -362,6 +381,12 @@
     .mobile-submenu-toggle:hover {
         background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
     }
+    /* Style for nested mobile submenu toggle buttons */
+    .mobile-submenu-toggle.nested-level {
+        padding: 8px 15px; /* Slightly less padding for nested level */
+        font-size: 0.95rem;
+    }
+
 
     .mobile-submenu-icon {
         transition: transform 0.3s ease;
@@ -425,3 +450,309 @@
         font-weight: 500;
     }
 </style>
+<script>
+    // Định nghĩa IVSHeaderController trong scope toàn cục (window) để loadComponents.js có thể truy cập
+    const IVSHeaderController = {
+        init() {
+            this.cacheDOM();
+            if (!this.header) {
+                console.warn("[IVSHeader] Header element not found. UI logic will not run.");
+                return;
+            }
+            this.bindEvents();
+            this.updateActiveLinks();
+            this.onScroll(); 
+            this.updateLanguageDisplay(); // Call initially to set correct language text
+            console.log("[IVSHeader] Header Controller Initialized.");
+        },
+
+        cacheDOM() {
+            this.header = document.getElementById('ivs-main-header');
+            this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
+            this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
+            this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+            this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+            this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
+            this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle'); // Select all mobile submenu toggles
+            this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
+            this.langOptions = document.querySelectorAll('.lang-option'); // All language selection buttons
+            
+            // Mobile language specific elements
+            this.mobileLangToggle = document.getElementById('mobile-lang-toggle');
+            this.mobileLangDropdownContent = document.getElementById('mobile-lang-dropdown-content');
+            this.mobileLangArrowIcon = document.getElementById('mobile-lang-arrow-icon');
+            this.mobileLangDropdownContainer = document.getElementById('mobile-lang-dropdown-container'); // Parent container for click outside logic
+        },
+
+        bindEvents() {
+            window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
+            
+            this.mobileOpenBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+            this.mobileCloseBtn?.addEventListener('click', () => this.toggleMobileMenu(false));
+            this.mobileBackdrop?.addEventListener('click', () => this.toggleMobileMenu(false));
+            this.bottomNavMenuBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
+                    this.toggleMobileMenu(false);
+                }
+                // Close mobile language dropdown on escape
+                if (e.key === 'Escape' && this.mobileLangDropdownContent && !this.mobileLangDropdownContent.classList.contains('hidden')) {
+                    this.toggleMobileLanguageDropdown(false);
+                }
+            });
+
+            // Universal click listener to close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                // Close desktop dropdowns
+                document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
+                    const toggleButton = container.querySelector('.desktop-nav-dropdown-toggle');
+                    const dropdownContent = container.querySelector('.desktop-dropdown, .desktop-mega-menu');
+                    if (toggleButton && dropdownContent && !container.contains(e.target)) {
+                        this.closeDesktopDropdown(toggleButton); // Call a function to close
+                    }
+                });
+
+                // Close mobile language dropdown if clicked outside its container
+                if (this.mobileLangDropdownContent && !this.mobileLangDropdownContent.classList.contains('hidden')) {
+                    if (this.mobileLangDropdownContainer && !this.mobileLangDropdownContainer.contains(e.target)) {
+                        this.toggleMobileLanguageDropdown(false);
+                    }
+                }
+            });
+
+            // Mobile submenu toggles
+            this.submenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => this.toggleSubmenu(e.currentTarget));
+            });
+
+            // Mobile language toggle button
+            this.mobileLangToggle?.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent document click from immediately closing
+                this.toggleMobileLanguageDropdown();
+            });
+
+            // Language options click events
+            this.langOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    const lang = e.currentTarget.dataset.lang;
+                    if (lang) {
+                        this.setLanguage(lang);
+                    }
+                });
+            });
+        },
+        
+        setLanguage(lang) {
+            console.log(`[IVSHeader] Attempting to set language to: ${lang}`);
+            if (window.system && typeof window.system.setLanguage === 'function') {
+                window.system.setLanguage(lang);
+            } else {
+                console.warn('[IVSHeader] Language system (window.system.setLanguage) not found.');
+            }
+            this.updateLanguageDisplay(lang); // Update display for both desktop and mobile
+            this.toggleMobileMenu(false); // Close mobile main menu if open
+            this.toggleMobileLanguageDropdown(false); // Close mobile language dropdown
+            // Close desktop dropdowns (language one specifically)
+            document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
+                const toggleButton = container.querySelector('.desktop-nav-dropdown-toggle');
+                if (toggleButton && toggleButton.querySelector('.fa-globe')) { // Check if it's the language dropdown
+                    this.closeDesktopDropdown(toggleButton);
+                }
+            });
+        },
+
+        onScroll() {
+            if (this.header) {
+                this.header.classList.toggle('scrolled', window.scrollY > 10);
+            }
+        },
+        
+        toggleMobileMenu(open) {
+            if (!this.mobilePanel) return;
+            this.mobilePanel.classList.toggle('is-open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        },
+
+        toggleSubmenu(toggleButton) {
+            const content = toggleButton.nextElementSibling;
+            const icon = toggleButton.querySelector('.mobile-submenu-icon');
+            if (!content || !icon) return;
+            
+            const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+            // Close other mobile submenus at the same level (only if not nested)
+            if (!toggleButton.classList.contains('nested-level')) {
+                 document.querySelectorAll('.mobile-submenu-toggle:not(.nested-level)[aria-expanded="true"]').forEach(otherToggle => {
+                    if (otherToggle !== toggleButton) {
+                        const otherContent = otherToggle.nextElementSibling;
+                        const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
+                        if (otherContent) otherContent.style.maxHeight = null;
+                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            } else {
+                // For nested levels, close only siblings
+                toggleButton.parentNode.querySelectorAll('.mobile-submenu-toggle.nested-level[aria-expanded="true"]').forEach(otherToggle => {
+                    if (otherToggle !== toggleButton) {
+                         const otherContent = otherToggle.nextElementSibling;
+                         const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
+                         if (otherContent) otherContent.style.maxHeight = null;
+                         if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                         otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Toggle current submenu
+            if (isExpanded) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+                toggleButton.setAttribute('aria-expanded', 'false');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                toggleButton.setAttribute('aria-expanded', 'true');
+            }
+        },
+
+        toggleDesktopDropdown(button, forceState) {
+            const dropdown = button.parentNode.querySelector('.desktop-dropdown, .desktop-mega-menu');
+            if (!dropdown) return;
+
+            const isCurrentlyOpen = button.getAttribute('aria-expanded') === 'true';
+            const shouldBeOpen = forceState !== undefined ? forceState : !isCurrentlyOpen;
+
+            // Close all other desktop dropdowns
+            document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
+                const otherButton = container.querySelector('.desktop-nav-dropdown-toggle');
+                if (otherButton && otherButton !== button) {
+                    this.closeDesktopDropdown(otherButton);
+                }
+            });
+
+            if (shouldBeOpen) {
+                dropdown.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    dropdown.classList.remove('opacity-0', 'scale-95', 'translate-y-[-15px]');
+                    dropdown.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+                });
+                button.setAttribute('aria-expanded', 'true');
+            } else {
+                dropdown.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                dropdown.classList.add('opacity-0', 'scale-95', 'translate-y-[-15px]');
+                dropdown.addEventListener('transitionend', function handler() {
+                    dropdown.classList.add('hidden');
+                    dropdown.removeEventListener('transitionend', handler);
+                }, { once: true });
+                button.setAttribute('aria-expanded', 'false');
+            }
+        },
+        
+        closeDesktopDropdown(button) {
+            const dropdown = button.parentNode.querySelector('.desktop-dropdown, .desktop-mega-menu');
+            if (dropdown && !dropdown.classList.contains('hidden')) {
+                 dropdown.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                 dropdown.classList.add('opacity-0', 'scale-95', 'translate-y-[-15px]');
+                 dropdown.addEventListener('transitionend', function handler() {
+                     if (dropdown.classList.contains('opacity-0')) { // Ensure transition finished
+                         dropdown.classList.add('hidden');
+                     }
+                     dropdown.removeEventListener('transitionend', handler);
+                 }, { once: true });
+                 button.setAttribute('aria-expanded', 'false');
+            }
+        },
+
+
+        // NEW: Toggle for mobile language dropdown
+        toggleMobileLanguageDropdown(open) {
+            if (!this.mobileLangToggle || !this.mobileLangDropdownContent || !this.mobileLangArrowIcon) return;
+
+            const isCurrentlyOpen = this.mobileLangDropdownContent.classList.contains('opacity-100');
+            const shouldBeOpen = open !== undefined ? open : !isCurrentlyOpen;
+
+            // Close other dropdowns if any (desktop dropdowns, mobile main menu)
+            if (this.mobilePanel.classList.contains('is-open')) {
+                this.toggleMobileMenu(false);
+            }
+            document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
+                const toggleButton = container.querySelector('.desktop-nav-dropdown-toggle');
+                if (toggleButton) {
+                    this.closeDesktopDropdown(toggleButton);
+                }
+            });
+
+
+            if (shouldBeOpen) {
+                this.mobileLangDropdownContent.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    this.mobileLangDropdownContent.classList.remove('opacity-0', 'translate-y-[-10px]');
+                    this.mobileLangDropdownContent.classList.add('opacity-100', 'translate-y-0');
+                });
+                this.mobileLangToggle.setAttribute('aria-expanded', 'true');
+                this.mobileLangArrowIcon.style.transform = 'rotate(180deg)';
+            } else {
+                this.mobileLangDropdownContent.classList.remove('opacity-100', 'translate-y-0');
+                this.mobileLangDropdownContent.classList.add('opacity-0', 'translate-y-[-10px]');
+                this.mobileLangDropdownContent.addEventListener('transitionend', function handler() {
+                    if (this.classList.contains('opacity-0')) {
+                        this.classList.add('hidden');
+                    }
+                    this.removeEventListener('transitionend', handler);
+                }, { once: true });
+                this.mobileLangToggle.setAttribute('aria-expanded', 'false');
+                this.mobileLangArrowIcon.style.transform = 'rotate(0deg)';
+            }
+        },
+
+        updateLanguageDisplay(currentLang) {
+            const lang = currentLang || (window.system ? window.system.getCurrentLanguage() : 'vi');
+            const desktopLangDisplay = document.getElementById('current-lang-desktop');
+            const mobileLangDisplay = document.getElementById('current-lang-mobile'); 
+            
+            if (desktopLangDisplay) {
+                desktopLangDisplay.textContent = lang.toUpperCase();
+            }
+            if (mobileLangDisplay) { 
+                mobileLangDisplay.textContent = lang.toUpperCase();
+            }
+        },
+
+        updateActiveLinks() {
+            const currentPath = window.location.pathname;
+            const allLinks = document.querySelectorAll('a.nav-link, a.mobile-nav-link, a.mobile-nav-link-sub, a.bottom-nav-item');
+
+            allLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
+                    link.classList.add('active');
+                    const parentSubmenuContent = link.closest('.mobile-submenu-content');
+                    if(parentSubmenuContent) {
+                        const toggleButton = parentSubmenuContent.previousElementSibling;
+                        this.toggleSubmenu(toggleButton); // Automatically open parent submenu
+                    }
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+    };
+
+    // Make the controller globally accessible for loadComponents.js
+    window.IVSHeaderController = IVSHeaderController;
+
+    // Helper debounce function (if not already available from loadComponents.js)
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func.apply(this, args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+</script>
