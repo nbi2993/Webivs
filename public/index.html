@@ -91,21 +91,21 @@
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
         }
         /* Style for Firebase Data Section */
-        #firebase-data-section {
+        #firebase-data-section, #firebase-ai-section {
             background-color: #1a202c; /* Màu nền tối hơn cho phần Firebase */
             border-top: 1px solid #2d3748; /* Đường viền nhẹ */
             padding: 2.5rem 0; /* Khoảng cách trên dưới */
             color: #e2e8f0; /* Màu chữ sáng */
         }
-        #firebase-data-section h3 {
+        #firebase-data-section h3, #firebase-ai-section h3 {
             color: #4299e1; /* Màu xanh cho tiêu đề */
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-        #firebase-data-section p {
+        #firebase-data-section p, #firebase-ai-section p {
             margin-bottom: 0.5rem;
         }
-        #firebase-data-section pre {
+        #firebase-data-section pre, #firebase-ai-section pre {
             background-color: #2d3748;
             padding: 1rem;
             border-radius: 0.5rem;
@@ -114,7 +114,7 @@
             word-break: break-all; /* Ngắt từ */
             font-size: 0.875rem;
         }
-        #firebase-data-section button {
+        #firebase-data-section button, #firebase-ai-section button {
             background-color: #4299e1;
             color: white;
             padding: 0.75rem 1.5rem;
@@ -123,7 +123,7 @@
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
-        #firebase-data-section button:hover {
+        #firebase-data-section button:hover, #firebase-ai-section button:hover {
             background-color: #3182ce;
         }
     </style>
@@ -448,6 +448,22 @@
                 </div>
             </div>
         </section>
+
+        <!-- Firebase AI Logic Section -->
+        <section id="firebase-ai-section" class="container mx-auto px-6 py-20 lg:py-24 mt-8 rounded-lg shadow-lg">
+            <h3 class="text-center font-bold font-display">Tương Tác AI Firebase (Ví dụ)</h3>
+
+            <div class="grid md:grid-cols-1 gap-8 mt-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3">Tạo Nội Dung với Gemini</h4>
+                    <input type="text" id="ai-prompt-input" placeholder="Nhập yêu cầu của bạn cho AI (ví dụ: Viết một đoạn văn về tương lai giáo dục)" class="w-full p-2 rounded-md bg-ivs-card border border-ivs-border text-ivs-text-primary focus:border-ivs-blue focus:ring-ivs-blue" />
+                    <button onclick="generateAIText()" class="mt-4">Tạo nội dung AI</button>
+                    <p id="ai-status-output" class="text-sm mt-2 text-ivs-text-secondary"></p>
+                    <h5 class="text-lg font-semibold mt-4 mb-2">Kết quả AI:</h5>
+                    <pre id="ai-output" class="mt-2 text-sm">Nội dung AI sẽ xuất hiện ở đây...</pre>
+                </div>
+            </div>
+        </section>
         
     </main>
 
@@ -464,7 +480,9 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; // Thêm setDoc, addDoc, serverTimestamp
+        import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; 
+        // Thêm import cho AI Logic (Vertex AI)
+        import { getGenerativeModel, getVertexAI } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-vertexai.js";
 
         // Firebase configuration (lấy từ biến toàn cục __firebase_config)
         const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
@@ -473,6 +491,12 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+
+        // Khởi tạo Firebase AI Logic (Vertex AI)
+        const vertexAI = getVertexAI(app);
+        // Sử dụng gemini-pro cho văn bản. Thay đổi model nếu bạn cần các khả năng khác.
+        const generativeModel = getGenerativeModel(vertexAI, { model: 'gemini-pro' });
+
 
         // Biến toàn cục để lưu trạng thái xác thực và userID
         let currentUserId = null;
@@ -571,12 +595,13 @@
             }
 
             // Đọc một tài liệu mẫu từ collection 'examplePublicData' với document ID là 'testDocument'
+            // Lưu ý: Nếu document 'testDocument' không tồn tại, bạn sẽ cần ghi nó trước.
             const data = await window.getFirestoreDocument('examplePublicData', 'testDocument');
             
             if (data) {
                 outputElement.textContent = JSON.stringify(data, null, 2);
             } else {
-                outputElement.textContent = 'Không tìm thấy dữ liệu hoặc có lỗi.';
+                outputElement.textContent = 'Không tìm thấy dữ liệu hoặc có lỗi. Vui lòng ghi dữ liệu trước!';
             }
         };
 
@@ -618,6 +643,40 @@
                 statusElement.style.color = '#f43f5e'; // Màu đỏ
             }
         };
+
+        // Hàm ví dụ tạo văn bản với Firebase AI Logic (Gemini)
+        window.generateAIText = async () => {
+            const promptInput = document.getElementById('ai-prompt-input');
+            const outputElement = document.getElementById('ai-output');
+            const statusElement = document.getElementById('ai-status-output');
+            const prompt = promptInput.value.trim();
+
+            if (!prompt) {
+                statusElement.textContent = 'Vui lòng nhập yêu cầu cho AI!';
+                statusElement.style.color = '#f43f5e';
+                return;
+            }
+
+            statusElement.textContent = 'Đang tạo nội dung AI... (có thể mất vài giây)';
+            statusElement.style.color = '#a1aab4';
+            outputElement.textContent = 'Đang tải...';
+
+            try {
+                // Gọi API Gemini
+                const result = await generativeModel.generateContent(prompt);
+                const responseText = result.response.text();
+                
+                outputElement.textContent = responseText;
+                statusElement.textContent = 'Nội dung AI đã được tạo thành công!';
+                statusElement.style.color = '#34d399';
+            } catch (error) {
+                console.error("Lỗi khi gọi Firebase AI Logic:", error);
+                outputElement.textContent = 'Không thể tạo nội dung AI. Vui lòng kiểm tra console để biết chi tiết lỗi.';
+                statusElement.textContent = `Lỗi: ${error.message}`;
+                statusElement.style.color = '#f43f5e';
+            }
+        };
+
 
     </script>
 
