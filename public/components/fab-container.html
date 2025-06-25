@@ -1,11 +1,11 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.8 - Guaranteed Chatbot Initialization -->
+<!-- VERSION: 2.9 - Full Functionality & API Endpoint Update -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
-<!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
+<!-- Container cho các nút FAB -->
 <div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
     
-    <!-- Thay đổi: Xóa class 'hidden' để JS có thể kiểm soát hiệu ứng chuyển động -->
+    <!-- Nút cuộn lên đầu trang -->
     <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
             class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
         <i class="fas fa-arrow-up text-base sm:text-lg"></i>
@@ -38,14 +38,13 @@
     </div>
 
     <!-- Nút Chatbot AI -->
-    <!-- Đặt nút chatbot trong fab-container để cùng quản lý vị trí và responsiveness -->
     <button id="chatbot-open-button" title="Mở Chatbot AI" aria-label="Mở Chatbot AI"
             class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
         <i class="fas fa-robot text-xl sm:text-2xl"></i>
     </button>
 </div>
 
-<!-- Chatbot Container (Fixed position outside fab-container for full screen positioning) -->
+<!-- Container của Chatbot (Vị trí cố định, nằm ngoài fab-container để định vị toàn màn hình) -->
 <div id="chatbot-container" class="fixed bottom-4 right-4 md:right-24 bg-white dark:bg-neutral-800 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out z-50 transform scale-0 opacity-0 origin-bottom-right" style="width: calc(100% - 32px); max-width: 400px; height: calc(100% - 100px); max-height: 500px; display: none;">
     <div id="chatbot-header" class="flex justify-between items-center bg-blue-600 text-white p-3 rounded-t-lg shadow-md">
         <span class="font-semibold text-lg">IVS Chatbot AI</span>
@@ -54,7 +53,7 @@
         </button>
     </div>
     <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto custom-scrollbar">
-        <!-- Messages will be appended here -->
+        <!-- Tin nhắn sẽ được thêm vào đây -->
         <div class="message-bubble ai bg-blue-100 dark:bg-blue-800 text-gray-800 dark:text-gray-100 p-2 rounded-lg mb-2 max-w-[80%]">Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?</div>
     </div>
     <div id="chatbot-input-area" class="flex p-3 border-t border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-900">
@@ -439,8 +438,9 @@
                     chatHistory.push({ role: "user", parts: [{ text: messageText }] });
                     
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // Canvas will provide this
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    // Thay đổi apiUrl để trỏ đến endpoint backend server của bạn
+                    const apiUrl = '/api/chat'; // <-- Đã thay đổi ở đây
+                    const apiKey = ""; // Dòng này có thể được giữ nguyên hoặc xóa ở frontend
 
                     const response = await fetch(apiUrl, {
                         method: 'POST',
@@ -464,7 +464,7 @@
                         addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
                     }
                 } catch (error) {
-                    console.error("Lỗi khi gọi API Gemini:", error);
+                    console.error("Lỗi khi gọi API Chatbot:", error); // Thay đổi log lỗi
                     // Remove "Đang gõ..." message even if error occurs
                     if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
                         this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
