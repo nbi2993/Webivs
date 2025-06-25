@@ -1,84 +1,211 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVS Auth - Đăng nhập / Đăng ký</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Đăng nhập hoặc đăng ký tài khoản IVS JSC để trải nghiệm toàn bộ hệ sinh thái giáo dục, công nghệ và nhân sự." data-lang-key="auth_meta_description">
+    <meta name="keywords" content="IVS Auth, đăng nhập IVS, đăng ký IVS, tài khoản IVS, giáo dục, công nghệ, nhân sự" data-lang-key="auth_meta_keywords">
+    <meta property="og:title" content="IVS Auth - Đăng nhập / Đăng ký" data-lang-key="auth_og_title">
+    <meta property="og:description" content="Truy cập hệ sinh thái IVS JSC với tài khoản cá nhân của bạn." data-lang-key="auth_og_description">
+    <meta property="og:image" content="https://ivsacademy.edu.vn/images/banners/ivs_og_main.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/auth.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS with Custom Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-green': '#34d399',
+                        'ivs-purple': '#a78bfa',
+                        'ivs-red': '#f87171',
+                        'ivs-cyan': '#22d3ee',
+                        'ivs-amber': '#f59e0b',
+                        'ivs-emerald': '#34d399',
+                        'ivs-rose': '#f43f5e'
+                    },
+                    keyframes: {
+                        "shine-pulse": {
+                          "0%": {
+                            "background-position": "0% 0%",
+                          },
+                          "50%": {
+                            "background-position": "100% 100%",
+                          },
+                          to: {
+                            "background-position": "0% 0%",
+                          },
+                        },
+                      },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Dark mode styles - Ensure these match your main site's dark mode */
-        html.dark {
-            background-color: #1f2937; /* neutral-800 */
-            color: #d1d5db; /* neutral-300 */
+        /* Auth Background video styles */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Đặt video phía sau nội dung */
         }
-        html.dark .bg-white { background-color: #374151; /* neutral-700 */ }
-        html.dark .text-gray-900 { color: #e5e7eb; }
-        html.dark .text-gray-700 { color: #d1d5db; }
-        html.dark input {
-            background-color: #4b5563; /* neutral-600 */
-            border-color: #6b7280; /* neutral-500 */
-            color: #e5e7eb;
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Đảm bảo video bao phủ toàn bộ */
+            filter: brightness(0.4) grayscale(0.5); /* Tối và làm xám nhẹ video */
         }
-        html.dark input:focus {
-            border-color: #60a5fa; /* blue-400 */
-            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); /* blue-400 with opacity */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 17, 23, 0.7); /* Lớp phủ màu tối */
+            z-index: -1; /* Đảm bảo nằm trên video nhưng dưới nội dung */
+        }
+
+        .auth-card {
+            background-color: var(--ivs-card); /* Màu nền thẻ đăng nhập */
+            border: 1px solid var(--ivs-border);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px); /* Hiệu ứng mờ nền */
+        }
+        .form-input {
+            background-color: var(--ivs-bg);
+            border-color: var(--ivs-border);
+            color: var(--ivs-text-primary);
+        }
+        .form-input:focus {
+            border-color: var(--ivs-blue);
+            box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.5);
+        }
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            width: 1rem;
+            height: 1rem;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-700">
-        <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6" id="auth-title">Đăng nhập</h2>
-        
-        <form id="auth-form" class="space-y-4">
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                <input type="email" id="email" name="email" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mật khẩu</label>
-                <input type="password" id="password" name="password" required
-                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            </div>
-            
-            <button type="submit" id="submit-btn"
-                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
-                Đăng nhập
-            </button>
-            
-            <p class="text-center text-sm text-gray-700 dark:text-gray-300 mt-4">
-                Bạn chưa có tài khoản? 
-                <button type="button" id="toggle-auth-mode" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none">
-                    Đăng ký ngay
-                </button>
-            </p>
-            <div id="auth-message" class="mt-4 p-3 text-center text-sm rounded-md hidden"></div>
-        </form>
-    </div>
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
 
-    <!-- Firebase SDK (Client-side) -->
+    <header id="header-placeholder"></header>
+
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="/videos/ivsblue.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+    </div>
+    <div class="video-overlay"></div> <!-- Lớp phủ video -->
+
+    <main class="min-h-screen flex items-center justify-center p-4">
+        <div class="auth-card p-8 rounded-xl w-full max-w-md relative z-10"> <!-- z-10 để đảm bảo form nằm trên video -->
+            <h2 class="text-3xl font-bold font-display text-center text-ivs-text-primary mb-6" id="auth-title">Đăng nhập</h2>
+            
+            <form id="auth-form" class="space-y-5">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-ivs-text-secondary mb-1">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="form-input mt-1 block w-full px-4 py-2 rounded-md shadow-sm focus:outline-none sm:text-sm">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-ivs-text-secondary mb-1">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required
+                           class="form-input mt-1 block w-full px-4 py-2 rounded-md shadow-sm focus:outline-none sm:text-sm">
+                </div>
+                
+                <div id="forgot-password-area" class="text-right text-sm">
+                    <button type="button" id="forgot-password-btn" class="font-medium text-ivs-blue hover:text-ivs-blue-darker focus:outline-none">
+                        Quên mật khẩu?
+                    </button>
+                </div>
+
+                <button type="submit" id="submit-btn"
+                        class="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-lg text-base font-medium text-white bg-ivs-blue hover:bg-ivs-blue-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ivs-blue transition-colors duration-200">
+                    <span class="button-text">Đăng nhập</span>
+                    <span id="loading-spinner" class="loading-spinner hidden"></span>
+                </button>
+                
+                <p class="text-center text-sm text-ivs-text-secondary mt-4">
+                    Bạn chưa có tài khoản? 
+                    <button type="button" id="toggle-auth-mode" class="font-medium text-ivs-green hover:text-ivs-green focus:outline-none">
+                        Đăng ký ngay
+                    </button>
+                </p>
+                <div id="auth-message" class="mt-4 p-3 text-center text-sm rounded-md hidden" role="alert"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/loadComponents.js" defer></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-        // Import các hàm cần thiết khác nếu sử dụng Firestore hoặc các dịch vụ khác
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        
+        // Cấu hình Firebase - Lấy từ biến môi trường của Canvas
+        // QUAN TRỌNG: TRONG MÔI TRƯỜNG THỰC TẾ (PRODUCTION) CẦN BẢO VỆ API KEY NÀY!
+        // SỬ DỤNG SERVER-SIDE RENDERING HOẶC BIẾN MÔI TRƯỜNG SERVER.
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 
-        // DÁN CẤU HÌNH DỰ ÁN FIREBASE CỦA BẠN VÀO ĐÂY
-        // Ví dụ (thay thế bằng cấu hình thực tế của bạn từ Firebase Console):
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY", // <-- THAY THẾ BẰNG API KEY THẬT CỦA BẠN
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Khởi tạo Firebase
+        // Khởi tạo Firebase App
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        // Cache DOM elements
         const authForm = document.getElementById('auth-form');
         const authTitle = document.getElementById('auth-title');
         const submitBtn = document.getElementById('submit-btn');
@@ -86,13 +213,28 @@
         const authMessage = document.getElementById('auth-message');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
+        const forgotPasswordBtn = document.getElementById('forgot-password-btn');
+        const forgotPasswordArea = document.getElementById('forgot-password-area');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const submitButtonText = submitBtn.querySelector('.button-text'); // Thêm span để giữ text
 
         let isRegisterMode = false;
+        let isProcessing = false; // Ngăn chặn gửi nhiều lần
+
+        // Kiểm tra trạng thái đăng nhập khi trang tải
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Người dùng đã đăng nhập, chuyển hướng về trang chính
+                console.log("User already logged in, redirecting to home.");
+                window.location.href = '/'; 
+            }
+        });
 
         // Hàm hiển thị thông báo
         function showMessage(message, type = 'info') {
             authMessage.textContent = message;
             authMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'bg-blue-100', 'text-blue-700');
+            authMessage.classList.add('block'); // Hiển thị thông báo
             if (type === 'error') {
                 authMessage.classList.add('bg-red-100', 'text-red-700');
             } else if (type === 'success') {
@@ -102,39 +244,75 @@
             }
         }
 
+        // Hàm ẩn thông báo
+        function hideMessage() {
+            authMessage.classList.add('hidden');
+        }
+
+        // Hàm bật/tắt trạng thái xử lý
+        function setProcessing(processing) {
+            isProcessing = processing;
+            submitBtn.disabled = processing;
+            loadingSpinner.classList.toggle('hidden', !processing);
+            submitButtonText.textContent = processing ? 'Đang xử lý...' : (isRegisterMode ? 'Đăng ký' : 'Đăng nhập');
+        }
+
+
         // Chuyển đổi giữa chế độ Đăng nhập và Đăng ký
         toggleAuthModeBtn.addEventListener('click', () => {
             isRegisterMode = !isRegisterMode;
             authTitle.textContent = isRegisterMode ? 'Đăng ký' : 'Đăng nhập';
-            submitBtn.textContent = isRegisterMode ? 'Đăng ký' : 'Đăng nhập';
+            submitButtonText.textContent = isRegisterMode ? 'Đăng ký' : 'Đăng nhập';
             toggleAuthModeBtn.textContent = isRegisterMode ? 'Đăng nhập ngay' : 'Đăng ký ngay';
-            authMessage.classList.add('hidden'); // Ẩn thông báo khi chuyển đổi
+            forgotPasswordArea.classList.toggle('hidden', isRegisterMode); // Ẩn "Quên mật khẩu?" khi đăng ký
+            hideMessage(); // Ẩn thông báo khi chuyển đổi chế độ
         });
 
-        // Xử lý gửi form
+        // Xử lý quên mật khẩu
+        forgotPasswordBtn.addEventListener('click', async () => {
+            const email = emailInput.value.trim();
+            if (email === '') {
+                showMessage('Vui lòng nhập Email của bạn để đặt lại mật khẩu.', 'error');
+                return;
+            }
+
+            setProcessing(true);
+            hideMessage();
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+                showMessage(`Email đặt lại mật khẩu đã được gửi đến ${email}. Vui lòng kiểm tra hộp thư của bạn.`, 'success');
+            } catch (error) {
+                let errorMessage = 'Gửi yêu cầu đặt lại mật khẩu không thành công.';
+                if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Email không hợp lệ.';
+                } else if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'Không tìm thấy người dùng với email này.';
+                }
+                showMessage(errorMessage, 'error');
+                console.error("Lỗi đặt lại mật khẩu:", error);
+            } finally {
+                setProcessing(false);
+            }
+        });
+
+        // Xử lý gửi form (Đăng nhập/Đăng ký)
         authForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = emailInput.value;
+            if (isProcessing) return; // Ngăn chặn gửi nhiều lần
+
+            const email = emailInput.value.trim();
             const password = passwordInput.value;
 
+            setProcessing(true);
+            hideMessage();
+
             if (isRegisterMode) {
-                // Logic đăng ký (sử dụng Firebase Client SDK)
+                // Logic đăng ký
                 try {
                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    showMessage('Đăng ký thành công! Đang đăng nhập...', 'success');
-                    // Sau khi đăng ký và đăng nhập thành công, bạn có thể chuyển hướng người dùng
-                    // hoặc lấy ID Token và gửi về backend để tạo custom token hoặc lưu session.
-                    const idToken = await userCredential.user.getIdToken();
-                    // Gửi idToken này về backend nếu bạn muốn backend tạo custom token hoặc xác minh.
-                    // const backendResponse = await fetch('/api/login', {
-                    //    method: 'POST',
-                    //    headers: { 'Content-Type': 'application/json' },
-                    //    body: JSON.stringify({ idToken: idToken }) // gửi ID Token
-                    // });
-                    // Nếu backend trả về custom token, dùng signInWithCustomToken ở đây
-                    // ví dụ: await signInWithCustomToken(auth, customToken);
-                    
-                    // Để đơn giản, sau khi đăng ký thành công, tự động chuyển hướng về trang chính
+                    showMessage('Đăng ký thành công! Đang chuyển hướng...', 'success');
+                    // Chuyển hướng sau khi đăng ký thành công (onAuthStateChanged sẽ xử lý chuyển hướng nếu cần)
                     window.location.href = '/'; 
 
                 } catch (error) {
@@ -148,17 +326,19 @@
                     }
                     showMessage(errorMessage, 'error');
                     console.error("Lỗi đăng ký:", error);
+                } finally {
+                    setProcessing(false);
                 }
             } else {
-                // Logic đăng nhập (sử dụng Firebase Client SDK)
+                // Logic đăng nhập
                 try {
                     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                    showMessage('Đăng nhập thành công!', 'success');
+                    showMessage('Đăng nhập thành công! Đang chuyển hướng...', 'success');
                     
                     // Lấy ID Token sau khi đăng nhập thành công
                     const idToken = await userCredential.user.getIdToken();
                     
-                    // Tùy chọn: Gửi ID Token này về backend để backend xác minh hoặc quản lý session
+                    // Gửi ID Token này về backend để backend xác minh hoặc quản lý session
                     // Đây là cách an toàn để frontend thông báo cho backend về việc đăng nhập thành công.
                     const response = await fetch('/api/login', {
                        method: 'POST',
@@ -172,24 +352,34 @@
                     if (!response.ok) {
                         throw new Error(data.error || 'Lỗi từ server.');
                     }
-                    // Nếu backend trả về custom token (mặc dù không cần thiết nếu đã đăng nhập bằng Client SDK)
-                    // Hoặc bạn chỉ cần biết backend xác nhận đăng nhập thành công.
-
                     // Chuyển hướng người dùng về trang chính sau khi đăng nhập thành công
                     window.location.href = '/'; 
 
                 } catch (error) {
                     let errorMessage = 'Đăng nhập không thành công.';
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                         errorMessage = 'Email hoặc mật khẩu không đúng.';
                     } else if (error.code === 'auth/invalid-email') {
                         errorMessage = 'Email không hợp lệ.';
                     }
                     showMessage(errorMessage, 'error');
                     console.error("Lỗi đăng nhập:", error);
+                } finally {
+                    setProcessing(false);
                 }
             }
         });
+
+        // Callback cho loadComponents.js
+        window.onPageComponentsLoadedCallback = function() {
+            // Khởi tạo AOS nếu cần
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50, 
+                easing: 'ease-out-quad',
+            });
+        };
     </script>
 </body>
 </html>

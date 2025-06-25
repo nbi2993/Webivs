@@ -1,11 +1,12 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.6 - Fixed Mobile Language Selector -->
+<!-- VERSION: 2.7 - Fixed Mobile Nested Submenu Expansion -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and modern aesthetics. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg transition-all duration-300 ease-in-out">
     <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
         <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group">
-            <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1f2937/ffffff?text=IVS';">    
+            <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1f2937/ffffff?text=IVS';">
+            <span class="hidden sm:inline text-xl md:text-2xl font-bold group-hover:text-ivs-accent transition-colors">IVS <span class="text-ivs-accent">JSC</span></span>
         </a>
 
         <!-- Desktop Navigation -->
@@ -359,7 +360,8 @@
     /* #ivs-mobile-menu-container no longer needs transform property here as it's controlled by is-open on panel */
 
     .mobile-submenu-content {
-        max-height: 0; overflow: hidden;
+        max-height: 0; /* Reset max-height */
+        overflow: hidden;
         transition: max-height 0.4s ease-out;
         padding-left: 1rem;
     }
@@ -578,39 +580,37 @@
             const icon = toggleButton.querySelector('.mobile-submenu-icon');
             if (!content || !icon) return;
             
-            const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
 
-            // Close other mobile submenus at the same level (only if not nested)
-            if (!toggleButton.classList.contains('nested-level')) {
-                 document.querySelectorAll('.mobile-submenu-toggle:not(.nested-level)[aria-expanded="true"]').forEach(otherToggle => {
-                    if (otherToggle !== toggleButton) {
-                        const otherContent = otherToggle.nextElementSibling;
-                        const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
-                        if (otherContent) otherContent.style.maxHeight = null;
-                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                        otherToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            } else {
-                // For nested levels, close only siblings
-                toggleButton.parentNode.querySelectorAll('.mobile-submenu-toggle.nested-level[aria-expanded="true"]').forEach(otherToggle => {
-                    if (otherToggle !== toggleButton) {
-                         const otherContent = otherToggle.nextElementSibling;
-                         const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
-                         if (otherContent) otherContent.style.maxHeight = null;
-                         if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                         otherToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
+            // Close other mobile submenus at the same level
+            let parentContainer = toggleButton.parentNode;
+            // For nested-level-content, the parent is the div containing the toggle and its content
+            // The siblings are other similar divs in the same mobile-submenu-content wrapper
+            if (toggleButton.classList.contains('nested-level')) {
+                parentContainer = toggleButton.closest('.mobile-submenu-content');
             }
 
+            parentContainer.querySelectorAll('.mobile-submenu-toggle[aria-expanded="true"]').forEach(otherToggle => {
+                if (otherToggle !== toggleButton) {
+                    const otherContent = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
+                    if (otherContent) otherContent.style.maxHeight = null;
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    otherToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
             // Toggle current submenu
             if (isExpanded) {
                 content.style.maxHeight = null;
                 icon.style.transform = 'rotate(0deg)';
                 toggleButton.setAttribute('aria-expanded', 'false');
             } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
+                // Set a small delay for height recalculation before expanding for smoother transition
+                content.style.maxHeight = '0px'; // Reset to 0 before setting actual height
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px'; // Recalculate and set
+                }, 10); // Small delay
                 icon.style.transform = 'rotate(180deg)';
                 toggleButton.setAttribute('aria-expanded', 'true');
             }
@@ -642,7 +642,9 @@
                 dropdown.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
                 dropdown.classList.add('opacity-0', 'scale-95', 'translate-y-[-15px]');
                 dropdown.addEventListener('transitionend', function handler() {
-                    dropdown.classList.add('hidden');
+                    if (dropdown.classList.contains('opacity-0')) { // Ensure transition finished
+                         dropdown.classList.add('hidden');
+                    }
                     dropdown.removeEventListener('transitionend', handler);
                 }, { once: true });
                 button.setAttribute('aria-expanded', 'false');
@@ -730,7 +732,11 @@
                     const parentSubmenuContent = link.closest('.mobile-submenu-content');
                     if(parentSubmenuContent) {
                         const toggleButton = parentSubmenuContent.previousElementSibling;
-                        this.toggleSubmenu(toggleButton); // Automatically open parent submenu
+                        // Only auto-open if it's a direct submenu (not a nested one that's already handled by its own parent toggle)
+                        // This prevents unwanted expansion of nested items on page load
+                        if (toggleButton && !toggleButton.classList.contains('nested-level')) {
+                           this.toggleSubmenu(toggleButton); // Automatically open parent submenu
+                        }
                     }
                 } else {
                     link.classList.remove('active');
