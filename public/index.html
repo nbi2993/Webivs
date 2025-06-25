@@ -490,12 +490,8 @@
                     offset: 50, // trigger animations a bit sooner
                     easing: 'ease-out-quad',
                 });
-                // Gọi hàm khởi tạo chatbot sau khi fab-container.html đã được tải
-                if (window.initChatbot && typeof window.initChatbot === 'function') {
-                    window.initChatbot();
-                } else {
-                    console.error("Chatbot initialization function not found!");
-                }
+                // Lời gọi initChatbotFunctionality đã được chuyển vào IVSFabController.init() trong loadComponents.js.
+                // Do đó, không cần gọi trực tiếp ở đây nữa.
             };           
         </script>
 

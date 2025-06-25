@@ -160,14 +160,29 @@ async function loadAndInject(url, placeholderId) {
 
         // Manually execute scripts within the injected HTML
         // This is crucial for dynamically loaded components to run their JS.
-        const scripts = placeholder.querySelectorAll('script');
-        scripts.forEach(oldScript => {
+        // Create new script elements from the innerHTML of the old ones
+        // to ensure they are parsed and executed by the browser.
+        const scripts = Array.from(placeholder.querySelectorAll('script')); // Use Array.from for live NodeList
+        for (const oldScript of scripts) {
             const newScript = document.createElement('script');
+            // Copy all attributes from the old script to the new one
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-            oldScript.parentNode.removeChild(oldScript);
-            placeholder.appendChild(newScript);
-        });
+            
+            // Transfer content. Handle both inline script and external src.
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.textContent = oldScript.textContent;
+            }
+            
+            // Replace the old script element with the new one to trigger execution
+            if (oldScript.parentNode) {
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            } else {
+                // If no parent, just append to placeholder (unlikely for well-formed HTML)
+                placeholder.appendChild(newScript);
+            }
+        }
 
         return true;
     } catch (error) {
