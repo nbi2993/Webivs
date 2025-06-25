@@ -482,8 +482,7 @@
             // vì các phần UI test đã được loại bỏ.
         </script>
 
-        <script>
-            // Callback function to initialize scripts after components are loaded
+        <script>            
             window.onPageComponentsLoadedCallback = function() {
                 AOS.init({
                     duration: 800,
@@ -491,7 +490,13 @@
                     offset: 50, // trigger animations a bit sooner
                     easing: 'ease-out-quad',
                 });
-            };
+                // Gọi hàm khởi tạo chatbot sau khi fab-container.html đã được tải
+                if (window.initChatbot && typeof window.initChatbot === 'function') {
+                    window.initChatbot();
+                } else {
+                    console.error("Chatbot initialization function not found!");
+                }
+            };           
         </script>
 
     </body>

@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.6 - Google AI Key security fix -->
+<!-- VERSION: 2.7 - Chatbot display fix for dynamic loading -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
@@ -182,7 +182,8 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    // Define the initialization function for the chatbot
+    window.initChatbot = function() {
         const chatbotOpenBtn = document.getElementById('chatbot-open-button');
         const chatbotContainer = document.getElementById('chatbot-container');
         const chatbotCloseBtn = document.getElementById('chatbot-close-button');
@@ -190,13 +191,21 @@
         const chatbotInput = document.getElementById('chatbot-input');
         const chatbotSendBtn = document.getElementById('chatbot-send-button');
 
+        // Initial setup to ensure it's hidden correctly
+        if (chatbotContainer) {
+            chatbotContainer.classList.add('chatbot-container-closed');
+            chatbotContainer.style.display = 'none'; // Ensure it starts hidden
+        }
+
         // Function to open the chatbot
         function openChatbot() {
             chatbotContainer.style.display = 'flex'; // Make it visible first
             setTimeout(() => {
                 chatbotContainer.classList.remove('chatbot-container-closed');
                 chatbotContainer.classList.add('chatbot-container-open');
-                chatbotInput.focus(); // Focus input when opened
+                if (chatbotInput) { // Ensure input exists before focusing
+                    chatbotInput.focus(); 
+                }
             }, 50); // Small delay for transition to work
         }
 
@@ -268,7 +277,10 @@
                 const result = await response.json();
 
                 // Remove typing indicator
-                chatbotMessages.removeChild(chatbotMessages.lastChild);
+                // Ensure chatbotMessages.lastChild exists before removing
+                if (chatbotMessages.lastChild) {
+                    chatbotMessages.removeChild(chatbotMessages.lastChild);
+                }
 
                 if (result.candidates && result.candidates.length > 0 &&
                     result.candidates[0].content && result.candidates[0].content.parts &&
@@ -283,7 +295,9 @@
             } catch (error) {
                 console.error("Lỗi khi gọi API Gemini:", error);
                 // Remove typing indicator
-                chatbotMessages.removeChild(chatbotMessages.lastChild);
+                if (chatbotMessages.lastChild) {
+                    chatbotMessages.removeChild(chatbotMessages.lastChild);
+                }
                 addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
             }
         }
@@ -299,5 +313,5 @@
                 }
             });
         }
-    });
+    }; // End of window.initChatbot function
 </script>
