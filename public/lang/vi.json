@@ -1932,5 +1932,16 @@
   "journey_phase3_date": "Giai đoạn 3: 2031 - 2034",
   "journey_phase3_title": "Dẫn Đầu Toàn Cầu",
   "nav_language": "Languages",
-  "journey_phase3_desc": "IVS Global School trở thành hệ thống giáo dục liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng hệ sinh thái số và các chương trình hợp tác trên phạm vi toàn cầu."
+  "journey_phase3_desc": "IVS Global School trở thành hệ thống giáo dục liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng hệ sinh thái số và các chương trình hợp tác trên phạm vi toàn cầu.",
+  "nav_services_legal_civil": "Pháp luật Dân sự",
+  "nav_services_education_kindergarten": "Liên kết Mầm non",
+  "nav_services_education_primary": "Liên kết Tiểu học",
+  "nav_services_education_secondary_high": "Liên kết THCS & THPT",
+  "nav_services_education_language_centers": "Liên kết Trung tâm Ngoại ngữ",
+  "bottom_nav_news": "News",
+  "bottom_nav_contact": "Contact",
+  "fab_call_hotline": "Gọi Hotline",
+  "fab_send_email": "Gửi Email",
+  "fab_chat_zalo": "Chat Zalo",
+  "fab_fanpage_fb": "Fanpage Facebook"
 }

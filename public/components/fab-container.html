@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.1 - Responsive positioning and activated scroll-to-top -->
-<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons. All logic is handled externally. -->
+<!-- VERSION: 2.2 - Added AI Chatbot integration -->
+<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
 <div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
@@ -35,6 +35,35 @@
              role="menu" aria-orientation="vertical" aria-labelledby="contact-main-btn">
             <!-- Nội dung cho contact-options sẽ được JavaScript chèn vào đây -->
         </div>
+    </div>
+
+    <!-- Nút Chatbot AI -->
+    <!-- Đặt nút chatbot trong fab-container để cùng quản lý vị trí và responsiveness -->
+    <button id="chatbot-open-button" title="Mở Chatbot AI" aria-label="Mở Chatbot AI"
+            class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
+        <i class="fas fa-robot text-xl sm:text-2xl"></i>
+    </button>
+</div>
+
+<!-- Chatbot Container (Fixed position outside fab-container for full screen positioning) -->
+<div id="chatbot-container" class="fixed bottom-4 right-4 md:right-24 bg-white dark:bg-neutral-800 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out z-50 transform scale-0 opacity-0 origin-bottom-right" style="width: calc(100% - 32px); max-width: 400px; height: calc(100% - 100px); max-height: 500px; display: none;">
+    <div id="chatbot-header" class="flex justify-between items-center bg-blue-600 text-white p-3 rounded-t-lg shadow-md">
+        <span class="font-semibold text-lg">IVS Chatbot AI</span>
+        <button id="chatbot-close-button" class="text-white hover:text-blue-200 transition-colors duration-200" aria-label="Đóng Chatbot">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto custom-scrollbar">
+        <!-- Messages will be appended here -->
+        <div class="message-bubble ai bg-blue-100 dark:bg-blue-800 text-gray-800 dark:text-gray-100 p-2 rounded-lg mb-2 max-w-[80%]">Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?</div>
+    </div>
+    <div id="chatbot-input-area" class="flex p-3 border-t border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-900">
+        <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn của bạn..." 
+               class="flex-1 p-2 rounded-l-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button id="chatbot-send-button" 
+                class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-r-lg ml-1 transition-colors duration-200 flex items-center justify-center" aria-label="Gửi tin nhắn">
+            <i class="fas fa-paper-plane text-lg"></i>
+        </button>
     </div>
 </div>
 
@@ -73,4 +102,185 @@
         text-align: center;
         font-size: 1.1em;
     }
+
+    /* Custom scrollbar for chatbot messages */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Message bubble styling */
+    .message-bubble {
+        word-wrap: break-word;
+        max-width: 80%; /* Limit bubble width */
+        border-radius: 0.75rem; /* rounded-lg */
+        padding: 0.5rem 0.75rem; /* p-2, px-3 */
+        margin-bottom: 0.5rem; /* mb-2 */
+        line-height: 1.4;
+    }
+
+    .message-bubble.user {
+        background-color: #dbeafe; /* blue-200 */
+        color: #1f2937; /* gray-900 */
+        margin-left: auto; /* Align to right for user messages */
+        border-bottom-right-radius: 0; /* flat corner */
+    }
+
+    .dark .message-bubble.user {
+        background-color: #1e3a8a; /* blue-800 */
+        color: #e5e7eb; /* gray-200 */
+    }
+
+    .message-bubble.ai {
+        background-color: #e5e7eb; /* gray-200 */
+        color: #1f2937; /* gray-900 */
+        margin-right: auto; /* Align to left for AI messages */
+        border-bottom-left-radius: 0; /* flat corner */
+    }
+
+    .dark .message-bubble.ai {
+        background-color: #374151; /* neutral-700 */
+        color: #e5e7eb; /* gray-200 */
+    }
+
+    /* Animation classes for chatbot container */
+    .chatbot-container-open {
+        display: flex !important; /* Override display: none */
+        transform: scale(1) translateX(0) translateY(0) !important;
+        opacity: 1 !important;
+    }
+    .chatbot-container-closed {
+        transform: scale(0) translateX(0) translateY(0) !important;
+        opacity: 0 !important;
+        pointer-events: none; /* Disable interactions when closed */
+    }
+
+    /* Responsive adjustments for chatbot container */
+    @media (max-width: 768px) {
+        #chatbot-container {
+            width: calc(100% - 32px); /* Full width minus margin */
+            height: calc(100% - 100px); /* Full height minus some margin */
+            bottom: 16px; /* Adjust bottom for mobile */
+            right: 16px; /* Adjust right for mobile */
+            max-width: none; /* Remove max-width on mobile */
+            max-height: none; /* Remove max-height on mobile */
+        }
+    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatbotOpenBtn = document.getElementById('chatbot-open-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotCloseBtn = document.getElementById('chatbot-close-button');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSendBtn = document.getElementById('chatbot-send-button');
+
+        // Function to open the chatbot
+        function openChatbot() {
+            chatbotContainer.style.display = 'flex'; // Make it visible first
+            setTimeout(() => {
+                chatbotContainer.classList.remove('chatbot-container-closed');
+                chatbotContainer.classList.add('chatbot-container-open');
+                chatbotInput.focus(); // Focus input when opened
+            }, 50); // Small delay for transition to work
+        }
+
+        // Function to close the chatbot
+        function closeChatbot() {
+            chatbotContainer.classList.remove('chatbot-container-open');
+            chatbotContainer.classList.add('chatbot-container-closed');
+            setTimeout(() => {
+                chatbotContainer.style.display = 'none'; // Hide after transition
+            }, 300); // Match CSS transition duration
+        }
+
+        // Event listeners for opening and closing
+        if (chatbotOpenBtn) {
+            chatbotOpenBtn.addEventListener('click', openChatbot);
+        }
+        if (chatbotCloseBtn) {
+            chatbotCloseBtn.addEventListener('click', closeChatbot);
+        }
+
+        // Function to add a message to the chat
+        function addMessage(text, sender) {
+            const messageBubble = document.createElement('div');
+            messageBubble.classList.add('message-bubble', sender, 'mb-2');
+            messageBubble.textContent = text;
+            chatbotMessages.appendChild(messageBubble);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Scroll to bottom
+        }
+
+        // Handle sending messages
+        async function sendMessage() {
+            const messageText = chatbotInput.value.trim();
+            if (messageText === '') return;
+
+            addMessage(messageText, 'user');
+            chatbotInput.value = ''; // Clear input
+
+            // Simulate AI response
+            addMessage('Đang gõ...', 'ai'); // Show typing indicator
+
+            try {
+                // Call the LLM to generate text (using gemini-2.0-flash as default)
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                // Remove typing indicator
+                chatbotMessages.removeChild(chatbotMessages.lastChild);
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const aiResponseText = result.candidates[0].content.parts[0].text;
+                    addMessage(aiResponseText, 'ai');
+                } else {
+                    addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
+                }
+            } catch (error) {
+                console.error("Lỗi khi gọi API Gemini:", error);
+                // Remove typing indicator
+                chatbotMessages.removeChild(chatbotMessages.lastChild);
+                addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
+            }
+        }
+
+        if (chatbotSendBtn) {
+            chatbotSendBtn.addEventListener('click', sendMessage);
+        }
+
+        if (chatbotInput) {
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+    });
+</script>
