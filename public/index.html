@@ -90,8 +90,6 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
         }
-        /* Loại bỏ các style cũ của #firebase-data-section và #firebase-ai-section nếu chúng không còn cần thiết */
-        /* Nếu các phần đó đã bị xóa hoàn toàn khỏi HTML, các style này sẽ không ảnh hưởng */
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -214,7 +212,7 @@
         <section id="partner-solutions" class="py-20 lg:py-24 bg-ivs-bg">
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4" data-lang-key="solutions_title">Giải pháp cho Từng đối tác</h2>
+                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white" data-lang-key="solutions_title">Giải pháp cho Từng đối tác</h2>
                     <p class="text-lg text-ivs-text-secondary" data-lang-key="solutions_subtitle">
                         Chúng tôi thiết kế các gói giải pháp chuyên biệt, đáp ứng chính xác nhu cầu và mục tiêu của từng loại hình đối tác.
                     </p>
@@ -399,12 +397,14 @@
             
             // Firebase configuration (Cấu hình Firebase thực tế từ dự án của bạn)
             const firebaseConfig = {
-                apiKey: "AIzaSyC_CH2324l6-32508z0wKIE8uW9hI23grQJY", 
+                apiKey: "AIzaSyChU416-32-DD8CbvXlE8aKbWHjQ3goOJY", 
                 authDomain: "ivsjsc-6362f.firebaseapp.com",
+                databaseURL: "https://ivsjsc-6362f-default-rtdb.asia-southeast1.firebasedatabase.app",
                 projectId: "ivsjsc-6362f",
-                storageBucket: "ivsjsc-6362f.appspot.com",
+                storageBucket: "ivsjsc-6362f.firebasestorage.app",
                 messagingSenderId: "910278613224",
-                appId: "1:910278613224:web:1b80ff0a1fac5703115d"
+                appId: "1:910278613224:web:16b3f0faf041ac5703115d",
+                measurementId: "G-SEP5LC4EMB"
             };
 
             // Khởi tạo Firebase
@@ -483,7 +483,7 @@
                 }
             };
             
-            // Các hàm readExampleData, writeExampleData, generateAIText đã được xóa khỏi đây
+            // Các hàm readExampleData, writeExampleData đã được xóa khỏi đây
             // vì các phần UI test đã được loại bỏ.
         </script>
 

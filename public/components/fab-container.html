@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.3 - Improved responsiveness for share/contact submenus -->
+<!-- VERSION: 2.4 - Chatbot functionality moved from index.html -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
@@ -239,13 +239,26 @@
 
             try {
                 // Call the LLM to generate text (using gemini-2.0-flash as default)
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                let chatHistory = [
+                    {
+                        role: "user",
+                        parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
+                    },
+                    {
+                        role: "model",
+                        parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
+                    }
+                ]; // Reinitialize chat history for each message to manage context
 
-                const response = await fetch(apiUrl, {
+                // Add current user message to history
+                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
+                
+                const payload = { contents: chatHistory };
+                // API Key for Gemini API (provided by the user)
+                const GEMINI_API_KEY = "AIzaSyBHlwTXFhVaHiWlwQJ0EJTPYNx-ITcO6M8"; 
+                const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+                const response = await fetch(GEMINI_API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -260,6 +273,8 @@
                     result.candidates[0].content.parts.length > 0) {
                     const aiResponseText = result.candidates[0].content.parts[0].text;
                     addMessage(aiResponseText, 'ai');
+                    // Add AI response to history
+                    chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
                 } else {
                     addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
                 }
