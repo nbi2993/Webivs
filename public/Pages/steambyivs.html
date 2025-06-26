@@ -11,13 +11,51 @@
 
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'], // Added Lexend for consistency
+                    },
+                    colors: {
+                        // Inherited from index.html for consistency
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-green': '#34d399',
+                        'ivs-purple': '#a78bfa',
+                        'ivs-red': '#f87171',
+                        'ivs-cyan': '#22d3ee',
+                        'ivs-amber': '#f59e0b',
+                        'ivs-emerald': '#34d399',
+                        'ivs-rose': '#f43f5e',
+
+                        // Existing colors from steambyivs.html, adjusted for consistency if needed
+                        'primary': '#004080',
+                        'primary-dark': '#003366',
+                        'secondary': '#ffc107',
+                        'header-orange': '#F97316',
+                        'ivs-neutral-900': '#111827',
+                        'ivs-neutral-800': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="/css/styles.css"> </head>
-<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300">
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-ivs-neutral-900 text-gray-800 dark:text-gray-300">
 
     <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
 
@@ -106,7 +144,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-8">
                         <div class="border border-orange-200 bg-orange-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
                             <div class="flex items-center mb-4">
-                                <img src="/images/icons/scratch.png" alt="Biểu tượng Scratch" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/f97316/ffffff?text=S'">
+                                <img src="/images/icons/scratch.png" alt="[Biểu tượng Scratch]" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/f97316/ffffff?text=S'">
                                 <h4 class="text-lg font-semibold text-orange-800" data-lang-key="steam_program_grade6_title">Khối 6: Nền tảng STEAM & Tư duy Lập trình Trực quan</h4>
                             </div>
                             <ul class="list-none space-y-2 text-sm md:text-base" data-lang-key="steam_program_grade6_details">
@@ -119,7 +157,7 @@
                         </div>
                         <div class="border border-blue-200 bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
                             <div class="flex items-center mb-4">
-                                <img src="/images/icons/python.png" alt="Biểu tượng Python" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/3b82f6/ffffff?text=Py'">
+                                <img src="/images/icons/python.png" alt="[Biểu tượng Python]" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/3b82f6/ffffff?text=Py'">
                                 <h4 class="text-lg font-semibold text-blue-800" data-lang-key="steam_program_grade7_title">Khối 7: Khám phá Lập trình & Ứng dụng Khoa học</h4>
                             </div>
                             <ul class="list-none space-y-2 text-sm md:text-base" data-lang-key="steam_program_grade7_details">
@@ -132,7 +170,7 @@
                         </div>
                         <div class="border border-red-200 bg-red-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
                             <div class="flex items-center mb-4">
-                                <img src="/images/icons/robotics.png" alt="Biểu tượng Robotics" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/ef4444/ffffff?text=R'">
+                                <img src="/images/icons/robotics.png" alt="[Biểu tượng Robotics]" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/ef4444/ffffff?text=R'">
                                 <h4 class="text-lg font-semibold text-red-800" data-lang-key="steam_program_grade8_title">Khối 8: Chuyên sâu Robotics & Kỹ thuật</h4>
                             </div>
                             <ul class="list-none space-y-2 text-sm md:text-base" data-lang-key="steam_program_grade8_details">
@@ -145,7 +183,7 @@
                         </div>
                         <div class="border border-purple-200 bg-purple-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
                             <div class="flex items-center mb-4">
-                                 <img src="/images/icons/ai.png" alt="Biểu tượng AI" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/8b5cf6/ffffff?text=AI'">
+                                 <img src="/images/icons/ai.png" alt="[Biểu tượng AI]" class="w-10 h-10 mr-3 object-contain flex-shrink-0" loading="lazy" onerror="this.src='https://placehold.co/40x40/8b5cf6/ffffff?text=AI'">
                                 <h4 class="text-lg font-semibold text-purple-800" data-lang-key="steam_program_grade9_title">Khối 9: Tích hợp AI & Định hướng Dự án Lớn</h4>
                             </div>
                             <ul class="list-none space-y-2 text-sm md:text-base" data-lang-key="steam_program_grade9_details">
@@ -206,63 +244,18 @@
             <section class="section-padding bg-white shadow-md my-8 mx-auto max-w-7xl rounded-xl">
                 <div class="container mx-auto container-padding">
                     <h2 class="text-4xl font-bold text-primary mb-8 text-center" data-lang-key="steam_gallery_title">Thư viện ảnh Hoạt động STEAM</h2>
-                    <div class="horizontal-scroll-gallery">
-                        <div class="gallery-item-snap rounded-lg overflow-hidden shadow-md">
-                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery1.jpg" alt="Hoạt động STEAM 1" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
+                    <div class="horizontal-scroll-gallery flex flex-nowrap overflow-x-auto gap-4 py-4 scroll-snap-type-x-mandatory">
+                        <div class="gallery-item-snap flex-shrink-0 w-80 rounded-lg overflow-hidden shadow-md">
+                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery1.jpg" alt="[Hình ảnh hoạt động STEAM 1]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
                         </div>
-                        <div class="gallery-item-snap rounded-lg overflow-hidden shadow-md">
-                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery2.jpg" alt="Hoạt động STEAM 2" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
+                        <div class="gallery-item-snap flex-shrink-0 w-80 rounded-lg overflow-hidden shadow-md">
+                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery2.jpg" alt="[Hình ảnh hoạt động STEAM 2]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
                         </div>
-                        <div class="gallery-item-snap rounded-lg overflow-hidden shadow-md">
-                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery3.jpg" alt="Hoạt động STEAM 3" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
+                        <div class="gallery-item-snap flex-shrink-0 w-80 rounded-lg overflow-hidden shadow-md">
+                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery3.jpg" alt="[Hình ảnh hoạt động STEAM 3]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
                         </div>
-                        <div class="gallery-item-snap rounded-lg overflow-hidden shadow-md">
-                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery4.jpg" alt="Hoạt động STEAM 4" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
+                        <div class="gallery-item-snap flex-shrink-0 w-80 rounded-lg overflow-hidden shadow-md">
+                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery4.jpg" alt="[Hình ảnh hoạt động STEAM 4]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
                         </div>
-                        <div class="gallery-item-snap rounded-lg overflow-hidden shadow-md">
-                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery5.jpg" alt="Hoạt động STEAM 5" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/e0e0e0/757575?text=Ảnh+STEAM';">
-                        </div>
-                    </div>
-                    <div class="text-center mt-8">
-                        <a href="../contact.html?interest=steam_gallery" class="text-primary hover:underline font-medium text-sm" data-lang-key="steam_gallery_view_more">Xem thêm ảnh (sắp có)...</a>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <div id="fab-container-placeholder"></div>
-    <div id="footer-placeholder" data-loading-text="Đang tải chân trang..."></div>
-
-    <script src="/js/script.js"></script>
-    <script src="/js/language.js"></script>
-    <script src="/js/loadComponents.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        window.onPageComponentsLoadedCallback = function() {
-            console.log("[STEAM Page] Components loaded. Page specific JS can run now.");
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    offset: 100,
-                    duration: 700,
-                    easing: 'ease-out-quad',
-                    once: true,
-                    mirror: false,
-                    anchorPlacement: 'top-bottom',
-                });
-            }
-            if (typeof window.initializeLanguageSystem === 'function') {
-                window.initializeLanguageSystem().then(() => {
-                    console.log("[STEAM Page] Language system initialized by callback.");
-                }).catch(error => {
-                    console.error("[STEAM Page] Error initializing language system from callback:", error);
-                });
-            }
-            if (typeof initializeFabButtons === 'function') {
-                initializeFabButtons();
-            }
-        };
-    </script>
-</body>
-</html>
+                        <div class="gallery-item-snap flex-shrink-0 w-80 rounded-lg overflow-hidden shadow-md">
+                            <img src="https://ivsacademy.edu.vn/images/steam-gallery/gallery5.jpg" alt="[Hình ảnh hoạt động STEAM 5]" class="w-full h-48 object-cover" onerror="this.onerror=null; t

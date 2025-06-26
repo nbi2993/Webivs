@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     
     <script>
+        // Tailwind config should be in tailwind.config.js and loaded globally via loadComponents.js
+        // Keeping it here for robustness if loadComponents.js does not apply it globally.
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -57,8 +59,7 @@
         }
     </script>
     <style>
-        .hero-text-shadow { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); }
-        .section-title { font-family: 'Lexend', sans-serif; }
+        /* Moved from inline HTML, general styles for specific elements */
         .hub-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             border: 1px solid transparent;
@@ -66,10 +67,10 @@
         .hub-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-            border-color: var(--tw-color-primary);
+            border-color: var(--ivs-primary); /* Use CSS variable */
         }
         .dark .hub-card:hover {
-             border-color: var(--tw-color-secondary);
+             border-color: var(--ivs-secondary); /* Use CSS variable */
         }
     </style>
 </head>
@@ -77,7 +78,7 @@
     
     <div id="header-placeholder"></div>
 
-    <main class="flex-grow pt-[var(--header-height)] md:pt-[var(--desktop-header-height)]">
+    <main class="flex-grow pt-[var(--header-height-mobile)] md:pt-[var(--header-height-desktop)]">
         
         <!-- Hero Section -->
         <section class="relative bg-primary text-white overflow-hidden" aria-labelledby="gallery-title">
@@ -160,10 +161,11 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    <script src="/js/language.js" defer></script>
-    <script src="/js/loadComponents.js" defer></script> 
+    <!-- language.js is now loaded by loadComponents.js -->
+    <script src="/js/loadComponents.js" type="module" defer></script> 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // This callback is executed after common components are loaded and language system is initialized
         window.onPageComponentsLoadedCallback = function() {
             AOS.init({
                 offset: 100, 
@@ -171,9 +173,7 @@
                 easing: 'ease-in-out-quad', 
                 once: true,
             });
-            if (window.system && typeof window.system.applyTranslations === 'function') {
-                window.system.applyTranslations();
-            }
+            // window.system.applyTranslations() is called by loadComponents.js after language system init, no need to call it here again.
         };
     </script>
 </body>
