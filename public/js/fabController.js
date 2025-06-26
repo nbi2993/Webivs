@@ -10,9 +10,7 @@
 // =================================================================
 //  GLOBAL UTILITIES (Ensures availability if loadComponents.js utilities are not yet globally defined)
 // =================================================================
-// These functions are exposed globally by loadComponents.js.
-// Adding a fallback in case this script runs before loadComponents.js fully sets them up,
-// though in a correct load order, they should be available via `window.`.
+// These are duplicated from loadComponents.js for robustness, but ideally should be truly global.
 if (typeof window.componentLog !== 'function') {
     window.componentLog = function(message, level = 'info') {
         console[level](`[IVS Components - FAB] ${message}`);
