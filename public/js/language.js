@@ -1,6 +1,6 @@
 /**
  * IVS Language System - Optimized for Direct Integration
- * Version: 3.0
+ * Version: 3.1
  * * Description: This script handles all multilingual functionalities.
  * It is now self-contained and initializes on DOMContentLoaded, removing
  * the dependency on external loaders like loadComponents.js.
@@ -78,20 +78,14 @@ function applyTranslations() {
         }
     });
 
-    // Update UI elements that show the current language
-    document.querySelectorAll('#current-lang-desktop, #current-lang-mobile').forEach(el => {
-        if(el) el.textContent = lang.toUpperCase();
-    });
+    // Removed specific UI updates for current language display, now handled by headerController
 }
 
 function updateLanguageButtonsUI() {
-    const currentLang = window.langSystem.currentLanguage;
-    document.querySelectorAll('button[data-lang]').forEach(button => {
-        const isActive = button.dataset.lang === currentLang;
-        button.setAttribute('aria-pressed', isActive);
-        // Add/remove a class to visually indicate the active language
-        button.classList.toggle('active-language', isActive); 
-    });
+    // This function can be kept if there are other language buttons outside the one-touch toggle
+    // For now, it's less relevant as the one-touch toggle doesn't have active/inactive states
+    // but rather triggers a full language change.
+    langLog('updateLanguageButtonsUI called, but no specific language buttons to update in this setup.');
 }
 
 // 4. PUBLIC API & INITIALIZATION
@@ -123,7 +117,7 @@ async function setLanguage(langCode) {
     localStorage.setItem(window.langSystem.languageStorageKey, langCode);
     
     applyTranslations();
-    updateLanguageButtonsUI();
+    updateLanguageButtonsUI(); // Call this to update any remaining language buttons if needed
 }
 
 async function initializeLanguageSystem() {
@@ -149,15 +143,7 @@ async function initializeLanguageSystem() {
     window.langSystem.initialized = true;
     langLog(`Language system initialized. Current language: '${window.langSystem.currentLanguage}'.`);
 
-    // Add event listeners to all language switcher buttons
-    document.querySelectorAll('button[data-lang]').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const newLang = e.currentTarget.dataset.lang;
-            if (newLang) {
-                setLanguage(newLang);
-            }
-        });
-    });
+    // Removed event listeners for language switcher buttons, now handled by headerController for bottom nav
 }
 
 // 5. SCRIPT EXECUTION

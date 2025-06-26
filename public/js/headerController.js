@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script manages all Header and Mobile Menu interactions.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.3 - Enhanced Mobile Menu & Language Toggle Transitions, improved accessibility.
+ * @version 1.4 - Language toggle moved to Bottom Navigation, added confirmation message.
  * @author IVS-Technical-Team
  */
 
@@ -41,8 +41,10 @@ const IVSHeaderController = {
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
         this.mobileMenuContainer = document.getElementById('ivs-mobile-menu-container'); // Added for slide effect
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn');
-        this.langConfirmMessage = document.getElementById('lang-confirm-message'); // Language confirmation message
+        // New: Language toggle button on bottom nav
+        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn'); 
+        // New: Language confirmation message element
+        this.langConfirmMessage = document.getElementById('lang-confirm-message'); 
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
 
@@ -87,33 +89,24 @@ const IVSHeaderController = {
             window.componentLog(`IVSHeaderController: Đã gắn sự kiện click cho Submenu Toggle ${index}.`);
         });
 
+        // New: Event listener for the language toggle button on bottom nav
         if (this.bottomNavLangToggleBtn) {
             this.bottomNavLangToggleBtn.addEventListener('click', () => this.toggleOneTouchLanguage());
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-lang-toggle-btn.");
         }
 
-        // Ensure desktop language options also work (from previous versions)
-        document.querySelectorAll('.desktop-dropdown-container .lang-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                const lang = e.currentTarget.dataset.lang;
-                if (lang) {
-                    this.setLanguage(lang);
-                }
-            });
-            window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho tùy chọn ngôn ngữ desktop.");
-        });
-
+        // Removed event listener for desktop language options as they are no longer present
         window.componentLog("IVSHeaderController: Gắn kết sự kiện hoàn tất.", "info");
     },
 
     setLanguage(lang) {
         window.componentLog(`IVSHeaderController: Yêu cầu đặt ngôn ngữ thành: ${lang}`);
-        if (window.system && typeof window.system.setLanguage === 'function') {
-            window.system.setLanguage(lang);
-            window.componentLog(`IVSHeaderController: Đã gọi window.system.setLanguage('${lang}').`);
+        if (window.langSystem && typeof window.langSystem.setLanguage === 'function') {
+            window.langSystem.setLanguage(lang); // Directly call the language system's setLanguage
+            window.componentLog(`IVSHeaderController: Đã gọi window.langSystem.setLanguage('${lang}').`);
             this.showLangConfirmation(); // Show confirmation message
         } else {
-            window.componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.system.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
+            window.componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.langSystem.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
         }
     },
 

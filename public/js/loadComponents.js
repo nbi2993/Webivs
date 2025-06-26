@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.7 - Improved dynamic script execution for injected HTML.
+ * @version 4.8 - Updated IVSHeaderController init.
  * @author IVS-Technical-Team
  */
 
@@ -37,107 +37,18 @@ function debounce(func, wait) {
 /**
  * All logic related to the Header and Mobile Menu.
  * Handles responsive menu, submenus, and scroll effects.
+ * (This is a placeholder, actual logic is in headerController.js)
  */
 const IVSHeaderController = {
     init() {
-        this.cacheDOM();
-        if (!this.header) {
-            componentLog("Header element not found. UI logic will not run.", "warn");
-            return;
-        }
-        this.bindEvents();
-        this.updateActiveLinks();
-        this.onScroll(); 
-        componentLog("Header Controller Initialized.", "info");
-    },
-
-    cacheDOM() {
-        this.header = document.getElementById('ivs-main-header');
-        this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
-        this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
-        this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
-        this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
-        this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
-        this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
-        this.langOptions = document.querySelectorAll('.lang-option');
-    },
-
-    bindEvents() {
-        window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
-        
-        this.mobileOpenBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
-        this.mobileCloseBtn?.addEventListener('click', () => this.toggleMobileMenu(false));
-        this.mobileBackdrop?.addEventListener('click', () => this.toggleMobileMenu(false));
-        this.bottomNavMenuBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
-                this.toggleMobileMenu(false);
-            }
-        });
-
-        this.submenuToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
-        });
-
-        this.langOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                const lang = e.currentTarget.dataset.lang;
-                if (lang) {
-                    this.setLanguage(lang);
-                }
-            });
-        });
-    },
-    
-    setLanguage(lang) {
-        componentLog(`Attempting to set language to: ${lang}`);
-        if (window.system && typeof window.system.setLanguage === 'function') {
-            window.system.setLanguage(lang);
+        // This is a minimal init for loadComponents.js's purpose.
+        // The detailed init is in the separate headerController.js file.
+        // Ensure that headerController.js actually contains the full init logic.
+        if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
+            window.IVSHeaderController.init();
         } else {
-            componentLog('Language system (window.system.setLanguage) not found.', 'warn');
+            componentLog("IVSHeaderController global object or its init method not found. Full header functionality might be impaired.", "error");
         }
-        this.toggleMobileMenu(false);
-    },
-
-    onScroll() {
-        if (this.header) {
-            this.header.classList.toggle('scrolled', window.scrollY > 10);
-        }
-    },
-    
-    toggleMobileMenu(open) {
-        if (!this.mobilePanel) return;
-        this.mobilePanel.classList.toggle('is-open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-    },
-
-    toggleSubmenu(toggle) {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('i.fa-chevron-down');
-        if (!content) return;
-        
-        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
-
-        if (icon) {
-            icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
-        }
-
-        content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
-    },
-
-    updateActiveLinks() {
-        const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
-        this.navLinks.forEach(link => {
-            const linkPath = (link.getAttribute('href') || "").replace(/\/$/, "") || "/";
-            link.classList.remove('active');
-            if (linkPath === currentPath) {
-                link.classList.add('active');
-            } else if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
-                link.classList.add('active');
-            }
-        });
     }
 };
 
@@ -226,7 +137,12 @@ async function loadCommonComponents() {
         }
     }
 
-    if (window.system?.init) window.system.init({ language: 'vi', translationUrl: '/lang/' });
+    // Ensure the language system is initialized after components are loaded
+    if (window.langSystem && typeof window.langSystem.initializeLanguageSystem === 'function') {
+        window.langSystem.initializeLanguageSystem(); // Call the global language system init
+    } else {
+        componentLog('Language system (window.langSystem.initializeLanguageSystem) not found or not ready.', 'warn');
+    }
 
     componentLog("Component sequence complete.");
     window.onPageComponentsLoadedCallback?.();
