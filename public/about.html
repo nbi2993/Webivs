@@ -206,7 +206,7 @@
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="text-center leader-card" data-aos="fade-up" data-aos-delay="100">
-                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/nguyen-minh-triet.png" alt="[Ảnh chân dung ông Nguyễn Minh Triết]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=NMT';">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/nguyen-min-triet.png" alt="[Ảnh chân dung ông Nguyễn Minh Triết]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=NMT';">
                         <h4 class="font-semibold text-white" data-lang-key="about_team_member1_name">Ông Nguyễn Minh Triết</h4>
                         <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member1_title">CEO & Chủ tịch HĐQT</p>
                     </div>
@@ -248,9 +248,10 @@
     <div id="fab-container-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/js/language.js" defer></script>
-    <script src="/js/loadComponents.js" defer></script>
+    <!-- loadComponents.js chịu trách nhiệm tải và khởi tạo các script chung bao gồm Firebase và Language System -->
+    <script type="module" src="/js/loadComponents.js"></script>
     <script>
+        // Callback này sẽ được gọi bởi loadComponents.js sau khi các components chung và hệ thống cơ bản được tải.
         window.onPageComponentsLoadedCallback = function() {
             AOS.init({
                 duration: 700,
