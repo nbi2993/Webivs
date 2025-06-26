@@ -5,12 +5,12 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const express = require("express");
 const bodyParser = require("body-parser");
-const fetch = require("node-fetch"); // node-fetch là cần thiết cho Node.js 16. Node.js 18+ có global fetch.
+const fetch = require("node-fetch"); 
 const cors = require("cors");
 
 const app = express();
 
-app.use(cors({ origin: true })); // Cho phép CORS từ mọi nguồn. Trong production, hãy giới hạn domain cụ thể.
+app.use(cors({ origin: true })); 
 app.use(bodyParser.json());
 
 // ====================================================================
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 if (admin.apps.length === 0) {
     try {
         // Đọc Service Account Key đã mã hóa Base64 từ biến môi trường của hệ thống
-        const serviceAccountBase64 = process.env.SERVICEACCOUNT_KEY_BASE64; // Tên biến môi trường đã được đặt (functions:config:set serviceaccount.key_base64)
+        const serviceAccountBase64 = process.env.SERVICEACCOUNT_KEY_BASE64; // ĐÚNG CÁCH CHO FUNCTIONS V2
         
         if (!serviceAccountBase64) {
             console.error("Lỗi khởi tạo Admin SDK: Biến SERVICEACCOUNT_KEY_BASE64 không được định nghĩa trong biến môi trường.");
@@ -49,12 +49,13 @@ app.post('/api/chat', async (req, res) => {
     try {
         const chatHistory = req.body.contents;
         // Đọc Gemini API Key từ biến môi trường của hệ thống
-        const geminiApiKey = process.env.GEMINI_API_KEY; // Tên biến môi trường đã được đặt (functions:config:set gemini.key)
+        const geminiApiKey = process.env.GEMINI_API_KEY; // ĐÚNG CÁCH CHO FUNCTIONS V2
 
         if (!geminiApiKey) {
             console.error("GEMINI_API_KEY không được định nghĩa trong biến môi trường.");
             return res.status(500).json({ error: "Server configuration error: Gemini API Key missing." });
         }
+        console.log(`[Chatbot API] Gemini API Key read successfully (first 5 chars): ${geminiApiKey.substring(0,5)}`);
 
         const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`;
 
