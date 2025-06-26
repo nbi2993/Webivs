@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script manages all Header and Mobile Menu interactions.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.2 - Enhanced Mobile Menu & Language Toggle Transitions.
+ * @version 1.3 - Enhanced Mobile Menu & Language Toggle Transitions, improved accessibility.
  * @author IVS-Technical-Team
  */
 
@@ -28,6 +28,7 @@ const IVSHeaderController = {
         // Initial setup for mobile menu panel state
         if (this.mobilePanel) {
             this.mobilePanel.classList.add('translate-x-full'); // Ensure it starts hidden
+            this.mobilePanel.style.display = 'none'; // Ensure it's hidden from screen readers initially
         }
         window.componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
     },
@@ -122,14 +123,14 @@ const IVSHeaderController = {
             return;
         }
         const currentLang = window.langSystem.currentLanguage;
-        const nextLang = currentLang === 'en' ? 'vi' : 'en';
+        // Toggle between 'vi' and 'en'
+        const nextLang = currentLang === 'en' ? 'vi' : 'en'; 
         window.componentLog(`IVSHeaderController: Chuyển đổi ngôn ngữ một chạm: từ ${currentLang} sang ${nextLang}`);
         this.setLanguage(nextLang);
     },
 
     showLangConfirmation() {
         if (this.langConfirmMessage) {
-            // Update text based on current language if needed, or keep generic
             const currentLang = window.langSystem?.currentLanguage || 'en';
             if (currentLang === 'vi') {
                 this.langConfirmMessage.textContent = 'Ngôn ngữ đã đổi!';
@@ -137,6 +138,7 @@ const IVSHeaderController = {
                 this.langConfirmMessage.textContent = 'Language changed!';
             }
 
+            // Apply Tailwind transition classes for smooth animation
             this.langConfirmMessage.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
             this.langConfirmMessage.classList.add('opacity-100', 'scale-100');
 
@@ -159,13 +161,15 @@ const IVSHeaderController = {
             return;
         }
         if (open) {
-            this.mobilePanel.classList.add('is-open');
-            this.mobilePanel.style.display = 'block'; // Ensure display is not none for transition
-            setTimeout(() => {
+            this.mobilePanel.style.display = 'block'; // Show panel
+            setTimeout(() => { // Small delay to allow display to apply
+                this.mobilePanel.classList.add('is-open'); // Mark as open
                 this.mobilePanel.classList.remove('opacity-0'); // Show backdrop
                 this.mobileMenuContainer.classList.remove('translate-x-full'); // Slide in
-            }, 50); // Small delay for display block to apply
-            document.body.style.overflow = 'hidden';
+            }, 50);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling on main body
+            this.mobilePanel.setAttribute('aria-hidden', 'false');
+            this.mobileMenuContainer.focus(); // Focus the menu for accessibility
         } else {
             this.mobileMenuContainer.classList.add('translate-x-full'); // Slide out
             this.mobilePanel.classList.add('opacity-0'); // Hide backdrop first
@@ -174,7 +178,8 @@ const IVSHeaderController = {
                     this.mobilePanel.style.display = 'none'; // Hide completely after transition
                 }
             }, { once: true });
-            document.body.style.overflow = '';
+            document.body.style.overflow = ''; // Restore scrolling
+            this.mobilePanel.setAttribute('aria-hidden', 'true');
         }
         window.componentLog(`IVSHeaderController: Mobile menu ${open ? 'mở' : 'đóng'}.`);
     },

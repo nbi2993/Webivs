@@ -1,14 +1,14 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, including Firebase and Language System.
- * @version 6.0 - Consolidated Firebase and Language System initialization.
+ * @version 6.1 - Consolidated Firebase and Language System initialization, minor logging updates.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
 // =================================================================
-//  GLOBAL LOGGING & UTILITIES (Centralized and unique global definitions)
+// GLOBAL LOGGING & UTILITIES (Centralized and unique global definitions)
 // =================================================================
 /**
  * Ghi log các thông báo liên quan đến tải component và hệ thống.
@@ -43,7 +43,10 @@ window.debounce = debounce;
 
 
 // =================================================================
-//  FIREBASE INITIALIZATION (From script.js)
+// FIREBASE INITIALIZATION (From script.js)
+// NOTE: For a real-world scenario, Firebase config should ideally be loaded
+// from environment variables or a secure configuration service, not hardcoded.
+// The current hardcoded config is preserved as it was in the provided files.
 // =================================================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
@@ -69,7 +72,7 @@ try {
 
 
 // =================================================================
-//  LANGUAGE SYSTEM (From language.js)
+// LANGUAGE SYSTEM (From language.js)
 // =================================================================
 window.langSystem = window.langSystem || {
     translations: {},
@@ -217,7 +220,7 @@ async function initializeLanguageSystem() {
 
 
 // =================================================================
-//  MAIN COMPONENT LOADER (Existing functionality with increased delays)
+// MAIN COMPONENT LOADER (Existing functionality with increased delays)
 // =================================================================
 
 /**
@@ -300,6 +303,7 @@ async function loadCommonComponents() {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
                 if (comp.id === 'header-placeholder') {
+                    // Slight increase in delay to ensure HeaderController is fully loaded
                     setTimeout(() => {
                         if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
                             window.IVSHeaderController.init();
@@ -307,8 +311,9 @@ async function loadCommonComponents() {
                         } else {
                             componentLog("[Loader] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header. Đảm bảo headerController.js được tải.", 'error');
                         }
-                    }, 300); // Tăng lên 300ms để ổn định
+                    }, 400); 
                 } else if (comp.id === 'fab-container-placeholder') {
+                    // Slight increase in delay to ensure FabController is fully loaded
                     setTimeout(() => {
                         if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                             window.IVSFabController.init();
@@ -316,7 +321,7 @@ async function loadCommonComponents() {
                         } else {
                             componentLog("[Loader] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
                         }
-                    }, 300); // Tăng lên 300ms để ổn định
+                    }, 400); 
                 }
             }
         } else {
@@ -332,7 +337,7 @@ async function loadCommonComponents() {
         } else {
             componentLog("[Loader] window.system hoặc window.system.init không được định nghĩa. Đảm bảo language.js đã tải và ngôn ngữ đã được gộp đúng.", 'error');
         }
-    }, 400); // Tăng lên 400ms để đảm bảo language.js đã sẵn sàng và tất cả DOM đã được tải
+    }, 500); // Increased delay to ensure all DOM is ready and language.js is fully parsed.
 
     // Update current year span (from script.js)
     const yearSpan = document.getElementById('current-year');
@@ -342,8 +347,8 @@ async function loadCommonComponents() {
     }
 
     componentLog("[Loader] Trình tự tải component và khởi tạo cơ bản đã hoàn tất.");
+    // Callback for page-specific initializations like AOS
     window.onPageComponentsLoadedCallback?.();
 }
 
 document.addEventListener('DOMContentLoaded', loadCommonComponents);
-

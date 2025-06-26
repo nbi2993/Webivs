@@ -1,14 +1,15 @@
 /**
  * @fileoverview This script manages all Floating Action Button (FAB) and Chatbot functionalities.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.1 - Combined FAB and Chatbot logic, enhanced transitions, added copy link feedback.
+ * @version 1.2 - Combined FAB and Chatbot logic, enhanced transitions, added copy link feedback,
+ * and integrated Gemini API for chatbot.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
 // =================================================================
-//  GLOBAL UTILITIES (Ensures availability if loadComponents.js utilities are not yet globally defined)
+// GLOBAL UTILITIES (Ensures availability if loadComponents.js utilities are not yet globally defined)
 // =================================================================
 // These are duplicated from loadComponents.js for robustness, but ideally should be truly global.
 if (typeof window.componentLog !== 'function') {
@@ -33,7 +34,7 @@ if (typeof window.debounce !== 'function') {
 
 
 // =================================================================
-//  CHATBOT STATE (Moved from script.js, now encapsulated here)
+// CHATBOT STATE (Moved from script.js, now encapsulated here)
 // =================================================================
 // Initial chat history for AI model context.
 let chatHistory = [
@@ -49,7 +50,7 @@ let chatHistory = [
 
 
 // =================================================================
-//  IVSFabController - Main FAB and Chatbot Logic
+// IVSFabController - Main FAB and Chatbot Logic
 // =================================================================
 const IVSFabController = {
     init() {
@@ -77,6 +78,7 @@ const IVSFabController = {
         this.chatbotMessages = document.getElementById('chatbot-messages');
         this.chatbotInput = document.getElementById('chatbot-input');
         this.chatbotSendBtn = document.getElementById('chatbot-send-button');
+        this.isGeneratingResponse = false; // Flag to prevent multiple concurrent requests
 
         window.componentLog(`IVSFabController: FAB Container: ${!!this.fabContainer}, ScrollToTopBtn: ${!!this.scrollToTopBtn}, ButtonsWithSubmenu count: ${this.buttonsWithSubmenu.length}`, 'info');
         window.componentLog(`IVSFabController: ChatbotOpenBtn: ${!!this.chatbotOpenBtn}, ChatbotContainer: ${!!this.chatbotContainer}`, 'info');
@@ -258,7 +260,7 @@ const IVSFabController = {
     },
 
     // =================================================================
-    //  Chatbot Functionality (Combined and optimized)
+    // Chatbot Functionality (Integrated with Gemini API)
     // =================================================================
     initChatbotFunctionality() {
         if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
@@ -293,38 +295,100 @@ const IVSFabController = {
         this.chatbotOpenBtn.addEventListener('click', openChatbot);
         this.chatbotCloseBtn.addEventListener('click', closeChatbot);
         
-        const addMessage = (text, sender) => {
+        const addMessage = (text, sender, isTyping = false) => {
             const messageBubble = document.createElement('div');
             messageBubble.classList.add('message-bubble', sender, 'mb-2', 'p-2', 'rounded-lg', 'max-w-[80%]');
-            // Apply specific classes based on sender
+            
             if (sender === 'ai') {
                 messageBubble.classList.add('bg-blue-100', 'dark:bg-blue-800', 'text-gray-800', 'dark:text-gray-100');
             } else { // user
                 messageBubble.classList.add('bg-green-100', 'dark:bg-green-800', 'text-gray-800', 'dark:text-gray-100', 'ml-auto'); // Align user messages right
             }
-            messageBubble.textContent = text;
+
+            if (isTyping) {
+                messageBubble.id = 'typing-indicator';
+                messageBubble.innerHTML = `
+                    <div class="flex items-center space-x-1">
+                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce" style="animation-delay: -0.32s;"></span>
+                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce" style="animation-delay: -0.16s;"></span>
+                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce"></span>
+                    </div>
+                `;
+                 // Add a simple CSS for dot-typing if not already in styles.css
+                 const style = document.createElement('style');
+                 style.textContent = `
+                     @keyframes bounce {
+                         0%, 80%, 100% { transform: translateY(0); }
+                         40% { transform: translateY(-5px); }
+                     }
+                     .dot-typing {
+                         animation: bounce 0.6s infinite ease-in-out;
+                     }
+                 `;
+                 document.head.appendChild(style);
+            } else {
+                messageBubble.textContent = text;
+            }
+
             this.chatbotMessages.appendChild(messageBubble);
             this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
         };
 
+        const removeTypingIndicator = () => {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        };
+
         const sendMessage = async () => {
             const messageText = this.chatbotInput.value.trim();
-            if (messageText === '') return;
+            if (messageText === '' || this.isGeneratingResponse) return; // Prevent multiple requests
 
+            this.isGeneratingResponse = true; // Set flag
             addMessage(messageText, 'user');
+            chatHistory.push({ role: "user", parts: [{ text: messageText }] });
             this.chatbotInput.value = '';
+            this.chatbotInput.disabled = true; // Disable input while generating
+            this.chatbotSendBtn.disabled = true; // Disable send button
 
-            // Add "Đang gõ..." message
-            addMessage('Đang gõ...', 'ai');
+            addMessage('', 'ai', true); // Add typing indicator
 
-            // Simulate AI response for UI testing without actual API call
-            setTimeout(() => {
-                if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
-                    this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
+            try {
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                removeTypingIndicator(); // Remove typing indicator once response is received
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const aiResponseText = result.candidates[0].content.parts[0].text;
+                    addMessage(aiResponseText, "ai");
+                    chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
+                    window.componentLog("IVSFabController: Phản hồi AI được thêm.");
+                } else {
+                    addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
+                    window.componentLog("IVSFabController: Cấu trúc phản hồi AI không mong đợi hoặc nội dung bị thiếu.", 'error');
                 }
-                addMessage("Đây là phản hồi giả định từ AI. Chức năng UI vẫn hoạt động tốt.", "ai");
-                window.componentLog("IVSFabController: Phản hồi AI giả định được thêm.");
-            }, 1000); // Simulate network delay
+            } catch (error) {
+                removeTypingIndicator(); // Remove typing indicator on error
+                addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng kiểm tra kết nối mạng của bạn.", "ai");
+                window.componentLog("IVSFabController: Lỗi khi gọi API Gemini: " + error.message, 'error');
+            } finally {
+                this.isGeneratingResponse = false; // Reset flag
+                this.chatbotInput.disabled = false; // Enable input
+                this.chatbotSendBtn.disabled = false; // Enable send button
+                this.chatbotInput.focus(); // Focus input for next message
+            }
         };
 
         this.chatbotSendBtn.addEventListener('click', sendMessage);
@@ -333,7 +397,7 @@ const IVSFabController = {
                 sendMessage();
             }
         });
-        window.componentLog("IVSFabController: Chức năng Chatbot được khởi tạo (API gọi được mô phỏng cho kiểm tra UI).", "info");
+        window.componentLog("IVSFabController: Chức năng Chatbot được khởi tạo (đã tích hợp API Gemini).", "info");
     }
 };
 

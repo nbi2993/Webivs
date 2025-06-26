@@ -1,11 +1,11 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.8 - Optimized Mobile Header with Enhanced Language Toggle & Menu Transitions -->
+<!-- VERSION: 2.9 - Optimized Mobile Header with Enhanced Language Toggle & Menu Transitions -->
 <!-- DESCRIPTION: Refined HTML structure for the main header with updated navigation menus,
                  focusing on responsive design and refined button interactions. All associated
                  CSS has been moved to styles.css for better maintainability. -->
 
-<header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 h-full">
+<header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg/90 backdrop-blur-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 h-full py-3 md:py-0">
         <div class="flex items-center justify-between h-full">
             <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group" aria-label="IVS JSC Homepage">
                 <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/40x40/1f2937/ffffff?text=IVS';">
@@ -25,7 +25,7 @@
                         <div class="grid grid-cols-2 gap-x-6 p-5">
                             <!-- Cột trái: Liên kết Giáo dục -->
                             <div class="space-y-2">
-                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
+                                <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
                                 <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
                                 <a href="/Pages/lkmamnon.html" class="dropdown-item" data-lang-key="nav_services_education_kindergarten"><i class="fas fa-child fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Mầm non</a>
                                 <a href="/Pages/lktieuhoc.html" class="dropdown-item" data-lang-key="nav_services_education_primary"><i class="fas fa-book-reader fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Tiểu học</a>
@@ -35,7 +35,7 @@
                             </div>
                             <!-- Cột phải: Tư vấn Pháp lý -->
                             <div class="space-y-2">
-                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
+                                <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
                                 <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
                                 <a href="/Pages/psb_introduction.html" class="dropdown-item" data-lang-key="nav_services_legal_corporate"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
                                 <a href="/Pages/litigation_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_civil">Pháp luật Dân sự</a>
@@ -101,9 +101,9 @@
 
 <!-- Mobile Menu Panel -->
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-[1002] md:hidden" aria-modal="true" role="dialog">
-    <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col transition-transform duration-300 ease-out transform translate-x-full">
-        <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
+        <div class="flex items-center justify-between p-4 border-b border-ivs-border">
             <span class="text-lg font-semibold text-ivs-accent" data-lang-key="mobile_menu_title">Menu</span>
             <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Đóng menu di động">
                 <i class="fas fa-times text-xl"></i>
@@ -167,19 +167,19 @@
 </div>
 
 <!-- Bottom Navigation for Mobile -->
-<nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden">
+<nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden bg-ivs-bg border-t border-ivs-border shadow-lg">
     <a href="/index.html" class="bottom-nav-item" aria-label="Trang chủ">
         <i class="fas fa-home text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_home">Home</span>
     </a>
     <a href="/news-archive.html" class="bottom-nav-item" aria-label="Tin tức">
         <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
     </a>
-    <!-- Language Toggle Button -->
-    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item relative" aria-label="Chuyển đổi ngôn ngữ">
+    <!-- Language Toggle Button (Enhanced Visibility) -->
+    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item relative bg-ivs-accent text-white flex flex-col justify-center items-center px-2 py-1 rounded-full shadow-lg transform scale-105 active:scale-95 transition-all duration-200" aria-label="Chuyển đổi ngôn ngữ (Tiếng Việt / English)">
         <i class="fas fa-language text-xl"></i>
-        <span class="bottom-nav-text" data-lang-key="bottom_nav_lang">Lang</span>
+        <span class="bottom-nav-text font-bold" data-lang-key="bottom_nav_lang">Lang</span>
         <!-- Language confirmation message -->
-        <div id="lang-confirm-message" class="absolute bottom-full mb-2 px-3 py-1 bg-ivs-accent text-white text-xs rounded-lg shadow-md opacity-0 scale-90 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap left-1/2 -translate-x-1/2" style="transform-origin: bottom center;">
+        <div id="lang-confirm-message" class="absolute bottom-full mb-2 px-3 py-1 bg-ivs-blue text-white text-xs rounded-lg shadow-md opacity-0 scale-90 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap left-1/2 -translate-x-1/2" style="transform-origin: bottom center;">
             Ngôn ngữ đã đổi!
         </div>
     </button>
