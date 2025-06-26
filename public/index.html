@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVS JSC - Toàn cảnh Hệ sinh thái Giáo dục, Công nghệ & Nhân sự</title>
-    
+
     <!-- SEO Meta Tags -->
     <meta name="description" content="Khám phá hệ sinh thái toàn diện của IVS JSC, nơi tích hợp các giải pháp hàng đầu về Giáo dục, Công nghệ, Tư vấn và Nhân sự để kiến tạo một tương lai bền vững." data-lang-key="home_meta_description">
     <meta name="keywords" content="IVS JSC, hệ sinh thái giáo dục, EOV 2025, công nghệ giáo dục, EdTech, tư vấn giáo dục, cung ứng giáo viên nước ngoài, STEAM, IVS Apps, IVS Games, thiết kế web, liên kết đào tạo" data-lang-key="home_meta_keywords">
@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Tailwind CSS with Custom Config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -128,7 +128,7 @@
     <header id="header-placeholder"></header>
 
     <main>
-        
+
         <!-- SECTION 1: HERO -->
         <section class="relative">
             <div class="hero-image"></div>
@@ -235,7 +235,7 @@
                         <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_rnd_desc">Nghiên cứu và phát triển các chương trình đào tạo STEAM, Kỹ năng sống, và Anh ngữ theo chuẩn quốc tế.</p>
                         <a href="/Pages/rnd-curriculum.html" class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
                     </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="600">
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border-l-4 border-ivs-cyan" data-aos="fade-up" data-aos-delay="600">
                         <div class="mb-4"><i class="fas fa-cubes text-3xl text-ivs-cyan"></i></div>
                         <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_digital_title">Hệ sinh thái Số</h3>
                         <p class="text-ivs-text-secondary text-sm" data-lang-key="digital_apps_desc">Khám phá các ứng dụng, game giáo dục và nền tảng số được thiết kế để nâng cao hiệu quả dạy và học.</p>
@@ -396,7 +396,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <!-- SECTION 9: LEADER'S VISION -->
             <section id="leader" class="py-20 lg:py-24 bg-ivs-bg">
                 <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
@@ -432,7 +432,7 @@
                     </a>
                 </div>
             </section>
-            
+
         </main>
 
         <footer id="footer-placeholder"></footer>
@@ -441,106 +441,14 @@
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="/js/language.js" defer></script>
-        <script src="/js/loadComponents.js" defer></script>
-        <!-- `script.js` đã được dọn dẹp khỏi các logic trùng lặp hoặc khởi tạo Firebase,
-             nếu không còn chức năng độc lập, có thể xóa dòng này. -->
-        <script type="module" src="/js/script.js"></script> 
-        
-        <!-- Firebase SDKs -->
-        <script type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-            import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-            import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"; 
-            
-            // Firebase configuration
-            // LƯU Ý QUAN TRỌNG: KHÔNG ĐẶT API KEY TRỰC TIẾP TẠI ĐÂY KHI TRIỂN KHAI CÔNG KHAI.
-            // Trong môi trường Canvas này, cấu hình Firebase sẽ được cung cấp tự động thông qua __firebase_config.
-            // Khi triển khai lên môi trường production của riêng bạn, bạn NÊN sử dụng các biến môi trường
-            // hoặc cấu hình phía server để bảo vệ API Key của mình.
-            const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        <!-- Tải loadComponents.js như một module -->
+        <script type="module" src="/js/loadComponents.js"></script>
 
-            // Khởi tạo Firebase
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            const db = getFirestore(app);
+        <!-- Các script độc lập khác nếu có (ví dụ: contact-page.js, posts-loader.js, rss-loader.js) -->
+        <!-- Đảm bảo chúng được tải SAU loadComponents.js nếu có phụ thuộc -->
+        <!-- Ví dụ: <script src="/js/contact-page.js"></script> -->
 
-            // Biến toàn cục để lưu trạng thái xác thực và userID
-            let currentUserId = null;
-            let isAuthReady = false;
-
-            // Xử lý xác thực người dùng
-            async function authenticateFirebase() {
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token !== '') {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                        console.log("Đăng nhập Firebase bằng custom token thành công.");
-                    } else {
-                        await signInAnonymously(auth);
-                        console.log("Đăng nhập Firebase ẩn danh thành công.");
-                    }
-                } catch (error) {
-                    console.error("Lỗi khi xác thực Firebase:", error);
-                    // Không hiển thị lỗi trực tiếp lên UID người dùng nếu đã loại bỏ phần test UI
-                }
-            }
-
-            // Lắng nghe trạng thái xác thực
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    currentUserId = user.uid;
-                    console.log("Người dùng đã đăng nhập. UID:", currentUserId);
-                } else {
-                    currentUserId = null;
-                    console.log("Người dùng đã đăng xuất.");
-                }
-                isAuthReady = true; // Đánh dấu rằng trạng thái xác thực đã sẵn sàng
-            });
-
-            // Đảm bảo Firebase được khởi tạo và xác thực khi trang tải xong
-            document.addEventListener('DOMContentLoaded', () => {
-                authenticateFirebase();
-            });
-
-            // Hàm kiểm tra trạng thái auth và trả về userId (để dùng nội bộ bởi các component khác)
-            window.getFirebaseUserId = () => {
-                if (isAuthReady) {
-                    return currentUserId;
-                } else {
-                    console.warn("Firebase Auth chưa sẵn sàng. Đang chờ xác thực.");
-                    return null;
-                }
-            };
-
-            // Hàm lấy một tài liệu từ Firestore (được dùng nội bộ bởi các component khác hoặc logic ẩn)
-            window.getFirestoreDocument = async (collectionName, documentId) => {
-                if (!isAuthReady || !currentUserId) { // Cần xác thực và UID để tương tác Firestore
-                    console.error("Firebase Auth chưa sẵn sàng hoặc người dùng chưa đăng nhập. Không thể truy cập dữ liệu Firestore.");
-                    return null;
-                }
-
-                const docRef = doc(db, `artifacts/${__app_id}/public/data/${collectionName}`, documentId);
-                
-                try {
-                    const docSnap = await getDoc(docRef);
-                    if (docSnap.exists()) {
-                        console.log("Dữ liệu tài liệu Firestore:", docSnap.data());
-                        return docSnap.data();
-                    } else {
-                        console.log("Không tìm thấy tài liệu Firestore!");
-                        return null;
-                    }
-                } catch (error) {
-                    console.error("Lỗi khi lấy tài liệu Firestore:", error);
-                    return null;
-                }
-            };
-            
-            // Các hàm readExampleData, writeExampleData đã được xóa khỏi đây
-            // vì các phần UI test đã được loại bỏ.
-        </script>
-
-        <script>            
+        <script>
             window.onPageComponentsLoadedCallback = function() {
                 AOS.init({
                     duration: 800,
@@ -548,9 +456,7 @@
                     offset: 50, // trigger animations a bit sooner
                     easing: 'ease-out-quad',
                 });
-                // Lời gọi initChatbotFunctionality đã được chuyển vào IVSFabController.init() trong loadComponents.js.
-                // Do đó, không cần gọi trực tiếp ở đây nữa.
-            };           
+            };
         </script>
 
     </body>

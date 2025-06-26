@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.6 - Finalized Mobile Header with Language Toggle & Z-index alignment (CSS externalized) -->
+<!-- VERSION: 2.7 - Finalized Mobile Header with Language Toggle & Z-index alignment (CSS externalized), no inline scripts -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
                  focusing on responsive design and refined button interactions. All associated
                  CSS has been moved to styles.css for better maintainability. -->
@@ -16,7 +16,7 @@
             <nav class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
                 <a href="/index.html" class="desktop-nav-link" data-lang-key="nav_home">Trang Chủ</a>
                 <a href="/about.html" class="desktop-nav-link" data-lang-key="nav_about">Về IVS</a>
-                
+
                 <div class="desktop-dropdown-container">
                     <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Mở menu Dịch Vụ">
                         <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
@@ -70,7 +70,7 @@
 
                 <a href="/news-archive.html" class="desktop-nav-link" data-lang-key="nav_news">Tin tức</a>
                 <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
-                
+
                 <div class="desktop-dropdown-container">
                     <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Chọn ngôn ngữ">
                         <i class="fas fa-globe"></i>
@@ -112,7 +112,7 @@
         <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto">
             <a href="/index.html" class="mobile-nav-link" data-lang-key="nav_home">Trang Chủ</a>
             <a href="/about.html" class="mobile-nav-link" data-lang-key="nav_about">Về IVS</a>
-            
+
             <div>
                 <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Dịch Vụ">
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
@@ -126,7 +126,7 @@
                     <a href="/Pages/lkthcsthpt.html" class="mobile-submenu-item" data-lang-key="nav_services_education_secondary_high">Liên kết THCS & THPT</a>
                     <a href="/Pages/lkttnn.html" class="mobile-submenu-item" data-lang-key="nav_services_education_language_centers">Liên kết Trung tâm Ngoại ngữ</a>
                     <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
-                    
+
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h4>
                     <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
                     <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
@@ -160,7 +160,7 @@
 
             <a href="/news-archive.html" class="mobile-nav-link" data-lang-key="nav_news">Tin tức</a>
             <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
-            
+
             <!-- Language switcher section removed from here as it's moved to bottom nav -->
         </nav>
     </div>
