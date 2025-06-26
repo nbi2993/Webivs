@@ -23,11 +23,12 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css"> </head>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300 antialiased font-inter">
     <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
 
-    <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)]">
+    <main class="flex-grow pt-[var(--header-height-mobile)] md:pt-[calc(var(--header-height-desktop)+2rem)]">
         <section class="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20 md:py-32 overflow-hidden rounded-b-3xl shadow-xl">
             <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://ivsacademy.edu.vn/images/banners/solutions_hero_banner.jpg');" onerror="this.style.backgroundImage='url(https://placehold.co/1920x400/004080/ffffff?text=IVS+Solutions)'; this.classList.add('bg-slate-700');"></div>
             <div class="container mx-auto container-padding relative z-10">
@@ -131,16 +132,12 @@
     <div id="fab-container-placeholder"></div>
     <div id="footer-placeholder" data-loading-text="Đang tải chân trang..."></div>
 
-    <script src="/js/script.js"></script>
-    <script src="/js/language.js"></script>
-    <script src="/js/loadComponents.js" defer></script>
+    <script src="/js/loadComponents.js" defer type="module"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // AOS.init() should be called by loadComponents.js via window.onPageComponentsLoadedCallback
         window.onPageComponentsLoadedCallback = function() {
             console.log("[Solutions Page] Components loaded. Page specific JS can run now.");
-            // AOS.init() is called by loadComponents.js after all components are loaded
-            // applyLanguage() is called by loadComponents.js after language system is initialized
-            // initializeFabButtons() is called by loadComponents.js after components are loaded
             AOS.init({
                 offset: 100,
                 duration: 700,
