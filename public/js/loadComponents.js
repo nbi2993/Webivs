@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 5.2 - Added debugging logs for mobile interactivity.
+ * @version 5.3 - Optimized component loading, ensured controller initialization timing.
  * @author IVS-Technical-Team
  */
 
@@ -18,6 +18,8 @@
 function componentLog(message, level = 'info') {
     console[level](`[IVS Components] ${message}`);
 }
+// Expose componentLog globally for other scripts that might need it (e.g., fabController.js)
+window.componentLog = componentLog;
 
 /**
  * Hàm debounce để hạn chế tần suất gọi hàm.
@@ -36,175 +38,8 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// =================================================================
-//  COMPONENT LOGIC MODULES (Assumes these are defined globally or loaded first)
-// =================================================================
-
-/**
- * All logic related to the Header and Mobile Menu.
- * Handles responsive menu, submenus, and scroll effects.
- */
-const IVSHeaderController = {
-    init() {
-        componentLog("IVSHeaderController: Bắt đầu khởi tạo.", "info");
-        this.cacheDOM();
-        if (!this.header) {
-            componentLog("IVSHeaderController: Không tìm thấy phần tử Header. Logic UI sẽ không chạy.", "error");
-            return;
-        }
-        this.bindEvents();
-        this.updateActiveLinks();
-        this.onScroll(); 
-        componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
-    },
-
-    cacheDOM() {
-        this.header = document.getElementById('ivs-main-header');
-        this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
-        this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
-        this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
-        this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
-        this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn');
-        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
-        this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
-        
-        // Log element presence for debugging
-        componentLog(`Header: ${!!this.header}, Mobile Panel: ${!!this.mobilePanel}, Open Btn: ${!!this.mobileOpenBtn}, Close Btn: ${!!this.mobileCloseBtn}, Backdrop: ${!!this.mobileBackdrop}`, 'info');
-        componentLog(`Bottom Nav Menu Btn: ${!!this.bottomNavMenuBtn}, Bottom Nav Lang Toggle Btn: ${!!this.bottomNavLangToggleBtn}`, 'info');
-        componentLog(`Submenu Toggles count: ${this.submenuToggles.length}`, 'info');
-    },
-
-    bindEvents() {
-        componentLog("IVSHeaderController: Bắt đầu gắn kết sự kiện.", "info");
-
-        window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
-        componentLog("IVSHeaderController: Đã gắn sự kiện Scroll.");
-        
-        if (this.mobileOpenBtn) {
-            this.mobileOpenBtn.addEventListener('click', () => this.toggleMobileMenu(true));
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-open-btn.");
-        }
-        if (this.mobileCloseBtn) {
-            this.mobileCloseBtn.addEventListener('click', () => this.toggleMobileMenu(false));
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-close-btn.");
-        }
-        if (this.mobileBackdrop) {
-            this.mobileBackdrop.addEventListener('click', () => this.toggleMobileMenu(false));
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-backdrop.");
-        }
-        if (this.bottomNavMenuBtn) {
-            this.bottomNavMenuBtn.addEventListener('click', () => this.toggleMobileMenu(true));
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-menu-btn.");
-        }
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
-                this.toggleMobileMenu(false);
-            }
-        });
-        componentLog("IVSHeaderController: Đã gắn sự kiện Keydown (Escape).");
-
-        this.submenuToggles.forEach((toggle, index) => {
-            toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
-            componentLog(`IVSHeaderController: Đã gắn sự kiện click cho Submenu Toggle ${index}.`);
-        });
-
-        if (this.bottomNavLangToggleBtn) {
-            this.bottomNavLangToggleBtn.addEventListener('click', () => this.toggleOneTouchLanguage());
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-lang-toggle-btn.");
-        }
-        
-        // Ensure desktop language options also work (from previous versions)
-        document.querySelectorAll('.desktop-dropdown-container .lang-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                const lang = e.currentTarget.dataset.lang;
-                if (lang) {
-                    this.setLanguage(lang);
-                }
-            });
-            componentLog("IVSHeaderController: Đã gắn sự kiện click cho tùy chọn ngôn ngữ desktop.");
-        });
-
-        componentLog("IVSHeaderController: Gắn kết sự kiện hoàn tất.", "info");
-    },
-    
-    setLanguage(lang) {
-        componentLog(`IVSHeaderController: Yêu cầu đặt ngôn ngữ thành: ${lang}`);
-        if (window.system && typeof window.system.setLanguage === 'function') {
-            window.system.setLanguage(lang);
-            componentLog(`IVSHeaderController: Đã gọi window.system.setLanguage('${lang}').`);
-        } else {
-            componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.system.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
-        }
-    },
-
-    toggleOneTouchLanguage() {
-        if (!window.langSystem) {
-            componentLog("IVSHeaderController: window.langSystem không khả dụng. Không thể chuyển đổi ngôn ngữ một chạm.", 'error');
-            return;
-        }
-        const currentLang = window.langSystem.currentLanguage;
-        const nextLang = currentLang === 'en' ? 'vi' : 'en';
-        componentLog(`IVSHeaderController: Chuyển đổi ngôn ngữ một chạm: từ ${currentLang} sang ${nextLang}`);
-        this.setLanguage(nextLang);
-    },
-
-    onScroll() {
-        if (this.header) {
-            this.header.classList.toggle('scrolled', window.scrollY > 10);
-        }
-    },
-    
-    toggleMobileMenu(open) {
-        if (!this.mobilePanel) {
-            componentLog("IVSHeaderController: Mobile panel không tìm thấy. Không thể chuyển đổi menu.", 'warn');
-            return;
-        }
-        this.mobilePanel.classList.toggle('is-open', open);
-        document.body.style.overflow = open ? 'hidden' : ''; // Prevent scroll when menu is open
-        componentLog(`IVSHeaderController: Mobile menu ${open ? 'mở' : 'đóng'}.`);
-    },
-
-    toggleSubmenu(toggle) {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('i.fa-chevron-down');
-        if (!content) {
-            componentLog("IVSHeaderController: Nội dung submenu không tìm thấy.", 'warn');
-            return;
-        }
-        
-        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
-
-        if (icon) {
-            icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
-        }
-
-        // Toggle aria-expanded attribute
-        toggle.setAttribute('aria-expanded', !isExpanded);
-
-        content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
-        componentLog(`IVSHeaderController: Submenu ${isExpanded ? 'đóng' : 'mở'} cho ${toggle.textContent.trim()}.`);
-    },
-
-    updateActiveLinks() {
-        const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
-        
-        this.navLinks.forEach(link => {
-            const linkPath = (link.getAttribute('href') || "").replace(/\/$/, "") || "/";
-            
-            link.classList.remove('active');
-
-            if (linkPath === currentPath) {
-                link.classList.add('active');
-            } else if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
-                link.classList.add('active');
-            }
-        });
-        componentLog("IVSHeaderController: Đã cập nhật các liên kết đang hoạt động.");
-    }
-};
+// Expose debounce globally
+window.debounce = debounce;
 
 
 // =================================================================
@@ -295,8 +130,10 @@ async function loadCommonComponents() {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
+                // IMPORTANT: Use sufficient setTimeout to ensure scripts loaded by loadAndInject have executed
+                // and defined global objects (like IVSHeaderController, IVSFabController).
+                // A small delay (e.g., 50-100ms) is often safer than 0ms for complex scenarios.
                 if (comp.id === 'header-placeholder') {
-                    // Slight delay to ensure IVSHeaderController is fully defined after script execution
                     setTimeout(() => {
                         if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
                             window.IVSHeaderController.init();
@@ -304,16 +141,17 @@ async function loadCommonComponents() {
                         } else {
                             componentLog("[loadCommonComponents] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header.", 'error');
                         }
-                    }, 100); // Increased delay slightly
+                    }, 100); 
                 } else if (comp.id === 'fab-container-placeholder') {
+                    // fabController.js defines IVSFabController and is injected via fab-container.html
                     setTimeout(() => {
                         if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                             window.IVSFabController.init();
                             componentLog("[loadCommonComponents] IVSFabController đã được khởi tạo qua setTimeout.", "info");
                         } else {
-                            componentLog("[loadCommonComponents] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container.", 'warn');
+                            componentLog("[loadCommonComponents] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
                         }
-                    }, 0);
+                    }, 100); // Give time for fabController.js to execute
                 }
             }
         } else {
@@ -321,15 +159,17 @@ async function loadCommonComponents() {
         }
     }
 
-    // Khởi tạo hệ thống toàn cầu (ví dụ: hệ thống ngôn ngữ) nếu có
+    // Initialize global system (e.g., language system) if available
+    // Ensure window.system is defined by language.js before attempting to init it.
+    // language.js is self-initializing on DOMContentLoaded, so it should be ready or init itself.
     setTimeout(() => {
         if (window.system && typeof window.system.init === 'function') {
             window.system.init({ language: 'en', translationUrl: '/lang/' }); // Default to 'en'
             componentLog("[loadCommonComponents] Hệ thống toàn cầu (ví dụ: ngôn ngữ) đã được khởi tạo qua setTimeout.", "info");
         } else {
-            componentLog("[loadCommonComponents] window.system hoặc window.system.init không được định nghĩa.", 'error');
+            componentLog("[loadCommonComponents] window.system hoặc window.system.init không được định nghĩa. Đảm bảo language.js đã tải.", 'error');
         }
-    }, 100); // Increased delay slightly
+    }, 150); // Slightly longer delay to ensure language.js is fully ready
 
     componentLog("[loadCommonComponents] Trình tự tải component đã hoàn tất.");
     window.onPageComponentsLoadedCallback?.(); 

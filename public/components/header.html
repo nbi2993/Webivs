@@ -1,9 +1,8 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.5 - Finalized Mobile Header with Language Toggle & Z-index alignment -->
+<!-- VERSION: 2.6 - Finalized Mobile Header with Language Toggle & Z-index alignment (CSS externalized) -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
-                 focusing on responsive design and refined button interactions, now with
-                 a one-touch language switcher in the bottom navigation and synchronized
-                 header heights. -->
+                 focusing on responsive design and refined button interactions. All associated
+                 CSS has been moved to styles.css for better maintainability. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -80,16 +79,16 @@
                     </button>
                     <div class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1">
                         <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi" aria-label="Chọn Tiếng Việt">
-                            <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
+                            <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.onerror=null; this.src='https://placehold.co/40x40/1f2937/ffffff?text=IVS';">Tiếng Việt
                         </button>
                         <button class="dropdown-item lang-option" data-lang="en" data-lang-key="lang_en" aria-label="Select English">
-                            <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">English
+                            <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.onerror=null; this.src='https://placehold.co/40x40/1f2937/ffffff?text=IVS';">English
                         </button>
                     </div>
                 </div>
             </nav>
 
-            <!-- Mobile Specific Controls - Removed mobile language toggle from here -->
+            <!-- Mobile Specific Controls -->
             <div class="flex items-center space-x-2 md:hidden">
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-open-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Mở menu di động" aria-controls="ivs-mobile-menu-panel">
@@ -183,141 +182,3 @@
         <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
     </button>
 </nav>
-
-<!-- Inline styles for component-specific CSS -->
-<!-- It's recommended to move these to a central CSS file for production -->
-<style>
-    :root {
-        --header-height: 64px;
-        --desktop-header-height: 80px; /* Synchronized with styles.css */
-        --bottom-nav-height: 56px; /* Synchronized with styles.css */
-        --ivs-bg-dark: #111827;
-        --ivs-bg-medium: #1f2937;
-        --ivs-bg-light: #374151;
-        --ivs-text-primary: #f9fafb;
-        --ivs-text-secondary: #d1d5db;
-        --ivs-accent: #F97316;
-        --ivs-accent-dark: #ea580c;
-        --ivs-link-active-bg: rgba(249, 115, 22, 0.15);
-    }
-
-    #ivs-main-header.scrolled {
-        background-color: rgba(17, 24, 39, 0.85);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .desktop-nav-link, .desktop-nav-dropdown-toggle {
-        display: inline-flex; align-items: center; padding: 10px 16px;
-        font-size: 1rem; font-weight: 500; color: var(--ivs-text-secondary);
-        border-radius: 0.375rem; transition: all 0.2s ease-out;
-        min-height: 44px;
-    }
-    .desktop-nav-link:hover, .desktop-nav-dropdown-toggle:hover {
-        color: var(--ivs-text-primary); background-color: var(--ivs-neutral-700);
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-sm);
-    }
-    .desktop-nav-link.active {
-        color: var(--ivs-accent); font-weight: 600;
-        background-color: var(--ivs-link-active-bg);
-    }
-
-    .desktop-dropdown-container { position: relative; }
-    .desktop-dropdown, .desktop-mega-menu {
-        position: absolute; top: 100%; left: 0; z-index: 50;
-        background-color: var(--ivs-bg-medium);
-        border: 1px solid var(--ivs-bg-light); border-radius: 0.5rem;
-        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-        margin-top: 8px;
-        opacity: 0; visibility: hidden;
-        transform: translateY(-10px) scale(0.98);
-        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
-    }
-    .desktop-dropdown-container:hover .desktop-dropdown,
-    .desktop-dropdown-container:hover .desktop-mega-menu {
-        opacity: 1; visibility: visible;
-        transform: translateY(0) scale(1);
-        transition-delay: 0s;
-    }
-
-    .desktop-dropdown { width: 240px; }
-    .desktop-mega-menu { width: 520px; }
-
-    .dropdown-item {
-        display: flex; align-items: center; width: 100%; text-align: left;
-        padding: 10px 14px; color: var(--ivs-text-secondary);
-        border-radius: 0.375rem; transition: background-color 0.2s, color 0.2s;
-    }
-    .dropdown-item:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-    }
-    
-    #ivs-mobile-menu-panel { visibility: hidden; }
-    #ivs-mobile-menu-panel.is-open { visibility: visible; }
-    #ivs-mobile-menu-backdrop {
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-    }
-    #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-backdrop { opacity: 1; }
-    #ivs-mobile-menu-container {
-        transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container { transform: translateX(0); }
-
-    .mobile-submenu-content {
-        max-height: 0; overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        padding-left: 1rem;
-    }
-    
-    .mobile-submenu-toggle {
-        display: flex; justify-content: space-between; align-items: center;
-        width: 100%; padding: 0.6rem 1rem;
-        font-weight: 500;
-        color: var(--ivs-text-secondary); border-radius: 0.375rem;
-        transition: background-color 0.2s, color 0.2s;
-        text-align: left;
-        min-height: 38px;
-    }
-
-    .mobile-submenu-toggle:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-    }
-
-    .mobile-submenu-icon {
-        transition: transform 0.3s ease;
-    }
-    .mobile-submenu-toggle[aria-expanded="true"] .mobile-submenu-icon {
-        transform: rotate(180deg);
-    }
-
-    .mobile-submenu-item {
-        display: block;
-        padding: 0.4rem 0.7rem;
-        color: var(--ivs-text-secondary); border-radius: 0.375rem;
-        transition: background-color 0.2s, color 0.2s;
-        text-align: left;
-        min-height: 32px;
-    }
-
-    .mobile-submenu-item:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-    }
-
-    #ivs-bottom-nav {
-        background-color: rgba(17, 24, 39, 0.9);
-        backdrop-filter: blur(12px);
-        border-top: 1px solid var(--ivs-bg-light);
-    }
-    .bottom-nav-item {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        flex-grow: 1; color: var(--ivs-text-secondary); padding: 4px 0;
-        transition: color 0.2s; text-decoration: none;
-    }
-    .bottom-nav-item.active { color: var(--ivs-accent); }
-    .bottom-nav-text { font-size: 0.7rem; margin-top: 2px; }
-
-    /* Removed #mobile-lang-toggle and #mobile-lang-dropdown styles as they are no longer used */
-</style>

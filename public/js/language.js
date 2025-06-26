@@ -1,6 +1,6 @@
 /**
  * IVS Language System - Optimized for Direct Integration
- * Version: 3.0
+ * Version: 3.1 - Removed #current-lang-mobile element update.
  * * Description: This script handles all multilingual functionalities.
  * It is now self-contained and initializes on DOMContentLoaded, removing
  * the dependency on external loaders like loadComponents.js.
@@ -22,10 +22,16 @@ window.langSystem = window.langSystem || {
 
 // 2. UTILITY FUNCTIONS
 function langLog(message, type = 'log') {
-    if (window.langSystem.isDebugMode || type === 'error' || type === 'warn') {
+    // Ensure window.componentLog is available, fallback to console if not
+    if (window.componentLog && (window.langSystem.isDebugMode || type === 'error' || type === 'warn')) {
+        window.componentLog(`[IVS Lang] ${message}`, level = type);
+    } else if (window.langSystem.isDebugMode || type === 'error' || type === 'warn') {
         console[type](`[IVS Lang] ${message}`);
     }
 }
+// Expose langLog globally for potential external use or debugging
+window.langLog = langLog;
+
 
 // 3. CORE TRANSLATION LOGIC
 async function fetchTranslations(langCode) {
@@ -56,7 +62,7 @@ function applyTranslations() {
     }
 
     langLog(`Applying translations for '${lang}'...`);
-    document.documentElement.lang = lang;
+    document.documentElement.lang = lang; // Set lang attribute on HTML element
 
     document.querySelectorAll('[data-lang-key]').forEach(el => {
         const key = el.dataset.langKey;
@@ -78,9 +84,9 @@ function applyTranslations() {
         }
     });
 
-    // Update UI elements that show the current language
-    // Note: 'current-lang-mobile' is now removed as per header.html structure
-    document.querySelectorAll('#current-lang-desktop, #current-lang-mobile-outside').forEach(el => {
+    // Update UI elements that show the current language code (e.g., "EN", "VI")
+    // '#current-lang-mobile-outside' was removed from header.html and is no longer needed
+    document.querySelectorAll('#current-lang-desktop').forEach(el => {
         if(el) el.textContent = lang.toUpperCase();
     });
 }
@@ -126,6 +132,23 @@ async function setLanguage(langCode) {
     applyTranslations();
     updateLanguageButtonsUI();
 }
+// Expose setLanguage globally as window.system.setLanguage
+window.system = window.system || {};
+window.system.setLanguage = setLanguage;
+window.system.init = async function(config) {
+    langLog("window.system.init called. Config:", config);
+    // Overwrite default settings if provided in config
+    if (config && config.language) {
+        window.langSystem.defaultLanguage = config.language;
+        window.langSystem.currentLanguage = config.language;
+    }
+    if (config && config.translationUrl) {
+        window.langSystem.languageFilesPath = config.translationUrl;
+    }
+    await initializeLanguageSystem();
+    langLog("window.system initialized successfully.");
+};
+
 
 async function initializeLanguageSystem() {
     if (window.langSystem.initialized) {
@@ -151,6 +174,8 @@ async function initializeLanguageSystem() {
     langLog(`Language system initialized. Current language: '${window.langSystem.currentLanguage}'.`);
 
     // Add event listeners to all language switcher buttons
+    // This part can be simplified as loadComponents.js handles binding for header/bottom nav buttons
+    // But keeping it here for other potential standalone language buttons
     document.querySelectorAll('button[data-lang]').forEach(button => {
         button.addEventListener('click', (e) => {
             const newLang = e.currentTarget.dataset.lang;
@@ -163,6 +188,7 @@ async function initializeLanguageSystem() {
 
 // 5. SCRIPT EXECUTION
 // The script will now self-initialize once the DOM is ready.
+// This ensures language system is ready even if loadComponents.js is not present or delayed.
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeLanguageSystem);
 } else {
