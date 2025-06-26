@@ -225,15 +225,12 @@
     }
     
     .desktop-nav-link, .desktop-nav-dropdown-toggle {
-        display: inline-flex; align-items: center; padding: 10px 16px; /* Tăng padding */
-        font-size: 1rem; font-weight: 500; color: var(--ivs-text-secondary);
-        border-radius: 0.375rem; transition: all 0.2s ease-out;
-        min-height: 44px; /* Đảm bảo kích thước tối thiểu cho dễ tương tác */
+        display: inline-flex; align-items: center; padding: 6px 12px;
+        font-size: 0.95rem; font-weight: 500; color: var(--ivs-text-secondary);
+        border-radius: 0.375rem; transition: color 0.2s, background-color 0.2s;
     }
     .desktop-nav-link:hover, .desktop-nav-dropdown-toggle:hover {
-        color: var(--ivs-text-primary); background-color: var(--ivs-neutral-700);
-        transform: translateY(-2px); /* Hiệu ứng nhấc nhẹ khi hover */
-        box-shadow: var(--shadow-sm);
+        color: var(--ivs-text-primary); background-color: var(--ivs-bg-light);
     }
     .desktop-nav-link.active {
         color: var(--ivs-accent); font-weight: 600;
@@ -291,7 +288,8 @@
     
     .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
         display: flex; justify-content: space-between; align-items: center;
-        width: 100%; padding: 0.75rem 1.25rem; font-weight: 500;
+        width: 100%; padding: 0.75rem 1.25rem; /* Tăng padding để có touch target lớn hơn */
+        font-weight: 500;
         color: var(--ivs-text-secondary); border-radius: 0.375rem;
         transition: background-color 0.2s, color 0.2s;
         text-align: left; /* Ensure text aligns left */

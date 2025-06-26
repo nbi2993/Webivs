@@ -79,7 +79,8 @@ function applyTranslations() {
     });
 
     // Update UI elements that show the current language
-    document.querySelectorAll('#current-lang-desktop, #current-lang-mobile').forEach(el => {
+    // Note: 'current-lang-mobile' is now removed as per header.html structure
+    document.querySelectorAll('#current-lang-desktop, #current-lang-mobile-outside').forEach(el => {
         if(el) el.textContent = lang.toUpperCase();
     });
 }
