@@ -2,7 +2,7 @@
  * @fileoverview Logic for the main Header component.
  * Handles responsive menu, submenus, scroll effects, and language switching.
  * This script is intended to be loaded separately and attached to header.html.
- * @version 1.0 - Initialized as separate controller.
+ * @version 1.1 - Mobile Menu Visibility Fix
  * @author IVS-Technical-Team
  */
 
@@ -148,8 +148,31 @@ const IVSHeaderController = {
     
     toggleMobileMenu(open) {
         if (!this.mobilePanel) return;
-        this.mobilePanel.classList.toggle('is-open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
+
+        // Xóa lắng nghe cũ để tránh tích tụ
+        if (this.mobilePanelCloseListener) {
+            this.mobilePanel.removeEventListener('transitionend', this.mobilePanelCloseListener);
+            this.mobilePanelCloseListener = null;
+        }
+
+        if (open) {
+            this.mobilePanel.style.visibility = 'visible'; // Hiển thị trước khi bắt đầu transition
+            this.mobilePanel.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        } else {
+            this.mobilePanel.classList.remove('is-open');
+            document.body.style.overflow = ''; // Cho phép cuộn lại
+
+            // Đặt lắng nghe sự kiện transitionend để ẩn sau khi animation kết thúc
+            this.mobilePanelCloseListener = () => {
+                if (!this.mobilePanel.classList.contains('is-open')) { // Đảm bảo transition kết thúc ở trạng thái đóng
+                    this.mobilePanel.style.visibility = 'hidden';
+                }
+                this.mobilePanel.removeEventListener('transitionend', this.mobilePanelCloseListener);
+                this.mobilePanelCloseListener = null;
+            };
+            this.mobilePanel.addEventListener('transitionend', this.mobilePanelCloseListener, { once: true });
+        }
     },
 
     toggleSubmenu(toggleButton) {
@@ -327,3 +350,16 @@ const IVSHeaderController = {
 
 // Make the controller globally accessible for loadComponents.js
 window.IVSHeaderController = IVSHeaderController;
+
+// Helper debounce function (if not already available from loadComponents.js)
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
