@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.8 - Centralized Utilities & Improved Component Init Flow.
+ * @version 4.9 - Enhanced Component Loading & Init Flow.
  * @author IVS-Technical-Team
  */
 

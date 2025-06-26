@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.9 - Full Functionality & API Endpoint Update -->
+<!-- VERSION: 3.0 - Improved Chatbot & FAB Responsiveness -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Container cho các nút FAB -->
@@ -67,8 +67,8 @@
 </div>
 
 <!-- 
- CSS cho các mục con của FAB. 
- Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt lập.
+ CSS cho các mục con của FAB và Chatbot. 
+ Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt động lập.
 -->
 <style>
     .fab-submenu-item {
@@ -156,6 +156,7 @@
     }
 
     /* Animation classes for chatbot container */
+    /* Use display none/flex for visibility, then transform for animation */
     .chatbot-container-open {
         display: flex !important; /* Override display: none */
         transform: scale(1) translateX(0) translateY(0) !important;
@@ -171,8 +172,8 @@
     @media (max-width: 768px) {
         #chatbot-container {
             width: calc(100% - 32px); /* Full width minus margin */
-            height: calc(100% - 100px); /* Full height minus some margin */
-            bottom: 16px; /* Adjust bottom for mobile */
+            height: calc(100% - 100px); /* Full height minus some margin (header + bottom nav) */
+            bottom: calc(var(--bottom-nav-height) + 16px); /* Position above bottom nav + 16px */
             right: 16px; /* Adjust right for mobile */
             max-width: none; /* Remove max-width on mobile */
             max-height: none; /* Remove max-height on mobile */
@@ -239,7 +240,7 @@
             // Cache chatbot elements
             this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
             this.chatbotContainer = document.getElementById('chatbot-container');
-            this.chatbotCloseBtn = document.getElementById('chatbot-close-button'); // Added chatbotCloseBtn to cache
+            this.chatbotCloseBtn = document.getElementById('chatbot-close-button'); 
             this.chatbotMessages = document.getElementById('chatbot-messages');
             this.chatbotInput = document.getElementById('chatbot-input');
             this.chatbotSendBtn = document.getElementById('chatbot-send-button');
@@ -325,7 +326,7 @@
                     if (window.scrollY > 200) {
                         this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
                     } else {
-                        this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                        this.scrollToToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
                     }
                 };
                 window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
@@ -339,7 +340,7 @@
             }));
 
             document.addEventListener('click', (e) => {
-                if (!this.fabContainer.contains(e.target)) {
+                if (this.fabContainer && !this.fabContainer.contains(e.target)) { // Add null check for fabContainer
                     this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
                 }
             });

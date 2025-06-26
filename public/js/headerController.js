@@ -2,7 +2,7 @@
  * @fileoverview Logic for the main Header component.
  * Handles responsive menu, submenus, scroll effects, and language switching.
  * This script is intended to be loaded separately and attached to header.html.
- * @version 1.1 - Mobile Menu Visibility Fix
+ * @version 1.2 - Enhanced Mobile Menu & Language Toggles
  * @author IVS-Technical-Team
  */
 
@@ -119,6 +119,21 @@ const IVSHeaderController = {
                 }
             });
         });
+
+        // Event listeners for desktop dropdowns
+        document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
+            const toggleButton = container.querySelector('.desktop-nav-dropdown-toggle');
+            if (toggleButton) {
+                // Sử dụng mouseenter và mouseleave để quản lý dropdown trên desktop
+                container.addEventListener('mouseenter', () => this.toggleDesktopDropdown(toggleButton, true));
+                container.addEventListener('mouseleave', () => this.toggleDesktopDropdown(toggleButton, false));
+                // Thêm click event cho accessibility trên desktop
+                toggleButton.addEventListener('click', (e) => {
+                    e.preventDefault(); // Ngăn hành vi mặc định của button
+                    this.toggleDesktopDropdown(toggleButton);
+                });
+            }
+        });
     },
     
     setLanguage(lang) {
@@ -147,38 +162,50 @@ const IVSHeaderController = {
     },
     
     toggleMobileMenu(open) {
-        if (!this.mobilePanel) return;
+        if (!this.mobilePanel || !this.mobileBackdrop || !this.mobilePanel.querySelector('#ivs-mobile-menu-container')) return;
+
+        const mobileMenuContainer = this.mobilePanel.querySelector('#ivs-mobile-menu-container');
 
         // Xóa lắng nghe cũ để tránh tích tụ
         if (this.mobilePanelCloseListener) {
-            this.mobilePanel.removeEventListener('transitionend', this.mobilePanelCloseListener);
+            mobileMenuContainer.removeEventListener('transitionend', this.mobilePanelCloseListener);
             this.mobilePanelCloseListener = null;
         }
 
         if (open) {
-            this.mobilePanel.style.visibility = 'visible'; // Hiển thị trước khi bắt đầu transition
+            this.mobilePanel.style.display = 'block'; // Hiển thị container trước
             this.mobilePanel.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // Ngăn cuộn trang
+            // Thêm class cho backdrop và container sau một chút delay để kích hoạt transition
+            setTimeout(() => {
+                this.mobileBackdrop.style.opacity = '1';
+                mobileMenuContainer.style.transform = 'translateX(0)';
+            }, 10); // Small delay to allow 'display: block' to render
         } else {
-            this.mobilePanel.classList.remove('is-open');
+            this.mobileBackdrop.style.opacity = '0';
+            mobileMenuContainer.style.transform = 'translateX(100%)';
             document.body.style.overflow = ''; // Cho phép cuộn lại
 
             // Đặt lắng nghe sự kiện transitionend để ẩn sau khi animation kết thúc
             this.mobilePanelCloseListener = () => {
-                if (!this.mobilePanel.classList.contains('is-open')) { // Đảm bảo transition kết thúc ở trạng thái đóng
-                    this.mobilePanel.style.visibility = 'hidden';
+                if (mobileMenuContainer.style.transform === 'translateX(100%)') { // Đảm bảo transition kết thúc ở trạng thái đóng
+                    this.mobilePanel.style.display = 'none'; // Ẩn hoàn toàn sau khi đóng
+                    this.mobilePanel.classList.remove('is-open');
                 }
-                this.mobilePanel.removeEventListener('transitionend', this.mobilePanelCloseListener);
+                mobileMenuContainer.removeEventListener('transitionend', this.mobilePanelCloseListener);
                 this.mobilePanelCloseListener = null;
             };
-            this.mobilePanel.addEventListener('transitionend', this.mobilePanelCloseListener, { once: true });
+            mobileMenuContainer.addEventListener('transitionend', this.mobilePanelCloseListener, { once: true });
         }
     },
 
     toggleSubmenu(toggleButton) {
         const content = toggleButton.nextElementSibling;
         const icon = toggleButton.querySelector('.mobile-submenu-icon');
-        if (!content || !icon) return;
+        if (!content || !icon) {
+            componentLog("Submenu content or icon not found for toggle.", "warn");
+            return;
+        }
         
         const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
 
@@ -190,15 +217,17 @@ const IVSHeaderController = {
             parentContainer = toggleButton.closest('.mobile-submenu-content');
         }
 
-        parentContainer.querySelectorAll('.mobile-submenu-toggle[aria-expanded="true"]').forEach(otherToggle => {
-            if (otherToggle !== toggleButton) {
-                const otherContent = otherToggle.nextElementSibling;
-                const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
-                if (otherContent) otherContent.style.maxHeight = null;
-                if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                otherToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
+        if (parentContainer) { // Ensure parentContainer exists
+            parentContainer.querySelectorAll('.mobile-submenu-toggle[aria-expanded="true"]').forEach(otherToggle => {
+                if (otherToggle !== toggleButton) {
+                    const otherContent = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('.mobile-submenu-icon');
+                    if (otherContent) otherContent.style.maxHeight = null;
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    otherToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
         
         // Toggle current submenu
         if (isExpanded) {
@@ -206,24 +235,24 @@ const IVSHeaderController = {
             icon.style.transform = 'rotate(0deg)';
             toggleButton.setAttribute('aria-expanded', 'false');
         } else {
-            // Set a small delay for height recalculation before expanding for smoother transition
-            content.style.maxHeight = '0px'; // Reset to 0 before setting actual height
-            setTimeout(() => {
-                content.style.maxHeight = content.scrollHeight + 'px'; // Recalculate and set
-            }, 10); // Small delay
+            // Force reflow before setting maxHeight to ensure smooth transition
+            content.style.maxHeight = '0px'; 
+            void content.offsetWidth; // Trigger reflow
+            content.style.maxHeight = content.scrollHeight + 'px'; 
             icon.style.transform = 'rotate(180deg)';
             toggleButton.setAttribute('aria-expanded', 'true');
         }
     },
 
+    // This function will now be primarily for desktop dropdowns controlled by mouseenter/mouseleave
     toggleDesktopDropdown(button, forceState) {
         const dropdown = button.parentNode.querySelector('.desktop-dropdown, .desktop-mega-menu');
         if (!dropdown) return;
 
         const isCurrentlyOpen = button.getAttribute('aria-expanded') === 'true';
-        const shouldBeOpen = forceState !== undefined ? forceState : !isCurrentlyOpen;
+        const shouldBeOpen = forceState !== undefined ? forceState : !isCurrentlyOpen; // Default to toggle if forceState is not provided
 
-        // Close all other desktop dropdowns
+        // Close all other desktop dropdowns *unless* it's the one we are explicitly opening
         document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
             const otherButton = container.querySelector('.desktop-nav-dropdown-toggle');
             if (otherButton && otherButton !== button) {
@@ -233,6 +262,8 @@ const IVSHeaderController = {
 
         if (shouldBeOpen) {
             dropdown.classList.remove('hidden');
+            // Force reflow and then apply transitions for smoother open
+            void dropdown.offsetWidth;
             requestAnimationFrame(() => {
                 dropdown.classList.remove('opacity-0', 'scale-95', 'translate-y-[-15px]');
                 dropdown.classList.add('opacity-100', 'scale-100', 'translate-y-0');
@@ -266,10 +297,12 @@ const IVSHeaderController = {
         }
     },
 
-
     // NEW: Toggle for mobile language dropdown
     toggleMobileLanguageDropdown(open) {
-        if (!this.mobileLangToggle || !this.mobileLangDropdownContent || !this.mobileLangArrowIcon) return;
+        if (!this.mobileLangToggle || !this.mobileLangDropdownContent || !this.mobileLangArrowIcon) {
+            componentLog("Mobile language elements not found.", "warn");
+            return;
+        }
 
         const isCurrentlyOpen = this.mobileLangDropdownContent.classList.contains('opacity-100');
         const shouldBeOpen = open !== undefined ? open : !isCurrentlyOpen;
@@ -290,7 +323,7 @@ const IVSHeaderController = {
             this.mobileLangDropdownContent.classList.remove('hidden');
             // Force reflow and then apply transitions for smoother open
             void this.mobileLangDropdownContent.offsetWidth; 
-            requestAnimationFrame(() => { // Changed setTimeout to requestAnimationFrame
+            requestAnimationFrame(() => { 
                 this.mobileLangDropdownContent.classList.remove('opacity-0', 'translate-y-[-10px]');
                 this.mobileLangDropdownContent.classList.add('opacity-100', 'translate-y-0');
             });
@@ -326,24 +359,30 @@ const IVSHeaderController = {
 
     updateActiveLinks() {
         const currentPath = window.location.pathname;
-        const allLinks = document.querySelectorAll('a.nav-link, a.mobile-nav-link, a.mobile-nav-link-sub, a.bottom-nav-item');
+        // Lấy tất cả các liên kết có thuộc tính data-lang-key để đảm bảo xử lý được cả khi dịch ngôn ngữ
+        const allLinks = document.querySelectorAll('a[data-lang-key], button[data-lang-key]'); 
 
         allLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
-                link.classList.add('active');
-                const parentSubmenuContent = link.closest('.mobile-submenu-content');
-                if(parentSubmenuContent) {
-                    const toggleButton = parentSubmenuContent.previousElementSibling;
-                    // Only auto-open if it's a direct submenu (not a nested one that's already handled by its own parent toggle)
-                    // This prevents unwanted expansion of nested items on page load
-                    if (toggleButton && !toggleButton.classList.contains('nested-level')) {
-                       this.toggleSubmenu(toggleButton); // Automatically open parent submenu
+            // Đối với các thẻ <a>
+            if (link.tagName === 'A' && link.hasAttribute('href')) {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
+                    link.classList.add('active');
+                    const parentSubmenuContent = link.closest('.mobile-submenu-content');
+                    if(parentSubmenuContent) {
+                        const toggleButton = parentSubmenuContent.previousElementSibling;
+                        // Chỉ tự động mở nếu đó là submenu trực tiếp (không phải lồng nhau đã được xử lý bởi nút cha của nó)
+                        // Điều này ngăn chặn việc mở rộng không mong muốn của các mục lồng nhau khi tải trang
+                        if (toggleButton && !toggleButton.classList.contains('nested-level') && toggleButton.getAttribute('aria-expanded') !== 'true') {
+                           this.toggleSubmenu(toggleButton); // Tự động mở submenu cha
+                        }
                     }
+                } else {
+                    link.classList.remove('active');
                 }
-            } else {
-                link.classList.remove('active');
             }
+            // Đối với các nút (button) hoặc các phần tử khác nếu cần xử lý active state
+            // Hiện tại, logic active chủ yếu dành cho các liên kết điều hướng.
         });
     }
 };

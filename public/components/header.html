@@ -1,12 +1,10 @@
-
-
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg transition-all duration-300 ease-in-out">
     <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
         <a href="/index.html" class="flex-shrink-0 flex items-center space-x-2 group">
             <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1f2937/ffffff?text=IVS';">
-         </a>
+        </a>
 
-
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
             <a href="/index.html" class="desktop-nav-link group" data-lang-key="nav_home">
                 <i class="fas fa-home mr-2 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Trang Chủ
@@ -22,7 +20,6 @@
                 </button>
                 <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
                     <div class="grid grid-cols-2 gap-x-6 p-5">
-
                         <div class="space-y-2">
                             <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
                             <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
@@ -32,7 +29,6 @@
                             <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers"><i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ</a>
                             <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
                         </div>
-
                         <div class="space-y-2">
                             <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
                             <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
@@ -76,7 +72,6 @@
                 <i class="fas fa-envelope mr-2"></i> Liên Hệ
             </a>
             
-
             <a href="/auth.html" class="desktop-nav-link bg-ivs-blue hover:bg-ivs-blue-darker text-white font-bold px-4 py-2 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105" data-lang-key="nav_login">
                 <i class="fas fa-user-circle mr-2"></i> Đăng nhập
             </a>
@@ -98,7 +93,7 @@
             </div>
         </nav>
 
-
+        <!-- Mobile Menu Toggle and Language Selector -->
         <div class="flex items-center md:hidden space-x-2">
             <div id="mobile-lang-dropdown-container" class="relative">
                 <button type="button" id="mobile-lang-toggle" class="p-2 rounded-lg text-ivs-text-primary hover:bg-ivs-bg-light transition-colors" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-lang-dropdown-content">
@@ -123,7 +118,7 @@
     </div>
 </header>
 
-
+<!-- Mobile Menu Panel -->
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 md:hidden" aria-modal="true" role="dialog">
     <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"></div>
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
@@ -134,6 +129,7 @@
             </button>
         </div>
         <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto custom-scrollbar">
+            <!-- Main Links -->
             <a href="/index.html" class="mobile-nav-link group" data-lang-key="nav_home">
                 <i class="fas fa-home mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Trang Chủ
             </a>
@@ -141,16 +137,15 @@
                 <i class="fas fa-info-circle mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Về IVS
             </a>
             
-
+            <!-- Services Dropdown (Mobile) -->
             <div>
-                <button class="mobile-submenu-toggle group">
+                <button class="mobile-submenu-toggle group" aria-expanded="false">
                     <i class="fas fa-th-large mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i>
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                 </button>
                 <div class="mobile-submenu-content space-y-1">
-
                     <div>
-                        <button class="mobile-submenu-toggle nested-level group">
+                        <button class="mobile-submenu-toggle nested-level group" aria-expanded="false">
                             <i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>
                             <span data-lang-key="nav_services_education_title">Liên kết Giáo dục</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                         </button>
@@ -163,9 +158,8 @@
                             <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
                         </div>
                     </div>
-
                     <div>
-                        <button class="mobile-submenu-toggle nested-level group">
+                        <button class="mobile-submenu-toggle nested-level group" aria-expanded="false">
                             <i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>
                             <span data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                         </button>
@@ -178,8 +172,9 @@
                 </div>
             </div>
 
+            <!-- Solutions Dropdown (Mobile) -->
             <div>
-                <button class="mobile-submenu-toggle group">
+                <button class="mobile-submenu-toggle group" aria-expanded="false">
                     <i class="fas fa-lightbulb mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i>
                     <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                 </button>
@@ -191,8 +186,9 @@
                 </div>
             </div>
 
+            <!-- Library Dropdown (Mobile) -->
             <div>
-                <button class="mobile-submenu-toggle group">
+                <button class="mobile-submenu-toggle group" aria-expanded="false">
                     <i class="fas fa-book-open mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i>
                     <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                 </button>
@@ -204,6 +200,7 @@
                 </div>
             </div>
 
+            <!-- Other Mobile Links -->
             <a href="/news-archive.html" class="mobile-nav-link group" data-lang-key="nav_news">
                 <i class="fas fa-newspaper mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Tin tức
             </a>
@@ -211,7 +208,6 @@
                 <i class="fas fa-envelope mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Liên Hệ
             </a>
             
-
             <a href="/auth.html" class="mobile-nav-link group" data-lang-key="nav_login">
                 <i class="fas fa-user-circle mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Đăng nhập
             </a>
@@ -219,19 +215,19 @@
     </div>
 </div>
 
-
+<!-- Bottom Navigation (Mobile Only) -->
 <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden shadow-lg">
-    <a href="/index.html" class="bottom-nav-item">
-        <i class="fas fa-home text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_home">Home</span>
+    <a href="/index.html" class="bottom-nav-item" data-lang-key="bottom_nav_home">
+        <i class="fas fa-home text-xl"></i><span class="bottom-nav-text">Home</span>
     </a>
-    <a href="/news-archive.html" class="bottom-nav-item">
-        <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
+    <a href="/news-archive.html" class="bottom-nav-item" data-lang-key="bottom_nav_news">
+        <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text">News</span>
     </a>
     <a href="https://ivsacademy.edu.vn/consulting.html" class="bottom-nav-item" data-lang-key="bottom_nav_services">
         <i class="fas fa-handshake text-xl"></i><span class="bottom-nav-text">Service</span>
     </a>
-    <button id="bottom-nav-menu-btn" class="bottom-nav-item">
-        <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
+    <button id="bottom-nav-menu-btn" class="bottom-nav-item" data-lang-key="bottom_nav_menu">
+        <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text">Menu</span>
     </button>
 </nav>
 
