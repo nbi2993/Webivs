@@ -1,6 +1,7 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.1 - Cleaned, logic handled by external script -->
-<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus. -->
+<!-- VERSION: 2.2 - Optimized for Mobile First & Enhanced Button Aesthetics -->
+<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
+                 focusing on responsive design and refined button interactions. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -16,7 +17,7 @@
                 <a href="/about.html" class="desktop-nav-link" data-lang-key="nav_about">Về IVS</a>
                 
                 <div class="desktop-dropdown-container">
-                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Mở menu Dịch Vụ">
                         <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                     </button>
                     <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
@@ -43,7 +44,7 @@
                 </div>
 
                 <div class="desktop-dropdown-container">
-                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Mở menu Giải pháp">
                         <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                     </button>
                     <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
@@ -55,7 +56,7 @@
                 </div>
 
                 <div class="desktop-dropdown-container">
-                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Mở menu Thư Viện">
                         <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                     </button>
                     <div class="desktop-dropdown left-1/2 -translate-x-1/2 p-2 space-y-1">
@@ -70,16 +71,16 @@
                 <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
                 
                 <div class="desktop-dropdown-container">
-                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Chọn ngôn ngữ">
                         <i class="fas fa-globe"></i>
                         <span id="current-lang-desktop" class="mx-2">VI</span>
                         <i class="fas fa-chevron-down text-xs"></i>
                     </button>
                     <div class="desktop-dropdown right-0 left-auto -translate-x-0 p-2 space-y-1">
-                        <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi">
+                        <button class="dropdown-item lang-option" data-lang="vi" data-lang-key="lang_vi" aria-label="Chọn Tiếng Việt">
                             <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">Tiếng Việt
                         </button>
-                        <button class="dropdown-item lang-option" data-lang="en" data-lang-key="lang_en">
+                        <button class="dropdown-item lang-option" data-lang="en" data-lang-key="lang_en" aria-label="Select English">
                             <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm" onerror="this.style.display='none'">English
                         </button>
                     </div>
@@ -87,7 +88,7 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
+            <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Mở menu di động" aria-controls="ivs-mobile-menu-panel">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
@@ -100,7 +101,7 @@
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
         <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
             <span class="text-lg font-semibold text-ivs-accent" data-lang-key="mobile_menu_title">Menu</span>
-            <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Close menu">
+            <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Đóng menu di động">
                 <i class="fas fa-times text-xl"></i>
             </button>
         </div>
@@ -109,7 +110,7 @@
             <a href="/about.html" class="mobile-nav-link" data-lang-key="nav_about">Về IVS</a>
             
             <div>
-                <button class="mobile-submenu-toggle">
+                <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Dịch Vụ">
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
@@ -130,7 +131,7 @@
             </div>
 
             <div>
-                <button class="mobile-submenu-toggle">
+                <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Giải pháp">
                     <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
@@ -142,7 +143,7 @@
             </div>
 
             <div>
-                <button class="mobile-submenu-toggle">
+                <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Thư Viện">
                     <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
@@ -157,12 +158,12 @@
             <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
             
             <div class="pt-4 mt-4 border-t border-ivs-bg-light">
-                <button class="mobile-submenu-toggle">
+                <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Ngôn ngữ">
                     <span data-lang-key="nav_language">Ngôn ngữ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
-                    <button class="mobile-submenu-item w-full text-left lang-option" data-lang="vi" data-lang-key="lang_vi">Tiếng Việt</button>
-                    <button class="mobile-submenu-item w-full text-left lang-option" data-lang="en" data-lang-key="lang_en">English</button>
+                    <button class="mobile-submenu-item w-full text-left lang-option" data-lang="vi" data-lang-key="lang_vi" aria-label="Chọn Tiếng Việt">Tiếng Việt</button>
+                    <button class="mobile-submenu-item w-full text-left lang-option" data-lang="en" data-lang-key="lang_en" aria-label="Select English">English</button>
                 </div>
             </div>
         </nav>
@@ -171,16 +172,16 @@
 
 <!-- Bottom Navigation for Mobile -->
 <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden">
-    <a href="/index.html" class="bottom-nav-item">
+    <a href="/index.html" class="bottom-nav-item" aria-label="Trang chủ">
         <i class="fas fa-home text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_home">Home</span>
     </a>
-    <a href="/news-archive.html" class="bottom-nav-item">
+    <a href="/news-archive.html" class="bottom-nav-item" aria-label="Tin tức">
         <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
     </a>
-    <a href="/contact.html" class="bottom-nav-item">
+    <a href="/contact.html" class="bottom-nav-item" aria-label="Liên hệ">
         <i class="fas fa-envelope text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_contact">Contact</span>
     </a>
-    <button id="bottom-nav-menu-btn" class="bottom-nav-item">
+    <button id="bottom-nav-menu-btn" class="bottom-nav-item" aria-label="Mở menu chính">
         <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
     </button>
 </nav>
@@ -272,10 +273,12 @@
     
     .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
         display: flex; justify-content: space-between; align-items: center;
-        width: 100%; padding: 0.5rem 0.75rem; font-weight: 500;
+        width: 100%; padding: 0.75rem 1.25rem; /* Tăng padding để có touch target lớn hơn */
+        font-weight: 500;
         color: var(--ivs-text-secondary); border-radius: 0.375rem;
         transition: background-color 0.2s, color 0.2s;
         text-align: left; /* Ensure text aligns left */
+        min-height: 48px; /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
     }
 
     .mobile-submenu-toggle:hover {
@@ -291,10 +294,11 @@
 
     .mobile-submenu-item { /* Style for individual items inside mobile submenus */
         display: block; /* Ensure it takes full width */
-        padding: 0.5rem 1rem; /* Adjust padding for nested items */
+        padding: 0.75rem 1rem; /* Adjust padding for nested items */
         color: var(--ivs-text-secondary); border-radius: 0.375rem;
         transition: background-color 0.2s, color 0.2s;
         text-align: left; /* Ensure text aligns left */
+        min-height: 44px; /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
     }
 
     .mobile-submenu-item:hover {
@@ -310,6 +314,8 @@
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         flex-grow: 1; color: var(--ivs-text-secondary); padding: 4px 0;
         transition: color 0.2s; text-decoration: none;
+        min-width: 48px; /* Đảm bảo chiều rộng tối thiểu cho dễ chạm */
+        min-height: var(--bottom-nav-height); /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
     }
     .bottom-nav-item.active { color: var(--ivs-accent); }
     .bottom-nav-text { font-size: 0.7rem; margin-top: 2px; }
