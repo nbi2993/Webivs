@@ -4,7 +4,7 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.2 - Enhanced Mobile Menu Font Sizes
+ * VERSION: 3.1 - Optimized Button Aesthetics & Mobile Responsiveness
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-26
  */
@@ -241,7 +241,7 @@ main {
     padding: 1rem 1.5rem; /* Tăng padding */
     border-radius: var(--radius-lg); /* Bo tròn nhiều hơn */
     color: var(--ivs-neutral-100); /* Màu chữ sáng hơn */
-    font-size: 1.2rem; /* Kích thước chữ LỚN HƠN */
+    font-size: 1.1rem; /* Kích thước chữ lớn hơn */
     font-weight: 500;
     transition: all var(--transition-fast) var(--ease-out);
     min-height: 52px; /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
@@ -270,7 +270,7 @@ main {
     border-radius: var(--radius-md);
     color: var(--ivs-neutral-200); /* Màu chữ sáng hơn */
     font-weight: 500;
-    font-size: 1.1rem; /* Kích thước chữ LỚN HƠN */
+    font-size: 1rem; /* Kích thước chữ rõ hơn */
     transition: all var(--transition-fast) var(--ease-out);
     min-height: 48px; /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
 }
@@ -324,7 +324,7 @@ main {
 }
 
 .bottom-nav-item span {
-    font-size: 0.9rem; /* Kích thước chữ LỚN HƠN */
+    font-size: 0.8rem; /* Kích thước chữ rõ hơn */
     font-weight: 500;
 }
 
