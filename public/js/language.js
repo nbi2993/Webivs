@@ -167,3 +167,28 @@ if (document.readyState === 'loading') {
 } else {
     initializeLanguageSystem();
 }
+// ... (nội dung hiện có của language.js)
+
+// 4. PUBLIC API & INITIALIZATION
+async function setLanguage(langCode) {
+    //... (giữ nguyên nội dung hàm)
+}
+// Đảm bảo hàm có thể được gọi global bởi Alpine.js
+window.setLanguage = setLanguage; 
+
+async function initializeLanguageSystem() {
+    // ... (giữ nguyên nội dung hàm, nhưng có thể xóa phần add event listener cho button)
+    // Xóa/Bình luận đoạn này vì AlpineJS đã xử lý
+    /*
+    document.querySelectorAll('button[data-lang]').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const newLang = e.currentTarget.dataset.lang;
+            if (newLang) {
+                setLanguage(newLang);
+            }
+        });
+    });
+    */
+}
+
+// ... (phần còn lại của file)
