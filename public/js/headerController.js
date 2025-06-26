@@ -1,9 +1,7 @@
 /**
  * @fileoverview This script manages all Header and Mobile Menu interactions.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.0 - Dedicated Header Controller.
- * @version 1.1 - Removed duplicated global utility definitions (componentLog, debounce)
- * as they are now centrally managed by loadComponents.js.
+ * @version 1.2 - Enhanced Mobile Menu & Language Toggle Transitions.
  * @author IVS-Technical-Team
  */
 
@@ -27,6 +25,10 @@ const IVSHeaderController = {
         this.bindEvents();
         this.updateActiveLinks();
         this.onScroll();
+        // Initial setup for mobile menu panel state
+        if (this.mobilePanel) {
+            this.mobilePanel.classList.add('translate-x-full'); // Ensure it starts hidden
+        }
         window.componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
     },
 
@@ -36,13 +38,16 @@ const IVSHeaderController = {
         this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
         this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+        this.mobileMenuContainer = document.getElementById('ivs-mobile-menu-container'); // Added for slide effect
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
         this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn');
+        this.langConfirmMessage = document.getElementById('lang-confirm-message'); // Language confirmation message
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
 
-        window.componentLog(`IVSHeaderController: Header: ${!!this.header}, Mobile Panel: ${!!this.mobilePanel}, Open Btn: ${!!this.mobileOpenBtn}, Close Btn: ${!!this.mobileCloseBtn}, Backdrop: ${!!this.mobileBackdrop}`, 'info');
+        window.componentLog(`IVSHeaderController: Header: ${!!this.header}, Mobile Panel: ${!!this.mobilePanel}, Open Btn: ${!!this.mobileOpenBtn}, Close Btn: ${!!this.mobileCloseBtn}, Backdrop: ${!!this.mobileBackdrop}, Mobile Menu Container: ${!!this.mobileMenuContainer}`, 'info');
         window.componentLog(`IVSHeaderController: Bottom Nav Menu Btn: ${!!this.bottomNavMenuBtn}, Bottom Nav Lang Toggle Btn: ${!!this.bottomNavLangToggleBtn}`, 'info');
+        window.componentLog(`IVSHeaderController: Language Confirm Message: ${!!this.langConfirmMessage}`, 'info');
         window.componentLog(`IVSHeaderController: Submenu Toggles count: ${this.submenuToggles.length}`, 'info');
     },
 
@@ -105,6 +110,7 @@ const IVSHeaderController = {
         if (window.system && typeof window.system.setLanguage === 'function') {
             window.system.setLanguage(lang);
             window.componentLog(`IVSHeaderController: Đã gọi window.system.setLanguage('${lang}').`);
+            this.showLangConfirmation(); // Show confirmation message
         } else {
             window.componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.system.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
         }
@@ -121,6 +127,26 @@ const IVSHeaderController = {
         this.setLanguage(nextLang);
     },
 
+    showLangConfirmation() {
+        if (this.langConfirmMessage) {
+            // Update text based on current language if needed, or keep generic
+            const currentLang = window.langSystem?.currentLanguage || 'en';
+            if (currentLang === 'vi') {
+                this.langConfirmMessage.textContent = 'Ngôn ngữ đã đổi!';
+            } else {
+                this.langConfirmMessage.textContent = 'Language changed!';
+            }
+
+            this.langConfirmMessage.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+            this.langConfirmMessage.classList.add('opacity-100', 'scale-100');
+
+            setTimeout(() => {
+                this.langConfirmMessage.classList.remove('opacity-100', 'scale-100');
+                this.langConfirmMessage.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+            }, 1500); // Hide after 1.5 seconds
+        }
+    },
+
     onScroll() {
         if (this.header) {
             this.header.classList.toggle('scrolled', window.scrollY > 10);
@@ -128,12 +154,28 @@ const IVSHeaderController = {
     },
 
     toggleMobileMenu(open) {
-        if (!this.mobilePanel) {
-            window.componentLog("IVSHeaderController: Mobile panel không tìm thấy. Không thể chuyển đổi menu.", 'warn');
+        if (!this.mobilePanel || !this.mobileMenuContainer) {
+            window.componentLog("IVSHeaderController: Mobile panel hoặc container không tìm thấy. Không thể chuyển đổi menu.", 'warn');
             return;
         }
-        this.mobilePanel.classList.toggle('is-open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
+        if (open) {
+            this.mobilePanel.classList.add('is-open');
+            this.mobilePanel.style.display = 'block'; // Ensure display is not none for transition
+            setTimeout(() => {
+                this.mobilePanel.classList.remove('opacity-0'); // Show backdrop
+                this.mobileMenuContainer.classList.remove('translate-x-full'); // Slide in
+            }, 50); // Small delay for display block to apply
+            document.body.style.overflow = 'hidden';
+        } else {
+            this.mobileMenuContainer.classList.add('translate-x-full'); // Slide out
+            this.mobilePanel.classList.add('opacity-0'); // Hide backdrop first
+            this.mobileMenuContainer.addEventListener('transitionend', () => {
+                if (this.mobileMenuContainer.classList.contains('translate-x-full')) {
+                    this.mobilePanel.style.display = 'none'; // Hide completely after transition
+                }
+            }, { once: true });
+            document.body.style.overflow = '';
+        }
         window.componentLog(`IVSHeaderController: Mobile menu ${open ? 'mở' : 'đóng'}.`);
     },
 
@@ -153,6 +195,7 @@ const IVSHeaderController = {
 
         toggle.setAttribute('aria-expanded', !isExpanded);
 
+        // Smooth transition for max-height
         content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
         window.componentLog(`IVSHeaderController: Submenu ${isExpanded ? 'đóng' : 'mở'} cho ${toggle.textContent.trim()}.`);
     },

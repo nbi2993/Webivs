@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script manages all Floating Action Button (FAB) and Chatbot functionalities.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.0 - Combined FAB and Chatbot logic.
+ * @version 1.1 - Combined FAB and Chatbot logic, enhanced transitions, added copy link feedback.
  * @author IVS-Technical-Team
  */
 
@@ -140,6 +140,7 @@ const IVSFabController = {
                             document.execCommand('copy');
                             document.body.removeChild(textarea);
                             window.componentLog('Đã sao chép liên kết vào clipboard!');
+                            this.showCopiedConfirmation(btn); // Show confirmation
                         } catch (err) {
                             window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
                         }
@@ -149,6 +150,36 @@ const IVSFabController = {
                 }
             }
         });
+    },
+
+    showCopiedConfirmation(targetElement) {
+        const message = 'Đã sao chép!';
+        const confirmationDiv = document.createElement('div');
+        confirmationDiv.textContent = message;
+        confirmationDiv.className = 'absolute z-10 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap';
+        
+        // Position relative to the target button
+        const rect = targetElement.getBoundingClientRect();
+        confirmationDiv.style.top = `${rect.top - 30}px`; // Above the button
+        confirmationDiv.style.left = `${rect.left + rect.width / 2}px`; // Centered horizontally
+        confirmationDiv.style.transform = 'translateX(-50%)';
+
+        document.body.appendChild(confirmationDiv);
+
+        // Animate in
+        setTimeout(() => {
+            confirmationDiv.classList.remove('opacity-0');
+            confirmationDiv.classList.add('opacity-100');
+        }, 10);
+
+        // Animate out and remove
+        setTimeout(() => {
+            confirmationDiv.classList.remove('opacity-100');
+            confirmationDiv.classList.add('opacity-0');
+            confirmationDiv.addEventListener('transitionend', () => {
+                confirmationDiv.remove();
+            }, { once: true });
+        }, 1500); // Display for 1.5 seconds
     },
 
     bindEvents() {
@@ -204,7 +235,9 @@ const IVSFabController = {
         if (!menu) return;
         menu.classList.remove('hidden', 'pointer-events-none'); 
         // Use rAF for immediate display before transition
-        requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
+        requestAnimationFrame(() => {
+            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Animate in
+        });
         btn.setAttribute('aria-expanded', 'true');
         window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
     },
@@ -212,7 +245,7 @@ const IVSFabController = {
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95');
+        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Animate out
         const onTransitionEnd = () => {
             if (menu.classList.contains('opacity-0')) {
                 menu.classList.add('hidden', 'pointer-events-none'); 
@@ -234,14 +267,13 @@ const IVSFabController = {
         }
 
         // Initial setup to ensure it's hidden correctly
-        this.chatbotContainer.classList.add('chatbot-container-closed');
+        this.chatbotContainer.classList.add('scale-0', 'opacity-0');
         this.chatbotContainer.style.display = 'none';
 
         const openChatbot = () => {
-            this.chatbotContainer.style.display = 'flex';
+            this.chatbotContainer.style.display = 'flex'; // Set display flex immediately
             setTimeout(() => {
-                this.chatbotContainer.classList.remove('chatbot-container-closed');
-                this.chatbotContainer.classList.add('chatbot-container-open');
+                this.chatbotContainer.classList.remove('scale-0', 'opacity-0'); // Animate in
                 this.chatbotInput.focus();
                 this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight; // Scroll to bottom on open
             }, 50); // Small delay to allow display:flex to apply before transition
@@ -249,11 +281,12 @@ const IVSFabController = {
         };
 
         const closeChatbot = () => {
-            this.chatbotContainer.classList.remove('chatbot-container-open');
-            this.chatbotContainer.classList.add('chatbot-container-closed');
-            setTimeout(() => {
-                this.chatbotContainer.style.display = 'none';
-            }, 300); // Match CSS transition duration
+            this.chatbotContainer.classList.add('scale-0', 'opacity-0'); // Animate out
+            this.chatbotContainer.addEventListener('transitionend', () => {
+                if (this.chatbotContainer.classList.contains('opacity-0')) {
+                    this.chatbotContainer.style.display = 'none'; // Hide completely after transition
+                }
+            }, { once: true });
             window.componentLog("IVSFabController: Chatbot đóng.");
         };
 
@@ -262,7 +295,13 @@ const IVSFabController = {
         
         const addMessage = (text, sender) => {
             const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender, 'mb-2');
+            messageBubble.classList.add('message-bubble', sender, 'mb-2', 'p-2', 'rounded-lg', 'max-w-[80%]');
+            // Apply specific classes based on sender
+            if (sender === 'ai') {
+                messageBubble.classList.add('bg-blue-100', 'dark:bg-blue-800', 'text-gray-800', 'dark:text-gray-100');
+            } else { // user
+                messageBubble.classList.add('bg-green-100', 'dark:bg-green-800', 'text-gray-800', 'dark:text-gray-100', 'ml-auto'); // Align user messages right
+            }
             messageBubble.textContent = text;
             this.chatbotMessages.appendChild(messageBubble);
             this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
@@ -300,4 +339,3 @@ const IVSFabController = {
 
 // Expose IVSFabController globally for loadComponents.js
 window.IVSFabController = IVSFabController;
-

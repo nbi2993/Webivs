@@ -1,9 +1,9 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 3.5 - FAB and Chatbot HTML structure, logic externalized, no inline scripts -->
+<!-- VERSION: 3.6 - FAB and Chatbot HTML structure, logic externalized, no inline scripts -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally by fabController.js. -->
 
 <!-- Container cho các nút FAB -->
-<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
+<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-[calc(var(--bottom-nav-height)+1rem)] md:bottom-4">
 
     <!-- Nút cuộn lên đầu trang -->
     <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
@@ -18,7 +18,7 @@
             <i class="fas fa-share-alt text-xl sm:text-2xl"></i>
         </button>
         <div id="share-options"
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[200px] md:w-auto"
+             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-300 ease-out opacity-0 scale-95 transform origin-bottom-right translate-y-2 pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[200px] md:w-auto"
              role="menu" aria-orientation="vertical" aria-labelledby="share-main-btn">
             <!-- Nội dung cho share-options sẽ được JavaScript chèn vào đây bởi IVSFabController -->
         </div>
@@ -31,7 +31,7 @@
             <i class="fas fa-comment-dots text-xl sm:text-2xl"></i>
         </button>
         <div id="contact-options"
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[220px] md:w-auto"
+             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-300 ease-out opacity-0 scale-95 transform origin-bottom-right translate-y-2 pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[220px] md:w-auto"
              role="menu" aria-orientation="vertical" aria-labelledby="contact-main-btn">
             <!-- Nội dung cho contact-options sẽ được JavaScript chèn vào đây bởi IVSFabController -->
         </div>

@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.7 - Finalized Mobile Header with Language Toggle & Z-index alignment (CSS externalized), no inline scripts -->
-<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
+<!-- VERSION: 2.8 - Optimized Mobile Header with Enhanced Language Toggle & Menu Transitions -->
+<!-- DESCRIPTION: Refined HTML structure for the main header with updated navigation menus,
                  focusing on responsive design and refined button interactions. All associated
                  CSS has been moved to styles.css for better maintainability. -->
 
@@ -102,22 +102,22 @@
 <!-- Mobile Menu Panel -->
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-[1002] md:hidden" aria-modal="true" role="dialog">
     <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-    <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
+    <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col transition-transform duration-300 ease-out transform translate-x-full">
         <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
             <span class="text-lg font-semibold text-ivs-accent" data-lang-key="mobile_menu_title">Menu</span>
             <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Đóng menu di động">
                 <i class="fas fa-times text-xl"></i>
             </button>
         </div>
-        <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto">
+        <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto custom-scrollbar">
             <a href="/index.html" class="mobile-nav-link" data-lang-key="nav_home">Trang Chủ</a>
             <a href="/about.html" class="mobile-nav-link" data-lang-key="nav_about">Về IVS</a>
 
             <div>
                 <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Dịch Vụ">
-                    <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                    <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon transition-transform duration-300"></i>
                 </button>
-                <div class="mobile-submenu-content">
+                <div class="mobile-submenu-content overflow-hidden transition-[max-height] duration-300 ease-in-out" style="max-height: 0px;">
                     <!-- Updated Mobile Services Submenu -->
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h4>
                     <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tổng quan</a>
@@ -136,9 +136,9 @@
 
             <div>
                 <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Giải pháp">
-                    <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                    <span data-lang-key="nav_solutions">Giải pháp</span><i class="fas fa-chevron-down mobile-submenu-icon transition-transform duration-300"></i>
                 </button>
-                <div class="mobile-submenu-content">
+                <div class="mobile-submenu-content overflow-hidden transition-[max-height] duration-300 ease-in-out" style="max-height: 0px;">
                     <a href="/solutions.html" class="mobile-submenu-item" data-lang-key="nav_solutions_overview">Tổng quan</a>
                     <a href="/Pages/ivscelestech.html" class="mobile-submenu-item" data-lang-key="nav_solutions_edtech">Công nghệ GD</a>
                     <a href="/Pages/upskill.html" class="mobile-submenu-item" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
@@ -148,9 +148,9 @@
 
             <div>
                 <button class="mobile-submenu-toggle" aria-expanded="false" aria-label="Mở menu con Thư Viện">
-                    <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                    <span data-lang-key="nav_library">Thư Viện</span><i class="fas fa-chevron-down mobile-submenu-icon transition-transform duration-300"></i>
                 </button>
-                <div class="mobile-submenu-content">
+                <div class="mobile-submenu-content overflow-hidden transition-[max-height] duration-300 ease-in-out" style="max-height: 0px;">
                     <a href="/gallery.html" class="mobile-submenu-item" data-lang-key="nav_library_gallery">Thư viện Ảnh</a>
                     <a href="/Pages/document-library.html" class="mobile-submenu-item" data-lang-key="nav_library_docs">Tài liệu</a>
                     <a href="/apps/story-repository.html" class="mobile-submenu-item" data-lang-key="nav_library_stories">Kho truyện</a>
@@ -174,9 +174,14 @@
     <a href="/news-archive.html" class="bottom-nav-item" aria-label="Tin tức">
         <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
     </a>
-    <!-- Language Toggle Button (formerly Contact) -->
-    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item" aria-label="Chuyển đổi ngôn ngữ">
-        <i class="fas fa-language text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_lang">Lang</span>
+    <!-- Language Toggle Button -->
+    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item relative" aria-label="Chuyển đổi ngôn ngữ">
+        <i class="fas fa-language text-xl"></i>
+        <span class="bottom-nav-text" data-lang-key="bottom_nav_lang">Lang</span>
+        <!-- Language confirmation message -->
+        <div id="lang-confirm-message" class="absolute bottom-full mb-2 px-3 py-1 bg-ivs-accent text-white text-xs rounded-lg shadow-md opacity-0 scale-90 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap left-1/2 -translate-x-1/2" style="transform-origin: bottom center;">
+            Ngôn ngữ đã đổi!
+        </div>
     </button>
     <button id="bottom-nav-menu-btn" class="bottom-nav-item" aria-label="Mở menu chính">
         <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
