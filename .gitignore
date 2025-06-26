@@ -9,8 +9,10 @@ lerna-debug.log*
 
 # Dependency directories
 node_modules/
+jspm_packages/
+secrets/
 
-# Production build outputs (nếu có quy trình build riêng)
+# Production build outputs (nếu bạn có quy trình build riêng)
 build/
 dist/
 tmp/
@@ -27,9 +29,7 @@ out/
 Thumbs.db
 
 # Sensitive files (RẤT QUAN TRỌNG)
-.env
-.env.*
-serviceAccountKey.json
-auth/  # Bỏ qua toàn bộ thư mục auth/ nếu nó chứa bí mật
-server/ # Bỏ qua toàn bộ thư mục server/ nếu đó là backend riêng tư
-ivs    # Bỏ qua file ivs nếu nó chứa bí mật
+.env             # Bất kỳ file .env nào
+.env.* # Các biến thể của .env (ví dụ: .env.local, .env.development)
+*.json           # Cân nhắc nếu bạn có file JSON nhạy cảm khác không phải serviceAccountKey.json
+serviceAccountKey.json # Nếu bạn có file này, đảm bảo nó bị bỏ qua
