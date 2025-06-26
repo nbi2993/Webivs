@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 5.3 - Optimized component loading, ensured controller initialization timing.
+ * @version 5.4 - Enhanced controller initialization timing for robust mobile interaction.
  * @author IVS-Technical-Team
  */
 
@@ -132,16 +132,16 @@ async function loadCommonComponents() {
             if (success) {
                 // IMPORTANT: Use sufficient setTimeout to ensure scripts loaded by loadAndInject have executed
                 // and defined global objects (like IVSHeaderController, IVSFabController).
-                // A small delay (e.g., 50-100ms) is often safer than 0ms for complex scenarios.
+                // A small delay (e.g., 100-200ms) is often safer for complex scenarios.
                 if (comp.id === 'header-placeholder') {
                     setTimeout(() => {
                         if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
                             window.IVSHeaderController.init();
                             componentLog("[loadCommonComponents] IVSHeaderController đã được khởi tạo qua setTimeout.", "info");
                         } else {
-                            componentLog("[loadCommonComponents] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header.", 'error');
+                            componentLog("[loadCommonComponents] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header. Đảm bảo headerController.js được tải.", 'error');
                         }
-                    }, 100); 
+                    }, 150); // Increased delay
                 } else if (comp.id === 'fab-container-placeholder') {
                     // fabController.js defines IVSFabController and is injected via fab-container.html
                     setTimeout(() => {
@@ -151,7 +151,7 @@ async function loadCommonComponents() {
                         } else {
                             componentLog("[loadCommonComponents] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
                         }
-                    }, 100); // Give time for fabController.js to execute
+                    }, 150); // Increased delay
                 }
             }
         } else {
@@ -169,7 +169,7 @@ async function loadCommonComponents() {
         } else {
             componentLog("[loadCommonComponents] window.system hoặc window.system.init không được định nghĩa. Đảm bảo language.js đã tải.", 'error');
         }
-    }, 150); // Slightly longer delay to ensure language.js is fully ready
+    }, 200); // Slightly longer delay to ensure language.js is fully ready
 
     componentLog("[loadCommonComponents] Trình tự tải component đã hoàn tất.");
     window.onPageComponentsLoadedCallback?.(); 

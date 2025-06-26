@@ -28,33 +28,30 @@ try {
 
 
 // --- PHẦN 2: LOGIC GIAO DIỆN CŨ (ĐÃ DỌN DẸP) ---
-
-// Debounce function is now global via loadComponents.js
-// function debounce(func, wait) { ... }
-
+// debounce function is now exposed globally by loadComponents.js
 // IVSChatbot module is now entirely moved to public/js/fabController.js
-// const IVSChatbot = { ... };
 
 
 // --- PHẦN 3: KHỞI TẠO TOÀN BỘ LOGIC (ĐÃ DỌN DẸP) ---
 document.addEventListener('DOMContentLoaded', () => {
   
-    // FAB container toggle logic removed - now handled by IVSFabController (in fabController.js)
+    // All FAB and Header/Menu related logic is now handled by loadComponents.js
+    // and its respective controllers (IVSFabController, IVSHeaderController).
+    // The following lines are intentionally commented out/removed to avoid conflicts.
+
     // const fabContainer = document.getElementById('fab-container');
     // const fabToggle = document.getElementById('fab-toggle');
-    // if (fabContainer && fabToggle) { ... }
+    // if (fabContainer && fabToggle) { /* ... */ }
 
-    // Scroll to top button logic removed - now handled by IVSFabController (in fabController.js)
     // const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-    // if (scrollToTopBtn) { ... }
+    // if (scrollToTopBtn) { /* ... */ }
+    
+    // IVSChatbot.init(); 
 
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
     
-    // IVSChatbot initialization removed - now handled by IVSFabController (in fabController.js)
-    // IVSChatbot.init(); 
-
-    console.log('[IVS Script] All core components initialized via loadComponents.js. Remaining basic scripts executed.');
+    console.log('[IVS Script] Basic standalone scripts executed. Core UI handled by loadComponents.js.');
 });

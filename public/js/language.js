@@ -21,12 +21,13 @@ window.langSystem = window.langSystem || {
 };
 
 // 2. UTILITY FUNCTIONS
-function langLog(message, type = 'log') {
+function langLog(message, level = 'info') {
     // Ensure window.componentLog is available, fallback to console if not
-    if (window.componentLog && (window.langSystem.isDebugMode || type === 'error' || type === 'warn')) {
-        window.componentLog(`[IVS Lang] ${message}`, level = type);
-    } else if (window.langSystem.isDebugMode || type === 'error' || type === 'warn') {
-        console[type](`[IVS Lang] ${message}`);
+    // Corrected the way 'level' is passed to window.componentLog
+    if (window.componentLog && (window.langSystem.isDebugMode || level === 'error' || level === 'warn')) {
+        window.componentLog(`[IVS Lang] ${message}`, level); // Pass level directly
+    } else if (window.langSystem.isDebugMode || level === 'error' || level === 'warn') {
+        console[level](`[IVS Lang] ${message}`);
     }
 }
 // Expose langLog globally for potential external use or debugging
