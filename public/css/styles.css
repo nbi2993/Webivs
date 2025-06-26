@@ -4,9 +4,9 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.1 - Optimized and Centralized Variables
+ * VERSION: 3.0 - Final, Merged & Standardized
  * AUTHOR: IVS-Technical-Team
- * DATE: 2025-06-26
+ * DATE: 2025-06-25
  */
 
 /* ==========================================================================
@@ -17,31 +17,33 @@
  * colors, typography, spacing, and layout parameters.
  */
 :root {
-    /* Brand Colors (Updated to match header.html's recent definitions) */
-    --ivs-bg: #0D1117; /* Dark background */
-    --ivs-card: #161B22; /* Card background */
-    --ivs-border: #30363d; /* Border color */
-    --ivs-text-primary: #e6edf3; /* Primary text color */
-    --ivs-text-secondary: #a1aab4; /* Secondary text color */
-    --ivs-accent: #F97316; /* Accent color (Orange) */
-    --ivs-accent-dark: #ea580c; /* Darker accent color */
-    --ivs-blue: #58a6ff; /* Blue color */
-    --ivs-blue-darker: #3b82f6; /* Darker blue */
-    --ivs-green: #34d399; /* Green color */
-    --ivs-purple: #a78bfa; /* Purple color */
-    --ivs-red: #f87171; /* Red color */
-    --ivs-cyan: #22d3ee; /* Cyan color */
-    --ivs-amber: #f59e0b; /* Amber color */
-    --ivs-emerald: #34d399; /* Emerald color */
-    --ivs-rose: #f43f5e; /* Rose color */
-    --ivs-bg-dark: #111827; /* Used for mobile menu container */
-    --ivs-bg-medium: #1f2937; /* Used for mobile menu panel */
-    --ivs-bg-light: #374151; /* Used for hover states */
-    --ivs-link-active-bg: rgba(249, 115, 22, 0.15); /* Accent with opacity */
+    /* Brand Colors */
+    --ivs-primary: #003366;
+    --ivs-primary-dark: #002244;
+    --ivs-secondary: #ffc107;
+    --ivs-accent: #F97316;
+    --ivs-accent-dark: #DD6B20;
+
+    /* Neutral Grayscale */
+    --ivs-neutral-50: #F9FAFB;
+    --ivs-neutral-100: #F3F4F6;
+    --ivs-neutral-200: #E5E7EB;
+    --ivs-neutral-300: #D1D5DB;
+    --ivs-neutral-400: #9CA3AF;
+    --ivs-neutral-600: #4B5563;
+    --ivs-neutral-700: #374151;
+    --ivs-neutral-800: #1F2937;
+    --ivs-neutral-900: #111827;
+
+    /* Text Colors */
+    --ivs-text-light: #f8fafc;
+    --ivs-text-dark: #0f172a;
+    --ivs-text-white: #ffffff;
+    --ivs-text-muted: var(--ivs-neutral-400);
 
     /* Layout & Sizing */
     --header-height-mobile: 64px;
-    --header-height-desktop: 80px; /* Adjusted to match recent header.html height */
+    --header-height-desktop: 80px;
     --bottom-nav-height: 60px;
 
     /* Typography */
@@ -90,17 +92,17 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--ivs-neutral-50); /* Default light mode background */
-    color: var(--ivs-neutral-700); /* Default light mode text */
+    background-color: var(--ivs-neutral-50);
+    color: var(--ivs-neutral-700);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-bottom: var(--bottom-nav-height);
 }
 
-body.dark { /* This is now mostly handled by Tailwind's dark: classes */
-    background-color: var(--ivs-bg); /* Use ivs-bg for consistent dark mode background */
-    color: var(--ivs-text-primary); /* Use ivs-text-primary for consistent dark mode text */
+body.dark {
+    background-color: var(--ivs-neutral-900);
+    color: var(--ivs-neutral-300);
 }
 
 main {
@@ -116,34 +118,144 @@ main {
 }
 
 /* ==========================================================================
-   3. LAYOUT COMPONENTS (Header, Footer, Nav) - General Styles
+   3. LAYOUT COMPONENTS (Header, Footer, Nav)
    ========================================================================== */
 /**
- * Styles for the main persistent layout elements. Specific header.html styles
- * will be handled by headerController.js or inline styles (for specific elements).
+ * Styles for the main persistent layout elements.
  */
 
-/* --- Header Placeholders (will be filled by loadComponents.js) --- */
+/* --- Header & Placeholders --- */
 #header-placeholder {
-    height: var(--header-height-mobile); /* Mobile height default */
-    /* On desktop, this will adjust based on media query in header.js/controller */
+    height: var(--header-height-mobile);
+}
+
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    height: var(--header-height-mobile);
+    background-color: rgba(17, 24, 39, 0.85); /* dark:bg-neutral-900/85 */
+    backdrop-filter: blur(10px);
+    transition: transform var(--transition-base) var(--ease-out);
+}
+
+#main-header.header-hidden {
+    transform: translateY(-100%);
 }
 
 /* --- Bottom Navigation (Mobile) --- */
-/* Most styles handled by header.html itself, or Tailwind classes.
-   Only general positioning/sizing here if not explicitly in header.html's CSS. */
 #ivs-bottom-nav {
-    /* Styles are mostly inline in header.html */
-    /* Example of a general style here: */
-    /* box-shadow: var(--shadow-top); */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--bottom-nav-height);
+    background-color: rgba(17, 24, 39, 0.9);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--ivs-neutral-700);
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--ivs-neutral-300);
+    padding: 4px 0;
+    transition: color var(--transition-fast) var(--ease-out);
+    text-decoration: none;
+}
+
+.bottom-nav-item.active,
+.bottom-nav-item:hover {
+    color: var(--ivs-accent);
+}
+
+.bottom-nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.bottom-nav-item span {
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 /* --- Mobile Menu Panel --- */
-/* Most styles handled by header.html itself, or Tailwind classes. */
-#ivs-mobile-menu-panel {
-    /* Styles are mostly inline in header.html's style block */
+#ivs-mobile-menu-panel { visibility: hidden; }
+#ivs-mobile-menu-panel.is-open { visibility: visible; }
+
+#ivs-mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity var(--transition-base) var(--ease-out);
+}
+#ivs-mobile-menu-panel.is-open #ivs-mobile-menu-backdrop { opacity: 1; }
+
+#ivs-mobile-menu-container {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 100%;
+    background-color: var(--ivs-neutral-800);
+    margin-left: auto;
+    transform: translateX(100%);
+    transition: transform var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1);
+}
+#ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container { transform: translateX(0); }
+
+
+/* --- Mobile & Desktop Navigation Links --- */
+.mobile-nav-link, .mobile-submenu-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 1.25rem;
+    border-radius: var(--radius-md);
+    color: var(--ivs-neutral-200);
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.mobile-nav-link:hover, .mobile-submenu-toggle:hover {
+    background-color: var(--ivs-neutral-700);
+    color: var(--ivs-text-white);
+}
+.mobile-nav-link.active {
+    background-color: rgba(249, 115, 22, 0.15); /* accent/15 */
+    color: var(--ivs-accent);
 }
 
+.mobile-submenu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow) ease-in-out;
+    padding-left: 1rem;
+}
+
+.mobile-submenu-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--ivs-neutral-100);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.mobile-submenu-item:hover {
+    background-color: var(--ivs-neutral-600);
+    color: var(--ivs-text-white);
+}
 
 /* ==========================================================================
    4. COMMON COMPONENTS
@@ -152,7 +264,7 @@ main {
  * Reusable components like cards, buttons, lists, etc.
  */
 
-/* --- Feature/Service Cards (General styles) --- */
+/* --- Feature/Service Cards --- */
 .feature-card, .service-card {
     background-color: white;
     border-radius: var(--radius-xl);
@@ -160,15 +272,15 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .dark .feature-card, .dark .service-card {
-    background-color: var(--ivs-card); /* Use ivs-card for consistency in dark mode */
-    border-color: var(--ivs-border);
+    background-color: var(--ivs-neutral-800);
+    border-color: var(--ivs-neutral-700);
 }
 .feature-card:hover, .service-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
 }
 .dark .feature-card:hover, .dark .service-card:hover {
-    border-color: var(--ivs-accent); /* Highlight with accent color on hover in dark mode */
+    border-color: var(--ivs-secondary);
 }
 
 /* --- Process/Timeline --- */
@@ -185,13 +297,13 @@ main {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    background-color: var(--ivs-primary); /* Uses a general primary, should be updated to ivs-blue or similar */
+    background-color: var(--ivs-primary);
     color: white;
     z-index: 10;
 }
 .dark .process-step:before {
-     background-color: var(--ivs-accent); /* Use ivs-accent for dark mode dot */
-     color: var(--ivs-neutral-900); /* Dark text for accent background */
+     background-color: var(--ivs-secondary);
+     color: var(--ivs-neutral-900);
 }
 
 /* --- Check List --- */
@@ -213,34 +325,17 @@ main {
    ========================================================================== */
 .hero-text-shadow { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); }
 
-/* Custom Scrollbar for specific elements (like mobile menu, chatbot) */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: var(--ivs-bg-medium);
-    border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--ivs-border);
-    border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--ivs-text-secondary);
-}
-
 /* ==========================================================================
    6. RESPONSIVE STYLES (DESKTOP)
    ========================================================================== */
 @media (min-width: 768px) {
     body {
-        padding-bottom: 0; /* Remove padding from bottom nav on desktop */
+        padding-bottom: 0;
     }
-    #header-placeholder {
-        height: var(--header-height-desktop); /* Desktop height */
+    #header-placeholder, #main-header {
+        height: var(--header-height-desktop);
     }
-    /* Specific desktop visibility handled by Tailwind classes in HTML (md:hidden, md:flex) */
+    #ivs-bottom-nav, #mobile-menu-open-btn {
+        display: none;
+    }
 }
