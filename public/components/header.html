@@ -1,8 +1,8 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.3 - Optimized Mobile Header with External Language Switcher -->
+<!-- VERSION: 2.4 - Bottom Navigation Language Toggle -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
                  focusing on responsive design and refined button interactions, now with
-                 an exposed mobile language switcher. -->
+                 a one-touch language switcher in the bottom navigation. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -88,27 +88,8 @@
                 </div>
             </nav>
 
-            <!-- Mobile Specific Controls -->
+            <!-- Mobile Specific Controls - Removed mobile language toggle from here -->
             <div class="flex items-center space-x-2 md:hidden">
-                <!-- Mobile Language Selector (New Position) -->
-                <div class="relative inline-block text-left">
-                    <button id="mobile-lang-toggle" type="button" class="inline-flex justify-center items-center p-2 rounded-lg text-white hover:bg-ivs-bg-light transition-colors" aria-haspopup="true" aria-expanded="false" aria-label="Chọn ngôn ngữ">
-                        <i class="fas fa-globe text-xl"></i>
-                        <span id="current-lang-mobile-outside" class="ml-2 mr-1 text-sm font-semibold">EN</span>
-                        <i class="fas fa-chevron-down text-xs"></i>
-                    </button>
-                    <div id="mobile-lang-dropdown" class="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-ivs-neutral-800 ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 invisible transform scale-95 transition-all duration-200 ease-out origin-top-right z-50">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mobile-lang-toggle">
-                            <button class="block w-full text-left px-4 py-2 text-sm text-ivs-neutral-200 hover:bg-ivs-neutral-700 hover:text-white lang-option" data-lang="vi" role="menuitem" aria-label="Chọn Tiếng Việt">
-                                <img src="/images/flags/vn.png" alt="Vietnamese Flag" class="h-4 w-6 mr-3 rounded-sm inline-block" onerror="this.style.display='none'">Tiếng Việt
-                            </button>
-                            <button class="block w-full text-left px-4 py-2 text-sm text-ivs-neutral-200 hover:bg-ivs-neutral-700 hover:text-white lang-option" data-lang="en" role="menuitem" aria-label="Select English">
-                                <img src="/images/flags/en.png" alt="English Flag" class="h-4 w-6 mr-3 rounded-sm inline-block" onerror="this.style.display='none'">English
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-open-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Mở menu di động" aria-controls="ivs-mobile-menu-panel">
                     <i class="fas fa-bars text-xl"></i>
@@ -180,7 +161,7 @@
             <a href="/news-archive.html" class="mobile-nav-link" data-lang-key="nav_news">Tin tức</a>
             <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
             
-            <!-- Language switcher removed from here as it's now outside -->
+            <!-- Language switcher section removed from here as it's moved to bottom nav -->
         </nav>
     </div>
 </div>
@@ -193,9 +174,10 @@
     <a href="/news-archive.html" class="bottom-nav-item" aria-label="Tin tức">
         <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
     </a>
-    <a href="/contact.html" class="bottom-nav-item" aria-label="Liên hệ">
-        <i class="fas fa-envelope text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_contact">Contact</span>
-    </a>
+    <!-- Language Toggle Button (formerly Contact) -->
+    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item" aria-label="Chuyển đổi ngôn ngữ">
+        <i class="fas fa-language text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_lang">Lang</span>
+    </button>
     <button id="bottom-nav-menu-btn" class="bottom-nav-item" aria-label="Mở menu chính">
         <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
     </button>
@@ -332,31 +314,5 @@
     .bottom-nav-item.active { color: var(--ivs-accent); }
     .bottom-nav-text { font-size: 0.7rem; margin-top: 2px; }
 
-    /* New style for the outside mobile language selector */
-    #mobile-lang-toggle {
-        padding: 8px 12px; /* Adjusted padding for a smaller, compact button */
-        font-size: 0.9rem; /* Smaller font for text */
-    }
-    #mobile-lang-toggle i.fas.fa-globe {
-        font-size: 1.1rem; /* Smaller globe icon */
-    }
-    #mobile-lang-toggle i.fas.fa-chevron-down {
-        font-size: 0.6rem; /* Smaller arrow icon */
-    }
-    #current-lang-mobile-outside {
-        font-size: 0.8rem; /* Smaller text for current language code */
-    }
-
-    #mobile-lang-dropdown {
-        width: 140px; /* Make dropdown menu slightly smaller */
-    }
-    #mobile-lang-dropdown .lang-option {
-        padding: 8px 12px; /* Smaller padding for dropdown items */
-        font-size: 0.9rem; /* Smaller font for dropdown items */
-    }
-    #mobile-lang-dropdown .lang-option img {
-        height: 12px; /* Smaller flag icons */
-        width: 18px;
-        margin-right: 8px; /* Adjusted margin */
-    }
+    /* Removed #mobile-lang-toggle and #mobile-lang-dropdown styles as they are no longer used */
 </style>

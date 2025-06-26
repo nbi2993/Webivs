@@ -4,7 +4,7 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.5 - Fixed Mobile Language Switcher & Adjusted Mobile Menu Sizes
+ * VERSION: 3.6 - One-touch Language Toggle in Bottom Nav & Refined Mobile Menu Sizes
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-26
  */
@@ -44,7 +44,7 @@
     /* Layout & Sizing */
     --header-height-mobile: 64px;
     --header-height-desktop: 80px;
-    --bottom-nav-height: 56px; /* Adjusted to 56px based on previous request */
+    --bottom-nav-height: 56px; /* Adjusted based on previous request */
 
     /* Typography */
     --font-sans: 'Inter', sans-serif;
@@ -238,13 +238,13 @@ main {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0.6rem 1rem; /* Giảm padding ~2/3 so với 0.8rem 1.25rem, nhưng vẫn giữ dễ chạm */
+    padding: 0.6rem 1rem; /* Adjusted for ~2/3 size */
     border-radius: var(--radius-lg);
     color: var(--ivs-neutral-100);
-    font-size: 0.9rem; /* Giảm kích thước chữ ~2/3 so với 1.1rem */
+    font-size: 0.95rem; /* Adjusted for ~2/3 size */
     font-weight: 500;
     transition: all var(--transition-fast) var(--ease-out);
-    min-height: 38px; /* Giảm chiều cao tối thiểu, vẫn đảm bảo touch target tốt */
+    min-height: 38px; /* Adjusted for ~2/3 size */
 }
 .mobile-nav-link:hover, .mobile-submenu-toggle:hover {
     background-color: var(--ivs-neutral-800);
@@ -261,18 +261,18 @@ main {
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--transition-slow) ease-in-out;
-    padding-left: 1rem; /* Giảm thụt lề một chút */
+    padding-left: 1rem; /* Adjusted for ~2/3 size */
 }
 
 .mobile-submenu-item {
     display: block;
-    padding: 0.4rem 0.7rem; /* Giảm padding ~2/3 so với 0.5rem 0.9rem */
+    padding: 0.4rem 0.7rem; /* Adjusted for ~2/3 size */
     border-radius: var(--radius-md);
     color: var(--ivs-neutral-200);
     font-weight: 500;
-    font-size: 0.8rem; /* Giảm kích thước chữ ~2/3 so với 0.9rem */
+    font-size: 0.8rem; /* Adjusted for ~2/3 size */
     transition: all var(--transition-fast) var(--ease-out);
-    min-height: 32px; /* Giảm chiều cao tối thiểu, vẫn đảm bảo touch target tốt */
+    min-height: 32px; /* Adjusted for ~2/3 size */
 }
 .mobile-submenu-item:hover {
     background-color: var(--ivs-neutral-700);
@@ -287,7 +287,7 @@ main {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: var(--bottom-nav-height); /* Đã được đặt là 56px */
+    height: var(--bottom-nav-height); /* Retained 56px from previous request */
     background-color: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(15px);
     border-top: 1px solid var(--ivs-neutral-700);
@@ -304,12 +304,12 @@ main {
     align-items: center;
     justify-content: center;
     color: var(--ivs-neutral-300);
-    padding: 3px 0; /* Giảm padding thêm một chút */
+    padding: 3px 0; /* Adjusted padding */
     transition: color var(--transition-fast) var(--ease-out),
                 background-color var(--transition-fast) var(--ease-out);
     text-decoration: none;
-    min-width: 40px; /* Giảm kích thước tối thiểu cho dễ chạm */
-    min-height: var(--bottom-nav-height); /* Phù hợp với chiều cao bottom nav */
+    min-width: 40px; /* Adjusted min-width */
+    min-height: var(--bottom-nav-height); /* Matches bottom nav height */
 }
 
 .bottom-nav-item.active,
@@ -319,14 +319,16 @@ main {
 }
 
 .bottom-nav-item i {
-    font-size: 1.1rem; /* Giảm kích thước icon */
-    margin-bottom: 1px; /* Giảm khoảng cách với text */
+    font-size: 1.1rem; /* Adjusted icon size */
+    margin-bottom: 1px; /* Adjusted margin */
 }
 
 .bottom-nav-item span {
-    font-size: 0.7rem; /* Giảm kích thước chữ */
+    font-size: 0.7rem; /* Adjusted text size */
     font-weight: 500;
 }
+
+/* Removed styles for #mobile-lang-toggle, #mobile-lang-dropdown, .lang-option specific to the old mobile language selector */
 
 /* ==========================================================================
    4. COMMON COMPONENTS
@@ -401,14 +403,14 @@ main {
    ========================================================================== */
 @media (min-width: 768px) {
     body {
-        padding-bottom: 0; /* Loại bỏ padding cho bottom nav trên desktop */
+        padding-bottom: 0; /* Remove padding for bottom nav on desktop */
     }
     #header-placeholder, #ivs-main-header {
         height: var(--header-height-desktop);
     }
-    #ivs-bottom-nav, #mobile-menu-open-btn, #mobile-lang-toggle {
-        display: none; /* Ẩn mobile language toggle trên desktop */
+    #ivs-bottom-nav, #mobile-menu-open-btn, #bottom-nav-lang-toggle-btn { /* Hide the bottom nav language toggle on desktop */
+        display: none;
     }
-    /* Re-enable language switcher for desktop */
-    .desktop-dropdown-container { display: inline-block; } /* Make sure dropdown container is visible */
+    /* Re-enable desktop language switcher and other desktop-only elements if they were previously hidden */
+    .desktop-dropdown-container { display: inline-block; } /* Example: ensure desktop dropdowns are visible */
 }
