@@ -1,286 +1,178 @@
 /**
- * @fileoverview This script manages all Floating Action Button (FAB) and Chatbot functionalities.
- * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.0 - Combined FAB and Chatbot logic.
- * @version 1.1 - Removed duplicated global utility definitions (componentLog, debounce)
- * as they are now centrally managed by loadComponents.js.
+ * @fileoverview This script handles dynamic loading of shared HTML components
+ * and initializes their interactive logic, ensuring reliable execution.
+ * @version 5.4 - Enhanced controller initialization timing for robust mobile interaction.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
 // =================================================================
-//  GLOBAL UTILITIES (Now assumed to be provided by loadComponents.js)
+//  LOGGING & UTILITIES (Centralized here)
 // =================================================================
-// No longer duplicated here. 'window.componentLog' and 'window.debounce' are expected to be available.
+/**
+ * Ghi log các thông báo liên quan đến tải component.
+ * @param {string} message Thông điệp cần ghi log.
+ * @param {'info'|'warn'|'error'} [level='info'] Mức độ log (info, warn, error).
+ */
+function componentLog(message, level = 'info') {
+    console[level](`[IVS Components] ${message}`);
+}
+// Expose componentLog globally for other scripts that might need it (e.g., fabController.js)
+window.componentLog = componentLog;
+
+/**
+ * Hàm debounce để hạn chế tần suất gọi hàm.
+ * @param {Function} func Hàm cần debounce.
+ * @param {number} wait Thời gian chờ trước khi thực thi hàm.
+ * @returns {Function} Hàm đã được debounce.
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+// Expose debounce globally
+window.debounce = debounce;
 
 
 // =================================================================
-//  CHATBOT STATE (Moved from script.js, now encapsulated here)
+//  MAIN COMPONENT LOADER
 // =================================================================
-// Initial chat history for AI model context.
-let chatHistory = [
-    {
-        role: "user",
-        parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
-    },
-    {
-        role: "model",
-        parts: [{text: "Xin chào! Tôi là IVS Chatbot AI. Tôi thật sự rất háo hức để hỗ trợ bạn hôm nay!! Hãy cho tôi biết bạn cần gì nhé!"}]
+
+/**
+ * Loads an HTML component and injects it into a placeholder,
+ * ensuring that any <script> tags within the injected HTML are executed.
+ * @param {string} url The URL of the HTML component to load.
+ * @param {string} placeholderId The ID of the element to inject the component into.
+ * @returns {Promise<boolean>} A promise that resolves to true if successful, false otherwise.
+ */
+async function loadAndInject(url, placeholderId) {
+    const placeholder = document.getElementById(placeholderId);
+    if (!placeholder) {
+        componentLog(`[loadAndInject] Placeholder '${placeholderId}' không tìm thấy. Không thể tải ${url}.`, "error");
+        return false;
     }
-];
-
-
-// =================================================================
-//  IVSFabController - Main FAB and Chatbot Logic
-// =================================================================
-const IVSFabController = {
-    init() {
-        window.componentLog("IVSFabController: Bắt đầu khởi tạo.", "info");
-        this.cacheDOM();
-        if (!this.fabContainer) {
-            window.componentLog("IVSFabController: Không tìm thấy phần tử FAB container. Logic FAB và Chatbot sẽ không chạy.", "warn");
-            return;
+    componentLog(`[loadAndInject] Bắt đầu tải và chèn '${url}' vào '${placeholderId}'.`);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Lỗi HTTP ${response.status} khi tải ${url}`);
         }
-        this.populateMenus();
-        this.bindEvents();
-        this.initChatbotFunctionality(); // Khởi tạo chatbot sau khi FAB Controller đã init
-        window.componentLog("IVSFabController: Khởi tạo hoàn tất.", "info");
-    },
+        
+        const text = await response.text();
+        
+        // Create a temporary div to parse the HTML and extract scripts
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = text;
 
-    cacheDOM() {
-        this.fabContainer = document.getElementById('fab-container');
-        this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-        this.buttonsWithSubmenu = this.fabContainer ? this.fabContainer.querySelectorAll('button[aria-haspopup="true"]') : [];
+        const scripts = Array.from(tempDiv.querySelectorAll('script'));
 
-        // Chatbot elements
-        this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
-        this.chatbotContainer = document.getElementById('chatbot-container');
-        this.chatbotCloseBtn = document.getElementById('chatbot-close-button');
-        this.chatbotMessages = document.getElementById('chatbot-messages');
-        this.chatbotInput = document.getElementById('chatbot-input');
-        this.chatbotSendBtn = document.getElementById('chatbot-send-button');
+        // Remove scripts from tempDiv's innerHTML before injecting to avoid double execution
+        scripts.forEach(script => script.parentNode?.removeChild(script));
+        
+        // Inject the HTML content (without scripts first)
+        placeholder.innerHTML = tempDiv.innerHTML;
+        componentLog(`[loadAndInject] Nội dung HTML của '${url}' đã chèn vào '${placeholderId}'.`);
 
-        window.componentLog(`IVSFabController: FAB Container: ${!!this.fabContainer}, ScrollToTopBtn: ${!!this.scrollToTopBtn}, ButtonsWithSubmenu count: ${this.buttonsWithSubmenu.length}`, 'info');
-        window.componentLog(`IVSFabController: ChatbotOpenBtn: ${!!this.chatbotOpenBtn}, ChatbotContainer: ${!!this.chatbotContainer}`, 'info');
-    },
-
-    populateMenus() {
-        const contactMenu = document.getElementById('contact-options');
-        const shareMenu = document.getElementById('share-options');
-
-        if (contactMenu) {
-            this.populateContactOptions(contactMenu);
-            window.componentLog("IVSFabController: Đã điền nội dung menu liên hệ.");
-        }
-        if (shareMenu) {
-            this.populateShareOptions(shareMenu);
-            window.componentLog("IVSFabController: Đã điền nội dung menu chia sẻ.");
-        }
-    },
-
-    populateContactOptions(element) {
-        const contacts = [
-            { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
-            { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
-            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
-            { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
-        ];
-        element.innerHTML = contacts.map(c => `<a href="<span class="math-inline">\{c\.href\}" role\="menuitem" class\="fab\-submenu\-item group" data\-lang\-key\="</span>{c.key}" <span class="math-inline">\{c\.href\.startsWith\('http'\) ? 'target\="\_blank" rel\="noopener noreferrer"' \: ''\}\><i class\="</span>{c.icon} fa-fw <span class="math-inline">\{c\.color\}"\></i\><span\></span>{c.text}</span></a>`).join('');
-    },
-
-    populateShareOptions(element) {
-        const currentUrl = window.location.href;
-        const pageTitle = document.title;
-
-        const shares = [
-            { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}', '_blank', 'noopener,noreferrer')` },
-            { text: "X (Twitter)", icon: "fab fa-x-twitter", color: "text-neutral-500", action: `window.open('https://twitter.com/intent/tweet?url=<span class="math-inline">\{encodeURIComponent\(currentUrl\)\}&text\=</span>{encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-            { text: "LinkedIn", icon: "fab fa-linkedin", color: "text-blue-700", action: `window.open('https://www.linkedin.com/shareArticle?mini=true&url=<span class="math-inline">\{encodeURIComponent\(currentUrl\)\}&title\=</span>{encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-            {
-                text: "Copy Link",
-                icon: "fas fa-link",
-                color: "text-gray-500",
-                action: null // Action will be handled via event listener
+        // Execute scripts sequentially
+        for (const oldScript of scripts) {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+            
+            // Handle both inline scripts and external scripts
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+                await new Promise((resolve, reject) => {
+                    newScript.onload = () => {
+                        componentLog(`[loadAndInject] Script bên ngoài đã tải: ${newScript.src}`);
+                        resolve();
+                    };
+                    newScript.onerror = (e) => {
+                        componentLog(`[loadAndInject] Lỗi tải script bên ngoài: ${newScript.src}, Lỗi: ${e.message || e}`, 'error');
+                        reject(e);
+                    };
+                    document.body.appendChild(newScript); 
+                });
+            } else {
+                newScript.textContent = oldScript.textContent;
+                document.body.appendChild(newScript); // Append to execute inline scripts
+                componentLog(`[loadAndInject] Script nội tuyến đã thực thi trong placeholder '${placeholderId}'.`);
             }
-        ];
-        element.innerHTML = shares.map((s, index) => {
-            const btnId = `share-action-${index}`;
-            return `<button id="<span class="math-inline">\{btnId\}" role\="menuitem" class\="fab\-submenu\-item group w\-full"\><i class\="</span>{s.icon} fa-fw <span class="math-inline">\{s\.color\}"\></i\><span\></span>{s.text}</span></button>`;
-        }).join('');
+        }
+        
+        componentLog(`[loadAndInject] Component '${url}' đã được tải và chèn thành công vào '${placeholderId}'.`);
+        return true;
+    } catch (error) {
+        componentLog(`[loadAndInject] Thất bại khi tải và chèn component '${url}' vào '${placeholderId}': ${error.message}`, 'error');
+        return false;
+    }
+}
 
-        shares.forEach((s, index) => {
-            const btn = document.getElementById(`share-action-${index}`);
-            if (btn) {
-                if (s.text === "Copy Link") {
-                    btn.addEventListener('click', () => {
-                        try {
-                            // Using document.execCommand('copy') for better iframe compatibility
-                            const textarea = document.createElement('textarea');
-                            textarea.value = currentUrl;
-                            document.body.appendChild(textarea);
-                            textarea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textarea);
-                            window.componentLog('Đã sao chép liên kết vào clipboard!');
-                        } catch (err) {
-                            window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
+/**
+ * Tải các component phổ biến (header, footer, fab-container).
+ */
+async function loadCommonComponents() {
+    componentLog("[loadCommonComponents] Bắt đầu trình tự tải component...");
+    const componentsToLoad = [
+        { id: 'header-placeholder', url: '/components/header.html' }, 
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html' }, 
+        { id: 'footer-placeholder', url: '/components/footer.html' }
+    ];
+
+    for (const comp of componentsToLoad) {
+        if (document.getElementById(comp.id)) {
+            const success = await loadAndInject(comp.url, comp.id);
+            if (success) {
+                // IMPORTANT: Use sufficient setTimeout to ensure scripts loaded by loadAndInject have executed
+                // and defined global objects (like IVSHeaderController, IVSFabController).
+                // A small delay (e.g., 100-200ms) is often safer for complex scenarios.
+                if (comp.id === 'header-placeholder') {
+                    setTimeout(() => {
+                        if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
+                            window.IVSHeaderController.init();
+                            componentLog("[loadCommonComponents] IVSHeaderController đã được khởi tạo qua setTimeout.", "info");
+                        } else {
+                            componentLog("[loadCommonComponents] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header. Đảm bảo headerController.js được tải.", 'error');
                         }
-                    });
-                } else if (s.action) {
-                    btn.addEventListener('click', () => eval(s.action)); // Execute string action
+                    }, 150); // Increased delay
+                } else if (comp.id === 'fab-container-placeholder') {
+                    // fabController.js defines IVSFabController and is injected via fab-container.html
+                    setTimeout(() => {
+                        if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
+                            window.IVSFabController.init();
+                            componentLog("[loadCommonComponents] IVSFabController đã được khởi tạo qua setTimeout.", "info");
+                        } else {
+                            componentLog("[loadCommonComponents] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
+                        }
+                    }, 150); // Increased delay
                 }
             }
-        });
-    },
-
-    bindEvents() {
-        if (this.scrollToTopBtn) {
-            const handleScroll = () => {
-                if (this.scrollToTopBtn) { // Double check for robustness
-                    if (window.scrollY > 200) {
-                        this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-                    } else {
-                        this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
-                    }
-                }
-            };
-            window.addEventListener('scroll', window.debounce(handleScroll, 100), { passive: true });
-            this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Initial check on load
-            window.componentLog("IVSFabController: Đã gắn sự kiện cho nút cuộn lên đầu trang.");
+        } else {
+            componentLog(`[loadCommonComponents] Placeholder '${comp.id}' không tồn tại trên trang, bỏ qua tải component '${comp.url}'.`, 'warn');
         }
-
-        if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
-                console.log(`[DEBUG] Nút submenu được click: ${btn.id}`); // Debug line for testing
-                e.stopPropagation(); // Prevent document click from closing immediately
-                this.toggleSubmenu(btn);
-            }));
-            window.componentLog("IVSFabController: Đã gắn sự kiện click cho các nút có submenu.");
-        }
-
-        document.addEventListener('click', (e) => {
-            if (this.fabContainer && !this.fabContainer.contains(e.target)) {
-                if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
-                }
-            }
-        });
-        window.componentLog("IVSFabController: Đã gắn sự kiện click toàn cục để đóng submenu FAB.");
-    },
-
-    toggleSubmenu(btn) {
-        const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-        if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(otherBtn => {
-                if (otherBtn !== btn) {
-                    this.closeSubmenu(otherBtn); // Close other submenus
-                }
-            });
-        }
-        if (!isCurrentlyOpen) this.openSubmenu(btn);
-        else this.closeSubmenu(btn);
-    },
-
-    openSubmenu(btn) {
-        const menu = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!menu) return;
-        menu.classList.remove('hidden', 'pointer-events-none');
-        // Use rAF for immediate display before transition
-        requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
-        btn.setAttribute('aria-expanded', 'true');
-        window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
-    },
-
-    closeSubmenu(btn) {
-        const menu = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95');
-        const onTransitionEnd = () => {
-            if (menu.classList.contains('opacity-0')) {
-                menu.classList.add('hidden', 'pointer-events-none');
-            }
-            menu.removeEventListener('transitionend', onTransitionEnd);
-        };
-        menu.addEventListener('transitionend', onTransitionEnd);
-        btn.setAttribute('aria-expanded', 'false');
-        window.componentLog(`IVSFabController: Đã đóng submenu cho nút: ${btn.id}`);
-    },
-
-    // =================================================================
-    //  Chatbot Functionality (Combined and optimized)
-    // =================================================================
-    initChatbotFunctionality() {
-        if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
-            window.componentLog("IVSFabController: Các phần tử Chatbot không tìm thấy đầy đủ. Bỏ qua chức năng chatbot.", "warn");
-            return;
-        }
-
-        // Initial setup to ensure it's hidden correctly
-        this.chatbotContainer.classList.add('chatbot-container-closed');
-        this.chatbotContainer.style.display = 'none';
-
-        const openChatbot = () => {
-            this.chatbotContainer.style.display = 'flex';
-            setTimeout(() => {
-                this.chatbotContainer.classList.remove('chatbot-container-closed');
-                this.chatbotContainer.classList.add('chatbot-container-open');
-                this.chatbotInput.focus();
-                this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight; // Scroll to bottom on open
-            }, 50); // Small delay to allow display:flex to apply before transition
-            window.componentLog("IVSFabController: Chatbot mở.");
-        };
-
-        const closeChatbot = () => {
-            this.chatbotContainer.classList.remove('chatbot-container-open');
-            this.chatbotContainer.classList.add('chatbot-container-closed');
-            setTimeout(() => {
-                this.chatbotContainer.style.display = 'none';
-            }, 300); // Match CSS transition duration
-            window.componentLog("IVSFabController: Chatbot đóng.");
-        };
-
-        this.chatbotOpenBtn.addEventListener('click', openChatbot);
-        this.chatbotCloseBtn.addEventListener('click', closeChatbot);
-
-        const addMessage = (text, sender) => {
-            const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender, 'mb-2');
-            messageBubble.textContent = text;
-            this.chatbotMessages.appendChild(messageBubble);
-            this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
-        };
-
-        const sendMessage = async () => {
-            const messageText = this.chatbotInput.value.trim();
-            if (messageText === '') return;
-
-            addMessage(messageText, 'user');
-            this.chatbotInput.value = '';
-
-            // Add "Đang gõ..." message
-            addMessage('Đang gõ...', 'ai');
-
-            // Simulate AI response for UI testing without actual API call
-            setTimeout(() => {
-                if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
-                    this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
-                }
-                addMessage("Đây là phản hồi giả định từ AI. Chức năng UI vẫn hoạt động tốt.", "ai");
-                window.componentLog("IVSFabController: Phản hồi AI giả định được thêm.");
-            }, 1000); // Simulate network delay
-        };
-
-        this.chatbotSendBtn.addEventListener('click', sendMessage);
-        this.chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        window.componentLog("IVSFabController: Chức năng Chatbot được khởi tạo (API gọi được mô phỏng cho kiểm tra UI).", "info");
     }
-};
 
-// Expose IVSFabController globally for loadComponents.js
-window.IVSFabController = IVSFabController;
+    // Initialize global system (e.g., language system) if available
+    // Ensure window.system is defined by language.js before attempting to init it.
+    // language.js is self-initializing on DOMContentLoaded, so it should be ready or init itself.
+    setTimeout(() => {
+        if (window.system && typeof window.system.init === 'function') {
+            window.system.init({ language: 'en', translationUrl: '/lang/' }); // Default to 'en'
+            componentLog("[loadCommonComponents] Hệ thống toàn cầu (ví dụ: ngôn ngữ) đã được khởi tạo qua setTimeout.", "info");
+        } else {
+            componentLog("[loadCommonComponents] window.system hoặc window.system.init không được định nghĩa. Đảm bảo language.js đã tải.", 'error');
+        }
+    }, 200); // Slightly longer delay to ensure language.js is fully ready
+
+    componentLog("[loadCommonComponents] Trình tự tải component đã hoàn tất.");
+    window.onPageComponentsLoadedCallback?.(); 
+}
+
+document.addEventListener('DOMContentLoaded', loadCommonComponents);
