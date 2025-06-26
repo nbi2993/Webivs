@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 3.0 - Improved Chatbot & FAB Responsiveness -->
+<!-- VERSION: 3.1 - Improved Chatbot & FAB Responsiveness & Bug Fixes -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Container cho các nút FAB -->
@@ -235,7 +235,8 @@
         cacheDOM() {
             this.fabContainer = document.getElementById('fab-container');
             this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-            this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
+            // Cần đảm bảo this.fabContainer không null trước khi querySelectorAll
+            this.buttonsWithSubmenu = this.fabContainer ? this.fabContainer.querySelectorAll('button[aria-haspopup="true"]') : [];
 
             // Cache chatbot elements
             this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
@@ -323,10 +324,13 @@
         bindEvents() {
             if (this.scrollToTopBtn) {
                 const handleScroll = () => {
-                    if (window.scrollY > 200) {
-                        this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-                    } else {
-                        this.scrollToToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                    // Kiểm tra null trước khi truy cập classList
+                    if (this.scrollToTopBtn) {
+                        if (window.scrollY > 200) {
+                            this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                        } else {
+                            this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                        }
                     }
                 };
                 window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
@@ -334,25 +338,34 @@
                 handleScroll(); 
             }
 
-            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
-                e.stopPropagation();
-                this.toggleSubmenu(btn);
-            }));
+            // Kiểm tra this.buttonsWithSubmenu có tồn tại và là iterable
+            if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
+                this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    this.toggleSubmenu(btn);
+                }));
+            }
 
             document.addEventListener('click', (e) => {
                 if (this.fabContainer && !this.fabContainer.contains(e.target)) { // Add null check for fabContainer
-                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
+                    // Đảm bảo this.buttonsWithSubmenu có tồn tại và là iterable
+                    if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
+                        this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
+                    }
                 }
             });
         },
 
         toggleSubmenu(btn) {
             const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-            this.buttonsWithSubmenu.forEach(otherBtn => {
-                if (otherBtn !== btn) { 
-                    this.closeSubmenu(otherBtn);
-                }
-            });
+            // Đảm bảo this.buttonsWithSubmenu có tồn tại và là iterable
+            if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
+                this.buttonsWithSubmenu.forEach(otherBtn => {
+                    if (otherBtn !== btn) { 
+                        this.closeSubmenu(otherBtn);
+                    }
+                });
+            }
             if (!isCurrentlyOpen) this.openSubmenu(btn);
             else this.closeSubmenu(btn); 
         },
@@ -381,7 +394,7 @@
 
         // New method to encapsulate chatbot initialization
         initChatbotFunctionality() {
-            // Check if all necessary elements exist
+            // Kiểm tra tất cả các phần tử cần thiết
             if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
                 componentLog("Chatbot elements not fully found during init. Skipping chatbot functionality.", "warn");
                 return;

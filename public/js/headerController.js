@@ -2,7 +2,7 @@
  * @fileoverview Logic for the main Header component.
  * Handles responsive menu, submenus, scroll effects, and language switching.
  * This script is intended to be loaded separately and attached to header.html.
- * @version 1.2 - Enhanced Mobile Menu & Language Toggles
+ * @version 1.3 - Enhanced Mobile Menu, Language Toggles & Bug Fixes
  * @author IVS-Technical-Team
  */
 
@@ -51,7 +51,9 @@ const IVSHeaderController = {
         this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle'); // Select all mobile submenu toggles
+        // Đảm bảo rằng `document` được sử dụng để querySelectorAll, không phải `this.mobilePanel` ban đầu
+        // vì các toggle này nằm rải rác trong `header.html`
+        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle'); 
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
         this.langOptions = document.querySelectorAll('.lang-option'); // All language selection buttons
         
@@ -100,9 +102,12 @@ const IVSHeaderController = {
         });
 
         // Mobile submenu toggles
-        this.submenuToggles.forEach(toggle => {
-            toggle.addEventListener('click', (e) => this.toggleSubmenu(e.currentTarget));
-        });
+        // Kiểm tra this.submenuToggles có tồn tại và là iterable
+        if (this.submenuToggles && this.submenuToggles.forEach) {
+            this.submenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => this.toggleSubmenu(e.currentTarget));
+            });
+        }
 
         // Mobile language toggle button
         this.mobileLangToggle?.addEventListener('click', (e) => {
@@ -111,14 +116,17 @@ const IVSHeaderController = {
         });
 
         // Language options click events
-        this.langOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                const lang = e.currentTarget.dataset.lang;
-                if (lang) {
-                    this.setLanguage(lang);
-                }
+        // Kiểm tra this.langOptions có tồn tại và là iterable
+        if (this.langOptions && this.langOptions.forEach) {
+            this.langOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    const lang = e.currentTarget.dataset.lang;
+                    if (lang) {
+                        this.setLanguage(lang);
+                    }
+                });
             });
-        });
+        }
 
         // Event listeners for desktop dropdowns
         document.querySelectorAll('.desktop-dropdown-container').forEach(container => {
@@ -162,9 +170,16 @@ const IVSHeaderController = {
     },
     
     toggleMobileMenu(open) {
-        if (!this.mobilePanel || !this.mobileBackdrop || !this.mobilePanel.querySelector('#ivs-mobile-menu-container')) return;
+        if (!this.mobilePanel || !this.mobileBackdrop) { // Removed check for #ivs-mobile-menu-container here, as it's part of mobilePanel
+            componentLog("Mobile panel or backdrop not found. Cannot toggle mobile menu.", "warn");
+            return;
+        }
 
         const mobileMenuContainer = this.mobilePanel.querySelector('#ivs-mobile-menu-container');
+        if (!mobileMenuContainer) {
+            componentLog("Mobile menu container #ivs-mobile-menu-container not found inside panel.", "warn");
+            return;
+        }
 
         // Xóa lắng nghe cũ để tránh tích tụ
         if (this.mobilePanelCloseListener) {
@@ -174,6 +189,8 @@ const IVSHeaderController = {
 
         if (open) {
             this.mobilePanel.style.display = 'block'; // Hiển thị container trước
+            // Force reflow for display change before applying transitions
+            void this.mobilePanel.offsetWidth; 
             this.mobilePanel.classList.add('is-open');
             document.body.style.overflow = 'hidden'; // Ngăn cuộn trang
             // Thêm class cho backdrop và container sau một chút delay để kích hoạt transition
@@ -188,9 +205,13 @@ const IVSHeaderController = {
 
             // Đặt lắng nghe sự kiện transitionend để ẩn sau khi animation kết thúc
             this.mobilePanelCloseListener = () => {
-                if (mobileMenuContainer.style.transform === 'translateX(100%)') { // Đảm bảo transition kết thúc ở trạng thái đóng
-                    this.mobilePanel.style.display = 'none'; // Ẩn hoàn toàn sau khi đóng
-                    this.mobilePanel.classList.remove('is-open');
+                // Sử dụng getComputedStyle để kiểm tra giá trị thực sau transition
+                const computedTransform = getComputedStyle(mobileMenuContainer).transform;
+                if (computedTransform === 'none' || computedTransform.includes('matrix(1, 0, 0, 1, 0, 0)')) { // 'none' for translateX(0) or when not transformed, 'matrix(...)' for translateX(100%)
+                    // If the menu is meant to be closed (translateX(100%)), it should be hidden
+                    if (!this.mobilePanel.classList.contains('is-open')) { // Check if 'is-open' class is removed
+                        this.mobilePanel.style.display = 'none'; // Ẩn hoàn toàn sau khi đóng
+                    }
                 }
                 mobileMenuContainer.removeEventListener('transitionend', this.mobilePanelCloseListener);
                 this.mobilePanelCloseListener = null;
