@@ -8,8 +8,8 @@
     ],
     "rewrites": [
       {
-        "source": "/api/**",    /* Rule to rewrite requests starting with /api/ */
-        "function": "api"       /* Redirects to the Firebase Function named 'api' */
+        "source": "/api/**",
+        "function": "api"
       },
       {
         "source": "/components/**",
