@@ -18,15 +18,18 @@ app.use(bodyParser.json());
 // ====================================================================
 // KHỞI TẠO FIREBASE ADMIN SDK (Sử dụng biến môi trường an toàn)
 // ====================================================================
-try {
-    // Đọc Service Account Key đã mã hóa Base64 từ cấu hình Functions
-    const serviceAccountBase64 = functions.config().serviceaccount?.key_base64;
+// Khởi tạo Admin SDK một lần duy nhất nếu chưa được khởi tạo
+if (admin.apps.length === 0) {
+    try {
+        // Đọc Service Account Key đã mã hóa Base64 từ cấu hình Functions
+        const serviceAccountBase64 = functions.config().serviceaccount.key_base64; // Bỏ optional chaining để lỗi nếu không có
+        
+        if (!serviceAccountBase64) {
+            console.error("Lỗi khởi tạo Admin SDK: Biến FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 không được định nghĩa trong cấu hình Firebase Functions.");
+            // Ném lỗi để Firebase báo lỗi rõ ràng hơn trong log và không khởi tạo
+            throw new Error("Missing FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 config.");
+        }
 
-    if (!serviceAccountBase64) {
-        console.error("FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 is not defined in Firebase Functions config.");
-        // Trong môi trường Production, bạn có thể muốn thoát hoặc báo lỗi rõ ràng hơn.
-        // Ở đây, chúng ta sẽ cho phép tiếp tục để các lỗi khác được xử lý, nhưng chức năng Firebase sẽ lỗi.
-    } else {
         // Giải mã Base64 và parse JSON
         const serviceAccount = JSON.parse(Buffer.from(serviceAccountBase64, 'base64').toString('ascii'));
         admin.initializeApp({
@@ -34,11 +37,13 @@ try {
             databaseURL: "https://ivsjsc-6362f-default-rtdb.asia-southeast1.firebasedatabase.app"
         });
         console.log("[Firebase Admin] Firebase Admin SDK đã được khởi tạo thành công.");
+    } catch (error) {
+        console.error("[Firebase Admin] Lỗi khi khởi tạo Firebase Admin SDK:", error.message);
+        console.error("Vui lòng đảm bảo FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 được cấu hình đúng và có định dạng JSON hợp lệ sau khi giải mã Base64.");
+        // Ghi lại lỗi nhưng không thoát process để hàm vẫn cố gắng phản hồi các yêu cầu (có thể lỗi)
     }
-} catch (error) {
-    console.error("[Firebase Admin] Lỗi khi khởi tạo Firebase Admin SDK:", error.message);
-    console.error("Vui lòng đảm bảo FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 được cấu hình đúng.");
-    // Không thoát process.exit(1) trong Functions để hàm vẫn có thể phản hồi lỗi HTTP
+} else {
+    console.log("[Firebase Admin] Firebase Admin SDK đã được khởi tạo trước đó.");
 }
 
 
@@ -49,11 +54,11 @@ app.post('/api/chat', async (req, res) => {
     try {
         const chatHistory = req.body.contents; // Lấy lịch sử trò chuyện từ frontend
         // Lấy Gemini API Key từ cấu hình Functions
-        const geminiApiKey = functions.config().gemini?.key;
+        const geminiApiKey = functions.config().gemini.key; // Bỏ optional chaining để lỗi nếu không có
 
         if (!geminiApiKey) {
             console.error("GEMINI_API_KEY không được định nghĩa trong cấu hình Firebase Functions.");
-            return res.status(500).json({ error: "Server configuration error: API Key missing." });
+            return res.status(500).json({ error: "Server configuration error: Gemini API Key missing." });
         }
 
         const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiApiKey}`;
@@ -90,7 +95,7 @@ app.post('/api/chat', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     const { email, password } = req.body;
     try {
-        if (!admin.apps.length) { // Kiểm tra nếu Admin SDK chưa khởi tạo
+        if (admin.apps.length === 0) { // Kiểm tra nếu Admin SDK chưa khởi tạo
             return res.status(500).json({ error: "Firebase Admin SDK chưa khởi tạo. Vui lòng kiểm tra cấu hình server." });
         }
         const userRecord = await admin.auth().createUser({
@@ -117,7 +122,7 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        if (!admin.apps.length) {
+        if (admin.apps.length === 0) {
             return res.status(500).json({ error: "Firebase Admin SDK chưa khởi tạo. Vui lòng kiểm tra cấu hình server." });
         }
         // Lưu ý: Phương pháp này không xác thực mật khẩu. Client nên gửi ID Token sau khi đăng nhập.
@@ -145,7 +150,7 @@ app.get('/api/protected', async (req, res) => {
     }
 
     try {
-        if (!admin.apps.length) {
+        if (admin.apps.length === 0) {
             return res.status(500).json({ error: "Firebase Admin SDK chưa khởi tạo. Vui lòng kiểm tra cấu hình server." });
         }
         const decodedToken = await admin.auth().verifyIdToken(idToken);
