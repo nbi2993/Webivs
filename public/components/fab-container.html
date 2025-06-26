@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 3.1 - Improved Chatbot & FAB Responsiveness & Bug Fixes -->
+<!-- VERSION: 3.2 - Improved Chatbot & FAB Responsiveness & UI Clarity -->
 <!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
 
 <!-- Container cho các nút FAB -->
@@ -76,24 +76,25 @@
         align-items: center;
         padding: 0.6rem 0.85rem;
         font-size: 0.9rem;
-        color: #374151; /* gray-700 */
-        border-radius: 0.375rem; /* rounded-md */
+        color: var(--ivs-text-primary); /* Sử dụng biến màu sắc */
+        border-radius: var(--radius-md); 
         transition: background-color 0.2s, color 0.2s;
         text-decoration: none;
         cursor: pointer;
         text-align: left;
         width: 100%;
+        min-height: 40px; /* Đảm bảo kích thước chạm tối thiểu */
     }
     .fab-submenu-item:hover {
-        background-color: #f3f4f6; /* gray-100 */
-        color: #2563eb; /* blue-600 */
+        background-color: var(--ivs-bg-light); /* Sử dụng biến màu sắc */
+        color: var(--ivs-accent);
     }
-    .dark .fab-submenu-item {
-        color: #d1d5db; /* gray-300 */
+    body.dark .fab-submenu-item {
+        color: var(--ivs-neutral-300);
     }
-    .dark .fab-submenu-item:hover {
-        background-color: #374151; /* gray-700 */
-        color: #60a5fa; /* blue-400 */
+    body.dark .fab-submenu-item:hover {
+        background-color: var(--ivs-bg-light); /* Sử dụng biến màu sắc */
+        color: var(--ivs-accent);
     }
     .fab-submenu-item i.fa-fw {
         margin-right: 0.75rem;
@@ -108,34 +109,34 @@
     }
 
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: var(--ivs-bg-light); /* Sử dụng biến màu sắc */
         border-radius: 10px;
     }
 
     .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #888;
+        background: var(--ivs-neutral-600); /* Sử dụng biến màu sắc */
         border-radius: 10px;
     }
 
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: var(--ivs-neutral-700); /* Sử dụng biến màu sắc */
     }
 
     /* Message bubble styling */
     .message-bubble {
         word-wrap: break-word;
         max-width: 80%; /* Limit bubble width */
-        border-radius: 0.75rem; /* rounded-lg */
-        padding: 0.5rem 0.75rem; /* p-2, px-3 */
-        margin-bottom: 0.5rem; /* mb-2 */
+        border-radius: 0.75rem; 
+        padding: 0.5rem 0.75rem; 
+        margin-bottom: 0.5rem; 
         line-height: 1.4;
     }
 
     .message-bubble.user {
         background-color: #dbeafe; /* blue-200 */
         color: #1f2937; /* gray-900 */
-        margin-left: auto; /* Align to right for user messages */
-        border-bottom-right-radius: 0; /* flat corner */
+        margin-left: auto; 
+        border-bottom-right-radius: 0; 
     }
 
     .dark .message-bubble.user {
@@ -144,39 +145,38 @@
     }
 
     .message-bubble.ai {
-        background-color: #e5e7eb; /* gray-200 */
-        color: #1f2937; /* gray-900 */
-        margin-right: auto; /* Align to left for AI messages */
-        border-bottom-left-radius: 0; /* flat corner */
+        background-color: var(--ivs-bg-light); /* Sử dụng biến màu sắc */
+        color: var(--ivs-text-primary); /* Sử dụng biến màu sắc */
+        margin-right: auto; 
+        border-bottom-left-radius: 0; 
     }
 
     .dark .message-bubble.ai {
-        background-color: #374151; /* neutral-700 */
-        color: #e5e7eb; /* gray-200 */
+        background-color: var(--ivs-neutral-700); /* Sử dụng biến màu sắc */
+        color: var(--ivs-text-primary); /* Sử dụng biến màu sắc */
     }
 
     /* Animation classes for chatbot container */
-    /* Use display none/flex for visibility, then transform for animation */
     .chatbot-container-open {
-        display: flex !important; /* Override display: none */
+        display: flex !important; 
         transform: scale(1) translateX(0) translateY(0) !important;
         opacity: 1 !important;
     }
     .chatbot-container-closed {
         transform: scale(0) translateX(0) translateY(0) !important;
         opacity: 0 !important;
-        pointer-events: none; /* Disable interactions when closed */
+        pointer-events: none; 
     }
 
     /* Responsive adjustments for chatbot container */
     @media (max-width: 768px) {
         #chatbot-container {
-            width: calc(100% - 32px); /* Full width minus margin */
-            height: calc(100% - 100px); /* Full height minus some margin (header + bottom nav) */
+            width: calc(100% - 32px); 
+            height: calc(100% - var(--header-height-mobile) - var(--bottom-nav-height) - 32px); /* Corrected height to account for both header and bottom nav */
             bottom: calc(var(--bottom-nav-height) + 16px); /* Position above bottom nav + 16px */
-            right: 16px; /* Adjust right for mobile */
-            max-width: none; /* Remove max-width on mobile */
-            max-height: none; /* Remove max-height on mobile */
+            right: 16px; 
+            max-width: none; 
+            max-height: none; 
         }
     }
 </style>

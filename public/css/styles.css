@@ -4,7 +4,7 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.2 - Enhanced Mobile Responsiveness, Header Transitions & Dark Mode Defaults
+ * VERSION: 3.3 - Further UI Optimization, Enhanced Dark Mode & Button Clarity
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-26
  */
@@ -40,8 +40,8 @@
     --ivs-text-dark: #0f172a;
     --ivs-text-white: #ffffff;
     --ivs-text-muted: var(--ivs-neutral-400);
-    --ivs-text-primary: var(--ivs-neutral-700); 
-    --ivs-text-secondary: var(--ivs-neutral-400); 
+    --ivs-text-primary: var(--ivs-neutral-700); /* Main text color for light mode */
+    --ivs-text-secondary: var(--ivs-neutral-500); /* Secondary text, slightly lighter */
 
 
     /* Layout & Sizing */
@@ -74,26 +74,26 @@
     --ease-out: ease-out;
 
     /* Backgrounds (Light Mode Defaults) */
-    --ivs-bg: #ffffff; 
-    --ivs-bg-light: #F3F4F6; 
-    --ivs-bg-medium: #F9FAFB; 
-    --ivs-card: #ffffff; 
-    --ivs-border: #E5E7EB; 
-    --ivs-blue: #2563eb; 
+    --ivs-bg: #ffffff; /* Main background */
+    --ivs-bg-light: #F3F4F6; /* Lighter background for hover states, active states */
+    --ivs-bg-medium: #F9FAFB; /* Slightly off-white for elements like mobile menu container */
+    --ivs-card: #ffffff; /* Card backgrounds */
+    --ivs-border: #E5E7EB; /* Border color */
+    --ivs-blue: #2563eb; /* A specific blue, possibly for login buttons */
     --ivs-blue-darker: #1d4ed8;
 
 }
 
 /* Dark Mode Variables */
 body.dark {
-    --ivs-text-primary: var(--ivs-neutral-300); 
-    --ivs-text-secondary: var(--ivs-neutral-500); 
-    --ivs-bg: var(--ivs-neutral-900); 
-    --ivs-bg-light: var(--ivs-neutral-800); 
-    --ivs-bg-medium: var(--ivs-neutral-800); 
-    --ivs-card: var(--ivs-neutral-800); 
-    --ivs-border: var(--ivs-neutral-700); 
-    --ivs-blue: #3b82f6; 
+    --ivs-text-primary: var(--ivs-neutral-200); /* Main text color for dark mode */
+    --ivs-text-secondary: var(--ivs-neutral-400); /* Secondary text, slightly darker */
+    --ivs-bg: var(--ivs-neutral-900); /* Main background for dark mode */
+    --ivs-bg-light: var(--ivs-neutral-800); /* Lighter background for hover states, active states in dark mode */
+    --ivs-bg-medium: var(--ivs-neutral-800); /* Mobile menu container in dark mode */
+    --ivs-card: var(--ivs-neutral-800); /* Card backgrounds in dark mode */
+    --ivs-border: var(--ivs-neutral-700); /* Border color in dark mode */
+    --ivs-blue: #3b82f6; /* Adjusted blue for dark mode visibility */
     --ivs-blue-darker: #2563eb;
 }
 
@@ -119,21 +119,21 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--ivs-bg); 
-    color: var(--ivs-text-primary); 
+    background-color: var(--ivs-bg); /* Uses dynamic variable for theme */
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-bottom: var(--bottom-nav-height); 
-    /* Áp dụng chế độ tối mặc định nếu cần, bạn có thể xóa dòng này nếu muốn người dùng tự chuyển đổi */
-    /* background-color: var(--ivs-neutral-900); */ 
-    /* color: var(--ivs-neutral-300); */
+    padding-bottom: var(--bottom-nav-height); /* Ensure space for bottom nav on mobile */
 }
 
-/* Áp dụng chế độ tối mặc định cho toàn bộ body nếu class 'dark' được thêm vào */
+/* Áp dụng chế độ tối mặc định cho toàn bộ body nếu class 'dark' được thêm vào
+   Để kích hoạt chế độ tối mặc định, thêm class="dark" vào thẻ <body> của trang HTML của bạn.
+   Ví dụ: <body class="dark">
+*/
 body.dark {
-    background-color: var(--ivs-neutral-900);
-    color: var(--ivs-neutral-300);
+    /* Các biến màu trong :root đã được định nghĩa lại cho dark mode,
+       nên việc thêm class="dark" vào body sẽ tự động áp dụng các màu đó. */
 }
 
 
@@ -143,6 +143,10 @@ main {
 
 .section-title, .font-display {
     font-family: var(--font-display);
+    color: var(--ivs-text-dark); /* Ensure titles are dark in light mode */
+}
+body.dark .section-title, body.dark .font-display {
+    color: var(--ivs-text-light); /* Ensure titles are light in dark mode */
 }
 
 .font-serif {
@@ -158,7 +162,7 @@ main {
 
 /* --- Header & Placeholders --- */
 #header-placeholder {
-    height: var(--header-height-mobile); 
+    height: var(--header-height-mobile); /* Height for mobile */
 }
 
 #ivs-main-header { 
@@ -167,7 +171,7 @@ main {
     left: 0;
     right: 0;
     z-index: 40; 
-    background-color: var(--ivs-bg); 
+    background-color: var(--ivs-bg); /* Uses dynamic variable for theme */
     transition: background-color var(--transition-base) var(--ease-out),
                 transform var(--transition-base) var(--ease-out),
                 height var(--transition-base) var(--ease-out); 
@@ -177,12 +181,12 @@ main {
 
 /* Header scrolled state */
 #ivs-main-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.9); 
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for light mode */
     backdrop-filter: blur(8px); 
     box-shadow: var(--shadow-lg); 
 }
 body.dark #ivs-main-header.scrolled {
-    background-color: rgba(17, 24, 39, 0.9); 
+    background-color: rgba(17, 24, 39, 0.9); /* Darker transparent bg for dark mode */
 }
 
 /* --- Desktop Nav Links --- */
@@ -191,18 +195,21 @@ body.dark #ivs-main-header.scrolled {
     align-items: center;
     padding: 0.5rem 0.75rem;
     border-radius: var(--radius-md);
-    color: var(--ivs-text-primary);
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     font-weight: 500;
     text-decoration: none;
     transition: all var(--transition-fast) var(--ease-out);
+    min-height: 44px; /* Minimum touch target size for accessibility */
+    min-width: 44px;
+    justify-content: center; /* Center content within button/link */
 }
 .desktop-nav-link:hover {
     color: var(--ivs-accent);
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
 }
 .desktop-nav-link.active {
     color: var(--ivs-accent);
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
 }
 /* Adjust for dark mode */
 body.dark .desktop-nav-link {
@@ -211,7 +218,7 @@ body.dark .desktop-nav-link {
 body.dark .desktop-nav-link:hover,
 body.dark .desktop-nav-link.active {
     color: var(--ivs-accent);
-    background-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
 }
 
 
@@ -228,23 +235,26 @@ body.dark .desktop-nav-link.active {
     align-items: center;
     padding: 0.5rem 0.75rem;
     border-radius: var(--radius-md);
-    color: var(--ivs-text-primary);
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     font-weight: 500;
     background: none;
     border: none;
     cursor: pointer;
     transition: all var(--transition-fast) var(--ease-out);
+    min-height: 44px; /* Minimum touch target size for accessibility */
+    min-width: 44px;
+    justify-content: center; /* Center content within button/link */
 }
 .desktop-nav-dropdown-toggle:hover {
     color: var(--ivs-accent);
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
 }
 body.dark .desktop-nav-dropdown-toggle {
     color: var(--ivs-neutral-300);
 }
 body.dark .desktop-nav-dropdown-toggle:hover {
     color: var(--ivs-accent);
-    background-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
 }
 
 
@@ -252,8 +262,8 @@ body.dark .desktop-nav-dropdown-toggle:hover {
     position: absolute;
     top: 100%; 
     margin-top: 0.5rem; 
-    background-color: var(--ivs-card);
-    border: 1px solid var(--ivs-border);
+    background-color: var(--ivs-card); /* Uses dynamic variable for theme */
+    border: 1px solid var(--ivs-border); /* Uses dynamic variable for theme */
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);
     z-index: 50; 
@@ -271,8 +281,8 @@ body.dark .desktop-nav-dropdown-toggle:hover {
 }
 
 body.dark .desktop-dropdown, body.dark .desktop-mega-menu {
-    background-color: var(--ivs-neutral-800);
-    border-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-card); /* Uses dynamic variable for theme */
+    border-color: var(--ivs-border); /* Uses dynamic variable for theme */
 }
 
 .desktop-mega-menu {
@@ -288,20 +298,21 @@ body.dark .desktop-dropdown, body.dark .desktop-mega-menu {
     align-items: center;
     padding: 0.6rem 0.85rem;
     font-size: 0.95rem;
-    color: var(--ivs-text-primary);
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     border-radius: var(--radius-md);
     transition: background-color 0.2s, color 0.2s;
     text-decoration: none;
     cursor: pointer;
     text-align: left;
     width: 100%;
+    min-height: 44px; /* Minimum touch target size for accessibility */
 }
 .dropdown-item:hover {
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 .dropdown-item.active { 
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 body.dark .dropdown-item {
@@ -309,7 +320,7 @@ body.dark .dropdown-item {
 }
 body.dark .dropdown-item:hover,
 body.dark .dropdown-item.active {
-    background-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 
@@ -322,8 +333,8 @@ body.dark .dropdown-item.active {
     width: 100%;
     z-index: 30; 
     height: var(--bottom-nav-height);
-    background-color: var(--ivs-bg); 
-    border-top: 1px solid var(--ivs-border); 
+    background-color: var(--ivs-bg); /* Uses dynamic variable for theme */
+    border-top: 1px solid var(--ivs-border); /* Uses dynamic variable for theme */
     box-shadow: var(--shadow-top); 
     display: flex;
     justify-content: space-around;
@@ -331,8 +342,8 @@ body.dark .dropdown-item.active {
 }
 
 body.dark #ivs-bottom-nav {
-    background-color: var(--ivs-neutral-900);
-    border-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-bg); /* Uses dynamic variable for theme */
+    border-color: var(--ivs-border); /* Uses dynamic variable for theme */
 }
 
 .bottom-nav-item {
@@ -341,10 +352,12 @@ body.dark #ivs-bottom-nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--ivs-text-primary); 
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     padding: 4px 0;
     transition: color var(--transition-fast) var(--ease-out);
     text-decoration: none;
+    min-height: var(--bottom-nav-height); /* Ensure it's tall enough for easy tap */
+    font-size: 0.8rem; /* Slightly larger text for clarity */
 }
 
 .bottom-nav-item.active,
@@ -361,22 +374,22 @@ body.dark .bottom-nav-item:hover {
 }
 
 .bottom-nav-item i {
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Slightly larger icons */
     margin-bottom: 2px;
 }
 
 .bottom-nav-item span {
-    font-size: 0.75rem;
+    font-size: 0.8rem; /* Slightly larger text for clarity */
     font-weight: 500;
 }
 
 
 /* --- Mobile Menu Panel --- */
 #ivs-mobile-menu-panel { 
-    display: none; 
+    display: none; /* Hidden by default */
 }
 #ivs-mobile-menu-panel.is-open { 
-    display: block; 
+    display: block; /* Show when open */
 }
 
 #ivs-mobile-menu-backdrop {
@@ -393,7 +406,7 @@ body.dark .bottom-nav-item:hover {
     width: 100%;
     max-width: 320px;
     height: 100%;
-    background-color: var(--ivs-bg-medium); 
+    background-color: var(--ivs-bg-medium); /* Uses dynamic variable for theme */
     margin-left: auto;
     transform: translateX(100%);
     transition: transform var(--transition-base) cubic-bezier(0.4, 0, 0.2, 1);
@@ -409,18 +422,19 @@ body.dark .bottom-nav-item:hover {
     width: 100%;
     padding: 0.8rem 1.25rem;
     border-radius: var(--radius-md);
-    color: var(--ivs-text-primary); 
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     font-size: 1.05rem;
     font-weight: 500;
     transition: background-color var(--transition-fast), color var(--transition-fast);
     text-decoration: none; 
+    min-height: 48px; /* Larger touch target for mobile menu items */
 }
 .mobile-nav-link:hover, .mobile-submenu-toggle:hover {
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 .mobile-nav-link.active {
-    background-color: rgba(249, 115, 22, 0.15); 
+    background-color: rgba(249, 115, 22, 0.15); /* accent/15 */
     color: var(--ivs-accent);
 }
 
@@ -428,11 +442,11 @@ body.dark .mobile-nav-link, body.dark .mobile-submenu-toggle {
     color: var(--ivs-neutral-200);
 }
 body.dark .mobile-nav-link:hover, body.dark .mobile-submenu-toggle:hover {
-    background-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 body.dark .mobile-nav-link.active {
-    background-color: rgba(249, 115, 22, 0.25); 
+    background-color: rgba(249, 115, 22, 0.25); /* slightly more visible active state in dark mode */
     color: var(--ivs-accent);
 }
 
@@ -448,21 +462,22 @@ body.dark .mobile-nav-link.active {
     display: block;
     padding: 0.75rem 1rem;
     border-radius: var(--radius-sm);
-    color: var(--ivs-text-primary); 
+    color: var(--ivs-text-primary); /* Uses dynamic variable for theme */
     font-weight: 500;
     font-size: 0.95rem;
     transition: background-color var(--transition-fast), color var(--transition-fast);
     text-decoration: none; 
+    min-height: 40px; /* Minimum touch target for nested mobile menu items */
 }
 .mobile-submenu-item:hover {
-    background-color: var(--ivs-neutral-100);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 body.dark .mobile-submenu-item {
     color: var(--ivs-neutral-100);
 }
 body.dark .mobile-submenu-item:hover {
-    background-color: var(--ivs-neutral-600);
+    background-color: var(--ivs-bg-light); /* Uses dynamic variable for theme */
     color: var(--ivs-accent);
 }
 
@@ -481,6 +496,24 @@ body.dark .mobile-submenu-item:hover {
     border: 1px solid rgba(0,0,0,0.1); 
 }
 
+/* --- Mobile Language Dropdown Specifics --- */
+#mobile-lang-toggle {
+    min-width: 48px; /* Ensure button is wide enough for tap */
+    min-height: 48px; /* Ensure button is tall enough for tap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* Adjust padding for better spacing */
+}
+#mobile-lang-dropdown-content {
+    padding: 0.5rem; /* Adjust padding inside dropdown */
+}
+#mobile-lang-dropdown-content .dropdown-item {
+    padding: 0.5rem 0.75rem; /* Adjust padding for items inside */
+    font-size: 0.9rem; /* Slightly smaller font for compactness */
+}
+
+
 /* ==========================================================================
    4. COMMON COMPONENTS
    ========================================================================== */
@@ -496,8 +529,8 @@ body.dark .mobile-submenu-item:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .dark .feature-card, .dark .service-card {
-    background-color: var(--ivs-neutral-800);
-    border-color: var(--ivs-neutral-700);
+    background-color: var(--ivs-card); /* Uses dynamic variable for theme */
+    border-color: var(--ivs-border); /* Uses dynamic variable for theme */
 }
 .feature-card:hover, .service-card:hover {
     transform: translateY(-8px);
