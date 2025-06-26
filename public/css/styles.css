@@ -4,7 +4,7 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.2 - Mobile First Optimization & Refinements
+ * VERSION: 3.1 - Optimized and Centralized Variables
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-26
  */
@@ -39,12 +39,6 @@
     --ivs-bg-light: #374151; /* Used for hover states */
     --ivs-link-active-bg: rgba(249, 115, 22, 0.15); /* Accent with opacity */
 
-    /* Neutral Colors for light mode compatibility */
-    --ivs-neutral-50: #f9fafb;
-    --ivs-neutral-200: #e5e7eb;
-    --ivs-neutral-700: #374151;
-    --ivs-neutral-900: #111827;
-
     /* Layout & Sizing */
     --header-height-mobile: 64px;
     --header-height-desktop: 80px; /* Adjusted to match recent header.html height */
@@ -63,7 +57,6 @@
     --radius-full: 9999px;
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Added for lighter shadow */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -73,7 +66,7 @@
     --transition-fast: 150ms;
     --transition-base: 250ms;
     --transition-slow: 400ms;
-    --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1); /* Standard ease-out */
+    --ease-out: ease-out;
 }
 
 /* ==========================================================================
@@ -81,7 +74,6 @@
    ========================================================================== */
 /**
  * Base styles for html, body, and global typographic elements.
- * Mobile First approach: Define styles for smallest screens first.
  */
 * {
     margin: 0;
@@ -90,10 +82,10 @@
 }
 
 html {
+    scroll-padding-top: var(--header-height-desktop);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px; /* Base font size for mobile */
 }
 
 body {
@@ -103,8 +95,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-bottom: var(--bottom-nav-height); /* Space for mobile bottom nav */
-    line-height: 1.6; /* Improved readability */
+    padding-bottom: var(--bottom-nav-height);
 }
 
 body.dark { /* This is now mostly handled by Tailwind's dark: classes */
@@ -114,29 +105,7 @@ body.dark { /* This is now mostly handled by Tailwind's dark: classes */
 
 main {
     flex-grow: 1;
-    width: 100%; /* Ensure main content takes full width */
-    max-width: 100vw; /* Prevent horizontal scroll on small devices */
-    overflow-x: hidden; /* Hide horizontal overflow */
 }
-
-/* Responsive typography for headings */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    line-height: 1.2;
-    margin-bottom: 0.5em;
-    color: var(--ivs-text-primary); /* Consistent heading color in dark mode */
-}
-body:not(.dark) h1, body:not(.dark) h2, body:not(.dark) h3,
-body:not(.dark) h4, body:not(.dark) h5, body:not(.dark) h6 {
-    color: var(--ivs-neutral-900); /* Darker headings for light mode */
-}
-
-
-h1 { font-size: 2.25rem; /* 36px */ } /* Mobile: h1 */
-h2 { font-size: 1.875rem; /* 30px */ } /* Mobile: h2 */
-h3 { font-size: 1.5rem; /* 24px */ } /* Mobile: h3 */
-h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
-
 
 .section-title, .font-display {
     font-family: var(--font-display);
@@ -164,39 +133,15 @@ h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
 /* Most styles handled by header.html itself, or Tailwind classes.
    Only general positioning/sizing here if not explicitly in header.html's CSS. */
 #ivs-bottom-nav {
-    /* Styles are mostly inline in header.html, but ensuring it's fixed */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 50; /* Ensure it's above other content */
-    box-shadow: var(--shadow-top);
-    background-color: var(--ivs-card); /* Consistent with card background */
-    display: flex; /* Ensure flex for internal items */
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5rem 0;
+    /* Styles are mostly inline in header.html */
+    /* Example of a general style here: */
+    /* box-shadow: var(--shadow-top); */
 }
 
 /* --- Mobile Menu Panel --- */
 /* Most styles handled by header.html itself, or Tailwind classes. */
 #ivs-mobile-menu-panel {
     /* Styles are mostly inline in header.html's style block */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Full viewport height */
-    background-color: var(--ivs-bg-dark); /* Darker background for overlay */
-    z-index: 40; /* Below bottom nav, above main content */
-    transform: translateX(100%); /* Start off-screen */
-    transition: transform var(--transition-base) var(--ease-out);
-    padding-top: var(--header-height-mobile); /* Space for header */
-    overflow-y: auto; /* Enable scrolling for long menus */
-}
-
-#ivs-mobile-menu-panel.open {
-    transform: translateX(0); /* Slide in */
 }
 
 
@@ -212,39 +157,25 @@ h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
     background-color: white;
     border-radius: var(--radius-xl);
     border: 1px solid var(--ivs-neutral-200);
-    transition: transform var(--transition-base) var(--ease-out),
-                box-shadow var(--transition-base) var(--ease-out),
-                border-color var(--transition-base) var(--ease-out);
-    padding: 1.5rem; /* Consistent padding */
-    margin-bottom: 1rem; /* Spacing between cards on mobile */
-    box-shadow: var(--shadow-sm); /* Lighter shadow by default */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .dark .feature-card, .dark .service-card {
     background-color: var(--ivs-card); /* Use ivs-card for consistency in dark mode */
     border-color: var(--ivs-border);
 }
 .feature-card:hover, .service-card:hover {
-    transform: translateY(-5px); /* More subtle lift on hover */
-    box-shadow: var(--shadow-md); /* Slightly more pronounced shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
 }
 .dark .feature-card:hover, .dark .service-card:hover {
     border-color: var(--ivs-accent); /* Highlight with accent color on hover in dark mode */
 }
 
 /* --- Process/Timeline --- */
-.process-step {
-    position: relative;
-    padding-left: 3.5rem; /* Space for the step circle */
-    margin-bottom: 2rem; /* Space between steps */
-    min-height: 2.5rem; /* Ensure enough height for the circle */
-    display: flex;
-    align-items: center; /* Vertically align content with step circle */
-}
-
 .process-step:before {
     content: attr(data-step);
     position: absolute;
-    left: 0; /* Align to the left of the padding */
+    left: -2.1rem;
     top: 50%;
     transform: translateY(-50%);
     width: 2.5rem;
@@ -254,10 +185,9 @@ h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    background-color: var(--ivs-blue); /* Using ivs-blue for light mode consistency */
+    background-color: var(--ivs-primary); /* Uses a general primary, should be updated to ivs-blue or similar */
     color: white;
     z-index: 10;
-    box-shadow: var(--shadow-sm); /* Subtle shadow for the circle */
 }
 .dark .process-step:before {
      background-color: var(--ivs-accent); /* Use ivs-accent for dark mode dot */
@@ -265,26 +195,17 @@ h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
 }
 
 /* --- Check List --- */
-.check-list {
-    list-style: none; /* Remove default list styles */
-    padding: 0;
-    margin: 0;
-}
 .check-list li {
     display: flex;
-    align-items: flex-start; /* Aligns icon with top of text */
-    margin-bottom: 0.75rem; /* Spacing between list items */
-    font-size: 1rem; /* Base font size */
-    color: var(--ivs-text-primary); /* Use primary text color */
+    align-items: flex-start;
 }
 .check-list li::before {
-    content: '\f00c'; /* Font Awesome check icon */
+    content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     margin-right: 0.75rem;
     color: var(--ivs-accent);
-    flex-shrink: 0; /* Prevent icon from shrinking */
-    margin-top: 0.25em; /* Align with text baseline */
+    margin-top: 0.25em; /* Align with text */
 }
 
 /* ==========================================================================
@@ -312,60 +233,14 @@ h4 { font-size: 1.25rem; /* 20px */ } /* Mobile: h4 */
 }
 
 /* ==========================================================================
-   6. RESPONSIVE STYLES (TABLET & DESKTOP)
+   6. RESPONSIVE STYLES (DESKTOP)
    ========================================================================== */
-
-/* Tablet and larger screens (min-width: 768px - md breakpoint) */
 @media (min-width: 768px) {
-    html {
-        font-size: 17px; /* Slightly larger base font size for tablets */
-        scroll-padding-top: var(--header-height-desktop); /* Adjust scroll padding */
-    }
-
     body {
         padding-bottom: 0; /* Remove padding from bottom nav on desktop */
     }
-
-    h1 { font-size: 3rem; /* 48px */ }
-    h2 { font-size: 2.5rem; /* 40px */ }
-    h3 { font-size: 2rem; /* 32px */ }
-    h4 { font-size: 1.5rem; /* 24px */ }
-
     #header-placeholder {
         height: var(--header-height-desktop); /* Desktop height */
     }
-
-    /* Hide mobile bottom navigation on larger screens */
-    #ivs-bottom-nav {
-        display: none;
-    }
-
-    /* Ensure mobile menu panel is hidden and reset on larger screens */
-    #ivs-mobile-menu-panel {
-        transform: translateX(100%); /* Always off-screen */
-        display: none; /* Hide entirely */
-    }
-
-    /* Card adjustments for tablet/desktop layout (e.g., grid) */
-    .feature-card, .service-card {
-        margin-bottom: 0; /* Reset margin if used in grid layouts */
-        padding: 2rem; /* Larger padding for desktop */
-    }
-
-    /* Process step alignment for larger screens if needed */
-    .process-step {
-        align-items: flex-start; /* Align text to top if multiple lines */
-    }
-}
-
-/* Large desktop screens (min-width: 1024px - lg breakpoint) */
-@media (min-width: 1024px) {
-    html {
-        font-size: 18px; /* Optimal base font size for large desktops */
-    }
-
-    h1 { font-size: 3.75rem; /* 60px */ }
-    h2 { font-size: 3rem; /* 48px */ }
-    h3 { font-size: 2.25rem; /* 36px */ }
-    h4 { font-size: 1.875rem; /* 30px */ }
+    /* Specific desktop visibility handled by Tailwind classes in HTML (md:hidden, md:flex) */
 }
