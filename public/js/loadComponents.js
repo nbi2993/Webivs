@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 5.1 - Implemented one-touch language toggle in bottom navigation.
+ * @version 5.2 - Added debugging logs for mobile interactivity.
  * @author IVS-Technical-Team
  */
 
@@ -47,15 +47,16 @@ function debounce(func, wait) {
  */
 const IVSHeaderController = {
     init() {
+        componentLog("IVSHeaderController: Bắt đầu khởi tạo.", "info");
         this.cacheDOM();
         if (!this.header) {
-            componentLog("Header element not found. UI logic will not run.", "warn");
+            componentLog("IVSHeaderController: Không tìm thấy phần tử Header. Logic UI sẽ không chạy.", "error");
             return;
         }
         this.bindEvents();
         this.updateActiveLinks();
         this.onScroll(); 
-        componentLog("Header Controller Initialized.", "info");
+        componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
     },
 
     cacheDOM() {
@@ -65,69 +66,88 @@ const IVSHeaderController = {
         this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn'); // New: Language toggle button in bottom nav
+        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn');
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
         
-        // Removed: mobileLangToggle and mobileLangDropdown are no longer needed here.
-        // this.mobileLangToggle = document.getElementById('mobile-lang-toggle');
-        // this.mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
-        this.langOptions = document.querySelectorAll('.lang-option'); // Still needed for desktop language selection
+        // Log element presence for debugging
+        componentLog(`Header: ${!!this.header}, Mobile Panel: ${!!this.mobilePanel}, Open Btn: ${!!this.mobileOpenBtn}, Close Btn: ${!!this.mobileCloseBtn}, Backdrop: ${!!this.mobileBackdrop}`, 'info');
+        componentLog(`Bottom Nav Menu Btn: ${!!this.bottomNavMenuBtn}, Bottom Nav Lang Toggle Btn: ${!!this.bottomNavLangToggleBtn}`, 'info');
+        componentLog(`Submenu Toggles count: ${this.submenuToggles.length}`, 'info');
     },
 
     bindEvents() {
+        componentLog("IVSHeaderController: Bắt đầu gắn kết sự kiện.", "info");
+
         window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
+        componentLog("IVSHeaderController: Đã gắn sự kiện Scroll.");
         
-        this.mobileOpenBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
-        this.mobileCloseBtn?.addEventListener('click', () => this.toggleMobileMenu(false));
-        this.mobileBackdrop?.addEventListener('click', () => this.toggleMobileMenu(false));
-        this.bottomNavMenuBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+        if (this.mobileOpenBtn) {
+            this.mobileOpenBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-open-btn.");
+        }
+        if (this.mobileCloseBtn) {
+            this.mobileCloseBtn.addEventListener('click', () => this.toggleMobileMenu(false));
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-close-btn.");
+        }
+        if (this.mobileBackdrop) {
+            this.mobileBackdrop.addEventListener('click', () => this.toggleMobileMenu(false));
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-backdrop.");
+        }
+        if (this.bottomNavMenuBtn) {
+            this.bottomNavMenuBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-menu-btn.");
+        }
         
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (this.mobilePanel?.classList.contains('is-open')) {
-                    this.toggleMobileMenu(false);
-                }
-                // Removed: mobileLangDropdown escape key handling
+            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
+                this.toggleMobileMenu(false);
             }
         });
+        componentLog("IVSHeaderController: Đã gắn sự kiện Keydown (Escape).");
 
-        this.submenuToggles.forEach(toggle => {
+        this.submenuToggles.forEach((toggle, index) => {
             toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+            componentLog(`IVSHeaderController: Đã gắn sự kiện click cho Submenu Toggle ${index}.`);
         });
 
-        // New: Event listener for the one-touch language toggle button in bottom nav
-        this.bottomNavLangToggleBtn?.addEventListener('click', () => this.toggleOneTouchLanguage());
+        if (this.bottomNavLangToggleBtn) {
+            this.bottomNavLangToggleBtn.addEventListener('click', () => this.toggleOneTouchLanguage());
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-lang-toggle-btn.");
+        }
         
-        // Removed: Click outside handler for old mobile language dropdown
-        // document.addEventListener('click', (e) => { ... });
-
-        // Event listeners for language options (primarily for desktop dropdowns now)
-        this.langOptions.forEach(option => {
+        // Ensure desktop language options also work (from previous versions)
+        document.querySelectorAll('.desktop-dropdown-container .lang-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 const lang = e.currentTarget.dataset.lang;
                 if (lang) {
                     this.setLanguage(lang);
                 }
-                // Removed: mobileLangDropdown close after selection
             });
+            componentLog("IVSHeaderController: Đã gắn sự kiện click cho tùy chọn ngôn ngữ desktop.");
         });
+
+        componentLog("IVSHeaderController: Gắn kết sự kiện hoàn tất.", "info");
     },
     
     setLanguage(lang) {
-        componentLog(`Attempting to set language to: ${lang}`);
+        componentLog(`IVSHeaderController: Yêu cầu đặt ngôn ngữ thành: ${lang}`);
         if (window.system && typeof window.system.setLanguage === 'function') {
             window.system.setLanguage(lang);
+            componentLog(`IVSHeaderController: Đã gọi window.system.setLanguage('${lang}').`);
         } else {
-            componentLog('Language system (window.system.setLanguage) not found. Language change may not work as expected.', 'warn');
+            componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.system.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
         }
-        // No need to close mobile menu here directly related to language change
     },
 
     toggleOneTouchLanguage() {
+        if (!window.langSystem) {
+            componentLog("IVSHeaderController: window.langSystem không khả dụng. Không thể chuyển đổi ngôn ngữ một chạm.", 'error');
+            return;
+        }
         const currentLang = window.langSystem.currentLanguage;
         const nextLang = currentLang === 'en' ? 'vi' : 'en';
-        componentLog(`One-touch language toggle: Changing from ${currentLang} to ${nextLang}`);
+        componentLog(`IVSHeaderController: Chuyển đổi ngôn ngữ một chạm: từ ${currentLang} sang ${nextLang}`);
         this.setLanguage(nextLang);
     },
 
@@ -138,16 +158,22 @@ const IVSHeaderController = {
     },
     
     toggleMobileMenu(open) {
-        if (!this.mobilePanel) return;
+        if (!this.mobilePanel) {
+            componentLog("IVSHeaderController: Mobile panel không tìm thấy. Không thể chuyển đổi menu.", 'warn');
+            return;
+        }
         this.mobilePanel.classList.toggle('is-open', open);
         document.body.style.overflow = open ? 'hidden' : ''; // Prevent scroll when menu is open
-        // Removed: Language dropdown closing when mobile menu opens
+        componentLog(`IVSHeaderController: Mobile menu ${open ? 'mở' : 'đóng'}.`);
     },
 
     toggleSubmenu(toggle) {
         const content = toggle.nextElementSibling;
         const icon = toggle.querySelector('i.fa-chevron-down');
-        if (!content) return;
+        if (!content) {
+            componentLog("IVSHeaderController: Nội dung submenu không tìm thấy.", 'warn');
+            return;
+        }
         
         const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
 
@@ -159,30 +185,24 @@ const IVSHeaderController = {
         toggle.setAttribute('aria-expanded', !isExpanded);
 
         content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
+        componentLog(`IVSHeaderController: Submenu ${isExpanded ? 'đóng' : 'mở'} cho ${toggle.textContent.trim()}.`);
     },
 
-    // Removed: toggleMobileLanguageDropdown function as it's no longer used.
-
     updateActiveLinks() {
-        // Get the current path, ensuring trailing slashes are removed for consistent matching
         const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
         
         this.navLinks.forEach(link => {
-            // Get the link's href, also normalize it
             const linkPath = (link.getAttribute('href') || "").replace(/\/$/, "") || "/";
             
-            // Remove active class first to ensure only one is active at a time
             link.classList.remove('active');
 
-            // Apply active class based on exact match or startsWith for parent links
             if (linkPath === currentPath) {
                 link.classList.add('active');
             } else if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
-                // If current path starts with the link path (e.g., /services/subpage for /services)
-                // and it's not the root link itself (to avoid root always being active)
                 link.classList.add('active');
             }
         });
+        componentLog("IVSHeaderController: Đã cập nhật các liên kết đang hoạt động.");
     }
 };
 
@@ -201,9 +221,10 @@ const IVSHeaderController = {
 async function loadAndInject(url, placeholderId) {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
-        componentLog(`Placeholder '${placeholderId}' không tìm thấy. Không thể tải ${url}.`, "error");
+        componentLog(`[loadAndInject] Placeholder '${placeholderId}' không tìm thấy. Không thể tải ${url}.`, "error");
         return false;
     }
+    componentLog(`[loadAndInject] Bắt đầu tải và chèn '${url}' vào '${placeholderId}'.`);
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -223,6 +244,7 @@ async function loadAndInject(url, placeholderId) {
         
         // Inject the HTML content (without scripts first)
         placeholder.innerHTML = tempDiv.innerHTML;
+        componentLog(`[loadAndInject] Nội dung HTML của '${url}' đã chèn vào '${placeholderId}'.`);
 
         // Execute scripts sequentially
         for (const oldScript of scripts) {
@@ -234,27 +256,26 @@ async function loadAndInject(url, placeholderId) {
                 newScript.src = oldScript.src;
                 await new Promise((resolve, reject) => {
                     newScript.onload = () => {
-                        componentLog(`Script bên ngoài đã tải: ${newScript.src}`);
+                        componentLog(`[loadAndInject] Script bên ngoài đã tải: ${newScript.src}`);
                         resolve();
                     };
                     newScript.onerror = (e) => {
-                        componentLog(`Lỗi tải script bên ngoài: ${newScript.src}, Lỗi: ${e.message || e}`, 'error');
+                        componentLog(`[loadAndInject] Lỗi tải script bên ngoài: ${newScript.src}, Lỗi: ${e.message || e}`, 'error');
                         reject(e);
                     };
-                    // Thêm vào body, nơi script thường được mong đợi thực thi
                     document.body.appendChild(newScript); 
                 });
             } else {
                 newScript.textContent = oldScript.textContent;
-                document.body.appendChild(newScript); // Thêm vào body để thực thi script nội tuyến
-                componentLog(`Script nội tuyến đã thực thi trong placeholder '${placeholderId}'.`);
+                document.body.appendChild(newScript); // Append to execute inline scripts
+                componentLog(`[loadAndInject] Script nội tuyến đã thực thi trong placeholder '${placeholderId}'.`);
             }
         }
         
-        componentLog(`Component '${url}' đã được tải và chèn thành công vào '${placeholderId}'.`);
+        componentLog(`[loadAndInject] Component '${url}' đã được tải và chèn thành công vào '${placeholderId}'.`);
         return true;
     } catch (error) {
-        componentLog(`Thất bại khi tải và chèn component '${url}' vào '${placeholderId}': ${error.message}`, 'error');
+        componentLog(`[loadAndInject] Thất bại khi tải và chèn component '${url}' vào '${placeholderId}': ${error.message}`, 'error');
         return false;
     }
 }
@@ -263,11 +284,10 @@ async function loadAndInject(url, placeholderId) {
  * Tải các component phổ biến (header, footer, fab-container).
  */
 async function loadCommonComponents() {
-    componentLog("Bắt đầu trình tự tải component...");
+    componentLog("[loadCommonComponents] Bắt đầu trình tự tải component...");
     const componentsToLoad = [
-        // IVSHeaderController is defined in headerController.js, script này sẽ được load cùng header.html
         { id: 'header-placeholder', url: '/components/header.html' }, 
-        { id: 'fab-container-placeholder', url: '/components/fab-container.html' }, // Controller được định nghĩa trong HTML này
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html' }, 
         { id: 'footer-placeholder', url: '/components/footer.html' }
     ];
 
@@ -275,48 +295,44 @@ async function loadCommonComponents() {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
-                // Xử lý đặc biệt để khởi tạo các controller sau khi script của chúng đã chạy
-                // Sử dụng setTimeout(0) để đảm bảo các đối tượng controller đã hoàn toàn sẵn sàng
                 if (comp.id === 'header-placeholder') {
+                    // Slight delay to ensure IVSHeaderController is fully defined after script execution
                     setTimeout(() => {
                         if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
                             window.IVSHeaderController.init();
-                            componentLog("IVSHeaderController đã được khởi tạo.");
+                            componentLog("[loadCommonComponents] IVSHeaderController đã được khởi tạo qua setTimeout.", "info");
                         } else {
-                            componentLog("IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header.", 'warn');
+                            componentLog("[loadCommonComponents] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header.", 'error');
                         }
-                    }, 0);
+                    }, 100); // Increased delay slightly
                 } else if (comp.id === 'fab-container-placeholder') {
                     setTimeout(() => {
                         if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                             window.IVSFabController.init();
-                            componentLog("IVSFabController đã được khởi tạo.");
+                            componentLog("[loadCommonComponents] IVSFabController đã được khởi tạo qua setTimeout.", "info");
                         } else {
-                            componentLog("IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container.", 'warn');
+                            componentLog("[loadCommonComponents] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container.", 'warn');
                         }
                     }, 0);
                 }
             }
         } else {
-            componentLog(`Placeholder '${comp.id}' không tồn tại trên trang, bỏ qua tải component '${comp.url}'.`, 'warn');
+            componentLog(`[loadCommonComponents] Placeholder '${comp.id}' không tồn tại trên trang, bỏ qua tải component '${comp.url}'.`, 'warn');
         }
     }
 
     // Khởi tạo hệ thống toàn cầu (ví dụ: hệ thống ngôn ngữ) nếu có
-    // Đảm bảo window.system và window.system.init đã được định nghĩa
     setTimeout(() => {
         if (window.system && typeof window.system.init === 'function') {
-            window.system.init({ language: 'en', translationUrl: '/lang/' }); // Ensure default language is 'en' here
-            componentLog("Hệ thống toàn cầu (ví dụ: ngôn ngữ) đã được khởi tạo.");
+            window.system.init({ language: 'en', translationUrl: '/lang/' }); // Default to 'en'
+            componentLog("[loadCommonComponents] Hệ thống toàn cầu (ví dụ: ngôn ngữ) đã được khởi tạo qua setTimeout.", "info");
         } else {
-            componentLog("window.system hoặc window.system.init không được định nghĩa.", 'warn');
+            componentLog("[loadCommonComponents] window.system hoặc window.system.init không được định nghĩa.", 'error');
         }
-    }, 0);
+    }, 100); // Increased delay slightly
 
-    componentLog("Trình tự tải component đã hoàn tất.");
-    // Kích hoạt callback nếu được định nghĩa bởi trang sau khi tất cả các component đã tải
+    componentLog("[loadCommonComponents] Trình tự tải component đã hoàn tất.");
     window.onPageComponentsLoadedCallback?.(); 
 }
 
-// Lắng nghe sự kiện 'DOMContentLoaded' để đảm bảo DOM đã sẵn sàng trước khi tải component
 document.addEventListener('DOMContentLoaded', loadCommonComponents);

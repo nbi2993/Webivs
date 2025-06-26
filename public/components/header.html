@@ -1,8 +1,9 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.4 - Bottom Navigation Language Toggle -->
+<!-- VERSION: 2.5 - Finalized Mobile Header with Language Toggle & Z-index alignment -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus,
                  focusing on responsive design and refined button interactions, now with
-                 a one-touch language switcher in the bottom navigation. -->
+                 a one-touch language switcher in the bottom navigation and synchronized
+                 header heights. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -100,7 +101,7 @@
 </header>
 
 <!-- Mobile Menu Panel -->
-<div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 md:hidden" aria-modal="true" role="dialog">
+<div id="ivs-mobile-menu-panel" class="fixed inset-0 z-[1002] md:hidden" aria-modal="true" role="dialog">
     <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
         <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
@@ -188,8 +189,8 @@
 <style>
     :root {
         --header-height: 64px;
-        --desktop-header-height: 72px;
-        --bottom-nav-height: 60px;
+        --desktop-header-height: 80px; /* Synchronized with styles.css */
+        --bottom-nav-height: 56px; /* Synchronized with styles.css */
         --ivs-bg-dark: #111827;
         --ivs-bg-medium: #1f2937;
         --ivs-bg-light: #374151;
@@ -207,12 +208,15 @@
     }
     
     .desktop-nav-link, .desktop-nav-dropdown-toggle {
-        display: inline-flex; align-items: center; padding: 6px 12px;
-        font-size: 0.95rem; font-weight: 500; color: var(--ivs-text-secondary);
-        border-radius: 0.375rem; transition: color 0.2s, background-color 0.2s;
+        display: inline-flex; align-items: center; padding: 10px 16px;
+        font-size: 1rem; font-weight: 500; color: var(--ivs-text-secondary);
+        border-radius: 0.375rem; transition: all 0.2s ease-out;
+        min-height: 44px;
     }
     .desktop-nav-link:hover, .desktop-nav-dropdown-toggle:hover {
-        color: var(--ivs-text-primary); background-color: var(--ivs-bg-light);
+        color: var(--ivs-text-primary); background-color: var(--ivs-neutral-700);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
     }
     .desktop-nav-link.active {
         color: var(--ivs-accent); font-weight: 600;
@@ -238,7 +242,7 @@
     }
 
     .desktop-dropdown { width: 240px; }
-    .desktop-mega-menu { width: 520px; } /* Đảm bảo đủ rộng cho 2 cột */
+    .desktop-mega-menu { width: 520px; }
 
     .dropdown-item {
         display: flex; align-items: center; width: 100%; text-align: left;
@@ -268,14 +272,14 @@
         padding-left: 1rem;
     }
     
-    .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
+    .mobile-submenu-toggle {
         display: flex; justify-content: space-between; align-items: center;
-        width: 100%; padding: 0.75rem 1.25rem; /* Tăng padding để có touch target lớn hơn */
+        width: 100%; padding: 0.6rem 1rem;
         font-weight: 500;
         color: var(--ivs-text-secondary); border-radius: 0.375rem;
         transition: background-color 0.2s, color 0.2s;
-        text-align: left; /* Ensure text aligns left */
-        min-height: 48px; /* Đảm bảo chiều cao tối thiểu cho dễ chạm */
+        text-align: left;
+        min-height: 38px;
     }
 
     .mobile-submenu-toggle:hover {
@@ -289,12 +293,13 @@
         transform: rotate(180deg);
     }
 
-    .mobile-submenu-item { /* Style for individual items inside mobile submenus */
-        display: block; /* Ensure it takes full width */
-        padding: 0.5rem 1rem; /* Adjust padding for nested items */
+    .mobile-submenu-item {
+        display: block;
+        padding: 0.4rem 0.7rem;
         color: var(--ivs-text-secondary); border-radius: 0.375rem;
         transition: background-color 0.2s, color 0.2s;
-        text-align: left; /* Ensure text aligns left */
+        text-align: left;
+        min-height: 32px;
     }
 
     .mobile-submenu-item:hover {

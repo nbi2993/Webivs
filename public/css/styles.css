@@ -4,7 +4,7 @@
  * This master CSS file centralizes all styling rules for the IVS website,
  * ensuring a consistent and maintainable design system.
  *
- * VERSION: 3.6 - One-touch Language Toggle in Bottom Nav & Refined Mobile Menu Sizes
+ * VERSION: 3.7 - Mobile Menu Z-Index Fix & Header Height Sync
  * AUTHOR: IVS-Technical-Team
  * DATE: 2025-06-26
  */
@@ -43,8 +43,8 @@
 
     /* Layout & Sizing */
     --header-height-mobile: 64px;
-    --header-height-desktop: 80px;
-    --bottom-nav-height: 56px; /* Adjusted based on previous request */
+    --header-height-desktop: 80px; /* Synchronized with header.html */
+    --bottom-nav-height: 56px;
 
     /* Typography */
     --font-sans: 'Inter', sans-serif;
@@ -135,7 +135,7 @@ main {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1001;
+    z-index: 1001; /* High z-index for fixed header */
     height: var(--header-height-mobile);
     background-color: rgba(17, 24, 39, 0.85); /* dark:bg-neutral-900/85 */
     backdrop-filter: blur(10px);
@@ -207,7 +207,10 @@ main {
 }
 
 /* --- Mobile Menu Panel --- */
-#ivs-mobile-menu-panel { visibility: hidden; }
+#ivs-mobile-menu-panel { 
+    visibility: hidden; 
+    z-index: 1002; /* IMPORTANT: Must be higher than header's z-index */
+}
 #ivs-mobile-menu-panel.is-open { visibility: visible; }
 
 #ivs-mobile-menu-backdrop {
@@ -241,7 +244,7 @@ main {
     padding: 0.6rem 1rem; /* Adjusted for ~2/3 size */
     border-radius: var(--radius-lg);
     color: var(--ivs-neutral-100);
-    font-size: 0.95rem; /* Adjusted for ~2/3 size */
+    font-size: 0.9rem; /* Adjusted for ~2/3 size */
     font-weight: 500;
     transition: all var(--transition-fast) var(--ease-out);
     min-height: 38px; /* Adjusted for ~2/3 size */
@@ -287,7 +290,7 @@ main {
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: var(--bottom-nav-height); /* Retained 56px from previous request */
+    height: var(--bottom-nav-height);
     background-color: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(15px);
     border-top: 1px solid var(--ivs-neutral-700);
@@ -304,12 +307,12 @@ main {
     align-items: center;
     justify-content: center;
     color: var(--ivs-neutral-300);
-    padding: 3px 0; /* Adjusted padding */
+    padding: 3px 0;
     transition: color var(--transition-fast) var(--ease-out),
                 background-color var(--transition-fast) var(--ease-out);
     text-decoration: none;
-    min-width: 40px; /* Adjusted min-width */
-    min-height: var(--bottom-nav-height); /* Matches bottom nav height */
+    min-width: 40px;
+    min-height: var(--bottom-nav-height);
 }
 
 .bottom-nav-item.active,
@@ -319,16 +322,14 @@ main {
 }
 
 .bottom-nav-item i {
-    font-size: 1.1rem; /* Adjusted icon size */
-    margin-bottom: 1px; /* Adjusted margin */
+    font-size: 1.1rem;
+    margin-bottom: 1px;
 }
 
 .bottom-nav-item span {
-    font-size: 0.7rem; /* Adjusted text size */
+    font-size: 0.7rem;
     font-weight: 500;
 }
-
-/* Removed styles for #mobile-lang-toggle, #mobile-lang-dropdown, .lang-option specific to the old mobile language selector */
 
 /* ==========================================================================
    4. COMMON COMPONENTS

@@ -40,11 +40,11 @@
       "*.local"
     ],
     "private": true,
-    "region": "us-central1", // Đảm bảo khớp với region trong functions/index.js
-    "runtime": "nodejs20", // Đảm bảo khớp với engines.node trong functions/package.json (hoặc 18)
-    "secrets": [            // <-- KHAI BÁO CÁC BÍ MẬT TỪ SECRET MANAGER BẰNG TÊN CỦA CHÚNG
-      "SERVICEACCOUNT_KEY_BASE64", // Tên secret cho Service Account Key
-      "GEMINI_API_KEY"             // Tên secret cho Gemini API Key
+    "region": "us-central1", 
+    "runtime": "nodejs20", 
+    "secrets": [        
+      "SERVICEACCOUNT_KEY_BASE64", 
+      "GEMINI_API_KEY"             
     ]
   },
   "emulators": {
