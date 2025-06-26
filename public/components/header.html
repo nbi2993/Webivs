@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.2 - Language toggle moved to Bottom Navigation -->
-<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus. -->
+<!-- VERSION: 2.3 - Language toggle moved to top header, hamburger menu refined -->
+<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and language selection. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
@@ -26,17 +26,31 @@
                                 <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
                                 <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
                                 <a href="/Pages/lkmamnon.html" class="dropdown-item" data-lang-key="nav_services_education_kindergarten"><i class="fas fa-child fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Mầm non</a>
-                                <a href="/Pages/lktieuhoc.html" class="dropdown-item" data-lang-key="nav_services_education_primary"><i class="fas fa-book-reader fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Tiểu học</a>
-                                <a href="/Pages/lkthcsthpt.html" class="dropdown-item" data-lang-key="nav_services_education_secondary_high"><i class="fas fa-user-graduate fa-fw mr-3 text-ivs-accent/70"></i>Liên kết THCS & THPT</a>
-                                <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers"><i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ</a>
-                                <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
+                                <a href="/Pages/lktieuhoc.html" class="dropdown-item" data-lang-key="nav_services_education_primary">
+                                    <i class="fas fa-book-reader fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Tiểu học
+                                </a>
+                                <a href="/Pages/lkthcsthpt.html" class="dropdown-item" data-lang-key="nav_services_education_secondary_high">
+                                    <i class="fas fa-user-graduate fa-fw mr-3 text-ivs-accent/70"></i>Liên kết THCS & THPT
+                                </a>
+                                <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers">
+                                    <i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ
+                                </a>
+                                <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply">
+                                    <i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên
+                                </a>
                             </div>
                             <!-- Cột phải: Tư vấn Pháp lý -->
                             <div class="space-y-2">
                                 <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
-                                <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
-                                <a href="/Pages/psb_introduction.html" class="dropdown-item" data-lang-key="nav_services_legal_corporate"><i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp</a>
-                                <a href="/Pages/litigation_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_civil"><i class="fas fa-landmark fa-fw mr-3 text-ivs-accent/70"></i>Pháp luật Dân sự</a>
+                                <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting">
+                                    <i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu
+                                </a>
+                                <a href="/Pages/psb_introduction.html" class="dropdown-item" data-lang-key="nav_services_legal_corporate">
+                                    <i class="fas fa-balance-scale fa-fw mr-3 text-ivs-accent/70"></i>Luật Doanh nghiệp
+                                </a>
+                                <a href="/Pages/litigation_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_civil">
+                                    <i class="fas fa-landmark fa-fw mr-3 text-ivs-accent/70"></i>Pháp luật Dân sự
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -68,22 +82,31 @@
 
                 <a href="/news-archive.html" class="desktop-nav-link" data-lang-key="nav_news">Tin tức</a>
                 <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
-                
-                <!-- Language toggle removed from desktop header -->
             </nav>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+            <!-- Language Buttons (Desktop & Mobile) -->
+            <div class="flex items-center space-x-2 md:space-x-1 ml-auto md:ml-0">
+                <button class="lang-toggle-btn group" data-lang="vi" aria-label="Chọn Tiếng Việt">
+                    <img src="/images/flags/vn.png" alt="Cờ Việt Nam" class="h-5 w-7 rounded-sm transition-transform duration-200 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/28x20/1f2937/ffffff?text=VI';">
+                </button>
+                <button class="lang-toggle-btn group" data-lang="en" aria-label="Select English">
+                    <img src="/images/flags/en.png" alt="Cờ Anh" class="h-5 w-7 rounded-sm transition-transform duration-200 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/28x20/1f2937/ffffff?text=EN';">
+                </button>
+                
+                <!-- Mobile Menu Button (Hamburger) - hidden on desktop -->
+                <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
     </div>
 </header>
 
 <!-- Mobile Menu Panel -->
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 md:hidden" aria-modal="true" role="dialog">
-    <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-    <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col">
+    <!-- Backdrop with blur effect -->
+    <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300"></div>
+    <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
             <span class="text-lg font-semibold text-ivs-accent" data-lang-key="mobile_menu_title">Menu</span>
             <button id="mobile-menu-close-btn" type="button" class="p-2 rounded-lg hover:bg-ivs-bg-light" aria-label="Close menu">
@@ -140,8 +163,8 @@
             </div>
 
             <a href="/news-archive.html" class="mobile-nav-link" data-lang-key="nav_news">Tin tức</a>
-            <!-- Contact link now moved to bottom navigation as language toggle -->
-            <!-- Language toggle removed from mobile menu here -->
+            <!-- Contact link restored for mobile menu -->
+            <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
         </nav>
     </div>
 </div>
@@ -154,21 +177,13 @@
     <a href="/news-archive.html" class="bottom-nav-item">
         <i class="fas fa-newspaper text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_news">News</span>
     </a>
-    <!-- Changed "Contact" button to language toggle button -->
-    <button id="bottom-nav-lang-toggle-btn" class="bottom-nav-item" aria-label="Toggle language">
-        <i class="fas fa-globe text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_lang">Language</span>
-    </button>
+    <a href="/consulting.html" class="bottom-nav-item">
+        <i class="fas fa-envelope text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_service">Service</span>
+    </a>
     <button id="bottom-nav-menu-btn" class="bottom-nav-item">
         <i class="fas fa-bars text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_menu">Menu</span>
     </button>
 </nav>
-
-<!-- Language change confirmation message (positioned for mobile bottom nav) -->
-<div id="lang-confirm-message" class="fixed bottom-[calc(var(--bottom-nav-height)+10px)] left-1/2 -translate-x-1/2 
-            bg-ivs-accent text-white px-4 py-2 rounded-lg shadow-lg text-sm 
-            transition-all duration-300 transform opacity-0 scale-90 pointer-events-none z-50">
-    <!-- Content will be set by JavaScript -->
-</div>
 
 <!-- Inline styles for component-specific CSS -->
 <!-- It's recommended to move these to a central CSS file for production -->
@@ -236,19 +251,37 @@
         background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
     }
     
+    .lang-toggle-btn {
+        display: flex; align-items: center; justify-content: center;
+        padding: 6px; /* Reduced padding for smaller buttons */
+        border-radius: 0.375rem;
+        transition: background-color 0.2s, transform 0.2s;
+        background-color: transparent; /* Default transparent */
+        border: none; /* No border */
+        cursor: pointer;
+    }
+
+    .lang-toggle-btn:hover {
+        background-color: var(--ivs-bg-light);
+    }
+
+    .lang-toggle-btn.active-language {
+        background-color: var(--ivs-link-active-bg); /* Highlight active language */
+        outline: 1px solid var(--ivs-accent); /* Small outline */
+    }
+
+    /* Mobile menu styles */
     #ivs-mobile-menu-panel { visibility: hidden; }
     #ivs-mobile-menu-panel.is-open { visibility: visible; }
     #ivs-mobile-menu-backdrop {
         opacity: 0;
-        transition: opacity 0.3s ease-in-out;
+        /* backdrop-filter handled by class */
     }
     #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-backdrop { opacity: 1; }
     #ivs-mobile-menu-container {
-        transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* transform and transition properties are now defined inline to work with JS toggle */
     }
-    #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container { transform: translateX(0); }
-
+    
     .mobile-submenu-content {
         max-height: 0; overflow: hidden;
         transition: max-height 0.4s ease-out;
