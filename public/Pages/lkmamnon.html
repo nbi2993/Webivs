@@ -1,23 +1,141 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-lang-key="lkmamnon_page_title">IVS Academy - Liên kết Giáo dục Mầm non | IVS JSC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="lkmamnon_page_title">IVS Academy - Liên kết Giáo dục Mầm non | IVS JSC</title>
+    <meta name="description" content="IVS Academy cung cấp giải pháp liên kết giáo dục mầm non tiên tiến, áp dụng mô hình STEAM+Intelligence Model, ươm mầm tài năng Việt." data-lang-key="lkmamnon_meta_description">
+    <meta property="og:title" content="IVS Academy - Liên kết Giáo dục Mầm non Tiên tiến | Nền Tảng Vững Chắc Cho Tương Lai" data-lang-key="lkmamnon_og_title">
+    <meta property="og:description" content="Khám phá môi trường học tập an toàn, yêu thương, đầy cảm hứng với mô hình giáo dục sớm độc đáo tại IVS Kindergarten." data-lang-key="lkmamnon_og_description">
+    <meta property="og:image" content="https://ivsjsc.github.io/images/ivs-kindergarten.jpeg">
+    <meta property="og:url" content="https://ivs.id.vn/Pages/education.html#mamnon">
+    <meta property="og:type" content="website">
 
-  <!-- Chỉ load các tài nguyên giống index.html -->
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <style>
+        /* Custom CSS Variables for IVS Tailwind Colors (if not already in styles.css) */
+        /* These should ideally be defined in styles.css :root variables. */
+        /* Temporary overrides for specific pages if needed, but strive for global consistency. */
+        :root {
+            --ivs-primary: #004080;
+            --ivs-secondary: #ffc107;
+            --ivs-neutral-800: #1f2937;
+            --ivs-neutral-700: #374151;
+            --ivs-neutral-600: #4B5563;
+            --ivs-text-gray-300: #D1D5DB;
+            --ivs-text-white: #ffffff;
+            --ivs-primary-dark: #003366;
+            --ivs-orange-500: #F97316;
+            --ivs-orange-600: #EA580C;
+            --ivs-orange-700: #C2410C;
+            --ivs-header-orange: #F97316;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ivs-neutral-50); /* bg-gray-50 from global styles */
+            color: var(--ivs-neutral-700); /* text-neutral-700 from global styles */
+        }
+        html.dark body {
+            background-color: var(--ivs-neutral-900); /* dark:bg-gray-900 from global styles */
+            color: var(--ivs-neutral-300); /* dark:text-gray-300 from global styles */
+        }
+
+        /* Các lớp tiện ích Tailwind tùy chỉnh */
+        .bg-primary { background-color: var(--ivs-primary); }
+        .text-primary { color: var(--ivs-primary); }
+        .hover\:bg-primary-dark:hover { background-color: var(--ivs-primary-dark); }
+        .text-secondary { color: var(--ivs-secondary); }
+        .bg-header-orange { background-color: var(--ivs-header-orange); }
+        .hover\:bg-orange-700:hover { background-color: var(--ivs-orange-700); }
+        .text-purple-accent { color: #8B5CF6; }
+        .text-warning { color: #F59E0B; }
+        
+        /* Các kiểu cho phần Hero Section */
+        .hero-section-banner {
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh; /* Điều chỉnh chiều cao cho trang nội dung */
+        }
+        .hero-section-banner .hero-content {
+            position: relative; z-index: 2;
+            padding: 5rem 1rem;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background-color: rgba(0, 0, 0, 0.25);
+            width: 100%;
+            height: 100%;
+        }
+        html.dark .hero-section-banner .hero-content {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        @media (max-width: 767px) {
+            .hero-section-banner { min-height: 40vh; }
+            .hero-section-banner .hero-content { padding: 3rem 1rem; }
+        }
+        .hero-text-shadow { text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+
+        /* Các kiểu cho feature card mầm non */
+        .feature-card-mamnon { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card-mamnon:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .feature-card-mamnon i { transition: transform 0.3s ease-out; }
+        .feature-card-mamnon:hover i { transform: rotate(10deg) scale(1.1); }
+
+        /* Các kiểu cho benefit icon */
+        .benefit-icon { transition: transform 0.3s ease; }
+        .benefit-card:hover .benefit-icon { transform: scale(1.15); }
+
+        /* Kiểu cho video nhúng */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Kiểu cho placeholder khi tải component */
+        #header-placeholder:empty::before,
+        #footer-placeholder:empty::before {
+            content: attr(data-loading-text);
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:100%;
+            background-color: var(--ivs-neutral-200); /* gray-200 from global */
+            color: var(--ivs-neutral-600); /* gray-600 from global */
+        }
+        html.dark #header-placeholder:empty::before,
+        html.dark #footer-placeholder:empty::before {
+            background-color: var(--ivs-neutral-700); /* neutral-700 from global */
+            color: var(--ivs-neutral-400); /* neutral-400 from global */
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-neutral-700 font-sans antialiased">
+<body class="bg-gray-50 text-neutral-700 font-sans antialiased" id="page-lkmamnon">
 
-  <!-- Load header giống index.html -->
-  <header id="header-placeholder" data-loading-text="Đang tải header..."></header>
+    <header id="header-placeholder"></header>
 
-  <main class="relative z-10 pt-[4rem] md:pt-[3.5rem]">
+    <main class="pt-[var(--header-height-mobile)] md:pt-[calc(var(--header-height-desktop)+2rem)]">
         <section class="banner-kindergarten relative text-white py-24 md:py-32 text-center overflow-hidden" aria-labelledby="page-title-mamnon" data-aos="fade-in" data-aos-duration="1000">
              <div class="absolute inset-0 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 opacity-90 z-0"></div>
              <img src="/images/ivs-kindergarten.jpeg" alt="Hình ảnh nền IVS Kindergarten" data-lang-key="lkmamnon_hero_banner_alt" class="absolute inset-0 w-full h-full object-cover opacity-25 z-0 mix-blend-luminosity" loading="lazy" onerror="this.style.display='none'">
@@ -193,14 +311,28 @@
 
             </div>
         </section>
-  </main>
+    </main>
 
-  <!-- Load footer giống index.html -->
-  <footer id="footer-placeholder" data-loading-text="Đang tải footer..."></footer>
+    <div id="fab-container-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-  <script>
-    document.getElementById('header-placeholder').innerHTML = '<!-- include header.html -->';
-    document.getElementById('footer-placeholder').innerHTML = '<!-- include footer.html -->';
-  </script>
+    <script src="/js/loadComponents.js" defer type="module"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // AOS.init() should be called by loadComponents.js via window.onPageComponentsLoadedCallback
+        window.onPageComponentsLoadedCallback = function() {
+            console.log("[Mầm non Page] Components loaded. Page specific JS can run now.");
+            AOS.init({
+                offset: 100,
+                duration: 700,
+                easing: 'ease-out-quad',
+                once: true,
+                mirror: false,
+                anchorPlacement: 'top-bottom',
+            });
+        };
+    </script>
+
 </body>
 </html>
