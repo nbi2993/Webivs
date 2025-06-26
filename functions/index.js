@@ -198,4 +198,4 @@ exports.api = functions
         memory: '256MB', // Tùy chọn: Đặt bộ nhớ cho hàm để tối ưu hiệu suất/chi phí.
         timeoutSeconds: 60 // Tùy chọn: Đặt thời gian timeout cho hàm (tối đa 540 giây).
     })
-    .https.onRequest(app); // Gán ứng dụng Express của bạn làm Request Handler cho hàm HTTP.
+    .https.onRequest(app);
