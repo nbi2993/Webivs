@@ -1,7 +1,8 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
- * and initializes their interactive logic, including Firebase and Language System.
- * @version 6.1 - Consolidated Firebase and Language System initialization, minor logging updates.
+ * and initializes their interactive logic, including Firebase. It now relies on
+ * language.js for language system initialization.
+ * @version 6.2 - Removed language system initialization, now relies on external language.js.
  * @author IVS-Technical-Team
  */
 
@@ -72,154 +73,6 @@ try {
 
 
 // =================================================================
-// LANGUAGE SYSTEM (From language.js)
-// =================================================================
-window.langSystem = window.langSystem || {
-    translations: {},
-    defaultLanguage: 'en',
-    currentLanguage: 'en',
-    languageStorageKey: 'userPreferredLanguage_v3',
-    languageFilesPath: '/lang/',
-    isDebugMode: true,
-    initialized: false,
-};
-
-async function fetchTranslations(langCode) {
-    if (window.langSystem.translations[langCode]) {
-        return;
-    }
-    componentLog(`[Lang] Fetching translations for: ${langCode}`);
-    try {
-        const response = await fetch(`${window.langSystem.languageFilesPath}${langCode}.json?v=${new Date().getTime()}`);
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status} for ${langCode}.json`);
-        }
-        window.langSystem.translations[langCode] = await response.json();
-        componentLog(`[Lang] Successfully loaded translations for ${langCode}.`);
-    } catch (error) {
-        componentLog(`[Lang] Failed to fetch translations for ${langCode}: ${error.message}`, 'error');
-    }
-}
-
-function applyTranslations() {
-    const lang = window.langSystem.currentLanguage;
-    const translations = window.langSystem.translations[lang] || window.langSystem.translations[window.langSystem.defaultLanguage];
-
-    if (!translations) {
-        componentLog(`[Lang] No translations available for '${lang}' or default. DOM update skipped.`, 'error');
-        return;
-    }
-
-    componentLog(`[Lang] Applying translations for '${lang}'...`);
-    document.documentElement.lang = lang;
-
-    document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.dataset.langKey;
-        const translation = translations[key];
-
-        if (translation !== undefined) {
-            const targetAttr = el.dataset.langTarget || 'textContent';
-
-            if (targetAttr === 'textContent') {
-                el.textContent = translation;
-            } else if (targetAttr === 'innerHTML') {
-                el.innerHTML = translation;
-            } else {
-                el.setAttribute(targetAttr, translation);
-            }
-        } else {
-            componentLog(`[Lang] Key '${key}' not found for lang '${lang}'.`, 'warn');
-        }
-    });
-
-    document.querySelectorAll('#current-lang-desktop').forEach(el => {
-        if(el) el.textContent = lang.toUpperCase();
-    });
-}
-
-function updateLanguageButtonsUI() {
-    const currentLang = window.langSystem.currentLanguage;
-    document.querySelectorAll('button[data-lang]').forEach(button => {
-        const isActive = button.dataset.lang === currentLang;
-        button.setAttribute('aria-pressed', isActive);
-        button.classList.toggle('active-language', isActive);
-    });
-}
-
-async function setLanguage(langCode) {
-    componentLog(`[Lang] Attempting to set language to: ${langCode}`);
-
-    if (!window.langSystem.translations[langCode]) {
-        await fetchTranslations(langCode);
-    }
-
-    if (!window.langSystem.translations[langCode]) {
-        componentLog(`[Lang] Cannot set language to '${langCode}', falling back to default '${window.langSystem.defaultLanguage}'.`, 'warn');
-        langCode = window.langSystem.defaultLanguage;
-        if (!window.langSystem.translations[langCode]) {
-            await fetchTranslations(langCode);
-        }
-    }
-
-    if (!window.langSystem.translations[langCode]) {
-        componentLog('[Lang] CRITICAL: Default language pack failed to load. Language system cannot function.', 'error');
-        return;
-    }
-
-    window.langSystem.currentLanguage = langCode;
-    localStorage.setItem(window.langSystem.languageStorageKey, langCode);
-
-    applyTranslations();
-    updateLanguageButtonsUI();
-}
-
-window.system = window.system || {};
-window.system.setLanguage = setLanguage;
-window.system.init = async function(config) {
-    componentLog("[Lang] window.system.init called. Config:", config);
-    if (config && config.language) {
-        window.langSystem.defaultLanguage = config.language;
-        window.langSystem.currentLanguage = config.language;
-    }
-    if (config && config.translationUrl) {
-        window.langSystem.languageFilesPath = config.translationUrl;
-    }
-    await initializeLanguageSystem();
-    componentLog("[Lang] window.system initialized successfully.");
-};
-
-async function initializeLanguageSystem() {
-    if (window.langSystem.initialized) {
-        componentLog('[Lang] Language system already initialized.', 'info');
-        return;
-    }
-
-    let initialLang = localStorage.getItem(window.langSystem.languageStorageKey) ||
-                      (navigator.language || navigator.userLanguage).split('-')[0] ||
-                      window.langSystem.defaultLanguage;
-
-    await Promise.all([
-        fetchTranslations(initialLang),
-        fetchTranslations(window.langSystem.defaultLanguage)
-    ]);
-
-    await setLanguage(initialLang);
-
-    window.langSystem.initialized = true;
-    componentLog(`[Lang] Language system initialized. Current language: '${window.langSystem.currentLanguage}'.`);
-
-    document.querySelectorAll('button[data-lang]').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const newLang = e.currentTarget.dataset.lang;
-            if (newLang) {
-                setLanguage(newLang);
-            }
-        });
-    });
-}
-
-
-// =================================================================
 // MAIN COMPONENT LOADER (Existing functionality with increased delays)
 // =================================================================
 
@@ -250,11 +103,13 @@ async function loadAndInject(url, placeholderId) {
 
         const scripts = Array.from(tempDiv.querySelectorAll('script'));
 
+        // Remove script tags from the temporary div before injecting HTML
         scripts.forEach(script => script.parentNode?.removeChild(script));
 
-        placeholder.innerHTML = tempDiv.innerHTML;
+        placeholder.innerHTML = tempDiv.innerHTML; // Inject HTML content
         componentLog(`[Loader] Nội dung HTML của '${url}' đã chèn vào '${placeholderId}'.`);
 
+        // Re-add and execute script tags
         for (const oldScript of scripts) {
             const newScript = document.createElement('script');
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
@@ -302,22 +157,23 @@ async function loadCommonComponents() {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
+                // Initialize component-specific controllers after content is loaded
                 if (comp.id === 'header-placeholder') {
-                    // Slight increase in delay to ensure HeaderController is fully loaded
+                    // Small delay to ensure IVSHeaderController script is fully parsed and available
                     setTimeout(() => {
                         if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
                             window.IVSHeaderController.init();
-                            componentLog("[Loader] IVSHeaderController đã được khởi tạo qua setTimeout.", "info");
+                            componentLog("[Loader] IVSHeaderController đã được khởi tạo.", "info");
                         } else {
                             componentLog("[Loader] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header. Đảm bảo headerController.js được tải.", 'error');
                         }
                     }, 400); 
                 } else if (comp.id === 'fab-container-placeholder') {
-                    // Slight increase in delay to ensure FabController is fully loaded
+                    // Small delay to ensure IVSFabController script is fully parsed and available
                     setTimeout(() => {
                         if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                             window.IVSFabController.init();
-                            componentLog("[Loader] IVSFabController đã được khởi tạo qua setTimeout.", "info");
+                            componentLog("[Loader] IVSFabController đã được khởi tạo.", "info");
                         } else {
                             componentLog("[Loader] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
                         }
@@ -329,17 +185,7 @@ async function loadCommonComponents() {
         }
     }
 
-    // Initialize global language system
-    setTimeout(() => {
-        if (window.system && typeof window.system.init === 'function') {
-            window.system.init({ language: 'en', translationUrl: '/lang/' }); // Default to 'en'
-            componentLog("[Loader] Hệ thống ngôn ngữ đã được khởi tạo qua setTimeout.", "info");
-        } else {
-            componentLog("[Loader] window.system hoặc window.system.init không được định nghĩa. Đảm bảo language.js đã tải và ngôn ngữ đã được gộp đúng.", 'error');
-        }
-    }, 500); // Increased delay to ensure all DOM is ready and language.js is fully parsed.
-
-    // Update current year span (from script.js)
+    // Update current year span
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -347,7 +193,7 @@ async function loadCommonComponents() {
     }
 
     componentLog("[Loader] Trình tự tải component và khởi tạo cơ bản đã hoàn tất.");
-    // Callback for page-specific initializations like AOS
+    // Callback for page-specific initializations (e.g., AOS.init in index.html)
     window.onPageComponentsLoadedCallback?.();
 }
 
