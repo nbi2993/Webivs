@@ -5,14 +5,12 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const express = require("express");
 const bodyParser = require("body-parser");
-const fetch = require("node-fetch");
-const cors = require("cors"); // Thêm cors để xử lý Cross-Origin Resource Sharing
+const fetch = require("node-fetch"); // node-fetch là cần thiết cho Node.js 16. Node.js 18+ có global fetch.
+const cors = require("cors");
 
 const app = express();
 
-// Sử dụng middleware cors. `origin: true` cho phép mọi nguồn,
-// trong production bạn nên giới hạn chỉ tên miền frontend của mình.
-app.use(cors({ origin: true }));
+app.use(cors({ origin: true })); // Cho phép CORS từ mọi nguồn. Trong production, hãy giới hạn domain cụ thể.
 app.use(bodyParser.json());
 
 // ====================================================================
@@ -21,16 +19,14 @@ app.use(bodyParser.json());
 // Khởi tạo Admin SDK một lần duy nhất nếu chưa được khởi tạo
 if (admin.apps.length === 0) {
     try {
-        // Đọc Service Account Key đã mã hóa Base64 từ cấu hình Functions
-        const serviceAccountBase64 = functions.config().serviceaccount.key_base64; // Bỏ optional chaining để lỗi nếu không có
+        // Đọc Service Account Key đã mã hóa Base64 từ biến môi trường của hệ thống
+        const serviceAccountBase64 = process.env.SERVICEACCOUNT_KEY_BASE64; // Tên biến môi trường đã được đặt (functions:config:set serviceaccount.key_base64)
         
         if (!serviceAccountBase64) {
-            console.error("Lỗi khởi tạo Admin SDK: Biến FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 không được định nghĩa trong cấu hình Firebase Functions.");
-            // Ném lỗi để Firebase báo lỗi rõ ràng hơn trong log và không khởi tạo
-            throw new Error("Missing FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 config.");
+            console.error("Lỗi khởi tạo Admin SDK: Biến SERVICEACCOUNT_KEY_BASE64 không được định nghĩa trong biến môi trường.");
+            throw new Error("Missing SERVICEACCOUNT_KEY_BASE64 environment variable.");
         }
 
-        // Giải mã Base64 và parse JSON
         const serviceAccount = JSON.parse(Buffer.from(serviceAccountBase64, 'base64').toString('ascii'));
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
@@ -39,8 +35,7 @@ if (admin.apps.length === 0) {
         console.log("[Firebase Admin] Firebase Admin SDK đã được khởi tạo thành công.");
     } catch (error) {
         console.error("[Firebase Admin] Lỗi khi khởi tạo Firebase Admin SDK:", error.message);
-        console.error("Vui lòng đảm bảo FIREBASE_SERVICE_ACCOUNT_KEY_BASE64 được cấu hình đúng và có định dạng JSON hợp lệ sau khi giải mã Base64.");
-        // Ghi lại lỗi nhưng không thoát process để hàm vẫn cố gắng phản hồi các yêu cầu (có thể lỗi)
+        console.error("Vui lòng đảm bảo SERVICEACCOUNT_KEY_BASE64 được cấu hình đúng và có định dạng JSON hợp lệ sau khi giải mã Base64.");
     }
 } else {
     console.log("[Firebase Admin] Firebase Admin SDK đã được khởi tạo trước đó.");
@@ -52,12 +47,12 @@ if (admin.apps.length === 0) {
 // ====================================================================
 app.post('/api/chat', async (req, res) => {
     try {
-        const chatHistory = req.body.contents; // Lấy lịch sử trò chuyện từ frontend
-        // Lấy Gemini API Key từ cấu hình Functions
-        const geminiApiKey = functions.config().gemini.key; // Bỏ optional chaining để lỗi nếu không có
+        const chatHistory = req.body.contents;
+        // Đọc Gemini API Key từ biến môi trường của hệ thống
+        const geminiApiKey = process.env.GEMINI_API_KEY; // Tên biến môi trường đã được đặt (functions:config:set gemini.key)
 
         if (!geminiApiKey) {
-            console.error("GEMINI_API_KEY không được định nghĩa trong cấu hình Firebase Functions.");
+            console.error("GEMINI_API_KEY không được định nghĩa trong biến môi trường.");
             return res.status(500).json({ error: "Server configuration error: Gemini API Key missing." });
         }
 
@@ -78,7 +73,7 @@ app.post('/api/chat', async (req, res) => {
         }
 
         const result = await response.json();
-        res.json(result); // Gửi phản hồi từ Gemini API về frontend
+        res.json(result); 
 
     } catch (error) {
         console.error("Lỗi khi xử lý yêu cầu chatbot:", error);
@@ -90,12 +85,10 @@ app.post('/api/chat', async (req, res) => {
 // ENDPOINT CHO XÁC THỰC FIREBASE (Authentication)
 // ====================================================================
 
-// Lưu ý: Các endpoint này cần Firebase Admin SDK đã khởi tạo thành công
-// Endpoint đăng ký người dùng
 app.post('/api/register', async (req, res) => {
     const { email, password } = req.body;
     try {
-        if (admin.apps.length === 0) { // Kiểm tra nếu Admin SDK chưa khởi tạo
+        if (admin.apps.length === 0) {
             return res.status(500).json({ error: "Firebase Admin SDK chưa khởi tạo. Vui lòng kiểm tra cấu hình server." });
         }
         const userRecord = await admin.auth().createUser({
@@ -118,21 +111,19 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-// Endpoint đăng nhập người dùng (Tạo Custom Token)
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
     try {
         if (admin.apps.length === 0) {
             return res.status(500).json({ error: "Firebase Admin SDK chưa khởi tạo. Vui lòng kiểm tra cấu hình server." });
         }
-        // Lưu ý: Phương pháp này không xác thực mật khẩu. Client nên gửi ID Token sau khi đăng nhập.
         const user = await admin.auth().getUserByEmail(email);
         const customToken = await admin.auth().createCustomToken(user.uid);
         res.status(200).json({ message: 'Đăng nhập thành công!', customToken: customToken });
     } catch (error) {
         console.error("Lỗi đăng nhập:", error.code);
         let errorMessage = "Đăng nhập không thành công. Vui lòng kiểm tra lại Email/Mật khẩu.";
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') { // wrong-password không áp dụng trực tiếp cho getUserByEmail
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
             errorMessage = "Email không đúng hoặc không tồn tại.";
         } else if (error.code === 'auth/invalid-email') {
             errorMessage = "Email không hợp lệ.";
@@ -141,7 +132,6 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Endpoint bảo vệ ví dụ (Xác minh ID Token)
 app.get('/api/protected', async (req, res) => {
     const idToken = req.headers.authorization?.split('Bearer ')[1];
 
@@ -163,6 +153,12 @@ app.get('/api/protected', async (req, res) => {
 });
 
 
-// Xuất ứng dụng Express dưới dạng một Firebase Function
-// Tên function sẽ là 'api' và có thể truy cập qua URL Firebase Functions
-exports.api = functions.https.onRequest(app);
+// Xuất ứng dụng Express dưới dạng một Firebase Function (Functions v2)
+// Sử dụng .region và .onRequestHandler để triển khai rõ ràng Functions v2.
+exports.api = functions
+    .region('us-central1') // Thay đổi 'us-central1' nếu bạn muốn một khu vực khác
+    .runWith({
+        memory: '256MB', // Tùy chọn: Đặt bộ nhớ cho hàm
+        timeoutSeconds: 60 // Tùy chọn: Đặt thời gian timeout cho hàm
+    })
+    .https.onRequest(app);
