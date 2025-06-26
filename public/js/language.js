@@ -12,8 +12,8 @@
 // 1. GLOBAL CONFIGURATION & STATE
 window.langSystem = window.langSystem || {
     translations: {},
-    defaultLanguage: 'vi', // Changed default to Vietnamese as per standard practice
-    currentLanguage: 'vi',
+    defaultLanguage: 'en', // Changed default to Vietnamese as per standard practice
+    currentLanguage: 'en',
     languageStorageKey: 'userPreferredLanguage_v3',
     languageFilesPath: '/lang/', // Absolute path is more robust
     isDebugMode: true,
