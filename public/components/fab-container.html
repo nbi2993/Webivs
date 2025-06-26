@@ -239,7 +239,7 @@
             // Cache chatbot elements
             this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
             this.chatbotContainer = document.getElementById('chatbot-container');
-            this.chatbotCloseBtn = document.getElementById('chatbot-close-button');
+            this.chatbotCloseBtn = document.getElementById('chatbot-close-button'); // Added chatbotCloseBtn to cache
             this.chatbotMessages = document.getElementById('chatbot-messages');
             this.chatbotInput = document.getElementById('chatbot-input');
             this.chatbotSendBtn = document.getElementById('chatbot-send-button');
@@ -439,8 +439,9 @@
                     
                     const payload = { contents: chatHistory };
                     // Thay đổi apiUrl để trỏ đến endpoint backend server của bạn
-                    const apiUrl = '/api/chat'; // <-- Đây là địa chỉ chính xác cho môi trường thực tế
-                    const apiKey = ""; // Dòng này có thể được giữ nguyên hoặc xóa ở frontend (vì nó không còn được dùng)
+                    // Đây là địa chỉ chính xác cho môi trường thực tế khi dùng Firebase Functions Rewrites
+                    const apiUrl = '/api/chat'; 
+                    // const apiKey = ""; // Dòng này không còn cần thiết ở frontend
 
                     const response = await fetch(apiUrl, {
                         method: 'POST',
