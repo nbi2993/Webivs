@@ -1,0 +1,35 @@
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Production build outputs (nếu có quy trình build riêng)
+build/
+dist/
+tmp/
+out/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Sensitive files (RẤT QUAN TRỌNG)
+.env
+.env.*
+serviceAccountKey.json
+auth/  # Bỏ qua toàn bộ thư mục auth/ nếu nó chứa bí mật
+server/ # Bỏ qua toàn bộ thư mục server/ nếu đó là backend riêng tư
+ivs    # Bỏ qua file ivs nếu nó chứa bí mật
