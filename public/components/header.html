@@ -1,6 +1,4 @@
-<!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.9 - Fixed Mobile Menu Transition -->
-<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and modern aesthetics. -->
+
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40 bg-ivs-bg transition-all duration-300 ease-in-out">
     <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
@@ -8,7 +6,7 @@
             <img src="/images/logo/logo.png" alt="IVS JSC Logo" class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/48x48/1f2937/ffffff?text=IVS';">
          </a>
 
-        <!-- Desktop Navigation -->
+
         <nav class="hidden md:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
             <a href="/index.html" class="desktop-nav-link group" data-lang-key="nav_home">
                 <i class="fas fa-home mr-2 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Trang Chủ
@@ -24,7 +22,7 @@
                 </button>
                 <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
                     <div class="grid grid-cols-2 gap-x-6 p-5">
-                        <!-- Cột trái: Liên kết Giáo dục -->
+
                         <div class="space-y-2">
                             <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
                             <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
@@ -34,7 +32,7 @@
                             <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers"><i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ</a>
                             <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply"><i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên</a>
                         </div>
-                        <!-- Cột phải: Tư vấn Pháp lý -->
+
                         <div class="space-y-2">
                             <h3 class="font-bold text-ivs-accent border-b border-ivs-border pb-2 mb-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
                             <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting"><i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu</a>
@@ -78,7 +76,7 @@
                 <i class="fas fa-envelope mr-2"></i> Liên Hệ
             </a>
             
-            <!-- Added Login Button for Desktop -->
+
             <a href="/auth.html" class="desktop-nav-link bg-ivs-blue hover:bg-ivs-blue-darker text-white font-bold px-4 py-2 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105" data-lang-key="nav_login">
                 <i class="fas fa-user-circle mr-2"></i> Đăng nhập
             </a>
@@ -100,9 +98,9 @@
             </div>
         </nav>
 
-        <!-- Mobile Language Selector & Menu Button -->
+
         <div class="flex items-center md:hidden space-x-2">
-            <div id="mobile-lang-dropdown-container" class="relative"> <!-- Added ID for easier targeting -->
+            <div id="mobile-lang-dropdown-container" class="relative">
                 <button type="button" id="mobile-lang-toggle" class="p-2 rounded-lg text-ivs-text-primary hover:bg-ivs-bg-light transition-colors" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-lang-dropdown-content">
                     <i class="fas fa-globe text-xl"></i>
                     <span id="current-lang-mobile" class="ml-1 mr-1 text-sm font-semibold">VI</span>
@@ -125,8 +123,7 @@
     </div>
 </header>
 
-<!-- Mobile Menu Panel -->
-<!-- Removed transition-all duration-300 ease-in-out as it's now handled by styles.css -->
+
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 md:hidden" aria-modal="true" role="dialog">
     <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"></div>
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
@@ -144,14 +141,14 @@
                 <i class="fas fa-info-circle mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Về IVS
             </a>
             
-            <!-- Mobile Services Menu - NOW NESTED -->
+
             <div>
                 <button class="mobile-submenu-toggle group">
                     <i class="fas fa-th-large mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i>
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon ml-auto group-hover:text-ivs-accent transition-transform"></i>
                 </button>
                 <div class="mobile-submenu-content space-y-1">
-                    <!-- Nested Submenu for Education Links -->
+
                     <div>
                         <button class="mobile-submenu-toggle nested-level group">
                             <i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>
@@ -166,7 +163,7 @@
                             <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
                         </div>
                     </div>
-                    <!-- Nested Submenu for Legal Consulting -->
+
                     <div>
                         <button class="mobile-submenu-toggle nested-level group">
                             <i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>
@@ -214,7 +211,7 @@
                 <i class="fas fa-envelope mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Liên Hệ
             </a>
             
-            <!-- Added Login Button for Mobile Menu -->
+
             <a href="/auth.html" class="mobile-nav-link group" data-lang-key="nav_login">
                 <i class="fas fa-user-circle mr-3 text-ivs-text-secondary group-hover:text-ivs-accent transition-colors"></i> Đăng nhập
             </a>
@@ -222,7 +219,7 @@
     </div>
 </div>
 
-<!-- Bottom Navigation for Mobile -->
+
 <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden shadow-lg">
     <a href="/index.html" class="bottom-nav-item">
         <i class="fas fa-home text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_home">Home</span>
@@ -238,209 +235,4 @@
     </button>
 </nav>
 
-<!-- Inline styles for component-specific CSS -->
-<!-- It's recommended to move these to a central CSS file for production -->
-<style>
-    :root {
-        --header-height: 64px;
-        --desktop-header-height: 72px;
-        --bottom-nav-height: 60px;
-        --ivs-bg: #0D1117; /* Dark background */
-        --ivs-card: #161B22; /* Card background */
-        --ivs-border: #30363d; /* Border color */
-        --ivs-text-primary: #e6edf3; /* Primary text color */
-        --ivs-text-secondary: #a1aab4; /* Secondary text color */
-        --ivs-accent: #F97316; /* Accent color (Orange) */
-        --ivs-accent-dark: #ea580c; /* Darker accent color */
-        --ivs-blue: #58a6ff; /* Blue color */
-        --ivs-blue-darker: #3b82f6; /* Darker blue */
-        --ivs-green: #34d399; /* Green color */
-        --ivs-purple: #a78bfa; /* Purple color */
-        --ivs-red: #f87171; /* Red color */
-        --ivs-cyan: #22d3ee; /* Cyan color */
-        --ivs-amber: #f59e0b; /* Amber color */
-        --ivs-emerald: #34d399; /* Emerald color */
-        --ivs-rose: #f43f5e; /* Rose color */
-        --ivs-bg-dark: #111827; /* Used for mobile menu container */
-        --ivs-bg-medium: #1f2937; /* Used for mobile menu panel */
-        --ivs-bg-light: #374151; /* Used for hover states */
-        --ivs-link-active-bg: rgba(249, 115, 22, 0.15); /* Accent with opacity */
-    }
 
-    #ivs-main-header.scrolled {
-        background-color: rgba(13, 17, 23, 0.9); /* ivs-bg with opacity */
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        border-bottom: 1px solid var(--ivs-border);
-    }
-    
-    .desktop-nav-link, .desktop-nav-dropdown-toggle {
-        display: inline-flex; align-items: center; padding: 10px 15px; /* Increased padding */
-        font-size: 1rem; font-weight: 500; color: var(--ivs-text-secondary);
-        border-radius: 0.5rem; /* More rounded */
-        transition: color 0.2s, background-color 0.2s, transform 0.2s; /* Added transform */
-        position: relative; /* For underline effect */
-    }
-    .desktop-nav-link:hover, .desktop-nav-dropdown-toggle:hover {
-        color: var(--ivs-text-primary);
-        background-color: var(--ivs-bg-light);
-        transform: translateY(-2px); /* Slight lift on hover */
-    }
-    .desktop-nav-link.active {
-        color: var(--ivs-accent); font-weight: 600;
-        background-color: var(--ivs-link-active-bg);
-        transform: translateY(-2px); /* Maintain lift */
-    }
-    /* Modern underline effect on hover/active */
-    .desktop-nav-link::after, .desktop-nav-dropdown-toggle::after {
-        content: '';
-        position: absolute;
-        bottom: 5px; /* Adjust based on padding */
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background-color: var(--ivs-accent);
-        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-    }
-    .desktop-nav-link:hover::after, .desktop-nav-link.active::after,
-    .desktop-nav-dropdown-toggle:hover::after, .desktop-nav-dropdown-toggle.active::after {
-        width: calc(100% - 30px); /* Adjust based on padding */
-        left: 15px; /* Match padding-left */
-    }
-
-
-    .desktop-dropdown-container { position: relative; }
-    .desktop-dropdown, .desktop-mega-menu {
-        position: absolute; top: 100%; left: 0; z-index: 50;
-        background-color: var(--ivs-card); /* Darker background for dropdown */
-        border: 1px solid var(--ivs-border); border-radius: 0.75rem; /* More rounded */
-        box-shadow: 0 15px 30px -5px rgba(0,0,0,0.4); /* Stronger shadow */
-        margin-top: 10px; /* More spacing */
-        opacity: 0; visibility: hidden;
-        transform: translateY(-15px) scale(0.95); /* Deeper animation */
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
-    }
-    .desktop-dropdown-container:hover .desktop-dropdown,
-    .desktop-dropdown-container:hover .desktop-mega-menu {
-        opacity: 1; visibility: visible;
-        transform: translateY(0) scale(1);
-        transition-delay: 0s;
-    }
-
-    .desktop-dropdown { width: 280px; } /* Slightly wider */
-    .desktop-mega-menu { width: 600px; } /* Wider for mega menu */
-
-    .dropdown-item {
-        display: flex; align-items: center; width: 100%; text-align: left;
-        padding: 12px 18px; /* More padding */
-        font-size: 0.95rem; /* Slightly larger text */
-        color: var(--ivs-text-secondary);
-        border-radius: 0.5rem; transition: background-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .dropdown-item:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-        transform: translateX(5px); /* Slide effect */
-    }
-    
-    /* Removed specific #ivs-mobile-menu-panel styles from here to styles.css */
-    /* Only visibility control remains, handled by JS transitionend */
-    #ivs-mobile-menu-panel {
-        visibility: hidden; /* Default hidden */
-    }
-    #ivs-mobile-menu-panel.is-open {
-        visibility: visible;
-    }
-
-
-    .mobile-submenu-content {
-        max-height: 0; /* Reset max-height */
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        padding-left: 1rem;
-    }
-    /* Add extra padding for nested mobile submenu content */
-    .mobile-submenu-content.nested-level-content {
-        padding-left: 2.5rem; /* Increase padding for nested items */
-    }
-    
-    .mobile-submenu-toggle { /* Style for mobile submenu toggle buttons */
-        display: flex; justify-content: space-between; align-items: center;
-        width: 100%; padding: 10px 15px; /* More padding */
-        font-weight: 500; font-size: 1rem; /* Larger text */
-        color: var(--ivs-text-secondary); border-radius: 0.5rem;
-        transition: background-color 0.2s, color 0.2s;
-        text-align: left;
-    }
-
-    .mobile-submenu-toggle:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-    }
-    /* Style for nested mobile submenu toggle buttons */
-    .mobile-submenu-toggle.nested-level {
-        padding: 8px 15px; /* Slightly less padding for nested level */
-        font-size: 0.95rem;
-    }
-
-
-    .mobile-submenu-icon {
-        transition: transform 0.3s ease;
-    }
-    .mobile-submenu-toggle[aria-expanded="true"] .mobile-submenu-icon {
-        transform: rotate(180deg);
-    }
-
-    .mobile-submenu-item { /* Style for individual items inside mobile submenus */
-        display: block; /* Ensure it takes full width */
-        padding: 10px 20px; /* Adjust padding for nested items */
-        color: var(--ivs-text-secondary); border-radius: 0.5rem;
-        transition: background-color 0.2s, color 0.2s, transform 0.2s;
-        text-align: left;
-    }
-
-    .mobile-submenu-item:hover {
-        background-color: var(--ivs-bg-light); color: var(--ivs-text-primary);
-        transform: translateX(5px); /* Slide effect */
-    }
-
-    /* Custom scrollbar for mobile menu */
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: var(--ivs-bg-medium);
-        border-radius: 10px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: var(--ivs-bg-light);
-        border-radius: 10px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: var(--ivs-border);
-    }
-
-    #ivs-bottom-nav {
-        background-color: rgba(13, 17, 23, 0.9); /* ivs-bg with opacity */
-        backdrop-filter: blur(12px);
-        border-top: 1px solid var(--ivs-border);
-    }
-    .bottom-nav-item {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        flex-grow: 1; color: var(--ivs-text-secondary); padding: 8px 0; /* More padding */
-        transition: color 0.2s, background-color 0.2s; text-decoration: none;
-        border-radius: 0.5rem; /* Rounded corners */
-        margin: 0 4px; /* Space between items */
-    }
-    .bottom-nav-item:hover {
-        background-color: rgba(249, 115, 22, 0.1); /* Subtle highlight on hover */
-        color: var(--ivs-text-primary);
-    }
-    .bottom-nav-item.active { 
-        color: var(--ivs-accent); 
-        background-color: var(--ivs-link-active-bg);
-    }
-    .bottom-nav-text { 
-        font-size: 0.75rem; /* Slightly larger text */
-        margin-top: 4px; /* More spacing */
-        font-weight: 500;
-    }
-</style>
