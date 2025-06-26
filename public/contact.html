@@ -23,43 +23,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-form-bg': 'rgba(22, 27, 34, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        /* Custom CSS Variables for IVS Tailwind Colors (if not already in styles.css) */
-        /* These should ideally be defined in styles.css :root variables. */
-        /* Temporary overrides for specific pages if needed, but strive for global consistency. */
-        :root {
-            --ivs-bg: #0D1117;
-            --ivs-card: #161B22;
-            --ivs-border: #30363d;
-            --ivs-text-primary: #e6edf3;
-            --ivs-text-secondary: #a1aab4;
-            --ivs-blue: #58a6ff;
-            --ivs-blue-darker: #3b82f6;
-            --ivs-form-bg: rgba(22, 27, 34, 0.8);
-        }
-
         .font-display { font-family: 'Lexend', sans-serif; }
         .hero-section {
             background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.7)), url('/images/banners/contact_hero_bg.jpg') no-repeat center center/cover;
         }
         .contact-info-item i {
-            color: var(--ivs-blue); /* Using custom variable */
+            color: #58a6ff;
         }
         .form-input, .form-textarea {
-            background-color: var(--ivs-bg); /* Using custom variable */
-            border: 1px solid var(--ivs-border); /* Using custom variable */
-            color: var(--ivs-text-primary); /* Using custom variable */
+            background-color: #0D1117;
+            border: 1px solid #30363d;
+            color: #e6edf3;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .form-input:focus, .form-textarea:focus {
             outline: none;
-            border-color: var(--ivs-blue); /* Using custom variable */
+            border-color: #58a6ff;
             box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
         }
         .map-wrapper {
-            border: 1px solid var(--ivs-border); /* Using custom variable */
+            border: 1px solid #30363d;
             border-radius: 0.75rem; /* rounded-xl */
             overflow: hidden;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
@@ -69,7 +78,7 @@
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
     <header id="header-placeholder"></header>
 
-    <main class="pt-[var(--header-height-mobile)] md:pt-[calc(var(--header-height-desktop)+2rem)]">
+    <main>
         <section class="hero-section pt-28 pb-16 md:pt-40 md:pb-24 border-b border-ivs-border">
             <div class="container mx-auto px-6 text-center">
                 <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4" data-aos="fade-down" data-lang-key="contact_hero_title">
@@ -167,16 +176,15 @@
         </section>
     </main>
 
+    <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
-    <div id="footer-placeholder"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/js/loadComponents.js" defer type="module"></script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script>
     <script src="/js/contact-page.js" defer></script>
     <script>
-        // AOS.init() should be called by loadComponents.js via window.onPageComponentsLoadedCallback
         window.onPageComponentsLoadedCallback = function() {
-            console.log("[Contact Page] Components loaded. Page specific JS can run now.");
             AOS.init({
                 duration: 700,
                 once: true,

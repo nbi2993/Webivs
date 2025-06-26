@@ -1,33 +1,19 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
- * and initializes their interactive logic, including Firebase. It now relies on
- * language.js for language system initialization.
- * @version 6.2 - Removed language system initialization, now relies on external language.js.
+ * and initializes their interactive logic, ensuring reliable execution.
+ * @version 4.7 - Improved dynamic script execution for injected HTML.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
 // =================================================================
-// GLOBAL LOGGING & UTILITIES (Centralized and unique global definitions)
+//  LOGGING & UTILITIES
 // =================================================================
-/**
- * Ghi log các thông báo liên quan đến tải component và hệ thống.
- * @param {string} message Thông điệp cần ghi log.
- * @param {'info'|'warn'|'error'} [level='info'] Mức độ log (info, warn, error).
- */
 function componentLog(message, level = 'info') {
-    console[level](`[IVS Core] ${message}`);
+    console[level](`[IVS Components] ${message}`);
 }
-// Expose componentLog globally
-window.componentLog = componentLog;
 
-/**
- * Hàm debounce để hạn chế tần suất gọi hàm.
- * @param {Function} func Hàm cần debounce.
- * @param {number} wait Thời gian chờ trước khi thực thi hàm.
- * @returns {Function} Hàm đã được debounce.
- */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -39,41 +25,125 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-// Expose debounce globally
-window.debounce = debounce;
-
 
 // =================================================================
-// FIREBASE INITIALIZATION (From script.js)
-// NOTE: For a real-world scenario, Firebase config should ideally be loaded
-// from environment variables or a secure configuration service, not hardcoded.
-// The current hardcoded config is preserved as it was in the provided files.
+//  COMPONENT LOGIC MODULES (Assumes these are defined globally or loaded first)
 // =================================================================
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyD1Hi7-EnAN_--THeRY958fVaPWZbQNZzs",
-    authDomain: "ivsjsc-6362f.firebaseapp.com",
-    databaseURL: "https://ivsjsc-6362f-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "ivsjsc-6362f",
-    storageBucket: "ivsjsc-6362f.appspot.com",
-    messagingSenderId: "910278613224",
-    appId: "1:910278613224:web:16b3f0faf041ac5703115d",
-    measurementId: "G-SEP5LC4EMB"
+// IVSHeaderController and IVSFabController are now expected to be defined globally
+// by the components they are associated with (e.g., fab-container.html defines IVSFabController)
+// This script will just call their init methods.
+
+/**
+ * All logic related to the Header and Mobile Menu.
+ * Handles responsive menu, submenus, and scroll effects.
+ */
+const IVSHeaderController = {
+    init() {
+        this.cacheDOM();
+        if (!this.header) {
+            componentLog("Header element not found. UI logic will not run.", "warn");
+            return;
+        }
+        this.bindEvents();
+        this.updateActiveLinks();
+        this.onScroll(); 
+        componentLog("Header Controller Initialized.", "info");
+    },
+
+    cacheDOM() {
+        this.header = document.getElementById('ivs-main-header');
+        this.mobilePanel = document.getElementById('ivs-mobile-menu-panel');
+        this.mobileOpenBtn = document.getElementById('mobile-menu-open-btn');
+        this.mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+        this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+        this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
+        this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+        this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
+        this.langOptions = document.querySelectorAll('.lang-option');
+    },
+
+    bindEvents() {
+        window.addEventListener('scroll', debounce(() => this.onScroll(), 50), { passive: true });
+        
+        this.mobileOpenBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+        this.mobileCloseBtn?.addEventListener('click', () => this.toggleMobileMenu(false));
+        this.mobileBackdrop?.addEventListener('click', () => this.toggleMobileMenu(false));
+        this.bottomNavMenuBtn?.addEventListener('click', () => this.toggleMobileMenu(true));
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
+                this.toggleMobileMenu(false);
+            }
+        });
+
+        this.submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+        });
+
+        this.langOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                const lang = e.currentTarget.dataset.lang;
+                if (lang) {
+                    this.setLanguage(lang);
+                }
+            });
+        });
+    },
+    
+    setLanguage(lang) {
+        componentLog(`Attempting to set language to: ${lang}`);
+        if (window.system && typeof window.system.setLanguage === 'function') {
+            window.system.setLanguage(lang);
+        } else {
+            componentLog('Language system (window.system.setLanguage) not found.', 'warn');
+        }
+        this.toggleMobileMenu(false);
+    },
+
+    onScroll() {
+        if (this.header) {
+            this.header.classList.toggle('scrolled', window.scrollY > 10);
+        }
+    },
+    
+    toggleMobileMenu(open) {
+        if (!this.mobilePanel) return;
+        this.mobilePanel.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    },
+
+    toggleSubmenu(toggle) {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('i.fa-chevron-down');
+        if (!content) return;
+        
+        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        if (icon) {
+            icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
+    },
+
+    updateActiveLinks() {
+        const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+        this.navLinks.forEach(link => {
+            const linkPath = (link.getAttribute('href') || "").replace(/\/$/, "") || "/";
+            link.classList.remove('active');
+            if (linkPath === currentPath) {
+                link.classList.add('active');
+            } else if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
+                link.classList.add('active');
+            }
+        });
+    }
 };
 
-try {
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app); // eslint-disable-line no-unused-vars
-    componentLog('[Firebase] Initialization successful.');
-} catch (error) {
-    componentLog('[Firebase] Initialization error: ' + error.message, 'error');
-}
-
 
 // =================================================================
-// MAIN COMPONENT LOADER (Existing functionality with increased delays)
+//  MAIN COMPONENT LOADER
 // =================================================================
 
 /**
@@ -86,114 +156,79 @@ try {
 async function loadAndInject(url, placeholderId) {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
-        componentLog(`[Loader] Placeholder '${placeholderId}' không tìm thấy. Không thể tải ${url}.`, "error");
+        componentLog(`Placeholder '${placeholderId}' not found.`, "error");
         return false;
     }
-    componentLog(`[Loader] Bắt đầu tải và chèn '${url}' vào '${placeholderId}'.`);
     try {
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Lỗi HTTP ${response.status} khi tải ${url}`);
-        }
-
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
         const text = await response.text();
-
+        
+        // Create a temporary div to parse the HTML and extract scripts
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = text;
 
         const scripts = Array.from(tempDiv.querySelectorAll('script'));
 
-        // Remove script tags from the temporary div before injecting HTML
+        // Remove scripts from tempDiv's innerHTML before injecting to avoid double execution
         scripts.forEach(script => script.parentNode?.removeChild(script));
+        
+        // Inject the HTML content (without scripts first)
+        placeholder.innerHTML = tempDiv.innerHTML;
 
-        placeholder.innerHTML = tempDiv.innerHTML; // Inject HTML content
-        componentLog(`[Loader] Nội dung HTML của '${url}' đã chèn vào '${placeholderId}'.`);
-
-        // Re-add and execute script tags
+        // Execute scripts sequentially
         for (const oldScript of scripts) {
             const newScript = document.createElement('script');
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-
+            
+            // Handle both inline scripts and external scripts
             if (oldScript.src) {
                 newScript.src = oldScript.src;
                 await new Promise((resolve, reject) => {
-                    newScript.onload = () => {
-                        componentLog(`[Loader] Script bên ngoài đã tải: ${newScript.src}`);
-                        resolve();
-                    };
-                    newScript.onerror = (e) => {
-                        componentLog(`[Loader] Lỗi tải script bên ngoài: ${newScript.src}, Lỗi: ${e.message || e}`, 'error');
-                        reject(e);
-                    };
-                    document.body.appendChild(newScript);
+                    newScript.onload = resolve;
+                    newScript.onerror = reject;
+                    placeholder.appendChild(newScript); // Append to trigger load
                 });
             } else {
                 newScript.textContent = oldScript.textContent;
-                document.body.appendChild(newScript);
-                componentLog(`[Loader] Script nội tuyến đã thực thi trong placeholder '${placeholderId}'.`);
+                placeholder.appendChild(newScript); // Append to execute inline scripts
             }
         }
-
-        componentLog(`[Loader] Component '${url}' đã được tải và chèn thành công vào '${placeholderId}'.`);
+        
         return true;
     } catch (error) {
-        componentLog(`[Loader] Thất bại khi tải và chèn component '${url}' vào '${placeholderId}': ${error.message}`, 'error');
+        componentLog(`Failed to load ${url}: ${error.message}`, 'error');
         return false;
     }
 }
 
-/**
- * Tải các component phổ biến (header, footer, fab-container).
- */
 async function loadCommonComponents() {
-    componentLog("[Loader] Bắt đầu trình tự tải component...");
-    const componentsToLoad = [
-        { id: 'header-placeholder', url: '/components/header.html' },
-        { id: 'fab-container-placeholder', url: '/components/fab-container.html' },
-        { id: 'footer-placeholder', url: '/components/footer.html' }
+    componentLog("Initializing component sequence...");
+    const components = [
+        { id: 'header-placeholder', url: '/components/header.html', controller: IVSHeaderController },
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: null }, // Controller is defined within this HTML
+        { id: 'footer-placeholder', url: '/components/footer.html', controller: null }
     ];
 
-    for (const comp of componentsToLoad) {
+    for (const comp of components) {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
-                // Initialize component-specific controllers after content is loaded
-                if (comp.id === 'header-placeholder') {
-                    // Small delay to ensure IVSHeaderController script is fully parsed and available
-                    setTimeout(() => {
-                        if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
-                            window.IVSHeaderController.init();
-                            componentLog("[Loader] IVSHeaderController đã được khởi tạo.", "info");
-                        } else {
-                            componentLog("[Loader] IVSHeaderController không tìm thấy hoặc không có hàm init sau khi tải header. Đảm bảo headerController.js được tải.", 'error');
-                        }
-                    }, 400); 
-                } else if (comp.id === 'fab-container-placeholder') {
-                    // Small delay to ensure IVSFabController script is fully parsed and available
-                    setTimeout(() => {
-                        if (window.IVSFabController && typeof window.IVSFabController.init === 'function') {
-                            window.IVSFabController.init();
-                            componentLog("[Loader] IVSFabController đã được khởi tạo.", "info");
-                        } else {
-                            componentLog("[Loader] IVSFabController không tìm thấy hoặc không có hàm init sau khi tải fab-container. Đảm bảo fabController.js được tải.", 'error');
-                        }
-                    }, 400); 
+                if (comp.controller) {
+                    comp.controller.init();
+                } 
+                // Special handling for FAB Controller which is defined globally inside its HTML
+                else if (comp.id === 'fab-container-placeholder' && window.IVSFabController && typeof window.IVSFabController.init === 'function') {
+                    window.IVSFabController.init();
                 }
             }
-        } else {
-            componentLog(`[Loader] Placeholder '${comp.id}' không tồn tại trên trang, bỏ qua tải component '${comp.url}'.`, 'warn');
         }
     }
 
-    // Update current year span
-    const yearSpan = document.getElementById('current-year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-        componentLog("[Loader] Đã cập nhật năm hiện tại.");
-    }
+    if (window.system?.init) window.system.init({ language: 'vi', translationUrl: '/lang/' });
 
-    componentLog("[Loader] Trình tự tải component và khởi tạo cơ bản đã hoàn tất.");
-    // Callback for page-specific initializations (e.g., AOS.init in index.html)
+    componentLog("Component sequence complete.");
     window.onPageComponentsLoadedCallback?.();
 }
 

@@ -14,39 +14,70 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter', 'sans-serif'] },
+            colors: {
+                'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'secondary-dark': '#059669',
+                'purple-accent': '#8b5cf6', 'purple-accent-dark': '#7c3aed', 'warning': '#f59e0b', 'warning-dark': '#d97706',
+                'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db',
+                'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937',
+                'neutral-900': '#111827', 'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-200': '#e5e7eb',
+                'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563',
+                'gray-700': '#374151', 'gray-800': '#1f2937', 'gray-900': '#111827', 'blue-50': '#eff6ff',
+                'blue-200': '#bfdbfe', 'blue-500': '#3b82f6', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8',
+                'blue-800': '#1e40af', 'purple-50':'#faf5ff', 'purple-200':'#e9d5ff', 'purple-500':'#a855f7',
+                'purple-600': '#9333ea', 'purple-700': '#7e22ce', 'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0',
+                'emerald-500': '#10b981', 'emerald-800': '#065f46', 'amber-50': '#fffbeb', 'amber-200': '#fde68a',
+                'amber-500': '#f59e0b', 'amber-600': '#d97706', 'orange-50': '#fff7ed', 'orange-200': '#fed7aa',
+                'orange-400':'#fb923c', 'orange-500': '#f97316', 'orange-600': '#ea580c', 'sky-500': '#0ea5e9',
+                'sky-600': '#0284c7', 'indigo-500': '#6366f1', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca',
+                'pink-500': '#ec4899', 'pink-accent': '#ec4899', 'pink-600': '#db2777', 'red-500': '#ef4444',
+                'red-600': '#dc2626', 'red-700': '#b91c1c', 'teal-500': '#14b8a6', 'teal-600': '#0d9488'
+            }
+          }
+        },
+        plugins: [],
+      }
+    </script>
+
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        /* Custom styles that might not be in the global styles.css or need specific overrides */
         :root {
-            --base-font-size: 16px; /* Base font size, for potential use with rem units */
+            --base-font-size: 16px;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
             font-size: var(--base-font-size);
             line-height: 1.75;
-            background-color: var(--ivs-neutral-50); /* neutral-50 */
-            color: var(--ivs-neutral-800); /* neutral-800 */
+            background-color: #f9fafb; /* neutral-50 */
+            color: #1f2937; /* neutral-800 */
         }
         .dark body {
-            background-color: var(--ivs-neutral-900); /* neutral-900 */
-            color: var(--ivs-neutral-100); /* neutral-100 */
+            background-color: #111827; /* neutral-900 */
+            color: #f3f4f6; /* neutral-100 */
         }
         h1, h2, h3, h4 {
             letter-spacing: 0.02em;
-            color: var(--ivs-neutral-900); /* neutral-900 */
+            color: #111827; /* neutral-900 */
         }
         .dark h1, .dark h2, .dark h3, .dark h4 {
-            color: var(--ivs-neutral-50); /* neutral-50 */
+            color: #f9fafb; /* neutral-50 */
         }
         section {
-            padding: 4rem 1rem; /* Default section padding */
+            padding: 4rem 1rem;
         }
         .hero-text-shadow {
             text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
@@ -63,7 +94,7 @@
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .step-item:hover .step-number {
-            background-color: var(--ivs-secondary-dark); /* secondary-dark */
+            background-color: #059669; /* secondary-dark */
             transform: scale(1.1);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
@@ -82,10 +113,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 0.75rem 0; /* Increased padding */
-            border-bottom: 1px solid var(--ivs-neutral-200); /* neutral-200 */
+            border-bottom: 1px solid #e5e7eb; /* neutral-200 */
         }
         .dark details > summary {
-            border-bottom-color: var(--ivs-neutral-700); /* neutral-700 */
+            border-bottom-color: #374151; /* neutral-700 */
         }
         details > summary::-webkit-details-marker {
             display: none;
@@ -93,28 +124,28 @@
         details > summary .details-icon {
             transition: transform 0.2s ease-in-out;
             margin-left: 0.5rem;
-            color: var(--ivs-neutral-500); /* neutral-500 */
+            color: #6b7280; /* neutral-500 */
         }
         .dark details > summary .details-icon {
-            color: var(--ivs-neutral-400); /* gray-400 */
+            color: #9ca3af; /* gray-400 */
         }
         details[open] > summary .details-icon {
             transform: rotate(90deg);
         }
         details[open] > summary {
-            color: var(--ivs-primary); /* primary */
+            color: #3b82f6; /* primary */
         }
         .dark details[open] > summary {
-            color: var(--ivs-blue-400); /* Equivalent blue-400 for dark mode */
+            color: #60a5fa; /* Tương đương blue-400 cho dark mode */
         }
         details .details-content {
             padding: 1rem 0;
-            color: var(--ivs-neutral-600); /* neutral-600 */
+            color: #4b5563; /* neutral-600 */
         }
         .dark details .details-content {
-            color: var(--ivs-neutral-300); /* neutral-300 */
+            color: #d1d5db; /* neutral-300 */
         }
-        .list-disc { /* Ensure list items have proper spacing */
+        .list-disc { /* Đảm bảo các list items có khoảng cách phù hợp */
             margin-left: 1.5rem;
             margin-top: 0.5rem;
         }
@@ -123,24 +154,25 @@
         }
 
         /* Styles for dark mode consistency */
-        .dark .bg-white { background-color: var(--ivs-neutral-800); /* neutral-800 */ }
-        .dark .text-gray-800 { color: var(--ivs-neutral-100); /* neutral-100 */ }
-        .dark .text-gray-600 { color: var(--ivs-neutral-300); /* neutral-300 */ }
-        .dark .text-gray-900 { color: var(--ivs-neutral-50); /* neutral-50 */ }
-        .dark .border-secondary { border-color: var(--ivs-secondary-dark); /* secondary-dark */ }
-        .dark .border-primary { border-color: var(--ivs-primary-dark); /* primary-dark */ }
-        .dark .bg-slate-100 { background-color: var(--ivs-neutral-700); /* neutral-700 */ }
-        .dark .text-secondary-dark { color: var(--ivs-emerald-200); /* emerald-200 */ }
-        .dark .bg-gray-100 { background-color: var(--ivs-neutral-800); /* neutral-800 */ }
-        .dark .text-primary { color: var(--ivs-blue-400); } /* blue-400 for dark */
-        .dark .text-secondary { color: var(--ivs-emerald-400); } /* emerald-400 for dark */
+        .dark .bg-white { background-color: #1f2937; /* neutral-800 */ }
+        .dark .text-gray-800 { color: #f3f4f6; /* neutral-100 */ }
+        .dark .text-gray-600 { color: #d1d5db; /* neutral-300 */ }
+        .dark .text-gray-900 { color: #f9fafb; /* neutral-50 */ }
+        .dark .border-secondary { border-color: #059669; /* secondary-dark */ }
+        .dark .border-primary { border-color: #2563eb; /* primary-dark */ }
+        .dark .bg-slate-100 { background-color: #374151; /* neutral-700 */ }
+        .dark .text-secondary-dark { color: #a7f3d0; /* emerald-200 */ }
+        .dark .bg-gray-100 { background-color: #1f2937; /* neutral-800 */ }
+         .dark .text-primary { color: #60a5fa; } /* blue-400 for dark */
+        .dark .text-secondary { color: #34d399; } /* emerald-400 for dark */
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased dark:bg-neutral-900 dark:text-neutral-100" id="page-foreign-teacher">
     
     <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
 
-    <main class="flex-grow pt-[var(--header-height-mobile)] md:pt-[calc(var(--header-height-desktop)+2rem)]">
+    <main class="flex-grow">
         <section class="hero-section bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-20 md:py-28 text-center" aria-labelledby="page-title-gvnn" data-aos="fade-in" data-aos-duration="500">
             <div class="container mx-auto px-4">
                 <h1 id="page-title-gvnn" class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 hero-text-shadow leading-tight" data-lang-key="foreign_teacher_hero_title" data-aos="fade-down" data-aos-delay="200">
@@ -187,7 +219,7 @@
                             <i class="fas fa-chalkboard-teacher text-4xl text-secondary dark:text-emerald-400 mt-1 flex-shrink-0"></i>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-100 mb-1" data-lang-key="why_ivs_gvnn_4_title">Đào tạo & Đồng hành Phát triển</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_4_desc">Tổ chức các buổi định hướng văn hóa, tập huấn phương pháp giảng dạy phù hợp, hỗ trợ GVNN hòa nhập và phát huy tối đa năng lực tại môi trường làm việc mới.</p>
+                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_4_desc">Tổ chức các buổi định hướng văn hóa Việt Nam, tập huấn phương pháp giảng dạy phù hợp, hỗ trợ GVNN hòa nhập và phát huy tối đa năng lực tại môi trường làm việc mới.</p>
                             </div>
                         </div>
                     </div>
@@ -197,7 +229,7 @@
 
         <section class="py-16 bg-gray-100 dark:bg-neutral-900" aria-labelledby="services-heading">
             <div class="container mx-auto px-4 max-w-5xl">
-                <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-12" data-lang-key="foreign_teacher_services_title" data-aos="fade-up">Các Gói Dịch vụ Chính</h2>
+                <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-center text-primary dark:text-blue-400 mb-12" data-lang-key="foreign_teacher_services_title" data-aos="fade-up">Các Gói Dịch vụ Chính</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div class="service-highlight-card bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg border-l-4 border-primary dark:border-blue-500" data-aos="fade-right" data-aos-delay="100">
                         <div class="flex items-start gap-5 mb-4">
@@ -298,26 +330,49 @@
         </section>
     </main>
 
+    <footer id="footer-placeholder" data-loading-text="Đang tải chân trang..."></footer>
     <div id="fab-container-placeholder"></div>
-    <div id="footer-placeholder" data-loading-text="Đang tải chân trang..."></div>
     
-    <!-- Removed redundant scrollToTopBtn as it's now handled by fabController.js -->
+    <button id="scrollToTopBtn"
+            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+            aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
+    </button>
     
-    <script src="/js/loadComponents.js" defer type="module"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
     <script>
-        // AOS.init() should be called by loadComponents.js via window.onPageComponentsLoadedCallback
-        window.onPageComponentsLoadedCallback = function() {
-            console.log("[Foreign Teacher Page] Components loaded. Page specific JS can run now.");
-            AOS.init({
-                offset: 80, // Trigger animations a bit sooner
-                duration: 600,
-                easing: 'ease-out-quad',
-                once: true,
-                mirror: false,
-                anchorPlacement: 'top-bottom',
+        AOS.init({
+            offset: 80, // Trigger animations a bit sooner
+            duration: 600,
+            easing: 'ease-out-quad',
+            once: true,
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+            // disable: 'mobile' // Consider enabling for performance on mobile if animations are heavy
+        });
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 200) { // Show button earlier
+                    scrollToTopBtn.classList.remove('hidden');
+                    scrollToTopBtn.classList.add('flex');
+                } else {
+                    scrollToTopBtn.classList.remove('flex');
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            }, { passive: true });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        };
+             // Initial check
+            if (window.pageYOffset <= 200) {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
