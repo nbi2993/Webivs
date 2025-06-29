@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.8 - Updated IVSHeaderController init.
+ * @version 4.9 - Removed placeholder IVSHeaderController definition.
  * @author IVS-Technical-Team
  */
 
@@ -25,33 +25,6 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// =================================================================
-//  COMPONENT LOGIC MODULES (Assumes these are defined globally or loaded first)
-// =================================================================
-
-// IVSHeaderController and IVSFabController are now expected to be defined globally
-// by the components they are associated with (e.g., fab-container.html defines IVSFabController)
-// This script will just call their init methods.
-
-/**
- * All logic related to the Header and Mobile Menu.
- * Handles responsive menu, submenus, and scroll effects.
- * (This is a placeholder, actual logic is in headerController.js)
- */
-const IVSHeaderController = {
-    init() {
-        // This is a minimal init for loadComponents.js's purpose.
-        // The detailed init is in the separate headerController.js file.
-        // Ensure that headerController.js actually contains the full init logic.
-        if (window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
-            window.IVSHeaderController.init();
-        } else {
-            componentLog("IVSHeaderController global object or its init method not found. Full header functionality might be impaired.", "error");
-        }
-    }
-};
-
 
 // =================================================================
 //  MAIN COMPONENT LOADER
@@ -117,20 +90,20 @@ async function loadAndInject(url, placeholderId) {
 async function loadCommonComponents() {
     componentLog("Initializing component sequence...");
     const components = [
-        { id: 'header-placeholder', url: '/components/header.html', controller: IVSHeaderController },
-        { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: null }, // Controller is defined within this HTML
-        { id: 'footer-placeholder', url: '/components/footer.html', controller: null }
+        { id: 'header-placeholder', url: '/components/header.html' },
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html' },
+        { id: 'footer-placeholder', url: '/components/footer.html' }
     ];
 
     for (const comp of components) {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
-                if (comp.controller) {
-                    comp.controller.init();
-                } 
-                // Special handling for FAB Controller which is defined globally inside its HTML
-                else if (comp.id === 'fab-container-placeholder' && window.IVSFabController && typeof window.IVSFabController.init === 'function') {
+                // Explicitly initialize controllers after their HTML is loaded and scripts inside are run
+                // This assumes IVSHeaderController and IVSFabController are globally available now.
+                if (comp.id === 'header-placeholder' && window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
+                    window.IVSHeaderController.init();
+                } else if (comp.id === 'fab-container-placeholder' && window.IVSFabController && typeof window.IVSFabController.init === 'function') {
                     window.IVSFabController.init();
                 }
             }
@@ -138,6 +111,8 @@ async function loadCommonComponents() {
     }
 
     // Ensure the language system is initialized after components are loaded
+    // It should ideally be initialized earlier if possible, but this is a fallback
+    // given its self-initialization nature now.
     if (window.langSystem && typeof window.langSystem.initializeLanguageSystem === 'function') {
         window.langSystem.initializeLanguageSystem(); // Call the global language system init
     } else {
