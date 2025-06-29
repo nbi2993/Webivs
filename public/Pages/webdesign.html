@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark"> <!-- Thay đổi class mặc định thành 'dark' -->
+<html lang="vi" class="dark"> <!-- Thiết lập mặc định là 'dark' -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="lkmamnon_page_title">IVS E&D - Dòng chảy Tri thức | IVS JSC</title>
-    <meta name="description" content="IVS Kindergarten - Trường mầm non tiên phong tại Long Thành, Đồng Nai áp dụng mô hình STEAM+Intelligence Model, ươm mầm tài năng Việt." data-lang-key="lkmamnon_meta_description">
-    <meta property="og:title" content="IVS Kindergarten - Nền Tảng Vững Chắc Cho Tương Lai" data-lang-key="lkmamnon_og_title">
-    <meta property="og:description" content="Khám phá môi trường học tập an toàn, yêu thương, đầy cảm hứng với mô hình giáo dục sớm độc đáo tại IVS Kindergarten." data-lang-key="lkmamnon_og_description">
-    <meta property="og:image" content="/images/ivs-rnd.png"> <meta property="og:url" content="https://ivs.id.vn/Pages/rnd-curriculum.html"> 
+    <title data-lang-key="website_design_page_title">IVS Celestech - Thiết kế Website | IVS JSC</title>
+    <meta name="description" content="IVS Celestech cung cấp dịch vụ thiết kế website chuyên nghiệp, tối ưu UI/UX, phát triển web và ứng dụng web hiện đại, đáp ứng mọi nhu cầu kinh doanh và giáo dục." data-lang-key="website_design_meta_description">
+    <meta property="og:title" content="IVS Celestech - Giải Pháp Thiết Kế Website Chuyên Nghiệp" data-lang-key="website_design_og_title">
+    <meta property="og:description" content="Khám phá các dịch vụ thiết kế và phát triển website trọn gói, từ ý tưởng đến triển khai, đảm bảo hiệu quả và trải nghiệm người dùng tối ưu." data-lang-key="website_design_og_description">
+    <meta property="og:image" content="/images/ivs-celestech.png"> <!-- Cập nhật ảnh OG phù hợp -->
+    <meta property="og:url" content="https://ivs.id.vn/Pages/website-design.html"> <!-- Cập nhật URL phù hợp -->
     <meta property="og:type" content="website">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,41 +18,40 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Cấu hình Tailwind CSS, bật dark mode theo class
       tailwind.config = {
-        darkMode: 'class', // Bật dark mode theo class
+        darkMode: 'class', 
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
-              'primary': '#3b82f6', 
-              'primary-dark': '#2563eb', 
-              'secondary': '#10b981', 
-              'secondary-dark': '#059669', 
-              'purple-accent': '#8b5cf6', 
-              'warning': '#f59e0b', 
-              'neutral-50': '#f9fafb',
-              'neutral-100': '#f3f4f6',
-              'neutral-200': '#e5e7eb',
-              'neutral-300': '#d1d5db',
-              'neutral-500': '#6b7280',
-              'neutral-600': '#4b5563',
-              'neutral-700': '#374151',
-              'neutral-800': '#1f2937',
-              'gray-50': '#f9fafb',
-              'gray-100': '#f3f4f6',
-              'gray-300': '#d1d5db',
-              'gray-400': '#9ca3af',
-              'gray-500': '#6b7280',
-              'gray-600': '#4b5563',
-              'gray-700': '#374151',
-              'gray-800': '#1f2937',
+              // Định nghĩa lại các màu sắc để đảm bảo tương phản tốt trong cả hai chế độ
+              'primary': '#3b82f6', // Xanh dương
+              'primary-dark': '#2563eb', // Xanh dương đậm hơn
+              'secondary': '#10b981', // Xanh ngọc
+              'secondary-dark': '#059669', // Xanh ngọc đậm hơn
+              'purple-accent': '#8b5cf6', // Tím
+              'warning': '#f59e0b', // Vàng cam
+              
+              // Neutral colors - điều chỉnh để có độ tương phản cao
+              'neutral-50': '#f9fafb',   // Rất nhạt (light mode)
+              'neutral-100': '#f3f4f6',  // Nhạt (light mode)
+              'neutral-200': '#e5e7eb',  // Hơi nhạt (light mode)
+              'neutral-300': '#d1d5db',  // Trung bình (light mode), chữ cho dark mode
+              'neutral-500': '#6b7280',  // Xám trung bình
+              'neutral-600': '#4b5563',  // Xám đậm
+              'neutral-700': '#374151',  // Xám rất đậm (light mode), nền cho dark mode
+              'neutral-800': '#1f2937',  // Gần đen (nền chính dark mode)
+              'neutral-900': '#111827',  // Rất gần đen (nền đậm nhất dark mode)
+
+              // Các màu đã có, có thể điều chỉnh để phù hợp tương phản
               'blue-50': '#eff6ff',
               'blue-200': '#bfdbfe',
               'blue-600': '#2563eb',
               'blue-700': '#1d4ed8',
-              'blue-800': '#1e40af',
+              'blue-800': '#1e40af', // Màu này có thể dùng cho nền đậm trong dark mode
               'purple-50':'#faf5ff',
               'purple-500':'#a855f7',
               'purple-600': '#9333ea',
@@ -77,96 +77,142 @@
     </script>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        /* Đảm bảo font Inter được áp dụng */
         body { font-family: 'Inter', sans-serif; }
         .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .section-spacing {
             margin-bottom: 3rem; 
         }
-        /* Chuyển đổi màu sắc cho chủ đề sáng */
-        body.light {
+
+        /* Chuyển đổi màu sắc cho chủ đề sáng - Đảm bảo độ tương phản */
+        html.light body {
             background-color: #f3f4f6; /* neutral-100 */
             color: #374151; /* neutral-700 */
         }
-        body.light .prose {
+        html.light .prose {
             background-color: #ffffff;
             color: #4b5563; /* neutral-600 */
         }
-        body.light .card {
+        html.light .card {
             background-color: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: #4b5563; /* neutral-600 */
         }
-        body.light .testimonial-card {
+        html.light .testimonial-card {
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             color: #4b5563; /* neutral-600 */
         }
-        body.light .bg-neutral-50 {
+        html.light .bg-neutral-50 {
             background-color: #f9fafb;
         }
+        html.light .text-neutral-600 {
+            color: #4b5563; /* neutral-600 */
+        }
+        html.light .text-neutral-700 {
+            color: #374151; /* neutral-700 */
+        }
+        /* Các màu liên quan đến primary/secondary cho light mode */
+        html.light .card h3 {
+            color: #3b82f6; /* primary */
+        }
+        html.light .card ul li::before {
+            color: #3b82f6; /* primary */
+        }
+        html.light .bg-blue-50 {
+            background-color: #eff6ff;
+        }
+        html.light .border-blue-200 {
+            border-color: #bfdbfe;
+        }
+        html.light .text-primary-dark {
+            color: #2563eb;
+        }
+        html.light .bg-emerald-50 {
+            background-color: #ecfdf5;
+        }
+        html.light .border-emerald-200 {
+            border-color: #a7f3d0;
+        }
+        html.light .text-secondary {
+            color: #10b981;
+        }
+        html.light .from-blue-50 {
+            background-image: linear-gradient(to right, #eff6ff, #faf5ff);
+        }
+        html.light .to-purple-50 {
+             background-image: linear-gradient(to right, #eff6ff, #faf5ff);
+        }
+        html.light .text-primary {
+            color: #3b82f6;
+        }
 
-        /* Định nghĩa màu sắc cho chủ đề tối */
-        body.dark {
-            background-color: #1f2937; /* neutral-800 */
-            color: #d1d5db; /* neutral-300 */
+
+        /* Định nghĩa màu sắc cho chủ đề tối - Đảm bảo độ tương phản */
+        html.dark body {
+            background-color: #1f2937; /* neutral-800 - Nền chính */
+            color: #d1d5db; /* neutral-300 - Màu chữ chính */
         }
-        body.dark .prose {
-            background-color: #374151; /* neutral-700 */
-            color: #d1d5db; /* neutral-300 */
+        html.dark .prose {
+            background-color: #374151; /* neutral-700 - Nền khối văn bản */
+            color: #d1d5db; /* neutral-300 - Màu chữ trong khối văn bản */
         }
-        body.dark .card {
-            background-color: #374151; /* neutral-700 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        html.dark .card {
+            background-color: #374151; /* neutral-700 - Nền card */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Shadow đậm hơn cho dark mode */
+            color: #e5e7eb; /* neutral-200 - Màu chữ trong card */
         }
-        body.dark .card h3 {
-            color: #93c5fd; /* blue-300 */
+        html.dark .card h3 {
+            color: #93c5fd; /* blue-300 - Tiêu đề card */
         }
-        body.dark .card ul li::before {
-            color: #93c5fd; /* blue-300 */
+        html.dark .card ul li::before {
+            color: #60a5fa; /* blue-400 - Icon list item */
         }
-        body.dark .testimonial-card {
-            background-color: #374151; /* neutral-700 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: #d1d5db; /* neutral-300 */
-            border-left: 5px solid #60a5fa; /* blue-400 */
+        html.dark .testimonial-card {
+            background-color: #374151; /* neutral-700 - Nền testimonial */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Shadow đậm hơn */
+            color: #d1d5db; /* neutral-300 - Chữ testimonial */
+            border-left: 5px solid #60a5fa; /* blue-400 - Viền trái */
         }
-        body.dark .testimonial-author {
-            color: #e5e7eb; /* neutral-200 */
+        html.dark .testimonial-author {
+            color: #e5e7eb; /* neutral-200 - Tên tác giả testimonial */
         }
-        body.dark .bg-neutral-50 {
-            background-color: #1f2937; /* neutral-800 */
+        html.dark .bg-neutral-50 {
+            background-color: #111827; /* neutral-900 - Nền phần riêng biệt */
         }
-        body.dark .text-neutral-600 {
-            color: #9ca3af; /* gray-400 */
+        html.dark .text-neutral-600 {
+            color: #9ca3af; /* gray-400 - Chữ phụ */
         }
-        body.dark .text-neutral-700 {
-            color: #e5e7eb; /* neutral-200 */
+        html.dark .text-neutral-700 {
+            color: #e5e7eb; /* neutral-200 - Chữ chính */
         }
-        body.dark .bg-blue-50 {
-            background-color: #1e40af; /* blue-800 */
+        html.dark .bg-blue-50 {
+            background-color: #1e40af; /* blue-800 - Nền card xanh đậm */
         }
-        body.dark .border-blue-200 {
-            border-color: #2563eb; /* blue-600 */
+        html.dark .border-blue-200 {
+            border-color: #2563eb; /* blue-600 - Viền card xanh */
         }
-        body.dark .text-primary-dark {
-            color: #bfdbfe; /* blue-200 */
+        html.dark .text-primary-dark {
+            color: #bfdbfe; /* blue-200 - Màu chữ primary trong dark mode */
         }
-        body.dark .bg-emerald-50 {
-            background-color: #059669; /* secondary-dark */
+        html.dark .bg-emerald-50 {
+            background-color: #059669; /* secondary-dark - Nền card xanh ngọc đậm */
         }
-        body.dark .border-emerald-200 {
-            border-color: #10b981; /* secondary */
+        html.dark .border-emerald-200 {
+            border-color: #10b981; /* secondary - Viền card xanh ngọc */
         }
-        body.dark .text-secondary {
-            color: #a7f3d0; /* emerald-200 */
+        html.dark .text-secondary {
+            color: #a7f3d0; /* emerald-200 - Màu chữ secondary trong dark mode */
         }
-        body.dark .from-blue-50 {
+        /* Gradient cho dark mode - điều chỉnh để có tương phản tốt */
+        html.dark .from-blue-50 {
             background-image: linear-gradient(to right, #1e40af, #7e2d87); /* blue-800 to purple-700 */
         }
-        body.dark .to-purple-50 {
+        html.dark .to-purple-50 {
              background-image: linear-gradient(to right, #1e40af, #7e2d87);
         }
-        body.dark .text-primary {
-            color: #60a5fa; /* blue-400 */
+        html.dark .text-primary {
+            color: #60a5fa; /* blue-400 - Màu chữ primary trong dark mode */
         }
 
     </style>
@@ -176,93 +222,146 @@
     <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
 
     <main class="flex-grow">
+        <!-- Hero Section - Cập nhật nội dung về thiết kế website -->
         <section class="hero-rnd text-white py-16 md:py-24 text-center shadow-lg">
             <div class="container mx-auto px-4">
-                <h1 class="text-3xl md:text-5xl font-bold mb-4 hero-text-shadow" data-lang-key="rnd_heading_v2" data-aos="fade-up">
-                    Thiết kế Học liệu & Giải pháp EdTech theo yêu cầu
+                <h1 class="text-3xl md:text-5xl font-bold mb-4 hero-text-shadow" data-lang-key="web_design_heading" data-aos="fade-up">
+                    Thiết kế & Phát triển Website Chuyên nghiệp
                 </h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow" data-lang-key="rnd_intro_p1_v2" data-aos="fade-up" data-aos-delay="100">
-                    IVS Education, cùng với bộ phận công nghệ giáo dục IVS Celestech, cung cấp dịch vụ Nghiên cứu & Phát triển (R&D) toàn diện, từ việc xây dựng chương trình đào tạo, biên soạn học liệu đến thiết kế ứng dụng và Hệ thống quản lý học tập (LMS) chuyên biệt.
+                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow" data-lang-key="web_design_intro_p1" data-aos="fade-up" data-aos-delay="100">
+                    IVS Celestech cung cấp giải pháp thiết kế website toàn diện, từ phân tích nhu cầu, xây dựng giao diện người dùng tối ưu đến phát triển backend mạnh mẽ, đảm bảo website của bạn nổi bật và hiệu quả.
                 </p>
             </div>
         </section>
 
+        <!-- Giới thiệu - Cập nhật nội dung -->
         <section class="py-12 md:py-16">
             <div class="container mx-auto px-4">
-                 <div class="prose max-w-none lg:prose-lg mx-auto text-neutral-600 bg-white p-6 md:p-8 rounded-lg shadow-md text-left" data-aos="fade-up">
-                    <p data-lang-key="rnd_intro_p2_v2">
-                        Với đội ngũ chuyên gia R&D Giáo trình do <strong class="font-semibold text-primary">Ms. Salma Mahzoum</strong> dẫn dắt và các kỹ sư công nghệ tại IVS Celestech, chúng tôi kết hợp phương pháp sư phạm tiên tiến và công nghệ hiện đại để tạo ra các giải pháp giáo dục tối ưu, đáp ứng chính xác mục tiêu và phù hợp với đặc thù của từng đối tác, từ trường học, trung tâm đào tạo đến doanh nghiệp.
+                 <div class="prose max-w-full lg:max-w-none mx-auto text-neutral-600 bg-white p-6 md:p-8 rounded-lg shadow-md text-left" data-aos="fade-up">
+                    <p data-lang-key="web_design_intro_p2">
+                        Với đội ngũ chuyên gia thiết kế và phát triển web giàu kinh nghiệm, IVS Celestech cam kết mang đến những website không chỉ đẹp về mặt thẩm mỹ mà còn mạnh mẽ về tính năng, tối ưu hóa trải nghiệm người dùng và đạt hiệu quả kinh doanh cao nhất cho đối tác.
                     </p>
                 </div>
             </div>
         </section>
 
+        <!-- Các Dịch vụ Cụ thể - Cập nhật nội dung cho dịch vụ thiết kế website -->
         <section class="section-spacing">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-8 text-center" data-lang-key="rnd_specific_services_heading_v2" data-aos="fade-up">Các Dịch vụ Cụ thể</h2>
+                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-8 text-center" data-lang-key="web_design_specific_services_heading" data-aos="fade-up">Các Dịch vụ Cụ thể</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                    <div class="card" data-aos="fade-right" data-aos-delay="100">
-                        <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-primary" data-lang-key="rnd_curriculum_design_subheading">Thiết kế Học liệu & Chương trình Đào tạo</h3>
-                        <p class="mb-4 text-sm text-neutral-600 flex-grow" data-lang-key="rnd_cd_desc">Xây dựng lộ trình học tập và tài liệu giảng dạy chất lượng cao, bám sát mục tiêu và đối tượng người học.</p>
-                        <ul class="space-y-2 text-sm text-neutral-600">
-                            <li data-lang-key="rnd_cd_item1">Phân tích chuyên sâu nhu cầu và mục tiêu đào tạo của đối tác.</li>
-                            <li data-lang-key="rnd_cd_item2">Thiết kế khung chương trình chi tiết, chuẩn đầu ra rõ ràng.</li>
-                            <li data-lang-key="rnd_cd_item3">Biên soạn nội dung giáo trình, bài giảng, kịch bản video/audio.</li>
-                            <li data-lang-key="rnd_cd_item4">Phát triển học liệu đa phương tiện: slide, infographic, video, bài tập tương tác.</li>
-                            <li data-lang-key="rnd_cd_item5">Xây dựng hệ thống kiểm tra, đánh giá năng lực người học đa dạng.</li>
-                        </ul>
+                    <div class="card p-6 rounded-lg shadow-md flex flex-col" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-primary" data-lang-key="ui_ux_design_subheading">Thiết kế Giao diện & Trải nghiệm Người dùng (UI/UX)</h3>
+                        <p class="mb-4 text-sm text-neutral-600 flex-grow" data-lang-key="ui_ux_desc">Tạo ra giao diện trực quan, đẹp mắt và đảm bảo hành trình tương tác liền mạch cho người dùng website của bạn.</p>
+                        <ul class="space-y-2 text-sm text-neutral-600 list-none pl-0">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary text-sm mt-1 mr-2"></i><span data-lang-key="ui_ux_item1">Nghiên cứu người dùng và phân tích đối thủ cạnh tranh.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary text-sm mt-1 mr-2"></i><span data-lang-key="ui_ux_item2">Thiết kế wireframe, mockup và prototype tương tác.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary text-sm mt-1 mr-2"></i><span data-lang-key="ui_ux_item3">Thiết kế giao diện người dùng (UI) tối ưu theo thương hiệu.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary text-sm mt-1 mr-2"></i><span data-lang-key="ui_ux_item4">Đảm bảo trải nghiệm người dùng (UX) mượt mà trên mọi thiết bị.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary text-sm mt-1 mr-2"></i><span data-lang-key="ui_ux_item5">Kiểm thử khả năng sử dụng và thu thập phản hồi.</span></li>
+                         </ul>
                     </div>
 
-                    <div class="card" data-aos="fade-left" data-aos-delay="100">
-                         <h3 class="text-xl lg:text-2xl font-semibold text-secondary mb-4" data-lang-key="rnd_edtech_dev_subheading">Phát triển Giải pháp Công nghệ Giáo dục (EdTech)</h3>
-                         <p class="mb-4 text-sm text-neutral-600 flex-grow" data-lang-key="rnd_ed_desc">Cung cấp các nền tảng và ứng dụng công nghệ hỗ trợ hiệu quả cho việc dạy và học, quản lý đào tạo.</p>
-                         <ul class="space-y-2 text-sm text-neutral-600">
-                             <li data-lang-key="rnd_ed_item1">Thiết kế và phát triển Hệ thống Quản lý Học tập (LMS) tùy chỉnh.</li>
-                             <li data-lang-key="rnd_ed_item2">Xây dựng ứng dụng học tập di động (Mobile Learning Apps) đa nền tảng.</li>
-                             <li data-lang-key="rnd_ed_item3">Số hóa học liệu và tích hợp nội dung lên các nền tảng E-learning, LMS.</li>
-                             <li data-lang-key="rnd_ed_item4">Tư vấn và triển khai ứng dụng AI, VR/AR trong giáo dục (thông qua IVS Celestech).</li>
-                             <li data-lang-key="rnd_ed_item5">Giải pháp website chuyên biệt cho cơ sở giáo dục (trường học, trung tâm).</li>
+                    <div class="card p-6 rounded-lg shadow-md flex flex-col" data-aos="fade-left" data-aos-delay="100">
+                         <h3 class="text-xl lg:text-2xl font-semibold text-secondary mb-4" data-lang-key="web_dev_subheading">Phát triển Website & Ứng dụng Web</h3>
+                         <p class="mb-4 text-sm text-neutral-600 flex-grow" data-lang-key="web_dev_desc">Xây dựng website và ứng dụng web chức năng, bảo mật, và có khả năng mở rộng để đáp ứng mục tiêu của bạn.</p>
+                         <ul class="space-y-2 text-sm text-neutral-600 list-none pl-0">
+                             <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_dev_item1">Phát triển website giới thiệu, thương mại điện tử, cổng thông tin.</span></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_dev_item2">Tích hợp hệ thống quản lý nội dung (CMS) như WordPress, Strapi.</span></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_dev_item3">Xây dựng ứng dụng web tùy chỉnh (React, Angular, Vue).</span></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_dev_item4">Tối ưu hóa tốc độ tải trang (Page Speed Optimization) và SEO cơ bản.</span></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_dev_item5">Bảo trì, nâng cấp và hỗ trợ kỹ thuật liên tục.</span></li>
                          </ul>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Quy trình và Lợi ích - Cập nhật nội dung cho phù hợp -->
         <section class="py-12 md:py-16 bg-neutral-50 section-spacing">
             <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                 <div class="card bg-blue-50 border border-blue-200 p-6" data-aos="fade-up" data-aos-delay="100">
-                     <h3 class="text-xl font-semibold text-primary-dark mb-3" data-lang-key="rnd_process_heading">Quy trình Hợp tác Chuyên nghiệp</h3>
-                     <p class="text-sm text-neutral-600 leading-relaxed" data-lang-key="rnd_process_p1">Chúng tôi làm việc chặt chẽ với đối tác qua các bước: Khảo sát & Phân tích <i class="fas fa-arrow-right text-xs mx-1"></i> Đề xuất Giải pháp <i class="fas fa-arrow-right text-xs mx-1"></i> Thiết kế & Phát triển <i class="fas fa-arrow-right text-xs mx-1"></i> Thử nghiệm & Phản hồi <i class="fas fa-arrow-right text-xs mx-1"></i> Triển khai & Đào tạo <i class="fas fa-arrow-right text-xs mx-1"></i> Bảo trì & Nâng cấp, đảm bảo sản phẩm cuối cùng đáp ứng đúng kỳ vọng.</p>
+                 <div class="card bg-blue-50 border border-blue-200 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                     <h3 class="text-xl font-semibold text-primary-dark mb-3" data-lang-key="web_design_process_heading">Quy trình Phát triển Website Chuyên nghiệp</h3>
+                     <p class="text-sm text-neutral-600 leading-relaxed" data-lang-key="web_design_process_p1">Chúng tôi làm việc chặt chẽ với đối tác qua các bước: Khảo sát & Phân tích <i class="fas fa-arrow-right text-xs mx-1"></i> Thiết kế UI/UX <i class="fas fa-arrow-right text-xs mx-1"></i> Phát triển <i class="fas fa-arrow-right text-xs mx-1"></i> Kiểm thử & Tối ưu <i class="fas fa-arrow-right text-xs mx-1"></i> Triển khai & Hướng dẫn <i class="fas fa-arrow-right text-xs mx-1"></i> Bảo trì & Hỗ trợ, đảm bảo sản phẩm cuối cùng đáp ứng đúng kỳ vọng.</p>
                  </div>
-                 <div class="card bg-emerald-50 border border-emerald-200 p-6" data-aos="fade-up" data-aos-delay="200">
-                     <h3 class="text-xl font-semibold text-secondary mb-3" data-lang-key="rnd_benefits_heading">Lợi ích cho Đối tác</h3>
-                     <ul class="list-none space-y-1 text-sm text-neutral-600">
-                         <li data-lang-key="rnd_benefit_item1">Sản phẩm được "may đo" theo đúng nhu cầu đặc thù.</li>
-                         <li data-lang-key="rnd_benefit_item2">Chất lượng chuyên môn cao, cập nhật xu hướng mới nhất.</li>
-                         <li data-lang-key="rnd_benefit_item3">Tích hợp công nghệ hiện đại, nâng cao trải nghiệm học tập.</li>
-                         <li data-lang-key="rnd_benefit_item4">Tiết kiệm thời gian và nguồn lực tự phát triển.</li>
-                         <li data-lang-key="rnd_benefit_item5">Hỗ trợ kỹ thuật và đào tạo sử dụng hiệu quả.</li>
+                 <div class="card bg-emerald-50 border border-emerald-200 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                     <h3 class="text-xl font-semibold text-secondary mb-3" data-lang-key="web_design_benefits_heading">Lợi ích khi Hợp tác với IVS Celestech</h3>
+                     <ul class="list-none space-y-1 text-sm text-neutral-600 pl-0">
+                         <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_design_benefit_item1">Website độc đáo, phản ánh đúng thương hiệu.</span></li>
+                         <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_design_benefit_item2">Tối ưu hóa trải nghiệm người dùng (UX) và hiệu suất.</span></li>
+                         <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_design_benefit_item3">Thiết kế responsive, tương thích mọi thiết bị.</span></li>
+                         <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_design_benefit_item4">Hỗ trợ kỹ thuật chuyên nghiệp và bảo mật.</span></li>
+                         <li class="flex items-start"><i class="fas fa-check-circle text-secondary text-sm mt-1 mr-2"></i><span data-lang-key="web_design_benefit_item5">Tăng cường khả năng tiếp cận khách hàng và doanh số.</span></li>
                      </ul>
                  </div>
             </div>
         </section>
 
+        <!-- Testimonial - Cập nhật nội dung -->
         <section class="py-12 md:py-16 bg-white section-spacing">
-            <div class="container mx-auto px-4 max-w-3xl">
-                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-8 text-center" data-aos="fade-up" data-lang-key="rnd_testimonial_heading">Đối tác nói gì về chúng tôi</h2>
-                <div class="testimonial-card" data-aos="zoom-in">
-                    <p data-lang-key="rnd_testimonial_text_1">"IVS Education đã giúp chúng tôi xây dựng chương trình STEAM độc đáo và hiệu quả, thu hút đông đảo học viên. Đội ngũ chuyên nghiệp và tận tâm!"</p>
-                    <span class="testimonial-author" data-lang-key="rnd_testimonial_author_1">- Đại diện Trường Mầm non ABC</span>
+            <div class="container mx-auto px-4 max-w-full md:max-w-3xl">
+                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-8 text-center" data-aos="fade-up" data-lang-key="web_design_testimonial_heading">Khách hàng nói gì về chúng tôi</h2>
+                <div class="testimonial-card p-6 md:p-8 rounded-lg shadow-md" data-aos="zoom-in">
+                    <p class="mb-4 text-base md:text-lg italic" data-lang-key="web_design_testimonial_text">"IVS Celestech đã giúp chúng tôi xây dựng một website thương mại điện tử tuyệt vời, với giao diện hiện đại và tính năng mượt mà. Doanh số của chúng tôi đã tăng đáng kể!"</p>
+                    <span class="testimonial-author block text-right text-sm md:text-base font-semibold" data-lang-key="web_design_testimonial_author">- CEO Công ty TNHH XYZ</span>
                 </div>
             </div>
         </section>
         
+        <!-- NEW SECTION: Giới thiệu website KhaDock.com với nhiều ảnh -->
+        <section class="py-12 md:py-16 bg-neutral-50 section-spacing">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-8" data-aos="fade-up">
+                    Dự án Nổi bật: KhaDock.com
+                </h2>
+                <div class="max-w-5xl mx-auto">
+                    <p class="text-base md:text-lg text-neutral-600 mb-6" data-aos="fade-up" data-aos-delay="100">
+                        IVS Celestech tự hào là đơn vị thiết kế và phát triển website <strong class="text-primary">KhaDock.com</strong>, một nền tảng thương mại điện tử chuyên nghiệp, mang đến trải nghiệm mua sắm trực tuyến tối ưu cho khách hàng. Dự án này là minh chứng cho năng lực của chúng tôi trong việc xây dựng các giải pháp website tùy chỉnh, đáp ứng yêu cầu khắt khe về UI/UX, hiệu suất và khả năng mở rộng.
+                    </p>
+                    
+                    <!-- Grid hiển thị các hình ảnh -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <img src="/images/pages/website/KhaDock.com/khadock-home.png" 
+                             alt="Giao diện trang chủ KhaDock.com" 
+                             class="w-full h-auto rounded-lg shadow-xl" 
+                             data-aos="zoom-in" data-aos-delay="200"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x225/374151/d1d5db?text=KhaDock.com+Home';">
+                        
+                        <img src="/images/pages/website/KhaDock.com/khadock-design.jpg" 
+                             alt="Màn hình thiết kế website KhaDock.com" 
+                             class="w-full h-auto rounded-lg shadow-xl" 
+                             data-aos="zoom-in" data-aos-delay="300"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x225/374151/d1d5db?text=KhaDock.com+Design';">
+
+                        <img src="/images/pages/website/KhaDock.com/khadock-services.jpg" 
+                             alt="Giao diện các dịch vụ trên KhaDock.com" 
+                             class="w-full h-auto rounded-lg shadow-xl" 
+                             data-aos="zoom-in" data-aos-delay="400"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x225/374151/d1d5db?text=KhaDock.com+Services';">
+
+                        <img src="/images/pages/website/KhaDock.com/khadock-projects.jpg" 
+                             alt="Giao diện quản lý dự án trên KhaDock.com" 
+                             class="w-full h-auto rounded-lg shadow-xl" 
+                             data-aos="zoom-in" data-aos-delay="500"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x225/374151/d1d5db?text=KhaDock.com+Projects';">
+
+                        <img src="/images/pages/website/KhaDock.com/khadock-contact.jpg" 
+                             alt="Giao diện trang liên hệ KhaDock.com" 
+                             class="w-full h-auto rounded-lg shadow-xl" 
+                             data-aos="zoom-in" data-aos-delay="600"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x225/374151/d1d5db?text=KhaDock.com+Contact';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section - Cập nhật nội dung -->
         <section class="text-center py-12 md:py-16 bg-gradient-to-r from-blue-50 to-purple-50 section-spacing" data-aos="fade-up">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-4" data-lang-key="rnd_cta_heading_v2">Sẵn sàng Nâng tầm Chương trình Đào tạo của Bạn?</h2>
-                <p class="text-neutral-600 mb-8 max-w-xl mx-auto text-base md:text-lg" data-lang-key="rnd_contact_cta_v2">
-                    Hãy để đội ngũ chuyên gia của IVS Education và IVS Celestech giúp bạn xây dựng những học liệu và giải pháp công nghệ giáo dục đột phá. Liên hệ với chúng tôi ngay hôm nay!
+                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-4" data-lang-key="web_design_cta_heading">Bạn đã sẵn sàng để có một Website đột phá?</h2>
+                <p class="text-neutral-600 mb-8 max-w-xl mx-auto text-base md:text-lg" data-lang-key="web_design_contact_cta">
+                    Hãy để IVS Celestech biến ý tưởng website của bạn thành hiện thực với thiết kế chuyên nghiệp và công nghệ tiên tiến. Liên hệ với chúng tôi ngay hôm nay!
                 </p>
                 <a href="/contact.html" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-lang-key="menu_contact" data-aos="zoom-in" data-aos-delay="100">
                     Liên hệ Tư vấn <i class="fas fa-arrow-right ml-2"></i>
@@ -277,11 +376,12 @@
 
     <!-- Nút chuyển đổi chế độ sáng/tối -->
     <button id="darkModeToggle"
-            class="fixed bottom-20 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            class="fixed bottom-20 right-5 z-[90] flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Chuyển đổi chế độ sáng/tối">
         <i class="fas fa-sun text-lg md:text-xl" aria-hidden="true"></i> <!-- Icon mặt trời mặc định cho chế độ tối -->
     </button>
 
+    <!-- Nút cuộn lên đầu trang -->
     <button id="scrollToTopBtn"
             class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Cuộn lên đầu trang">
@@ -292,6 +392,7 @@
     <script src="/js/language.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      // Khởi tạo AOS (Animate On Scroll)
       AOS.init({
         offset: 100, 
         duration: 700,
@@ -301,9 +402,11 @@
         anchorPlacement: 'top-bottom',
       });
 
+      // Logic cho nút cuộn lên đầu trang
       const scrollToTopBtn = document.getElementById('scrollToTopBtn');
       if (scrollToTopBtn) {
           window.addEventListener('scroll', () => {
+              // Hiển thị nút khi cuộn xuống 300px
               if (window.pageYOffset > 300) {
                   scrollToTopBtn.classList.remove('hidden');
                   scrollToTopBtn.classList.add('flex');
@@ -311,14 +414,16 @@
                   scrollToTopBtn.classList.remove('flex');
                   scrollToTopBtn.classList.add('hidden');
               }
-          }, { passive: true });
+          }, { passive: true }); // Sử dụng passive true để cải thiện hiệu suất cuộn
 
+          // Xử lý sự kiện click để cuộn mượt về đầu trang
           scrollToTopBtn.addEventListener('click', () => {
               window.scrollTo({
                   top: 0,
                   behavior: 'smooth'
               });
           });
+          // Đảm bảo nút ẩn khi tải trang nếu đang ở đầu trang
           if (window.pageYOffset <= 300) {
             scrollToTopBtn.classList.add('hidden');
           }
@@ -329,6 +434,7 @@
       const htmlElement = document.documentElement; // Thẻ <html>
 
       // Đặt mặc định là 'dark' nếu không có trong localStorage, hoặc sử dụng giá trị đã lưu
+      // Đảm bảo class 'dark' hoặc 'light' được thêm vào thẻ html
       const currentTheme = localStorage.getItem('theme') || 'dark'; 
       htmlElement.classList.add(currentTheme);
 
@@ -344,14 +450,17 @@
           }
       }
 
-      updateDarkModeIcon(); // Gọi lần đầu để thiết lập icon đúng
+      updateDarkModeIcon(); // Gọi lần đầu để thiết lập icon đúng khi tải trang
 
+      // Xử lý sự kiện click nút chuyển đổi chế độ
       darkModeToggle.addEventListener('click', () => {
           if (htmlElement.classList.contains('light')) {
+              // Chuyển từ sáng sang tối
               htmlElement.classList.remove('light');
               htmlElement.classList.add('dark');
               localStorage.setItem('theme', 'dark');
           } else {
+              // Chuyển từ tối sang sáng
               htmlElement.classList.remove('dark');
               htmlElement.classList.add('light');
               localStorage.setItem('theme', 'light');
