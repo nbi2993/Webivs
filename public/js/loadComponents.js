@@ -265,6 +265,7 @@ const IVSHeaderController = {
         }
         if (show) {
             this.mobilePanel.classList.remove('hidden');
+            document.body.classList.add('menu-open'); // Chặn scroll nền khi mở menu
             setTimeout(() => {
                 this.mobilePanel.classList.remove('opacity-0');
                 this.mobileMenuContainer.classList.remove('translate-x-full');
@@ -274,6 +275,7 @@ const IVSHeaderController = {
             this.mobileMenuContainer.classList.add('translate-x-full');
             setTimeout(() => {
                 this.mobilePanel.classList.add('hidden');
+                document.body.classList.remove('menu-open'); // Bỏ chặn scroll khi đóng menu
             }, 300);
         }
     },

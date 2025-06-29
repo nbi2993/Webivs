@@ -348,3 +348,88 @@ main {
         display: none;
     }
 }
+
+/* ================= IVS MOBILE MENU FIX & OPTIMIZE (2025-06-30) ================= */
+#ivs-mobile-menu-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    background: transparent;
+    transition: opacity var(--transition-base) var(--ease-out);
+    opacity: 1;
+    visibility: visible;
+}
+#ivs-mobile-menu-panel.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+#ivs-mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    transition: opacity var(--transition-base) var(--ease-out);
+    opacity: 0;
+    pointer-events: none;
+}
+#ivs-mobile-menu-panel:not(.hidden) #ivs-mobile-menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+#ivs-mobile-menu-container {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 100%;
+    background: var(--ivs-bg-medium, #1f2937);
+    box-shadow: -2px 0 16px rgba(0,0,0,0.18);
+    transform: translateX(100%);
+    transition: transform var(--transition-base) cubic-bezier(0.4,0,0.2,1);
+    will-change: transform, opacity;
+    display: flex;
+    flex-direction: column;
+}
+#ivs-mobile-menu-panel:not(.hidden) #ivs-mobile-menu-container {
+    transform: translateX(0);
+}
+
+/* Ensure hamburger button always visible on mobile */
+#mobile-menu-open-btn {
+    display: inline-flex !important;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 767px) {
+    nav[role="navigation"], .desktop-nav-link, .desktop-dropdown-container {
+        display: none !important;
+    }
+}
+
+/* Mobile submenu animation */
+.mobile-submenu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow) ease-in-out;
+    padding-left: 1rem;
+}
+.mobile-submenu-toggle[aria-expanded="true"] + .mobile-submenu-content {
+    max-height: 800px;
+}
+
+/* Utility: prevent scroll when menu open */
+body.menu-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* Fallback for Tailwind JIT: ensure these classes are not purged */
+/* purgecss start ignore */
+.translate-x-full {}
+.opacity-0 {}
+.opacity-100 {}
+/* purgecss end ignore */
+
+/* ================= END IVS MOBILE MENU FIX ================= */
