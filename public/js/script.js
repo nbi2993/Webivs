@@ -167,6 +167,11 @@ window.initializeFooter = initializeFooter;
  * @author IVS-Technical-Team
  */
 
+// Ensure global language system compatibility for header
+if (!window.system) {
+    window.system = window.langSystem;
+}
+
 // Encapsulate all header logic in a single object to avoid global scope pollution.
 const IVSHeader = {
     // State properties
@@ -329,16 +334,13 @@ const IVSHeader = {
      * @param {string} lang - The language code ('vi' or 'en').
      */
     setLanguage(lang) {
-        // This is the functional hook. It calls the method from language.js
-        if (window.system && typeof window.system.setLanguage === 'function') {
-            window.system.setLanguage(lang);
+        // Use the correct language system API
+        if (window.langSystem && typeof window.langSystem.setLanguage === 'function') {
+            window.langSystem.setLanguage(lang);
         } else {
-            console.warn('[IVSHeader] Language system (window.system.setLanguage) not found.');
+            console.warn('[IVSHeader] Language system (window.langSystem.setLanguage) not found.');
         }
-
         this.updateLanguageDisplay(lang);
-        
-        // Close any open menus
         if (this.activeDesktopDropdown) this.toggleDesktopDropdown(this.activeDesktopDropdown, false);
         if (this.isMobileMenuOpen) this.toggleMobileMenu(false);
     },
