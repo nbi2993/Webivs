@@ -1,7 +1,7 @@
 /**
  * @fileoverview This script manages all Header and Mobile Menu interactions.
  * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.4 - Language toggle moved to Bottom Navigation, added confirmation message.
+ * @version 1.5 - Re-enabled language toggle on header, refined mobile menu logic.
  * @author IVS-Technical-Team
  */
 
@@ -27,8 +27,9 @@ const IVSHeaderController = {
         this.onScroll();
         // Initial setup for mobile menu panel state
         if (this.mobilePanel) {
-            this.mobilePanel.classList.add('translate-x-full'); // Ensure it starts hidden
-            this.mobilePanel.style.display = 'none'; // Ensure it's hidden from screen readers initially
+            // Ensure it starts hidden and off-screen
+            this.mobilePanel.classList.add('hidden', 'opacity-0');
+            this.mobileMenuContainer.classList.add('translate-x-full');
         }
         window.componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
     },
@@ -41,15 +42,16 @@ const IVSHeaderController = {
         this.mobileBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
         this.mobileMenuContainer = document.getElementById('ivs-mobile-menu-container'); // Added for slide effect
         this.bottomNavMenuBtn = document.getElementById('bottom-nav-menu-btn');
-        // New: Language toggle button on bottom nav
-        this.bottomNavLangToggleBtn = document.getElementById('bottom-nav-lang-toggle-btn'); 
-        // New: Language confirmation message element
+        // Language buttons on desktop header
+        this.langToggleButtons = document.querySelectorAll('.lang-toggle-btn'); 
+        // Language confirmation message element
         this.langConfirmMessage = document.getElementById('lang-confirm-message'); 
         this.submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
         this.navLinks = document.querySelectorAll('a.desktop-nav-link, .dropdown-item, #ivs-mobile-main-nav a, a.bottom-nav-item');
 
         window.componentLog(`IVSHeaderController: Header: ${!!this.header}, Mobile Panel: ${!!this.mobilePanel}, Open Btn: ${!!this.mobileOpenBtn}, Close Btn: ${!!this.mobileCloseBtn}, Backdrop: ${!!this.mobileBackdrop}, Mobile Menu Container: ${!!this.mobileMenuContainer}`, 'info');
-        window.componentLog(`IVSHeaderController: Bottom Nav Menu Btn: ${!!this.bottomNavMenuBtn}, Bottom Nav Lang Toggle Btn: ${!!this.bottomNavLangToggleBtn}`, 'info');
+        window.componentLog(`IVSHeaderController: Bottom Nav Menu Btn: ${!!this.bottomNavMenuBtn}`, 'info');
+        window.componentLog(`IVSHeaderController: Language Toggle Buttons count: ${this.langToggleButtons.length}`, 'info');
         window.componentLog(`IVSHeaderController: Language Confirm Message: ${!!this.langConfirmMessage}`, 'info');
         window.componentLog(`IVSHeaderController: Submenu Toggles count: ${this.submenuToggles.length}`, 'info');
     },
@@ -60,6 +62,7 @@ const IVSHeaderController = {
         window.addEventListener('scroll', window.debounce(() => this.onScroll(), 50), { passive: true });
         window.componentLog("IVSHeaderController: Đã gắn sự kiện Scroll.");
 
+        // Mobile Menu Toggles
         if (this.mobileOpenBtn) {
             this.mobileOpenBtn.addEventListener('click', () => this.toggleMobileMenu(true));
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-open-btn.");
@@ -78,7 +81,7 @@ const IVSHeaderController = {
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.mobilePanel?.classList.contains('is-open')) {
+            if (e.key === 'Escape' && !this.mobilePanel.classList.contains('hidden')) { // Check if not hidden
                 this.toggleMobileMenu(false);
             }
         });
@@ -89,13 +92,17 @@ const IVSHeaderController = {
             window.componentLog(`IVSHeaderController: Đã gắn sự kiện click cho Submenu Toggle ${index}.`);
         });
 
-        // New: Event listener for the language toggle button on bottom nav
-        if (this.bottomNavLangToggleBtn) {
-            this.bottomNavLangToggleBtn.addEventListener('click', () => this.toggleOneTouchLanguage());
-            window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-lang-toggle-btn.");
-        }
+        // Re-adding Event listeners for language toggle buttons on desktop header
+        this.langToggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.dataset.lang;
+                if (lang) {
+                    this.setLanguage(lang);
+                }
+            });
+            window.componentLog(`IVSHeaderController: Đã gắn sự kiện click cho nút ngôn ngữ data-lang="${button.dataset.lang}".`);
+        });
 
-        // Removed event listener for desktop language options as they are no longer present
         window.componentLog("IVSHeaderController: Gắn kết sự kiện hoàn tất.", "info");
     },
 
@@ -105,21 +112,21 @@ const IVSHeaderController = {
             window.langSystem.setLanguage(lang); // Directly call the language system's setLanguage
             window.componentLog(`IVSHeaderController: Đã gọi window.langSystem.setLanguage('${lang}').`);
             this.showLangConfirmation(); // Show confirmation message
+            this.updateLanguageButtonStates(lang); // Update active state of buttons
         } else {
             window.componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.langSystem.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
         }
     },
 
-    toggleOneTouchLanguage() {
-        if (!window.langSystem) {
-            window.componentLog("IVSHeaderController: window.langSystem không khả dụng. Không thể chuyển đổi ngôn ngữ một chạm.", 'error');
-            return;
-        }
-        const currentLang = window.langSystem.currentLanguage;
-        // Toggle between 'vi' and 'en'
-        const nextLang = currentLang === 'en' ? 'vi' : 'en'; 
-        window.componentLog(`IVSHeaderController: Chuyển đổi ngôn ngữ một chạm: từ ${currentLang} sang ${nextLang}`);
-        this.setLanguage(nextLang);
+    // New function to update active state of language buttons
+    updateLanguageButtonStates(currentLang) {
+        this.langToggleButtons.forEach(button => {
+            if (button.dataset.lang === currentLang) {
+                button.classList.add('active-language');
+            } else {
+                button.classList.remove('active-language');
+            }
+        });
     },
 
     showLangConfirmation() {
@@ -132,12 +139,18 @@ const IVSHeaderController = {
             }
 
             // Apply Tailwind transition classes for smooth animation
-            this.langConfirmMessage.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+            this.langConfirmMessage.classList.remove('opacity-0', 'scale-90', 'pointer-events-none', 'hidden');
             this.langConfirmMessage.classList.add('opacity-100', 'scale-100');
 
             setTimeout(() => {
                 this.langConfirmMessage.classList.remove('opacity-100', 'scale-100');
-                this.langConfirmMessage.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                this.langConfirmMessage.classList.add('opacity-0', 'scale-90');
+                // Hide completely after transition for accessibility/clickability
+                this.langConfirmMessage.addEventListener('transitionend', () => {
+                    if (this.langConfirmMessage.classList.contains('opacity-0')) {
+                        this.langConfirmMessage.classList.add('hidden', 'pointer-events-none');
+                    }
+                }, { once: true });
             }, 1500); // Hide after 1.5 seconds
         }
     },
@@ -149,32 +162,41 @@ const IVSHeaderController = {
     },
 
     toggleMobileMenu(open) {
-        if (!this.mobilePanel || !this.mobileMenuContainer) {
-            window.componentLog("IVSHeaderController: Mobile panel hoặc container không tìm thấy. Không thể chuyển đổi menu.", 'warn');
+        if (!this.mobilePanel || !this.mobileMenuContainer || !this.mobileBackdrop) {
+            window.componentLog("IVSHeaderController: Mobile panel, container hoặc backdrop không tìm thấy. Không thể chuyển đổi menu.", 'warn');
             return;
         }
+
         if (open) {
-            this.mobilePanel.style.display = 'block'; // Show panel
-            setTimeout(() => { // Small delay to allow display to apply
-                this.mobilePanel.classList.add('is-open'); // Mark as open
-                this.mobilePanel.classList.remove('opacity-0'); // Show backdrop
-                this.mobileMenuContainer.classList.remove('translate-x-full'); // Slide in
-            }, 50);
+            // Show panel by removing 'hidden'
+            this.mobilePanel.classList.remove('hidden');
+            // Give browser a moment to apply 'display: block' before animating
+            requestAnimationFrame(() => {
+                this.mobilePanel.classList.add('is-open'); // For overall state (backdrop opacity)
+                this.mobileBackdrop.classList.remove('opacity-0'); // Show backdrop
+                this.mobileMenuContainer.classList.remove('translate-x-full'); // Slide in menu
+            });
             document.body.style.overflow = 'hidden'; // Prevent scrolling on main body
             this.mobilePanel.setAttribute('aria-hidden', 'false');
             this.mobileMenuContainer.focus(); // Focus the menu for accessibility
+            window.componentLog(`IVSHeaderController: Mobile menu mở.`);
         } else {
-            this.mobileMenuContainer.classList.add('translate-x-full'); // Slide out
-            this.mobilePanel.classList.add('opacity-0'); // Hide backdrop first
+            // Slide out menu and hide backdrop
+            this.mobileMenuContainer.classList.add('translate-x-full');
+            this.mobileBackdrop.classList.add('opacity-0');
+
+            // Listen for transition end on the main menu container to fully hide the panel
             this.mobileMenuContainer.addEventListener('transitionend', () => {
                 if (this.mobileMenuContainer.classList.contains('translate-x-full')) {
-                    this.mobilePanel.style.display = 'none'; // Hide completely after transition
+                    this.mobilePanel.classList.add('hidden'); // Fully hide panel
+                    this.mobilePanel.classList.remove('is-open'); // Remove open state
                 }
             }, { once: true });
+
             document.body.style.overflow = ''; // Restore scrolling
             this.mobilePanel.setAttribute('aria-hidden', 'true');
+            window.componentLog(`IVSHeaderController: Mobile menu đóng.`);
         }
-        window.componentLog(`IVSHeaderController: Mobile menu ${open ? 'mở' : 'đóng'}.`);
     },
 
     toggleSubmenu(toggle) {
