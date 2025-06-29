@@ -162,6 +162,47 @@ async function initializeLanguageSystem() {
     langLog(`Language system fully initialized. Current active language: '${window.langSystem.currentLanguage}'.`);
 }
 
+// Make changeLanguage available globally
+window.changeLanguage = async function(langCode) {
+    langLog(`Initiating language change to: ${langCode}`);
+    
+    if (!['en', 'vi'].includes(langCode)) {
+        langLog(`Invalid language code: ${langCode}`, 'error');
+        return;
+    }
+
+    try {
+        // Fetch translations if not already loaded
+        await fetchTranslations(langCode);
+        
+        // Update current language
+        window.langSystem.currentLanguage = langCode;
+        
+        // Save preference
+        localStorage.setItem(window.langSystem.languageStorageKey, langCode);
+        
+        // Update all elements with data-lang-key
+        document.querySelectorAll('[data-lang-key]').forEach(element => {
+            const key = element.getAttribute('data-lang-key');
+            const translation = window.langSystem.translations[langCode][key];
+            
+            if (translation) {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = translation;
+                } else {
+                    element.textContent = translation;
+                }
+            }
+        });
+
+        langLog(`Successfully changed language to: ${langCode}`);
+        return true;
+    } catch (error) {
+        langLog(`Error changing language: ${error.message}`, 'error');
+        throw error;
+    }
+}
+
 // 5. SCRIPT EXECUTION
 // The script will now self-initialize once the DOM is ready.
 if (document.readyState === 'loading') {

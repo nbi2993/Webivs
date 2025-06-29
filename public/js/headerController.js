@@ -107,14 +107,31 @@ const IVSHeaderController = {
     },
 
     setLanguage(lang) {
-        window.componentLog(`IVSHeaderController: Yêu cầu đặt ngôn ngữ thành: ${lang}`);
-        if (window.langSystem && typeof window.langSystem.setLanguage === 'function') {
-            window.langSystem.setLanguage(lang); // Directly call the language system's setLanguage
-            window.componentLog(`IVSHeaderController: Đã gọi window.langSystem.setLanguage('${lang}').`);
-            this.showLangConfirmation(); // Show confirmation message
-            this.updateLanguageButtonStates(lang); // Update active state of buttons
+        window.componentLog(`IVSHeaderController: Attempting to switch language to ${lang}`, "info");
+        
+        // Call the global language change function
+        if (typeof window.changeLanguage === 'function') {
+            window.changeLanguage(lang)
+                .then(() => {
+                    // Update active state of language toggle buttons
+                    this.langToggleButtons.forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.lang === lang);
+                    });
+                    
+                    // Show confirmation message if it exists
+                    if (this.langConfirmMessage) {
+                        this.langConfirmMessage.textContent = lang === 'vi' ? 'Đã chuyển sang Tiếng Việt' : 'Switched to English';
+                        this.langConfirmMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            this.langConfirmMessage.classList.add('hidden');
+                        }, 2000);
+                    }
+                })
+                .catch(error => {
+                    window.componentLog(`IVSHeaderController: Error switching language: ${error}`, "error");
+                });
         } else {
-            window.componentLog('IVSHeaderController: Hệ thống ngôn ngữ (window.langSystem.setLanguage) không tìm thấy. Thay đổi ngôn ngữ có thể không hoạt động như mong đợi.', 'error');
+            window.componentLog("IVSHeaderController: window.changeLanguage function not found", "error");
         }
     },
 
@@ -161,41 +178,28 @@ const IVSHeaderController = {
         }
     },
 
-    toggleMobileMenu(open) {
-        if (!this.mobilePanel || !this.mobileMenuContainer || !this.mobileBackdrop) {
-            window.componentLog("IVSHeaderController: Mobile panel, container hoặc backdrop không tìm thấy. Không thể chuyển đổi menu.", 'warn');
+    toggleMobileMenu(show) {
+        if (!this.mobilePanel || !this.mobileMenuContainer) {
+            window.componentLog("IVSHeaderController: Missing mobile menu elements", "error");
             return;
         }
 
-        if (open) {
-            // Show panel by removing 'hidden'
+        if (show) {
+            // Show menu
             this.mobilePanel.classList.remove('hidden');
-            // Give browser a moment to apply 'display: block' before animating
-            requestAnimationFrame(() => {
-                this.mobilePanel.classList.add('is-open'); // For overall state (backdrop opacity)
-                this.mobileBackdrop.classList.remove('opacity-0'); // Show backdrop
-                this.mobileMenuContainer.classList.remove('translate-x-full'); // Slide in menu
-            });
-            document.body.style.overflow = 'hidden'; // Prevent scrolling on main body
-            this.mobilePanel.setAttribute('aria-hidden', 'false');
-            this.mobileMenuContainer.focus(); // Focus the menu for accessibility
-            window.componentLog(`IVSHeaderController: Mobile menu mở.`);
+            // Use setTimeout to trigger animation after display
+            setTimeout(() => {
+                this.mobilePanel.classList.remove('opacity-0');
+                this.mobileMenuContainer.classList.remove('translate-x-full');
+            }, 10);
         } else {
-            // Slide out menu and hide backdrop
+            // Hide menu
+            this.mobilePanel.classList.add('opacity-0');
             this.mobileMenuContainer.classList.add('translate-x-full');
-            this.mobileBackdrop.classList.add('opacity-0');
-
-            // Listen for transition end on the main menu container to fully hide the panel
-            this.mobileMenuContainer.addEventListener('transitionend', () => {
-                if (this.mobileMenuContainer.classList.contains('translate-x-full')) {
-                    this.mobilePanel.classList.add('hidden'); // Fully hide panel
-                    this.mobilePanel.classList.remove('is-open'); // Remove open state
-                }
-            }, { once: true });
-
-            document.body.style.overflow = ''; // Restore scrolling
-            this.mobilePanel.setAttribute('aria-hidden', 'true');
-            window.componentLog(`IVSHeaderController: Mobile menu đóng.`);
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                this.mobilePanel.classList.add('hidden');
+            }, 300); // Match this with your CSS transition duration
         }
     },
 

@@ -214,6 +214,15 @@ main {
 #ivs-mobile-menu-panel.is-open #ivs-mobile-menu-container { transform: translateX(0); }
 
 
+/* Mobile Menu Transitions */
+#ivs-mobile-menu-panel {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#ivs-mobile-menu-container {
+    transition: transform 0.3s ease-in-out;
+}
+
 /* --- Mobile & Desktop Navigation Links --- */
 .mobile-nav-link, .mobile-submenu-toggle {
     display: flex;
