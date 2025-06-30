@@ -343,31 +343,26 @@ const IVSFabController = {
 
         const sendMessage = async () => {
             const messageText = this.chatbotInput.value.trim();
-            if (messageText === '' || this.isGeneratingResponse) return; // Prevent multiple requests
+            if (messageText === '' || this.isGeneratingResponse) return;
 
-            this.isGeneratingResponse = true; // Set flag
+            this.isGeneratingResponse = true;
             addMessage(messageText, 'user');
             chatHistory.push({ role: "user", parts: [{ text: messageText }] });
             this.chatbotInput.value = '';
-            this.chatbotInput.disabled = true; // Disable input while generating
-            this.chatbotSendBtn.disabled = true; // Disable send button
-
-            addMessage('', 'ai', true); // Add typing indicator
-
+            this.chatbotInput.disabled = true;
+            this.chatbotSendBtn.disabled = true;
+            addMessage('', 'ai', true);
             try {
                 const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will provide this at runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
+                // GỌI API QUA FIREBASE FUNCTION THAY VÌ GỌI TRỰC TIẾP GEMINI
+                const apiUrl = "https://us-central1-ivsjsc-6362f.cloudfunctions.net/api/api/chat";
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
                 const result = await response.json();
-                removeTypingIndicator(); // Remove typing indicator once response is received
-
+                removeTypingIndicator();
                 if (result.candidates && result.candidates.length > 0 &&
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
@@ -380,14 +375,14 @@ const IVSFabController = {
                     window.componentLog("IVSFabController: Cấu trúc phản hồi AI không mong đợi hoặc nội dung bị thiếu.", 'error');
                 }
             } catch (error) {
-                removeTypingIndicator(); // Remove typing indicator on error
+                removeTypingIndicator();
                 addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng kiểm tra kết nối mạng của bạn.", "ai");
                 window.componentLog("IVSFabController: Lỗi khi gọi API Gemini: " + error.message, 'error');
             } finally {
-                this.isGeneratingResponse = false; // Reset flag
-                this.chatbotInput.disabled = false; // Enable input
-                this.chatbotSendBtn.disabled = false; // Enable send button
-                this.chatbotInput.focus(); // Focus input for next message
+                this.isGeneratingResponse = false;
+                this.chatbotInput.disabled = false;
+                this.chatbotSendBtn.disabled = false;
+                this.chatbotInput.focus();
             }
         };
 
