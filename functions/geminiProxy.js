@@ -1,13 +1,26 @@
 const functions = require('firebase-functions');
-const fetch = require('node-fetch'); // Nếu chưa có, hãy cài đặt: npm install node-fetch
+const fetch = require('node-fetch');
 
-// Đặt API key Gemini của bạn ở biến môi trường (không hardcode)
-const GEMINI_API_KEY = functions.config().gemini.key;
+const GEMINI_API_KEY = functions.config().gemini && functions.config().gemini.key;
 
 exports.geminiProxy = functions.https.onRequest(async (req, res) => {
+  // CORS headers
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).send('');
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).send('Method Not Allowed');
   }
+
+  if (!GEMINI_API_KEY) {
+    return res.status(500).json({ error: 'Missing Gemini API Key in environment config.' });
+  }
+
   try {
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
     const response = await fetch(apiUrl, {
