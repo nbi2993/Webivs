@@ -5,28 +5,6 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "/api/**",
-        "function": "api"
-      },
-      {
-        "source": "/components/**",
-        "destination": "/components/**.html"
-      },
-      {
-        "source": "/Blogs/**",
-        "destination": "/Blogs/**.html"
-      },
-      {
-        "source": "/Pages/**",
-        "destination": "/Pages/**.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   },
   "functions": {
@@ -40,11 +18,11 @@
       "*.local"
     ],
     "private": true,
-    "region": "us-central1", 
-    "runtime": "nodejs20", 
-    "secrets": [        
-      "SERVICEACCOUNT_KEY_BASE64", 
-      "GEMINI_API_KEY"             
+    "region": "us-central1",
+    "runtime": "nodejs20",
+    "secrets": [
+      "SERVICEACCOUNT_KEY_BASE64",
+      "GEMINI_API_KEY"
     ]
   },
   "emulators": {
