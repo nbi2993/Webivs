@@ -350,7 +350,12 @@ const IVSHeader = {
      * @param {string} [currentLang] - The current language code.
      */
     updateLanguageDisplay(currentLang) {
-        const lang = currentLang || (window.system ? window.system.getCurrentLanguage() : 'vi');
+        let lang = 'vi';
+        if (currentLang) {
+            lang = currentLang;
+        } else if (window.system && typeof window.system.getCurrentLanguage === 'function') {
+            lang = window.system.getCurrentLanguage();
+        }
         const desktopLangDisplay = document.getElementById('current-lang-desktop');
         if (desktopLangDisplay) {
             desktopLangDisplay.textContent = lang.toUpperCase();
