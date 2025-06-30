@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVS KinderLink - Hệ thống Quản lý Mầm non</title>
+    
+    <!-- FIX: Added Favicon to resolve 404 error and improve branding -->
+    <link rel="icon" type="image/png" href="https://ivs.edu.vn/uploads/files/logo-ivs-website.png">
+
     <style>
         /* Toàn bộ CSS từ các phiên bản trước được giữ nguyên */
         body {
@@ -97,8 +101,7 @@
     // --- STATE & UI ---
     let currentUser = null;
     let idToken = null;
-    const ui = { /* ... UI elements ... */ }; // Assume UI elements are correctly grabbed
-
+    
     // --- AUTHENTICATION LOGIC ---
     onAuthStateChanged(auth, async (user) => {
         const loginScreen = document.getElementById('loginScreen');
@@ -108,10 +111,6 @@
             currentUser = user;
             idToken = await getIdToken(user);
             
-            // =================================================================
-            //  **CẬP NHẬT QUAN TRỌNG**
-            //  In ID Token ra Console để CEO có thể sao chép.
-            // =================================================================
             console.log("=====================================================");
             console.log("ID Token của CEO (sao chép toàn bộ dòng dưới):");
             console.log(idToken);
@@ -151,17 +150,12 @@
 
     // --- APP SETUP & RENDERING ---
     async function setupApp() {
-        // ... Logic to set up user info and render tabs ...
         document.getElementById('currentUserName').textContent = currentUser.email;
         document.getElementById('userAvatar').textContent = (currentUser.email.charAt(0) || 'A').toUpperCase();
         const roleNames = { principal: 'Hiệu trưởng', teacher: 'Giáo viên', parent: 'Phụ huynh' };
         document.getElementById('currentUserRole').textContent = roleNames[currentUser.role] || 'Không xác định';
-        
-        // ... The rest of the setup and rendering functions ...
     }
     
-    // ... Other functions like showTab, renderDashboard, etc. ...
-
 </script>
 </body>
 </html>
