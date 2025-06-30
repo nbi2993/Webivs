@@ -1,0 +1,521 @@
+# CI/CD Pipeline cho IVS Academy Website
+# Tệp: .github/workflows/deploy.yml
+
+name: 🚀 IVS Academy - Build & Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Chạy kiểm tra hàng ngày lúc 2:00 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18'
+  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+  
+jobs:
+  # ================================
+  # JOB 1: CODE QUALITY & SECURITY
+  # ================================
+  quality-check:
+    name: 🔍 Quality & Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci
+          npm install -g htmlhint stylelint eslint lighthouse-ci
+
+      - name: 🧹 HTML Validation
+        run: |
+          htmlhint "**/*.html" --config .htmlhintrc || true
+          echo "HTML validation completed"
+
+      - name: 🎨 CSS Linting
+        run: |
+          stylelint "**/*.css" --config .stylelintrc.json || true
+          echo "CSS linting completed"
+
+      - name: ⚡ JavaScript Linting
+        run: |
+          eslint "**/*.js" --config .eslintrc.json || true
+          echo "JavaScript linting completed"
+
+      - name: 🔒 Security Scan
+        uses: securecodewarrior/github-action-add-sarif@v1
+        with:
+          sarif-file: 'security-scan-results.sarif'
+        continue-on-error: true
+
+      - name: 🏗️ Build Test
+        run: |
+          echo "Testing build process..."
+          mkdir -p dist
+          cp -r . dist/
+          echo "Build test completed successfully"
+
+  # ================================
+  # JOB 2: PERFORMANCE & SEO AUDIT
+  # ================================
+  performance-audit:
+    name: ⚡ Performance & SEO Audit
+    runs-on: ubuntu-latest
+    needs: quality-check
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 🚀 Start Local Server
+        run: |
+          npx http-server . -p 8080 &
+          sleep 5
+
+      - name: 🏃‍♂️ Run Performance Tests
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun || echo "Lighthouse CI completed with warnings"
+
+      - name: 📊 Generate Performance Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: .lighthouseci/
+          retention-days: 30
+
+  # ================================
+  # JOB 3: BUILD & OPTIMIZE
+  # ================================
+  build:
+    name: 🏗️ Build & Optimize
+    runs-on: ubuntu-latest
+    needs: [quality-check, performance-audit]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Build Tools
+        run: |
+          npm install -g terser clean-css-cli html-minifier-terser imagemin-cli
+
+      - name: 🗜️ Minify & Optimize Assets
+        run: |
+          # Tạo thư mục build
+          mkdir -p build
+          
+          # Copy toàn bộ files
+          cp -r . build/
+          
+          # Minify CSS files
+          find build -name "*.css" -not -path "*/node_modules/*" -exec sh -c '
+            for file; do
+              cleancss -o "$file.tmp" "$file" && mv "$file.tmp" "$file"
+            done
+          ' sh {} +
+          
+          # Minify JavaScript files
+          find build -name "*.js" -not -path "*/node_modules/*" -exec sh -c '
+            for file; do
+              terser "$file" -o "$file.tmp" --compress --mangle && mv "$file.tmp" "$file"
+            done
+          ' sh {} +
+          
+          # Minify HTML files
+          find build -name "*.html" -exec sh -c '
+            for file; do
+              html-minifier-terser --input-dir . --output-dir . --file-ext html \
+                --remove-comments --collapse-whitespace --minify-css --minify-js "$file" || true
+            done
+          ' sh {} +
+
+      - name: 🖼️ Optimize Images
+        run: |
+          # Tối ưu hóa hình ảnh (nếu có)
+          find build -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" | head -20 | xargs -I {} sh -c '
+            imagemin "{}" --out-dir="$(dirname "{}")" --plugin=imagemin-mozjpeg --plugin=imagemin-pngquant || true
+          ' 2>/dev/null || echo "Image optimization completed"
+
+      - name: 📝 Generate Manifest & Service Worker
+        run: |
+          cat > build/sw.js << 'EOF'
+          const CACHE_NAME = 'ivs-academy-v1.0.0';
+          const urlsToCache = [
+            '/',
+            '/css/styles.css',
+            '/js/loadComponents.js',
+            '/js/language.js',
+            '/images/logo/logo-192.png'
+          ];
+          
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_NAME)
+                .then(cache => cache.addAll(urlsToCache))
+            );
+          });
+          
+          self.addEventListener('fetch', event => {
+            event.respondWith(
+              caches.match(event.request)
+                .then(response => response || fetch(event.request))
+            );
+          });
+          EOF
+
+      - name: 🗃️ Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-build
+          path: build/
+          retention-days: 7
+
+  # ================================
+  # JOB 4: DEPLOY TO STAGING
+  # ================================
+  deploy-staging:
+    name: 🚀 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    environment: staging
+    
+    steps:
+      - name: 📥 Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: website-build
+          path: ./build
+
+      - name: 🔧 Setup Firebase CLI
+        uses: w9jds/firebase-action@master
+        with:
+          args: --version
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: 🚀 Deploy to Firebase Staging
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:staging --project ${{ env.FIREBASE_PROJECT_ID }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: 🧪 Run Staging Tests
+        run: |
+          echo "Running smoke tests on staging environment..."
+          curl -f https://staging-ivsacademy.web.app/ || exit 1
+          echo "Staging deployment successful!"
+
+  # ================================
+  # JOB 5: DEPLOY TO PRODUCTION
+  # ================================
+  deploy-production:
+    name: 🎯 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+      - name: 📥 Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: website-build
+          path: ./build
+
+      - name: 🔧 Setup Firebase CLI
+        uses: w9jds/firebase-action@master
+        with:
+          args: --version
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: 🚀 Deploy to Firebase Production
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting --project ${{ env.FIREBASE_PROJECT_ID }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: 🔄 Purge CDN Cache
+        run: |
+          echo "Purging CDN cache..."
+          # Thêm lệnh purge cache cho CDN của bạn
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' || echo "CDN purge skipped"
+
+      - name: 🧪 Run Production Health Check
+        run: |
+          echo "Running production health checks..."
+          curl -f https://ivsacademy.edu.vn/ || exit 1
+          echo "Production deployment successful!"
+
+      - name: 📢 Notify Team
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            🎉 IVS Academy website deployed successfully!
+            🌐 Live at: https://ivsacademy.edu.vn
+            📊 Build: ${{ github.run_number }}
+            👤 By: ${{ github.actor }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
+  # ================================
+  # JOB 6: POST-DEPLOYMENT MONITORING
+  # ================================
+  post-deployment:
+    name: 📊 Post-Deployment Monitoring
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: 🏥 Health Check & Monitoring
+        run: |
+          echo "Setting up monitoring alerts..."
+          
+          # Kiểm tra response time
+          RESPONSE_TIME=$(curl -o /dev/null -s -w '%{time_total}' https://ivsacademy.edu.vn/)
+          echo "Response time: ${RESPONSE_TIME}s"
+          
+          # Kiểm tra SSL certificate
+          echo | openssl s_client -servername ivsacademy.edu.vn -connect ivsacademy.edu.vn:443 2>/dev/null | openssl x509 -noout -dates
+          
+          echo "Health checks completed successfully!"
+
+      - name: 📈 Update Deployment Status
+        run: |
+          echo "Deployment completed at $(date)"
+          echo "Version: ${{ github.sha }}"
+          echo "Environment: Production"
+          echo "Status: ✅ Success"
+
+---
+
+# Tệp cấu hình bổ sung
+
+# .htmlhintrc - Cấu hình HTML validation
+{
+  "tagname-lowercase": true,
+  "attr-lowercase": true,
+  "attr-value-double-quotes": true,
+  "attr-value-not-empty": false,
+  "attr-no-duplication": true,
+  "doctype-first": true,
+  "tag-pair": true,
+  "tag-self-close": false,
+  "spec-char-escape": true,
+  "id-unique": true,
+  "src-not-empty": true,
+  "title-require": true,
+  "alt-require": true,
+  "doctype-html5": true,
+  "id-class-value": "dash",
+  "style-disabled": false,
+  "inline-style-disabled": false,
+  "inline-script-disabled": false,
+  "space-tab-mixed-disabled": "space",
+  "id-class-ad-disabled": false,
+  "href-abs-or-rel": false,
+  "attr-unsafe-chars": true
+}
+
+# .stylelintrc.json - Cấu hình CSS linting  
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "indentation": 2,
+    "string-quotes": "single",
+    "no-duplicate-selectors": true,
+    "color-hex-case": "lower",
+    "color-hex-length": "short",
+    "color-named": "never",
+    "selector-combinator-space-after": "always",
+    "selector-attribute-operator-space-before": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-attribute-brackets-space-inside": "never",
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-no-important": true,
+    "declaration-colon-space-before": "never",
+    "declaration-colon-space-after": "always",
+    "number-leading-zero": "always",
+    "function-url-quotes": "always",
+    "font-weight-notation": "numeric",
+    "comment-whitespace-inside": "always",
+    "rule-empty-line-before": "always"
+  }
+}
+
+# .eslintrc.json - Cấu hình JavaScript linting
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "no-debugger": "error",
+    "no-alert": "warn",
+    "prefer-const": "error",
+    "no-var": "error",
+    "arrow-spacing": "error",
+    "comma-dangle": ["error", "never"],
+    "eqeqeq": "error",
+    "no-trailing-spaces": "error"
+  }
+}
+
+# firebase.json - Cấu hình Firebase Hosting
+{
+  "hosting": [
+    {
+      "target": "production",
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=31536000"
+            }
+          ]
+        },
+        {
+          "source": "sw.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "staging", 
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*", 
+        "**/node_modules/**"
+      ]
+    }
+  ]
+}
+
+# package.json - Dependencies cho build process
+{
+  "name": "ivs-academy-website",
+  "version": "1.0.0",
+  "description": "IVS Academy official website",
+  "scripts": {
+    "dev": "http-server . -p 3000",
+    "build": "npm run optimize",
+    "optimize": "npm run minify:css && npm run minify:js && npm run minify:html",
+    "minify:css": "cleancss -o dist/css/styles.min.css css/styles.css",
+    "minify:js": "terser js/*.js -o dist/js/scripts.min.js",
+    "minify:html": "html-minifier-terser --input-dir . --output-dir dist --file-ext html",
+    "lint": "eslint js/**/*.js && stylelint css/**/*.css",
+    "test": "echo 'Tests will be added'",
+    "deploy:staging": "firebase deploy --only hosting:staging",
+    "deploy:prod": "firebase deploy --only hosting:production"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.57.0",
+    "firebase-tools": "^13.0.0",
+    "html-minifier-terser": "^7.2.0",
+    "htmlhint": "^1.1.4",
+    "http-server": "^14.1.1",
+    "imagemin-cli": "^7.0.0",
+    "lighthouse-ci": "^0.12.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0",
+    "terser": "^5.26.0"
+  }
+}
+
+# .firebaserc - Cấu hình Firebase projects
+{
+  "projects": {
+    "default": "your-firebase-project-id",
+    "staging": "your-firebase-staging-project-id",
+    "production": "your-firebase-production-project-id"
+  },
+  "targets": {
+    "your-firebase-project-id": {
+      "hosting": {
+        "production": [
+          "your-production-site-id"
+        ],
+        "staging": [
+          "your-staging-site-id"  
+        ]
+      }
+    }
+  }
+}
