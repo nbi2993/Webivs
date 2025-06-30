@@ -2,7 +2,7 @@ function getCurrentLanguage() {
     return document.documentElement.lang || 'vi';
 }
 
-window.loadPosts = async function(containerId = 'news-container', jsonPath = 'posts.json') {
+window.loadPosts = async function(containerId = 'news-container', jsonPath = 'posts.json', limit = 6) {
     const container = document.getElementById(containerId);
     if (!container) {
         return;
@@ -18,6 +18,9 @@ window.loadPosts = async function(containerId = 'news-container', jsonPath = 'po
         let posts = await response.json();
 
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Lấy tối đa 'limit' tin đầu tiên
+        posts = posts.slice(0, limit);
 
         if (posts.length === 0) {
             container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 col-span-full text-center" data-lang-key="no_news_available">Không có tin tức nào để hiển thị.</p>`;
