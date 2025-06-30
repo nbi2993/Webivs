@@ -1,5 +1,5 @@
 // server.js (hoặc app.js)
-require('dotenv').config(); // Đọc biến môi trường từ file .env
+require('dotenv').config({ path: '../secrets/.env' });
 const admin = require('firebase-admin'); // Import Firebase Admin SDK
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -11,16 +11,16 @@ const PORT = process.env.PORT || 3000;
 // ====================================================================
 // KHỞI TẠO FIREBASE ADMIN SDK
 // ====================================================================
-// Đảm bảo tệp serviceAccountKey.json nằm cùng thư mục với server.js
+// Đảm bảo tệp serviceAccountKey.json nằm trong thư mục secrets
 try {
-    const serviceAccount = require('./serviceAccountKey.json');
+    const serviceAccount = require('../secrets/serviceAccountKey.json');
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
     console.log("[Firebase Admin] Firebase Admin SDK đã được khởi tạo thành công.");
 } catch (error) {
     console.error("[Firebase Admin] Lỗi khi khởi tạo Firebase Admin SDK:", error.message);
-    console.error("Vui lòng đảm bảo tệp 'serviceAccountKey.json' nằm đúng vị trí và có định dạng hợp lệ.");
+    console.error("Vui lòng đảm bảo tệp '../secrets/serviceAccountKey.json' nằm đúng vị trí và có định dạng hợp lệ.");
     process.exit(1); // Thoát ứng dụng nếu Admin SDK không khởi tạo được
 }
 
