@@ -376,7 +376,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, deleteDoc, onSnapshot, collection, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // DOM elements
         const el = {
@@ -991,27 +991,18 @@
         // Form submission handler
         el.teacherProfileForm?.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(el.teacherProfileForm);
-            const teacherData = {};
-            for (let [name, value] of formData.entries()) {
-                if (name === 'subjects') {
-                    // Store subjects as a comma-separated string, trimming spaces
-                    teacherData[name] = value.split(',').map(s => s.trim()).filter(s => s).join(', ');
-                } else if (name === 'experience') {
-                    teacherData[name] = parseFloat(value);
-                } else if (name !== 'teacherDocId') { // Exclude the hidden doc ID from the data
-                    teacherData[name] = value;
-                }
-            }
-            const docId = el.teacherDocIdInput.value || null; // Get the doc ID if editing
-
-            // Basic validation
-            if (!teacherData.fullName || !teacherData.email || !teacherData.phoneNumber || !teacherData.nationality || !teacherData.qualification || !teacherData.experience || !teacherData.subjects || !teacherData.bio) {
-                showAppModal("Lỗi nhập liệu", "Vui lòng điền đầy đủ tất cả các trường bắt buộc.", "warning");
-                return;
-            }
-
-            await saveTeacherProfile(teacherData, docId);
+            const teacherData = {
+                fullName: el.fullName.value.trim(),
+                email: el.email.value.trim(),
+                phoneNumber: el.phoneNumber.value.trim(),
+                nationality: el.nationality.value.trim(),
+                qualification: el.qualification.value.trim(),
+                experience: Number(el.experience.value),
+                subjects: el.subjects.value.trim(),
+                bio: el.bioTextarea.value.trim(),
+                availability: el.availability.value
+            };
+            await saveTeacherProfile(teacherData, el.teacherDocIdInput.value || null);
         });
 
         // Edit My Profile button handler
