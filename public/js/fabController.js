@@ -1,4 +1,4 @@
-// FILE: /js/fab-controller.js
+// FILE: /public/js/components/fab-controller.js
 // VERSION: 4.3 - Fully Self-Contained & Robust Component
 // DESCRIPTION: This component manages all FAB functionalities (Scroll, Share, Contact, Chatbot) independently. This is the single source of truth for FABs.
 
@@ -28,6 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
         cacheDOM() {
             this.dom.fabButtonsContainer = document.getElementById('fab-buttons-container');
             this.dom.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            // Sử dụng Optional Chaining (?) để tránh lỗi nếu fabButtonsContainer chưa được tìm thấy
             this.dom.buttonsWithSubmenu = this.dom.fabButtonsContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
             this.dom.chatbotOpenBtn = document.getElementById('chatbot-open-button');
             this.dom.chatbotContainer = document.getElementById('chatbot-container');
@@ -101,6 +102,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }));
 
             document.addEventListener('click', (e) => {
+                // Đóng submenu khi click ra ngoài, nhưng loại trừ các nút chính của FAB
                 if (!e.target.closest('#fab-buttons-container')) {
                     this.closeAllSubmenus();
                 }
@@ -113,13 +115,14 @@ window.addEventListener('DOMContentLoaded', () => {
         },
 
         closeAllSubmenus() {
+            // Đảm bảo fabButtonsContainer đã được cache trước khi sử dụng
             if (this.dom.fabButtonsContainer) { 
                 this.dom.fabButtonsContainer.querySelectorAll('.fab-submenu-panel').forEach(m => m.classList.remove('active'));
             }
         },
 
         toggleChatbot(forceOpen) {
-            if (!this.dom.chatbotContainer) return;
+            if (!this.dom.chatbotContainer) return; // Đảm bảo container tồn tại
 
             const open = typeof forceOpen === 'boolean' ? forceOpen : !this.state.isChatbotOpen;
             this.state.isChatbotOpen = open;
@@ -136,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
         },
 
         addMessage(text, sender, isTyping = false) {
-            if (!this.dom.chatbotMessages) return;
+            if (!this.dom.chatbotMessages) return; // Đảm bảo messages container tồn tại
 
             const messageWrapper = document.createElement('div');
             messageWrapper.className = `w-full flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
@@ -159,8 +162,13 @@ window.addEventListener('DOMContentLoaded', () => {
         },
 
         addWelcomeMessage() {
-            // Tin nhắn chào mừng đã có trong chatHistory mặc định và sẽ được hiển thị khi chatbot mở.
-            // Không cần thêm lại DOM ở đây để tránh trùng lặp.
+            // Đảm bảo tin nhắn chào mừng chỉ được thêm một lần khi khởi tạo
+            // và không bị trùng lặp nếu chatbot được mở/đóng lại mà không reset history.
+            // Tin nhắn đầu tiên đã có trong chatHistory mặc định.
+            if (this.state.chatHistory.length === 2 && this.state.chatHistory[1].role === 'model') {
+                 // Nếu tin nhắn chào mừng đã có trong history, không thêm lại DOM
+                 // Tin nhắn này sẽ được render khi chatbot mở lần đầu
+            }
         },
 
         setLoading(isLoading) {
@@ -207,7 +215,7 @@ window.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 this.removeTypingIndicator();
                 console.error("Error calling backend:", error);
-                this.addMessage("Xin lỗi, tôi đang gặp vấn đề kết nối. Vui lòng thử lại sau.", 'model');
+                this.addMessage("Xin lỗi, tôi đang gặp vấn đề kết nối. Vui lòng thử lại sau.", 'model'); // Dịch thông báo lỗi sang tiếng Việt
             } finally {
                 this.setLoading(false);
             }
@@ -217,6 +225,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // Khởi tạo controller sau khi DOM đã được tải
     IVSFabController.init();
 
-    // Giữ biến này ở global scope nếu cần truy cập từ các script khác
+    // Giữ biến này ở global scope nếu cần truy cập từ các script khác (ví dụ: loadComponents.js)
     window.IVSFabController = IVSFabController;
 });
