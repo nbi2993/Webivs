@@ -2,7 +2,7 @@
 <html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IVS Academy - Hệ Sinh Thái Giáo Dục Tương Lai</title>
 
     <!-- SEO Meta Tags -->
@@ -69,6 +69,33 @@
     <!-- Custom CSS for Effects -->
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        html, body { min-height: 100%; }
+        body { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        /* Cải thiện vùng chạm cho mobile */
+        .btn-explore, .tab-button, .fab-item, button, a { min-height: 44px; min-width: 44px; }
+        /* Đảm bảo các card, section co giãn tốt trên mobile */
+        .container, .main, section, .interactive-card, .digital-card { width: 100%; max-width: 100vw; box-sizing: border-box; }
+        .interactive-card, .digital-card { min-width: 0; }
+        /* Ẩn scrollbar ngang trên mobile */
+        html, body { overflow-x: hidden; }
+        /* Sửa lỗi video không full trên mobile */
+        video { object-fit: cover; width: 100vw; height: 100vh; }
+        /* Sửa lỗi sticky header/footer trên mobile */
+        header, footer { position: relative; z-index: 20; }
+        /* Sửa lỗi AOS trên mobile */
+        [data-aos] { will-change: transform, opacity; }
+        /* Sửa lỗi tap highlight trên iOS */
+        * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+        /* Sửa lỗi input zoom trên iOS */
+        input, select, textarea { font-size: 16px !important; }
+        /* Sửa lỗi nút FAB bị che khuất trên mobile */
+        #fab-container-placeholder { z-index: 50; position: fixed; bottom: 0; right: 0; left: 0; pointer-events: none; }
+        /* Sửa lỗi menu tab trên mobile */
+        .tab-button { width: 100%; text-align: center; }
+        @media (max-width: 640px) {
+            .tab-button { font-size: 1rem; padding: 0.75rem 0.5rem; }
+            .container, .main, section { padding-left: 0.5rem; padding-right: 0.5rem; }
+        }
         /* Base styles for mobile first */
         .btn-explore {
             display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: white;
@@ -114,7 +141,7 @@
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <video autoplay muted loop playsinline class="w-full h-full object-cover">
                     <source src="/videos/videowebdesign.mp4" type="video/mp4">
