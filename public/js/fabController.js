@@ -1,405 +1,222 @@
-/**
- * @fileoverview This script manages all Floating Action Button (FAB) and Chatbot functionalities.
- * It is designed to be loaded dynamically via loadComponents.js.
- * @version 1.2 - Combined FAB and Chatbot logic, enhanced transitions, added copy link feedback,
- * and integrated Gemini API for chatbot.
- * @author IVS-Technical-Team
- */
+// FILE: /js/fab-controller.js
+// VERSION: 4.3 - Fully Self-Contained & Robust Component
+// DESCRIPTION: This component manages all FAB functionalities (Scroll, Share, Contact, Chatbot) independently. This is the single source of truth for FABs.
 
-'use strict';
+window.addEventListener('DOMContentLoaded', () => {
+    const IVSFabController = {
+        dom: {},
+        state: {
+            isChatbotOpen: false,
+            chatHistory: [
+                { role: "user", parts: [{ text: "You are a helpful and professional AI assistant for IVS JSC, an education, technology, and human resources company in Vietnam. Your name is IVS AI Assistant. Provide concise, strategic, and helpful answers based on the company's services (consulting, web design, training partnerships, teacher supply, R&D, digital ecosystem like IVS Apps/Games/Read/QuickTest), key projects like EOV 2025, and philosophy (Integrate, Vision, Synergy). If you don't know an answer, say so. Start the first conversation with 'Hello! I am the IVS AI Assistant. How can I help you today?'" }] },
+                { role: "model", parts: [{ text: "Hello! I am the IVS AI Assistant. How can I help you today?" }] }
+            ],
+        },
 
-// =================================================================
-// GLOBAL UTILITIES (Ensures availability if loadComponents.js utilities are not yet globally defined)
-// =================================================================
-// These are duplicated from loadComponents.js for robustness, but ideally should be truly global.
-if (typeof window.componentLog !== 'function') {
-    window.componentLog = function(message, level = 'info') {
-        console[level](`[IVS Components - FAB] ${message}`);
-    };
-}
-
-if (typeof window.debounce !== 'function') {
-    window.debounce = function(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func.apply(this, args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
-}
-
-
-// =================================================================
-// CHATBOT STATE (Moved from script.js, now encapsulated here)
-// =================================================================
-// Initial chat history for AI model context.
-let chatHistory = [
-    {
-        role: "user",
-        parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
-    },
-    {
-        role: "model",
-        parts: [{text: "Xin chào! Tôi là IVS Chatbot AI. Tôi thật sự rất háo hức để hỗ trợ bạn hôm nay!! Hãy cho tôi biết bạn cần gì nhé!"}]
-    }
-];
-
-
-// =================================================================
-// IVSFabController - Main FAB and Chatbot Logic
-// =================================================================
-const IVSFabController = {
-    init() {
-        window.componentLog("IVSFabController: Bắt đầu khởi tạo.", "info");
-        this.cacheDOM();
-        if (!this.fabContainer) {
-            window.componentLog("IVSFabController: Không tìm thấy phần tử FAB container. Logic FAB và Chatbot sẽ không chạy.", "warn");
-            return;
-        }
-        this.populateMenus();
-        this.bindEvents();
-        this.initChatbotFunctionality(); // Khởi tạo chatbot sau khi FAB Controller đã init
-        window.componentLog("IVSFabController: Khởi tạo hoàn tất.", "info");
-    },
-
-    cacheDOM() {
-        this.fabContainer = document.getElementById('fab-container');
-        this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-        this.buttonsWithSubmenu = this.fabContainer ? this.fabContainer.querySelectorAll('button[aria-haspopup="true"]') : [];
-
-        // Chatbot elements
-        this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
-        this.chatbotContainer = document.getElementById('chatbot-container');
-        this.chatbotCloseBtn = document.getElementById('chatbot-close-button'); 
-        this.chatbotMessages = document.getElementById('chatbot-messages');
-        this.chatbotInput = document.getElementById('chatbot-input');
-        this.chatbotSendBtn = document.getElementById('chatbot-send-button');
-        this.isGeneratingResponse = false; // Flag to prevent multiple concurrent requests
-
-        window.componentLog(`IVSFabController: FAB Container: ${!!this.fabContainer}, ScrollToTopBtn: ${!!this.scrollToTopBtn}, ButtonsWithSubmenu count: ${this.buttonsWithSubmenu.length}`, 'info');
-        window.componentLog(`IVSFabController: ChatbotOpenBtn: ${!!this.chatbotOpenBtn}, ChatbotContainer: ${!!this.chatbotContainer}`, 'info');
-    },
-    
-    populateMenus() {
-        const contactMenu = document.getElementById('contact-options');
-        const shareMenu = document.getElementById('share-options');
-
-        if (contactMenu) {
-            this.populateContactOptions(contactMenu);
-            window.componentLog("IVSFabController: Đã điền nội dung menu liên hệ.");
-        }
-        if (shareMenu) {
-            this.populateShareOptions(shareMenu);
-            window.componentLog("IVSFabController: Đã điền nội dung menu chia sẻ.");
-        }
-    },
-
-    populateContactOptions(element) {
-        const contacts = [
-            { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
-            { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
-            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
-            { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
-        ];
-        element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
-    },
-
-    populateShareOptions(element) {
-        const currentUrl = window.location.href; 
-        const pageTitle = document.title; 
-
-        const shares = [
-            { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}', '_blank', 'noopener,noreferrer')` },
-            { text: "X (Twitter)", icon: "fab fa-x-twitter", color: "text-neutral-500", action: `window.open('https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-            { text: "LinkedIn", icon: "fab fa-linkedin", color: "text-blue-700", action: `window.open('https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-            { 
-                text: "Copy Link", 
-                icon: "fas fa-link", 
-                color: "text-gray-500", 
-                action: null // Action will be handled via event listener
+        init() {
+            this.cacheDOM();
+            if (!this.dom.fabButtonsContainer) {
+                console.warn("[IVS Components] FAB Container not found. FAB Controller not initialized.");
+                return;
             }
-        ];
-        element.innerHTML = shares.map((s, index) => {
-            const btnId = `share-action-${index}`;
-            return `<button id="${btnId}" role="menuitem" class="fab-submenu-item group w-full"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`;
-        }).join('');
+            this.populateMenus();
+            this.bindEvents();
+            this.addWelcomeMessage();
+            console.log("[IVS Components] FAB & Chatbot Controller Initialized.");
+        },
 
-        shares.forEach((s, index) => {
-            const btn = document.getElementById(`share-action-${index}`);
-            if (btn) {
-                if (s.text === "Copy Link") { 
-                    btn.addEventListener('click', () => {
-                        try {
-                            // Using document.execCommand('copy') for better iframe compatibility
-                            const textarea = document.createElement('textarea');
-                            textarea.value = currentUrl;
-                            document.body.appendChild(textarea);
-                            textarea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textarea);
-                            window.componentLog('Đã sao chép liên kết vào clipboard!');
-                            this.showCopiedConfirmation(btn); // Show confirmation
-                        } catch (err) {
-                            window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
-                        }
-                    });
-                } else if (s.action) {
-                    btn.addEventListener('click', () => eval(s.action)); // Execute string action
-                }
-            }
-        });
-    },
-
-    showCopiedConfirmation(targetElement) {
-        const message = 'Đã sao chép!';
-        const confirmationDiv = document.createElement('div');
-        confirmationDiv.textContent = message;
-        confirmationDiv.className = 'absolute z-10 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap';
+        cacheDOM() {
+            this.dom.fabButtonsContainer = document.getElementById('fab-buttons-container');
+            this.dom.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            this.dom.buttonsWithSubmenu = this.dom.fabButtonsContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
+            this.dom.chatbotOpenBtn = document.getElementById('chatbot-open-button');
+            this.dom.chatbotContainer = document.getElementById('chatbot-container');
+            this.dom.chatbotCloseBtn = document.getElementById('chatbot-close-button');
+            this.dom.chatbotMessages = document.getElementById('chatbot-messages');
+            this.dom.chatbotInput = document.getElementById('chatbot-input');
+            this.dom.chatbotSendBtn = document.getElementById('chatbot-send-button');
+        },
         
-        // Position relative to the target button
-        const rect = targetElement.getBoundingClientRect();
-        confirmationDiv.style.top = `${rect.top - 30}px`; // Above the button
-        confirmationDiv.style.left = `${rect.left + rect.width / 2}px`; // Centered horizontally
-        confirmationDiv.style.transform = 'translateX(-50%)';
+        populateMenus() {
+            const contactMenu = document.getElementById('contact-options');
+            const shareMenu = document.getElementById('share-options');
+            if (contactMenu) this.populateContactOptions(contactMenu);
+            if (shareMenu) this.populateShareOptions(shareMenu);
+        },
 
-        document.body.appendChild(confirmationDiv);
+        populateContactOptions(element) {
+            const contacts = [
+                { text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
+                { text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
+                { text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
+            ];
+            element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} ${c.color}"></i><span>${c.text}</span></a>`).join('');
+        },
 
-        // Animate in
-        setTimeout(() => {
-            confirmationDiv.classList.remove('opacity-0');
-            confirmationDiv.classList.add('opacity-100');
-        }, 10);
+        populateShareOptions(element) {
+            const currentUrl = window.location.href;
+            const shares = [
+                { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank', 'noopener,noreferrer') },
+                { text: "Copy Link", icon: "fas fa-link", color: "text-gray-500", action: (btn) => {
+                    navigator.clipboard.writeText(currentUrl).then(() => {
+                        const originalContent = btn.innerHTML;
+                        btn.innerHTML = `<i class="fas fa-check text-green-500"></i><span>Copied!</span>`;
+                        setTimeout(() => { btn.innerHTML = originalContent; }, 2000);
+                    }).catch(err => console.error('Failed to copy: ', err));
+                }}
+            ];
+            element.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item w-full"><i class="${s.icon} ${s.color}"></i><span>${s.text}</span></button>`).join('');
+            element.querySelectorAll('button').forEach((btn, index) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    shares[index].action(btn);
+                });
+            });
+        },
 
-        // Animate out and remove
-        setTimeout(() => {
-            confirmationDiv.classList.remove('opacity-100');
-            confirmationDiv.classList.add('opacity-0');
-            confirmationDiv.addEventListener('transitionend', () => {
-                confirmationDiv.remove();
-            }, { once: true });
-        }, 1500); // Display for 1.5 seconds
-    },
-
-    bindEvents() {
-        if (this.scrollToTopBtn) {
-            const handleScroll = () => {
-                if (this.scrollToTopBtn) { // Double check for robustness
-                    if (window.scrollY > 200) {
-                        this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-                    } else {
-                        this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
-                    }
-                }
-            };
-            window.addEventListener('scroll', window.debounce(handleScroll, 100), { passive: true });
-            this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Initial check on load
-            window.componentLog("IVSFabController: Đã gắn sự kiện cho nút cuộn lên đầu trang.");
-        }
-
-        if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
-                e.stopPropagation(); // Prevent document click from closing immediately
-                this.toggleSubmenu(btn);
-            }));
-            window.componentLog("IVSFabController: Đã gắn sự kiện click cho các nút có submenu.");
-        }
-
-        document.addEventListener('click', (e) => {
-            if (this.fabContainer && !this.fabContainer.contains(e.target)) {
-                if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
-                }
+        bindEvents() {
+            if (this.dom.scrollToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    this.dom.scrollToTopBtn.classList.toggle('opacity-0', window.scrollY < 200);
+                    this.dom.scrollToTopBtn.classList.toggle('pointer-events-none', window.scrollY < 200);
+                }, { passive: true });
+                this.dom.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
-        });
-        window.componentLog("IVSFabController: Đã gắn sự kiện click toàn cục để đóng submenu FAB.");
-    },
 
-    toggleSubmenu(btn) {
-        const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-        if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(otherBtn => {
-                if (otherBtn !== btn) { 
-                    this.closeSubmenu(otherBtn); // Close other submenus
+            this.dom.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const menuId = btn.getAttribute('aria-controls');
+                if (!menuId) {
+                    console.warn(`[IVS FAB] Button missing aria-controls attribute:`, btn);
+                    return;
+                }
+                const menu = document.getElementById(menuId);
+                if (!menu) {
+                    console.error(`[IVS FAB] Submenu element not found for ID: ${menuId}`);
+                    return;
+                }
+                const isOpening = !menu.classList.contains('active');
+                this.closeAllSubmenus();
+                if (isOpening) menu.classList.add('active');
+            }));
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#fab-buttons-container')) {
+                    this.closeAllSubmenus();
                 }
             });
-        }
-        if (!isCurrentlyOpen) this.openSubmenu(btn);
-        else this.closeSubmenu(btn); 
-    },
 
-    openSubmenu(btn) {
-        const menu = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!menu) return;
-        menu.classList.remove('hidden', 'pointer-events-none'); 
-        // Use rAF for immediate display before transition
-        requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Animate in
-        });
-        btn.setAttribute('aria-expanded', 'true');
-        window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
-    },
+            if (this.dom.chatbotOpenBtn) this.dom.chatbotOpenBtn.addEventListener('click', () => this.toggleChatbot(true));
+            if (this.dom.chatbotCloseBtn) this.dom.chatbotCloseBtn.addEventListener('click', () => this.toggleChatbot(false));
+            if (this.dom.chatbotSendBtn) this.dom.chatbotSendBtn.addEventListener('click', () => this.handleSendMessage());
+            if (this.dom.chatbotInput) this.dom.chatbotInput.addEventListener('keypress', e => e.key === 'Enter' && this.handleSendMessage());
+        },
 
-    closeSubmenu(btn) {
-        const menu = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Animate out
-        const onTransitionEnd = () => {
-            if (menu.classList.contains('opacity-0')) {
-                menu.classList.add('hidden', 'pointer-events-none'); 
+        closeAllSubmenus() {
+            if (this.dom.fabButtonsContainer) { 
+                this.dom.fabButtonsContainer.querySelectorAll('.fab-submenu-panel').forEach(m => m.classList.remove('active'));
             }
-            menu.removeEventListener('transitionend', onTransitionEnd);
-        };
-        menu.addEventListener('transitionend', onTransitionEnd);
-        btn.setAttribute('aria-expanded', 'false');
-        window.componentLog(`IVSFabController: Đã đóng submenu cho nút: ${btn.id}`);
-    },
+        },
 
-    // =================================================================
-    // Chatbot Functionality (Integrated with Gemini API)
-    // =================================================================
-    initChatbotFunctionality() {
-        if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
-            window.componentLog("IVSFabController: Các phần tử Chatbot không tìm thấy đầy đủ. Bỏ qua chức năng chatbot.", "warn");
-            return;
-        }
+        toggleChatbot(forceOpen) {
+            if (!this.dom.chatbotContainer) return;
 
-        // Initial setup to ensure it's hidden correctly
-        this.chatbotContainer.classList.add('scale-0', 'opacity-0');
-        this.chatbotContainer.style.display = 'none';
+            const open = typeof forceOpen === 'boolean' ? forceOpen : !this.state.isChatbotOpen;
+            this.state.isChatbotOpen = open;
+            if (open) {
+                this.dom.chatbotContainer.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    this.dom.chatbotContainer.classList.remove('scale-0', 'opacity-0');
+                    if (this.dom.chatbotInput) this.dom.chatbotInput.focus();
+                });
+            } else {
+                this.dom.chatbotContainer.classList.add('scale-0', 'opacity-0');
+                setTimeout(() => { this.dom.chatbotContainer.style.display = 'none'; }, 300);
+            }
+        },
 
-        const openChatbot = () => {
-            this.chatbotContainer.style.display = 'flex'; // Set display flex immediately
-            setTimeout(() => {
-                this.chatbotContainer.classList.remove('scale-0', 'opacity-0'); // Animate in
-                this.chatbotInput.focus();
-                this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight; // Scroll to bottom on open
-            }, 50); // Small delay to allow display:flex to apply before transition
-            window.componentLog("IVSFabController: Chatbot mở.");
-        };
+        addMessage(text, sender, isTyping = false) {
+            if (!this.dom.chatbotMessages) return;
 
-        const closeChatbot = () => {
-            this.chatbotContainer.classList.add('scale-0', 'opacity-0'); // Animate out
-            this.chatbotContainer.addEventListener('transitionend', () => {
-                if (this.chatbotContainer.classList.contains('opacity-0')) {
-                    this.chatbotContainer.style.display = 'none'; // Hide completely after transition
-                }
-            }, { once: true });
-            window.componentLog("IVSFabController: Chatbot đóng.");
-        };
-
-        this.chatbotOpenBtn.addEventListener('click', openChatbot);
-        this.chatbotCloseBtn.addEventListener('click', closeChatbot);
-        
-        const addMessage = (text, sender, isTyping = false) => {
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `w-full flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
             const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', sender, 'mb-2', 'p-2', 'rounded-lg', 'max-w-[80%]');
-            
-            if (sender === 'ai') {
-                messageBubble.classList.add('bg-blue-100', 'dark:bg-blue-800', 'text-gray-800', 'dark:text-gray-100');
-            } else { // user
-                messageBubble.classList.add('bg-green-100', 'dark:bg-green-800', 'text-gray-800', 'dark:text-gray-100', 'ml-auto'); // Align user messages right
-            }
-
+            messageBubble.className = `max-w-[85%] rounded-2xl px-4 py-2 mb-2 text-white ${sender === 'user' ? 'bg-ivs-blue' : 'bg-ivs-border'}`;
             if (isTyping) {
                 messageBubble.id = 'typing-indicator';
-                messageBubble.innerHTML = `
-                    <div class="flex items-center space-x-1">
-                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce" style="animation-delay: -0.32s;"></span>
-                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce" style="animation-delay: -0.16s;"></span>
-                        <span class="dot-typing bg-gray-600 dark:bg-gray-300 w-2 h-2 rounded-full inline-block animate-bounce"></span>
-                    </div>
-                `;
-                 // Add a simple CSS for dot-typing if not already in styles.css
-                 const style = document.createElement('style');
-                 style.textContent = `
-                     @keyframes bounce {
-                         0%, 80%, 100% { transform: translateY(0); }
-                         40% { transform: translateY(-5px); }
-                     }
-                     .dot-typing {
-                         animation: bounce 0.6s infinite ease-in-out;
-                     }
-                 `;
-                 document.head.appendChild(style);
+                messageBubble.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
             } else {
                 messageBubble.textContent = text;
             }
+            messageWrapper.appendChild(messageBubble);
+            this.dom.chatbotMessages.appendChild(messageWrapper);
+            this.dom.chatbotMessages.scrollTop = this.dom.chatbotMessages.scrollHeight;
+        },
 
-            this.chatbotMessages.appendChild(messageBubble);
-            this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
-        };
+        removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.parentElement.remove();
+        },
 
-        const removeTypingIndicator = () => {
-            const typingIndicator = document.getElementById('typing-indicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
+        addWelcomeMessage() {
+            // Tin nhắn chào mừng đã có trong chatHistory mặc định và sẽ được hiển thị khi chatbot mở.
+            // Không cần thêm lại DOM ở đây để tránh trùng lặp.
+        },
+
+        setLoading(isLoading) {
+            if (this.dom.chatbotSendBtn) {
+                this.dom.chatbotSendBtn.disabled = isLoading;
+                this.dom.chatbotSendBtn.innerHTML = isLoading ? '<i class="fas fa-spinner fa-spin"></i>' : '<i class="fas fa-paper-plane"></i>';
             }
-        };
+        },
 
-        const sendMessage = async () => {
-            const messageText = this.chatbotInput.value.trim();
-            if (messageText === '' || this.isGeneratingResponse) return; // Prevent multiple requests
+        async handleSendMessage() {
+            const message = this.dom.chatbotInput?.value.trim();
+            if (!message) return;
 
-            this.isGeneratingResponse = true; // Set flag
-            addMessage(messageText, 'user');
-            chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-            this.chatbotInput.value = '';
-            this.chatbotInput.disabled = true; // Disable input while generating
-            this.chatbotSendBtn.disabled = true; // Disable send button
-
-            addMessage('', 'ai', true); // Add typing indicator
+            this.addMessage(message, 'user');
+            if (this.dom.chatbotInput) this.dom.chatbotInput.value = '';
+            this.setLoading(true);
+            this.addMessage('', 'model', true);
 
             try {
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will provide this at runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const backendUrl = 'https://asia-southeast1-ivsjsc-6362f.cloudfunctions.net/api/chat'; 
 
-                const response = await fetch(apiUrl, {
+                const response = await fetch(backendUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({
+                        history: this.state.chatHistory,
+                        message: message,
+                    }),
                 });
 
-                const result = await response.json();
-                removeTypingIndicator(); // Remove typing indicator once response is received
+                this.removeTypingIndicator();
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const aiResponseText = result.candidates[0].content.parts[0].text;
-                    addMessage(aiResponseText, "ai");
-                    chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
-                    window.componentLog("IVSFabController: Phản hồi AI được thêm.");
+                const data = await response.json();
+                if (data.success && data.response) {
+                    const aiResponseText = data.response;
+                    this.addMessage(aiResponseText, 'model');
+                    this.state.chatHistory.push({ role: "user", parts: [{ text: message }] });
+                    this.state.chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
                 } else {
-                    addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
-                    window.componentLog("IVSFabController: Cấu trúc phản hồi AI không mong đợi hoặc nội dung bị thiếu.", 'error');
+                    throw new Error(data.error || "Invalid response from server.");
                 }
+
             } catch (error) {
-                removeTypingIndicator(); // Remove typing indicator on error
-                addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng kiểm tra kết nối mạng của bạn.", "ai");
-                window.componentLog("IVSFabController: Lỗi khi gọi API Gemini: " + error.message, 'error');
+                this.removeTypingIndicator();
+                console.error("Error calling backend:", error);
+                this.addMessage("Xin lỗi, tôi đang gặp vấn đề kết nối. Vui lòng thử lại sau.", 'model');
             } finally {
-                this.isGeneratingResponse = false; // Reset flag
-                this.chatbotInput.disabled = false; // Enable input
-                this.chatbotSendBtn.disabled = false; // Enable send button
-                this.chatbotInput.focus(); // Focus input for next message
+                this.setLoading(false);
             }
-        };
+        }
+    };
 
-        this.chatbotSendBtn.addEventListener('click', sendMessage);
-        this.chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-        window.componentLog("IVSFabController: Chức năng Chatbot được khởi tạo (đã tích hợp API Gemini).", "info");
-    }
-};
+    // Khởi tạo controller sau khi DOM đã được tải
+    IVSFabController.init();
 
-// Expose IVSFabController globally for loadComponents.js
-window.IVSFabController = IVSFabController;
+    // Giữ biến này ở global scope nếu cần truy cập từ các script khác
+    window.IVSFabController = IVSFabController;
+});
