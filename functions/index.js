@@ -1,106 +1,42 @@
-/**
- * Quan trọng: File này là lõi xử lý backend cho các dịch vụ của IVS.
- * Nó được viết theo chuẩn Firebase Functions v2, sử dụng Secret Manager để tăng cường bảo mật.
- *
- * Yêu cầu:
- * 1. Đã cài đặt các gói: firebase-functions, firebase-admin, express, cors, body-parser
- * 2. Đã cấu hình secrets trong Firebase Secret Manager:
- * - SERVICEACCOUNT_KEY_BASE64: Chứa chuỗi base64 của file JSON service account.
- * - GEMINI_API_KEY: Chứa API key cho các dịch vụ Google AI (nếu có).
- */
+const GEMINI_API_KEY = functions.config().gemini.key || process.env.GEMINI_API_KEY;
 
-const functions = require("firebase-functions/v2");
-const admin = require("firebase-admin");
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+// Khởi tạo model AI của Google
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-// --- ĐỊNH NGHĨA CÁC SECRET SẼ SỬ DỤNG ---
-// Bước này khai báo cho Firebase biết function này cần truy cập vào những "bí mật" nào.
-const serviceAccountKeySecret = functions.params.defineSecret("SERVICEACCOUNT_KEY_BASE64");
-const geminiApiKeySecret = functions.params.defineSecret("GEMINI_API_KEY");
+// Định nghĩa route /api/chat
+app.post("/chat", async (req, res) => {
+  try {
+    const { history, message } = req.body;
 
-// Biến cờ để đảm bảo Admin SDK chỉ được khởi tạo một lần duy nhất.
-let isAppInitialized = false;
-
-/**
- * Hàm khởi tạo Firebase Admin SDK một cách an toàn.
- * Hàm này sẽ đọc giá trị của secret, giải mã base64 để lấy lại file JSON,
- * và dùng nó để khởi tạo Admin SDK.
- * @param {string} serviceAccountKeyBase64 - Giá trị secret đã được nạp.
- */
-function initializeFirebaseApp(serviceAccountKeyBase64) {
-    if (isAppInitialized) {
-        return;
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
     }
-    try {
-        // Giải mã chuỗi Base64 về lại định dạng chuỗi JSON.
-        const serviceAccountString = Buffer.from(serviceAccountKeyBase64, 'base64').toString('utf8');
-        const serviceAccount = JSON.parse(serviceAccountString);
 
-        // Khởi tạo Admin SDK với thông tin xác thực vừa giải mã.
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-        });
+    // Cấu trúc lại history cho phù hợp với yêu cầu của Gemini API
+    const chatHistory = (history || []).map(item => ({
+      role: item.role,
+      parts: [{ text: item.parts[0].text }],
+    }));
 
-        console.log("Firebase Admin SDK initialized successfully.");
-        isAppInitialized = true;
-    } catch (error) {
-        console.error("CRITICAL: Failed to initialize Firebase Admin SDK.", error);
-    }
-}
+    const chat = model.startChat({
+      history: chatHistory,
+      generationConfig: {
+        maxOutputTokens: 1000,
+      },
+    });
 
+    const result = await chat.sendMessage(message);
+    const response = await result.response;
+    const text = response.text();
 
-// --- TẠO MỘT API SERVER SỬ DỤNG EXPRESS ---
-const app = express();
+    res.json({ success: true, response: text });
 
-// Tự động cho phép các yêu cầu từ tên miền khác (Cross-Origin Resource Sharing)
-app.use(cors({ origin: true }));
-app.use(bodyParser.json());
-
-
-// --- ĐỊNH NGHĨA CÁC ĐƯỜNG DẪN (ROUTES) CHO API ---
-
-// Route ví dụ: /hello
-app.get("/hello", (req, res) => {
-    res.status(200).send("Hello from IVS Backend API!");
+  } catch (error) {
+    console.error("Error in /api/chat:", error);
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
 });
 
-// Route để lấy danh sách người dùng từ Firebase Authentication
-app.get("/users", async (req, res) => {
-    if (!isAppInitialized) {
-        return res.status(500).send("Admin SDK is not initialized.");
-    }
-    try {
-        const userRecords = await admin.auth().listUsers(100); // Lấy 100 người dùng đầu tiên
-        const users = userRecords.users.map(user => ({
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            lastSignInTime: user.metadata.lastSignInTime,
-        }));
-        return res.status(200).json(users);
-    } catch (error) {
-        console.error("Error listing users:", error);
-        return res.status(500).send("Error fetching user list.");
-    }
-});
-
-
-// --- XUẤT CLOUD FUNCTION CHÍNH ---
-// Đây là điểm khởi đầu, nơi chúng ta "bọc" Express app của mình trong một Cloud Function.
-// Cấu hình `secrets` yêu cầu Firebase nạp các giá trị từ Secret Manager trước khi chạy function.
-exports.api = functions.https.onRequest(
-    {
-        region: "us-central1", // Có thể đổi sang asia-southeast1 (Singapore) để giảm độ trễ
-        secrets: [serviceAccountKeySecret, geminiApiKeySecret],
-    },
-    (req, res) => {
-        // Luôn chạy hàm khởi tạo trước khi xử lý bất kỳ yêu cầu nào.
-        // `serviceAccountKeySecret.value()` sẽ trả về giá trị thực của secret.
-        initializeFirebaseApp(serviceAccountKeySecret.value());
-        
-        // Chuyển tiếp yêu cầu đến Express app để xử lý.
-        return app(req, res);
-    }
-);
+// Xuất Express app thành một Firebase Function có tên là 'api'
+exports.api = functions.region('asia-southeast1').https.onRequest(app);
