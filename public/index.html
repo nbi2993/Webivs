@@ -101,44 +101,64 @@
             </div>
         </section>
 
-        <!-- Hosted Application Section -->
-        <!-- This section embeds the IVS Hosted Application using an iframe. -->
-        <!-- It provides a structured and responsive container for the application. -->
-        <section class="py-12 md:py-16 lg:py-20 bg-ivs-bg text-ivs-text-primary">
+        <!-- NEW SECTION: IVS AI SUPPORT (Chatbot) - Refined and moved under Hero -->
+        <section id="ai-support-section" class="py-12 md:py-16 lg:py-20 bg-ivs-card border-b border-ivs-border">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl md:text-4xl font-display font-extrabold text-center text-ivs-blue mb-8 md:mb-12"
-                    data-lang-key="hosted_app_section_title">
-                    IVS AI Support (Chatbot)
+                    data-lang-key="chatbot_section_title_new">
+                    IVS AI Support: Your Instant Assistant
                 </h2>
 
-                <div class="flex justify-center items-center">
-                    <iframe
-                        src="https://studio--gemini-chat-m48mq.us-central1.hosted.app/"
-                        title="Ứng dụng IVS Hosted"
-                        class="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[900px]
-                               max-w-full md:max-w-4xl lg:max-w-5xl xl:max-w-6xl
-                               border border-ivs-border rounded-lg shadow-xl
-                               transition-all duration-300 ease-in-out"
-                        allowfullscreen
-                        frameborder="0"
-                    >
-                        <!-- Fallback content if iframe is not supported -->
-                        <p class="text-ivs-text-secondary text-center p-4">
-                            Trình duyệt của bạn không hỗ trợ iframe. Vui lòng truy cập trực tiếp ứng dụng tại:
-                            <a href="https://studio--gemini-chat-m48mq.us-central1.hosted.app/"
-                               target="_blank" rel="noopener noreferrer"
-                               class="text-ivs-blue hover:underline">
-                                Ask IVS Hosted Application
-                            </a>
-                        </p>
-                    </iframe>
-                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div class="relative text-center lg:text-left p-6 rounded-lg bg-ivs-bg border border-ivs-border" data-aos="fade-right">
+                        <!-- Subtle background image -->
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 rounded-lg"
+                             style="background-image: url('https://placehold.co/600x400/0A0A0A/60a5fa?text=AI+Background');">
+                        </div>
+                        <!-- Content overlay to ensure readability -->
+                        <div class="relative z-10">
+                            <p class="text-lg md:text-xl text-ivs-text-primary mb-4"
+                               data-lang-key="chatbot_intro_headline">
+                                Get instant answers and guidance from our intelligent AI.
+                            </p>
+                            <p class="text-ivs-text-secondary leading-relaxed mb-6"
+                               data-lang-key="chatbot_intro_description">
+                                Our IVS AI Support is designed to provide quick, accurate information about our services, projects, and philosophy. Whether you have questions about educational consulting, web development, or our digital ecosystem, our AI is here to help you navigate the IVS world efficiently.
+                            </p>
+                            <ul class="list-disc list-inside text-ivs-text-secondary text-left mx-auto lg:mx-0 max-w-md space-y-2">
+                                <li data-lang-key="chatbot_feature_1">Instant answers to your queries.</li>
+                                <li data-lang-key="chatbot_feature_2">Information on IVS services and projects.</li>
+                                <li data-lang-key="chatbot_feature_3">Available 24/7 for your convenience.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <p class="mt-8 text-center text-ivs-text-secondary text-lg"
-                   data-lang-key="hosted_app_section_description">
-                    Discovery our online application hosted, providing a seamless experience right in your browser.
-                </p>
+                    <div class="flex justify-center items-center" data-aos="fade-left">
+                        <iframe
+                            src="https://studio--gemini-chat-m48mq.us-central1.hosted.app/"
+                            title="IVS AI Chatbot"
+                            class="w-full h-[450px] md:h-[550px] lg:h-[650px]
+                                   max-w-full lg:max-w-xl
+                                   border border-ivs-border rounded-lg shadow-xl
+                                   transition-all duration-300 ease-in-out"
+                            allowfullscreen
+                            frameborder="0"
+                        >
+                            <!-- Fallback content if iframe is not supported -->
+                            <p class="text-ivs-text-secondary text-center p-4">
+                                Your browser does not support iframes. Please access the application directly at:
+                                <a href="https://studio--gemini-chat-m48mq.us-central1.hosted.app/"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="text-ivs-blue hover:underline">
+                                    IVS AI Support (Chatbot)
+                                </a>
+                            </p>
+                        </iframe>
+                    </div>
+                </div>
+            
             </div>
+
         </section>
 
         <!-- NEW SECTION: IVS IN NUMBERS (Impact Dashboard) -->
