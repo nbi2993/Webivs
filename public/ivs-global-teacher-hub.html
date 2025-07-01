@@ -8,6 +8,7 @@
     <meta name="keywords" content="IVS JSC, education, educational technology, EdTech, STEAM, health, international cooperation, Dong Nai, IVS Academy, IVS Celestech, foreign language training, life skills" data-lang-key="meta_keywords_index">
     <meta property="og:title" content="IVS JSC - Education, Technology, Health, International Cooperation" data-lang-key="og_title_index">
     <meta property="og:description" content="Discover comprehensive solutions in foreign language training, STEAM, life skills, EdTech, healthcare, and cooperation opportunities with IVS JSC." data-lang-key="og_description_index">
+    <!-- Updated OG image to a known existing file -->
     <meta property="og:image" content="/images/logo/logo-192.png">
     <meta property="og:url" content="https://ivsacademy.edu.vn/ivs-global-teacher-hub.html">
     <meta property="og:type" content="website">
@@ -77,7 +78,8 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css"> 
-    <link rel="stylesheet" href="/dist/output.css">
+    <!-- Removed the problematic output.css link -->
+    <!-- <link rel="stylesheet" href="/dist/output.css"> -->
     <style>
         /* Custom CSS Variables for IVS Tailwind Colors */
         :root {
@@ -487,8 +489,11 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, collection, serverTimestamp, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Lấy appId từ biến toàn cục __app_id, nếu không có thì dùng 'default-app-id'
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // Lấy firebaseConfig từ biến toàn cục __firebase_config, nếu không có thì dùng object rỗng
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        // Lấy initialAuthToken từ biến toàn cục __initial_auth_token, nếu không có thì là null
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         let app;
@@ -511,21 +516,25 @@
         const modalMessage = document.getElementById('modal-message');
         const modalCloseButton = document.getElementById('modal-close-button');
 
+        // Hàm hiển thị modal thông báo
         function showModal(message) {
-            modalMessage.innerHTML = message; // Use innerHTML to render HTML links
+            modalMessage.innerHTML = message; // Sử dụng innerHTML để hiển thị các liên kết HTML
             customModal.classList.add('show');
         }
 
+        // Hàm ẩn modal thông báo
         function hideModal() {
             customModal.classList.remove('show');
         }
 
         modalCloseButton.addEventListener('click', hideModal);
 
+        // Hàm hiển thị spinner tải
         function showLoadingSpinner() {
             loadingSpinner.classList.remove('hidden');
         }
 
+        // Hàm ẩn spinner tải
         function hideLoadingSpinner() {
             loadingSpinner.classList.add('hidden');
         }
@@ -533,58 +542,71 @@
         window.onload = async function() {
             showLoadingSpinner();
             try {
+                // Kiểm tra nếu firebaseConfig không rỗng trước khi khởi tạo Firebase
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Firebase config is empty. Cannot initialize Firebase.");
+                    showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra cấu hình Firebase.");
+                    hideLoadingSpinner();
+                    return;
+                }
+
                 app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
 
+                // Lắng nghe sự thay đổi trạng thái xác thực
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
                         userId = user.uid;
                         userIdDisplay.textContent = `User ID: ${userId}`;
                         isAuthReady = true;
-                        if (!teacherApplicationSection.classList.contains('hidden')) {
-                        } else {
+                        // Tải danh sách giáo viên nếu đang ở tab "View Teachers"
+                        if (!teacherOverviewSection.classList.contains('hidden')) {
                             loadApprovedTeachers();
                         }
                     } else {
                         try {
+                            // Đăng nhập ẩn danh nếu không có người dùng
                             const anonymousUser = await signInAnonymously(auth);
                             userId = anonymousUser.user.uid;
                             userIdDisplay.textContent = `User ID: ${userId}`;
                             isAuthReady = true;
-                            if (!teacherApplicationSection.classList.contains('hidden')) {
-                            } else {
+                            // Tải danh sách giáo viên nếu đang ở tab "View Teachers"
+                            if (!teacherOverviewSection.classList.contains('hidden')) {
                                 loadApprovedTeachers();
                             }
                         } catch (error) {
-                            console.error("Anonymous sign-in error:", error);
-                            showModal("Unable to sign in anonymously. Please try again.");
-                            userIdDisplay.textContent = `User ID: Error`;
+                            console.error("Lỗi đăng nhập ẩn danh:", error);
+                            showModal("Không thể đăng nhập ẩn danh. Vui lòng thử lại.");
+                            userIdDisplay.textContent = `User ID: Lỗi`;
                         }
                     }
                     hideLoadingSpinner();
                 });
 
+                // Cố gắng đăng nhập bằng custom token nếu có
                 if (initialAuthToken) {
                     try {
                         await signInWithCustomToken(auth, initialAuthToken);
                     } catch (error) {
-                        console.error("Custom token sign-in error:", error);
-                        showModal("Unable to authenticate user. Please try again.");
+                        console.error("Lỗi đăng nhập bằng custom token:", error);
+                        showModal("Không thể xác thực người dùng. Vui lòng thử lại.");
                     }
-                } else {
                 }
             } catch (error) {
-                console.error("Firebase initialization error:", error);
-                showModal("Unable to initialize the application. Please check your internet connection.");
+                console.error("Lỗi khởi tạo Firebase:", error);
+                showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra kết nối internet hoặc cấu hình Firebase.");
                 hideLoadingSpinner();
             }
 
+            // Khởi tạo AOS (Animate On Scroll)
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 50,
             });
+
+            // Xử lý nút cuộn lên đầu trang
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             if (scrollToTopBtn) {
                 window.addEventListener('scroll', () => {
@@ -606,6 +628,7 @@
             }
         };
 
+        // Xử lý chuyển đổi tab "Teacher Application"
         applyTabButton.addEventListener('click', () => {
             applyTabButton.classList.add('active');
             viewTeachersTabButton.classList.remove('active');
@@ -613,6 +636,7 @@
             teacherOverviewSection.classList.add('hidden');
         });
 
+        // Xử lý chuyển đổi tab "View Teachers"
         viewTeachersTabButton.addEventListener('click', () => {
             viewTeachersTabButton.classList.add('active');
             applyTabButton.classList.remove('active');
@@ -621,16 +645,17 @@
             if (isAuthReady) {
                 loadApprovedTeachers();
             } else {
-                showModal("Loading teacher data. Please wait for authentication.");
+                showModal("Đang tải dữ liệu giáo viên. Vui lòng đợi xác thực.");
             }
         });
 
+        // Xử lý gửi biểu mẫu ứng tuyển giáo viên
         teacherApplicationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             showLoadingSpinner();
 
             if (!db || !userId || !isAuthReady) {
-                showModal("System not ready. Please wait or try again.");
+                showModal("Hệ thống chưa sẵn sàng. Vui lòng đợi hoặc thử lại.");
                 hideLoadingSpinner();
                 return;
             }
@@ -646,8 +671,10 @@
             const resumeUrl = document.getElementById('resumeUrl').value;
             const photoUrl = document.getElementById('photoUrl').value;
 
+            // Tạo ID ứng dụng duy nhất
             const applicationId = doc(collection(db, `artifacts/${appId}/users/${userId}/teacher_applications`)).id;
 
+            // Dữ liệu ứng tuyển giáo viên (riêng tư)
             const teacherData = {
                 fullName,
                 email,
@@ -658,12 +685,13 @@
                 subjects,
                 bio,
                 resumeUrl: resumeUrl || null,
-                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo',
+                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo', // Placeholder nếu không có ảnh
                 submissionTimestamp: serverTimestamp(),
                 userId: userId,
                 applicationId: applicationId
             };
 
+            // Dữ liệu giáo viên công khai (chờ phê duyệt để hiển thị)
             const publicTeacherData = {
                 fullName,
                 nationality,
@@ -671,37 +699,42 @@
                 experience,
                 subjects,
                 bio,
-                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo',
-                isApprovedForPublicDisplay: false,
+                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo', // Placeholder nếu không có ảnh
+                isApprovedForPublicDisplay: false, // Mặc định là false, cần admin phê duyệt
                 applicationId: applicationId,
                 userId: userId
             };
 
             try {
+                // Lưu dữ liệu ứng tuyển vào bộ sưu tập riêng của người dùng
                 await setDoc(doc(db, `artifacts/${appId}/users/${userId}/teacher_applications`, applicationId), teacherData);
 
+                // Lưu dữ liệu ứng tuyển vào bộ sưu tập công khai (để admin xem xét)
                 await setDoc(doc(db, `artifacts/${appId}/public/data/teacher_applications`, applicationId), publicTeacherData);
 
-                showModal("Your application has been submitted successfully! Please visit this <a href='https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=sharing&ouid=109196735657445874239' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>link</a> to upload your CV, photo, and other documents.");
-                teacherApplicationForm.reset();
+                showModal("Đơn ứng tuyển của bạn đã được gửi thành công! Vui lòng truy cập <a href='https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=sharing&ouid=109196735657445874239' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>liên kết này</a> để tải lên CV, ảnh và các tài liệu khác.");
+                teacherApplicationForm.reset(); // Đặt lại biểu mẫu sau khi gửi thành công
             } catch (error) {
-                console.error("Error submitting application: ", error);
-                showModal("An error occurred while submitting the application. Please try again.");
+                console.error("Lỗi khi gửi đơn ứng tuyển: ", error);
+                showModal("Đã xảy ra lỗi khi gửi đơn ứng tuyển. Vui lòng thử lại.");
             } finally {
                 hideLoadingSpinner();
             }
         });
 
+        // Hàm tải danh sách giáo viên đã được phê duyệt
         function loadApprovedTeachers() {
             if (!db || !isAuthReady) {
-                console.warn("Firestore or Auth not ready to load teachers.");
+                console.warn("Firestore hoặc Auth chưa sẵn sàng để tải giáo viên.");
                 return;
             }
 
+            // Truy vấn chỉ những giáo viên đã được phê duyệt để hiển thị công khai
             const q = query(collection(db, `artifacts/${appId}/public/data/teacher_applications`), where("isApprovedForPublicDisplay", "==", true));
 
+            // Lắng nghe thay đổi theo thời gian thực
             onSnapshot(q, (snapshot) => {
-                teachersList.innerHTML = '';
+                teachersList.innerHTML = ''; // Xóa danh sách cũ
                 if (snapshot.empty) {
                     noTeachersMessage.classList.remove('hidden');
                 } else {
@@ -723,8 +756,8 @@
                     });
                 }
             }, (error) => {
-                console.error("Error loading teacher list: ", error);
-                showModal("Unable to load teacher list. Please try again.");
+                console.error("Lỗi khi tải danh sách giáo viên: ", error);
+                showModal("Không thể tải danh sách giáo viên. Vui lòng thử lại.");
             });
         }
     </script>
