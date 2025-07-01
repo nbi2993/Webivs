@@ -1,16 +1,14 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 3.3 - Chatbot Only FAB Container -->
-<!-- DESCRIPTION: A self-contained component for the Floating Action Button for the AI Chatbot only. -->
+<!-- VERSION: 3.3 - Added Typing Indicator to Chatbot -->
+<!-- DESCRIPTION: A self-contained component for all Floating Action Buttons and the AI Chatbot, with all functionalities restored and enhanced. -->
 
 <div id="fab-container-wrapper">
     <!-- Main FAB Buttons Container -->
     <div id="fab-buttons-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
-        <!-- Nút Scroll to Top -->
         <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
                 class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
             <i class="fas fa-arrow-up text-base sm:text-lg"></i>
         </button>
-        <!-- Nút Share -->
         <div class="relative group/fab">
             <button id="share-main-btn" title="Chia sẻ" aria-label="Mở menu chia sẻ" aria-haspopup="true" aria-expanded="false" aria-controls="share-options"
                     class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
@@ -18,7 +16,6 @@
             </button>
             <div id="share-options" class="fab-submenu-panel" role="menu"></div>
         </div>
-        <!-- Nút Contact -->
         <div class="relative group/fab">
             <button id="contact-main-btn" title="Liên hệ" aria-label="Mở menu liên hệ" aria-haspopup="true" aria-expanded="false" aria-controls="contact-options"
                     class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
@@ -26,7 +23,6 @@
             </button>
             <div id="contact-options" class="fab-submenu-panel" role="menu"></div>
         </div>
-        <!-- Nút Chatbot AI -->
         <button id="chatbot-open-button" title="Mở Chatbot AI" aria-label="Mở Chatbot AI"
                 class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
             <i class="fas fa-robot text-xl sm:text-2xl"></i>
@@ -58,9 +54,35 @@
 </div>
 
 <style>
+    .fab-submenu-panel {
+        position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; padding: 0.5rem;
+        background-color: #161B22; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        border: 1px solid #30363d; display: flex; flex-direction: column; gap: 0.25rem;
+        transition: all 0.2s ease-out; opacity: 0; transform: scale(0.95) translateY(10px); pointer-events: none;
+    }
+    .fab-submenu-panel.active {
+        opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
+    }
+    .fab-submenu-item {
+        display: flex; align-items: center; padding: 0.5rem 1rem; font-size: 0.9rem;
+        color: #c9d1d9; border-radius: 0.375rem; transition: background-color 0.2s; white-space: nowrap;
+    }
+    .fab-submenu-item:hover { background-color: #30363d; }
+    .fab-submenu-item i { margin-right: 0.75rem; width: 1.25rem; text-align: center; }
     #chatbot-messages { scrollbar-width: thin; scrollbar-color: #30363d #161B22; }
     #chatbot-messages::-webkit-scrollbar { width: 6px; }
     #chatbot-messages::-webkit-scrollbar-thumb { background-color: #30363d; border-radius: 3px; }
+    .typing-indicator span {
+        height: 8px; width: 8px; margin: 0 1px; background-color: #9ca3af;
+        border-radius: 50%; display: inline-block;
+        animation:-bounce 1.4s infinite ease-in-out both;
+    }
+    .typing-indicator span:nth-of-type(1) { animation-delay: -0.32s; }
+    .typing-indicator span:nth-of-type(2) { animation-delay: -0.16s; }
+    @keyframes-bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1.0); }
+    }
 </style>
 
 <script>
@@ -78,61 +100,63 @@ document.addEventListener('DOMContentLoaded', () => {
         init() {
             this.cacheDOM();
             if (!this.dom.fabButtonsContainer) return;
-            this.addWelcomeMessage();
             this.populateMenus();
+            this.bindEvents();
+            this.addWelcomeMessage();
             console.log("[IVS Components] FAB & Chatbot Controller Initialized.");
         },
 
         cacheDOM() {
             this.dom.fabButtonsContainer = document.getElementById('fab-buttons-container');
             this.dom.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            this.dom.buttonsWithSubmenu = this.dom.fabButtonsContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
             this.dom.chatbotOpenBtn = document.getElementById('chatbot-open-button');
             this.dom.chatbotContainer = document.getElementById('chatbot-container');
             this.dom.chatbotCloseBtn = document.getElementById('chatbot-close-button');
             this.dom.chatbotMessages = document.getElementById('chatbot-messages');
             this.dom.chatbotInput = document.getElementById('chatbot-input');
             this.dom.chatbotSendBtn = document.getElementById('chatbot-send-button');
-            this.dom.buttonsWithSubmenu = document.querySelectorAll('[aria-haspopup="true"]');
         },
         
         populateMenus() {
-            // Share menu
-            const shareMenu = document.getElementById('share-options');
-            if (shareMenu) {
-                const currentUrl = window.location.href;
-                const pageTitle = document.title;
-                const shares = [
-                    { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank', 'noopener,noreferrer') },
-                    { text: "X (Twitter)", icon: "fab fa-x-twitter", color: "text-neutral-500", action: () => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`, '_blank', 'noopener,noreferrer') },
-                    { text: "LinkedIn", icon: "fab fa-linkedin", color: "text-blue-700", action: () => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(pageTitle)}`, '_blank', 'noopener,noreferrer') },
-                    { text: "Copy Link", icon: "fas fa-link", color: "text-gray-500", action: (btn) => {
-                        navigator.clipboard.writeText(currentUrl).then(() => {
-                            const originalText = btn.innerHTML;
-                            btn.innerHTML = `<i class=\"fas fa-check text-green-500\"></i><span>Copied!</span>`;
-                            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
-                        }).catch(err => console.error('Failed to copy: ', err));
-                    }}
-                ];
-                shareMenu.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item w-full"><i class="${s.icon} ${s.color}"></i><span>${s.text}</span></button>`).join('');
-                shareMenu.querySelectorAll('button').forEach((btn, index) => {
-                    btn.addEventListener('click', () => shares[index].action(btn));
-                });
-            }
-            // Contact menu
             const contactMenu = document.getElementById('contact-options');
-            if (contactMenu) {
-                const contacts = [
-                    { text: "Call", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
-                    { text: "Messenger FB", href: "https://m.me/hr.ivsacademy", icon: "fab fa-facebook-messenger", color: "text-blue-500" },
-                    { text: "Zalo OA", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-600" },
-                    { text: "WhatsApp", href: "https://wa.me/84896920547", icon: "fab fa-whatsapp", color: "text-green-500" }
-                ];
-                contactMenu.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} ${c.color}"></i><span>${c.text}</span></a>`).join('');
-            }
+            const shareMenu = document.getElementById('share-options');
+            if (contactMenu) this.populateContactOptions(contactMenu);
+            if (shareMenu) this.populateShareOptions(shareMenu);
+        },
+
+        populateContactOptions(element) {
+            const contacts = [
+                { text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
+                { text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
+                { text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
+            ];
+            element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} ${c.color}"></i><span>${c.text}</span></a>`).join('');
+        },
+
+        populateShareOptions(element) {
+            const currentUrl = window.location.href;
+            const pageTitle = document.title;
+            const shares = [
+                { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank', 'noopener,noreferrer') },
+                { text: "Copy Link", icon: "fas fa-link", color: "text-gray-500", action: (btn) => {
+                    navigator.clipboard.writeText(currentUrl).then(() => {
+                        const originalContent = btn.innerHTML;
+                        btn.innerHTML = `<i class="fas fa-check text-green-500"></i><span>Copied!</span>`;
+                        setTimeout(() => { btn.innerHTML = originalContent; }, 2000);
+                    }).catch(err => console.error('Failed to copy: ', err));
+                }}
+            ];
+            element.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item w-full"><i class="${s.icon} ${s.color}"></i><span>${s.text}</span></button>`).join('');
+            element.querySelectorAll('button').forEach((btn, index) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent submenu from closing
+                    shares[index].action(btn);
+                });
+            });
         },
 
         bindEvents() {
-            // Scroll to top
             if (this.dom.scrollToTopBtn) {
                 window.addEventListener('scroll', () => {
                     this.dom.scrollToTopBtn.classList.toggle('opacity-0', window.scrollY < 200);
@@ -140,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { passive: true });
                 this.dom.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
-            // Share & Contact submenu
+
             this.dom.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
                 e.stopPropagation();
                 const menu = document.getElementById(btn.getAttribute('aria-controls'));
@@ -148,12 +172,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.closeAllSubmenus();
                 if (isOpening) menu.classList.add('active');
             }));
+
             document.addEventListener('click', () => this.closeAllSubmenus());
-            // Chatbot
+
             this.dom.chatbotOpenBtn.addEventListener('click', () => this.toggleChatbot(true));
             this.dom.chatbotCloseBtn.addEventListener('click', () => this.toggleChatbot(false));
             this.dom.chatbotSendBtn.addEventListener('click', () => this.handleSendMessage());
             this.dom.chatbotInput.addEventListener('keypress', e => e.key === 'Enter' && this.handleSendMessage());
+        },
+
+        closeAllSubmenus() {
+            this.dom.fabButtonsContainer.querySelectorAll('.fab-submenu-panel').forEach(m => m.classList.remove('active'));
         },
 
         toggleChatbot(forceOpen) {
@@ -171,15 +200,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
-        addMessage(text, sender) {
+        addMessage(text, sender, isTyping = false) {
             const messageWrapper = document.createElement('div');
             messageWrapper.className = `w-full flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+            
             const messageBubble = document.createElement('div');
             messageBubble.className = `max-w-[85%] rounded-2xl px-4 py-2 mb-2 text-white ${sender === 'user' ? 'bg-ivs-blue' : 'bg-ivs-border'}`;
-            messageBubble.textContent = text;
+            
+            if (isTyping) {
+                messageBubble.id = 'typing-indicator';
+                messageBubble.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
+            } else {
+                messageBubble.textContent = text;
+            }
+            
             messageWrapper.appendChild(messageBubble);
             this.dom.chatbotMessages.appendChild(messageWrapper);
             this.dom.chatbotMessages.scrollTop = this.dom.chatbotMessages.scrollHeight;
+        },
+
+        removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.parentElement.remove();
+            }
         },
 
         addWelcomeMessage() {
@@ -198,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.addMessage(message, 'user');
             this.dom.chatbotInput.value = '';
             this.setLoading(true);
+            this.addMessage('', 'model', true); // Show typing indicator
 
             try {
                 // **QUAN TRỌNG**: Thay thế bằng URL Cloud Function thực tế của anh sau khi deploy.
@@ -212,6 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }),
                 });
 
+                this.removeTypingIndicator();
+
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
                 const data = await response.json();
@@ -225,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             } catch (error) {
+                this.removeTypingIndicator();
                 console.error("Error calling backend:", error);
                 this.addMessage("Sorry, I'm having trouble connecting. Please try again later.", 'model');
             } finally {
