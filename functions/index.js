@@ -76,26 +76,33 @@ app.post("/chat", verifyAppCheck, async (req, res) => {
             return res.status(400).json({ error: "Message content is required" });
         }
 
-        const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const chat = model.startChat({
-            history: history || [],
-            generationConfig: { maxOutputTokens: 2048, temperature: 0.7 },
+        const { GoogleGenerativeAI } = require('@google/generative-ai');
+
+        const functions = require("firebase-functions");
+        const cors = require("cors")({ origin: true });
+
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+
+        exports.chat = functions.https.onRequest((req, res) => {
+        cors(req, res, async () => {
+            try {
+            const userMessage = req.body.message;
+
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+            const result = await model.generateContent(userMessage);
+            const response = await result.response;
+            const text = response.text();
+
+            res.json({ reply: text });
+
+            } catch (error) {
+            console.error("Chatbot Error:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+            }
         });
-
-        const result = await chat.sendMessage(message);
-        const response = result.response;
-        const text = response.text();
-
-        res.status(200).json({ success: true, response: text });
-
-    } catch (error) {
-        console.error("Error during Gemini API call:", error);
-        res.status(500).json({ error: "Failed to get response from AI", details: error.message });
-    }
-});
-
+        });
 
 // --- XUẤT CLOUD FUNCTION CHÍNH ---
 exports.api = functions.https.onRequest(

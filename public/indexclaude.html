@@ -1,521 +1,448 @@
-# CI/CD Pipeline cho IVS Academy Website
-# Tệp: .github/workflows/deploy.yml
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVS JSC - Education - Celestech - Consulting - IVS Academy</title>
 
-name: 🚀 IVS Academy - Build & Deploy
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Khám phá hệ sinh thái toàn diện của IVS JSC, nơi tích hợp các giải pháp hàng đầu về Giáo dục, Công nghệ, Tư vấn và Nhân sự để kiến tạo một tương lai bền vững." data-lang-key="home_meta_description">
+    <meta name="keywords" content="IVS JSC, hệ sinh thái giáo dục, EOV 2025, công nghệ giáo dục, EdTech, tư vấn giáo dục, cung ứng giáo viên nước ngoài, STEAM, IVS Apps, IVS Games, thiết kế web, liên kết đào tạo" data-lang-key="home_meta_keywords">
+    <meta property="og:title" content="IVS JSC - Toàn cảnh Hệ sinh thái Giáo dục, Công nghệ & Nhân sự" data-lang-key="home_og_title">
+    <meta property="og:description" content="IVS JSC tiên phong tích hợp các giải pháp toàn diện về Giáo dục, Công nghệ, và Nhân sự, đồng hành cùng các tổ chức và cá nhân vươn tầm quốc tế." data-lang-key="home_og_description">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/0D1117/e6edf3?text=IVS+JSC">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/index.html">
+    <meta property="og:type" content="website">
 
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    # Chạy kiểm tra hàng ngày lúc 2:00 AM UTC
-    - cron: '0 2 * * *'
-
-env:
-  NODE_VERSION: '18'
-  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-  
-jobs:
-  # ================================
-  # JOB 1: CODE QUALITY & SECURITY
-  # ================================
-  quality-check:
-    name: 🔍 Quality & Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: 📦 Install Dependencies
-        run: |
-          npm ci
-          npm install -g htmlhint stylelint eslint lighthouse-ci
-
-      - name: 🧹 HTML Validation
-        run: |
-          htmlhint "**/*.html" --config .htmlhintrc || true
-          echo "HTML validation completed"
-
-      - name: 🎨 CSS Linting
-        run: |
-          stylelint "**/*.css" --config .stylelintrc.json || true
-          echo "CSS linting completed"
-
-      - name: ⚡ JavaScript Linting
-        run: |
-          eslint "**/*.js" --config .eslintrc.json || true
-          echo "JavaScript linting completed"
-
-      - name: 🔒 Security Scan
-        uses: securecodewarrior/github-action-add-sarif@v1
-        with:
-          sarif-file: 'security-scan-results.sarif'
-        continue-on-error: true
-
-      - name: 🏗️ Build Test
-        run: |
-          echo "Testing build process..."
-          mkdir -p dist
-          cp -r . dist/
-          echo "Build test completed successfully"
-
-  # ================================
-  # JOB 2: PERFORMANCE & SEO AUDIT
-  # ================================
-  performance-audit:
-    name: ⚡ Performance & SEO Audit
-    runs-on: ubuntu-latest
-    needs: quality-check
-    steps:
-      - name: 📥 Checkout Code
-        uses: actions/checkout@v4
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 🚀 Start Local Server
-        run: |
-          npx http-server . -p 8080 &
-          sleep 5
-
-      - name: 🏃‍♂️ Run Performance Tests
-        run: |
-          npm install -g @lhci/cli
-          lhci autorun || echo "Lighthouse CI completed with warnings"
-
-      - name: 📊 Generate Performance Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: performance-report
-          path: .lighthouseci/
-          retention-days: 30
-
-  # ================================
-  # JOB 3: BUILD & OPTIMIZE
-  # ================================
-  build:
-    name: 🏗️ Build & Optimize
-    runs-on: ubuntu-latest
-    needs: [quality-check, performance-audit]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    steps:
-      - name: 📥 Checkout Code
-        uses: actions/checkout@v4
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: 📦 Install Build Tools
-        run: |
-          npm install -g terser clean-css-cli html-minifier-terser imagemin-cli
-
-      - name: 🗜️ Minify & Optimize Assets
-        run: |
-          # Tạo thư mục build
-          mkdir -p build
-          
-          # Copy toàn bộ files
-          cp -r . build/
-          
-          # Minify CSS files
-          find build -name "*.css" -not -path "*/node_modules/*" -exec sh -c '
-            for file; do
-              cleancss -o "$file.tmp" "$file" && mv "$file.tmp" "$file"
-            done
-          ' sh {} +
-          
-          # Minify JavaScript files
-          find build -name "*.js" -not -path "*/node_modules/*" -exec sh -c '
-            for file; do
-              terser "$file" -o "$file.tmp" --compress --mangle && mv "$file.tmp" "$file"
-            done
-          ' sh {} +
-          
-          # Minify HTML files
-          find build -name "*.html" -exec sh -c '
-            for file; do
-              html-minifier-terser --input-dir . --output-dir . --file-ext html \
-                --remove-comments --collapse-whitespace --minify-css --minify-js "$file" || true
-            done
-          ' sh {} +
-
-      - name: 🖼️ Optimize Images
-        run: |
-          # Tối ưu hóa hình ảnh (nếu có)
-          find build -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" | head -20 | xargs -I {} sh -c '
-            imagemin "{}" --out-dir="$(dirname "{}")" --plugin=imagemin-mozjpeg --plugin=imagemin-pngquant || true
-          ' 2>/dev/null || echo "Image optimization completed"
-
-      - name: 📝 Generate Manifest & Service Worker
-        run: |
-          cat > build/sw.js << 'EOF'
-          const CACHE_NAME = 'ivs-academy-v1.0.0';
-          const urlsToCache = [
-            '/',
-            '/css/styles.css',
-            '/js/loadComponents.js',
-            '/js/language.js',
-            '/images/logo/logo-192.png'
-          ];
-          
-          self.addEventListener('install', event => {
-            event.waitUntil(
-              caches.open(CACHE_NAME)
-                .then(cache => cache.addAll(urlsToCache))
-            );
-          });
-          
-          self.addEventListener('fetch', event => {
-            event.respondWith(
-              caches.match(event.request)
-                .then(response => response || fetch(event.request))
-            );
-          });
-          EOF
-
-      - name: 🗃️ Upload Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: website-build
-          path: build/
-          retention-days: 7
-
-  # ================================
-  # JOB 4: DEPLOY TO STAGING
-  # ================================
-  deploy-staging:
-    name: 🚀 Deploy to Staging
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/develop'
-    environment: staging
-    
-    steps:
-      - name: 📥 Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: website-build
-          path: ./build
-
-      - name: 🔧 Setup Firebase CLI
-        uses: w9jds/firebase-action@master
-        with:
-          args: --version
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-      - name: 🚀 Deploy to Firebase Staging
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting:staging --project ${{ env.FIREBASE_PROJECT_ID }}
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-      - name: 🧪 Run Staging Tests
-        run: |
-          echo "Running smoke tests on staging environment..."
-          curl -f https://staging-ivsacademy.web.app/ || exit 1
-          echo "Staging deployment successful!"
-
-  # ================================
-  # JOB 5: DEPLOY TO PRODUCTION
-  # ================================
-  deploy-production:
-    name: 🎯 Deploy to Production
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    environment: production
-    
-    steps:
-      - name: 📥 Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: website-build
-          path: ./build
-
-      - name: 🔧 Setup Firebase CLI
-        uses: w9jds/firebase-action@master
-        with:
-          args: --version
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-      - name: 🚀 Deploy to Firebase Production
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting --project ${{ env.FIREBASE_PROJECT_ID }}
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-      - name: 🔄 Purge CDN Cache
-        run: |
-          echo "Purging CDN cache..."
-          # Thêm lệnh purge cache cho CDN của bạn
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}' || echo "CDN purge skipped"
-
-      - name: 🧪 Run Production Health Check
-        run: |
-          echo "Running production health checks..."
-          curl -f https://ivsacademy.edu.vn/ || exit 1
-          echo "Production deployment successful!"
-
-      - name: 📢 Notify Team
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: |
-            🎉 IVS Academy website deployed successfully!
-            🌐 Live at: https://ivsacademy.edu.vn
-            📊 Build: ${{ github.run_number }}
-            👤 By: ${{ github.actor }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
-
-  # ================================
-  # JOB 6: POST-DEPLOYMENT MONITORING
-  # ================================
-  post-deployment:
-    name: 📊 Post-Deployment Monitoring
-    runs-on: ubuntu-latest
-    needs: [deploy-production]
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: 🏥 Health Check & Monitoring
-        run: |
-          echo "Setting up monitoring alerts..."
-          
-          # Kiểm tra response time
-          RESPONSE_TIME=$(curl -o /dev/null -s -w '%{time_total}' https://ivsacademy.edu.vn/)
-          echo "Response time: ${RESPONSE_TIME}s"
-          
-          # Kiểm tra SSL certificate
-          echo | openssl s_client -servername ivsacademy.edu.vn -connect ivsacademy.edu.vn:443 2>/dev/null | openssl x509 -noout -dates
-          
-          echo "Health checks completed successfully!"
-
-      - name: 📈 Update Deployment Status
-        run: |
-          echo "Deployment completed at $(date)"
-          echo "Version: ${{ github.sha }}"
-          echo "Environment: Production"
-          echo "Status: ✅ Success"
-
----
-
-# Tệp cấu hình bổ sung
-
-# .htmlhintrc - Cấu hình HTML validation
-{
-  "tagname-lowercase": true,
-  "attr-lowercase": true,
-  "attr-value-double-quotes": true,
-  "attr-value-not-empty": false,
-  "attr-no-duplication": true,
-  "doctype-first": true,
-  "tag-pair": true,
-  "tag-self-close": false,
-  "spec-char-escape": true,
-  "id-unique": true,
-  "src-not-empty": true,
-  "title-require": true,
-  "alt-require": true,
-  "doctype-html5": true,
-  "id-class-value": "dash",
-  "style-disabled": false,
-  "inline-style-disabled": false,
-  "inline-script-disabled": false,
-  "space-tab-mixed-disabled": "space",
-  "id-class-ad-disabled": false,
-  "href-abs-or-rel": false,
-  "attr-unsafe-chars": true
-}
-
-# .stylelintrc.json - Cấu hình CSS linting  
-{
-  "extends": ["stylelint-config-standard"],
-  "rules": {
-    "indentation": 2,
-    "string-quotes": "single",
-    "no-duplicate-selectors": true,
-    "color-hex-case": "lower",
-    "color-hex-length": "short",
-    "color-named": "never",
-    "selector-combinator-space-after": "always",
-    "selector-attribute-operator-space-before": "never",
-    "selector-attribute-operator-space-after": "never",
-    "selector-attribute-brackets-space-inside": "never",
-    "declaration-block-trailing-semicolon": "always",
-    "declaration-no-important": true,
-    "declaration-colon-space-before": "never",
-    "declaration-colon-space-after": "always",
-    "number-leading-zero": "always",
-    "function-url-quotes": "always",
-    "font-weight-notation": "numeric",
-    "comment-whitespace-inside": "always",
-    "rule-empty-line-before": "always"
-  }
-}
-
-# .eslintrc.json - Cấu hình JavaScript linting
-{
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": [
-    "eslint:recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "no-unused-vars": "warn",
-    "no-console": "warn",
-    "no-debugger": "error",
-    "no-alert": "warn",
-    "prefer-const": "error",
-    "no-var": "error",
-    "arrow-spacing": "error",
-    "comma-dangle": ["error", "never"],
-    "eqeqeq": "error",
-    "no-trailing-spaces": "error"
-  }
-}
-
-# firebase.json - Cấu hình Firebase Hosting
-{
-  "hosting": [
-    {
-      "target": "production",
-      "public": "build",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
+    <!-- Tailwind CSS with Custom Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-green': '#34d399',
+                        'ivs-purple': '#a78bfa',
+                        'ivs-red': '#f87171',
+                        'ivs-cyan': '#22d3ee',
+                        'ivs-amber': '#f59e0b',
+                        'ivs-emerald': '#34d399',
+                        'ivs-rose': '#f43f5e'
+                    },
+                    keyframes: {
+                        "shine-pulse": {
+                          "0%": {
+                            "background-position": "0% 0%",
+                          },
+                          "50%": {
+                            "background-position": "100% 100%",
+                          },
+                          to: {
+                            "background-position": "0% 0%",
+                          },
+                        },
+                      }
+                }
+            }
         }
-      ],
-      "headers": [
-        {
-          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-          "headers": [
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            }
-          ]
-        },
-        {
-          "source": "**/*.@(js|css)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=31536000"
-            }
-          ]
-        },
-        {
-          "source": "sw.js",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "no-cache"
-            }
-          ]
+    </script>
+    
+    <style>
+        .font-display { font-family: 'Lexend', sans-serif; }
+        .hero-image {
+            background-image: linear-gradient(to top, rgba(13, 17, 23, 1) 5%, rgba(13, 17, 23, 0.4) 50%, rgba(13, 17, 23, 0.2) 100%), url('https://via.placeholder.com/1920x1080/0D1117/58a6ff?text=IVS+Academy');
+            background-size: cover;
+            background-position: center 70%;
+            background-attachment: scroll;
+            height: 100vh;
         }
-      ]
-    },
-    {
-      "target": "staging", 
-      "public": "build",
-      "ignore": [
-        "firebase.json",
-        "**/.*", 
-        "**/node_modules/**"
-      ]
-    }
-  ]
-}
+        .eov-section {
+            background: linear-gradient(rgba(13, 17, 23, 0.95), rgba(13, 17, 23, 0.95)), url('https://via.placeholder.com/1920x800/0D1117/f59e0b?text=EOV+2025') no-repeat center center/cover;
+        }
+        .interactive-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+        }
+        .timeline {
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #58a6ff, #a78bfa, #34d399);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #30363d;
+            border: 2px solid #30363d;
+        }
+        .timeline-dot.bg-ivs-blue {
+            background: #58a6ff;
+            border-color: #58a6ff;
+        }
+        
+        /* Chat widget styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background: #161B22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+        }
+        .chat-widget.active {
+            display: flex;
+        }
+        .chat-header {
+            padding: 15px;
+            background: #0D1117;
+            border-bottom: 1px solid #30363d;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #30363d;
+            border-radius: 0 0 12px 12px;
+        }
+        .chat-input input {
+            width: 100%;
+            padding: 10px;
+            background: #0D1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            outline: none;
+        }
+        .chat-input input:focus {
+            border-color: #58a6ff;
+        }
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #58a6ff;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        .chat-toggle:hover {
+            background: #3b82f6;
+            transform: scale(1.1);
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        .message.user {
+            background: #58a6ff;
+            color: white;
+            margin-left: auto;
+        }
+        .message.bot {
+            background: #30363d;
+            color: #e6edf3;
+        }
+        
+        /* Navigation */
+        .nav-container {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #30363d;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-item {
+            color: #a1aab4;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            color: #58a6ff;
+            background: rgba(88, 166, 255, 0.1);
+        }
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #e6edf3;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #0D1117;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
 
-# package.json - Dependencies cho build process
-{
-  "name": "ivs-academy-website",
-  "version": "1.0.0",
-  "description": "IVS Academy official website",
-  "scripts": {
-    "dev": "http-server . -p 3000",
-    "build": "npm run optimize",
-    "optimize": "npm run minify:css && npm run minify:js && npm run minify:html",
-    "minify:css": "cleancss -o dist/css/styles.min.css css/styles.css",
-    "minify:js": "terser js/*.js -o dist/js/scripts.min.js",
-    "minify:html": "html-minifier-terser --input-dir . --output-dir dist --file-ext html",
-    "lint": "eslint js/**/*.js && stylelint css/**/*.css",
-    "test": "echo 'Tests will be added'",
-    "deploy:staging": "firebase deploy --only hosting:staging",
-    "deploy:prod": "firebase deploy --only hosting:production"
-  },
-  "devDependencies": {
-    "clean-css-cli": "^5.6.2",
-    "eslint": "^8.57.0",
-    "firebase-tools": "^13.0.0",
-    "html-minifier-terser": "^7.2.0",
-    "htmlhint": "^1.1.4",
-    "http-server": "^14.1.1",
-    "imagemin-cli": "^7.0.0",
-    "lighthouse-ci": "^0.12.0",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
-    "terser": "^5.26.0"
-  }
-}
+    <!-- Navigation -->
+    <nav class="nav-container fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 bg-ivs-blue rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">IVS</span>
+                    </div>
+                    <span class="text-white font-bold text-xl">IVS JSC</span>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="#introduction" class="nav-item">Trang Chủ</a>
+                    <a href="#services-showcase" class="nav-item">Dịch Vụ</a>
+                    <a href="#partner-solutions" class="nav-item">Giải pháp</a>
+                    <a href="#digital-ecosystem" class="nav-item">Hệ sinh thái</a>
+                    <a href="#leader" class="nav-item">Lãnh đạo</a>
+                    <a href="#" class="nav-item">Liên Hệ</a>
+                </div>
+                
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-# .firebaserc - Cấu hình Firebase projects
-{
-  "projects": {
-    "default": "your-firebase-project-id",
-    "staging": "your-firebase-staging-project-id",
-    "production": "your-firebase-production-project-id"
-  },
-  "targets": {
-    "your-firebase-project-id": {
-      "hosting": {
-        "production": [
-          "your-production-site-id"
-        ],
-        "staging": [
-          "your-staging-site-id"  
-        ]
-      }
-    }
-  }
-}
+    <main>
+        
+        <!-- SECTION 1: HERO -->
+        <section class="relative min-h-screen flex items-end">
+            <div class="hero-image absolute inset-0"></div>
+            <div id="introduction" class="relative w-full pb-16 md:pb-24 z-10">
+                <div class="container mx-auto px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold font-display text-white">IVS Academy</h1>
+                    <p class="text-xl md:text-2xl text-white mt-4 opacity-90">Kiến Tạo Tương Lai - Nâng Tầm Thành Công</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: IVS GLOBAL TEACHER HUB INTRODUCTION -->
+        <section class="relative py-24 mt-0 bg-gradient-to-b from-ivs-bg to-ivs-card border-b border-ivs-border">
+            <div id="ivs-teacher-hub-intro-section" class="relative pb-16 md:pb-24 z-10">
+                <div class="container mx-auto px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold font-display text-white">Welcome to the IVS Global Teacher Hub!</h2>
+                    <p class="text-lg md:text-xl text-white mt-4 max-w-3xl mx-auto">
+                        Discover a world of opportunities in international education. The IVS Global Teacher Hub is your gateway to connecting with leading educational projects, enhancing your professional skills, and contributing to the future of learning.
+                    </p>
+                    <button class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Explore Opportunities Now <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECTION 2: EOV 2025 SPOTLIGHT -->
+        <section class="py-20 lg:py-24 eov-section border-y border-ivs-border">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-ivs-amber font-semibold tracking-wider">DỰ ÁN TRỌNG ĐIỂM 2025</p>
+                        <h2 class="text-3xl lg:text-5xl font-bold font-display text-white mt-2 mb-4">English Olympics of Vietnam</h2>
+                        <p class="text-lg text-ivs-text-secondary leading-relaxed mb-6">Sân chơi học thuật tiếng Anh đẳng cấp quốc tế, với sứ mệnh "Empowering Young Leaders". EOV không chỉ là cuộc thi mà còn là một hành trình phát triển toàn diện kỹ năng và tư duy công dân toàn cầu.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20">
+                                <i class="fas fa-file-alt mr-2"></i> Xem Thể Lệ
+                            </button>
+                            <button class="inline-block bg-transparent border-2 border-ivs-border hover:bg-ivs-border text-ivs-text-primary font-semibold py-3 px-6 rounded-lg transition-colors">
+                                Tìm hiểu thêm
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block">
+                        <img src="https://via.placeholder.com/600x400/161B22/f59e0b?text=EOV+2025" alt="EOV 2025" class="max-w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CORE PHILOSOPHY (I-V-S) -->
+        <section class="py-20 lg:py-24 bg-ivs-bg">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-white">Triết Lý Cốt Lõi: I-V-S</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-ivs-card border border-ivs-border p-6 rounded-lg text-center h-full">
+                        <i class="fas fa-project-diagram text-4xl text-ivs-blue mb-4"></i>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2">Integrate (Tích hợp)</h3>
+                        <p class="text-ivs-text-secondary text-sm">Kết nối chặt chẽ công nghệ, chương trình giáo dục và nhu cầu thực tiễn để tạo ra một hệ thống vận hành đồng bộ, hiệu quả và mang lại giá trị vượt trội.</p>
+                    </div>
+                    <div class="bg-ivs-card border border-ivs-border p-6 rounded-lg text-center h-full">
+                        <i class="fas fa-eye text-4xl text-ivs-purple mb-4"></i>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2">Vision (Tầm nhìn)</h3>
+                        <p class="text-ivs-text-secondary text-sm">Tiên phong định hình tương lai học tập, ứng dụng công nghệ để mở ra cơ hội phát triển toàn diện, giúp học viên sẵn sàng cho các thách thức của thế kỷ 21.</p>
+                    </div>
+                    <div class="bg-ivs-card border border-ivs-border p-6 rounded-lg text-center h-full">
+                        <i class="fas fa-hands-helping text-4xl text-ivs-green mb-4"></i>
+                        <h3 class="text-xl font-display font-semibold text-white mb-2">Synergy (Hợp lực)</h3>
+                        <p class="text-ivs-text-secondary text-sm">Tạo dựng sức mạnh cộng hưởng từ mạng lưới đối tác, chuyên gia và cộng đồng để thúc đẩy sự phát triển bền vững và cùng nhau vươn xa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: DETAILED SERVICES SHOWCASE -->
+        <section id="services-showcase" class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4">Hệ sinh thái Giải pháp & Dịch vụ</h2>
+                    <p class="text-lg text-ivs-text-secondary">Từ nền tảng giáo dục đến các giải pháp công nghệ và tư vấn chiến lược, chúng tôi cung cấp một hệ sinh thái toàn diện để đáp ứng mọi nhu cầu của bạn.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-handshake-angle text-3xl text-ivs-green"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Tư vấn Toàn diện</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4">Hỗ trợ từ A-Z trong việc thành lập, vận hành trung tâm giáo dục, đảm bảo pháp lý và tối ưu chiến lược.</p>
+                        <button class="font-semibold text-sm text-ivs-green hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-code text-3xl text-ivs-purple"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Thiết kế & Phát triển Web</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4">Xây dựng website chuyên nghiệp, chuẩn SEO, tối ưu trải nghiệm người dùng cho các tổ chức giáo dục và doanh nghiệp.</p>
+                        <button class="font-semibold text-sm text-ivs-purple hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-school text-3xl text-ivs-blue"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Liên kết Đào tạo</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4">Cung cấp các chương trình hợp tác toàn diện cho Mầm non, Tiểu học, và các trung tâm ngoại ngữ.</p>
+                        <button class="font-semibold text-sm text-ivs-blue hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-user-tie text-3xl text-ivs-red"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Cung ứng Nhân sự & GVNN</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4">Cung cấp nguồn giáo viên nước ngoài chất lượng cao và các giải pháp nhân sự chuyên biệt cho ngành giáo dục.</p>
+                        <button class="font-semibold text-sm text-ivs-red hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-book-reader text-3xl text-ivs-amber"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Phát triển Chương trình (R&D)</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4">Nghiên cứu và phát triển các chương trình đào tạo STEAM, Kỹ năng sống, và Anh ngữ theo chuẩn quốc tế.</p>
+                        <button class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border">
+                        <div class="mb-4"><i class="fas fa-cubes text-3xl text-ivs-cyan"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2">Hệ sinh thái Số</h3>
+                        <p class="text-ivs-text-secondary text-sm">Khám phá các ứng dụng, game giáo dục và nền tảng số được thiết kế để nâng cao hiệu quả dạy và học.</p>
+                        <button class="font-semibold text-sm text-ivs-cyan hover:text-white transition-colors">Khám phá &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SOLUTIONS FOR PARTNERS -->
+        <section id="partner-solutions" class="py-20 lg:py-24 bg-ivs-bg">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white">Giải pháp cho Từng đối tác</h2>
+                    <p class="text-lg text-ivs-text-secondary">
+                        Chúng tôi thiết kế các gói giải pháp chuyên biệt, đáp ứng chính xác nhu cầu và mục tiêu của từng loại hình đối tác.
+                    </p>
+                </div>
+                <div class="solution-tabs">
+                    <div class="mb-8 border-b border-ivs-border flex justify-center">
+                        <button class="tab-button active px-6 py-3 font-semibold border-b-2 border-ivs-blue text-ivs-blue transition-colors" data-tab="schools">Trường học</button>
+                        <button class="tab-button px-6 py-3 font-semibold border-b-2 border-transparent text-ivs-text-secondary transition-colors" data-tab="centers">Trung tâm</button>
+                        <button class="tab-button px-6 py-3 font-semibold border-b-2 border-transparent text-ivs-text-secondary transition-colors" data-tab="corporate">Doanh nghiệp</button>
+                    </div>
+                    <div class="bg-ivs-card p-8 rounded-lg border border-ivs-border">
+                        <div class="tab-content active" data-tab="schools">
+                            <h3 class="text-2xl font-bold font-display text-white mb-4">Giải pháp cho Trường học (K-12)</h3>
+                            <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li>Triển khai chương trình STEAM và tiếng Anh tích hợp.</li>
+                                <li>Cung ứng và quản lý giáo viên nước ngoài.</li>
+                                <li>Tổ chức các cuộc thi học thuật và sự kiện ngoại khóa.</li>
+                                <li>Xây dựng hệ thống quản lý học tập (LMS) và cổng thông tin trường học.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" data-tab="centers" style="display: none;">
+                             <h3 class="text-2xl font-bold font-display text-white mb-4">Giải pháp cho Trung tâm Ngoại ngữ & Kỹ năng</h3>
+                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li>Tư vấn thành lập, setup và vận hành từ A-Z.</li>
+                                <li>Cung cấp chương trình và giáo trình độc quyền.</li>
+                                <li>Giải pháp CRM và App thương hiệu để quản lý và chăm sóc học viên.</li>
+                                <li>Hỗ trợ tuyển sinh và chiến lược marketing.</li>
+                            </ul>
+                        </div>
+                         <div class="tab-content" data-tab="corporate" style="display: none;">
+                             <h3 class="text-2xl font-bold font-display text-white mb-4">Giải pháp cho Doanh nghiệp</h3>
+                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li>Chương trình đào tạo tiếng Anh và kỹ năng mềm cho nhân viên.</li>
+                                <li>Giải pháp đào tạo trực tuyến và kết hợp.</li>
+                                <li>Tư vấn xây dựng văn hóa học tập trong doanh nghiệp.</li>
+                                <li>Hỗ trợ tuyển dụng và đào tạo nhân sự chất lượng cao.</li>
+                            </ul>
+                        </div>
