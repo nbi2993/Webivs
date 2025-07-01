@@ -1,39 +1,28 @@
-
-// File: functions/index.js
-const functions = require("firebase-functions/v2");
+// File: index.js (hoặc file gốc của anh)
 const admin = require("firebase-admin");
 const express = require("express");
 const cors = require("cors");
 const { GoogleGenerativeAI } = require("@google-ai/generativelanguage");
 
-// --- ĐỊNH NGHĨA CÁC SECRET SẼ SỬ DỤNG ---
-const serviceAccountKeySecret = functions.params.defineSecret("SERVICEACCOUNT_KEY_BASE64");
-const geminiApiKeySecret = functions.params.defineSecret("GEMINI_API_KEY");
-
-let isAppInitialized = false;
-
-function initializeFirebaseApp(serviceAccountKeyBase64) {
-    if (isAppInitialized || !serviceAccountKeyBase64) return;
-    try {
-        const serviceAccountString = Buffer.from(serviceAccountKeyBase64, 'base64').toString('utf8');
-        const serviceAccount = JSON.parse(serviceAccountString);
-        admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-        console.log("Firebase Admin SDK initialized successfully.");
-        isAppInitialized = true;
-    } catch (error) {
-        console.error("CRITICAL: Failed to initialize Firebase Admin SDK.", error);
-    }
+// --- KHỞI TẠO FIREBASE ADMIN SDK ---
+// App Hosting sẽ tự động cung cấp thông tin credentials, không cần key file.
+try {
+    admin.initializeApp();
+    console.log("Firebase Admin SDK initialized successfully in the App Hosting environment.");
+} catch (error) {
+    console.error("CRITICAL: Failed to initialize Firebase Admin SDK.", error);
 }
 
 const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-// *** ROUTE CHO CHATBOT AI - ĐÃ TỐI ƯU HÓA ***
+// *** ROUTE CHO CHATBOT AI ***
 app.post("/chat", async (req, res) => {
-    const GEMINI_API_KEY = geminiApiKeySecret.value();
+    // Trong App Hosting, secret được truy cập qua process.env
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY; 
     if (!GEMINI_API_KEY) {
-        console.error("Gemini API Key is not available in secrets. Ensure it is set.");
+        console.error("Gemini API Key is not available in environment variables.");
         return res.status(500).json({ error: "AI service is not configured." });
     }
 
@@ -46,7 +35,6 @@ app.post("/chat", async (req, res) => {
         const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        // Tạo ngữ cảnh từ lịch sử trò chuyện
         const chat = model.startChat({
             history: history || [],
             generationConfig: { maxOutputTokens: 2048, temperature: 0.7 },
@@ -64,20 +52,13 @@ app.post("/chat", async (req, res) => {
     }
 });
 
+// --- KHỞI ĐỘNG SERVER ---
+// GIẢI PHÁP: Lấy port từ biến môi trường của App Hosting.
+// Nếu không có (khi chạy ở local), dùng một port mặc định (ví dụ: 8080).
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+});
 
-// --- XUẤT CLOUD FUNCTION CHÍNH ---
-exports.api = functions.https.onRequest(
-    {
-        region: "asia-southeast1",
-        secrets: [serviceAccountKeySecret, geminiApiKeySecret],
-        timeoutSeconds: 60,
-        
-    },
-    (req, res) => {
-        // Khởi tạo Admin SDK (nếu cần cho các route khác)
-        initializeFirebaseApp(serviceAccountKeySecret.value());
-        // Chuyển tiếp yêu cầu đến Express app để xử lý
-        return app(req, res);
-    }
-);
-// --- END OF FILE ---
+// --- XUẤT APP ĐỂ FIREBASE CÓ THỂ SỬ DỤNG (TÙY CHỌN, NHƯNG NÊN CÓ) ---
+module.exports = app;
