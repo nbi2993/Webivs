@@ -64,14 +64,11 @@
   "loading_news": "Đang tải tin tức...",
   "button_all_news": "Xem tất cả tin tức",
   "index_section_title_testimonials": "Học viên & Đối tác Nói gì về IVS",
-  "testimonial_1_text": "Phụ huynh: \\\"Chương trình học tại IVS Academy linh động và thực tế. Có thể tinh chỉnh theo bất cứ nhu càu học tập, giảng dạy nào, nhờ Đội ngũ giảng viên cực kỳ chất lượng, và tư duy nhạy bén trong giáo dục. Con trai chúng Là con lai lần đầu tiên về Việt Nam, nhưng phải theo học chương trình bên đó và IVS kết hợp với chương trình đào tạo của trường mà cậu bé lớp 1 này đang theo học ở Mỹ để dạy bé trong vòng 3 tháng, điều đó thật tuyệt vời.\\\"",
-  "testimonial_1_name": "Bé Thomas - Quốc tịch Mỹ",
+  
   "testimonial_1_title": "Học viên đặc biệt của IVS",
-  "testimonial_2_text": "\"Nhờ giải pháp EdTech của IVS Celestech, trường chúng tôi đã cải thiện đáng kể việc quản lý học sinh và nâng cao chất lượng giảng dạy. Đây thực sự là một bước tiến lớn trong công tác giáo dục.\"",
-  "testimonial_2_name": "Nguyễn Thị Lan",
+  
   "testimonial_2_title": "Hiệu trưởng Trường Tiểu học Ánh Dương",
-  "testimonial_3_text": "\"Hợp tác với IVS JSC trong dự án giáo dục quốc tế đã giúp chúng tôi tiếp cận được nhiều cơ hội mới và đạt được những thành tựu đáng kể. Đội ngũ làm việc rất chuyên nghiệp và tận tâm.\"",
-  "testimonial_3_name": "Lê Văn Hùng",
+  
   "testimonial_3_title": "Trưởng phòng Hợp tác Quốc tế, Công ty Giáo dục Việt",
   "cta_main_title": "Sẵn sàng Nâng tầm Tri thức & Kiến tạo Tương lai?",
   "cta_main_subtitle": "Hãy kết nối với IVS JSC ngay hôm nay để khám phá các giải pháp giáo dục và công nghệ hàng đầu, cùng những cơ hội hợp tác phát triển bền vững.",
@@ -1442,5 +1439,23 @@
   "chatbot_intro_description": "IVS AI Support được thiết kế để cung cấp thông tin nhanh chóng, chính xác về các dịch vụ, dự án và triết lý của chúng tôi. Dù bạn có câu hỏi về tư vấn giáo dục, phát triển web hay hệ sinh thái số, AI của chúng tôi luôn sẵn sàng giúp bạn điều hướng thế giới IVS một cách hiệu quả.",
   "chatbot_feature_1": "Trả lời tức thì mọi thắc mắc.",
   "chatbot_feature_2": "Thông tin chi tiết về dịch vụ và dự án của IVS.",
-  "chatbot_feature_3": "Luôn sẵn sàng 24/7 để phục vụ bạn."
+  "chatbot_feature_3": "Luôn sẵn sàng 24/7 để phục vụ bạn.",
+  "page_title_index": "IVS Global Teacher Hub",
+  "meta_description_index": "IVS JSC - Tổ chức tiên phong tại Việt Nam trong lĩnh vực giáo dục (IVS Academy, IVS Kindergarten), công nghệ giáo dục (IVS Celestech), y tế công cộng và hợp tác quốc tế.",
+  "meta_keywords_index": "IVS JSC, giáo dục, công nghệ giáo dục, EdTech, STEAM, y tế, hợp tác quốc tế, Đồng Nai, IVS Academy, IVS Celestech, đào tạo ngoại ngữ, kỹ năng sống",
+  "og_title_index": "IVS JSC - Giáo dục, Công nghệ, Y tế, Hợp tác Quốc tế",
+  "og_description_index": "Khám phá các giải pháp toàn diện về đào tạo ngoại ngữ, STEAM, kỹ năng sống, EdTech, chăm sóc sức khỏe và cơ hội hợp tác với IVS JSC.",
+  "testimonials_title": "Khách Hàng & Đối Tác Nói Gì Về Chúng Tôi",
+  "testimonial_1_text": "\"IVS JSC đã giúp chúng tôi xây dựng một chương trình đào tạo STEAM hoàn chỉnh, mang lại hiệu quả vượt trội cho học sinh. Sự chuyên nghiệp và tận tâm của đội ngũ thực sự ấn tượng.\"",
+  "testimonial_1_name": "Chị Nguyễn Xuân Hà",
+  "testimonial_1_role": "Hiệu Phó Chuyên môn Trường Tiểu học Tư thục",
+  "testimonial_2_text": "\"Nhờ IVS Celestech, không chỉ tại Việt Nam. mà chúng tôi sở hữu 1 website ngay tại Mỹ thật chuyên nghiệp, chuẩn SEO hiệu quả, giao diện hiện đại và nhất là luôn hỗ trợ tức thì. mời mọi người ghé thăm trang web do IVS Celestech thiết ké: https://KhaDock.com.\"",
+  "testimonial_2_name": "Mr. Kha Do",
+  "testimonial_2_role": "Giám đốc Kha Boat Dock tại Lakeland, Florida, Hoa Kỳ",
+  "testimonial_3_text": "\"Trong 2 tháng về Việt Nam lần đầu, IVS đã liên tục phối hợp cùng chương trình tại Mỹ để bé Thomas luôn theo kịp các bạn. Gia đình thật sự chưa nghĩ ra làm thế nào luôn. Cảm ơn IVS nhé!\"",
+  "testimonial_3_name": "Chị Châu An Nhiên",
+  "testimonial_3_role": "Cô của bé Thomas, TP.HCM",
+  "testimonial_4_text": "\"IVS LifeMinds đã cung cấp những buổi tư vấn hướng nghiệp vô cùng giá trị, giúp tôi định hình rõ ràng con đường phát triển sự nghiệp trong tương lai. Tôi rất hài lòng với sự tận tâm và chuyên nghiệp của đội ngũ.\"",
+  "testimonial_4_name": "Bạn Trương Đình Khang",
+  "testimonial_4_role": "Học sinh lớp 12 - Trường THPT Chuyên Lê Hồng Phong"
 }
