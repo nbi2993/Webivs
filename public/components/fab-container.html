@@ -437,11 +437,9 @@
 
                 try {
                     chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-                    
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // Canvas will provide this
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
+                    // GỌI API QUA FIREBASE FUNCTION ĐÃ BẢO MẬT, KHÔNG GỌI GEMINI TRỰC TIẾP
+                    const apiUrl = "https://us-central1-ivsjsc-6362f.cloudfunctions.net/api/api/chat";
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
