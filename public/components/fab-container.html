@@ -1,487 +1,253 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.8 - Guaranteed Chatbot Initialization -->
-<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons including an AI Chatbot. All logic is handled externally. -->
+<!-- VERSION: 3.2 - Restored All FAB Functions -->
+<!-- DESCRIPTION: A self-contained component for all Floating Action Buttons and the AI Chatbot, with all functionalities restored. -->
 
-<!-- Thay đổi: Thêm "bottom-20 md:bottom-4" để nâng vị trí trên di động -->
-<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
-    
-    <!-- Thay đổi: Xóa class 'hidden' để JS có thể kiểm soát hiệu ứng chuyển động -->
-    <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
-            class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
-        <i class="fas fa-arrow-up text-base sm:text-lg"></i>
-    </button>
-
-    <!-- Nút FAB Chia Sẻ -->
-    <div class="relative group/fab">
-        <button id="share-main-btn" title="Chia sẻ" aria-label="Mở menu chia sẻ" aria-haspopup="true" aria-expanded="false" aria-controls="share-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-share-alt text-xl sm:text-2xl"></i>
+<div id="fab-container-wrapper">
+    <!-- Main FAB Buttons Container -->
+    <div id="fab-buttons-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-20 md:bottom-4">
+        <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
+                class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
+            <i class="fas fa-arrow-up text-base sm:text-lg"></i>
         </button>
-        <div id="share-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[200px] md:w-auto"
-             role="menu" aria-orientation="vertical" aria-labelledby="share-main-btn">
-            <!-- Nội dung cho share-options sẽ được JavaScript chèn vào đây -->
+        <div class="relative group/fab">
+            <button id="share-main-btn" title="Chia sẻ" aria-label="Mở menu chia sẻ" aria-haspopup="true" aria-expanded="false" aria-controls="share-options"
+                    class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
+                <i class="fas fa-share-alt text-xl sm:text-2xl"></i>
+            </button>
+            <div id="share-options" class="fab-submenu-panel" role="menu"></div>
         </div>
-    </div>
-
-    <!-- Nút FAB Liên Hệ (chính) -->
-    <div class="relative group/fab">
-        <button id="contact-main-btn" title="Liên hệ" aria-label="Mở menu liên hệ" aria-haspopup="true" aria-expanded="false" aria-controls="contact-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-comment-dots text-xl sm:text-2xl"></i>
-        </button>
-        <div id="contact-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[220px] md:w-auto"
-             role="menu" aria-orientation="vertical" aria-labelledby="contact-main-btn">
-            <!-- Nội dung cho contact-options sẽ được JavaScript chèn vào đây -->
+        <div class="relative group/fab">
+            <button id="contact-main-btn" title="Liên hệ" aria-label="Mở menu liên hệ" aria-haspopup="true" aria-expanded="false" aria-controls="contact-options"
+                    class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
+                <i class="fas fa-comment-dots text-xl sm:text-2xl"></i>
+            </button>
+            <div id="contact-options" class="fab-submenu-panel" role="menu"></div>
         </div>
-    </div>
-
-    <!-- Nút Chatbot AI -->
-    <!-- Đặt nút chatbot trong fab-container để cùng quản lý vị trí và responsiveness -->
-    <button id="chatbot-open-button" title="Mở Chatbot AI" aria-label="Mở Chatbot AI"
-            class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-        <i class="fas fa-robot text-xl sm:text-2xl"></i>
-    </button>
-</div>
-
-<!-- Chatbot Container (Fixed position outside fab-container for full screen positioning) -->
-<div id="chatbot-container" class="fixed bottom-4 right-4 md:right-24 bg-white dark:bg-neutral-800 rounded-lg shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out z-50 transform scale-0 opacity-0 origin-bottom-right" style="width: calc(100% - 32px); max-width: 400px; height: calc(100% - 100px); max-height: 500px; display: none;">
-    <div id="chatbot-header" class="flex justify-between items-center bg-blue-600 text-white p-3 rounded-t-lg shadow-md">
-        <span class="font-semibold text-lg">IVS Chatbot AI</span>
-        <button id="chatbot-close-button" class="text-white hover:text-blue-200 transition-colors duration-200" aria-label="Đóng Chatbot">
-            <i class="fas fa-times text-xl"></i>
+        <button id="chatbot-open-button" title="Mở Chatbot AI" aria-label="Mở Chatbot AI"
+                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
+            <i class="fas fa-robot text-xl sm:text-2xl"></i>
         </button>
     </div>
-    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto custom-scrollbar">
-        <!-- Messages will be appended here -->
-        <div class="message-bubble ai bg-blue-100 dark:bg-blue-800 text-gray-800 dark:text-gray-100 p-2 rounded-lg mb-2 max-w-[80%]">Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?</div>
-    </div>
-    <div id="chatbot-input-area" class="flex p-3 border-t border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-900">
-        <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn của bạn..." 
-               class="flex-1 p-2 rounded-l-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <button id="chatbot-send-button" 
-                class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-r-lg ml-1 transition-colors duration-200 flex items-center justify-center" aria-label="Gửi tin nhắn">
-            <i class="fas fa-paper-plane text-lg"></i>
-        </button>
+
+    <!-- Chatbot UI Container -->
+    <div id="chatbot-container" class="fixed bottom-4 right-4 md:right-6 bg-ivs-card border border-ivs-border rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out z-40 transform scale-0 opacity-0 origin-bottom-right" style="width: calc(100% - 32px); max-width: 400px; height: calc(100% - 100px); max-height: 600px; display: none;">
+        <header class="flex items-center justify-between p-3 border-b border-ivs-border flex-shrink-0">
+            <div class="flex items-center">
+                <img src="/images/logo/logo-192.png" alt="IVS Bot" class="w-10 h-10 rounded-full mr-3">
+                <div>
+                    <h3 class="font-bold text-white text-base">IVS AI Assistant</h3>
+                    <p class="text-xs text-ivs-green">● Online</p>
+                </div>
+            </div>
+            <button id="chatbot-close-button" class="text-ivs-text-secondary hover:text-white text-2xl" aria-label="Đóng Chatbot">&times;</button>
+        </header>
+        <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto"></div>
+        <footer class="p-3 border-t border-ivs-border bg-ivs-bg flex-shrink-0">
+            <div class="flex items-center bg-ivs-bg border border-ivs-border rounded-lg">
+                <input type="text" id="chatbot-input" placeholder="Type your message..." class="flex-1 bg-transparent px-4 py-2 text-white focus:outline-none">
+                <button id="chatbot-send-button" class="p-3 text-ivs-blue hover:text-white transition-colors" aria-label="Gửi tin nhắn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </footer>
     </div>
 </div>
 
-<!-- 
- CSS cho các mục con của FAB. 
- Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt lập.
--->
 <style>
+    .fab-submenu-panel {
+        position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; padding: 0.5rem;
+        background-color: #161B22; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        border: 1px solid #30363d; display: flex; flex-direction: column; gap: 0.25rem;
+        transition: all 0.2s ease-out; opacity: 0; transform: scale(0.95) translateY(10px); pointer-events: none;
+    }
+    .fab-submenu-panel.active {
+        opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
+    }
     .fab-submenu-item {
-        display: flex;
-        align-items: center;
-        padding: 0.6rem 0.85rem;
-        font-size: 0.9rem;
-        color: #374151; /* gray-700 */
-        border-radius: 0.375rem; /* rounded-md */
-        transition: background-color 0.2s, color 0.2s;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: left;
-        width: 100%;
+        display: flex; align-items: center; padding: 0.5rem 1rem; font-size: 0.9rem;
+        color: #c9d1d9; border-radius: 0.375rem; transition: background-color 0.2s; white-space: nowrap;
     }
-    .fab-submenu-item:hover {
-        background-color: #f3f4f6; /* gray-100 */
-        color: #2563eb; /* blue-600 */
-    }
-    .dark .fab-submenu-item {
-        color: #d1d5db; /* gray-300 */
-    }
-    .dark .fab-submenu-item:hover {
-        background-color: #374151; /* gray-700 */
-        color: #60a5fa; /* blue-400 */
-    }
-    .fab-submenu-item i.fa-fw {
-        margin-right: 0.75rem;
-        width: 1.25em; 
-        text-align: center;
-        font-size: 1.1em;
-    }
-
-    /* Custom scrollbar for chatbot messages */
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 10px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    /* Message bubble styling */
-    .message-bubble {
-        word-wrap: break-word;
-        max-width: 80%; /* Limit bubble width */
-        border-radius: 0.75rem; /* rounded-lg */
-        padding: 0.5rem 0.75rem; /* p-2, px-3 */
-        margin-bottom: 0.5rem; /* mb-2 */
-        line-height: 1.4;
-    }
-
-    .message-bubble.user {
-        background-color: #dbeafe; /* blue-200 */
-        color: #1f2937; /* gray-900 */
-        margin-left: auto; /* Align to right for user messages */
-        border-bottom-right-radius: 0; /* flat corner */
-    }
-
-    .dark .message-bubble.user {
-        background-color: #1e3a8a; /* blue-800 */
-        color: #e5e7eb; /* gray-200 */
-    }
-
-    .message-bubble.ai {
-        background-color: #e5e7eb; /* gray-200 */
-        color: #1f2937; /* gray-900 */
-        margin-right: auto; /* Align to left for AI messages */
-        border-bottom-left-radius: 0; /* flat corner */
-    }
-
-    .dark .message-bubble.ai {
-        background-color: #374151; /* neutral-700 */
-        color: #e5e7eb; /* gray-200 */
-    }
-
-    /* Animation classes for chatbot container */
-    .chatbot-container-open {
-        display: flex !important; /* Override display: none */
-        transform: scale(1) translateX(0) translateY(0) !important;
-        opacity: 1 !important;
-    }
-    .chatbot-container-closed {
-        transform: scale(0) translateX(0) translateY(0) !important;
-        opacity: 0 !important;
-        pointer-events: none; /* Disable interactions when closed */
-    }
-
-    /* Responsive adjustments for chatbot container */
-    @media (max-width: 768px) {
-        #chatbot-container {
-            width: calc(100% - 32px); /* Full width minus margin */
-            height: calc(100% - 100px); /* Full height minus some margin */
-            bottom: 16px; /* Adjust bottom for mobile */
-            right: 16px; /* Adjust right for mobile */
-            max-width: none; /* Remove max-width on mobile */
-            max-height: none; /* Remove max-height on mobile */
-        }
-    }
+    .fab-submenu-item:hover { background-color: #30363d; }
+    .fab-submenu-item i { margin-right: 0.75rem; width: 1.25rem; text-align: center; }
+    #chatbot-messages { scrollbar-width: thin; scrollbar-color: #30363d #161B22; }
+    #chatbot-messages::-webkit-scrollbar { width: 6px; }
+    #chatbot-messages::-webkit-scrollbar-thumb { background-color: #30363d; border-radius: 3px; }
 </style>
 
 <script>
-    // =================================================================
-    //  UTILITIES (Included here for robustness, in case loadComponents.js isn't fully loaded first)
-    // =================================================================
-    function componentLog(message, level = 'info') {
-        console[level](`[IVS Components] ${message}`);
-    }
-
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func.apply(this, args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    // =================================================================
-    //  CHATBOT & FAB LOGIC
-    // =================================================================
-
-    // Khởi tạo lịch sử trò chuyện ngoài hàm sendMessage để duy trì ngữ cảnh
-    let chatHistory = [
-        {
-            role: "user",
-            parts: [{text: "Bạn là một chatbot tư vấn cho website IVS JSC, một công ty hoạt động trong lĩnh vực giáo dục, công nghệ và nhân sự tại Việt Nam. Bạn có thể cung cấp thông tin về IVS JSC, các dịch vụ của họ (tư vấn giáo dục, thiết kế web, liên kết đào tạo, cung ứng giáo viên nước ngoài, phát triển chương trình R&D, hệ sinh thái số như IVS Apps, IVS Games, IVS Read, IVS QuickTest), các dự án trọng điểm như English Olympics of Vietnam (EOV 2025), triết lý IVS (Integrate, Vision, Synergy), lộ trình phát triển và các đối tác. Hãy trả lời một cách chuyên nghiệp, tự tin, thẳng thắn, có chiều sâu chiến lược, và sử dụng ngôn ngữ chuẩn mực. Luôn đề xuất giải pháp cụ thể, khả thi. Không cung cấp thông tin cá nhân giả mạo hoặc bất kỳ dữ liệu nào không liên quan đến IVS JSC. Nếu bạn không biết câu trả lời, hãy nói rằng bạn không có thông tin về vấn đề đó. Câu trả lời đầu tiên của bạn phải là 'Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?'."}]
-        },
-        {
-            role: "model",
-            parts: [{text: "Chào bạn! Tôi có thể giúp gì cho bạn hôm nay?"}]
-        }
-    ];
-
-    // Cần định nghĩa IVSFabController để loadComponents.js có thể gọi
+document.addEventListener('DOMContentLoaded', () => {
     const IVSFabController = {
+        dom: {},
+        state: {
+            isChatbotOpen: false,
+            chatHistory: [
+                { role: "user", parts: [{ text: "You are a helpful and professional AI assistant for IVS JSC, an education, technology, and human resources company in Vietnam. Your name is IVS AI Assistant. Provide concise, strategic, and helpful answers based on the company's services (consulting, web design, training partnerships, teacher supply, R&D, digital ecosystem like IVS Apps/Games/Read/QuickTest), key projects like EOV 2025, and philosophy (Integrate, Vision, Synergy). If you don't know an answer, say so. Start the first conversation with 'Hello! I am the IVS AI Assistant. How can I help you today?'" }] },
+                { role: "model", parts: [{ text: "Hello! I am the IVS AI Assistant. How can I help you today?" }] }
+            ],
+        },
+
         init() {
             this.cacheDOM();
-            if (!this.fabContainer) {
-                componentLog("FAB container not found. FAB logic will not run.", "warn");
-                return;
-            }
+            if (!this.dom.fabButtonsContainer) return;
             this.populateMenus();
             this.bindEvents();
-            componentLog("FAB Controller Initialized.", "info");
-            // Khởi tạo chatbot sau khi FAB Controller đã init
-            this.initChatbotFunctionality(); 
+            this.addWelcomeMessage();
+            console.log("[IVS Components] FAB & Chatbot Controller Initialized.");
         },
 
         cacheDOM() {
-            this.fabContainer = document.getElementById('fab-container');
-            this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-            this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
-
-            // Cache chatbot elements
-            this.chatbotOpenBtn = document.getElementById('chatbot-open-button');
-            this.chatbotContainer = document.getElementById('chatbot-container');
-            this.chatbotCloseBtn = document.getElementById('chatbot-close-button');
-            this.chatbotMessages = document.getElementById('chatbot-messages');
-            this.chatbotInput = document.getElementById('chatbot-input');
-            this.chatbotSendBtn = document.getElementById('chatbot-send-button');
+            this.dom.fabButtonsContainer = document.getElementById('fab-buttons-container');
+            this.dom.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            this.dom.buttonsWithSubmenu = this.dom.fabButtonsContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
+            this.dom.chatbotOpenBtn = document.getElementById('chatbot-open-button');
+            this.dom.chatbotContainer = document.getElementById('chatbot-container');
+            this.dom.chatbotCloseBtn = document.getElementById('chatbot-close-button');
+            this.dom.chatbotMessages = document.getElementById('chatbot-messages');
+            this.dom.chatbotInput = document.getElementById('chatbot-input');
+            this.dom.chatbotSendBtn = document.getElementById('chatbot-send-button');
         },
         
         populateMenus() {
             const contactMenu = document.getElementById('contact-options');
             const shareMenu = document.getElementById('share-options');
-
             if (contactMenu) this.populateContactOptions(contactMenu);
             if (shareMenu) this.populateShareOptions(shareMenu);
         },
 
         populateContactOptions(element) {
             const contacts = [
-                { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
-                { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
-                { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
-                { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
+                { text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
+                { text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
+                { text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
             ];
-            element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
+            element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} ${c.color}"></i><span>${c.text}</span></a>`).join('');
         },
 
         populateShareOptions(element) {
-            const currentUrl = window.location.href; 
-            const pageTitle = document.title; 
-
+            const currentUrl = window.location.href;
+            const pageTitle = document.title;
             const shares = [
-                { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: `window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}', '_blank', 'noopener,noreferrer')` },
-                { text: "X (Twitter)", icon: "fab fa-x-twitter", color: "text-neutral-500", action: `window.open('https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-                { text: "LinkedIn", icon: "fab fa-linkedin", color: "text-blue-700", action: `window.open('https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(pageTitle)}', '_blank', 'noopener,noreferrer')` },
-                { 
-                    text: "Copy Link", 
-                    icon: "fas fa-link", 
-                    color: "text-gray-500", 
-                    action: `
-                        try {
-                            const textarea = document.createElement('textarea');
-                            textarea.value = '${currentUrl}'; 
-                            document.body.appendChild(textarea);
-                            textarea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textarea);
-                            componentLog('Đã sao chép liên kết vào clipboard!'); 
-                        } catch (err) {
-                            componentLog('Không thể sao chép liên kết: ' + err, 'error'); 
-                        }
-                    ` 
-                }
+                { text: "Facebook", icon: "fab fa-facebook-f", color: "text-blue-600", action: () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank', 'noopener,noreferrer') },
+                { text: "Copy Link", icon: "fas fa-link", color: "text-gray-500", action: (btn) => {
+                    navigator.clipboard.writeText(currentUrl).then(() => {
+                        const originalText = btn.innerHTML;
+                        btn.innerHTML = `<i class="fas fa-check text-green-500"></i><span>Copied!</span>`;
+                        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                    }).catch(err => console.error('Failed to copy: ', err));
+                }}
             ];
-            element.innerHTML = shares.map((s, index) => {
-                const btnId = `share-action-${index}`;
-                return `<button id="${btnId}" role="menuitem" class="fab-submenu-item group w-full"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`;
-            }).join('');
-
-            shares.forEach((s, index) => {
-                const btn = document.getElementById(`share-action-${index}`);
-                if (btn && s.action) {
-                    if (s.text === "Copy Link") { 
-                        btn.addEventListener('click', () => {
-                            try {
-                                const textarea = document.createElement('textarea');
-                                textarea.value = currentUrl;
-                                document.body.appendChild(textarea);
-                                textarea.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(textarea);
-                                componentLog('Đã sao chép liên kết vào clipboard!');
-                            } catch (err) {
-                                componentLog('Không thể sao chép liên kết: ' + err, 'error');
-                            }
-                        });
-                    } else {
-                        btn.addEventListener('click', () => eval(s.action));
-                    }
-                }
+            element.innerHTML = shares.map(s => `<button role="menuitem" class="fab-submenu-item w-full"><i class="${s.icon} ${s.color}"></i><span>${s.text}</span></button>`).join('');
+            element.querySelectorAll('button').forEach((btn, index) => {
+                btn.addEventListener('click', () => shares[index].action(btn));
             });
         },
 
         bindEvents() {
-            if (this.scrollToTopBtn) {
-                const handleScroll = () => {
-                    if (window.scrollY > 200) {
-                        this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-                    } else {
-                        this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
-                    }
-                };
-                window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
-                this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-                handleScroll(); 
+            if (this.dom.scrollToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    this.dom.scrollToTopBtn.classList.toggle('opacity-0', window.scrollY < 200);
+                    this.dom.scrollToTopBtn.classList.toggle('pointer-events-none', window.scrollY < 200);
+                }, { passive: true });
+                this.dom.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             }
 
-            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
+            this.dom.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
                 e.stopPropagation();
-                this.toggleSubmenu(btn);
+                const menu = document.getElementById(btn.getAttribute('aria-controls'));
+                const isOpening = !menu.classList.contains('active');
+                this.closeAllSubmenus();
+                if (isOpening) menu.classList.add('active');
             }));
 
-            document.addEventListener('click', (e) => {
-                if (!this.fabContainer.contains(e.target)) {
-                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
-                }
-            });
+            document.addEventListener('click', () => this.closeAllSubmenus());
+
+            this.dom.chatbotOpenBtn.addEventListener('click', () => this.toggleChatbot(true));
+            this.dom.chatbotCloseBtn.addEventListener('click', () => this.toggleChatbot(false));
+            this.dom.chatbotSendBtn.addEventListener('click', () => this.handleSendMessage());
+            this.dom.chatbotInput.addEventListener('keypress', e => e.key === 'Enter' && this.handleSendMessage());
         },
 
-        toggleSubmenu(btn) {
-            const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-            this.buttonsWithSubmenu.forEach(otherBtn => {
-                if (otherBtn !== btn) { 
-                    this.closeSubmenu(otherBtn);
-                }
-            });
-            if (!isCurrentlyOpen) this.openSubmenu(btn);
-            else this.closeSubmenu(btn); 
+        closeAllSubmenus() {
+            this.dom.fabButtonsContainer.querySelectorAll('.fab-submenu-panel').forEach(m => m.classList.remove('active'));
         },
 
-        openSubmenu(btn) {
-            const menu = document.getElementById(btn.getAttribute('aria-controls'));
-            if (!menu) return;
-            menu.classList.remove('hidden', 'pointer-events-none'); 
-            requestAnimationFrame(() => menu.classList.remove('opacity-0', 'scale-95'));
-            btn.setAttribute('aria-expanded', 'true');
-        },
-
-        closeSubmenu(btn) {
-            const menu = document.getElementById(btn.getAttribute('aria-controls'));
-            if (!menu) return;
-            menu.classList.add('opacity-0', 'scale-95');
-            const onTransitionEnd = () => {
-                if (menu.classList.contains('opacity-0')) {
-                    menu.classList.add('hidden', 'pointer-events-none'); 
-                }
-                menu.removeEventListener('transitionend', onTransitionEnd);
-            };
-            menu.addEventListener('transitionend', onTransitionEnd);
-            btn.setAttribute('aria-expanded', 'false');
-        },
-
-        // New method to encapsulate chatbot initialization
-        initChatbotFunctionality() {
-            // Check if all necessary elements exist
-            if (!this.chatbotOpenBtn || !this.chatbotContainer || !this.chatbotMessages || !this.chatbotInput || !this.chatbotSendBtn || !this.chatbotCloseBtn) {
-                componentLog("Chatbot elements not fully found during init. Skipping chatbot functionality.", "warn");
-                return;
+        toggleChatbot(forceOpen) {
+            const open = typeof forceOpen === 'boolean' ? forceOpen : !this.state.isChatbotOpen;
+            this.state.isChatbotOpen = open;
+            if (open) {
+                this.dom.chatbotContainer.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    this.dom.chatbotContainer.classList.remove('scale-0', 'opacity-0');
+                    this.dom.chatbotInput.focus();
+                });
+            } else {
+                this.dom.chatbotContainer.classList.add('scale-0', 'opacity-0');
+                setTimeout(() => { this.dom.chatbotContainer.style.display = 'none'; }, 300);
             }
+        },
 
-            // Initial setup to ensure it's hidden correctly
-            this.chatbotContainer.classList.add('chatbot-container-closed');
-            this.chatbotContainer.style.display = 'none';
+        addMessage(text, sender) {
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `w-full flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+            const messageBubble = document.createElement('div');
+            messageBubble.className = `max-w-[85%] rounded-2xl px-4 py-2 mb-2 text-white ${sender === 'user' ? 'bg-ivs-blue' : 'bg-ivs-border'}`;
+            messageBubble.textContent = text;
+            messageWrapper.appendChild(messageBubble);
+            this.dom.chatbotMessages.appendChild(messageWrapper);
+            this.dom.chatbotMessages.scrollTop = this.dom.chatbotMessages.scrollHeight;
+        },
 
-            // Function to open the chatbot
-            const openChatbot = () => {
-                this.chatbotContainer.style.display = 'flex';
-                setTimeout(() => {
-                    this.chatbotContainer.classList.remove('chatbot-container-closed');
-                    this.chatbotContainer.classList.add('chatbot-container-open');
-                    this.chatbotInput.focus();
-                    this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight; // Scroll to bottom on open
-                }, 50);
-            };
+        addWelcomeMessage() {
+            this.addMessage(this.state.chatHistory[1].parts[0].text, 'model');
+        },
 
-            // Function to close the chatbot
-            const closeChatbot = () => {
-                this.chatbotContainer.classList.remove('chatbot-container-open');
-                this.chatbotContainer.classList.add('chatbot-container-closed');
-                setTimeout(() => {
-                    this.chatbotContainer.style.display = 'none';
-                }, 300);
-            };
+        setLoading(isLoading) {
+            this.dom.chatbotSendBtn.disabled = isLoading;
+            this.dom.chatbotSendBtn.innerHTML = isLoading ? '<i class="fas fa-spinner fa-spin"></i>' : '<i class="fas fa-paper-plane"></i>';
+        },
 
-            // Event listeners for opening and closing
-            this.chatbotOpenBtn.addEventListener('click', openChatbot);
-            this.chatbotCloseBtn.addEventListener('click', closeChatbot);
-            
-            // Function to add a message to the chat
-            const addMessage = (text, sender) => {
-                const messageBubble = document.createElement('div');
-                messageBubble.classList.add('message-bubble', sender, 'mb-2');
-                messageBubble.textContent = text;
-                this.chatbotMessages.appendChild(messageBubble);
-                this.chatbotMessages.scrollTop = this.chatbotMessages.scrollHeight;
-            };
+        async handleSendMessage() {
+            const message = this.dom.chatbotInput.value.trim();
+            if (!message) return;
 
-            // Handle sending messages
-            const sendMessage = async () => {
-                const messageText = this.chatbotInput.value.trim();
-                if (messageText === '') return;
+            this.addMessage(message, 'user');
+            this.dom.chatbotInput.value = '';
+            this.setLoading(true);
 
-                addMessage(messageText, 'user');
-                this.chatbotInput.value = '';
+            try {
+                // **QUAN TRỌNG**: Thay thế bằng URL Cloud Function thực tế của anh sau khi deploy.
+                const backendUrl = 'https://asia-southeast1-ivsjsc-6362f.cloudfunctions.net/api/chat'; 
 
-                // Add "Đang gõ..." message
-                addMessage('Đang gõ...', 'ai');
+                const response = await fetch(backendUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        history: this.state.chatHistory,
+                        message: message,
+                    }),
+                });
 
-                try {
-                    chatHistory.push({ role: "user", parts: [{ text: messageText }] });
-                    const payload = { contents: chatHistory };
-                    // GỌI API QUA FIREBASE FUNCTION ĐÃ BẢO MẬT, KHÔNG GỌI GEMINI TRỰC TIẾP
-                    const apiUrl = "https://us-central1-ivsjsc-6362f.cloudfunctions.net/api/api/chat";
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const result = await response.json();
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-                    // Remove "Đang gõ..." message before adding actual response
-                    if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
-                        this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
-                    }
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const aiResponseText = result.candidates[0].content.parts[0].text;
-                        addMessage(aiResponseText, 'ai');
-                        chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
-                    } else {
-                        addMessage("Xin lỗi, tôi không thể tạo phản hồi lúc này. Vui lòng thử lại sau.", "ai");
-                    }
-                } catch (error) {
-                    console.error("Lỗi khi gọi API Gemini:", error);
-                    // Remove "Đang gõ..." message even if error occurs
-                    if (this.chatbotMessages.lastChild && this.chatbotMessages.lastChild.textContent === 'Đang gõ...') {
-                        this.chatbotMessages.removeChild(this.chatbotMessages.lastChild);
-                    }
-                    addMessage("Đã xảy ra lỗi khi kết nối với AI. Vui lòng thử lại.", "ai");
+                const data = await response.json();
+                if (data.success && data.response) {
+                    const aiResponseText = data.response;
+                    this.addMessage(aiResponseText, 'model');
+                    this.state.chatHistory.push({ role: "user", parts: [{ text: message }] });
+                    this.state.chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
+                } else {
+                    throw new Error(data.error || "Invalid response from server.");
                 }
-            };
 
-            this.chatbotSendBtn.addEventListener('click', sendMessage);
-            this.chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-            componentLog("Chatbot Functionality Initialized.", "info");
+            } catch (error) {
+                console.error("Error calling backend:", error);
+                this.addMessage("Sorry, I'm having trouble connecting. Please try again later.", 'model');
+            } finally {
+                this.setLoading(false);
+            }
         }
     };
 
-    // Xuất IVSFabController để loadComponents.js có thể truy cập
-    window.IVSFabController = IVSFabController;
-
+    IVSFabController.init();
+});
 </script>
