@@ -1,29 +1,24 @@
 /**
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
- * @version 4.9 - Removed placeholder IVSHeaderController definition.
+ * It now relies on global utility functions from utils.js and calls
+ * the init methods of globally exposed controllers (Header, FAB, Chatbot, Language).
+ * @version 4.10 - Updated to call separated FAB and Chatbot controllers,
+ * and ensure language system initialization.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
-// =================================================================
-//  LOGGING & UTILITIES
-// =================================================================
-function componentLog(message, level = 'info') {
-    console[level](`[IVS Components] ${message}`);
+// Ensure global utilities are available (componentLog, debounce)
+// These are expected to be loaded via public/js/utils.js
+if (typeof window.componentLog !== 'function') {
+    console.error("[IVS LoadComponents] window.componentLog is not defined. Please ensure utils.js is loaded before loadComponents.js.");
+    window.componentLog = (msg, level = 'error') => console[level](msg); // Fallback
 }
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func.apply(this, args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+if (typeof window.debounce !== 'function') {
+    console.error("[IVS LoadComponents] window.debounce is not defined. Please ensure utils.js is loaded before loadComponents.js.");
+    window.debounce = (func) => func; // Fallback
 }
 
 // =================================================================
@@ -40,15 +35,15 @@ function debounce(func, wait) {
 async function loadAndInject(url, placeholderId) {
     const placeholder = document.getElementById(placeholderId);
     if (!placeholder) {
-        componentLog(`Placeholder '${placeholderId}' not found.`, "error");
+        window.componentLog(`Placeholder '${placeholderId}' not found.`, "error");
         return false;
     }
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
+
         const text = await response.text();
-        
+
         // Create a temporary div to parse the HTML and extract scripts
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = text;
@@ -57,7 +52,7 @@ async function loadAndInject(url, placeholderId) {
 
         // Remove scripts from tempDiv's innerHTML before injecting to avoid double execution
         scripts.forEach(script => script.parentNode?.removeChild(script));
-        
+
         // Inject the HTML content (without scripts first)
         placeholder.innerHTML = tempDiv.innerHTML;
 
@@ -65,7 +60,7 @@ async function loadAndInject(url, placeholderId) {
         for (const oldScript of scripts) {
             const newScript = document.createElement('script');
             Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            
+
             // Handle both inline scripts and external scripts
             if (oldScript.src) {
                 newScript.src = oldScript.src;
@@ -79,51 +74,76 @@ async function loadAndInject(url, placeholderId) {
                 placeholder.appendChild(newScript); // Append to execute inline scripts
             }
         }
-        
+
         return true;
     } catch (error) {
-        componentLog(`Failed to load ${url}: ${error.message}`, 'error');
+        window.componentLog(`Failed to load ${url}: ${error.message}`, 'error');
         return false;
     }
 }
 
+/**
+ * Loads common components (header, fab-container, footer) and initializes their controllers.
+ */
 async function loadCommonComponents() {
-    componentLog("Initializing component sequence...");
+    window.componentLog("Initializing component sequence...", "info");
     const components = [
-        { id: 'header-placeholder', url: '/components/header.html' },
-        { id: 'fab-container-placeholder', url: '/components/fab-container.html' },
-        { id: 'footer-placeholder', url: '/components/footer.html' }
+        { id: 'header-placeholder', url: '/components/header.html', controller: window.IVSHeaderController },
+        { id: 'fab-container-placeholder', url: '/components/fab-container.html', controller: window.IVSFabController }
     ];
+
+    // Footer is loaded last, no specific controller init needed for it
+    const footerComponent = { id: 'footer-placeholder', url: '/components/footer.html' };
 
     for (const comp of components) {
         if (document.getElementById(comp.id)) {
             const success = await loadAndInject(comp.url, comp.id);
             if (success) {
-                // Explicitly initialize controllers after their HTML is loaded and scripts inside are run
-                // This assumes IVSHeaderController and IVSFabController are globally available now.
-                if (comp.id === 'header-placeholder' && window.IVSHeaderController && typeof window.IVSHeaderController.init === 'function') {
-                    window.IVSHeaderController.init();
-                } else if (comp.id === 'fab-container-placeholder' && window.IVSFabController && typeof window.IVSFabController.init === 'function') {
-                    window.IVSFabController.init();
+                // Initialize controller if available and has an init method
+                if (comp.controller && typeof comp.controller.init === 'function') {
+                    comp.controller.init();
+                    window.componentLog(`Controller for ${comp.id} initialized.`, "info");
+                } else {
+                    window.componentLog(`Controller for ${comp.id} not found or init method missing.`, "warn");
                 }
             }
         }
+    }
+
+    // Load footer separately as it doesn't have a dedicated controller
+    if (document.getElementById(footerComponent.id)) {
+        await loadAndInject(footerComponent.url, footerComponent.id);
+    }
+
+    // Initialize Chatbot Controller explicitly after fab-container is loaded,
+    // as chatbot-container is part of fab-container.html
+    if (window.IVSChatbotController && typeof window.IVSChatbotController.init === 'function') {
+        window.IVSChatbotController.init();
+        window.componentLog("IVSChatbotController initialized.", "info");
+    } else {
+        window.componentLog('IVSChatbotController not found or init method missing.', 'warn');
     }
 
     // Ensure the language system is initialized after components are loaded
     // It should ideally be initialized earlier if possible, but this is a fallback
     // given its self-initialization nature now.
     if (window.langSystem && typeof window.langSystem.initializeLanguageSystem === 'function') {
-        window.langSystem.initializeLanguageSystem(); // Call the global language system init
+        // No need to call initializeLanguageSystem here if it self-initializes on DOMContentLoaded
+        // This check is mainly for robustness if its DOMContentLoaded listener somehow fails.
+        // The language.js script is now loaded earlier in layout.html.
+        window.componentLog('Language system (window.langSystem.initializeLanguageSystem) is expected to be self-initialized. Skipping explicit call here.', 'info');
     } else {
-        componentLog('Language system (window.langSystem.initializeLanguageSystem) not found or not ready.', 'warn');
+        window.componentLog('Language system (window.langSystem) not found or not ready.', 'warn');
     }
 
-    componentLog("Component sequence complete.");
+    window.componentLog("Component sequence complete.", "info");
+    // Callback for page-specific logic after all common components are loaded
     window.onPageComponentsLoadedCallback?.();
 }
 
 // ================= IVSHeaderController (GỘP) =================
+// This controller is kept here as it's tightly coupled with the header.html component
+// and its logic is not intended to be a separate file.
 const IVSHeaderController = {
     init() {
         window.componentLog("IVSHeaderController: Bắt đầu khởi tạo.", "info");
@@ -308,6 +328,8 @@ const IVSHeaderController = {
         window.componentLog("IVSHeaderController: Đã cập nhật các liên kết đang hoạt động.");
     }
 };
-window.IVSHeaderController = IVSHeaderController;
+window.IVSHeaderController = IVSHeaderController; // Expose globally
 
+// Attach the main loading function to DOMContentLoaded
+// This will ensure all components are loaded and controllers initialized after the DOM is ready.
 document.addEventListener('DOMContentLoaded', loadCommonComponents);
