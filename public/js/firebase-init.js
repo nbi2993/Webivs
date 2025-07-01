@@ -1,98 +1,88 @@
-// FILE: /js/firebase-init.js
-// VERSION: 1.0 - Firebase Initialization and Authentication
-// DESCRIPTION: Initializes Firebase services (Auth, Firestore) and handles user authentication.
+/**
+ * @fileoverview Firebase Initialization Script for IVS JSC Applications.
+ * This script initializes Firebase services (App, Auth, Firestore) and handles
+ * user authentication using custom tokens provided by the Canvas environment.
+ * @version 1.1 - Integrated Firebase config from user-provided image,
+ * ensured proper initialization and authentication.
+ * @author IVS-Technical-Team
+ */
 
-window.addEventListener('DOMContentLoaded', async () => {
-    // Import các module Firebase cần thiết
-    // Đảm bảo các URL này là chính xác và có thể truy cập được
-    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js");
-    const { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js");
-    const { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"); 
-    
-    // Firebase configuration
-    // LƯU Ý QUAN TRỌNG: KHÔNG ĐẶT API KEY TRỰC TIẾP TẠI ĐÂY KHI TRIỂN KHAI CÔNG KHAI.
-    // Trong môi trường Canvas này, cấu hình Firebase sẽ được cung cấp tự động thông qua __firebase_config.
-    // Khi triển khai lên môi trường production của riêng bạn, bạn NÊN sử dụng các biến môi trường
-    // hoặc cấu hình phía server để bảo vệ API Key của mình.
-    const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+'use strict';
 
-    // Khởi tạo Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+// Import necessary Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Biến toàn cục để lưu trạng thái xác thực và userID
-    let currentUserId = null;
-    let isAuthReady = false;
+// Ensure componentLog utility is available
+if (typeof window.componentLog !== 'function') {
+    console.error("[Firebase Init] window.componentLog is not defined. Please ensure utils.js is loaded before firebase-init.js.");
+    window.componentLog = (msg, level = 'error') => console[level](msg); // Fallback
+}
 
-    // Xử lý xác thực người dùng
-    async function authenticateFirebase() {
+// Your web app's Firebase configuration (from the provided image)
+// IMPORTANT: Leave apiKey as an empty string. Canvas will provide it at runtime.
+const firebaseConfig = {
+    apiKey: "", // Canvas will automatically provide this at runtime
+    authDomain: "gemini-chat-m48mq.firebaseapp.com",
+    projectId: "gemini-chat-m48mq",
+    storageBucket: "gemini-chat-m48mq.appspot.com",
+    messagingSenderId: "503895668514",
+    appId: "1:503895668514:web:16ccacd60f9a420becd77b"
+};
+
+// Initialize Firebase App
+const app = initializeApp(firebaseConfig);
+window.firebaseApp = app; // Expose app globally if needed by other scripts
+
+// Initialize Firebase Authentication and Firestore
+const auth = getAuth(app);
+const db = getFirestore(app);
+window.firebaseAuth = auth; // Expose auth globally
+window.firebaseDb = db;     // Expose db globally
+
+// Firebase Authentication Listener and Custom Token Sign-in
+// This ensures the user is authenticated when the app loads.
+async function initializeFirebaseAuth() {
+    window.componentLog("[Firebase Init] Bắt đầu khởi tạo xác thực Firebase.", "info");
+
+    // Check if __initial_auth_token is provided by the Canvas environment
+    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
         try {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token !== '') {
-                await signInWithCustomToken(auth, __initial_auth_token);
-                console.log("[Firebase Init] Đăng nhập Firebase bằng custom token thành công.");
-            } else {
-                await signInAnonymously(auth);
-                console.log("[Firebase Init] Đăng nhập Firebase ẩn danh thành công.");
-            }
+            await signInWithCustomToken(auth, __initial_auth_token);
+            window.componentLog("[Firebase Init] Đăng nhập thành công bằng Custom Token.", "info");
         } catch (error) {
-            console.error("[Firebase Init] Lỗi khi xác thực Firebase:", error);
+            window.componentLog(`[Firebase Init] Lỗi đăng nhập bằng Custom Token: ${error.message}. Thử đăng nhập ẩn danh.`, "error");
+            try {
+                await signInAnonymously(auth);
+                window.componentLog("[Firebase Init] Đăng nhập ẩn danh thành công.", "info");
+            } catch (anonError) {
+                window.componentLog(`[Firebase Init] Lỗi đăng nhập ẩn danh: ${anonError.message}`, "error");
+            }
+        }
+    } else {
+        // If no custom token, sign in anonymously
+        try {
+            await signInAnonymously(auth);
+            window.componentLog("[Firebase Init] Đăng nhập ẩn danh thành công (không có Custom Token).", "info");
+        } catch (error) {
+            window.componentLog(`[Firebase Init] Lỗi đăng nhập ẩn danh: ${error.message}`, "error");
         }
     }
 
-    // Lắng nghe trạng thái xác thực
+    // Set up an auth state change listener (optional, but good practice)
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            currentUserId = user.uid;
-            console.log("[Firebase Init] Người dùng đã đăng nhập. UID:", currentUserId);
+            window.componentLog(`[Firebase Init] Trạng thái xác thực thay đổi: Người dùng đã đăng nhập (${user.uid}).`, "info");
+            window.currentUserId = user.uid; // Store user ID globally
         } else {
-            currentUserId = null;
-            console.log("[Firebase Init] Người dùng đã đăng xuất.");
+            window.componentLog("[Firebase Init] Trạng thái xác thực thay đổi: Người dùng đã đăng xuất.", "info");
+            window.currentUserId = null;
         }
-        isAuthReady = true; // Đánh dấu rằng trạng thái xác thực đã sẵn sàng
     });
 
-    // Bắt đầu xác thực Firebase khi DOM đã tải xong
-    await authenticateFirebase();
+    window.componentLog("[Firebase Init] Khởi tạo xác thực Firebase hoàn tất.", "info");
+}
 
-    // Hàm kiểm tra trạng thái auth và trả về userId (để dùng nội bộ bởi các component khác)
-    window.getFirebaseUserId = () => {
-        if (isAuthReady) {
-            return currentUserId;
-        } else {
-            console.warn("[Firebase Init] Firebase Auth chưa sẵn sàng. Đang chờ xác thực.");
-            return null;
-        }
-    };
-
-    // Hàm lấy một tài liệu từ Firestore (được dùng nội bộ bởi các component khác hoặc logic ẩn)
-    window.getFirestoreDocument = async (collectionName, documentId) => {
-        if (!isAuthReady || !currentUserId) { // Cần xác thực và UID để tương tác Firestore
-            console.error("[Firebase Init] Firebase Auth chưa sẵn sàng hoặc người dùng chưa đăng nhập. Không thể truy cập dữ liệu Firestore.");
-            return null;
-        }
-
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const docRef = doc(db, `artifacts/${appId}/public/data/${collectionName}`, documentId);
-        
-        try {
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                console.log("[Firebase Init] Dữ liệu tài liệu Firestore:", docSnap.data());
-                return docSnap.data();
-            } else {
-                console.log("[Firebase Init] Không tìm thấy tài liệu Firestore!");
-                return null;
-            }
-        } catch (error) {
-            console.error("[Firebase Init] Lỗi khi lấy tài liệu Firestore:", error);
-            return null;
-        }
-    };
-
-    // Đặt các đối tượng Firebase vào window scope để các script khác có thể truy cập
-    window.firebaseApp = app;
-    window.firebaseAuth = auth;
-    window.firestoreDb = db;
-    console.log("[Firebase Init] Firebase đã sẵn sàng.");
-});
+// Call the initialization function when the DOM is ready
+document.addEventListener('DOMContentLoaded', initializeFirebaseAuth);

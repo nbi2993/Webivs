@@ -2,9 +2,9 @@
  * @fileoverview This script handles dynamic loading of shared HTML components
  * and initializes their interactive logic, ensuring reliable execution.
  * It now relies on global utility functions from utils.js and calls
- * the init methods of globally exposed controllers (Header, FAB, Chatbot, Language).
- * @version 4.10 - Updated to call separated FAB and Chatbot controllers,
- * and ensure language system initialization.
+ * the init methods of globally exposed controllers (Header, FAB, Language).
+ * The Chatbot controller initialization has been removed.
+ * @version 4.11 - Removed Chatbot controller initialization.
  * @author IVS-Technical-Team
  */
 
@@ -115,14 +115,13 @@ async function loadCommonComponents() {
         await loadAndInject(footerComponent.url, footerComponent.id);
     }
 
-    // Initialize Chatbot Controller explicitly after fab-container is loaded,
-    // as chatbot-container is part of fab-container.html
-    if (window.IVSChatbotController && typeof window.IVSChatbotController.init === 'function') {
-        window.IVSChatbotController.init();
-        window.componentLog("IVSChatbotController initialized.", "info");
-    } else {
-        window.componentLog('IVSChatbotController not found or init method missing.', 'warn');
-    }
+    // Chatbot Controller initialization removed as per user request.
+    // if (window.IVSChatbotController && typeof window.IVSChatbotController.init === 'function') {
+    //     window.IVSChatbotController.init();
+    //     window.componentLog("IVSChatbotController initialized.", "info");
+    // } else {
+    //     window.componentLog('IVSChatbotController not found or init method missing.', 'warn');
+    // }
 
     // Ensure the language system is initialized after components are loaded
     // It should ideally be initialized earlier if possible, but this is a fallback
