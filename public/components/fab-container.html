@@ -1,6 +1,6 @@
 <!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 4.2 - Fully Self-Contained & Robust Component -->
-<!-- DESCRIPTION: This component manages all FAB functionalities (Scroll, Share, Contact, Chatbot) independently. It contains all necessary HTML, CSS, and JS, removing dependency on external controller files. -->
+<!-- VERSION: 4.3 - Fully Self-Contained & Robust Component -->
+<!-- DESCRIPTION: This component manages all FAB functionalities (Scroll, Share, Contact, Chatbot) independently. This is the single source of truth for FABs. -->
 
 <div id="fab-container-wrapper">
     <!-- Main FAB Buttons Container -->
@@ -87,7 +87,6 @@
 
 <script>
     // Self-initializing logic for the entire FAB component
-    // This ensures that all functions work correctly as soon as this component is loaded.
     const IVSFabController = {
         dom: {},
         state: {
@@ -130,7 +129,7 @@
             const contacts = [
                 { text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
                 { text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
-                { text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" },
+                { text: "Zalo", href: "[https://zalo.me/ivsjsc](https://zalo.me/ivsjsc)", icon: "fas fa-comment-dots", color: "text-blue-500" },
             ];
             element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} ${c.color}"></i><span>${c.text}</span></a>`).join('');
         },
@@ -240,7 +239,9 @@
             this.addMessage('', 'model', true);
 
             try {
-                const backendUrl = 'https://asia-southeast1-ivsjsc-6362f.cloudfunctions.net/api/chat'; 
+                // **QUAN TRỌNG**: Thay thế bằng URL Cloud Function thực tế của anh sau khi deploy.
+                const backendUrl = '[https://asia-southeast1-ivsjsc-6362f.cloudfunctions.net/api/chat](https://asia-southeast1-ivsjsc-6362f.cloudfunctions.net/api/chat)'; 
+
                 const response = await fetch(backendUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -275,10 +276,5 @@
 
     // Make the controller globally available for loadComponents.js, then initialize it.
     window.IVSFabController = IVSFabController;
-    // Đảm bảo luôn khởi tạo khi DOM đã sẵn sàng (tương thích mọi loader)
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        IVSFabController.init();
-    } else {
-        document.addEventListener('DOMContentLoaded', () => IVSFabController.init());
-    }
+});
 </script>
