@@ -111,3 +111,13 @@ exports.api = functions.https.onRequest(
         return app(req, res);
     }
 );
+
+
+import { initializeAppCheck, ReCaptchaV3Provider } from "[https://www.gstatic.com/firebasejs/10.4.0/firebase-app-check.js](https://www.gstatic.com/firebasejs/10.4.0/firebase-app-check.js)";
+
+// ... sau khi initializeApp(firebaseConfig)
+
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('YOUR_RECAPTCHA_V3_SITE_KEY'), // Thay bằng Site Key của bạn
+  isTokenAutoRefreshEnabled: true
+});
