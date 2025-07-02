@@ -180,35 +180,46 @@
         </section>
 
         <section class="core-philosophy-section">
+            <!-- Vùng chứa logo IVS -->
+            <div class="ivs-logo-container" id="ivsLogoContainer">
+                <!-- Sử dụng logo1.jpg đã được tải lên -->
+                <img src="logo1.jpg" alt="IVS Logo">
+            </div>
+
             <h2>Triết Lý Cốt Lõi: I-V-S</h2>
 
-            <div class="philosophy-content">
+            <div class="philosophy-content" id="philosophyContent">
+                <!-- Integrate Section -->
                 <div class="philosophy-item integrate">
                     <div class="logo-part">
-                        <img src="placeholder_I_logo.png" alt="Integrate Icon" style="max-width: 100%; height: auto;">
+                        <!-- Đây là nơi bạn có thể chèn icon hoặc chữ "I" -->
+                        I
                     </div>
                     <h3>Integrate (Tích hợp)</h3>
                     <p>Chúng tôi kiến tạo một hệ sinh thái giáo dục toàn diện, kết nối các phương pháp tiên tiến, công nghệ hiện đại và tri thức đa văn hóa để tối ưu hóa trải nghiệm học tập.</p>
                 </div>
 
+                <!-- Vision Section -->
                 <div class="philosophy-item vision">
                     <div class="logo-part">
-                        <img src="placeholder_V_logo.png" alt="Vision Icon" style="max-width: 100%; height: auto;">
+                        <!-- Đây là nơi bạn có thể chèn icon hoặc chữ "V" -->
+                        V
                     </div>
                     <h3>Vision (Tầm nhìn)</h3>
                     <p>IVS định hướng một tương lai giáo dục nơi mỗi cá nhân được khai phóng tối đa tiềm năng, trang bị không chỉ kiến thức mà còn cả kỹ năng sống và tư duy phản biện để hội nhập toàn cầu.</p>
                 </div>
 
+                <!-- Synergy Section -->
                 <div class="philosophy-item synergy">
                     <div class="logo-part">
-                        <img src="placeholder_S_logo.png" alt="Synergy Icon" style="max-width: 100%; height: auto;">
+                        <!-- Đây là nơi bạn có thể chèn icon hoặc chữ "S" -->
+                        S
                     </div>
                     <h3>Synergy (Hợp lực)</h3>
                     <p>Chúng tôi tin tưởng vào sức mạnh của sự hợp tác: giữa học viên và giáo viên, giữa gia đình và nhà trường, giữa công nghệ và phương pháp sư phạm, tạo nên một cộng đồng học tập bền vững và hiệu quả.</p>
                 </div>
             </div>
         </section>
-
 
         <!-- SECTION 4: DETAILED SERVICES SHOWCASE -->
         <section id="services-showcase" class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
@@ -667,6 +678,41 @@
                 });
             });
         }
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const philosophyContent = document.getElementById('philosophyContent');
+            const ivsLogoContainer = document.getElementById('ivsLogoContainer');
+
+            // Sử dụng Intersection Observer để phát hiện khi phần tử vào viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Khi phần tử philosophyContent vào viewport
+                        philosophyContent.classList.add('is-visible');
+                        // Ẩn logo sau một khoảng thời gian ngắn để tạo hiệu ứng cuộn xuống
+                        setTimeout(() => {
+                            ivsLogoContainer.classList.add('hidden-on-scroll');
+                        }, 500); // Ẩn logo sau 0.5 giây khi các ô bắt đầu xuất hiện
+                        observer.unobserve(entry.target); // Ngừng quan sát sau khi đã hiển thị
+                    }
+                });
+            }, {
+                threshold: 0.2 // Kích hoạt khi 20% của phần tử hiển thị trong viewport
+            });
+
+            // Bắt đầu quan sát phần tử philosophyContent
+            observer.observe(philosophyContent);
+
+            // Đảm bảo logo hiển thị ban đầu nếu trang tải ở vị trí không cuộn
+            // (Thực tế không cần thiết nếu logo ở đầu trang và philosophyContent ở dưới)
+            // Tuy nhiên, nếu philosophyContent có thể hiển thị ngay khi tải, cần xử lý
+            if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
+                philosophyContent.classList.add('is-visible');
+                ivsLogoContainer.classList.add('hidden-on-scroll');
+            }
+        });
     </script>
 </body>
 </html>
