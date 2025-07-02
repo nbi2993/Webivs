@@ -208,170 +208,8 @@
         }
 
         /* Custom styles for chatbot (from user's original HTML) */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .chatbot-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #004080; /* primary color */
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .chatbot-button:hover {
-            transform: scale(1.05);
-            background-color: #003366; /* primary-dark */
-        }
-
-        .chatbot-window {
-            width: 350px; /* Default width for desktop */
-            height: 500px;
-            background-color: #f9fafb; /* ivs-neutral-50 */
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            margin-bottom: 15px; /* Space between window and button */
-            transform: translateY(10px); /* Initial slight offset */
-            opacity: 0;
-            visibility: hidden;
-            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .chatbot-window.open {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .chatbot-header {
-            background-color: #004080; /* primary */
-            color: white;
-            padding: 1rem;
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 600; /* font-semibold */
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-header .close-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .chatbot-messages {
-            flex-grow: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background-color: #ffffff; /* white */
-            border-bottom: 1px solid #e5e7eb; /* ivs-neutral-200 */
-        }
-
-        .message {
-            margin-bottom: 0.75rem;
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .message.user {
-            background-color: #bfdbfe; /* blue-200 */
-            color: #1f2937; /* ivs-neutral-800 */
-            align-self: flex-end;
-            margin-left: auto;
-        }
-
-        .message.bot {
-            background-color: #e5e7eb; /* ivs-neutral-200 */
-            color: #1f2937; /* ivs-neutral-800 */
-            align-self: flex-start;
-            margin-right: auto;
-        }
-
-        .chatbot-input-area {
-            display: flex;
-            padding: 1rem;
-            background-color: #f9fafb; /* ivs-neutral-50 */
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-        }
-
-        .chatbot-input-area input {
-            flex-grow: 1;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db; /* ivs-neutral-300 */
-            border-radius: 8px;
-            margin-right: 0.75rem;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        .chatbot-input-area input:focus {
-            border-color: #3b82f6; /* blue-500 */
-        }
-
-        .chatbot-input-area button {
-            background-color: #004080; /* primary */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.25rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .chatbot-input-area button:hover {
-            background-color: #003366; /* primary-dark */
-        }
-
-        .chatbot-input-area button:disabled {
-            background-color: #9ca3af; /* gray-400 */
-            cursor: not-allowed;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .chatbot-container {
-                bottom: 15px;
-                right: 15px;
-            }
-            .chatbot-button {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-            .chatbot-window {
-                width: 90vw; /* Occupy most of the viewport width */
-                height: 70vh; /* Occupy most of the viewport height */
-                max-width: 400px; /* Max width for larger mobile devices */
-                max-height: 600px; /* Max height */
-                margin-bottom: 10px;
-            }
-        }
+        /* Chatbot removed as per user request */
+        .chatbot-container { display: none; }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300 antialiased font-inter" id="page-index">
@@ -393,11 +231,13 @@
         <div class="container">
             <h1 class="text-3xl font-bold text-gray-800 mb-6">IVS Global Teacher Hub</h1>
             <p class="text-gray-600 mb-4">IVS – Strategic Thinking, Practical Action, Global Value.</p>
-            <p id="user-id-display" class="text-sm text-gray-500 mb-4">User ID: Loading...</p>
+            <!-- User ID display removed as Firebase is removed -->
+            <!-- <p id="user-id-display" class="text-sm text-gray-500 mb-4">User ID: Loading...</p> -->
 
             <div class="flex justify-center space-x-4 mb-6">
                 <button id="apply-tab-button" class="tab-button active">Teacher Application</button>
-                <button id="view-teachers-tab-button" class="tab-button">View Teachers</button>
+                <!-- "View Teachers" tab removed as Firebase is removed -->
+                <!-- <button id="view-teachers-tab-button" class="tab-button">View Teachers</button> -->
             </div>
 
             <div id="teacher-application-section">
@@ -441,6 +281,7 @@
                 </form>
             </div>
 
+            <!-- Teacher overview section removed as Firebase is removed -->
             <div id="teacher-overview-section" class="hidden">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">IVS Teacher List</h2>
                 <p class="text-gray-700 mb-6">This is a list of foreign teachers collaborating with IVS, carefully selected to meet the needs of our partners.</p>
@@ -540,7 +381,8 @@
         <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
     </button>
 
-    <div class="chatbot-container">
+    <!-- Chatbot container removed as Firebase/API calls are removed -->
+    <!-- <div class="chatbot-container">
         <div id="chatbot-window" class="chatbot-window">
             <div class="chatbot-header">
                 <span>IVS AI Assistant</span>
@@ -557,41 +399,46 @@
         <button id="chatbot-open-button" class="chatbot-button">
             <i class="fas fa-robot"></i>
         </button>
-    </div>
+    </div> -->
 
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/posts-loader.js"></script>
-    <script src="/js/chatbot.js"></script> 
+    <!-- Chatbot JS removed -->
+    <!-- <script src="/js/chatbot.js"></script> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, collection, serverTimestamp, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Removed Firebase imports
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        // import { getFirestore, doc, setDoc, collection, serverTimestamp, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Lấy appId từ biến toàn cục __app_id, nếu không có thì dùng 'default-app-id'
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        // Lấy firebaseConfig từ biến toàn cục __firebase_config, nếu không có thì dùng object rỗng
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        // Lấy initialAuthToken từ biến toàn cục __initial_auth_token, nếu không có thì là null
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // Removed Firebase config variables
+        // const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        // const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-        let app;
-        let db;
-        let auth;
-        let userId = 'Loading...';
-        let isAuthReady = false;
+        // Removed Firebase related global variables
+        // let app;
+        // let db;
+        // let auth;
+        // let userId = 'Loading...';
+        // let isAuthReady = false;
 
         const applyTabButton = document.getElementById('apply-tab-button');
-        const viewTeachersTabButton = document.getElementById('view-teachers-tab-button');
+        // Removed viewTeachersTabButton as "View Teachers" tab is removed
+        // const viewTeachersTabButton = document.getElementById('view-teachers-tab-button');
         const teacherApplicationSection = document.getElementById('teacher-application-section');
-        const teacherOverviewSection = document.getElementById('teacher-overview-section');
+        // Removed teacherOverviewSection as "View Teachers" tab is removed
+        // const teacherOverviewSection = document.getElementById('teacher-overview-section');
         const teacherApplicationForm = document.getElementById('teacher-application-form');
-        const teachersList = document.getElementById('teachers-list');
-        const noTeachersMessage = document.getElementById('no-teachers-message');
-        const userIdDisplay = document.getElementById('user-id-display');
+        // Removed teachersList and noTeachersMessage as "View Teachers" tab is removed
+        // const teachersList = document.getElementById('teachers-list');
+        // const noTeachersMessage = document.getElementById('no-teachers-message');
+        // Removed userIdDisplay as Firebase is removed
+        // const userIdDisplay = document.getElementById('user-id-display');
         const loadingSpinner = document.getElementById('loading-spinner');
 
         const customModal = document.getElementById('custom-modal');
@@ -622,63 +469,61 @@
         }
 
         window.onload = async function() {
-            showLoadingSpinner();
+            // showLoadingSpinner(); // Removed as no async Firebase init
             try {
-                // Kiểm tra nếu firebaseConfig không rỗng trước khi khởi tạo Firebase
-                if (Object.keys(firebaseConfig).length === 0) {
-                    console.error("Firebase config is empty. Cannot initialize Firebase.");
-                    showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra cấu hình Firebase.");
-                    hideLoadingSpinner();
-                    return;
-                }
+                // Removed Firebase initialization and auth logic
+                // if (Object.keys(firebaseConfig).length === 0) {
+                //     console.error("Firebase config is empty. Cannot initialize Firebase.");
+                //     showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra cấu hình Firebase.");
+                //     hideLoadingSpinner();
+                //     return;
+                // }
 
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+                // app = initializeApp(firebaseConfig);
+                // db = getFirestore(app);
+                // auth = getAuth(app);
 
-                // Lắng nghe sự thay đổi trạng thái xác thực
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        userIdDisplay.textContent = `User ID: ${userId}`;
-                        isAuthReady = true;
-                        // Tải danh sách giáo viên nếu đang ở tab "View Teachers"
-                        if (!teacherOverviewSection.classList.contains('hidden')) {
-                            loadApprovedTeachers();
-                        }
-                    } else {
-                        try {
-                            // Đăng nhập ẩn danh nếu không có người dùng
-                            const anonymousUser = await signInAnonymously(auth);
-                            userId = anonymousUser.user.uid;
-                            userIdDisplay.textContent = `User ID: ${userId}`;
-                            isAuthReady = true;
-                            // Tải danh sách giáo viên nếu đang ở tab "View Teachers"
-                            if (!teacherOverviewSection.classList.contains('hidden')) {
-                                loadApprovedTeachers();
-                            }
-                        } catch (error) {
-                            console.error("Lỗi đăng nhập ẩn danh:", error);
-                            showModal("Không thể đăng nhập ẩn danh. Vui lòng thử lại.");
-                            userIdDisplay.textContent = `User ID: Lỗi`;
-                        }
-                    }
-                    hideLoadingSpinner();
-                });
+                // onAuthStateChanged(auth, async (user) => {
+                //     if (user) {
+                //         userId = user.uid;
+                //         userIdDisplay.textContent = `User ID: ${userId}`;
+                //         isAuthReady = true;
+                //         if (!teacherOverviewSection.classList.contains('hidden')) {
+                //             loadApprovedTeachers();
+                //         }
+                //     } else {
+                //         try {
+                //             const anonymousUser = await signInAnonymously(auth);
+                //             userId = anonymousUser.user.uid;
+                //             userIdDisplay.textContent = `User ID: ${userId}`;
+                //             isAuthReady = true;
+                //             if (!teacherOverviewSection.classList.contains('hidden')) {
+                //                 loadApprovedTeachers();
+                //             }
+                //         } catch (error) {
+                //             console.error("Lỗi đăng nhập ẩn danh:", error);
+                //             showModal("Không thể đăng nhập ẩn danh. Vui lòng thử lại.");
+                //             userIdDisplay.textContent = `User ID: Lỗi`;
+                //         }
+                //     }
+                //     hideLoadingSpinner();
+                // });
 
-                // Cố gắng đăng nhập bằng custom token nếu có
-                if (initialAuthToken) {
-                    try {
-                        await signInWithCustomToken(auth, initialAuthToken);
-                    } catch (error) {
-                        console.error("Lỗi đăng nhập bằng custom token:", error);
-                        showModal("Không thể xác thực người dùng. Vui lòng thử lại.");
-                    }
-                }
+                // if (initialAuthToken) {
+                //     try {
+                //         await signInWithCustomToken(auth, initialAuthToken);
+                //     } catch (error) {
+                //         console.error("Lỗi đăng nhập bằng custom token:", error);
+                //         showModal("Không thể xác thực người dùng. Vui lòng thử lại.");
+                //     }
+                // }
+
             } catch (error) {
-                console.error("Lỗi khởi tạo Firebase:", error);
-                showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra kết nối internet hoặc cấu hình Firebase.");
-                hideLoadingSpinner();
+                console.error("Lỗi khởi tạo ứng dụng:", error);
+                // showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra kết nối internet."); // Keep generic error message
+                // hideLoadingSpinner();
+            } finally {
+                hideLoadingSpinner(); // Ensure spinner is hidden even if no Firebase init
             }
 
             // Khởi tạo AOS (Animate On Scroll)
@@ -710,37 +555,38 @@
             }
         };
 
-        // Xử lý chuyển đổi tab "Teacher Application"
+        // Xử lý chuyển đổi tab "Teacher Application" (tab "View Teachers" đã bị loại bỏ)
         applyTabButton.addEventListener('click', () => {
             applyTabButton.classList.add('active');
-            viewTeachersTabButton.classList.remove('active');
+            // viewTeachersTabButton.classList.remove('active'); // Removed
             teacherApplicationSection.classList.remove('hidden');
-            teacherOverviewSection.classList.add('hidden');
+            // teacherOverviewSection.classList.add('hidden'); // Removed
         });
 
-        // Xử lý chuyển đổi tab "View Teachers"
-        viewTeachersTabButton.addEventListener('click', () => {
-            viewTeachersTabButton.classList.add('active');
-            applyTabButton.classList.remove('active');
-            teacherApplicationSection.classList.add('hidden');
-            teacherOverviewSection.classList.remove('hidden');
-            if (isAuthReady) {
-                loadApprovedTeachers();
-            } else {
-                showModal("Đang tải dữ liệu giáo viên. Vui lòng đợi xác thực.");
-            }
-        });
+        // Xử lý chuyển đổi tab "View Teachers" (đã bị loại bỏ)
+        // viewTeachersTabButton.addEventListener('click', () => {
+        //     viewTeachersTabButton.classList.add('active');
+        //     applyTabButton.classList.remove('active');
+        //     teacherApplicationSection.classList.add('hidden');
+        //     teacherOverviewSection.classList.remove('hidden');
+        //     if (isAuthReady) { // Removed Firebase dependency
+        //         loadApprovedTeachers();
+        //     } else {
+        //         showModal("Đang tải dữ liệu giáo viên. Vui lòng đợi xác thực.");
+        //     }
+        // });
 
         // Xử lý gửi biểu mẫu ứng tuyển giáo viên
         teacherApplicationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             showLoadingSpinner();
 
-            if (!db || !userId || !isAuthReady) {
-                showModal("Hệ thống chưa sẵn sàng. Vui lòng đợi hoặc thử lại.");
-                hideLoadingSpinner();
-                return;
-            }
+            // Removed Firebase dependency check
+            // if (!db || !userId || !isAuthReady) {
+            //     showModal("Hệ thống chưa sẵn sàng. Vui lòng đợi hoặc thử lại.");
+            //     hideLoadingSpinner();
+            //     return;
+            // }
 
             const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
@@ -753,48 +599,27 @@
             const resumeUrl = document.getElementById('resumeUrl').value;
             const photoUrl = document.getElementById('photoUrl').value;
 
-            // Tạo ID ứng dụng duy nhất
-            const applicationId = doc(collection(db, `artifacts/${appId}/users/${userId}/teacher_applications`)).id;
-
-            // Dữ liệu ứng tuyển giáo viên (riêng tư)
-            const teacherData = {
-                fullName,
-                email,
-                phoneNumber,
-                nationality,
-                qualification,
-                experience,
-                subjects,
-                bio,
-                resumeUrl: resumeUrl || null,
-                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo', // Placeholder nếu không có ảnh
-                submissionTimestamp: serverTimestamp(),
-                userId: userId,
-                applicationId: applicationId
-            };
-
-            // Dữ liệu giáo viên công khai (chờ phê duyệt để hiển thị)
-            const publicTeacherData = {
-                fullName,
-                nationality,
-                qualification,
-                experience,
-                subjects,
-                bio,
-                photoUrl: photoUrl || 'https://placehold.co/100x100/cccccc/333333?text=No+Photo', // Placeholder nếu không có ảnh
-                isApprovedForPublicDisplay: false, // Mặc định là false, cần admin phê duyệt
-                applicationId: applicationId,
-                userId: userId
-            };
+            // Removed Firebase data saving logic
+            // const applicationId = doc(collection(db, `artifacts/${appId}/users/${userId}/teacher_applications`)).id;
+            // const teacherData = { ... };
+            // const publicTeacherData = { ... };
 
             try {
-                // Lưu dữ liệu ứng tuyển vào bộ sưu tập riêng của người dùng
-                await setDoc(doc(db, `artifacts/${appId}/users/${userId}/teacher_applications`, applicationId), teacherData);
+                // await setDoc(doc(db, `artifacts/${appId}/users/${userId}/teacher_applications`, applicationId), teacherData);
+                // await setDoc(doc(db, `artifacts/${appId}/public/data/teacher_applications`, applicationId), publicTeacherData);
 
-                // Lưu dữ liệu ứng tuyển vào bộ sưu tập công khai (để admin xem xét)
-                await setDoc(doc(db, `artifacts/${appId}/public/data/teacher_applications`, applicationId), publicTeacherData);
+                // Tạo URL Google Form động với dữ liệu đã điền
+                const googleFormBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=pp_url";
+                const prefilledFormUrl = `${googleFormBaseUrl}` +
+                    `&entry.1517655153=${encodeURIComponent(fullName)}` + // Full Name
+                    `&entry.138806801=${encodeURIComponent(phoneNumber)}` + // Phone Number
+                    `&entry.396944312=${encodeURIComponent(nationality)}` + // Nationality
+                    `&entry.1179730929=${encodeURIComponent(qualification)}` + // Highest Qualification
+                    `&entry.1300349392=${encodeURIComponent(experience)}` + // Years of Teaching Experience
+                    `&entry.1936339032=${encodeURIComponent(subjects.join(', '))}` + // Subjects You Can Teach
+                    `&entry.1101686570=${encodeURIComponent(bio)}`; // Brief Introduction About Yourself
 
-                showModal("Đơn ứng tuyển của bạn đã được gửi thành công! Vui lòng truy cập <a href='https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=sharing&ouid=109196735657445874239' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>liên kết này</a> để tải lên CV, ảnh và các tài liệu khác.");
+                showModal(`Đơn ứng tuyển của bạn đã được gửi thành công! Vui lòng truy cập <a href='${prefilledFormUrl}' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>liên kết này</a> để tải lên CV, ảnh và các tài liệu khác.`);
                 teacherApplicationForm.reset(); // Đặt lại biểu mẫu sau khi gửi thành công
             } catch (error) {
                 console.error("Lỗi khi gửi đơn ứng tuyển: ", error);
@@ -804,44 +629,42 @@
             }
         });
 
-        // Hàm tải danh sách giáo viên đã được phê duyệt
-        function loadApprovedTeachers() {
-            if (!db || !isAuthReady) {
-                console.warn("Firestore hoặc Auth chưa sẵn sàng để tải giáo viên.");
-                return;
-            }
+        // Hàm tải danh sách giáo viên đã được phê duyệt (đã bị loại bỏ)
+        // function loadApprovedTeachers() {
+        //     if (!db || !isAuthReady) { // Removed Firebase dependency
+        //         console.warn("Firestore hoặc Auth chưa sẵn sàng để tải giáo viên.");
+        //         return;
+        //     }
 
-            // Truy vấn chỉ những giáo viên đã được phê duyệt để hiển thị công khai
-            const q = query(collection(db, `artifacts/${appId}/public/data/teacher_applications`), where("isApprovedForPublicDisplay", "==", true));
+        //     const q = query(collection(db, `artifacts/${appId}/public/data/teacher_applications`), where("isApprovedForPublicDisplay", "==", true));
 
-            // Lắng nghe thay đổi theo thời gian thực
-            onSnapshot(q, (snapshot) => {
-                teachersList.innerHTML = ''; // Xóa danh sách cũ
-                if (snapshot.empty) {
-                    noTeachersMessage.classList.remove('hidden');
-                } else {
-                    noTeachersMessage.classList.add('hidden');
-                    snapshot.forEach((doc) => {
-                        const teacher = doc.data();
-                        const teacherCard = `
-                            <div class="teacher-card flex flex-col items-center">
-                                <img src="${teacher.photoUrl}" alt="${teacher.fullName}" class="mb-4">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">${teacher.fullName}</h3>
-                                <p class="text-gray-600 mb-1"><strong>Nationality:</strong> ${teacher.nationality}</p>
-                                <p class="text-gray-600 mb-1"><strong>Qualification:</strong> ${teacher.qualification}</p>
-                                <p class="text-gray-600 mb-1"><strong>Experience:</strong> ${teacher.experience} years</p>
-                                <p class="text-gray-600 mb-1"><strong>Subjects:</strong> ${teacher.subjects.join(', ')}</p>
-                                <p class="text-gray-700 mt-2 text-sm italic">"${teacher.bio}"</p>
-                            </div>
-                        `;
-                        teachersList.insertAdjacentHTML('beforeend', teacherCard);
-                    });
-                }
-            }, (error) => {
-                console.error("Lỗi khi tải danh sách giáo viên: ", error);
-                showModal("Không thể tải danh sách giáo viên. Vui lòng thử lại.");
-            });
-        }
+        //     onSnapshot(q, (snapshot) => {
+        //         teachersList.innerHTML = '';
+        //         if (snapshot.empty) {
+        //             noTeachersMessage.classList.remove('hidden');
+        //         } else {
+        //             noTeachersMessage.classList.add('hidden');
+        //             snapshot.forEach((doc) => {
+        //                 const teacher = doc.data();
+        //                 const teacherCard = `
+        //                     <div class="teacher-card flex flex-col items-center">
+        //                         <img src="${teacher.photoUrl}" alt="${teacher.fullName}" class="mb-4">
+        //                         <h3 class="text-xl font-semibold text-gray-800 mb-2">${teacher.fullName}</h3>
+        //                         <p class="text-gray-600 mb-1"><strong>Nationality:</strong> ${teacher.nationality}</p>
+        //                         <p class="text-gray-600 mb-1"><strong>Qualification:</strong> ${teacher.qualification}</p>
+        //                         <p class="text-gray-600 mb-1"><strong>Experience:</strong> ${teacher.experience} years</p>
+        //                         <p class="text-gray-600 mb-1"><strong>Subjects:</strong> ${teacher.subjects.join(', ')}</p>
+        //                         <p class="text-gray-700 mt-2 text-sm italic">"${teacher.bio}"</p>
+        //                     </div>
+        //                 `;
+        //                 teachersList.insertAdjacentHTML('beforeend', teacherCard);
+        //             });
+        //         }
+        //     }, (error) => {
+        //         console.error("Lỗi khi tải danh sách giáo viên: ", error);
+        //         showModal("Không thể tải danh sách giáo viên. Vui lòng thử lại.");
+        //     });
+        // }
     </script>
 </body>
 </html>
