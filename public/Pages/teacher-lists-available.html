@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="available_teachers_page_title">Giáo Viên Nước Ngoài Đang Tìm Việc | IVS JSC</title>
+    <meta name="description" content="Danh sách các giáo viên nước ngoài chất lượng cao đang tìm kiếm cơ hội việc làm tại Việt Nam thông qua IVS JSC. Xem hồ sơ và liên hệ ngay." data-lang-key="available_teachers_meta_description">
+    <meta name="keywords" content="giáo viên nước ngoài, giáo viên bản ngữ, tuyển dụng giáo viên, việc làm giáo viên, IVS JSC, TESOL, CELTA" data-lang-key="available_teachers_meta_keywords">
+    <meta property="og:title" content="Giáo Viên Nước Ngoài Đang Tìm Việc | IVS JSC" data-lang-key="available_teachers_og_title">
+    <meta property="og:description" content="Khám phá hồ sơ các giáo viên tiếng Anh bản ngữ và nước ngoài chất lượng, sẵn sàng cho các vị trí giảng dạy tại trường học và trung tâm tại Việt Nam." data-lang-key="available_teachers_og_description">
+    <meta property="og:image" content="https://ivsjsc.github.io/images/banners/available-teachers-og.png">
+    <meta property="og:url" content="https://ivsjsc.github.io/Pages/teacher-lists-available.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-green': '#34d399',
+                        'ivs-purple': '#8b5cf6',
+                        'ivs-orange': '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .font-display { font-family: 'Lexend', sans-serif; }
+        .hero-section {
+            background-image: url('https://placehold.co/1920x400/1a202c/ffffff?text=Available+Teachers'); /* Placeholder background image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.6));
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text-shadow {
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .teacher-card {
+            @apply bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-lg flex flex-col items-center text-center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .teacher-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .teacher-avatar {
+            @apply w-28 h-28 rounded-full object-cover mb-4 border-2 border-ivs-blue;
+        }
+        .teacher-info ul {
+            @apply text-ivs-text-secondary text-sm list-none p-0 space-y-1;
+        }
+        .teacher-info li {
+            @apply flex items-center justify-center;
+        }
+        .teacher-info li i {
+            @apply text-ivs-green mr-2;
+        }
+        .btn-view-profile {
+            @apply inline-flex items-center justify-center px-6 py-3 mt-4 bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold rounded-lg transition-colors;
+        }
+    </style>
+</head>
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
+    
+    <header id="header-placeholder"></header>
+
+    <main>
+        <!-- Hero Section for Available Teachers -->
+        <section class="hero-section py-20 md:py-28 text-white text-center">
+            <div class="container mx-auto px-6 hero-content" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-4 hero-text-shadow" data-lang-key="available_teachers_hero_title">
+                    Giáo Viên Nước Ngoài Đang Tìm Việc
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow leading-relaxed" data-aos="fade-up" data-aos-delay="200" data-lang-key="available_teachers_hero_subtitle">
+                    Khám phá hồ sơ giáo viên chất lượng, sẵn sàng cho các cơ hội giảng dạy tại trường học và trung tâm của bạn.
+                </p>
+            </div>
+        </section>
+
+        <!-- Teacher Listings Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up" data-lang-key="teacher_listing_title">
+                    Danh Sách Giáo Viên Tiêu Biểu
+                </h2>
+                <p class="text-center text-ivs-text-secondary max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100" data-lang-key="teacher_listing_intro">
+                    Dưới đây là một số hồ sơ giáo viên nổi bật trong mạng lưới của IVS JSC. Vui lòng liên hệ chúng tôi để nhận danh sách đầy đủ và được tư vấn chi tiết hơn.
+                </p>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Teacher Card 1 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="100">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV1" alt="[Ảnh giáo viên John Smith]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV1';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher1_name">John Smith</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher1_nationality">Quốc tịch: Hoa Kỳ</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher1_qualification">Thạc sĩ Giáo dục, TESOL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher1_experience">5 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher1_specialization">IELTS, Tiếng Anh Học thuật</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=john-smith" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 2 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="200">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV2" alt="[Ảnh giáo viên Sarah Johnson]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV2';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher2_name">Sarah Johnson</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher2_nationality">Quốc tịch: Vương Quốc Anh</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher2_qualification">Cử nhân Ngôn ngữ, CELTA</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher2_experience">3 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher2_specialization">Tiếng Anh Trẻ Em, Giao tiếp</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=sarah-johnson" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 3 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="300">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV3" alt="[Ảnh giáo viên David Lee]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV3';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher3_name">David Lee</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher3_nationality">Quốc tịch: Canada</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher3_qualification">Cử nhân Khoa học, TEFL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher3_experience">4 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher3_specialization">Tiếng Anh Tổng Quát, STEM</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=david-lee" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 4 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="400">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV4" alt="[Ảnh giáo viên Maria Garcia]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV4';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher4_name">Maria Garcia</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher4_nationality">Quốc tịch: Philippines</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher4_qualification">Cử nhân Sư phạm, TESOL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher4_experience">7 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher4_specialization">Tiếng Anh Giao Tiếp, Luyện Thi</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=maria-garcia" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 5 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="500">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV5" alt="[Ảnh giáo viên Thabo Mbeki]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV5';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher5_name">Thabo Mbeki</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher5_nationality">Quốc tịch: Nam Phi</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher5_qualification">Cử nhân Văn học, TEFL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher5_experience">6 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher5_specialization">Tiếng Anh Doanh Nghiệp, Phát âm</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=thabo-mbeki" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                     <!-- Teacher Card 6 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="600">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV6" alt="[Ảnh giáo viên Emily White]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV6';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher6_name">Emily White</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher6_nationality">Quốc tịch: Úc</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher6_qualification">Thạc sĩ Quản lý Giáo dục, TESOL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher6_experience">8 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher6_specialization">Quản lý lớp học, Phát triển chương trình</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=emily-white" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 7 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="700">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV7" alt="[Ảnh giáo viên Kenji Tanaka]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV7';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher7_name">Kenji Tanaka</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher7_nationality">Quốc tịch: Nhật Bản</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher7_qualification">Tiến sĩ Ngôn ngữ học, CELTA</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher7_experience">10 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher7_specialization">Nghiên cứu ngôn ngữ, Đào tạo giáo viên</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=kenji-tanaka" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+
+                    <!-- Teacher Card 8 -->
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="800">
+                        <img class="teacher-avatar" src="https://placehold.co/112x112/161B22/FFFFFF?text=GV8" alt="[Ảnh giáo viên Chloe Dubois]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV8';">
+                        <h3 class="text-xl font-semibold text-ivs-blue mb-2" data-lang-key="teacher8_name">Chloe Dubois</h3>
+                        <p class="text-ivs-text-primary text-base mb-3" data-lang-key="teacher8_nationality">Quốc tịch: Pháp</p>
+                        <div class="teacher-info">
+                            <ul>
+                                <li><i class="fas fa-graduation-cap"></i> <span data-lang-key="teacher8_qualification">Thạc sĩ Tâm lý học, TESOL</span></li>
+                                <li><i class="fas fa-briefcase"></i> <span data-lang-key="teacher8_experience">7 năm kinh nghiệm</span></li>
+                                <li><i class="fas fa-book"></i> <span data-lang-key="teacher8_specialization">Tâm lý học đường, Kỹ năng mềm</span></li>
+                            </ul>
+                        </div>
+                        <a href="/contact.html?teacher=chloe-dubois" class="btn-view-profile" data-lang-key="view_profile_button">
+                            Xem Hồ Sơ & Liên Hệ
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="900">
+                    <p class="text-lg text-ivs-text-secondary mb-6" data-lang-key="more_teachers_cta_text">
+                        Bạn không tìm thấy giáo viên phù hợp? IVS JSC có một mạng lưới giáo viên rộng lớn và đa dạng.
+                    </p>
+                    <a href="/contact.html?interest=teacher_matching" class="btn-view-profile bg-ivs-green hover:bg-ivs-green-darker text-white" data-lang-key="request_custom_match_button">
+                        <i class="fas fa-search-plus mr-2"></i> Yêu Cầu Tìm Giáo Viên Theo Yêu Cầu
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="contact-cta" class="py-16 md:py-24 bg-ivs-blue text-white text-center">
+            <div class="container mx-auto px-6 max-w-3xl" data-aos="zoom-in">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6 hero-text-shadow" data-lang-key="final_cta_title">
+                    Sẵn Sàng Nâng Tầm Chất Lượng Giáo Dục Của Bạn?
+                </h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 hero-text-shadow" data-lang-key="final_cta_description">
+                    Liên hệ với IVS JSC ngay hôm nay để nhận tư vấn miễn phí và tìm kiếm giải pháp nhân sự giáo viên nước ngoài tối ưu nhất cho tổ chức của bạn.
+                </p>
+                <a href="/contact.html?service=foreign-teacher" class="btn-primary bg-ivs-orange hover:bg-orange-600 text-white" data-lang-key="final_cta_button">
+                    <i class="fas fa-envelope mr-2"></i> Yêu Cầu Tư Vấn Ngay
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
+    
+    <button id="scrollToTopBtn"
+            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-ivs-card text-ivs-text-primary shadow-lg hover:bg-ivs-border transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-offset-2 focus:ring-offset-ivs-bg"
+            aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
+    </button>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
+    <script>
+        AOS.init({
+            offset: 80,
+            duration: 600,
+            easing: 'ease-out-quad',
+            once: true,
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+        });
+
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 200) {
+                    scrollToTopBtn.classList.remove('hidden');
+                    scrollToTopBtn.classList.add('flex');
+                } else {
+                    scrollToTopBtn.classList.remove('flex');
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            }, { passive: true });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            if (window.pageYOffset <= 200) {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
