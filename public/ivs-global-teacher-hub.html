@@ -8,7 +8,6 @@
     <meta name="keywords" content="IVS JSC, education, educational technology, EdTech, STEAM, health, international cooperation, Dong Nai, IVS Academy, IVS Celestech, foreign language training, life skills" data-lang-key="meta_keywords_index">
     <meta property="og:title" content="IVS JSC - Education, Technology, Health, International Cooperation" data-lang-key="og_title_index">
     <meta property="og:description" content="Discover comprehensive solutions in foreign language training, STEAM, life skills, EdTech, healthcare, and cooperation opportunities with IVS JSC." data-lang-key="og_description_index">
-    <!-- Updated OG image to a known existing file -->
     <meta property="og:image" content="/images/logo/logo-192.png">
     <meta property="og:url" content="https://ivsacademy.edu.vn/ivs-global-teacher-hub.html">
     <meta property="og:type" content="website">
@@ -78,10 +77,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css"> 
-    <!-- Removed the problematic output.css link -->
-    <!-- <link rel="stylesheet" href="/dist/output.css"> -->
     <style>
-        /* Custom CSS Variables for IVS Tailwind Colors */
         :root {
             --primary-color: #004080;
             --primary-dark-color: #003366;
@@ -92,7 +88,6 @@
             --ivs-neutral-50-color: #f9fafb;
         }
 
-        /* Styles for IVS Global Teacher Hub App */
         .container {
             background-color: #ffffff;
             border-radius: 1rem;
@@ -207,8 +202,6 @@
             border: 3px solid var(--primary-color);
         }
 
-        /* Custom styles for chatbot (from user's original HTML) */
-        /* Chatbot removed as per user request */
         .chatbot-container { display: none; }
     </style>
 </head>
@@ -231,13 +224,9 @@
         <div class="container">
             <h1 class="text-3xl font-bold text-gray-800 mb-6">IVS Global Teacher Hub</h1>
             <p class="text-gray-600 mb-4">IVS – Strategic Thinking, Practical Action, Global Value.</p>
-            <!-- User ID display removed as Firebase is removed -->
-            <!-- <p id="user-id-display" class="text-sm text-gray-500 mb-4">User ID: Loading...</p> -->
 
             <div class="flex justify-center space-x-4 mb-6">
                 <button id="apply-tab-button" class="tab-button active">Teacher Application</button>
-                <!-- "View Teachers" tab removed as Firebase is removed -->
-                <!-- <button id="view-teachers-tab-button" class="tab-button">View Teachers</button> -->
             </div>
 
             <div id="teacher-application-section">
@@ -280,99 +269,8 @@
                     <button type="submit" class="button-primary w-full mt-4">Submit Application</button>
                 </form>
             </div>
-
-            <!-- Teacher overview section removed as Firebase is removed -->
-            <div id="teacher-overview-section" class="hidden">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">IVS Teacher List</h2>
-                <p class="text-gray-700 mb-6">This is a list of foreign teachers collaborating with IVS, carefully selected to meet the needs of our partners.</p>
-                <div id="teachers-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <p id="no-teachers-message" class="text-gray-500 text-center col-span-full hidden">No teachers currently displayed.</p>
-                </div>
-            </div>
         </div>
     </main>
-
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12" data-lang-key="testimonials_section_title">Khách Hàng & Đối Tác Nói Gì Về Chúng Tôi</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-lg">
-                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 italic" data-lang-key="testimonial_1_quote">
-                        "IVS JSC đã giúp chúng tôi xây dựng một chương trình đào tạo STEAM hoàn chỉnh, mang lại hiệu quả vượt trội cho học sinh. Sự chuyên nghiệp và tận tâm của đội ngũ thực sự ấn tượng."
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/a0aec0/ffffff?text=AV" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <p class="font-semibold text-gray-900 dark:text-white" data-lang-key="testimonial_1_author">Chị Nguyễn Xuân Hà</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-lang-key="testimonial_1_position">Hiệu Phó Chuyên môn Trường Tiểu học Tư thục</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-lg">
-                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 italic" data-lang-key="testimonial_2_quote">
-                        "Nhờ IVS Celestech, không chỉ tại Việt Nam. mà chúng tôi sở hữu 1 website ngay tại Mỹ thật chuyên nghiệp, chuẩn SEO hiệu quả, giao diện hiện đại và nhất là luôn hỗ trợ tức thì. mời mọi người ghé thăm trang web do IVS Celestech thiết ké: https://KhaDock.com."
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/a0aec0/ffffff?text=TD" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <p class="font-semibold text-gray-900 dark:text-white" data-lang-key="testimonial_2_author">Mr. Kha Do</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-lang-key="testimonial_2_position">Giám đốc Kha Boat Dock tại Lakeland, Florida, Hoa Kỳ</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-lg">
-                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 italic" data-lang-key="testimonial_3_quote">
-                        "Trong 2 tháng về Việt Nam lần đầu, IVS đã liên tục phối hợp cùng chương trình tại Mỹ để bé Thomas luôn theo kịp các bạn. Gia đình thật sự chưa nghĩ ra làm thế nào luôn. Cảm ơn IVS nhé!"
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/a0aec0/ffffff?text=TA" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <p class="font-semibold text-gray-900 dark:text-white" data-lang-key="testimonial_3_author">Chị Châu An Nhiên</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-lang-key="testimonial_3_position">Cô của bé Thomas, TP.HCM</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 4 -->
-                <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-lg">
-                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 italic" data-lang-key="testimonial_4_quote">
-                        "IVS LifeMinds đã cung cấp những buổi tư vấn hướng nghiệp vô cùng giá trị, giúp tôi định hình rõ ràng con đường phát triển sự nghiệp trong tương lai. Tôi rất hài lòng với sự tận tâm và chuyên nghiệp của đội ngũ."
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/60x60/a0aec0/ffffff?text=NV" alt="Avatar" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <p class="font-semibold text-gray-900 dark:text-white" data-lang-key="testimonial_4_author">Bạn Trương Đình Khang</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400" data-lang-key="testimonial_4_position">Học sinh lớp 12 - Trường THPT Chuyên Lê Hồng Phong</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Strategic Partners & International Affiliations Section -->
-    <section class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
-        <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
-            <h2 class="text-center text-2xl font-bold font-display text-white mb-12" data-lang-key="partners_title">Đối tác Chiến lược & Liên kết Quốc tế</h2>
-            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="The Power to Inspire">
-                    <img src="images/logo/thepowertoinspire.png" alt="[Hình ảnh The Power to Inspire]" class="w-24 h-auto object-contain" data-lang-key="partner_thepowertoinspire_alt">
-                </a>
-                <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="IIVSA">
-                    <img src="images/logo/iivsa.jpg" alt="[Hình ảnh IIVSA]" class="w-24 h-auto object-contain" data-lang-key="partner_iivsa_alt">
-                </a>
-                <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="EOV2025">
-                    <img src="images/pages/eov2025/eov2025.jpg" alt="[Hình ảnh EOV2025]" class="w-24 h-auto object-contain" data-lang-key="partner_eov2025_alt">
-                </a>
-                <a href="#" class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all" title="IU ENGLISH Academy">
-                    <img src="images/banners/iu-english-academy.png" alt="[Hình ảnh IU ENGLISH Academy]" class="w-24 h-auto object-contain" data-lang-key="partner_iuenglishacademy_alt">
-                </a>
-            </div>
-        </div>
-    </section>
 
     <div id="fab-container-placeholder"></div>
     <div id="footer-placeholder" data-loading-text="Loading footer..."></div>
@@ -381,159 +279,50 @@
         <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
     </button>
 
-    <!-- Chatbot container removed as Firebase/API calls are removed -->
-    <!-- <div class="chatbot-container">
-        <div id="chatbot-window" class="chatbot-window">
-            <div class="chatbot-header">
-                <span>IVS AI Assistant</span>
-                <button id="chatbot-close-button" class="close-button">&times;</button>
-            </div>
-            <div id="chatbot-messages" class="chatbot-messages flex flex-col space-y-3">
-                <div class="message bot">Welcome to IVS JSC! How can I help you today?</div>
-            </div>
-            <div class="chatbot-input-area">
-                <input type="text" id="chatbot-input" placeholder="Type your message...">
-                <button id="chatbot-send-button"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <button id="chatbot-open-button" class="chatbot-button">
-            <i class="fas fa-robot"></i>
-        </button>
-    </div> -->
-
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/posts-loader.js"></script>
-    <!-- Chatbot JS removed -->
-    <!-- <script src="/js/chatbot.js"></script> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script type="module">
-        // Removed Firebase imports
-        // import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        // import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        // import { getFirestore, doc, setDoc, collection, serverTimestamp, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Removed Firebase config variables
-        // const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        // const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        // const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        // Removed Firebase related global variables
-        // let app;
-        // let db;
-        // let auth;
-        // let userId = 'Loading...';
-        // let isAuthReady = false;
-
         const applyTabButton = document.getElementById('apply-tab-button');
-        // Removed viewTeachersTabButton as "View Teachers" tab is removed
-        // const viewTeachersTabButton = document.getElementById('view-teachers-tab-button');
         const teacherApplicationSection = document.getElementById('teacher-application-section');
-        // Removed teacherOverviewSection as "View Teachers" tab is removed
-        // const teacherOverviewSection = document.getElementById('teacher-overview-section');
         const teacherApplicationForm = document.getElementById('teacher-application-form');
-        // Removed teachersList and noTeachersMessage as "View Teachers" tab is removed
-        // const teachersList = document.getElementById('teachers-list');
-        // const noTeachersMessage = document.getElementById('no-teachers-message');
-        // Removed userIdDisplay as Firebase is removed
-        // const userIdDisplay = document.getElementById('user-id-display');
         const loadingSpinner = document.getElementById('loading-spinner');
 
         const customModal = document.getElementById('custom-modal');
         const modalMessage = document.getElementById('modal-message');
         const modalCloseButton = document.getElementById('modal-close-button');
 
-        // Hàm hiển thị modal thông báo
         function showModal(message) {
-            modalMessage.innerHTML = message; // Sử dụng innerHTML để hiển thị các liên kết HTML
+            modalMessage.innerHTML = message;
             customModal.classList.add('show');
         }
 
-        // Hàm ẩn modal thông báo
         function hideModal() {
             customModal.classList.remove('show');
         }
 
         modalCloseButton.addEventListener('click', hideModal);
 
-        // Hàm hiển thị spinner tải
         function showLoadingSpinner() {
             loadingSpinner.classList.remove('hidden');
         }
 
-        // Hàm ẩn spinner tải
         function hideLoadingSpinner() {
             loadingSpinner.classList.add('hidden');
         }
 
         window.onload = async function() {
-            // showLoadingSpinner(); // Removed as no async Firebase init
-            try {
-                // Removed Firebase initialization and auth logic
-                // if (Object.keys(firebaseConfig).length === 0) {
-                //     console.error("Firebase config is empty. Cannot initialize Firebase.");
-                //     showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra cấu hình Firebase.");
-                //     hideLoadingSpinner();
-                //     return;
-                // }
+            hideLoadingSpinner();
 
-                // app = initializeApp(firebaseConfig);
-                // db = getFirestore(app);
-                // auth = getAuth(app);
-
-                // onAuthStateChanged(auth, async (user) => {
-                //     if (user) {
-                //         userId = user.uid;
-                //         userIdDisplay.textContent = `User ID: ${userId}`;
-                //         isAuthReady = true;
-                //         if (!teacherOverviewSection.classList.contains('hidden')) {
-                //             loadApprovedTeachers();
-                //         }
-                //     } else {
-                //         try {
-                //             const anonymousUser = await signInAnonymously(auth);
-                //             userId = anonymousUser.user.uid;
-                //             userIdDisplay.textContent = `User ID: ${userId}`;
-                //             isAuthReady = true;
-                //             if (!teacherOverviewSection.classList.contains('hidden')) {
-                //                 loadApprovedTeachers();
-                //             }
-                //         } catch (error) {
-                //             console.error("Lỗi đăng nhập ẩn danh:", error);
-                //             showModal("Không thể đăng nhập ẩn danh. Vui lòng thử lại.");
-                //             userIdDisplay.textContent = `User ID: Lỗi`;
-                //         }
-                //     }
-                //     hideLoadingSpinner();
-                // });
-
-                // if (initialAuthToken) {
-                //     try {
-                //         await signInWithCustomToken(auth, initialAuthToken);
-                //     } catch (error) {
-                //         console.error("Lỗi đăng nhập bằng custom token:", error);
-                //         showModal("Không thể xác thực người dùng. Vui lòng thử lại.");
-                //     }
-                // }
-
-            } catch (error) {
-                console.error("Lỗi khởi tạo ứng dụng:", error);
-                // showModal("Không thể khởi tạo ứng dụng. Vui lòng kiểm tra kết nối internet."); // Keep generic error message
-                // hideLoadingSpinner();
-            } finally {
-                hideLoadingSpinner(); // Ensure spinner is hidden even if no Firebase init
-            }
-
-            // Khởi tạo AOS (Animate On Scroll)
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 50,
             });
 
-            // Xử lý nút cuộn lên đầu trang
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             if (scrollToTopBtn) {
                 window.addEventListener('scroll', () => {
@@ -555,38 +344,14 @@
             }
         };
 
-        // Xử lý chuyển đổi tab "Teacher Application" (tab "View Teachers" đã bị loại bỏ)
         applyTabButton.addEventListener('click', () => {
             applyTabButton.classList.add('active');
-            // viewTeachersTabButton.classList.remove('active'); // Removed
             teacherApplicationSection.classList.remove('hidden');
-            // teacherOverviewSection.classList.add('hidden'); // Removed
         });
 
-        // Xử lý chuyển đổi tab "View Teachers" (đã bị loại bỏ)
-        // viewTeachersTabButton.addEventListener('click', () => {
-        //     viewTeachersTabButton.classList.add('active');
-        //     applyTabButton.classList.remove('active');
-        //     teacherApplicationSection.classList.add('hidden');
-        //     teacherOverviewSection.classList.remove('hidden');
-        //     if (isAuthReady) { // Removed Firebase dependency
-        //         loadApprovedTeachers();
-        //     } else {
-        //         showModal("Đang tải dữ liệu giáo viên. Vui lòng đợi xác thực.");
-        //     }
-        // });
-
-        // Xử lý gửi biểu mẫu ứng tuyển giáo viên
         teacherApplicationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             showLoadingSpinner();
-
-            // Removed Firebase dependency check
-            // if (!db || !userId || !isAuthReady) {
-            //     showModal("Hệ thống chưa sẵn sàng. Vui lòng đợi hoặc thử lại.");
-            //     hideLoadingSpinner();
-            //     return;
-            // }
 
             const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
@@ -599,28 +364,19 @@
             const resumeUrl = document.getElementById('resumeUrl').value;
             const photoUrl = document.getElementById('photoUrl').value;
 
-            // Removed Firebase data saving logic
-            // const applicationId = doc(collection(db, `artifacts/${appId}/users/${userId}/teacher_applications`)).id;
-            // const teacherData = { ... };
-            // const publicTeacherData = { ... };
-
             try {
-                // await setDoc(doc(db, `artifacts/${appId}/users/${userId}/teacher_applications`, applicationId), teacherData);
-                // await setDoc(doc(db, `artifacts/${appId}/public/data/teacher_applications`, applicationId), publicTeacherData);
-
-                // Tạo URL Google Form động với dữ liệu đã điền
                 const googleFormBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSd_TJ-EstYhFVSEAHGzqG-36dsbkdxvYRuGHiCi5PvgUICjnA/viewform?usp=pp_url";
                 const prefilledFormUrl = `${googleFormBaseUrl}` +
-                    `&entry.1517655153=${encodeURIComponent(fullName)}` + // Full Name
-                    `&entry.138806801=${encodeURIComponent(phoneNumber)}` + // Phone Number
-                    `&entry.396944312=${encodeURIComponent(nationality)}` + // Nationality
-                    `&entry.1179730929=${encodeURIComponent(qualification)}` + // Highest Qualification
-                    `&entry.1300349392=${encodeURIComponent(experience)}` + // Years of Teaching Experience
-                    `&entry.1936339032=${encodeURIComponent(subjects.join(', '))}` + // Subjects You Can Teach
-                    `&entry.1101686570=${encodeURIComponent(bio)}`; // Brief Introduction About Yourself
+                    `&entry.1517655153=${encodeURIComponent(fullName)}` +
+                    `&entry.138806801=${encodeURIComponent(phoneNumber)}` +
+                    `&entry.396944312=${encodeURIComponent(nationality)}` +
+                    `&entry.1179730929=${encodeURIComponent(qualification)}` +
+                    `&entry.1300349392=${encodeURIComponent(experience)}` +
+                    `&entry.1936339032=${encodeURIComponent(subjects.join(', '))}` +
+                    `&entry.1101686570=${encodeURIComponent(bio)}`;
 
                 showModal(`Đơn ứng tuyển của bạn đã được gửi thành công! Vui lòng truy cập <a href='${prefilledFormUrl}' target='_blank' class='text-blue-600 hover:text-blue-800 underline'>liên kết này</a> để tải lên CV, ảnh và các tài liệu khác.`);
-                teacherApplicationForm.reset(); // Đặt lại biểu mẫu sau khi gửi thành công
+                teacherApplicationForm.reset();
             } catch (error) {
                 console.error("Lỗi khi gửi đơn ứng tuyển: ", error);
                 showModal("Đã xảy ra lỗi khi gửi đơn ứng tuyển. Vui lòng thử lại.");
@@ -628,43 +384,6 @@
                 hideLoadingSpinner();
             }
         });
-
-        // Hàm tải danh sách giáo viên đã được phê duyệt (đã bị loại bỏ)
-        // function loadApprovedTeachers() {
-        //     if (!db || !isAuthReady) { // Removed Firebase dependency
-        //         console.warn("Firestore hoặc Auth chưa sẵn sàng để tải giáo viên.");
-        //         return;
-        //     }
-
-        //     const q = query(collection(db, `artifacts/${appId}/public/data/teacher_applications`), where("isApprovedForPublicDisplay", "==", true));
-
-        //     onSnapshot(q, (snapshot) => {
-        //         teachersList.innerHTML = '';
-        //         if (snapshot.empty) {
-        //             noTeachersMessage.classList.remove('hidden');
-        //         } else {
-        //             noTeachersMessage.classList.add('hidden');
-        //             snapshot.forEach((doc) => {
-        //                 const teacher = doc.data();
-        //                 const teacherCard = `
-        //                     <div class="teacher-card flex flex-col items-center">
-        //                         <img src="${teacher.photoUrl}" alt="${teacher.fullName}" class="mb-4">
-        //                         <h3 class="text-xl font-semibold text-gray-800 mb-2">${teacher.fullName}</h3>
-        //                         <p class="text-gray-600 mb-1"><strong>Nationality:</strong> ${teacher.nationality}</p>
-        //                         <p class="text-gray-600 mb-1"><strong>Qualification:</strong> ${teacher.qualification}</p>
-        //                         <p class="text-gray-600 mb-1"><strong>Experience:</strong> ${teacher.experience} years</p>
-        //                         <p class="text-gray-600 mb-1"><strong>Subjects:</strong> ${teacher.subjects.join(', ')}</p>
-        //                         <p class="text-gray-700 mt-2 text-sm italic">"${teacher.bio}"</p>
-        //                     </div>
-        //                 `;
-        //                 teachersList.insertAdjacentHTML('beforeend', teacherCard);
-        //             });
-        //         }
-        //     }, (error) => {
-        //         console.error("Lỗi khi tải danh sách giáo viên: ", error);
-        //         showModal("Không thể tải danh sách giáo viên. Vui lòng thử lại.");
-        //     });
-        // }
     </script>
 </body>
 </html>
