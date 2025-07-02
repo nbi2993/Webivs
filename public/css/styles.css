@@ -311,8 +311,8 @@ main {
     z-index: 10;
 }
 .dark .process-step:before {
-     background-color: var(--ivs-secondary);
-     color: var(--ivs-neutral-900);
+    background-color: var(--ivs-secondary);
+    color: var(--ivs-neutral-900);
 }
 
 /* --- Check List --- */
@@ -453,4 +453,84 @@ body.menu-open {
     transform: translateY(-10px);
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
 }
-/* End moved styles */
+
+/* Kiểu dáng chung cho phần Triết lý cốt lõi */
+.core-philosophy-section {
+    background-color: #000; /* Nền đen */
+    color: #fff; /* Chữ trắng */
+    padding: 50px 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.core-philosophy-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Vùng chứa logo và các ô giải thích */
+.philosophy-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Khoảng cách giữa các ô */
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+}
+
+/* Định dạng cho từng ô I, V, S */
+.philosophy-item {
+    background-color: #1a1a1a; /* Nền xám đậm cho các ô */
+    border-radius: 10px;
+    padding: 30px;
+    width: 300px; /* Chiều rộng cố định cho mỗi ô */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.philosophy-item .logo-part {
+    width: 80px; /* Kích thước phần logo */
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Làm tròn nếu muốn biểu tượng tròn */
+    /* Các màu nền khác nhau cho từng phần logo */
+}
+
+/* Các màu cho từng phần logo I, V, S (tùy chỉnh theo logo thực tế) */
+.philosophy-item.integrate .logo-part { background-color: #007bff; /* Ví dụ: màu xanh cho Integrate */ }
+.philosophy-item.vision .logo-part { background-color: #28a745; /* Ví dụ: màu xanh lá cho Vision */ }
+.philosophy-item.synergy .logo-part { background-color: #dc3545; /* Ví dụ: màu đỏ cho Synergy */ }
+
+
+.philosophy-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #00ccff; /* Màu chữ tiêu đề con */
+}
+
+.philosophy-item p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #ccc; /* Màu chữ nội dung */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .philosophy-item {
+        width: 45%; /* 2 cột trên tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .philosophy-item {
+        width: 80%; /* 1 cột trên điện thoại */
+    }
+    .core-philosophy-section h2 {
+        font-size: 2em;
+    }
+}
