@@ -454,83 +454,163 @@ body.menu-open {
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.4);
 }
 
+/* Tùy chỉnh font Inter */
+html {
+    font-family: 'Inter', sans-serif;
+}
+
 /* Kiểu dáng chung cho phần Triết lý cốt lõi */
 .core-philosophy-section {
-    background-color: #000; /* Nền đen */
+    /* Sử dụng ảnh nền với lớp phủ màu đen để đảm bảo văn bản dễ đọc */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/logo.png') center center / cover no-repeat fixed;
     color: #fff; /* Chữ trắng */
-    padding: 50px 20px;
+    padding: 80px 20px;
     text-align: center;
-    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Đảm bảo đủ chiều cao để cuộn */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .core-philosophy-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    font-weight: bold;
+    font-size: 3.5rem; /* Kích thước lớn hơn cho tiêu đề chính */
+    margin-bottom: 60px;
+    font-weight: 700; /* Bold */
+    color: #00ccff; /* Màu xanh nổi bật */
 }
 
-/* Vùng chứa logo và các ô giải thích */
+/* Logo IVS */
+.ivs-logo-container {
+    margin-bottom: 80px; /* Khoảng cách dưới logo */
+    opacity: 1; /* Ban đầu hiển thị */
+    transition: opacity 0.5s ease-out;
+}
+
+.ivs-logo-container.hidden-on-scroll {
+    opacity: 0; /* Ẩn dần khi cuộn */
+}
+
+.ivs-logo-container img {
+    max-width: 250px; /* Kích thước logo */
+    height: auto;
+    border-radius: 10px; /* Bo góc nhẹ */
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5); /* Hiệu ứng phát sáng */
+}
+
+/* Vùng chứa các ô giải thích */
 .philosophy-content {
     display: flex;
     justify-content: center;
-    gap: 30px; /* Khoảng cách giữa các ô */
+    gap: 40px; /* Khoảng cách giữa các ô */
     flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    opacity: 0; /* Ban đầu ẩn */
+    transform: translateY(50px); /* Ban đầu dịch xuống dưới */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Hiệu ứng chuyển động */
+    margin-top: 50px; /* Khoảng cách với logo */
+}
+
+/* Khi cuộn đến, hiển thị và dịch chuyển lên */
+.philosophy-content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Định dạng cho từng ô I, V, S */
 .philosophy-item {
-    background-color: #1a1a1a; /* Nền xám đậm cho các ô */
-    border-radius: 10px;
-    padding: 30px;
-    width: 300px; /* Chiều rộng cố định cho mỗi ô */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(26, 26, 26, 0.8); /* Nền xám đậm có độ trong suốt cho các ô */
+    border-radius: 15px; /* Bo góc nhiều hơn */
+    padding: 40px;
+    width: 320px; /* Chiều rộng cố định cho mỗi ô */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Đổ bóng sâu hơn */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border: 1px solid #333; /* Viền nhẹ */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.philosophy-item:hover {
+    transform: translateY(-10px); /* Hiệu ứng nhấc lên khi hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
 }
 
 .philosophy-item .logo-part {
-    width: 80px; /* Kích thước phần logo */
-    height: 80px;
-    margin-bottom: 20px;
+    width: 90px; /* Kích thước phần logo */
+    height: 90px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%; /* Làm tròn nếu muốn biểu tượng tròn */
-    /* Các màu nền khác nhau cho từng phần logo */
+    border-radius: 50%; /* Làm tròn biểu tượng */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    font-size: 3.5rem; /* Kích thước chữ cái */
+    font-weight: bold;
+    color: #fff;
 }
 
-/* Các màu cho từng phần logo I, V, S (tùy chỉnh theo logo thực tế) */
-.philosophy-item.integrate .logo-part { background-color: #007bff; /* Ví dụ: màu xanh cho Integrate */ }
-.philosophy-item.vision .logo-part { background-color: #28a745; /* Ví dụ: màu xanh lá cho Vision */ }
-.philosophy-item.synergy .logo-part { background-color: #dc3545; /* Ví dụ: màu đỏ cho Synergy */ }
-
+/* Các màu nền khác nhau cho từng phần logo */
+.philosophy-item.integrate .logo-part { background: linear-gradient(45deg, #007bff, #00ccff); } /* Xanh dương */
+.philosophy-item.vision .logo-part { background: linear-gradient(45deg, #28a745, #4CAF50); } /* Xanh lá */
+.philosophy-item.synergy .logo-part { background: linear-gradient(45deg, #dc3545, #FF5722); } /* Đỏ cam */
 
 .philosophy-item h3 {
-    font-size: 1.8em;
+    font-size: 2.2em;
     margin-bottom: 15px;
     color: #00ccff; /* Màu chữ tiêu đề con */
+    font-weight: 600;
 }
 
 .philosophy-item p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #ccc; /* Màu chữ nội dung */
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #b0b0b0; /* Màu chữ nội dung nhạt hơn */
 }
 
 /* Responsive adjustments */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
     .philosophy-item {
         width: 45%; /* 2 cột trên tablet */
+    }
+    .core-philosophy-section h2 {
+        font-size: 3rem;
     }
 }
 
 @media (max-width: 768px) {
     .philosophy-item {
-        width: 80%; /* 1 cột trên điện thoại */
+        width: 90%; /* 1 cột trên điện thoại */
+        padding: 30px;
     }
     .core-philosophy-section h2 {
-        font-size: 2em;
+        font-size: 2.5rem;
+    }
+    .ivs-logo-container img {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .core-philosophy-section h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    .ivs-logo-container {
+        margin-bottom: 60px;
+    }
+    .philosophy-item {
+        padding: 25px;
+    }
+    .philosophy-item .logo-part {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+    }
+    .philosophy-item h3 {
+        font-size: 1.8em;
+    }
+    .philosophy-item p {
+        font-size: 0.95em;
     }
 }
