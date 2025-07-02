@@ -49,8 +49,31 @@
     <link rel="stylesheet" href="/css/styles.css">
     <style>
         .font-display { font-family: 'Lexend', sans-serif; }
+        /* Loại bỏ background cũ của hero-section để video nền hiển thị */
         .hero-section {
-            background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.7)), url('/images/banners/about_hero_bg.jpg') no-repeat center center/cover;
+            background: none; 
+            position: relative; /* Đảm bảo hero-section có vị trí tương đối để chứa video nền */
+            overflow: hidden; /* Ẩn phần video thừa ra ngoài */
+            padding-top: 10rem; /* Tăng padding-top để tránh nội dung bị che bởi header */
+            padding-bottom: 4rem; /* Tăng padding-bottom */
+        }
+        .background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Đặt video phía sau nội dung */
+            transform: translate(-50%, -50%);
+            background-size: cover;
+            filter: brightness(0.4); /* Làm tối video để nội dung dễ đọc hơn */
+        }
+        .hero-content-overlay {
+            position: relative;
+            z-index: 1; /* Đảm bảo nội dung nằm trên video */
+            color: white; /* Đảm bảo màu chữ tương phản với video nền */
         }
         .timeline::before {
             content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px;
@@ -84,8 +107,13 @@
     <header id="header-placeholder"></header>
 
     <main>
-        <section class="hero-section pt-28 pb-16 md:pt-40 md:pb-24 border-b border-ivs-border">
-            <div class="container mx-auto px-6 text-center">
+        <section class="hero-section border-b border-ivs-border">
+            <!-- Video nền -->
+            <video autoplay loop muted playsinline class="background-video">
+                <source src="/videos/ivs_background_video1.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ thẻ video.
+            </video>
+            <div class="container mx-auto px-6 text-center hero-content-overlay">
                 <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4" data-aos="fade-down" data-lang-key="about_hero_title">
                     Về IVS JSC: Kiến Tạo Giá Trị Toàn Cầu
                 </h1>
