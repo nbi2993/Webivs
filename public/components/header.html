@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.4 - Re-enabled language toggle, refined mobile menu -->
+<!-- VERSION: 2.5 - Added "Về IVS" dropdown menu -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and language selection. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
@@ -13,8 +13,19 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
                 <a href="/index.html" class="desktop-nav-link" data-lang-key="nav_home">Trang Chủ</a>
-                <a href="/about.html" class="desktop-nav-link" data-lang-key="nav_about">Về IVS</a>
                 
+                <!-- Dropdown "Về IVS" -->
+                <div class="desktop-dropdown-container">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                        <span data-lang-key="nav_about_ivs">Về IVS</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                    </button>
+                    <div class="desktop-dropdown p-2 space-y-1">
+                        <a href="/about.html" class="dropdown-item" data-lang-key="nav_about_us">Về chúng tôi</a>
+                        <a href="/careervn.html" class="dropdown-item" data-lang-key="nav_career_opportunities">Cơ hội nghề nghiệp</a>
+                        <a href="/non-profit.html" class="dropdown-item" data-lang-key="nav_non_profit">Phi lợi nhuận</a>
+                    </div>
+                </div>
+
                 <div class="desktop-dropdown-container">
                     <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
                         <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
@@ -121,8 +132,19 @@
         </div>
         <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto">
             <a href="/index.html" class="mobile-nav-link" data-lang-key="nav_home">Trang Chủ</a>
-            <a href="/about.html" class="mobile-nav-link" data-lang-key="nav_about">Về IVS</a>
             
+            <!-- Mobile Dropdown "Về IVS" -->
+            <div>
+                <button class="mobile-submenu-toggle">
+                    <span data-lang-key="nav_about_ivs">Về IVS</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                </button>
+                <div class="mobile-submenu-content">
+                    <a href="/about.html" class="mobile-submenu-item" data-lang-key="nav_about_us">Về chúng tôi</a>
+                    <a href="/careervn.html" class="mobile-submenu-item" data-lang-key="nav_career_opportunities">Cơ hội nghề nghiệp</a>
+                    <a href="/non-profit.html" class="mobile-submenu-item" data-lang-key="nav_non_profit">Phi lợi nhuận</a>
+                </div>
+            </div>
+
             <div>
                 <button class="mobile-submenu-toggle">
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>

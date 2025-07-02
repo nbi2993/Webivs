@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt Động Phi Lợi Nhuận & Cộng Đồng - IVS JSC</title>
+    <meta name="description" content="Khám phá các hoạt động phi lợi nhuận và đóng góp cộng đồng của IVS JSC, bao gồm các dự án như 'Hãy nói', English Club và nhiều hơn nữa.">
+    <meta name="keywords" content="IVS JSC, Phi lợi nhuận, Hoạt động cộng đồng, Hãy nói, English Club, Trách nhiệm xã hội, Giáo dục cộng đồng">
+    <meta name="author" content="IVS JSC">
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Link đến file CSS tùy chỉnh nếu có, ví dụ: <link rel="stylesheet" href="/css/styles.css"> -->
+    <style>
+        /* Các biến CSS tùy chỉnh để dễ quản lý màu sắc */
+        :root {
+            --primary-color: #004080; /* IVS Blue */
+            --primary-dark-color: #003366;
+            --secondary-color: #ffc107; /* IVS Yellow */
+            --secondary-dark-color: #e0a800;
+            --purple-accent-color: #8b5cf6;
+            --ivs-neutral-800-color: #1f2937;
+            --ivs-neutral-700-color: #374151;
+            --ivs-neutral-300-color: #D1D5DB;
+            --ivs-neutral-200-color: #e5e7eb;
+            --ivs-neutral-50-color: #f9fafb;
+        }
+
+        /* Áp dụng font Inter cho toàn bộ body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-text-shadow {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .section-card {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+        .icon-large {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300">
+    <!-- Placeholder cho Header, sẽ được tải động -->
+    <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
+
+    <main class="flex-grow">
+        <!-- Phần Hero Section -->
+        <section class="bg-gradient-to-r from-blue-600 via-primary to-purple-600 text-white py-20 md:py-28 text-center" aria-labelledby="page-title-non-profit">
+            <div class="container mx-auto px-4">
+                <h1 id="page-title-non-profit" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 hero-text-shadow">Hoạt Động Phi Lợi Nhuận & Cộng Đồng</h1>
+                <p class="text-lg md:text-xl lg:text-2xl opacity-90 max-w-3xl mx-auto hero-text-shadow">IVS JSC: Kiến Tạo Giá Trị Bền Vững Cho Cộng Đồng</p>
+            </div>
+        </section>
+
+        <!-- Phần giới thiệu chung -->
+        <section class="py-12 md:py-16 lg:py-20">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="bg-white p-6 md:p-10 rounded-xl shadow-2xl mb-12 md:mb-16 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">Sứ Mệnh Cộng Đồng của IVS JSC</h2>
+                    <p class="text-gray-700 leading-relaxed mb-8 max-w-3xl mx-auto text-lg">
+                        Tại IVS JSC, chúng tôi tin rằng giáo dục là chìa khóa cho một tương lai tốt đẹp hơn. Ngoài các hoạt động kinh doanh, chúng tôi cam kết đóng góp tích cực cho xã hội thông qua các dự án phi lợi nhuận, nhằm lan tỏa tri thức, kỹ năng và tạo ra những giá trị bền vững cho cộng đồng.
+                    </p>
+                    <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
+                        <span class="bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center shadow-sm">
+                            <i class="fas fa-hand-holding-heart fa-sm mr-2"></i> Vì Cộng Đồng
+                        </span>
+                        <span class="bg-emerald-100 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center shadow-sm">
+                            <i class="fas fa-lightbulb fa-sm mr-2"></i> Lan Tỏa Tri Thức
+                        </span>
+                        <span class="bg-purple-100 text-purple-700 text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center shadow-sm">
+                            <i class="fas fa-seedling fa-sm mr-2"></i> Phát Triển Bền Vững
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Các hoạt động tiêu biểu -->
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-purple-accent mb-10">Các Hoạt Động Tiêu Biểu</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="section-card text-center">
+                        <i class="fas fa-comments icon-large text-blue-500"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Dự án "Hãy nói"</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Một sáng kiến nhằm khuyến khích giao tiếp cởi mở, chia sẻ câu chuyện và lắng nghe. Dự án tạo không gian an toàn để mọi người thể hiện bản thân, kết nối và hỗ trợ lẫn nhau trong cộng đồng.
+                        </p>
+                    </div>
+                    <div class="section-card text-center">
+                        <i class="fas fa-globe-americas icon-large text-green-500"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">English Club IVS</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Câu lạc bộ tiếng Anh miễn phí dành cho mọi lứa tuổi, giúp nâng cao kỹ năng giao tiếp, mở rộng kiến thức văn hóa và xây dựng sự tự tin trong môi trường quốc tế. Các buổi sinh hoạt định kỳ với giáo viên bản ngữ và các hoạt động tương tác sôi nổi.
+                        </p>
+                    </div>
+                    <div class="section-card text-center">
+                        <i class="fas fa-child-reaching icon-large text-orange-500"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Chương trình Hỗ trợ Giáo dục cho trẻ em khó khăn</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            IVS JSC cam kết cung cấp các khóa học, tài liệu và học bổng cho trẻ em có hoàn cảnh khó khăn, giúp các em tiếp cận giáo dục chất lượng và có cơ hội phát triển toàn diện.
+                        </p>
+                    </div>
+                    <div class="section-card text-center">
+                        <i class="fas fa-hands-helping icon-large text-purple-500"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Hợp tác cùng các Tổ chức Phi Chính phủ (NGOs)</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Chúng tôi tích cực hợp tác với các tổ chức phi chính phủ trong và ngoài nước để triển khai các dự án phát triển cộng đồng, nâng cao nhận thức về các vấn đề xã hội và môi trường.
+                        </p>
+                    </div>
+                    <div class="section-card text-center">
+                        <i class="fas fa-heartbeat icon-large text-red-500"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Sáng kiến Y tế Cộng đồng</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            IVS JSC cũng tham gia vào các sáng kiến nâng cao sức khỏe cộng đồng, tổ chức các buổi tư vấn, khám sức khỏe miễn phí và cung cấp thông tin y tế hữu ích cho người dân.
+                        </p>
+                    </div>
+                    <div class="section-card text-center">
+                        <i class="fas fa-tree icon-large text-emerald-600"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Bảo vệ Môi trường</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Tổ chức các hoạt động tình nguyện bảo vệ môi trường, nâng cao ý thức cộng đồng về biến đổi khí hậu và phát triển bền vững.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 md:mt-16">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Cùng IVS Kiến Tạo Tương Lai Tốt Đẹp Hơn</h3>
+                    <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
+                        Chúng tôi luôn hoan nghênh sự tham gia và đóng góp của các cá nhân, tổ chức có cùng chí hướng. Hãy cùng IVS JSC chung tay xây dựng một cộng đồng vững mạnh và một tương lai tươi sáng hơn.
+                    </p>
+                    <a href="/contact.html" class="inline-block bg-primary hover:bg-primary-dark text-white font-medium py-3 px-8 rounded-lg transition duration-300 shadow hover:shadow-md transform hover:scale-105">
+                        Liên Hệ Hợp Tác <i class="fas fa-arrow-right fa-xs ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Placeholder cho Footer, sẽ được tải động -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Nút cuộn lên đầu trang -->
+    <button id="scrollToTopBtn"
+            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+            aria-label="Scroll to top">
+        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
+    </button>
+    
+    <!-- Script AOS cho hiệu ứng cuộn -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 120,
+        duration: 700,
+        easing: 'ease-out-quad',
+        once: true,
+        mirror: false, 
+        anchorPlacement: 'top-bottom',
+      });
+
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      if (scrollToTopBtn) {
+          window.addEventListener('scroll', () => {
+              if (window.pageYOffset > 300) {
+                  scrollToTopBtn.classList.remove('hidden');
+                  scrollToTopBtn.classList.add('flex');
+              } else {
+                  scrollToTopBtn.classList.remove('flex');
+                  scrollToTopBtn.classList.add('hidden');
+              }
+          }, { passive: true });
+
+          scrollToTopBtn.addEventListener('click', () => {
+              window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+              });
+          });
+          if (window.pageYOffset <= 300) {
+            scrollToTopBtn.classList.add('hidden');
+          }
+      }
+    </script>
+    <!-- Tải các script dùng chung -->
+    <script src="/js/loadComponents.js" defer></script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/script.js" defer></script>
+</body>
+</html>
