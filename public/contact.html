@@ -151,7 +151,7 @@
                                 </button>
                             </div>
                         </form>
-                        <div id="form-status" class="mt-4 text-center"></div>
+                        <div id="form-status" class="mt-4 text-center text-ivs-text-primary"></div>
                     </div>
                 </div>
             </div>
@@ -201,12 +201,12 @@
                             frameborder="0"
                         >
                             <!-- Fallback content if iframe is not supported -->
-                            <p class="text-ivs-text-secondary text-center p-4">
-                                Your browser does not support iframes. Please access the application directly at:
+                            <p class="text-ivs-text-secondary text-center p-4" data-lang-key="chatbot_iframe_fallback_text">
+                                Trình duyệt của bạn không hỗ trợ iframe. Vui lòng truy cập ứng dụng trực tiếp tại:
                                 <a href="https://studio--gemini-chat-m48mq.us-central1.hosted.app/"
                                    target="_blank" rel="noopener noreferrer"
-                                   class="text-ivs-blue hover:underline">
-                                    IVS AI Support (Chatbot)
+                                   class="text-ivs-blue hover:underline" data-lang-key="chatbot_iframe_fallback_link_text">
+                                    Hỗ trợ AI của IVS (Chatbot)
                                 </a>
                             </p>
                         </iframe>
@@ -244,6 +244,7 @@
     <script src="/js/loadComponents.js" defer></script>
     <script src="/js/contact-page.js" defer></script>
     <script>
+        // Callback function to initialize AOS after all components are loaded
         window.onPageComponentsLoadedCallback = function() {
             AOS.init({
                 duration: 700,

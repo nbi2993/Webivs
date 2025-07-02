@@ -1,55 +1,56 @@
-// js/contact-page.js
-document.addEventListener('DOMContentLoaded', function () {
-    // This script assumes a form with id="contactForm" and a status display with id="form-status"
-    // It's taken from the inline script in contact.html
-    // If you use a different form ID or status ID, update them here.
+// FILE: /js/contact-page.js
 
-    const contactForm = document.getElementById('contactForm'); // Ensure your form in contact.html has this ID
-    const formStatus = document.getElementById('form-status');   // Ensure your status div has this ID
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
 
-    if (contactForm && formStatus) {
-        contactForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Ngăn chặn hành vi gửi form mặc định
+
+            formStatus.textContent = 'Đang gửi...'; // Hiển thị trạng thái đang gửi
+            formStatus.className = 'mt-4 text-center text-ivs-text-secondary'; // Reset classes
+
             const formData = new FormData(contactForm);
-            formStatus.innerHTML = '<p class="text-slate-600">Sending...</p>'; // Tailwind classes for styling
+            const data = Object.fromEntries(formData.entries());
 
+            // Đây là nơi bạn sẽ gửi dữ liệu form đến backend của mình.
+            // Ví dụ: sử dụng fetch API để gửi dữ liệu đến một API endpoint.
+            // Để đơn giản, tôi sẽ mô phỏng một yêu cầu gửi thành công/thất bại.
             try {
-                // IMPORTANT: Replace 'YOUR_FORM_SUBMISSION_ENDPOINT' with your actual backend URL
-                // or a service like Formspree. The 'action' attribute of the form will be used.
-                const formActionUrl = contactForm.action || 'YOUR_FORM_SUBMISSION_ENDPOINT_FALLBACK';
-                if (formActionUrl.includes('YOUR_FORM_SUBMISSION_ENDPOINT')) {
-                     console.error("Form action URL is not configured.");
-                     formStatus.innerHTML = '<p class="text-red-600 bg-red-50 p-3 rounded-md">Form submission endpoint not configured. Please contact support.</p>';
-                     return;
-                }
+                // Mô phỏng độ trễ của mạng
+                await new Promise(resolve => setTimeout(resolve, 1500)); 
 
-
-                const response = await fetch(formActionUrl, {
+                // Mô phỏng phản hồi thành công
+                const response = { success: true, message: 'Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất!' };
+                
+                // Nếu có API thực tế, bạn sẽ dùng:
+                /*
+                const response = await fetch('/api/contact', { // Thay thế bằng endpoint API thực tế của bạn
                     method: 'POST',
-                    body: formData,
-                    headers: {'Accept': 'application/json'} // Important for services like Formspree
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
                 });
+                const result = await response.json();
+                */
 
-                if (response.ok) {
-                    formStatus.innerHTML = '<p class="text-green-600 bg-green-50 p-3 rounded-md">Thank you! Your message has been sent successfully.</p>';
-                    contactForm.reset();
+                if (response.success) {
+                    formStatus.textContent = window.langData ? window.langData['contact_form_success_message'] : response.message;
+                    formStatus.className = 'mt-4 text-center text-green-500 font-semibold';
+                    contactForm.reset(); // Xóa form sau khi gửi thành công
                 } else {
-                    // Try to parse error from services like Formspree
-                    response.json().then(data => {
-                        const errorMessage = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! There was a problem submitting your form.";
-                        formStatus.innerHTML = `<p class="text-red-600 bg-red-50 p-3 rounded-md">${errorMessage}</p>`;
-                    }).catch(() => {
-                        // Fallback error message if response is not JSON or parsing fails
-                        formStatus.innerHTML = '<p class="text-red-600 bg-red-50 p-3 rounded-md">Error processing server response. Please try again.</p>';
-                    });
+                    // Xử lý lỗi từ backend
+                    formStatus.textContent = window.langData ? window.langData['contact_form_error_message'] : 'Đã xảy ra lỗi khi gửi yêu cầu. Vui lòng thử lại.';
+                    formStatus.className = 'mt-4 text-center text-red-500 font-semibold';
                 }
             } catch (error) {
-                console.error("Form submission error:", error);
-                formStatus.innerHTML = '<p class="text-red-600 bg-red-50 p-3 rounded-md">A network error occurred. Please check your connection and try again.</p>';
+                console.error('Lỗi khi gửi form:', error);
+                formStatus.textContent = window.langData ? window.langData['contact_form_network_error_message'] : 'Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng và thử lại.';
+                formStatus.className = 'mt-4 text-center text-red-500 font-semibold';
             }
         });
-    } else {
-        if (!contactForm) console.warn("Contact form (#contactForm) not found for contact-page.js.");
-        if (!formStatus) console.warn("Form status display element (#form-status) not found for contact-page.js.");
+        
     }
 });
