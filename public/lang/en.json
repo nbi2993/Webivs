@@ -2079,5 +2079,9 @@
   "service_legal_consulting_desc": "Providing in-depth civil law consulting services for individuals, ensuring legal rights and compliance.",
   "service_celestech_title": "IVS Celestech",
   "service_celestech_desc": "Supplying smart educational equipment, developing applications and software for educational institutions (Color and monochrome printers, Japanese domestic standard laptops).",
-  "service_international_partnership_title": "International Cooperation Partnership"
+  "service_international_partnership_title": "International Cooperation Partnership",
+   "nav_about_ivs": "About IVS",
+  "nav_about_us": "About Us",
+  "nav_career_opportunities": "Career Opportunities",
+  "nav_non_profit": "Non-profit"
 }  
