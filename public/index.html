@@ -74,6 +74,18 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #3b82f6; /* ivs-blue-darker */
         }
+        .hero-section {
+            background-image: url('images/logo/webbannermo1.png'); /* Ảnh mặc định cho desktop */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Điều chỉnh cho màn hình nhỏ hơn 768px (điện thoại, tablet nhỏ) */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-image: url('images/logo/mobile-banner.png'); /* Ảnh dành riêng cho mobile */
+            }
+        }        
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
