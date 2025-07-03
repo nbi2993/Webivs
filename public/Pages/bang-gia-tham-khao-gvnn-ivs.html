@@ -203,17 +203,97 @@
                 </div>
             </div>
         </section>
+        <!-- Hero Section for Price List -->
+        <section class="hero-section py-20 md:py-28 text-white text-center">
+            <div class="container mx-auto px-6 hero-content" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-4 hero-text-shadow" data-lang-key="price_list_hero_title">
+                    Bảng Giá Tham Khảo Giáo Viên Nước Ngoài
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow leading-relaxed" data-aos="fade-up" data-aos-delay="200" data-lang-key="price_list_hero_subtitle">
+                    Các gói dịch vụ linh hoạt, phù hợp với mọi nhu cầu và ngân sách của trường học, trung tâm và doanh nghiệp.
+                </p>
+            </div>
+        </section>
+
+        <!-- Price Table Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-10 text-ivs-text-primary" data-aos="fade-up" data-lang-key="price_table_headline">
+                    Chi Tiết Bảng Giá Dịch Vụ Cung Cấp Giáo Viên Nước Ngoài 2025
+                </h2>
+                <p class="text-center text-ivs-text-secondary max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100" data-lang-key="price_table_intro">
+                    Giá cung cấp giáo viên nước ngoài của IVS JSC có thể thay đổi tùy thuộc vào số giờ giảng dạy hàng tuần, chương trình/giáo trình, địa điểm và các yêu cầu đặc biệt khác của quý đối tác. Vui lòng liên hệ để nhận báo giá chính xác nhất.
+                </p>
+
+                <div class="price-table-container" data-aos="fade-up" data-aos-delay="200">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th data-lang-key="table_header_package_code">Mã Gói</th>
+                                <th data-lang-key="table_header_package_name">Gói</th>
+                                <th data-lang-key="table_header_description">Mô Tả</th>
+                                <th data-lang-key="table_header_price">Đơn Giá (Tham khảo)</th>
+                                <th data-lang-key="table_header_notes">Ghi Chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Part-time Pricing - Updated to match Byan Teach image -->
+                            <tr>
+                                <td data-lang-key="package_code_bs">BS</td>
+                                <td data-lang-key="package_name_bs">Byan-School</td>
+                                <td data-lang-key="package_desc_bs">Cung cấp giáo viên tiếng Anh bản ngữ cho các trường học (Trường công, Trường tư & Trường quốc tế)</td>
+                                <td class="price-range" data-lang-key="price_bs">24$ - 29$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bs">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_bc">BC</td>
+                                <td data-lang-key="package_name_bc">Byan-Center</td>
+                                <td data-lang-key="package_desc_bc">Cung cấp giáo viên tiếng Anh bản ngữ cho các trung tâm ngoại ngữ và nhóm học</td>
+                                <td class="price-range" data-lang-key="price_bc">25$ - 30$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bc">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_bb">BB</td>
+                                <td data-lang-key="package_name_bb">Byan-Business</td>
+                                <td data-lang-key="package_desc_bb">Cung cấp giáo viên tiếng Anh nước ngoài cho doanh nghiệp dạy theo yêu cầu đào tạo đặc thù</td>
+                                <td class="price-range" data-lang-key="price_bb">26$ - 32$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bb">Tùy thuộc vào thời lượng và chương trình đào tạo.</td>
+                            </tr>
+                            
+                            <!-- Full-time Pricing - Updated to match Byan Teach image -->
+                            <tr>
+                                <td data-lang-key="package_code_bf_filipino">BF</td>
+                                <td data-lang-key="package_name_bf_filipino">Byan-Full Time</td>
+                                <td data-lang-key="package_desc_bf_filipino">Cung cấp giáo viên tiếng Anh người Philippines dạy full time theo tháng</td>
+                                <td class="price-range" data-lang-key="price_bf_filipino">1400$ - 1700$/tháng</td>
+                                <td class="note-column" data-lang-key="note_bf_filipino">Giáo viên Filipino.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_bf_native">BF</td>
+                                <td data-lang-key="package_name_bf_native">Byan-Full Time</td>
+                                <td data-lang-key="package_desc_bf_native">Cung cấp giáo viên tiếng Anh bản ngữ dạy full time theo tháng</td>
+                                <td class="price-range" data-lang-key="price_bf_native">2400$ - 2700$/tháng</td>
+                                <td class="note-column" data-lang-key="note_bf_native">Giáo viên bản ngữ.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-lg text-ivs-text-primary mb-6" data-lang-key="contact_for_exact_price_text">
+                        Để nhận báo giá chính xác và tư vấn gói dịch vụ tối ưu nhất cho nhu cầu của bạn, vui lòng liên hệ IVS JSC:
+                    </p>
+                    <a href="/contact.html?service=foreign-teacher-price-inquiry" class="cta-button bg-ivs-orange hover:bg-orange-600 text-white" data-lang-key="contact_for_exact_price_button">
+                        <i class="fas fa-headset mr-2"></i> Liên Hệ Nhận Báo Giá
+                    </a>
+                </div>
+            </div>
+        </section>        
     </main>
 
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
-    
-    <button id="scrollToTopBtn"
-            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-ivs-card text-ivs-text-primary shadow-lg hover:bg-ivs-border transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-offset-2 focus:ring-offset-ivs-bg"
-            aria-label="Scroll to top">
-        <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
-    </button>
-    
+       
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
