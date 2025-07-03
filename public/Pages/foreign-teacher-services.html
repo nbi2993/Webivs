@@ -1,340 +1,418 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="foreign_teacher_page_title">Cung cấp Giáo viên Nước ngoài Chất lượng & Dịch vụ Work Permit | IVS JSC</title>
     <meta name="description" content="IVS JSC cung cấp dịch vụ tuyển dụng giáo viên nước ngoài chất lượng cao (Anh, Mỹ, Úc, Canada, Philippines...) đã qua kiểm định năng lực sư phạm và hỗ trợ toàn diện thủ tục Work Permit, visa tại Việt Nam." data-lang-key="foreign_teacher_meta_description">
+    <meta name="keywords" content="IVS JSC, giáo viên nước ngoài, Work Permit, visa, TESOL, CELTA, tuyển dụng giáo viên, dịch vụ giáo dục, IVS Education" data-lang-key="foreign_teacher_meta_keywords">
     <meta property="og:title" content="IVS JSC: Giải pháp Nhân sự Giáo viên Nước ngoài Uy tín & Chất lượng" data-lang-key="foreign_teacher_og_title">
     <meta property="og:description" content="Tuyển dụng GVNN đạt chuẩn quốc tế (TESOL/CELTA), có kinh nghiệm, năng lực sư phạm thực tế, phù hợp văn hóa. Hỗ trợ Work Permit nhanh chóng, hiệu quả." data-lang-key="foreign_teacher_og_description_enhanced">
     <meta property="og:image" content="https://ivsjsc.github.io/images/banners/foreign-teacher-og.png">
     <meta property="og:url" content="https://ivsjsc.github.io/foreign-teacher-services.html">
     <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
 
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: { sans: ['Inter', 'sans-serif'] },
-            colors: {
-                'primary': '#3b82f6', 'primary-dark': '#2563eb', 'secondary': '#10b981', 'secondary-dark': '#059669',
-                'purple-accent': '#8b5cf6', 'purple-accent-dark': '#7c3aed', 'warning': '#f59e0b', 'warning-dark': '#d97706',
-                'neutral-50': '#f9fafb', 'neutral-100': '#f3f4f6', 'neutral-200': '#e5e7eb', 'neutral-300': '#d1d5db',
-                'neutral-500': '#6b7280', 'neutral-600': '#4b5563', 'neutral-700': '#374151', 'neutral-800': '#1f2937',
-                'neutral-900': '#111827', 'gray-50': '#f9fafb', 'gray-100': '#f3f4f6', 'gray-200': '#e5e7eb',
-                'gray-300': '#d1d5db', 'gray-400': '#9ca3af', 'gray-500': '#6b7280', 'gray-600': '#4b5563',
-                'gray-700': '#374151', 'gray-800': '#1f2937', 'gray-900': '#111827', 'blue-50': '#eff6ff',
-                'blue-200': '#bfdbfe', 'blue-500': '#3b82f6', 'blue-600': '#2563eb', 'blue-700': '#1d4ed8',
-                'blue-800': '#1e40af', 'purple-50':'#faf5ff', 'purple-200':'#e9d5ff', 'purple-500':'#a855f7',
-                'purple-600': '#9333ea', 'purple-700': '#7e22ce', 'emerald-50': '#ecfdf5', 'emerald-200': '#a7f3d0',
-                'emerald-500': '#10b981', 'emerald-800': '#065f46', 'amber-50': '#fffbeb', 'amber-200': '#fde68a',
-                'amber-500': '#f59e0b', 'amber-600': '#d97706', 'orange-50': '#fff7ed', 'orange-200': '#fed7aa',
-                'orange-400':'#fb923c', 'orange-500': '#f97316', 'orange-600': '#ea580c', 'sky-500': '#0ea5e9',
-                'sky-600': '#0284c7', 'indigo-500': '#6366f1', 'indigo-600': '#4f46e5', 'indigo-700': '#4338ca',
-                'pink-500': '#ec4899', 'pink-accent': '#ec4899', 'pink-600': '#db2777', 'red-500': '#ef4444',
-                'red-600': '#dc2626', 'red-700': '#b91c1c', 'teal-500': '#14b8a6', 'teal-600': '#0d9488'
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'],
+                    },
+                    colors: {
+                        'ivs-bg': '#0D1117',
+                        'ivs-card': '#161B22',
+                        'ivs-border': '#30363d',
+                        'ivs-text-primary': '#e6edf3',
+                        'ivs-text-secondary': '#a1aab4',
+                        'ivs-blue': '#58a6ff',
+                        'ivs-blue-darker': '#3b82f6',
+                        'ivs-green': '#34d399', /* Màu xanh lá cây cho gradient */
+                        'ivs-purple': '#8b5cf6', /* Màu tím */
+                        'ivs-orange': '#f59e0b', /* Màu cam */
+                    }
+                }
             }
-          }
-        },
-        plugins: [],
-      }
+        }
     </script>
-
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        :root {
-            --base-font-size: 16px;
+        .font-display { font-family: 'Lexend', sans-serif; }
+        /* Hero Section Styling */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x600/1a202c/ffffff?text=IVS+Foreign+Teacher+Services'); /* Placeholder background image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
         }
-        html {
-            scroll-behavior: smooth;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.6)); /* Overlay for text readability */
+            z-index: 0;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--base-font-size);
-            line-height: 1.75;
-            background-color: #f9fafb; /* neutral-50 */
-            color: #1f2937; /* neutral-800 */
-        }
-        .dark body {
-            background-color: #111827; /* neutral-900 */
-            color: #f3f4f6; /* neutral-100 */
-        }
-        h1, h2, h3, h4 {
-            letter-spacing: 0.02em;
-            color: #111827; /* neutral-900 */
-        }
-        .dark h1, .dark h2, .dark h3, .dark h4 {
-            color: #f9fafb; /* neutral-50 */
-        }
-        section {
-            padding: 4rem 1rem;
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         .hero-text-shadow {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
-        .service-highlight-card {
-            min-height: 320px;
+
+        /* General Button Styling */
+        .btn-primary {
+            @apply inline-flex items-center px-8 py-4 text-base font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(88, 166, 255, 0.4);
+        }
+        .btn-secondary {
+            @apply inline-flex items-center px-8 py-4 text-base font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+            box-shadow: 0 4px 15px rgba(52, 211, 153, 0.3);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 6px 20px rgba(52, 211, 153, 0.4);
+        }
+
+        /* Process Section Styling */
+        .process-step {
+            position: relative;
+            padding-left: 3rem; /* Space for the number circle */
+        }
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--ivs-blue);
+            color: white;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .process-step:hover::before {
+            transform: scale(1.1);
+        }
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 1.2rem;
+            top: 2.5rem;
+            bottom: -1rem; /* Extend line below the circle */
+            width: 2px;
+            background-color: var(--ivs-border);
+            z-index: -1;
+        }
+
+        /* Price Table Styling */
+        .price-table-container {
+            @apply overflow-x-auto;
+        }
+        .price-table {
+            @apply w-full border-collapse;
+            min-width: 700px; /* Ensure table is wide enough on smaller screens */
+        }
+        .price-table th, .price-table td {
+            @apply py-3 px-4 text-left border border-ivs-border;
+        }
+        .price-table th {
+            @apply bg-ivs-blue text-white font-semibold uppercase text-sm;
+        }
+        .price-table td {
+            @apply bg-ivs-card text-ivs-text-secondary;
+        }
+        .price-table tbody tr:nth-child(odd) td {
+            @apply bg-ivs-bg; /* Alternate row color */
+        }
+        .price-table tbody tr:hover td {
+            @apply bg-ivs-border; /* Hover effect */
+        }
+        .price-range {
+            @apply font-bold text-ivs-green;
+        }
+        .note-column {
+            @apply text-ivs-text-secondary text-sm italic;
+        }
+
+        /* Price Card Styling (from previous version, kept for consistency if needed elsewhere) */
+        .price-card {
+            @apply bg-ivs-card p-8 rounded-xl border border-ivs-border shadow-lg flex flex-col;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .service-highlight-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        .step-item .step-number {
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        .price-card-header {
+            @apply text-center pb-6 mb-6 border-b border-ivs-border;
         }
-        .step-item:hover .step-number {
-            background-color: #059669; /* secondary-dark */
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .price-card-features {
+            @apply flex-grow space-y-3 mb-8;
         }
-        .cta-button {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        .price-card-features li {
+            @apply flex items-center text-ivs-text-secondary;
         }
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        .price-card-features li .fa-check-circle {
+            @apply text-ivs-green mr-2;
         }
+        .price-card-features li .fa-times-circle {
+            @apply text-red-500 mr-2;
+        }
+        .price-card-cta {
+            @apply mt-auto; /* Push button to the bottom */
+        }
+
+        /* FAQ Section Styling */
         details > summary {
             list-style: none;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.75rem 0; /* Increased padding */
-            border-bottom: 1px solid #e5e7eb; /* neutral-200 */
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--ivs-border);
+            color: var(--ivs-text-primary);
+            transition: color 0.2s ease;
         }
-        .dark details > summary {
-            border-bottom-color: #374151; /* neutral-700 */
+        details > summary:hover {
+            color: var(--ivs-blue);
         }
         details > summary::-webkit-details-marker {
             display: none;
         }
         details > summary .details-icon {
             transition: transform 0.2s ease-in-out;
-            margin-left: 0.5rem;
-            color: #6b7280; /* neutral-500 */
-        }
-        .dark details > summary .details-icon {
-            color: #9ca3af; /* gray-400 */
+            margin-left: 0.75rem;
+            color: var(--ivs-text-secondary);
         }
         details[open] > summary .details-icon {
             transform: rotate(90deg);
         }
-        details[open] > summary {
-            color: #3b82f6; /* primary */
-        }
-        .dark details[open] > summary {
-            color: #60a5fa; /* Tương đương blue-400 cho dark mode */
-        }
         details .details-content {
             padding: 1rem 0;
-            color: #4b5563; /* neutral-600 */
+            color: var(--ivs-text-secondary);
+            line-height: 1.6;
         }
-        .dark details .details-content {
-            color: #d1d5db; /* neutral-300 */
-        }
-        .list-disc { /* Đảm bảo các list items có khoảng cách phù hợp */
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-        }
-        .list-disc li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Styles for dark mode consistency */
-        .dark .bg-white { background-color: #1f2937; /* neutral-800 */ }
-        .dark .text-gray-800 { color: #f3f4f6; /* neutral-100 */ }
-        .dark .text-gray-600 { color: #d1d5db; /* neutral-300 */ }
-        .dark .text-gray-900 { color: #f9fafb; /* neutral-50 */ }
-        .dark .border-secondary { border-color: #059669; /* secondary-dark */ }
-        .dark .border-primary { border-color: #2563eb; /* primary-dark */ }
-        .dark .bg-slate-100 { background-color: #374151; /* neutral-700 */ }
-        .dark .text-secondary-dark { color: #a7f3d0; /* emerald-200 */ }
-        .dark .bg-gray-100 { background-color: #1f2937; /* neutral-800 */ }
-         .dark .text-primary { color: #60a5fa; } /* blue-400 for dark */
-        .dark .text-secondary { color: #34d399; } /* emerald-400 for dark */
-
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased dark:bg-neutral-900 dark:text-neutral-100" id="page-foreign-teacher">
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
     
-    <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
+    <header id="header-placeholder"></header>
 
-    <main class="flex-grow">
-        <section class="hero-section bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-20 md:py-28 text-center" aria-labelledby="page-title-gvnn" data-aos="fade-in" data-aos-duration="500">
-            <div class="container mx-auto px-4">
-                <h1 id="page-title-gvnn" class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 hero-text-shadow leading-tight" data-lang-key="foreign_teacher_hero_title" data-aos="fade-down" data-aos-delay="200">
-                    Giáo viên Nước ngoài Chất lượng & Dịch vụ Work Permit
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section py-28 md:py-40 text-white text-center">
+            <div class="container mx-auto px-6 hero-content" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-6 hero-text-shadow" data-lang-key="foreign_teacher_hero_title">
+                    Dịch Vụ Cung Cấp Giáo Viên Nước Ngoài
                 </h1>
-                <p class="text-lg md:text-xl lg:text-2xl opacity-95 max-w-3xl mx-auto hero-text-shadow leading-relaxed" data-lang-key="foreign_teacher_hero_subtitle" data-aos="fade-up" data-aos-delay="400">
-                    Giải pháp Nhân sự Toàn diện - Nâng tầm Chất lượng Đào tạo
+                <p class="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto hero-text-shadow leading-relaxed mb-10" data-lang-key="foreign_teacher_hero_subtitle">
+                    Đối tác tin cậy kiến tạo đội ngũ giáo viên quốc tế chất lượng cao cho trường học và trung tâm tại Việt Nam.
                 </p>
-                <div class="mt-10">
-                    <a href="#contact-cta" class="cta-button inline-flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-600 text-neutral-800 font-semibold py-3 px-8 md:py-4 md:px-10 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-lg" aria-label="Liên hệ để được tư vấn dịch vụ giáo viên nước ngoài">
-                        <i class="fas fa-headset"></i> <span data-lang-key="contact_us_gvnn_button">Liên hệ ngay</span>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact-cta" class="btn-primary bg-ivs-blue hover:bg-ivs-blue-darker text-white" data-lang-key="hero_cta_consulting">
+                        <i class="fas fa-headset mr-2"></i> Đăng ký tư vấn
+                    </a>
+                    <a href="#process-section" class="btn-secondary bg-ivs-green hover:bg-ivs-green-darker text-white" data-lang-key="hero_cta_view_process">
+                        <i class="fas fa-arrow-down mr-2"></i> Xem quy trình
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 bg-white dark:bg-neutral-800">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <div class="bg-slate-100 dark:bg-neutral-700 p-8 md:p-10 rounded-xl border-l-4 border-secondary dark:border-emerald-500 shadow-lg" data-aos="fade-up" data-aos-delay="150">
-                    <h2 class="text-2xl md:text-3xl font-bold text-center text-secondary-dark dark:text-emerald-300 mb-10" data-lang-key="foreign_teacher_why_ivs_title">Tại sao nên chọn Dịch vụ GVNN của IVS JSC?</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="flex items-start gap-4 quality-check-item" data-aos="fade-up" data-aos-delay="200">
-                            <i class="fas fa-user-check text-4xl text-secondary dark:text-emerald-400 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-100 mb-1" data-lang-key="why_ivs_gvnn_1_title">Tuyển chọn Nghiêm ngặt - Chất lượng Hàng đầu</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_1_desc_enhanced">Quy trình tuyển dụng đa vòng khắt khe, tập trung đánh giá năng lực sư phạm thực tế qua phỏng vấn chuyên sâu, dạy thử, kiểm tra kỹ năng mềm bên cạnh bằng cấp (Đại học+), chứng chỉ quốc tế (TESOL/CELTA...) và kinh nghiệm.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 quality-check-item" data-aos="fade-up" data-aos-delay="250">
-                            <i class="fas fa-globe text-4xl text-secondary dark:text-emerald-400 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-100 mb-1" data-lang-key="why_ivs_gvnn_2_title">Nguồn Giáo viên Đa dạng & Chọn lọc</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_2_desc_enhanced">Mạng lưới đối tác quốc tế rộng lớn cho phép tuyển dụng giáo viên từ nhiều quốc gia (Anh, Mỹ, Úc, Canada, Philippines, Nam Phi...) nhưng luôn ưu tiên chất lượng và sự phù hợp thay vì số lượng.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 quality-check-item" data-aos="fade-up" data-aos-delay="300">
-                            <i class="fas fa-file-signature text-4xl text-secondary dark:text-emerald-400 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-100 mb-1" data-lang-key="why_ivs_gvnn_3_title">Hỗ trợ Pháp lý Toàn diện & Chuyên nghiệp</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_3_desc">Đội ngũ chuyên viên am hiểu luật pháp, xử lý nhanh chóng, hiệu quả các thủ tục xin Work Permit, visa, thẻ tạm trú, đảm bảo tuân thủ 100% quy định.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4 quality-check-item" data-aos="fade-up" data-aos-delay="350">
-                            <i class="fas fa-chalkboard-teacher text-4xl text-secondary dark:text-emerald-400 mt-1 flex-shrink-0"></i>
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-100 mb-1" data-lang-key="why_ivs_gvnn_4_title">Đào tạo & Đồng hành Phát triển</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="why_ivs_gvnn_4_desc">Tổ chức các buổi định hướng văn hóa Việt Nam, tập huấn phương pháp giảng dạy phù hợp, hỗ trợ GVNN hòa nhập và phát huy tối đa năng lực tại môi trường làm việc mới.</p>
-                            </div>
-                        </div>
+        <!-- Introduction Section -->
+        <section class="py-16 md:py-24 bg-ivs-card border-b border-ivs-border">
+            <div class="container mx-auto px-6 max-w-4xl text-center" data-aos="fade-up">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6 text-ivs-blue" data-lang-key="intro_title">
+                    Nâng tầm Chất lượng Giáo dục cùng IVS JSC
+                </h2>
+                <p class="text-lg text-ivs-text-secondary leading-relaxed" data-lang-key="intro_description">
+                    Trong bối cảnh hội nhập toàn cầu, nhu cầu về giáo viên nước ngoài chất lượng cao ngày càng tăng tại Việt Nam. IVS JSC tự hào là đối tác chiến lược, cung cấp giải pháp toàn diện từ tuyển dụng, đào tạo đến hỗ trợ pháp lý, giúp các trường học và trung tâm tiếng Anh dễ dàng tiếp cận nguồn nhân lực giáo dục quốc tế uy tín. Chúng tôi cam kết mang đến những giáo viên không chỉ giỏi chuyên môn mà còn phù hợp với văn hóa và mục tiêu giáo dục của bạn.
+                </p>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up" data-lang-key="benefits_title">
+                    Lợi Ích Khi Hợp Tác Cùng IVS JSC
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-certificate"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit1_title">Giáo Viên Chất Lượng Cao</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit1_desc">Đội ngũ giáo viên được tuyển chọn kỹ lưỡng, có bằng cấp quốc tế (TESOL, CELTA), kinh nghiệm giảng dạy và kỹ năng sư phạm vượt trội.</p>
+                    </div>
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-cogs"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit2_title">Quy Trình Chuyên Nghiệp</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit2_desc">Quy trình tuyển dụng và hỗ trợ pháp lý minh bạch, hiệu quả, giúp đối tác tiết kiệm thời gian và nguồn lực.</p>
+                    </div>
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-hands-helping"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit3_title">Hỗ Trợ Toàn Diện</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit3_desc">Từ tư vấn ban đầu, tuyển chọn, làm việc với cơ quan chức năng đến hỗ trợ hòa nhập cho giáo viên tại Việt Nam.</p>
+                    </div>
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-hourglass-half"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit4_title">Tiết Kiệm Thời Gian & Chi Phí</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit4_desc">Giảm thiểu gánh nặng hành chính và chi phí phát sinh trong quá trình tìm kiếm và làm thủ tục cho giáo viên.</p>
+                    </div>
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="500">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-gavel"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit5_title">Đảm Bảo Pháp Lý</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit5_desc">Đảm bảo mọi thủ tục Work Permit, visa, thẻ tạm trú được thực hiện đúng luật, tránh rủi ro pháp lý.</p>
+                    </div>
+                    <div class="bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-md text-center" data-aos="fade-up" data-aos-delay="600">
+                        <div class="text-ivs-blue text-4xl mb-4"><i class="fas fa-users-cog"></i></div>
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="benefit6_title">Giải Pháp Tùy Chỉnh</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="benefit6_desc">Các gói dịch vụ linh hoạt, tùy chỉnh theo yêu cầu và quy mô của từng đối tác, đảm bảo hiệu quả tối ưu.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 bg-gray-100 dark:bg-neutral-900" aria-labelledby="services-heading">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-center text-primary dark:text-blue-400 mb-12" data-lang-key="foreign_teacher_services_title" data-aos="fade-up">Các Gói Dịch vụ Chính</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="service-highlight-card bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg border-l-4 border-primary dark:border-blue-500" data-aos="fade-right" data-aos-delay="100">
-                        <div class="flex items-start gap-5 mb-4">
-                            <i class="fas fa-users text-5xl text-primary dark:text-blue-400 mt-1"></i>
-                            <div>
-                                <h3 class="text-2xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_recruitment_title">Tuyển dụng & Cung ứng GVNN Chất lượng</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="service_recruitment_desc">Tìm kiếm, sàng lọc, phỏng vấn và cung cấp hồ sơ ứng viên GVNN phù hợp nhất với yêu cầu cụ thể của từng trường học, trung tâm.</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc text-base text-gray-600 dark:text-neutral-300 space-y-2">
-                            <li data-lang-key="recruitment_point_1">Xác định rõ nhu cầu và tiêu chí tuyển dụng.</li>
-                            <li data-lang-key="recruitment_point_2">Tìm kiếm ứng viên qua mạng lưới quốc tế.</li>
-                            <li data-lang-key="recruitment_point_3">Sơ loại hồ sơ, kiểm tra bằng cấp, chứng chỉ.</li>
-                            <li data-lang-key="recruitment_point_4">Phỏng vấn chuyên môn và đánh giá năng lực sư phạm.</li>
-                            <li data-lang-key="recruitment_point_5">Tổ chức dạy thử (demo teaching).</li>
-                            <li data-lang-key="recruitment_point_6">Hỗ trợ đàm phán hợp đồng lao động.</li>
-                        </ul>
+        <!-- Process Section -->
+        <section id="process-section" class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up" data-lang-key="process_title">
+                    Quy Trình Cung Cấp Giáo Viên Nước Ngoài
+                </h2>
+                <div class="space-y-10">
+                    <div class="process-step" data-step="1" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step1_title">Tiếp Nhận Yêu Cầu & Tư Vấn</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step1_desc">IVS JSC lắng nghe chi tiết nhu cầu của đối tác về số lượng, quốc tịch, kinh nghiệm, chuyên môn, ngân sách, và các yêu cầu đặc biệt khác. Chúng tôi sẽ tư vấn gói dịch vụ phù hợp nhất.</p>
                     </div>
-                    <div class="service-highlight-card bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg border-l-4 border-secondary dark:border-emerald-500" data-aos="fade-left" data-aos-delay="150">
-                        <div class="flex items-start gap-5 mb-4">
-                            <i class="fas fa-file-signature text-5xl text-secondary dark:text-emerald-400 mt-1"></i>
-                            <div>
-                                <h3 class="text-2xl font-semibold text-gray-800 dark:text-neutral-100 mb-2" data-lang-key="service_work_permit_title">Dịch vụ Xin Work Permit & Visa, Thẻ Tạm Trú</h3>
-                                <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="service_work_permit_desc">Thực hiện trọn gói, nhanh chóng, đúng luật các thủ tục pháp lý cần thiết để GVNN làm việc hợp pháp tại Việt Nam.</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc text-base text-gray-600 dark:text-neutral-300 space-y-2">
-                            <li data-lang-key="work_permit_point_1">Tư vấn hồ sơ, điều kiện xin cấp mới/gia hạn Work Permit.</li>
-                            <li data-lang-key="work_permit_point_2">Soạn thảo và hoàn thiện hồ sơ theo quy định.</li>
-                            <li data-lang-key="work_permit_point_3">Nộp hồ sơ và làm việc với cơ quan nhà nước.</li>
-                            <li data-lang-key="work_permit_point_4">Hỗ trợ thủ tục xin visa nhập cảnh phù hợp.</li>
-                            <li data-lang-key="work_permit_point_5">Hướng dẫn thủ tục đăng ký và xin cấp thẻ tạm trú.</li>
-                            <li data-lang-key="work_permit_point_6">Tư vấn các vấn đề pháp lý liên quan khác.</li>
-                        </ul>
+                    <div class="process-step" data-step="2" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step2_title">Tuyển Chọn & Sàng Lọc Hồ Sơ</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step2_desc">Dựa trên yêu cầu, chúng tôi tiến hành tìm kiếm ứng viên từ mạng lưới toàn cầu. Hồ sơ được sàng lọc kỹ lưỡng về bằng cấp, chứng chỉ (TESOL/CELTA), kinh nghiệm và lý lịch tư pháp.</p>
+                    </div>
+                    <div class="process-step" data-step="3" data-aos="fade-right" data-aos-delay="300">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step3_title">Phỏng Vấn Chuyên Sâu & Dạy Thử</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step3_desc">Các ứng viên tiềm năng sẽ trải qua vòng phỏng vấn chuyên sâu với đội ngũ chuyên gia của IVS. Sau đó, chúng tôi tổ chức buổi dạy thử (demo teaching) để đánh giá năng lực sư phạm thực tế và kỹ năng mềm.</p>
+                    </div>
+                    <div class="process-step" data-step="4" data-aos="fade-right" data-aos-delay="400">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step4_title">Giới Thiệu Ứng Viên & Ký Kết</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step4_desc">IVS JSC gửi hồ sơ và kết quả đánh giá các ứng viên phù hợp nhất để đối tác lựa chọn và phỏng vấn trực tiếp (nếu muốn). Sau khi đối tác chọn được giáo viên, chúng tôi hỗ trợ các thủ tục ký kết hợp đồng lao động.</p>
+                    </div>
+                    <div class="process-step" data-step="5" data-aos="fade-right" data-aos-delay="500">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step5_title">Hỗ Trợ Thủ Tục Pháp Lý (Work Permit, Visa, Thẻ Tạm Trú)</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step5_desc">Đội ngũ pháp lý của IVS sẽ tư vấn và hỗ trợ toàn bộ quá trình chuẩn bị hồ sơ, nộp và theo dõi tiến độ xin cấp Work Permit, visa, và thẻ tạm trú cho giáo viên tại Việt Nam, đảm bảo tuân thủ đúng quy định.</p>
+                    </div>
+                    <div class="process-step" data-step="6" data-aos="fade-right" data-aos-delay="600">
+                        <h3 class="text-xl font-semibold mb-2 text-ivs-text-primary" data-lang-key="process_step6_title">Đồng Hành & Hỗ Trợ Sau Tuyển Dụng</h3>
+                        <p class="text-ivs-text-secondary leading-relaxed" data-lang-key="process_step6_desc">Cung cấp các buổi định hướng văn hóa, hỗ trợ GVNN hòa nhập và giải quyết các vấn đề phát sinh (nếu có thỏa thuận trong hợp đồng dịch vụ).</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 bg-white dark:bg-neutral-800" aria-labelledby="process-heading">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-primary dark:text-blue-400 mb-12" data-lang-key="foreign_teacher_process_title" data-aos="fade-up">Quy trình Hợp tác Tuyển dụng & Làm Work Permit</h2>
-                <ol class="list-none p-0 space-y-8">
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="100">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">1</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step1_title">Tiếp nhận Yêu cầu & Tư vấn</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step1_desc">IVS JSC lắng nghe nhu cầu cụ thể của đối tác (số lượng, yêu cầu chuyên môn, ngân sách...), tư vấn gói dịch vụ phù hợp.</p>
-                        </div>
-                    </li>
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="150">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">2</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step2_title">Tuyển chọn & Phỏng vấn Ứng viên</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step2_desc">Tìm kiếm, sàng lọc hồ sơ, tổ chức phỏng vấn và dạy thử để chọn ra những ứng viên GVNN chất lượng nhất, đáp ứng tiêu chí.</p>
-                        </div>
-                    </li>
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="200">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">3</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step3_title">Ký kết Hợp đồng & Chuẩn bị Hồ sơ</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step3_desc">Hỗ trợ ký kết hợp đồng lao động giữa đối tác và GVNN. Hướng dẫn GVNN chuẩn bị đầy đủ hồ sơ xin Work Permit theo quy định.</p>
-                        </div>
-                    </li>
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="250">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">4</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step4_title">Nộp hồ sơ & Xin Work Permit</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step4_desc">IVS JSC thay mặt đối tác nộp hồ sơ lên cơ quan chức năng và theo dõi tiến trình xử lý, đảm bảo Work Permit được cấp đúng hạn.</p>
-                        </div>
-                    </li>
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="300">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">5</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step5_title">Hỗ trợ Visa & Thẻ Tạm trú</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step5_desc">Sau khi có Work Permit, tiếp tục hỗ trợ GVNN hoàn tất thủ tục xin visa lao động và thẻ tạm trú để ổn định công việc tại Việt Nam.</p>
-                        </div>
-                    </li>
-                    <li class="step-item flex items-start gap-6" data-aos="fade-right" data-aos-delay="350">
-                        <span class="step-number flex-shrink-0 w-12 h-12 bg-secondary dark:bg-emerald-600 text-white text-lg font-bold rounded-full flex items-center justify-center shadow-lg">6</span>
-                        <div>
-                            <h3 class="font-semibold text-xl text-gray-900 dark:text-neutral-100 mb-2" data-lang-key="process_step6_title">Đồng hành & Hỗ trợ Sau Tuyển dụng</h3>
-                            <p class="text-base text-gray-600 dark:text-neutral-300" data-lang-key="process_step6_desc">Cung cấp các buổi định hướng văn hóa, hỗ trợ GVNN hòa nhập và giải quyết các vấn đề phát sinh trong quá trình làm việc (nếu có thỏa thuận).</p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
+        <!-- Price List Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-10 text-ivs-text-primary" data-aos="fade-up" data-lang-key="price_table_headline">
+                    Chi Tiết Bảng Giá Dịch Vụ Cung Cấp Giáo Viên Nước Ngoài 2025
+                </h2>
+                <p class="text-center text-ivs-text-secondary max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100" data-lang-key="price_table_intro">
+                    Giá cung cấp giáo viên nước ngoài của IVS JSC có thể thay đổi tùy thuộc vào số giờ giảng dạy hàng tuần, chương trình/giáo trình, địa điểm và các yêu cầu đặc biệt khác của quý đối tác. Vui lòng liên hệ để nhận báo giá chính xác nhất.
+                </p>
 
-        <section id="contact-cta" class="py-16 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white text-center" data-aos="zoom-in-up">
-            <div class="container mx-auto px-4 max-w-3xl">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 hero-text-shadow" data-lang-key="foreign_teacher_cta_title">Tìm kiếm Giải pháp Nhân sự GVNN Tối ưu?</h2>
-                <p class="text-lg md:text-xl opacity-90 mb-10 hero-text-shadow" data-lang-key="foreign_teacher_cta_desc">Hãy để IVS JSC giúp bạn xây dựng đội ngũ giáo viên nước ngoài chất lượng, chuyên nghiệp và giải quyết mọi vấn đề pháp lý phức tạp. Liên hệ với chúng tôi ngay hôm nay để nhận tư vấn chi tiết và báo giá dịch vụ!</p>
-                <a href="/contact.html?interest=foreign_teacher" class="cta-button inline-flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-600 text-neutral-800 font-semibold py-3 px-8 md:py-4 md:px-10 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-lg" aria-label="Yêu cầu tư vấn dịch vụ giáo viên nước ngoài">
-                    <i class="fas fa-headset"></i> <span data-lang-key="contact_us_gvnn_button">Yêu cầu Tư vấn Dịch vụ GVNN</span>
-                </a>
+                <div class="price-table-container" data-aos="fade-up" data-aos-delay="200">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th data-lang-key="table_header_package_code">Mã Gói</th>
+                                <th data-lang-key="table_header_package_name">Gói</th>
+                                <th data-lang-key="table_header_description">Mô Tả</th>
+                                <th data-lang-key="table_header_price">Đơn Giá (Tham khảo)</th>
+                                <th data-lang-key="table_header_notes">Ghi Chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Part-time Pricing - Updated to IVS branding -->
+                            <tr>
+                                <td data-lang-key="package_code_ivs_school">IVS-SCH</td>
+                                <td data-lang-key="package_name_ivs_school">IVS-Trường học</td>
+                                <td data-lang-key="package_desc_bs">Cung cấp giáo viên tiếng Anh bản ngữ cho các trường học (Trường công, Trường tư & Trường quốc tế)</td>
+                                <td class="price-range" data-lang-key="price_bs">24$ - 29$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bs">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_ivs_center">IVS-CTR</td>
+                                <td data-lang-key="package_name_ivs_center">IVS-Trung tâm</td>
+                                <td data-lang-key="package_desc_bc">Cung cấp giáo viên tiếng Anh bản ngữ cho các trung tâm ngoại ngữ và nhóm học</td>
+                                <td class="price-range" data-lang-key="price_bc">25$ - 30$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bc">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_ivs_business">IVS-BIZ</td>
+                                <td data-lang-key="package_name_ivs_business">IVS-Doanh nghiệp</td>
+                                <td class="price-range" data-lang-key="price_bb">26$ - 32$/giờ</td>
+                                <td class="note-column" data-lang-key="note_bb">Tùy thuộc vào thời lượng và chương trình đào tạo.</td>
+                            </tr>
+                            
+                            <!-- Full-time Pricing - Updated to IVS branding -->
+                            <tr>
+                                <td data-lang-key="package_code_ivs_ft_filipino">IVS-FTF</td>
+                                <td data-lang-key="package_name_ivs_ft_filipino">IVS-Full Time (Filipino)</td>
+                                <td data-lang-key="package_desc_bf_filipino">Cung cấp giáo viên tiếng Anh người Philippines dạy full time theo tháng</td>
+                                <td class="price-range" data-lang-key="price_bf_filipino">1400$ - 1700$/tháng</td>
+                                <td class="note-column" data-lang-key="note_bf_filipino">Giáo viên Filipino.</td>
+                            </tr>
+                            <tr>
+                                <td data-lang-key="package_code_ivs_ft_native">IVS-FTN</td>
+                                <td data-lang-key="package_name_ivs_ft_native">IVS-Full Time (Bản ngữ)</td>
+                                <td data-lang-key="package_desc_bf_native">Cung cấp giáo viên tiếng Anh bản ngữ dạy full time theo tháng</td>
+                                <td class="price-range" data-lang-key="price_bf_native">2400$ - 2700$/tháng</td>
+                                <td class="note-column" data-lang-key="note_bf_native">Giáo viên bản ngữ.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-lg text-ivs-text-primary mb-6" data-lang-key="contact_for_exact_price_text">
+                        Để nhận báo giá chính xác và tư vấn gói dịch vụ tối ưu nhất cho nhu cầu của bạn, vui lòng liên hệ IVS JSC:
+                    </p>
+                    <a href="/contact.html?service=foreign-teacher-price-inquiry" class="cta-button bg-ivs-orange hover:bg-orange-600 text-white" data-lang-key="contact_for_exact_price_button">
+                        <i class="fas fa-headset mr-2"></i> Liên Hệ Nhận Báo Giá
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer-placeholder" data-loading-text="Đang tải chân trang..."></footer>
+    <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
-    
+        
     <button id="scrollToTopBtn"
-            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+            class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-ivs-card text-ivs-text-primary shadow-lg hover:bg-ivs-border transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-offset-2 focus:ring-offset-ivs-bg"
             aria-label="Scroll to top">
         <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
     </button>
@@ -344,19 +422,18 @@
     <script src="/js/language.js"></script>
     <script>
         AOS.init({
-            offset: 80, // Trigger animations a bit sooner
+            offset: 80,
             duration: 600,
             easing: 'ease-out-quad',
             once: true,
             mirror: false,
             anchorPlacement: 'top-bottom',
-            // disable: 'mobile' // Consider enabling for performance on mobile if animations are heavy
         });
 
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         if (scrollToTopBtn) {
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 200) { // Show button earlier
+                if (window.pageYOffset > 200) {
                     scrollToTopBtn.classList.remove('hidden');
                     scrollToTopBtn.classList.add('flex');
                 } else {
@@ -368,7 +445,6 @@
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-             // Initial check
             if (window.pageYOffset <= 200) {
                 scrollToTopBtn.classList.add('hidden');
             }
