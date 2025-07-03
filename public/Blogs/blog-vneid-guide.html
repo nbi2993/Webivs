@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVS JSC Blog - VNeID Level 2 Registration Guide for Foreigners</title>
+
+    <!-- SEO Meta Tags -->
+    <!-- Các thẻ meta SEO được giữ nguyên từ website chính -->
+
+    <!-- Favicons and Manifest -->
+    <!-- Các thẻ favicon và manifest được giữ nguyên từ website chính -->
+
+    <!-- Preconnect to CDNs for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts and Icons (Async loading for performance) -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'ivs-bg': '#0A0A0A', 'ivs-card': '#111111', 'ivs-border': '#27272a',
+                        'ivs-text-primary': '#f4f4f5', 'ivs-text-secondary': '#a1a1aa',
+                        'ivs-blue': '#60a5fa', 'ivs-blue-darker': '#3b82f6', 'ivs-green': '#4ade80',
+                        'ivs-purple': '#a78bfa', 'ivs-cyan': '#22d3ee', 'ivs-amber': '#f59e0b',
+                    },
+                    fontFamily: {
+                        'sans': ['Be Vietnam Pro', 'sans-serif'], 'display': ['Poppins', 'sans-serif'],
+                    },
+                    animation: { 'aurora-spin': 'aurora-spin 6s linear infinite' },
+                    keyframes: {
+                        'aurora-spin': {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- External Stylesheet for custom effects -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* CSS từ website chính để ngăn cuộn nền */
+        body.menu-open {
+            overflow: hidden;
+        }
+        /* CSS cho thanh cuộn tùy chỉnh của chatbot */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111111; /* ivs-card */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a; /* ivs-border */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6; /* ivs-blue-darker */
+        }
+        /* CSS cho phần hero section */
+        .hero-section {
+            background-image: url('images/logo/webbannermo1.png'); /* Ảnh mặc định cho desktop */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Điều chỉnh cho màn hình nhỏ hơn 768px (điện thoại, tablet nhỏ) */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-image: url('images/logo/mobile-banner.png'); /* Ảnh dành riêng cho mobile */
+            }
+        }
+
+        /* Các style tùy chỉnh từ hướng dẫn VNeID */
+        .step-line {
+            position: absolute;
+            left: 2rem;
+            top: 2.5rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #e5e7eb;
+            z-index: -1;
+        }
+        .step:last-child .step-line {
+            display: none;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
+
+    <!-- Placeholder cho header của website, sẽ được tải động -->
+    <header id="header-placeholder"></header>
+
+    <main>
+        <!-- Phần giới thiệu blog -->
+        <section class="py-16 lg:py-24 bg-ivs-bg text-center">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+                <h1 class="text-3xl md:text-4xl font-bold font-display text-sky-500 mb-4">
+                    VNeID Level 2 Registration Guide for Foreigners
+                </h1>
+                <p class="text-lg text-ivs-text-secondary mb-6">
+                    A comprehensive guide to understanding the benefits, process, and locations for registering your VNeID Level 2 account in Vietnam. This interactive guide aims to make the process clear and accessible for all foreign residents.
+                </p>
+                <div class="text-sm text-ivs-text-secondary">
+                    Published: July 3, 2025 | Category: Government Services, Living in Vietnam
+                </div>
+            </div>
+        </section>
+
+        <!-- Nội dung chính của blog (Hướng dẫn VNeID) -->
+        <section class="py-8 lg:py-12 bg-stone-100 text-slate-800">
+            <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+                <header class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-bold text-sky-700 mb-2">VNeID Level 2 Registration</h1>
+                    <p class="text-lg text-slate-600">Your Key to Simplified Living in Vietnam</p>
+                </header>
+
+                <nav class="bg-white/80 backdrop-blur-sm sticky top-2 z-10 rounded-lg shadow-md mb-12">
+                    <ul class="flex items-center justify-center p-2 space-x-2 md:space-x-6 text-sm md:text-base">
+                        <li><a href="#benefits" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Benefits</a></li>
+                        <li><a href="#prepare" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Preparation</a></li>
+                        <li><a href="#process" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Process</a></li>
+                        <li><a href="#find-locations" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Find Locations</a></li>
+                    </ul>
+                </nav>
+
+                <div> <!-- Changed from <main> to <div> to avoid nested main tags -->
+                    <section id="benefits" class="mb-16 scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-center mb-8">Why Register?</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow text-center">
+                                <div class="text-4xl mb-4">📄</div>
+                                <h3 class="font-bold text-lg mb-2">Convenient Transactions</h3>
+                                <p class="text-slate-600 text-sm">Perform online public services, replace physical documents, and quickly verify personal information at banks and administrative agencies.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow text-center">
+                                <div class="text-4xl mb-4">🛡️</div>
+                                <h3 class="font-bold text-lg mb-2">Enhanced Security & Safety</h3>
+                                <p class="text-slate-600 text-sm">Information is authenticated by biometrics (fingerprints, facial recognition), ensuring accuracy, preventing fraud, and protecting your legal rights.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow text-center">
+                                <div class="text-4xl mb-4">📱</div>
+                                <h3 class="font-bold text-lg mb-2">Access Digital Utilities</h3>
+                                <p class="text-slate-600 text-sm">Opens the door to accessing Vietnam's entire digital service ecosystem, from payments to smart urban utilities via the VNeID application.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="prepare" class="mb-16 bg-white p-8 rounded-lg shadow-md scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-center mb-8">Get Ready to Register</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="font-semibold text-lg mb-4">1. Eligible Applicants</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Foreigners aged 6 and above.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Holding a valid temporary or permanent residence card in Vietnam.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-4">2. Required Documents</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Valid passport or international travel document.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Valid temporary/permanent residence card.</span>
+                                    </li>
+                                     <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Primary mobile phone number & email address (if any).</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2 mt-1">✓</span>
+                                        <span>Application form (Form TK01, usually available at the registration site).</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="process" class="mb-16 scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-center mb-8">Simple 4-Step Process</h2>
+                        <div class="max-w-md mx-auto">
+                            <div class="relative space-y-8">
+                                <div class="step flex items-start">
+                                    <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-2xl mr-6">1</div>
+                                    <div class="bg-white p-4 rounded-lg flex-grow shadow-sm">
+                                        <h4 class="font-bold">Submit Application</h4>
+                                        <p class="text-sm text-slate-600">Go in person and present your prepared documents to the receiving officer.</p>
+                                    </div>
+                                    <div class="step-line"></div>
+                                </div>
+                                <div class="step flex items-start">
+                                   <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-2xl mr-6">2</div>
+                                    <div class="bg-white p-4 rounded-lg flex-grow shadow-sm">
+                                        <h4 class="font-bold">Biometric Collection</h4>
+                                        <p class="text-sm text-slate-600">The officer will take your portrait photo and fingerprints.</p>
+                                    </div>
+                                    <div class="step-line"></div>
+                                </div>
+                                 <div class="step flex items-start">
+                                    <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-2xl mr-6">3</div>
+                                    <div class="bg-white p-4 rounded-lg flex-grow shadow-sm">
+                                        <h4 class="font-bold">Processing Period</h4>
+                                        <p class="text-sm text-slate-600">Your application will be sent to the Public Security Department for Administration of Social Order for approval.</p>
+                                    </div>
+                                     <div class="step-line"></div>
+                                </div>
+                                 <div class="step flex items-start">
+                                    <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-2xl mr-6">4</div>
+                                    <div class="bg-white p-4 rounded-lg flex-grow shadow-sm">
+                                        <h4 class="font-bold">Receive Results</h4>
+                                        <p class="text-sm text-slate-600">Notification will be sent via the VNeID app, SMS, or your registered email.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="find-locations" class="mb-16 scroll-mt-24">
+                        <h2 class="text-2xl font-bold text-center mb-8">How to Find Your Nearest Registration Location</h2>
+                        <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto text-center">
+                            <p class="text-slate-700 mb-4">
+                                To find the specific address of the Immigration Management Department (Phòng Quản lý xuất nhập cảnh) in your province or city, you can use Google Search with the following keywords:
+                            </p>
+                            <div class="bg-gray-100 p-4 rounded-md inline-block text-left mb-6">
+                                <p class="font-mono text-sm text-gray-800">
+                                    <span class="font-bold">"Phòng Quản lý xuất nhập cảnh Công an [Tên Tỉnh/Thành phố]"</span>
+                                </p>
+                                <p class="text-xs text-gray-600 mt-2">
+                                    <span class="font-italic">Example:</span> "Phòng Quản lý xuất nhập cảnh Công an Hà Nội"
+                                </p>
+                                <p class="text-xs text-gray-600 mt-1">
+                                    <span class="font-italic">Example:</span> "Phòng Quản lý xuất nhập cảnh Công an TP. Hồ Chí Minh"
+                                </p>
+                            </div>
+                            <p class="text-slate-700">
+                                This search query will help you find the official contact information and address of the relevant department in your area.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+                
+                <footer class="text-center mt-12 border-t pt-8">
+                    <p class="text-slate-600">The registration process is clear, fast, and completely free.</p>
+                    <p class="text-sm text-slate-500 mt-2">Wish you a great experience in Vietnam!</p>
+                     <a href="#top-of-blog" class="mt-4 inline-block text-sky-600 hover:underline">Back to Top of Blog ↑</a>
+                </footer>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Placeholder cho footer của website, sẽ được tải động -->
+    <footer id="footer-placeholder"></footer>
+    <!-- Placeholder cho nút hành động nổi (FAB), sẽ được tải động -->
+    <div id="fab-container-placeholder"></div>
+
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <!-- Chart.js is no longer needed as the chart section is removed -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+    <!-- Core Application Scripts - Thứ tự tải rất quan trọng -->
+    <!-- 1. Firebase Init (nếu type="module", tải đầu tiên) -->
+    <script src="/js/firebase-init.js" type="module"></script>
+    <!-- 2. Global Utilities (componentLog, debounce) -->
+    <script src="/js/utils.js" defer></script>
+    <!-- 3. Language System (tự khởi tạo, cần cho Header) -->
+    <script src="/js/language.js" defer></script>
+    <!-- 4. Specific Controllers (phải tải trước khi loadComponents.js gọi init của chúng) -->
+    <script src="/js/fabController.js" defer></script>
+    <!-- Thêm chatbotController.js nếu có -->
+    <!-- <script src="/js/chatbotController.js" defer></script> -->
+
+    <!-- 5. Component Loader (tải HTML và sau đó gọi init của controller) -->
+    <script src="/js/loadComponents.js" defer></script>
+    <!-- 6. Main App Logic (nếu có, sau khi tất cả các component đã sẵn sàng) -->
+    <!-- <script src="/js/app.js" defer></script> -->
+
+
+    <!-- Logic khởi tạo dành riêng cho trang blog này -->
+    <script>
+        // Callback được kích hoạt bởi loadComponents.js sau khi tất cả các component chung được tải
+        window.onPageComponentsLoadedCallback = function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-quad' });
+            }
+
+            // Đảm bảo hero-canvas-container tồn tại trước khi khởi tạo 3D
+            const heroCanvasContainer = document.getElementById('hero-canvas-container');
+            if (typeof THREE !== 'undefined' && heroCanvasContainer) {
+                initHero3D();
+            } else if (!heroCanvasContainer) {
+                // console.info("Container for 3D hero canvas (#hero-canvas-container) not found. Skipping 3D initialization.");
+            } else {
+                // console.warn("THREE.js not loaded. Skipping 3D initialization.");
+            }
+
+            // Khởi tạo các bộ đếm động nếu có trên trang chính
+            const impactCounters = document.getElementById('impact-counters');
+            if (impactCounters) {
+                initAnimatedCounters();
+            }
+
+            // Khởi tạo hiệu ứng spotlight nếu có trên trang chính
+            const spotlightCards = document.querySelectorAll('.spotlight-card');
+            if (spotlightCards.length > 0) {
+                initSpotlightEffect();
+            }
+
+            // initVNeIDGuide() is no longer needed as the interactive location finder and chart are removed.
+            // If any other VNeID guide specific scripts are added in the future, they should be called here.
+        };
+
+        function initHero3D() {
+            const container = document.getElementById('hero-canvas-container');
+            if (!container) return; // Nên được kiểm tra trước khi gọi
+
+            let scene, camera, renderer, stars;
+            let mouseX = 0, mouseY = 0;
+
+            function init() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+                camera.position.z = 1;
+                camera.rotation.x = Math.PI / 2;
+
+                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                container.appendChild(renderer.domElement);
+
+                const starGeo = new THREE.BufferGeometry();
+                const starVertices = [];
+                for (let i = 0; i < 8000; i++) {
+                    starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+                }
+                starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+                let starMaterial = new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.7, transparent: true });
+                stars = new THREE.Points(starGeo, starMaterial);
+                scene.add(stars);
+
+                window.addEventListener('resize', onWindowResize, false);
+                document.addEventListener('mousemove', onMouseMove, false);
+
+                animate();
+            }
+
+            function onMouseMove(e) {
+                mouseX = e.clientX - window.innerWidth / 2;
+                mouseY = e.clientY - window.innerHeight / 2;
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                stars.rotation.y += 0.0001;
+                camera.position.y += (-mouseY * 0.00002 - camera.position.y) * 0.05;
+                camera.position.x += (mouseX * 0.00002 - camera.position.x) * 0.05;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+
+            init();
+        }
+
+        function initAnimatedCounters() {
+            const counters = document.querySelectorAll('#impact-counters h3');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        let start = 0;
+                        const step = (timestamp) => {
+                            if (!start) start = timestamp;
+                            const progress = timestamp - start;
+                            const current = Math.min(Math.floor(progress / duration * target), target);
+                            counter.innerText = current.toLocaleString('en-US');
+                            if (current < target) {
+                                requestAnimationFrame(step);
+                            }
+                        };
+                        requestAnimationFrame(step);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        function initSpotlightEffect() {
+            const cards = document.querySelectorAll('.spotlight-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--px', x + 'px');
+                    card.style.setProperty('--py', y + 'px');
+                });
+            });
+        }
+
+        // Logic để ẩn logo khi cuộn đến phần philosophyContent
+        document.addEventListener('DOMContentLoaded', () => {
+            const philosophyContent = document.getElementById('philosophyContent');
+            const ivsLogoContainer = document.getElementById('ivsLogoContainer');
+
+            // Sử dụng Intersection Observer để phát hiện khi phần tử vào viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Khi phần tử philosophyContent vào viewport
+                        philosophyContent.classList.add('is-visible');
+                        // Ẩn logo sau một khoảng thời gian ngắn để tạo hiệu ứng cuộn xuống
+                        setTimeout(() => {
+                            ivsLogoContainer.classList.add('hidden-on-scroll');
+                        }, 500); // Ẩn logo sau 0.5 giây khi các ô bắt đầu xuất hiện
+                        observer.unobserve(entry.target); // Ngừng quan sát sau khi đã hiển thị
+                    }
+                });
+            }, {
+                threshold: 0.2 // Kích hoạt khi 20% của phần tử hiển thị trong viewport
+            });
+
+            // Bắt đầu quan sát phần tử philosophyContent
+            observer.observe(philosophyContent);
+
+            // Đảm bảo logo hiển thị ban đầu nếu trang tải ở vị trí không cuộn
+            // (Thực tế không cần thiết nếu logo ở đầu trang và philosophyContent ở dưới)
+            // Tuy nhiên, nếu philosophyContent có thể hiển thị ngay khi tải, cần xử lý
+            if (philosophyContent && philosophyContent.getBoundingClientRect().top < window.innerHeight) {
+                philosophyContent.classList.add('is-visible');
+                if (ivsLogoContainer) {
+                    ivsLogoContainer.classList.add('hidden-on-scroll');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
