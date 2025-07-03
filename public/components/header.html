@@ -1,3 +1,7 @@
+<!-- FILE: /public/components/header.html -->
+<!-- VERSION: 2.7 - Moved Teacher-related links to a new 'Giáo viên nước ngoài' dropdown -->
+<!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and language selection. -->
+
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
     <div class="max-w-7xl mx-auto px-4 h-full">
         <div class="flex items-center justify-between h-full">
@@ -6,9 +10,11 @@
                 <span class="hidden sm:inline text-lg md:text-xl font-bold group-hover:text-ivs-accent transition-colors">IVS <span class="text-ivs-accent">JSC</span></span>
             </a>
 
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
                 <a href="/index.html" class="desktop-nav-link" data-lang-key="nav_home">Trang Chủ</a>
                 
+                <!-- Dropdown "Về IVS" -->
                 <div class="desktop-dropdown-container">
                     <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
                         <span data-lang-key="nav_about_ivs">Về IVS</span><i class="fas fa-chevron-down text-xs ml-2"></i>
@@ -20,12 +26,31 @@
                     </div>
                 </div>
 
+                <!-- NEW Dropdown "Giáo viên nước ngoài" -->
+                <div class="desktop-dropdown-container">
+                    <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
+                        <span data-lang-key="nav_foreign_teachers">Giáo viên nước ngoài</span><i class="fas fa-chevron-down text-xs ml-2"></i>
+                    </button>
+                    <div class="desktop-dropdown p-2 space-y-1">
+                        <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_foreign_teachers_services">
+                            <i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Dịch vụ GVNN
+                        </a>
+                        <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="dropdown-item" data-lang-key="nav_foreign_teachers_price_list">
+                            <i class="fas fa-file-invoice-dollar fa-fw mr-3 text-ivs-accent/70"></i>Bảng giá tham khảo
+                        </a>
+                        <a href="/Pages/teacher-lists-available.html" class="dropdown-item" data-lang-key="nav_foreign_teachers_teacher_list">
+                            <i class="fas fa-users fa-fw mr-3 text-ivs-accent/70"></i>Danh sách Giáo viên
+                        </a>
+                    </div>
+                </div>
+
                 <div class="desktop-dropdown-container">
                     <button type="button" class="desktop-nav-dropdown-toggle" aria-haspopup="true">
                         <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                     </button>
                     <div class="desktop-mega-menu left-1/2 -translate-x-1/2">
                         <div class="grid grid-cols-2 gap-x-6 p-5">
+                            <!-- Cột trái: Liên kết Giáo dục (Đã loại bỏ liên kết GVNN) -->
                             <div class="space-y-2">
                                 <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h3>
                                 <a href="/consulting.html" class="dropdown-item" data-lang-key="nav_services_education_overview"><i class="fas fa-school fa-fw mr-3 text-ivs-accent/70"></i>Tổng quan</a>
@@ -39,18 +64,11 @@
                                 <a href="/Pages/lkttnn.html" class="dropdown-item" data-lang-key="nav_services_education_language_centers">
                                     <i class="fas fa-language fa-fw mr-3 text-ivs-accent/70"></i>Liên kết Trung tâm Ngoại ngữ
                                 </a>
-                                <a href="/Pages/foreign-teacher-services.html" class="dropdown-item" data-lang-key="nav_services_education_supply">
-                                    <i class="fas fa-chalkboard-teacher fa-fw mr-3 text-ivs-accent/70"></i>Cung ứng Giáo viên
-                                </a>
-                                <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="dropdown-item" data-lang-key="nav_services_education_price_list">
-                                    <i class="fas fa-file-invoice-dollar fa-fw mr-3 text-ivs-accent/70"></i>Bảng giá tham khảo
-                                </a>
-                                <a href="/Pages/teacher-lists-available.html" class="dropdown-item" data-lang-key="nav_services_education_teacher_list">
-                                    <i class="fas fa-users fa-fw mr-3 text-ivs-accent/70"></i>Danh sách Giáo viên
-                                </a>
                             </div>
+                            <!-- Cột phải: Hiện tại trống (Tư vấn Pháp lý đã chuyển sang Giải pháp) -->
                             <div>
-                                </div>
+                                <!-- This column can be used for other services or removed if not needed -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,6 +82,7 @@
                         <a href="/Pages/ivscelestech.html" class="dropdown-item" data-lang-key="nav_solutions_edtech">Công nghệ GD</a>
                         <a href="/Pages/upskill.html" class="dropdown-item" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
                         <a href="/Pages/webdesign.html" class="dropdown-item" data-lang-key="nav_solutions_webdesign">Thiết kế Web</a>
+                        <!-- Moved "Tư vấn Pháp lý" here -->
                         <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2 mt-2" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h3>
                         <a href="/Pages/legal_consulting.html" class="dropdown-item" data-lang-key="nav_services_legal_consulting">
                             <i class="fas fa-gavel fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn Chuyên sâu
@@ -94,6 +113,7 @@
                 <a href="/contact.html" class="desktop-nav-link bg-ivs-accent hover:bg-ivs-accent-dark text-white font-bold" data-lang-key="nav_contact">Liên Hệ</a>
             </nav>
 
+            <!-- Language Buttons (Desktop & Mobile) -->
             <div class="flex items-center space-x-2 md:space-x-1 ml-auto md:ml-0 relative">
                 <button class="lang-toggle-btn group" data-lang="vi" aria-label="Chọn Tiếng Việt">
                     <img src="/images/flags/vn.png" alt="Cờ Việt Nam" class="h-5 w-7 rounded-sm transition-transform duration-200 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/28x20/1f2937/ffffff?text=VI';">
@@ -102,10 +122,12 @@
                     <img src="/images/flags/en.png" alt="Cờ Anh" class="h-5 w-7 rounded-sm transition-transform duration-200 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/28x20/1f2937/ffffff?text=EN';">
                 </button>
                 
+                <!-- Language Change Confirmation Message -->
                 <div id="lang-confirm-message" class="absolute top-full mt-2 right-0 bg-gray-800 text-white text-xs px-3 py-1.5 rounded-md shadow-lg opacity-0 scale-90 transition-all duration-300 ease-out pointer-events-none origin-top-right whitespace-nowrap">
                     Language changed!
                 </div>
 
+                <!-- Mobile Menu Button (Hamburger) - hidden on desktop -->
                 <button id="mobile-menu-open-btn" type="button" class="md:hidden p-2 rounded-lg hover:bg-ivs-bg-light transition-colors" aria-label="Open menu" aria-controls="ivs-mobile-menu-panel">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -114,7 +136,9 @@
     </div>
 </header>
 
+<!-- Mobile Menu Panel -->
 <div id="ivs-mobile-menu-panel" class="fixed inset-0 z-50 md:hidden hidden" aria-modal="true" role="dialog">
+    <!-- Backdrop with blur effect -->
     <div id="ivs-mobile-menu-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300 opacity-0"></div>
     <div id="ivs-mobile-menu-container" class="relative w-full max-w-sm h-full bg-ivs-bg-medium ml-auto flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="flex items-center justify-between p-4 border-b border-ivs-bg-light">
@@ -126,6 +150,7 @@
         <nav id="ivs-mobile-main-nav" class="flex-grow p-4 space-y-2 overflow-y-auto">
             <a href="/index.html" class="mobile-nav-link" data-lang-key="nav_home">Trang Chủ</a>
             
+            <!-- Mobile Dropdown "Về IVS" -->
             <div>
                 <button class="mobile-submenu-toggle">
                     <span data-lang-key="nav_about_ivs">Về IVS</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
@@ -137,20 +162,30 @@
                 </div>
             </div>
 
+            <!-- NEW Mobile Dropdown "Giáo viên nước ngoài" -->
+            <div>
+                <button class="mobile-submenu-toggle">
+                    <span data-lang-key="nav_foreign_teachers">Giáo viên nước ngoài</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
+                </button>
+                <div class="mobile-submenu-content">
+                    <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_services">Dịch vụ GVNN</a>
+                    <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_price_list">Bảng giá tham khảo</a>
+                    <a href="/Pages/teacher-lists-available.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_teacher_list">Danh sách Giáo viên</a>
+                </div>
+            </div>
+
             <div>
                 <button class="mobile-submenu-toggle">
                     <span data-lang-key="nav_services">Dịch Vụ</span><i class="fas fa-chevron-down mobile-submenu-icon"></i>
                 </button>
                 <div class="mobile-submenu-content">
+                    <!-- Updated Mobile Services Submenu (Đã loại bỏ liên kết GVNN) -->
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold" data-lang-key="nav_services_education_title">Liên kết Giáo dục</h4>
                     <a href="/consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_education_overview">Tổng quan</a>
                     <a href="/Pages/lkmamnon.html" class="mobile-submenu-item" data-lang-key="nav_services_education_kindergarten">Liên kết Mầm non</a>
                     <a href="/Pages/lktieuhoc.html" class="mobile-submenu-item" data-lang-key="nav_services_education_primary">Liên kết Tiểu học</a>
                     <a href="/Pages/lkthcsthpt.html" class="mobile-submenu-item" data-lang-key="nav_services_education_secondary_high">Liên kết THCS & THPT</a>
                     <a href="/Pages/lkttnn.html" class="mobile-submenu-item" data-lang-key="nav_services_education_language_centers">Liên kết Trung tâm Ngoại ngữ</a>
-                    <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_services_education_supply">Cung ứng Giáo viên</a>
-                    <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="mobile-submenu-item" data-lang-key="nav_services_education_price_list">Bảng giá tham khảo</a>
-                    <a href="/Pages/teacher-lists-available.html" class="mobile-submenu-item" data-lang-key="nav_services_education_teacher_list">Danh sách Giáo viên</a>
                 </div>
             </div>
 
@@ -163,6 +198,7 @@
                     <a href="/Pages/ivscelestech.html" class="mobile-submenu-item" data-lang-key="nav_solutions_edtech">Công nghệ GD</a>
                     <a href="/Pages/upskill.html" class="mobile-submenu-item" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
                     <a href="/Pages/webdesign.html" class="mobile-submenu-item" data-lang-key="nav_solutions_webdesign">Thiết kế Web</a>
+                    <!-- Moved "Tư vấn Pháp lý" here for mobile -->
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h4>
                     <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
                     <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
@@ -184,11 +220,13 @@
             </div>
 
             <a href="/news-archive.html" class="mobile-nav-link" data-lang-key="nav_news">Tin tức</a>
+            <!-- Contact link restored for mobile menu -->
             <a href="/contact.html" class="mobile-nav-link" data-lang-key="nav_contact">Liên Hệ</a>
         </nav>
     </div>
 </div>
 
+<!-- Bottom Navigation for Mobile -->
 <nav id="ivs-bottom-nav" class="fixed bottom-0 left-0 right-0 z-30 h-[var(--bottom-nav-height)] flex justify-around items-stretch md:hidden">
     <a href="/index.html" class="bottom-nav-item">
         <i class="fas fa-home text-xl"></i><span class="bottom-nav-text" data-lang-key="bottom_nav_home">Home</span>
@@ -204,6 +242,8 @@
     </button>
 </nav>
 
+<!-- Inline styles for component-specific CSS -->
+<!-- It's recommended to move these to a central CSS file for production -->
 <style>
     :root {
         --header-height: 64px;
