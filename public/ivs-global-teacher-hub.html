@@ -260,6 +260,10 @@
                     <label for="bio" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="bio_label">Brief Introduction About Yourself:</label>
                     <textarea id="bio" class="textarea-field" placeholder="Highlight your teaching experience and style (max 200 words)" data-lang-key="bio_placeholder" maxlength="200" required></textarea>
 
+                    <!-- New field for Expectation -->
+                    <label for="expectation" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="expectation_label">Expectation (Job preferences):</label>
+                    <textarea id="expectation" class="textarea-field" placeholder="e.g., Full-time job in Dong Nai, Schools or English centers. Or Part-time only in the evenings on weekdays (already have a fixed daytime job)." data-lang-key="expectation_placeholder" required></textarea>
+
                     <p class="text-gray-700 text-sm mt-4 mb-2" data-lang-key="document_upload_instruction">To submit your CV, profile photo, or other documents (video, PDF), please prepare these files on a cloud storage service (e.g., Google Drive, Dropbox) and provide public or appropriately accessible links in the fields below.</p>
 
                     <label for="resumeUrl" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="resume_url_label">CV/Online Portfolio Link (optional):</label>
@@ -381,6 +385,7 @@
             const experience = parseInt(document.getElementById('experience').value);
             const subjects = document.getElementById('subjects').value.split(',').map(s => s.trim());
             const bio = document.getElementById('bio').value;
+            const expectation = document.getElementById('expectation').value; // Get the new expectation field value
             const resumeUrl = document.getElementById('resumeUrl').value;
             const photoUrl = document.getElementById('photoUrl').value;
 
@@ -393,7 +398,8 @@
                     `&entry.1179730929=${encodeURIComponent(qualification)}` +
                     `&entry.1300349392=${encodeURIComponent(experience)}` +
                     `&entry.1936339032=${encodeURIComponent(subjects.join(', '))}` +
-                    `&entry.1101686570=${encodeURIComponent(bio)}`;
+                    `&entry.1101686570=${encodeURIComponent(bio)}` +
+                    `&entry.YOUR_EXPECTATION_ENTRY_ID=${encodeURIComponent(expectation)}`; // Add expectation field to URL
 
                 showModal('application_success_message', true, prefilledFormUrl); // Use key for message
                 // Form reset is now handled by the modal's continue button click
