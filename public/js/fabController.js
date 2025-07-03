@@ -1,92 +1,8 @@
-<!-- FILE: /public/components/fab-container.html -->
-<!-- VERSION: 2.11 - Removed inline script, relies solely on fabController.js -->
-<!-- DESCRIPTION: Optimized HTML for Floating Action Buttons. All JS moved to fabController.js. -->
-
-<!-- Thay đổi: Nâng vị trí các nút chức năng lên để tránh bị che bởi thanh điều hướng dưới cùng. -->
-<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-28 md:bottom-8">
-    
-    <!-- Nút Cuộn lên đầu trang -->
-    <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
-            class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
-        <i class="fas fa-arrow-up text-base sm:text-lg"></i>
-    </button>
-
-    <!-- Nút FAB Chia Sẻ -->
-    <div class="relative group/fab">
-        <button id="share-main-btn" title="Chia sẻ" aria-label="Mở menu chia sẻ" aria-haspopup="true" aria-expanded="false" aria-controls="share-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-share-alt text-xl sm:text-2xl"></i>
-        </button>
-        <div id="share-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[200px] md:w-auto"
-             role="menu" aria-orientation="vertical" aria-labelledby="share-main-btn">
-            <!-- Nội dung cho share-options sẽ được JavaScript chèn vào đây -->
-        </div>
-    </div>
-
-    <!-- Nút FAB Liên Hệ (chính) -->
-    <div class="relative group/fab">
-        <button id="contact-main-btn" title="Liên hệ" aria-label="Mở menu liên hệ" aria-haspopup="true" aria-expanded="false" aria-controls="contact-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-comment-dots text-xl sm:text-2xl"></i>
-        </button>
-        <div id="contact-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex-col space-y-1.5 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[220px] md:w-auto"
-             role="menu" aria-orientation="vertical" aria-labelledby="contact-main-btn">
-            <!-- Nội dung cho contact-options sẽ được JavaScript chèn vào đây -->
-        </div>
-    </div>
-</div>
-
-<!-- 
- CSS cho các mục con của FAB. 
- Nên được chuyển vào tệp CSS chính để tối ưu, nhưng để ở đây để đảm bảo component hoạt lập.
--->
-<style>
-    .fab-submenu-item {
-        display: flex;
-        align-items: center;
-        padding: 0.6rem 0.85rem;
-        font-size: 0.9rem;
-        color: #374151; /* gray-700 */
-        border-radius: 0.375rem; /* rounded-md */
-        transition: background-color 0.2s, color 0.2s;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: left;
-        width: 100%;
-    }
-    .fab-submenu-item:hover {
-        background-color: #f3f4f6; /* gray-100 */
-        color: #2563eb; /* blue-600 */
-    }
-    .dark .fab-submenu-item {
-        color: #d1d5db; /* gray-300 */
-    }
-    .dark .fab-submenu-item:hover {
-        background-color: #374151; /* gray-700 */
-        color: #60a5fa; /* blue-400 */
-    }
-    .fab-submenu-item i.fa-fw {
-        margin-right: 0.75rem;
-        width: 1.25em; 
-        text-align: center;
-        font-size: 1.1em;
-    }
-</style>
-```
-
----
-
-**File: `public/js/fabController.js`**
-
-
-```javascript
 /**
  * @fileoverview IVSFabController - Manages Floating Action Button (FAB) functionalities.
  * This script handles scroll-to-top, contact options, share options, and their submenus.
  * It relies on global utility functions from utils.js (componentLog, debounce).
- * @version 1.4 - Self-initializing, consolidated JS from fab-container.html.
+ * @version 1.6 - Enhanced auto-initialization and logging for multi-page functionality.
  * @author IVS-Technical-Team
  */
 
@@ -310,8 +226,7 @@ const IVSFabController = {
         menu.classList.remove('hidden', 'pointer-events-none');
         // Use rAF for immediate display before transition
         requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95'); // Animate in
-            // Removed translate-y-2 from here as it caused issues with origin-bottom-right
+            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Re-added translate-y-2 for open animation
         });
         btn.setAttribute('aria-expanded', 'true');
         window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
@@ -324,8 +239,7 @@ const IVSFabController = {
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95'); // Animate out
-        // Removed translate-y-2 from here
+        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Re-added translate-y-2 for close animation
         const onTransitionEnd = () => {
             if (menu.classList.contains('opacity-0')) {
                 menu.classList.add('hidden', 'pointer-events-none');
@@ -352,3 +266,40 @@ document.addEventListener('DOMContentLoaded', () => {
         window.componentLog("IVSFabController: FAB container not found on DOMContentLoaded. Assuming dynamic loading. Ensure init() is called manually after insertion.", "warn");
     }
 });
+```
+
+---
+
+**Hướng dẫn để FAB hoạt động trên TẤT CẢ các trang:**
+
+Để đảm bảo FAB hoạt động trên mọi trang HTML của bạn, bạn cần chắc chắn rằng các script và thành phần HTML cần thiết được nhúng đúng cách trong mỗi file HTML.
+
+1.  **Trong mỗi file HTML của bạn (ví dụ: `about.html`, `foreign-teacher-services.html`, `teacher-lists-available.html`, v.v.):**
+
+    * **Thêm placeholder cho FAB Container:** Đặt dòng này vào cuối thẻ `<body>` của mỗi trang, ngay trước thẻ đóng `</body>`:
+        ```html
+        <div id="fab-container-placeholder"></div>
+        ```
+        (Nếu bạn đang sử dụng `loadComponents.js` để tự động chèn `fab-container.html` vào placeholder này, thì bạn đã làm đúng bước này.)
+
+    * **Nhúng các file JavaScript cần thiết:** Đảm bảo các script sau được nhúng ở cuối thẻ `<body>` của **mỗi trang**, theo đúng thứ tự:
+
+        ```html
+        <!-- Đảm bảo utils.js được tải trước fabController.js -->
+        <script src="/js/utils.js"></script>
+        <script src="/js/fabController.js"></script>
+        <!-- Các script khác của bạn -->
+        <script src="/js/loadComponents.js"></script>
+        <script src="/js/language.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <!-- ... các script khác nếu có -->
+        ```
+
+        **Giải thích:**
+        * `utils.js` chứa các hàm tiện ích (`componentLog`, `debounce`) mà `fabController.js` phụ thuộc, nên nó phải được tải trước.
+        * `fabController.js` chứa logic chính của FAB và sẽ tự động khởi tạo khi DOMContentLoaded.
+        * `loadComponents.js` chịu trách nhiệm tải và chèn `fab-container.html` vào `div#fab-container-placeholder`. `fabController.js` có một cơ chế kiểm tra để đảm bảo nó chỉ khởi tạo khi `#fab-container` thực sự có mặt trong DOM.
+
+Bằng cách này, khi bất kỳ trang nào được tải, FAB và các chức năng của nó sẽ được khởi tạo tự động.
+
+Hãy kiểm tra lại các file HTML của bạn và đảm bảo cấu trúc script như trên. Nếu sau khi thực hiện vẫn có vấn đề, vui lòng cung cấp thêm thông tin chi tiết về trang nào không hoạt động và bất kỳ lỗi nào xuất hiện trong console của trình duy
