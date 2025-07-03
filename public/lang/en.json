@@ -2134,5 +2134,9 @@
   "chatbot_iframe_fallback_link_text": "IVS AI Support (Chatbot)",
   "contact_map_title": "Our Location",
   "nav_services_education_price_list": "Price List",
-  "nav_services_education_teacher_list": "Teacher List"
+  "nav_services_education_teacher_list": "Teacher List",
+  "nav_foreign_teachers": "Foreign Teachers",
+  "nav_foreign_teachers_services": "Foreign Teacher Services",
+  "nav_foreign_teachers_price_list": "Foreign Teacher Price List",
+  "nav_foreign_teachers_teacher_list": "Foreign Teacher List"
 }

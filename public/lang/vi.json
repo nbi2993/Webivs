@@ -1516,5 +1516,9 @@
   "chatbot_iframe_fallback_link_text": "Hỗ trợ AI của IVS (Chatbot)",
   "contact_map_title": "Vị Trí Của Chúng Tôi",
   "nav_services_education_price_list": "Bảng giá tham khảo",
-  "nav_services_education_teacher_list": "Danh sách giáo viên"
+  "nav_services_education_teacher_list": "Danh sách giáo viên",
+  "nav_foreign_teachers": "Giáo viên nước ngoài",
+  "nav_foreign_teachers_services": "Dịch vụ giáo viên nước ngoài",
+  "nav_foreign_teachers_price_list": "Bảng giá giáo viên nước ngoài",
+  "nav_foreign_teachers_teacher_list": "Danh sách giáo viên nước ngoài"
 }
