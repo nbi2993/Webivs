@@ -2132,5 +2132,7 @@
   "chatbot_feature_3": "Always available 24/7 to serve you.",
   "chatbot_iframe_fallback_text": "Your browser does not support iframes. Please access the application directly at:",
   "chatbot_iframe_fallback_link_text": "IVS AI Support (Chatbot)",
-  "contact_map_title": "Our Location"
+  "contact_map_title": "Our Location",
+  "nav_services_education_price_list": "Price List",
+  "nav_services_education_teacher_list": "Teacher List"
 }

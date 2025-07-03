@@ -1514,5 +1514,7 @@
   "chatbot_feature_3": "Luôn sẵn sàng 24/7 để phục vụ bạn.",
   "chatbot_iframe_fallback_text": "Trình duyệt của bạn không hỗ trợ iframe. Vui lòng truy cập ứng dụng trực tiếp tại:",
   "chatbot_iframe_fallback_link_text": "Hỗ trợ AI của IVS (Chatbot)",
-  "contact_map_title": "Vị Trí Của Chúng Tôi"
+  "contact_map_title": "Vị Trí Của Chúng Tôi",
+  "nav_services_education_price_list": "Bảng giá tham khảo",
+  "nav_services_education_teacher_list": "Danh sách giáo viên"
 }
