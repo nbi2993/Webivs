@@ -1,28 +1,28 @@
 /**
- * @fileoverview IVSFabController - Manages Floating Action Button (FAB) functionalities.
- * This script handles scroll-to-top, contact options, share options, and their submenus.
- * It relies on global utility functions from utils.js (componentLog, debounce).
- * @version 1.6 - Enhanced auto-initialization and logging for multi-page functionality.
+ * @fileoverview IVSFabController - Quản lý các chức năng của Floating Action Button (FAB).
+ * Script này xử lý các nút cuộn lên đầu trang, tùy chọn liên hệ, tùy chọn chia sẻ và các menu con của chúng.
+ * Nó phụ thuộc vào các hàm tiện ích toàn cục từ utils.js (componentLog, debounce).
+ * @version 1.7 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, và đồng bộ icon Zalo.
  * @author IVS-Technical-Team
  */
 
 'use strict';
 
-// Ensure global utilities are available (componentLog, debounce)
-// These are expected to be loaded via public/js/utils.js
+// Đảm bảo các hàm tiện ích toàn cục có sẵn (componentLog, debounce)
+// Các hàm này được mong đợi sẽ được tải qua public/js/utils.js
 if (typeof window.componentLog !== 'function') {
-    console.error("[IVSFabController] window.componentLog is not defined. Please ensure utils.js is loaded before fabController.js.");
-    window.componentLog = (msg, level = 'error') => console[level](msg); // Fallback
+    console.error("[IVSFabController] window.componentLog không được định nghĩa. Vui lòng đảm bảo utils.js được tải trước fabController.js.");
+    window.componentLog = (msg, level = 'error') => console[level](msg); // Hàm dự phòng
 }
 if (typeof window.debounce !== 'function') {
-    console.error("[IVSFabController] window.debounce is not defined. Please ensure utils.js is loaded before fabController.js.");
-    window.debounce = (func) => func; // Fallback
+    console.error("[IVSFabController] window.debounce không được định nghĩa. Vui lòng đảm bảo utils.js được tải trước fabController.js.");
+    window.debounce = (func) => func; // Hàm dự phòng
 }
 
 const IVSFabController = {
     /**
-     * Initializes the FAB controller.
-     * Caches DOM elements, populates menus, and binds event listeners.
+     * Khởi tạo bộ điều khiển FAB.
+     * Lưu trữ các phần tử DOM, điền nội dung menu và gắn các trình lắng nghe sự kiện.
      */
     init() {
         window.componentLog("IVSFabController: Bắt đầu khởi tạo.", "info");
@@ -37,19 +37,19 @@ const IVSFabController = {
     },
 
     /**
-     * Caches necessary DOM elements for the FAB.
+     * Lưu trữ các phần tử DOM cần thiết cho FAB.
      */
     cacheDOM() {
         this.fabContainer = document.getElementById('fab-container');
         this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-        // Use Optional Chaining (?) to avoid errors if fabContainer is not found
+        // Sử dụng Optional Chaining (?) để tránh lỗi nếu fabContainer không tìm thấy
         this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
 
         window.componentLog(`IVSFabController: FAB Container: ${!!this.fabContainer}, ScrollToTopBtn: ${!!this.scrollToTopBtn}, ButtonsWithSubmenu count: ${this.buttonsWithSubmenu.length}`, 'info');
     },
 
     /**
-     * Populates the content of contact and share submenus.
+     * Điền nội dung cho các menu con liên hệ và chia sẻ.
      */
     populateMenus() {
         const contactMenu = document.getElementById('contact-options');
@@ -66,22 +66,23 @@ const IVSFabController = {
     },
 
     /**
-     * Populates the contact options submenu.
-     * @param {HTMLElement} element The HTML element to populate.
+     * Điền nội dung cho menu con tùy chọn liên hệ.
+     * @param {HTMLElement} element Phần tử HTML để điền nội dung.
      */
     populateContactOptions(element) {
         const contacts = [
             { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
             { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
-            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fab fa-whatsapp", color: "text-blue-500" }, /* Changed to WhatsApp icon for Zalo */
+            // Đã đồng bộ icon Zalo với fas fa-comment-dots
+            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" }, 
             { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
         ];
         element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
     },
 
     /**
-     * Populates the share options submenu.
-     * @param {HTMLElement} element The HTML element to populate.
+     * Điền nội dung cho menu con tùy chọn chia sẻ.
+     * @param {HTMLElement} element Phần tử HTML để điền nội dung.
      */
     populateShareOptions(element) {
         const currentUrl = window.location.href;
@@ -95,7 +96,7 @@ const IVSFabController = {
                 text: "Copy Link",
                 icon: "fas fa-link",
                 color: "text-gray-500",
-                action: null // Action will be handled via event listener
+                action: null // Hành động sẽ được xử lý qua trình lắng nghe sự kiện
             }
         ];
         element.innerHTML = shares.map((s, index) => {
@@ -109,7 +110,7 @@ const IVSFabController = {
                 if (s.text === "Copy Link") {
                     btn.addEventListener('click', () => {
                         try {
-                            // Using document.execCommand('copy') for better iframe compatibility
+                            // Sử dụng document.execCommand('copy') để tương thích tốt hơn với iframe
                             const textarea = document.createElement('textarea');
                             textarea.value = currentUrl;
                             document.body.appendChild(textarea);
@@ -117,21 +118,21 @@ const IVSFabController = {
                             document.execCommand('copy');
                             document.body.removeChild(textarea);
                             window.componentLog('Đã sao chép liên kết vào clipboard!');
-                            this.showCopiedConfirmation(btn); // Show confirmation
+                            this.showCopiedConfirmation(btn); // Hiển thị thông báo xác nhận
                         } catch (err) {
                             window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
                         }
                     });
                 } else if (s.action) {
-                    btn.addEventListener('click', () => eval(s.action)); // Execute string action
+                    btn.addEventListener('click', () => eval(s.action)); // Thực thi chuỗi hành động
                 }
             }
         });
     },
 
     /**
-     * Displays a temporary "Copied!" confirmation message near the target element.
-     * @param {HTMLElement} targetElement The element near which to display the message.
+     * Hiển thị thông báo xác nhận "Đã sao chép!" tạm thời gần phần tử mục tiêu.
+     * @param {HTMLElement} targetElement Phần tử gần đó để hiển thị thông báo.
      */
     showCopiedConfirmation(targetElement) {
         const message = 'Đã sao chép!';
@@ -139,37 +140,37 @@ const IVSFabController = {
         confirmationDiv.textContent = message;
         confirmationDiv.className = 'absolute z-10 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap';
 
-        // Position relative to the target button
+        // Định vị tương đối với nút mục tiêu
         const rect = targetElement.getBoundingClientRect();
-        confirmationDiv.style.top = `${rect.top - 30}px`; // Above the button
-        confirmationDiv.style.left = `${rect.left + rect.width / 2}px`; // Centered horizontally
+        confirmationDiv.style.top = `${rect.top - 30}px`; // Phía trên nút
+        confirmationDiv.style.left = `${rect.left + rect.width / 2}px`; // Căn giữa theo chiều ngang
         confirmationDiv.style.transform = 'translateX(-50%)';
 
         document.body.appendChild(confirmationDiv);
 
-        // Animate in
+        // Hiển thị dần
         setTimeout(() => {
             confirmationDiv.classList.remove('opacity-0');
             confirmationDiv.classList.add('opacity-100');
         }, 10);
 
-        // Animate out and remove
+        // Ẩn dần và xóa
         setTimeout(() => {
             confirmationDiv.classList.remove('opacity-100');
             confirmationDiv.classList.add('opacity-0');
             confirmationDiv.addEventListener('transitionend', () => {
                 confirmationDiv.remove();
             }, { once: true });
-        }, 1500); // Display for 1.5 seconds
+        }, 1500); // Hiển thị trong 1.5 giây
     },
 
     /**
-     * Binds event listeners for scroll-to-top button and submenu toggles.
+     * Gắn các trình lắng nghe sự kiện cho nút cuộn lên đầu trang và các nút bật/tắt menu con.
      */
     bindEvents() {
         if (this.scrollToTopBtn) {
             const handleScroll = () => {
-                if (window.scrollY > 200) { // Use window.scrollY for consistency
+                if (window.scrollY > 200) { // Sử dụng window.scrollY để nhất quán
                     this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
                 } else {
                     this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
@@ -177,13 +178,13 @@ const IVSFabController = {
             };
             window.addEventListener('scroll', window.debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Initial check on load
+            handleScroll(); // Kiểm tra ban đầu khi tải trang
             window.componentLog("IVSFabController: Đã gắn sự kiện cho nút cuộn lên đầu trang.");
         }
 
         if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
             this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
-                e.stopPropagation(); // Prevent document click from closing immediately
+                e.stopPropagation(); // Ngăn sự kiện click vào document đóng ngay lập tức
                 this.toggleSubmenu(btn);
             }));
             window.componentLog("IVSFabController: Đã gắn sự kiện click cho các nút có submenu.");
@@ -200,15 +201,15 @@ const IVSFabController = {
     },
 
     /**
-     * Toggles the visibility of a submenu.
-     * @param {HTMLElement} btn The button that controls the submenu.
+     * Bật/tắt hiển thị của một menu con.
+     * @param {HTMLElement} btn Nút điều khiển menu con.
      */
     toggleSubmenu(btn) {
         const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
         if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
             this.buttonsWithSubmenu.forEach(otherBtn => {
                 if (otherBtn !== btn) {
-                    this.closeSubmenu(otherBtn); // Close other submenus
+                    this.closeSubmenu(otherBtn); // Đóng các menu con khác
                 }
             });
         }
@@ -217,29 +218,29 @@ const IVSFabController = {
     },
 
     /**
-     * Opens a specific submenu.
-     * @param {HTMLElement} btn The button whose submenu is to be opened.
+     * Mở một menu con cụ thể.
+     * @param {HTMLElement} btn Nút có menu con cần mở.
      */
     openSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
         menu.classList.remove('hidden', 'pointer-events-none');
-        // Use rAF for immediate display before transition
+        // Sử dụng rAF để hiển thị ngay lập tức trước khi chuyển đổi
         requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Re-added translate-y-2 for open animation
+            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Đã thêm lại translate-y-2 cho animation mở
         });
         btn.setAttribute('aria-expanded', 'true');
         window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
     },
 
     /**
-     * Closes a specific submenu.
-     * @param {HTMLElement} btn The button whose submenu is to be closed.
+     * Đóng một menu con cụ thể.
+     * @param {HTMLElement} btn Nút có menu con cần đóng.
      */
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Re-added translate-y-2 for close animation
+        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Đã thêm lại translate-y-2 cho animation đóng
         const onTransitionEnd = () => {
             if (menu.classList.contains('opacity-0')) {
                 menu.classList.add('hidden', 'pointer-events-none');
@@ -252,17 +253,20 @@ const IVSFabController = {
     },
 };
 
-// Auto-initialize the FAB controller when the DOM is fully loaded.
-// This ensures the FAB is set up even if loadComponents.js doesn't explicitly call init,
-// or if the fab-container is directly included in a page.
+// Xuất IVSFabController để loadComponents.js có thể truy cập
+window.IVSFabController = IVSFabController;
+
+// Tự động khởi tạo bộ điều khiển FAB khi DOM được tải hoàn toàn.
+// Điều này đảm bảo FAB được thiết lập ngay cả khi loadComponents.js không gọi init một cách rõ ràng,
+// hoặc nếu fab-container được bao gồm trực tiếp trong một trang.
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if the fabContainer element exists before initializing
+    // Kiểm tra xem phần tử fabContainer có tồn tại trước khi khởi tạo
     if (document.getElementById('fab-container')) {
         IVSFabController.init();
     } else {
-        // If fab-container is not immediately present, it might be dynamically loaded.
-        // In such cases, loadComponents.js (or similar) should explicitly call IVSFabController.init()
-        // after inserting the fab-container.html content.
-        window.componentLog("IVSFabController: FAB container not found on DOMContentLoaded. Assuming dynamic loading. Ensure init() is called manually after insertion.", "warn");
+        // Nếu fab-container không có sẵn ngay lập tức, nó có thể được tải động.
+        // Trong trường hợp đó, loadComponents.js (hoặc tương tự) nên gọi IVSFabController.init() một cách rõ ràng
+        // sau khi chèn nội dung fab-container.html.
+        window.componentLog("IVSFabController: Không tìm thấy FAB container trên DOMContentLoaded. Giả định tải động. Đảm bảo init() được gọi thủ công sau khi chèn.", "warn");
     }
 });
