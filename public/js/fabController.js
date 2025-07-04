@@ -2,7 +2,7 @@
  * @fileoverview IVSFabController - Quản lý các chức năng của Floating Action Button (FAB).
  * Script này xử lý các nút cuộn lên đầu trang, tùy chọn liên hệ, tùy chọn chia sẻ và các menu con của chúng.
  * Nó phụ thuộc vào các hàm tiện ích toàn cục từ utils.js (componentLog, debounce).
- * @version 1.8 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, đồng bộ icon Zalo, và cải thiện hiệu suất/UX.
+ * @version 1.9 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, đồng bộ icon Zalo, cải thiện hiệu suất/UX và đảm bảo các nút xuống hàng.
  * @author IVS-Technical-Team
  */
 
@@ -94,7 +94,8 @@ const IVSFabController = {
             const link = document.createElement('a');
             link.href = c.href;
             link.setAttribute('role', 'menuitem');
-            link.className = 'fab-submenu-item group';
+            // THAY ĐỔI: Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
+            link.className = 'fab-submenu-item group w-full';
             link.setAttribute('data-lang-key', c.key);
             if (c.href.startsWith('http')) {
                 link.setAttribute('target', '_blank');
@@ -132,6 +133,7 @@ const IVSFabController = {
             const btnId = `share-action-${index}`;
             btn.id = btnId;
             btn.setAttribute('role', 'menuitem');
+            // THAY ĐỔI: Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
             btn.className = 'fab-submenu-item group w-full';
             btn.innerHTML = `<i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span>`;
             fragment.appendChild(btn);
