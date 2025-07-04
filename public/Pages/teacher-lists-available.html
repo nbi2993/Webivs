@@ -1137,7 +1137,10 @@
 
             // Định nghĩa thứ tự ưu tiên cho các giáo viên cụ thể theo tên
             const specialOrderTeachers = [
+                'Kimball Thomson',
+                'Salma Nour',
                 'Rachid Bellafar',
+                'Raphael Galuz',
                 'Madison-Schae Summers',
                 'Sloan Pierre Samuel Venter',
                 'Jannicar Nayve',
@@ -1191,15 +1194,12 @@
                 const indexA = locationOrder.indexOf(locA);
                 const indexB = locationOrder.indexOf(locB);
 
-
                 if (indexA !== -1 && indexB !== -1) {
                     return indexA - indexB;
                 }
-
                 if (indexA !== -1) {
                     return -1;
                 }
-
                 if (indexB !== -1) {
                     return 1;
                 }
