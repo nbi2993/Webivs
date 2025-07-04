@@ -226,6 +226,26 @@
         <div class="container">
             <h1 class="text-3xl font-bold text-gray-800 mb-6">IVS Global Teacher Hub</h1>
             <p class="text-gray-600 mb-4">IVS – Strategic Thinking, Practical Action, Global Value.</p>
+            <!-- New descriptive paragraph for the page's purpose -->
+            <p class="text-gray-700 mb-6">This page serves as a central hub for international teachers interested in working in Vietnam. You can register your information here to apply for teaching positions, access important resources, and stay updated on relevant news and regulations.</p>
+
+            <!-- News and Updates Section -->
+            <section id="news-updates-section" class="mb-8 p-6 bg-white rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="news_updates_title_en">News & Updates for International Teachers</h2>
+                <p class="text-gray-700 mb-6" data-lang-key="news_updates_description_en">Stay informed with the latest regulations, events, and essential resources for foreign teachers in Vietnam.</p>
+                
+                <div id="news-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- News articles will be loaded here by JavaScript -->
+                    <div class="bg-ivs-neutral-50 p-4 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold text-primary mb-2">Loading news...</h3>
+                        <p class="text-sm text-gray-600">Please wait a moment.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button id="load-more-news-button" class="button-secondary" data-lang-key="load_more_news_button_en">Load More News</button>
+                </div>
+            </section>
+            <!-- End News and Updates Section -->
 
             <div class="flex justify-center space-x-4 mb-6">
                 <button id="apply-tab-button" class="tab-button active" data-lang-key="teacher_application_tab">Teacher Application</button>
@@ -301,6 +321,117 @@
         const modalMessage = document.getElementById('modal-message');
         const modalActionButton = document.getElementById('modal-action-button'); // Changed from modalCloseButton
 
+        const newsList = document.getElementById('news-list');
+        const loadMoreNewsButton = document.getElementById('load-more-news-button');
+
+        let currentPage = 0;
+        const itemsPerPage = 4; // Number of news items to load per page
+
+        /**
+         * Simulates fetching news data from an API.
+         * In a real application, you would replace this with an actual fetch call to your backend.
+         * @param {number} page - The page number to fetch.
+         * @param {number} limit - The number of items per page.
+         * @returns {Promise<Array>} - A promise that resolves to an array of news articles.
+         */
+        async function fetchNews(page, limit) {
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 500)); 
+
+            // Dummy data for demonstration
+            const allNews = [
+                {
+                    title: "New Regulations on Work Permits for Foreign Teachers",
+                    date: "July 01, 2025",
+                    summary: "The Ministry of Labor, Invalids and Social Affairs has just issued a new circular detailing procedures for granting and extending work permits for foreigners in Vietnam, effective from July 15, 2025. Teachers should pay attention to requirements for pedagogical certificates and teaching experience."
+                },
+                {
+                    title: "International STEAM Education Workshop in HCMC",
+                    date: "June 25, 2025",
+                    summary: "The annual STEAM education workshop will take place on August 20-21, 2025, at the International Convention Center in Ho Chi Minh City. This is a great opportunity for international teachers to update new teaching methods and connect with colleagues."
+                },
+                {
+                    title: "Updates on Personal Income Tax Policy for Foreigners",
+                    date: "June 10, 2025",
+                    summary: "The General Department of Taxation of Vietnam has issued new guidelines on declaring and paying personal income tax for resident and non-resident foreigners. Teachers should consult tax experts to ensure compliance."
+                },
+                {
+                    title: "Cross-Cultural Classroom Management Skills Training Course",
+                    date: "June 05, 2025",
+                    summary: "IVS Academy will organize an in-depth training course on cross-cultural classroom management skills in September 2025. The course is specially designed for foreign teachers working in the Vietnamese education environment."
+                },
+                {
+                    title: "New Job Opportunities at International Schools in Dong Nai",
+                    date: "May 28, 2025",
+                    summary: "Many international schools and foreign language centers in Dong Nai are recruiting foreign teachers for the new academic year. IVS Global Teacher Hub will regularly update the list of vacancies."
+                },
+                {
+                    title: "Guidance on Visa and Temporary Residence Cards for Teachers",
+                    date: "May 20, 2025",
+                    summary: "The General Department of Tourism and the Immigration Department have issued detailed guidance on suitable visa types and procedures for applying for temporary residence cards for foreign teachers, simplifying the legal process."
+                },
+                {
+                    title: "Vietnam – Foreign Cultural Exchange Program",
+                    date: "May 15, 2025",
+                    summary: "A special cultural exchange program to enhance understanding between foreign teachers and the local community will be held quarterly. The first event is scheduled for late July."
+                },
+                {
+                    title: "Free Online Teaching Resources for Teachers",
+                    date: "May 01, 2025",
+                    summary: "IVS Education has compiled a list of free online teaching platforms and resources, useful for teachers in preparing lessons and improving teaching quality."
+                }
+            ];
+
+            const start = page * limit;
+            const end = start + limit;
+            return allNews.slice(start, end);
+        }
+
+        /**
+         * Renders news articles to the DOM.
+         * @param {Array} newsArticles - An array of news article objects.
+         */
+        function renderNews(newsArticles) {
+            if (currentPage === 0) {
+                newsList.innerHTML = ''; // Clear existing content only for the first load
+            }
+
+            if (newsArticles.length === 0 && currentPage === 0) {
+                newsList.innerHTML = `<p class="text-gray-600 col-span-full" data-lang-key="no_news_available_en">No news available at the moment.</p>`;
+                loadMoreNewsButton.classList.add('hidden');
+                return;
+            } else if (newsArticles.length === 0) {
+                loadMoreNewsButton.classList.add('hidden');
+                return;
+            }
+
+            newsArticles.forEach(article => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'bg-ivs-neutral-50 p-4 rounded-lg shadow-sm';
+                newsCard.innerHTML = `
+                    <h3 class="text-lg font-semibold text-primary mb-2">${article.title}</h3>
+                    <p class="text-sm text-gray-600 mb-2">${article.date}</p>
+                    <p class="text-gray-700">${article.summary}</p>
+                `;
+                newsList.appendChild(newsCard);
+            });
+        }
+
+        /**
+         * Loads more news articles and renders them.
+         */
+        async function loadMoreNews() {
+            showLoadingSpinner();
+            const newNews = await fetchNews(currentPage, itemsPerPage);
+            renderNews(newNews);
+            currentPage++;
+            hideLoadingSpinner();
+            // Hide load more button if no more news available
+            if (newNews.length < itemsPerPage) {
+                loadMoreNewsButton.classList.add('hidden');
+            }
+        }
+
         function showModal(messageKey, isSuccess = false, redirectUrl = null) {
             // Use language.js to get the translated message
             const message = window.langData ? window.langData[messageKey] : messageKey;
@@ -366,12 +497,17 @@
                     scrollToTopBtn.classList.add('hidden');
                 }
             }
+
+            // Initial load of news
+            await loadMoreNews();
         };
 
         applyTabButton.addEventListener('click', () => {
             applyTabButton.classList.add('active');
             teacherApplicationSection.classList.remove('hidden');
         });
+
+        loadMoreNewsButton.addEventListener('click', loadMoreNews);
 
         teacherApplicationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
