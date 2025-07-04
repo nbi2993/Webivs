@@ -280,29 +280,35 @@
         </section>
     </main>
 
-    <!-- Footer component will be loaded here -->
-    <div id="footer-placeholder"></div>
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <!-- AOS initialization -->
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Core Application Scripts - Order is crucial -->
+
+    <script src="/js/firebase-init.js" type="module"></script>
+
+    <script src="/js/utils.js" defer></script>
+
+    <script src="/js/language.js" defer></script>
+    <script src="/js/fabController.js" defer></script> 
+    <script src="/js/loadComponents.js" defer></script>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formMessage = document.getElementById('formMessage');
-            formMessage.classList.remove('hidden', 'text-red-500', 'text-green-500');
-            formMessage.innerHTML = '';
-
-            formMessage.classList.add('text-green-500');
-            formMessage.textContent = 'Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất có thể!';
-            formMessage.classList.remove('hidden');
-
-            this.reset();
-        });
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic',
+            });
+        };
     </script>
 </body>
 </html>
