@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiết Bị Công Nghệ & Giải Pháp Cơ Sở - IVS JSC</title>
+
+    <!-- SEO Meta Tags -->
+    <!-- Thêm các thẻ meta SEO nếu có từ index.html -->
+
+    <!-- Favicons and Manifest -->
+    <!-- Thêm các thẻ favicon và manifest nếu có từ index.html -->
+
+    <!-- Preconnect to CDNs for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts and Icons (Async loading for performance) -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Custom Tailwind Config from index.html -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'ivs-bg': '#0A0A0A', 'ivs-card': '#111111', 'ivs-border': '#27272a',
+                        'ivs-text-primary': '#f4f4f5', 'ivs-text-secondary': '#a1a1aa',
+                        'ivs-blue': '#60a5fa', 'ivs-blue-darker': '#3b82f6', 'ivs-green': '#4ade80',
+                        'ivs-purple': '#a78bfa', 'ivs-cyan': '#22d3ee', 'ivs-amber': '#f59e0b',
+                        'ivs-emerald': '#10b981', 'ivs-rose': '#f43f5e',
+                        'ivs-orange': '#f97316',
+                        'ivs-red': '#ef4444',
+                    },
+                    fontFamily: {
+                        'sans': ['Be Vietnam Pro', 'sans-serif'], 'display': ['Poppins', 'sans-serif'],
+                    },
+                    animation: { 'aurora-spin': 'aurora-spin 6s linear infinite' },
+                    keyframes: {
+                        'aurora-spin': {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles from index.html for consistency */
+        body.menu-open {
+            overflow: hidden;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111111; /* ivs-card */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a; /* ivs-border */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6; /* ivs-blue-darker */
+        }
+        /* Thêm các style từ /css/styles.css nếu có và cần thiết cho trang này */
+        /* Ví dụ: .interactive-card, .btn-explore, v.v. */
+    </style>
+</head>
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
+    <!-- Header Section - Tự động tạo, không phụ thuộc file JS ngoài -->
+    <header id="header-placeholder"></header>
+
+    <main class="py-16 lg:py-20">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto mb-12" data-aos="fade-up">
+                <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4">Thiết Bị Công Nghệ & Giải Pháp Cơ Sở</h1>
+                <p class="text-xl text-ivs-text-secondary">
+                    IVS JSC cung cấp các giải pháp toàn diện về thiết bị công nghệ, văn phòng và tư vấn thi công cơ sở, đảm bảo chất lượng và hiệu quả tối ưu cho khách hàng.
+                </p>
+            </div>
+
+            <!-- Section: Thiết bị công nghệ -->
+            <section class="bg-ivs-card p-8 rounded-lg border border-ivs-border mb-12" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-3xl font-bold font-display text-white mb-6">Thiết Bị Công Nghệ</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Item 1: Tivi -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Tivi</h3>
+                        <p class="text-ivs-text-secondary">Cung cấp các loại Tivi thông minh, độ phân giải cao, phù hợp cho mọi không gian từ gia đình đến văn phòng, phòng học.</p>
+                    </div>
+                    <!-- Item 2: Màn hình tương tác -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Màn hình tương tác</h3>
+                        <p class="text-ivs-text-secondary">Giải pháp màn hình tương tác hiện đại, nâng cao hiệu quả giảng dạy và trình bày trong các buổi họp, hội thảo.</p>
+                    </div>
+                    <!-- Item 3: Máy in màu -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Máy in màu</h3>
+                        <p class="text-ivs-text-secondary">Máy in màu chất lượng cao, đáp ứng nhu cầu in ấn tài liệu, hình ảnh sắc nét cho cá nhân và doanh nghiệp.</p>
+                    </div>
+                    <!-- Item 4: Máy in 2 mặt văn phòng -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Máy in 2 mặt văn phòng</h3>
+                        <p class="text-ivs-text-secondary">Máy in đa năng, in 2 mặt tự động, giúp tiết kiệm giấy và tăng năng suất làm việc trong môi trường văn phòng.</p>
+                    </div>
+                    <!-- Item 5: Máy vi tính -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Máy vi tính</h3>
+                        <p class="text-ivs-text-secondary">Cung cấp máy vi tính để bàn cấu hình đa dạng, phục vụ từ công việc văn phòng cơ bản đến các tác vụ chuyên biệt.</p>
+                    </div>
+                    <!-- Item 6: Laptop (đa số hàng nội địa Nhật) -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Laptop (đa số hàng nội địa Nhật)</h3>
+                        <p class="text-ivs-text-secondary">Laptop chất lượng cao, bền bỉ, đa số là hàng nội địa Nhật, đảm bảo hiệu suất và độ tin cậy cho người dùng.</p>
+                    </div>
+                    <!-- Item 7: Camera -->
+                    <div class="p-6 bg-ivs-bg rounded-lg border border-ivs-border">
+                        <h3 class="text-xl font-semibold text-white mb-2">Camera</h3>
+                        <p class="text-ivs-text-secondary">Hệ thống camera an ninh, camera giám sát chất lượng cao, phục vụ nhu cầu bảo vệ và quản lý tài sản.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Thiết bị văn phòng -->
+            <section class="bg-ivs-card p-8 rounded-lg border border-ivs-border mb-12" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl font-bold font-display text-white mb-6">Thiết Bị Văn phòng</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Tư vấn thi công, giới thiệu đối tác cung cấp chuyên nghiệp, uy tín</h3>
+                        <p class="text-ivs-text-secondary">Chúng tôi tư vấn và giới thiệu các đối tác chuyên nghiệp, uy tín trong lĩnh vực cung cấp và thi công thiết bị văn phòng, đảm bảo chất lượng và dịch vụ tốt nhất.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Máy lạnh, hệ thống điện lạnh</h3>
+                        <p class="text-ivs-text-secondary">Hỗ trợ tìm kiếm và kết nối với các đơn vị cung cấp, lắp đặt máy lạnh và hệ thống điện lạnh hàng đầu, tối ưu hóa không gian làm việc.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Tư vấn thiết kế, thi công cơ sở -->
+            <section class="bg-ivs-card p-8 rounded-lg border border-ivs-border" data-aos="fade-up" data-aos-delay="300">
+                <h2 class="text-3xl font-bold font-display text-white mb-6">Tư vấn thiết kế, thi công cơ sở</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Xây dựng thiết kế trung tâm, trường học, văn phòng, vv.</h3>
+                        <p class="text-ivs-text-secondary">Cung cấp dịch vụ tư vấn thiết kế và xây dựng cơ sở vật chất cho các trung tâm giáo dục, trường học, văn phòng, đảm bảo không gian hiện đại, tiện nghi và phù hợp với mục đích sử dụng.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Giải pháp đảm bảo các đơn vị thi công, cung cấp uy tín, chất lượng</h3>
+                        <p class="text-ivs-text-secondary">Chúng tôi cam kết mang đến các giải pháp toàn diện, kết nối khách hàng với những đơn vị thi công và cung cấp vật tư uy tín, có kinh nghiệm, đảm bảo dự án được triển khai đúng tiến độ và đạt chất lượng cao nhất.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
+
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Core Application Scripts - Order is crucial -->
+    <!-- 1. Firebase Init (if type="module", load first) -->
+    <script src="/js/firebase-init.js" type="module"></script>
+    <!-- 2. Global Utilities (componentLog, debounce) -->
+    <script src="/js/utils.js" defer></script>
+    <!-- 3. Language System (self-initializes, needed by Header) -->
+    <script src="/js/language.js" defer></script>
+    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
+    <script src="/js/fabController.js" defer></script>
+
+    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
+    <script src="/js/loadComponents.js" defer></script>
+    <!-- 6. Main App Logic (if any, after all components are ready) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic',
+            });
+        };
+    </script>
+</body>
+</html>
