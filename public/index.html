@@ -253,8 +253,7 @@
             </div>
         </section>
 
-        <!-- SECTION 5: SOLUTIONS FOR PARTNERS (Tabs) -->
-        <section id="partner-solutions" class="py-20 lg:py-24 bg-ivs-bg">
+<section id="partner-solutions" class="py-20 lg:py-24 bg-ivs-bg">
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                     <h2 class="text-3xl lg:text-4xl font-bold font-display text-white" data-lang-key="solutions_title">Giải pháp cho Từng đối tác</h2>
@@ -267,6 +266,7 @@
                         <button @click="tab = 'schools'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'schools', 'text-ivs-text-secondary border-transparent': tab !== 'schools' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_schools">Trường học</button>
                         <button @click="tab = 'centers'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'centers', 'text-ivs-text-secondary border-transparent': tab !== 'centers' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_centers">Trung tâm</button>
                         <button @click="tab = 'corporate'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'corporate', 'text-ivs-text-secondary border-transparent': tab !== 'corporate' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_corporate">Doanh nghiệp</button>
+                        <button @click="tab = 'individual'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'individual', 'text-ivs-text-secondary border-transparent': tab !== 'individual' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_individual">Cá nhân</button>
                     </div>
                     <div class="bg-ivs-card p-8 rounded-lg border border-ivs-border">
                         <div x-show="tab === 'schools'">
@@ -277,25 +277,51 @@
                                 <li data-lang-key="solutions_schools_item3">Tổ chức các cuộc thi học thuật và sự kiện ngoại khóa.</li>
                                 <li data-lang-key="solutions_schools_item4">Xây dựng hệ thống quản lý học tập (LMS) và cổng thông tin trường học.</li>
                             </ul>
+                            <div class="mt-6 flex flex-wrap gap-4">
+                                <a href="/Pages/lkmamnon.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_schools_btn1">Hợp tác Mầm non</a>
+                                <a href="/Pages/lktieuhoc.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_schools_btn2">Hợp tác Tiểu học</a>
+                                <a href="/Pages/lkthcsthpt.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_schools_btn3">Hợp tác THCS & THPT</a>
+                            </div>
                         </div>
                         <div x-show="tab === 'centers'" style="display: none;">
-                             <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_centers_title">Giải pháp cho Trung tâm Ngoại ngữ & Kỹ năng</h3>
-                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
-                                 <li data-lang-key="solutions_centers_item1">Tư vấn thành lập, setup và vận hành từ A-Z.</li>
-                                 <li data-lang-key="solutions_centers_item2">Cung cấp chương trình và giáo trình độc quyền.</li>
-                                 <li data-lang-key="solutions_centers_item3">Giải pháp CRM và App thương hiệu để quản lý và chăm sóc học viên.</li>
-                                 <li data-lang-key="solutions_centers_item4">Hỗ trợ tuyển sinh và chiến lược marketing.</li>
-                             </ul>
+                            <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_centers_title">Giải pháp cho Trung tâm Ngoại ngữ & Kỹ năng</h3>
+                            <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li data-lang-key="solutions_centers_item1">Tư vấn thành lập, setup và vận hành từ A-Z.</li>
+                                <li data-lang-key="solutions_centers_item2">Cung cấp chương trình và giáo trình độc quyền.</li>
+                                <li data-lang-key="solutions_centers_item3">Giải pháp CRM và App thương hiệu để quản lý và chăm sóc học viên.</li>
+                                <li data-lang-key="solutions_centers_item4">Hỗ trợ tuyển sinh và chiến lược marketing.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-4">
+                                <a href="/Pages/lkttnn.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_centers_btn1">Hợp tác Trung tâm Ngoại ngữ</a>
+                                <a href="/Pages/foreign-teacher-services.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_centers_btn2">Dịch vụ Giáo viên Nước ngoài</a>
+                            </div>
                         </div>
-                         <div x-show="tab === 'corporate'" style="display: none;">
-                             <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_corporate_title">Giải pháp cho Doanh nghiệp</h3>
-                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
-                                 <li data-lang-key="solutions_corporate_item1">Chương trình đào tạo tiếng Anh thương mại (Business English) cho nhân viên.</li>
-                                 <li data-lang-key="solutions_corporate_item2">Các khóa học "Upskill" nâng cao kỹ năng mềm và kỹ năng lãnh đạo.</li>
-                                 <li data-lang-key="solutions_corporate_item3">Tư vấn chiến lược nhân sự và xây dựng văn hóa học tập trong doanh nghiệp.</li>
-                                 <li data-lang-key="solutions_corporate_item4">Tổ chức team-building và các sự kiện đào tạo chuyên biệt.</li>
-                             </ul>
-                         </div>
+                        <div x-show="tab === 'corporate'" style="display: none;">
+                            <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_corporate_title">Giải pháp cho Doanh nghiệp</h3>
+                            <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li data-lang-key="solutions_corporate_item1">Chương trình đào tạo tiếng Anh thương mại (Business English) cho nhân viên.</li>
+                                <li data-lang-key="solutions_corporate_item2">Các khóa học "Upskill" nâng cao kỹ năng mềm và kỹ năng lãnh đạo.</li>
+                                <li data-lang-key="solutions_corporate_item3">Tư vấn chiến lược nhân sự và xây dựng văn hóa học tập trong doanh nghiệp.</li>
+                                <li data-lang-key="solutions_corporate_item4">Tổ chức team-building và các sự kiện đào tạo chuyên biệt.</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-4">
+                                <a href="/Pages/psb_introduction.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_corporate_btn1">Giới thiệu PSB</a>
+                                <a href="/Pages/webdesign.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_corporate_btn2">Thiết kế Website</a>
+                            </div>
+                        </div>
+                        <div x-show="tab === 'individual'" style="display: none;">
+                            <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_individual_title">Giải pháp cho Cá nhân</h3>
+                            <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
+                                <li data-lang-key="solutions_individual_item1">Tư vấn pháp lý và tranh tụng trong lĩnh vực giáo dục.</li>
+                                <li data-lang-key="solutions_individual_item2">Dịch vụ tư vấn và định hướng nghề nghiệp.</li>
+                                <li data-lang-key="solutions_individual_item3">Cung cấp các thiết bị công nghệ (máy tính, máy in, laptop đa số hàng nội địa Nhật).</li>
+                            </ul>
+                            <div class="mt-6 flex flex-wrap gap-4">
+                                <a href="/Pages/litigation_consulting.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_individual_btn1">Tư vấn Pháp lý</a>
+                                <a href="/Pages/careervn.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_individual_btn2">Cơ hội Nghề nghiệp</a>
+                                <a href="/Pages/tech_devices.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-dark transition-colors font-semibold" data-lang-key="solutions_individual_btn3">Thiết bị Công nghệ</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
