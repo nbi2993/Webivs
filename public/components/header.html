@@ -1,5 +1,5 @@
 <!-- FILE: /public/components/header.html -->
-<!-- VERSION: 2.11 - Updated 'Dịch Vụ' mega-menu to include 'IVS Celestech' and moved 'Thiết kế Web' -->
+<!-- VERSION: 2.12 - Added missing data-lang-key attributes for 'IVS Celestech' section in desktop navigation -->
 <!-- DESCRIPTION: Optimized HTML structure for the main header with updated navigation menus and language selection. -->
 
 <header id="ivs-main-header" class="fixed top-0 left-0 right-0 z-40">
@@ -20,11 +20,11 @@
                         <span data-lang-key="nav_about_ivs">Về IVS</span><i class="fas fa-chevron-down text-xs ml-2"></i>
                     </button>
                     <div class="desktop-dropdown p-2 space-y-1">
-                        <a href="/about.html" class="dropdown-item" data-lang-key="nav_about_us">Về chúng tôi</a>                        
+                        <a href="/about.html" class="dropdown-item" data-lang-key="nav_about_us">Về chúng tôi</a>                        
                         <a href="/Pages/non-profit.html" class="dropdown-item" data-lang-key="nav_non_profit">Phi lợi nhuận</a>
-                        <a href="/Pages/careervn.html" class="dropdown-item" data-lang-key="nav_career_opportunities">Cơ hội nghề nghiệp</a>                       
-                        <a href="/ivs-global-teacher-hub.html" class="dropdown-item" data-lang-key="nav_foreign_teachers_applying">Foreign Teachers Applying</a>
-
+                        <a href="/Pages/careervn.html" class="dropdown-item" data-lang-key="nav_career_opportunities">Cơ hội nghề nghiệp</a>                     
+                        <a href="/ivs-global-teacher-hub.html" class="dropdown-item" data-lang-key="nav_foreign_teachers_applying">Teachers Applying</a>
+                        <a href="/Pages/international-partnership.html" class="dropdown-item" data-lang-key="solution_international_coop_title">Hợp tác Quốc tế</a>
                     </div>
                 </div>
 
@@ -63,16 +63,16 @@
                                     <i class="fas fa-users fa-fw mr-3 text-ivs-accent/70"></i>Danh sách Giáo viên
                                 </a>
                             </div>
-                            <!-- Cột phải: IVS Celestech -->
+                            <!-- Cột phải: IVS Celestech - Đã thêm data-lang-key -->
                             <div class="space-y-2">
-                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2">IVS Celestech</h3>
-                                <a href="/Pages/webdesign.html" class="dropdown-item">
+                                <h3 class="font-bold text-ivs-accent border-b border-ivs-bg-light pb-2 mb-2" data-lang-key="header_ivscelestech_title">IVS Celestech</h3>
+                                <a href="/Pages/webdesign.html" class="dropdown-item" data-lang-key="header_ivscelestech_webdesign">
                                     <i class="fas fa-globe fa-fw mr-3 text-ivs-accent/70"></i>Thiết kế Website
                                 </a>
-                                <a href="/Pages/ivscelestech.html" class="dropdown-item">
+                                <a href="/Pages/ivscelestech.html" class="dropdown-item" data-lang-key="header_ivscelestech_edtech">
                                     <i class="fas fa-microchip fa-fw mr-3 text-ivs-accent/70"></i>Trang thiết bị công nghệ GD
                                 </a>
-                                <a href="/Pages/ivscelestech-tcnoithat.html" class="dropdown-item">
+                                <a href="/Pages/ivscelestech-tcnoithat.html" class="dropdown-item" data-lang-key="header_ivscelestech_tcnoithat">
                                     <i class="fas fa-couch fa-fw mr-3 text-ivs-accent/70"></i>Tư vấn, thi công nội thất GD
                                 </a>
                             </div>
@@ -175,7 +175,8 @@
                     <a href="/about.html" class="mobile-submenu-item" data-lang-key="nav_about_us">Về chúng tôi</a>
                     <a href="/Pages/non-profit.html" class="mobile-submenu-item" data-lang-key="nav_non_profit">Phi lợi nhuận</a>
                     <a href="/Pages/careervn.html" class="mobile-submenu-item" data-lang-key="nav_career_opportunities">Cơ hội nghề nghiệp</a>
-                    <a href="/ivs-global-teacher-hub.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_applying">Foreign Teachers Applying</a>
+                    <a href="/ivs-global-teacher-hub.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_applying">Teachers Applying</a>
+                    <a href="/Pages/international-partnership.html" class="mobile-submenu-item" data-lang-key="solution_international_coop_title">Hợp tác Quốc tế</a>                    
                 </div>
             </div>
 
@@ -196,7 +197,7 @@
                     <a href="/Pages/foreign-teacher-services.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_services">Dịch vụ GVNN</a>
                     <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_price_list">Bảng giá tham khảo</a>
                     <a href="/Pages/teacher-lists-available.html" class="mobile-submenu-item" data-lang-key="nav_foreign_teachers_teacher_list">Danh sách Giáo viên</a>
-                    <!-- IVS Celestech for mobile -->
+                    <!-- IVS Celestech for mobile - Đã có data-lang-key -->
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="header_ivscelestech_title">IVS Celestech</h4>
                     <a href="/Pages/webdesign.html" class="mobile-submenu-item" data-lang-key="header_ivscelestech_webdesign">Thiết kế Website</a>
                     <a href="/Pages/ivscelestech.html" class="mobile-submenu-item" data-lang-key="header_ivscelestech_edtech">Trang thiết bị công nghệ GD</a>
@@ -214,8 +215,7 @@
                     <a href="/solutions.html" class="mobile-submenu-item" data-lang-key="nav_solutions_overview">Tổng quan</a>
                     <a href="/Pages/ivscelestech.html" class="mobile-submenu-item" data-lang-key="nav_solutions_edtech">Công nghệ GD</a>
                     <a href="/Pages/upskill.html" class="mobile-submenu-item" data-lang-key="nav_solutions_upskill">Nâng cao Trình độ</a>
-                    <!-- Removed: <a href="/Pages/webdesign.html" class="mobile-submenu-item" data-lang-key="nav_solutions_webdesign">Thiết kế Web</a> -->
-                    <!-- Existing Legal Consulting section for mobile -->
+
                     <h4 class="text-ivs-text-primary px-3 py-2 font-semibold mt-3" data-lang-key="nav_services_legal_title">Tư vấn Pháp lý</h4>
                     <a href="/Pages/legal_consulting.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_consulting">Tư vấn Chuyên sâu</a>
                     <a href="/Pages/psb_introduction.html" class="mobile-submenu-item" data-lang-key="nav_services_legal_corporate">Luật Doanh nghiệp</a>
@@ -407,7 +407,7 @@
         transition: color 0.2s; text-decoration: none;
         background: none; /* Remove default button background */
         border: none; /* Remove default button border */
-        cursor: pointer; /* Indicate it's clickable */
+        cursor: pointer;
     }
     .bottom-nav-item.active { color: var(--ivs-accent); }
     .bottom-nav-text { font-size: 0.7rem; margin-top: 2px; }
