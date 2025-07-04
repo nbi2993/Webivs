@@ -75,8 +75,9 @@
     </script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css"> 
-    <link rel="stylesheet" href="/dist/output.css">
+    <!-- Removed local CSS files to prevent errors in Canvas environment -->
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="/dist/output.css"> -->
      <style>
         .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .card-hover-effect { transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -99,7 +100,16 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-neutral-200 font-inter">
-    <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
+    <!-- Header Section - Self-contained HTML -->
+    <header class="bg-primary dark:bg-neutral-800 text-white py-4 shadow-md">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">IVS Celestech</a>
+            <nav>
+                <a href="/" class="text-white hover:text-secondary transition-colors duration-200">Trang chủ</a>
+                <!-- Add more navigation links here if needed -->
+            </nav>
+        </div>
+    </header>
 
     <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)]">
         <section class="relative text-white py-20 md:py-28 text-center overflow-hidden">
@@ -147,7 +157,7 @@
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     <!-- Service 1: Tư vấn, Thi công & Nội thất Giáo dục -->
-                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="100">
+                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
                             <i class="fas fa-hammer"></i> <!-- Icon for Tư vấn, Thi công & Nội thất Giáo dục -->
                         </div>
@@ -160,10 +170,13 @@
                                 <li data-lang-key="edtech_service_design_build_item_3">Cung cấp nội thất giáo dục thông minh, tiện nghi (phù hợp mọi lứa tuổi, tối ưu hóa sự tương tác và thoải mái).</li>
                             </ul>
                         </div>
+                        <a href="/Pages/ivscelestech-tcnoithat.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                            Xem thêm dịch vụ thiết kế nội thất
+                        </a>
                     </div>
 
                     <!-- Service 2: Trang thiết bị Thông minh -->
-                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
                             <i class="fas fa-robot"></i> <!-- Icon for Trang thiết bị Thông minh -->
                         </div>
@@ -176,10 +189,13 @@
                                 <li data-lang-key="edtech_service_smart_equipment_item_3">Ứng dụng Trí tuệ nhân tạo (AI) trong học tập (hệ thống học tập thích ứng, trợ lý ảo thông minh, phân tích hiệu suất học tập cá nhân).</li>
                             </ul>
                         </div>
+                        <a href="/Pages/tech_devices.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                            Xem thêm Thiết bị
+                        </a>
                     </div>
 
                     <!-- Service 3: Hệ thống Quản lý Giáo dục -->
-                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
                             <i class="fas fa-cogs"></i> <!-- Icon for Hệ thống Quản lý Giáo dục -->
                         </div>
@@ -192,10 +208,16 @@
                                 <li data-lang-key="edtech_service_management_system_item_3">Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược).</li>
                             </ul>
                         </div>
+                        <a href="/apps/ivsapps.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                            Tìm hiểu Apps Quản lý
+                        </a>                        
+                        <a href="/games/ivsgames.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                            IVS Game Arcade
+                        </a>  
                     </div>
 
                     <!-- New Service: Thiết kế Website Giáo dục -->
-                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="400">
+                    <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
                             <i class="fas fa-globe"></i> <!-- Icon for Website Design -->
                         </div>
@@ -209,6 +231,9 @@
                                 <li data-lang-key="edtech_service_website_design_item_4">Tối ưu hóa SEO và hiệu suất website để thu hút người dùng.</li>
                             </ul>
                         </div>
+                        <a href="/Pages/webdesign.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                            Tìm hiểu về Thiết kế Web
+                        </a>
                     </div>
                 </div>
             </div>
@@ -263,13 +288,19 @@
         </section>
     </main>
 
-    <footer id="footer-placeholder"></footer>
-    <div id="fab-container-placeholder"></div>
+    <!-- Footer Section - Self-contained HTML -->
+    <footer class="bg-primary dark:bg-neutral-800 text-white py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 IVS Celestech. All rights reserved.</p>
+            <!-- Add more footer links or info here if needed -->
+        </div>
+    </footer>
 
-    <script src="/js/script.js" defer></script>
-    <script src="/js/language.js" defer></script>
-    <script src="/js/fabController.js" defer></script>
-    <script src="/js/loadComponents.js" defer></script>
+    <!-- Removed local JS files to prevent errors in Canvas environment -->
+    <!-- <script src="/js/script.js" defer></script> -->
+    <!-- <script src="/js/language.js" defer></script> -->
+    <!-- <script src="/js/fabController.js" defer></script> -->
+    <!-- <script src="/js/loadComponents.js" defer></script> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -277,25 +308,26 @@
             once: true,
             offset: 50,
         });
-         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-          if (scrollToTopBtn) {
-              window.addEventListener('scroll', () => {
-                  if (window.pageYOffset > 200) {
-                      scrollToTopBtn.classList.remove('hidden');
-                      scrollToTopBtn.classList.add('flex');
-                  } else {
-                      scrollToTopBtn.classList.remove('flex');
-                      scrollToTopBtn.classList.add('hidden');
-                  }
-              }, { passive: true });
+        // Removed scroll to top button logic as it depends on fabController.js
+        // const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        // if (scrollToTopBtn) {
+        //     window.addEventListener('scroll', () => {
+        //         if (window.pageYOffset > 200) {
+        //             scrollToTopBtn.classList.remove('hidden');
+        //             scrollToTopBtn.classList.add('flex');
+        //         } else {
+        //             scrollToTopBtn.classList.remove('flex');
+        //             scrollToTopBtn.classList.add('hidden');
+        //         }
+        //     }, { passive: true });
 
-              scrollToTopBtn.addEventListener('click', () => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-              });
-              if (window.pageYOffset <= 200) {
-                scrollToTopBtn.classList.add('hidden');
-              }
-          }
+        //     scrollToTopBtn.addEventListener('click', () => {
+        //         window.scrollTo({ top: 0, behavior: 'smooth' });
+        //     });
+        //     if (window.pageYOffset <= 200) {
+        //         scrollToTopBtn.classList.add('hidden');
+        //     }
+        // }
     </script>
 </body>
 </html>
