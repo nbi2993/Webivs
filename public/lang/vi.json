@@ -273,15 +273,15 @@
   "edtech_introduction_content_1": "IVS Celestech là đơn vị chuyên trách về công nghệ giáo dục của IVS JSC, với sứ mệnh đưa những giải pháp công nghệ tiên tiến nhất vào hệ thống giáo dục. Chúng tôi tin rằng công nghệ là chìa khóa để mở ra tiềm năng học tập không giới hạn cho mọi học viên và tối ưu hóa hiệu quả giảng dạy cho giáo viên.",
   "edtech_introduction_content_2": "Chúng tôi không chỉ cung cấp các công cụ, mà còn xây dựng một hệ sinh thái EdTech toàn diện, từ nền tảng quản lý học tập đến các ứng dụng tương tác, giúp cá nhân hóa trải nghiệm học tập và nâng cao chất lượng giáo dục.",
   "edtech_solutions_title": "Các Giải Pháp & Dịch Vụ Chính",
-  "edtech_service_design_build_title": "Tư vấn, Thi công & Nội thất Giáo dục",
+  
   "edtech_service_design_build_desc_1": "Thiết kế không gian giáo dục hiện đại, thân thiện, tối ưu hiệu quả giảng dạy (lớp học, phòng STEAM, lab...).",
   "edtech_service_design_build_desc_2": "Thi công xây dựng trường học, phòng chức năng chuyên biệt.",
   "edtech_service_design_build_desc_3": "Cung cấp, lắp đặt trọn gói nội thất giáo dục chuẩn quốc tế, thẩm mỹ và bền bỉ.",
-  "edtech_service_smart_equipment_title": "Trang thiết bị Thông minh",
+
   "edtech_service_smart_equipment_desc_1": "Màn hình tương tác, tivi, máy chiếu thông minh: Hỗ trợ bài giảng trực quan, sinh động.",
   "edtech_service_smart_equipment_desc_2": "Thiết bị thực tế ảo (VR): Trải nghiệm học tập đột phá, khám phá thế giới trực quan.",
   "edtech_service_smart_equipment_desc_3": "Giải pháp trí tuệ nhân tạo (AI): Cá nhân hóa lộ trình học tập, nâng cao kỹ năng.",
-  "edtech_service_management_system_title": "Hệ thống Quản lý Giáo dục",
+
   "edtech_service_management_system_desc_1": "Nền tảng quản lý học tập (LMS), quản lý trường học thông minh, tối ưu hóa vận hành và giảng dạy.",
   "edtech_service_management_system_desc_2": "Ứng dụng di động hỗ trợ phụ huynh, học sinh và giáo viên kết nối hiệu quả.",
   "edtech_why_choose_title": "Tại Sao Chọn IVS Celestech?",
@@ -1554,5 +1554,23 @@
   "website_consultation_button": "Nhận tư vấn miễn phí",
   "nav_about_us": "Về chúng tôi",
   "nav_career_opportunities": "Cơ hội nghề nghiệp",
-  "nav_non_profit": "Phi lợi nhuận"
+  "nav_non_profit": "Phi lợi nhuận",
+  "edtech_services_title": "Các Dịch Vụ Của IVS Celestech",
+  "edtech_services_intro": "IVS Celestech, là bộ phận công nghệ giáo dục (EdTech) của IVS JSC, cung cấp các giải pháp công nghệ toàn diện nhằm kiến tạo môi trường học tập hiện đại và hiệu quả. Các dịch vụ chính của IVS Celestech bao gồm:",
+  "edtech_service_design_build_title": "Tư vấn, Thi công & Nội thất Giáo dục",
+  "edtech_service_design_build_desc_intro": "Chúng tôi kiến tạo không gian học tập đột phá, từ thiết kế kiến trúc đến thi công nội thất, đảm bảo môi trường giáo dục hiện đại, linh hoạt và truyền cảm hứng. Các giải pháp bao gồm:",
+  "edtech_service_design_build_item_1": "Thiết kế không gian học tập đa năng (lớp học thông minh, phòng STEAM, thư viện số, phòng lab chuyên biệt).",
+  "edtech_service_design_build_item_2": "Thi công xây dựng và cải tạo (đảm bảo tiêu chuẩn an toàn, bền vững).",
+  "edtech_service_design_build_item_3": "Cung cấp nội thất giáo dục thông minh, tiện nghi (phù hợp mọi lứa tuổi, tối ưu hóa sự tương tác và thoải mái).",
+  "edtech_service_smart_equipment_title": "Trang thiết bị Thông minh",
+  "edtech_service_smart_equipment_desc_intro": "Nâng tầm trải nghiệm học tập với các thiết bị công nghệ tiên tiến, tích hợp sâu rộng vào chương trình giảng dạy. Bao gồm:",
+  "edtech_service_smart_equipment_item_1": "Màn hình tương tác và thiết bị trình chiếu thông minh (biến lớp học thành không gian sáng tạo).",
+  "edtech_service_smart_equipment_item_2": "Giải pháp Thực tế ảo (VR) và Thực tế tăng cường (AR) (đưa học viên vào thế giới mô phỏng sống động, khám phá kiến thức đa chiều).",
+  "edtech_service_smart_equipment_item_3": "Ứng dụng Trí tuệ nhân tạo (AI) trong học tập (hệ thống học tập thích ứng, trợ lý ảo thông minh, phân tích hiệu suất học tập cá nhân).",
+  "edtech_service_management_system_title": "Hệ thống Quản lý Giáo dục",
+  "edtech_service_management_system_desc_intro": "Tối ưu hóa quy trình vận hành và nâng cao hiệu quả quản lý với các nền tảng số hóa toàn diện. Các dịch vụ nổi bật:",
+  "edtech_service_management_system_item_1": "Hệ thống quản lý học tập (LMS) và quản lý trường học (SMS) (tự động hóa điểm danh, quản lý điểm, lịch học, báo cáo chuyên sâu).",
+  "edtech_service_management_system_item_2": "Ứng dụng di động kết nối đa chiều (phụ huynh theo dõi tiến độ, học sinh truy cập tài liệu, giáo viên quản lý lớp học mọi lúc mọi nơi).",
+  "edtech_service_management_system_item_3": "Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược)."
+
 }

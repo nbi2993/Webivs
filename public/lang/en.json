@@ -267,15 +267,15 @@
   "edtech_introduction_content_1": "IVS Celestech is the dedicated educational technology unit of IVS JSC, with the mission of bringing the most advanced technological solutions into the education system. We believe that technology is the key to unlocking unlimited learning potential for all students and optimizing teaching effectiveness for educators.",
   "edtech_introduction_content_2": "We not only provide tools, but also build a comprehensive EdTech ecosystem, from learning management platforms to interactive applications, helping to personalize learning experiences and enhance education quality.",
   "edtech_solutions_title": "Key EdTech Solutions & Services",
-  "edtech_service_design_build_title": "Education Consulting, Construction & Interior Design",
+ 
   "edtech_service_design_build_desc_1": "Designing modern, friendly educational spaces, optimizing teaching effectiveness (classrooms, STEAM labs, etc.).",
   "edtech_service_design_build_desc_2": "Constructing schools and specialized functional rooms.",
   "edtech_service_design_build_desc_3": "Providing and installing complete sets of international standard, aesthetic, and durable educational furniture.",
-  "edtech_service_smart_equipment_title": "Smart Equipment",
+
   "edtech_service_smart_equipment_desc_1": "Interactive screens, smart TVs, projectors: Supporting intuitive and engaging lectures.",
   "edtech_service_smart_equipment_desc_2": "Virtual Reality (VR) devices: Breakthrough learning experiences, visual world exploration.",
   "edtech_service_smart_equipment_desc_3": "Artificial Intelligence (AI) solutions: Personalizing learning paths, enhancing skills.",
-  "edtech_service_management_system_title": "Education Management Systems",
+ 
   "edtech_service_management_system_desc_1": "Learning Management Systems (LMS), smart school management, optimizing operations and teaching.",
   "edtech_service_management_system_desc_2": "Mobile applications supporting effective connection between parents, students, and teachers.",
   "edtech_why_choose_title": "Why Choose IVS Celestech?",
@@ -2169,5 +2169,23 @@
   "website_consultation_button": "Get Free Consultation",
   "nav_about_us": "About Us",
   "nav_career_opportunities": "Career Opportunities",
-  "nav_non_profit": "Non-Profit"
+  "nav_non_profit": "Non-Profit",
+  "edtech_services_title": "IVS Celestech Services",
+  "edtech_services_intro": "IVS Celestech, the educational technology (EdTech) division of IVS JSC, provides comprehensive technology solutions aimed at creating modern and effective learning environments. IVS Celestech's main services include:",
+  "edtech_service_design_build_title": "Educational Consulting, Construction & Interior Design",
+  "edtech_service_design_build_desc_intro": "We create groundbreaking learning spaces, from architectural design to interior construction, ensuring modern, flexible, and inspiring educational environments. Our solutions include:",
+  "edtech_service_design_build_item_1": "Design of versatile learning spaces (smart classrooms, STEAM labs, digital libraries, specialized science labs).",
+  "edtech_service_design_build_item_2": "Construction and renovation of school facilities (ensuring safety and sustainability standards).",
+  "edtech_service_design_build_item_3": "Provision and installation of smart, comfortable educational furniture (suitable for all ages, optimizing interaction and comfort).",
+  "edtech_service_smart_equipment_title": "Smart Equipment",
+  "edtech_service_smart_equipment_desc_intro": "Elevate the learning experience with advanced technological equipment, deeply integrated into the curriculum. This includes:",
+  "edtech_service_smart_equipment_item_1": "Interactive screens and smart projection devices (transforming classrooms into creative spaces).",
+  "edtech_service_smart_equipment_item_2": "Virtual Reality (VR) and Augmented Reality (AR) solutions (immersing learners in vivid simulated worlds, exploring multi-dimensional knowledge).",
+  "edtech_service_smart_equipment_item_3": "Artificial Intelligence (AI) applications in learning (adaptive learning systems, intelligent virtual assistants, personalized learning performance analytics).",
+  "edtech_service_management_system_title": "Educational Management Systems",
+  "edtech_service_management_system_desc_intro": "Optimize operational processes and enhance management efficiency with comprehensive digital platforms. Key services include:",
+  "edtech_service_management_system_item_1": "Learning Management Systems (LMS) and School Management Systems (SMS) (automating attendance, grade management, scheduling, in-depth reporting).",
+  "edtech_service_management_system_item_2": "Multi-channel mobile applications (parents track progress, students access materials, teachers manage classes anytime, anywhere).",
+  "edtech_service_management_system_item_3": "Educational data analytics (providing insights into performance and learning trends for strategic decision-making)."
+
 }
