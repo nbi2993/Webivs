@@ -100,16 +100,8 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-neutral-200 font-inter">
-    <!-- Header Section - Self-contained HTML -->
-    <header class="bg-primary dark:bg-neutral-800 text-white py-4 shadow-md">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold">IVS Celestech</a>
-            <nav>
-                <a href="/" class="text-white hover:text-secondary transition-colors duration-200">Trang chủ</a>
-                <!-- Add more navigation links here if needed -->
-            </nav>
-        </div>
-    </header>
+    <!-- Header component will be loaded here -->
+    <div id="header-placeholder"></div>
 
     <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)]">
         <section class="relative text-white py-20 md:py-28 text-center overflow-hidden">
@@ -288,46 +280,46 @@
         </section>
     </main>
 
-    <!-- Footer Section - Self-contained HTML -->
-    <footer class="bg-primary dark:bg-neutral-800 text-white py-8 text-center">
-        <div class="container mx-auto px-6">
-            <p>&copy; 2025 IVS Celestech. All rights reserved.</p>
-            <!-- Add more footer links or info here if needed -->
-        </div>
-    </footer>
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <!-- Removed local JS files to prevent errors in Canvas environment -->
-    <!-- <script src="/js/script.js" defer></script> -->
-    <!-- <script src="/js/language.js" defer></script> -->
-    <!-- <script src="/js/fabController.js" defer></script> -->
-    <!-- <script src="/js/loadComponents.js" defer></script> -->
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Core Application Scripts - Order is crucial -->
+    <!-- 1. Firebase Init (if type="module", load first) -->
+    <script src="/js/firebase-init.js" type="module"></script>
+    <!-- 2. Global Utilities (componentLog, debounce) -->
+    <script src="/js/utils.js" defer></script>
+    <!-- 3. Language System (self-initializes, needed by Header) -->
+    <script src="/js/language.js" defer></script>
+    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
+    <script src="/js/fabController.js" defer></script>
+
+    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
+    <script src="/js/loadComponents.js" defer></script>
+    <!-- 6. Main App Logic (if any, after all components are ready) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-        });
-        // Removed scroll to top button logic as it depends on fabController.js
-        // const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        // if (scrollToTopBtn) {
-        //     window.addEventListener('scroll', () => {
-        //         if (window.pageYOffset > 200) {
-        //             scrollToTopBtn.classList.remove('hidden');
-        //             scrollToTopBtn.classList.add('flex');
-        //         } else {
-        //             scrollToTopBtn.classList.remove('flex');
-        //             scrollToTopBtn.classList.add('hidden');
-        //         }
-        //     }, { passive: true });
 
-        //     scrollToTopBtn.addEventListener('click', () => {
-        //         window.scrollTo({ top: 0, behavior: 'smooth' });
-        //     });
-        //     if (window.pageYOffset <= 200) {
-        //         scrollToTopBtn.classList.add('hidden');
-        //     }
-        // }
+    <script>
+        // Example of how to handle the form submission (simplified for client-side)
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            formMessage.classList.remove('hidden', 'text-red-500', 'text-green-500');
+            formMessage.innerHTML = '';
+
+            // In a real application, you would send this data to a server
+            // For now, we'll just simulate a success message
+            formMessage.classList.add('text-green-500');
+            formMessage.textContent = 'Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất có thể!';
+            formMessage.classList.remove('hidden');
+
+            // Clear the form
+            this.reset();
+        });
     </script>
 </body>
 </html>

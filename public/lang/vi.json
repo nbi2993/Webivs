@@ -1196,7 +1196,6 @@
   "nav_solutions_overview": "Tổng quan Giải pháp",
   "nav_solutions_edtech": "Công nghệ Giáo dục",
   "nav_solutions_upskill": "Nâng cao Trình độ",
-  "nav_solutions_webdesign": "Thiết kế Website",
   "nav_library_gallery": "Thư viện",
   "nav_library_games": "IVS Games",
   "lang_vi": "Tiếng Việt",
@@ -1571,6 +1570,9 @@
   "edtech_service_management_system_desc_intro": "Tối ưu hóa quy trình vận hành và nâng cao hiệu quả quản lý với các nền tảng số hóa toàn diện. Các dịch vụ nổi bật:",
   "edtech_service_management_system_item_1": "Hệ thống quản lý học tập (LMS) và quản lý trường học (SMS) (tự động hóa điểm danh, quản lý điểm, lịch học, báo cáo chuyên sâu).",
   "edtech_service_management_system_item_2": "Ứng dụng di động kết nối đa chiều (phụ huynh theo dõi tiến độ, học sinh truy cập tài liệu, giáo viên quản lý lớp học mọi lúc mọi nơi).",
-  "edtech_service_management_system_item_3": "Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược)."
-
+  "edtech_service_management_system_item_3": "Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược).",
+  "header_ivscelestech_title": "IVS Celestech",
+  "header_ivscelestech_webdesign": "Thiết kế Website",
+  "header_ivscelestech_edtech": "Trang thiết bị công nghệ GD",
+  "header_ivscelestech_tcnoithat": "Tư vấn, thi công nội thất"
 }
