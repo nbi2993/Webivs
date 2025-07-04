@@ -2,7 +2,7 @@
  * @fileoverview IVSFabController - Quản lý các chức năng của Floating Action Button (FAB).
  * Script này xử lý các nút cuộn lên đầu trang, tùy chọn liên hệ, tùy chọn chia sẻ và các menu con của chúng.
  * Nó phụ thuộc vào các hàm tiện ích toàn cục từ utils.js (componentLog, debounce).
- * @version 1.7 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, và đồng bộ icon Zalo.
+ * @version 1.8 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, đồng bộ icon Zalo, và cải thiện hiệu suất/UX.
  * @author IVS-Technical-Team
  */
 
@@ -20,11 +20,20 @@ if (typeof window.debounce !== 'function') {
 }
 
 const IVSFabController = {
+    // Biến để lưu trữ trạng thái khởi tạo
+    isInitialized: false,
+
     /**
      * Khởi tạo bộ điều khiển FAB.
      * Lưu trữ các phần tử DOM, điền nội dung menu và gắn các trình lắng nghe sự kiện.
+     * Đảm bảo chỉ khởi tạo một lần.
      */
     init() {
+        if (this.isInitialized) {
+            window.componentLog("IVSFabController: Đã được khởi tạo. Bỏ qua khởi tạo lại.", "info");
+            return;
+        }
+
         window.componentLog("IVSFabController: Bắt đầu khởi tạo.", "info");
         this.cacheDOM();
         if (!this.fabContainer) {
@@ -33,6 +42,7 @@ const IVSFabController = {
         }
         this.populateMenus();
         this.bindEvents();
+        this.isInitialized = true; // Đánh dấu đã khởi tạo
         window.componentLog("IVSFabController: Khởi tạo hoàn tất.", "info");
     },
 
@@ -74,10 +84,26 @@ const IVSFabController = {
             { key: "fab_call_hotline", text: "Hotline", href: "tel:+84896920547", icon: "fas fa-phone", color: "text-orange-500" },
             { key: "fab_send_email", text: "Email", href: "mailto:info@ivsacademy.edu.vn", icon: "fas fa-envelope", color: "text-red-500" },
             // Đã đồng bộ icon Zalo với fas fa-comment-dots
-            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/ivsjsc", icon: "fas fa-comment-dots", color: "text-blue-500" }, 
+            { key: "fab_chat_zalo", text: "Zalo", href: "https://zalo.me/1582587135739746654", icon: "fas fa-comment-dots", color: "text-blue-500" },
             { key: "fab_fanpage_fb", text: "Facebook", href: "https://www.facebook.com/hr.ivsacademy/", icon: "fab fa-facebook-f", color: "text-blue-600" },
+            { key: "fab_chat_whatapps", text: "WhatsApp", href: "https://wa.me/84795555789/", icon: "fab fa-whatsapp", color: "text-green-500" },
         ];
-        element.innerHTML = contacts.map(c => `<a href="${c.href}" role="menuitem" class="fab-submenu-item group" data-lang-key="${c.key}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span></a>`).join('');
+        // Sử dụng DocumentFragment để tối ưu hiệu suất khi thêm nhiều phần tử DOM
+        const fragment = document.createDocumentFragment();
+        contacts.forEach(c => {
+            const link = document.createElement('a');
+            link.href = c.href;
+            link.setAttribute('role', 'menuitem');
+            link.className = 'fab-submenu-item group';
+            link.setAttribute('data-lang-key', c.key);
+            if (c.href.startsWith('http')) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+            link.innerHTML = `<i class="${c.icon} fa-fw ${c.color}"></i><span>${c.text}</span>`;
+            fragment.appendChild(link);
+        });
+        element.appendChild(fragment);
     },
 
     /**
@@ -99,35 +125,48 @@ const IVSFabController = {
                 action: null // Hành động sẽ được xử lý qua trình lắng nghe sự kiện
             }
         ];
-        element.innerHTML = shares.map((s, index) => {
-            const btnId = `share-action-${index}`;
-            return `<button id="${btnId}" role="menuitem" class="fab-submenu-item group w-full"><i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span></button>`;
-        }).join('');
 
+        const fragment = document.createDocumentFragment();
         shares.forEach((s, index) => {
-            const btn = document.getElementById(`share-action-${index}`);
-            if (btn) {
-                if (s.text === "Copy Link") {
-                    btn.addEventListener('click', () => {
-                        try {
-                            // Sử dụng document.execCommand('copy') để tương thích tốt hơn với iframe
-                            const textarea = document.createElement('textarea');
-                            textarea.value = currentUrl;
-                            document.body.appendChild(textarea);
-                            textarea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textarea);
-                            window.componentLog('Đã sao chép liên kết vào clipboard!');
-                            this.showCopiedConfirmation(btn); // Hiển thị thông báo xác nhận
-                        } catch (err) {
-                            window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
-                        }
-                    });
-                } else if (s.action) {
-                    btn.addEventListener('click', () => eval(s.action)); // Thực thi chuỗi hành động
-                }
+            const btn = document.createElement('button');
+            const btnId = `share-action-${index}`;
+            btn.id = btnId;
+            btn.setAttribute('role', 'menuitem');
+            btn.className = 'fab-submenu-item group w-full';
+            btn.innerHTML = `<i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span>`;
+            fragment.appendChild(btn);
+
+            if (s.text === "Copy Link") {
+                btn.addEventListener('click', () => this.copyLinkToClipboard(currentUrl, btn));
+            } else if (s.action) {
+                btn.addEventListener('click', () => eval(s.action));
             }
         });
+        element.appendChild(fragment);
+    },
+
+    /**
+     * Sao chép liên kết vào clipboard và hiển thị thông báo xác nhận.
+     * @param {string} url URL cần sao chép.
+     * @param {HTMLElement} targetElement Phần tử mục tiêu để hiển thị thông báo.
+     */
+    copyLinkToClipboard(url, targetElement) {
+        try {
+            // Sử dụng document.execCommand('copy') để tương thích tốt hơn với iframe
+            const textarea = document.createElement('textarea');
+            textarea.value = url;
+            textarea.style.position = 'fixed'; // Ngăn cuộn
+            textarea.style.opacity = '0'; // Ẩn textarea
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            window.componentLog('Đã sao chép liên kết vào clipboard!');
+            this.showCopiedConfirmation(targetElement); // Hiển thị thông báo xác nhận
+        } catch (err) {
+            window.componentLog('Không thể sao chép liên kết: ' + err, 'error');
+            // Có thể hiển thị thông báo lỗi cho người dùng nếu cần
+        }
     },
 
     /**
@@ -176,6 +215,7 @@ const IVSFabController = {
                     this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
                 }
             };
+            // Sử dụng debounce để tối ưu hóa hiệu suất khi cuộn
             window.addEventListener('scroll', window.debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             handleScroll(); // Kiểm tra ban đầu khi tải trang
@@ -190,7 +230,9 @@ const IVSFabController = {
             window.componentLog("IVSFabController: Đã gắn sự kiện click cho các nút có submenu.");
         }
 
+        // Đóng submenu khi click ra ngoài
         document.addEventListener('click', (e) => {
+            // Kiểm tra xem click có nằm ngoài fabContainer hay không
             if (this.fabContainer && !this.fabContainer.contains(e.target)) {
                 if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
                     this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
@@ -198,6 +240,16 @@ const IVSFabController = {
             }
         });
         window.componentLog("IVSFabController: Đã gắn sự kiện click toàn cục để đóng submenu FAB.");
+
+        // Đóng submenu khi nhấn phím Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
+                    this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
+                }
+                window.componentLog("IVSFabController: Đã đóng submenu FAB do nhấn phím Escape.");
+            }
+        });
     },
 
     /**
@@ -225,9 +277,10 @@ const IVSFabController = {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
         menu.classList.remove('hidden', 'pointer-events-none');
-        // Sử dụng rAF để hiển thị ngay lập tức trước khi chuyển đổi
+        // Sử dụng rAF để đảm bảo trình duyệt đã sẵn sàng cho thay đổi trạng thái
         requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2'); // Đã thêm lại translate-y-2 cho animation mở
+            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2');
+            menu.classList.add('opacity-100', 'scale-100', 'translate-y-0'); // Đảm bảo các lớp cuối cùng cho trạng thái mở
         });
         btn.setAttribute('aria-expanded', 'true');
         window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
@@ -240,7 +293,9 @@ const IVSFabController = {
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Đã thêm lại translate-y-2 cho animation đóng
+        menu.classList.remove('opacity-100', 'scale-100', 'translate-y-0'); // Xóa các lớp trạng thái mở
+        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Thêm các lớp trạng thái đóng
+
         const onTransitionEnd = () => {
             if (menu.classList.contains('opacity-0')) {
                 menu.classList.add('hidden', 'pointer-events-none');
