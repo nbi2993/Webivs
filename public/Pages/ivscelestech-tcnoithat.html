@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVS Celestech - Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp</title>
+    <title data-lang-key="interior_page_title">IVS Celestech - Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -27,12 +27,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Load components script -->
-    <!-- <script src="/js/loadComponents.js" defer></script> -->
-    <!-- Main script -->
-    <!-- <script src="/js/script.js" defer></script> -->
-    <!-- Contact page specific script for form handling -->
-    <!-- <script src="/js/contact-page.js" defer></script> -->
+    <!-- AOS for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body class="font-sans bg-background text-text">
     <!-- Header component will be loaded here -->
@@ -40,195 +45,234 @@
 
     <main class="container mx-auto px-4 py-8 md:py-12">
         <!-- Hero Section -->
-        <section class="text-center py-16 md:py-24 bg-gradient-to-r from-primary to-secondary text-white rounded-xl shadow-lg mb-12">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">Quy Trình Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp</h1>
-            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Biến không gian sống và làm việc của bạn thành những kiệt tác đầy cảm hứng cùng IVS Celestech.</p>
-            <a href="#contact-us" class="inline-block bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">Tư Vấn Ngay</a>
+        <section class="text-center py-16 md:py-24 bg-gradient-to-r from-primary to-secondary text-white rounded-xl shadow-lg mb-12" data-aos="fade-up">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight" data-lang-key="interior_hero_title">Quy Trình Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto" data-lang-key="interior_hero_subtitle">Biến không gian sống và làm việc của bạn thành những kiệt tác đầy cảm hứng cùng IVS Celestech.</p>
+            <a href="#contact-us" class="inline-block bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" data-lang-key="interior_hero_cta">Tư Vấn Ngay</a>
         </section>
 
         <!-- Giới Thiệu IVS Celestech -->
-        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Giới Thiệu IVS Celestech</h2>
-            <p class="text-lg leading-relaxed text-justify">IVS Celestech, một đơn vị trực thuộc Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC), tự hào mang đến các giải pháp thiết kế và thi công nội thất toàn diện, từ không gian sống đến môi trường làm việc. Chúng tôi cam kết kiến tạo những không gian không chỉ đẹp về mặt thẩm mỹ mà còn tối ưu về công năng và phản ánh rõ nét cá tính của gia chủ hoặc văn hóa doanh nghiệp.</p>
-            <p class="text-lg leading-relaxed text-justify mt-4">Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công giàu kinh nghiệm, IVS Celestech luôn đặt chất lượng, sự tận tâm và sáng tạo lên hàng đầu trong mỗi dự án. Chúng tôi tin rằng, một không gian được thiết kế tỉ mỉ sẽ nâng tầm chất lượng cuộc sống và hiệu suất công việc.</p>
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center" data-lang-key="interior_intro_title">Giới Thiệu IVS Celestech</h2>
+            <p class="text-lg leading-relaxed text-justify" data-lang-key="interior_intro_content_1">IVS Celestech, một đơn vị trực thuộc Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC), tự hào mang đến các giải pháp thiết kế và thi công nội thất toàn diện, từ không gian sống đến môi trường làm việc. Chúng tôi cam kết kiến tạo những không gian không chỉ đẹp về mặt thẩm mỹ mà còn tối ưu về công năng và phản ánh rõ nét cá tính của gia chủ hoặc văn hóa doanh nghiệp.</p>
+            <p class="text-lg leading-relaxed text-justify mt-4" data-lang-key="interior_intro_content_2">Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công giàu kinh nghiệm, IVS Celestech luôn đặt chất lượng, sự tận tâm và sáng tạo lên hàng đầu trong mỗi dự án. Chúng tôi tin rằng, một không gian được thiết kế tỉ mỉ sẽ nâng tầm chất lượng cuộc sống và hiệu suất công việc.</p>
         </section>
 
         <!-- Tại Sao Chọn IVS Celestech? -->
-        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">Tại Sao Chọn IVS Celestech?</h2>
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center" data-lang-key="interior_why_choose_title">Tại Sao Chọn IVS Celestech?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="300">
                     <div class="text-4xl text-accent mb-4">💡</div>
-                    <h3 class="text-xl font-semibold mb-2">Chất Lượng Vượt Trội</h3>
-                    <p class="text-gray-700">Chúng tôi cam kết sử dụng vật liệu cao cấp và quy trình thi công chuẩn mực để đảm bảo mỗi công trình đều đạt độ bền và thẩm mỹ tối ưu.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_why_quality_title">Chất Lượng Vượt Trội</h3>
+                    <p class="text-gray-700" data-lang-key="interior_why_quality_desc">Chúng tôi cam kết sử dụng vật liệu cao cấp và quy trình thi công chuẩn mực để đảm bảo mỗi công trình đều đạt độ bền và thẩm mỹ tối ưu.</p>
                 </div>
-                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="400">
                     <div class="text-4xl text-red-500 mb-4">❤️</div>
-                    <h3 class="text-xl font-semibold mb-2">Tận Tâm Với Khách Hàng</h3>
-                    <p class="text-gray-700">Luôn lắng nghe, thấu hiểu mọi mong muốn của khách hàng để đưa ra những giải pháp thiết kế và thi công phù hợp nhất.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_why_dedication_title">Tận Tâm Với Khách Hàng</h3>
+                    <p class="text-gray-700" data-lang-key="interior_why_dedication_desc">Luôn lắng nghe, thấu hiểu mọi mong muốn của khách hàng để đưa ra những giải pháp thiết kế và thi công phù hợp nhất.</p>
                 </div>
-                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="500">
                     <div class="text-4xl text-blue-500 mb-4">🎨</div>
-                    <h3 class="text-xl font-semibold mb-2">Thiết Kế Sáng Tạo</h3>
-                    <p class="text-gray-700">Đội ngũ kiến trúc sư tài năng không ngừng đổi mới, mang đến những ý tưởng độc đáo, tạo nên không gian sống động và khác biệt.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_why_creativity_title">Thiết Kế Sáng Tạo</h3>
+                    <p class="text-gray-700" data-lang-key="interior_why_creativity_desc">Đội ngũ kiến trúc sư tài năng không ngừng đổi mới, mang đến những ý tưởng độc đáo, tạo nên không gian sống động và khác biệt.</p>
                 </div>
-                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="600">
                     <div class="text-4xl text-green-500 mb-4">🤝</div>
-                    <h3 class="text-xl font-semibold mb-2">Bình Đẳng & Minh Bạch</h3>
-                    <p class="text-gray-700">Mọi giao dịch, quy trình đều được thực hiện minh bạch, rõ ràng, đảm bảo quyền lợi và sự hài lòng cho tất cả các bên.</p>
+                    <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_why_transparency_title">Bình Đẳng & Minh Bạch</h3>
+                    <p class="text-gray-700" data-lang-key="interior_why_transparency_desc">Mọi giao dịch, quy trình đều được thực hiện minh bạch, rõ ràng, đảm bảo quyền lợi và sự hài lòng cho tất cả các bên.</p>
                 </div>
             </div>
         </section>
 
         <!-- Quy Trình Thiết Kế & Thi Công Nội Thất -->
-        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">Quy Trình Thiết Kế & Thi Công Nội Thất</h2>
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center" data-lang-key="interior_process_title">Quy Trình Thiết Kế & Thi Công Nội Thất</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Step 1 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">1</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Tiếp Nhận Thông Tin & Tư Vấn Sơ Bộ</h3>
-                        <p class="text-gray-700">Chúng tôi lắng nghe nhu cầu, mong muốn và ngân sách của bạn để đưa ra những tư vấn ban đầu về phong cách, vật liệu và giải pháp tối ưu.</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step1_title">Tiếp Nhận Thông Tin & Tư Vấn Sơ Bộ</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step1_desc">Chúng tôi lắng nghe nhu cầu, mong muốn và ngân sách của bạn để đưa ra những tư vấn ban đầu về phong cách, vật liệu và giải pháp tối ưu.</p>
                     </div>
                 </div>
                 <!-- Step 2 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="100">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">2</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Khảo Sát Hiện Trạng & Lên Ý Tưởng Thiết Kế</h3>
-                        <p class="text-gray-700">Đội ngũ IVS Celestech sẽ tiến hành khảo sát thực tế mặt bằng, thu thập dữ liệu và bắt đầu phác thảo các ý tưởng thiết kế sơ bộ.</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step2_title">Khảo Sát Hiện Trạng & Lên Ý Tưởng Thiết Kế</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step2_desc">Đội ngũ IVS Celestech sẽ tiến hành khảo sát thực tế mặt bằng, thu thập dữ liệu và bắt đầu phác thảo các ý tưởng thiết kế sơ bộ.</p>
                     </div>
                 </div>
                 <!-- Step 3 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="200">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">3</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Ký Kết Hợp Đồng Thiết Kế & Triển Khai Hồ Sơ</h3>
-                        <p class="text-gray-700">Sau khi thống nhất ý tưởng, chúng ta sẽ ký kết hợp đồng thiết kế và IVS Celestech sẽ triển khai hồ sơ thiết kế chi tiết (2D, 3D).</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step3_title">Ký Kết Hợp Đồng Thiết Kế & Triển Khai Hồ Sơ</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step3_desc">Sau khi thống nhất ý tưởng, chúng ta sẽ ký kết hợp đồng thiết kế và IVS Celestech sẽ triển khai hồ sơ thiết kế chi tiết (2D, 3D).</p>
                     </div>
                 </div>
                 <!-- Step 4 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="300">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">4</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Duyệt Thiết Kế & Báo Giá Thi Công</h3>
-                        <p class="text-gray-700">Khách hàng duyệt bản vẽ thiết kế cuối cùng. Chúng tôi sẽ lập báo giá thi công chi tiết dựa trên hồ sơ thiết kế đã được duyệt.</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step4_title">Duyệt Thiết Kế & Báo Giá Thi Công</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step4_desc">Khách hàng duyệt bản vẽ thiết kế cuối cùng. Chúng tôi sẽ lập báo giá thi công chi tiết dựa trên hồ sơ thiết kế đã được duyệt.</p>
                     </div>
                 </div>
                 <!-- Step 5 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="400">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">5</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Nghiệm Thu & Bàn Giao</h3>
-                        <p class="text-gray-700">Sau khi hoàn thành, khách hàng sẽ cùng chúng tôi nghiệm thu công trình. IVS Celestech sẽ bàn giao không gian hoàn thiện đúng như thiết kế.</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step5_title">Ký Kết Hợp Đồng Thi Công & Triển Khai Thi Công</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step5_desc">Sau khi thống nhất báo giá, hai bên ký hợp đồng thi công. Đội ngũ IVS Celestech sẽ bắt đầu triển khai thi công theo đúng tiến độ và chất lượng cam kết.</p>
                     </div>
                 </div>
                 <!-- Step 6 -->
-                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm">
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="500">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">6</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2">Bảo Hành & Hậu Mãi</h3>
-                        <p class="text-gray-700">Chúng tôi cam kết chính sách bảo hành rõ ràng và dịch vụ hậu mãi chu đáo, đảm bảo sự an tâm tuyệt đối cho khách hàng sau khi dự án hoàn thành.</p>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step6_title">Nghiệm Thu & Bàn Giao</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step6_desc">Sau khi hoàn thành, khách hàng sẽ cùng chúng tôi nghiệm thu công trình. IVS Celestech sẽ bàn giao không gian hoàn thiện đúng như thiết kế.</p>
+                    </div>
+                </div>
+                <!-- Step 7 -->
+                <div class="flex items-start p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="600">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">7</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2" data-lang-key="interior_process_step7_title">Bảo Hành & Hậu Mãi</h3>
+                        <p class="text-gray-700" data-lang-key="interior_process_step7_desc">Chúng tôi cam kết chính sách bảo hành rõ ràng và dịch vụ hậu mãi chu đáo, đảm bảo sự an tâm tuyệt đối cho khách hàng sau khi dự án hoàn thành.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">Các Dịch Vụ Chính</h2>
+        <!-- Các Dịch Vụ Chính -->
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center" data-lang-key="interior_main_services_title">Các Dịch Vụ Chính</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-secondary mb-3"><i class="fas fa-drafting-compass mr-2"></i>Thiết Kế Nội Thất Giáo Dục</h3>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up">
+                    <h3 class="text-xl font-semibold text-secondary mb-3" data-lang-key="interior_service_design_title"><i class="fas fa-drafting-compass mr-2"></i>Thiết Kế Nội Thất Giáo Dục</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>Thiết kế phòng học đa năng, linh hoạt</li>
-                        <li>Thiết kế khu vực thư viện, phòng đọc</li>
-                        <li>Thiết kế không gian vui chơi, hoạt động ngoại khóa</li>
-                        <li>Thiết kế phòng thí nghiệm, xưởng thực hành STEAM</li>
-                        <li>Thiết kế khu vực văn phòng, phòng giáo viên</li>
+                        <li data-lang-key="interior_service_design_item1">Thiết kế phòng học đa năng, linh hoạt</li>
+                        <li data-lang-key="interior_service_design_item2">Thiết kế khu vực thư viện, phòng đọc</li>
+                        <li data-lang-key="interior_service_design_item3">Thiết kế không gian vui chơi, hoạt động ngoại khóa</li>
+                        <li data-lang-key="interior_service_design_item4">Thiết kế phòng thí nghiệm, xưởng thực hành STEAM</li>
+                        <li data-lang-key="interior_service_design_item5">Thiết kế khu vực văn phòng, phòng giáo viên</li>
                     </ul>
                 </div>
-                <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-secondary mb-3"><i class="fas fa-hammer mr-2"></i>Thi Công & Lắp Đặt Nội Thất</h3>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="100">
+                    <h3 class="text-xl font-semibold text-secondary mb-3" data-lang-key="interior_service_construction_title"><i class="fas fa-hammer mr-2"></i>Thi Công & Lắp Đặt Nội Thất</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>Thi công trọn gói theo bản vẽ thiết kế</li>
-                        <li>Cung cấp và lắp đặt nội thất chuyên dụng cho giáo dục (bàn ghế, tủ kệ, bảng tương tác,...)</li>
-                        <li>Thi công hệ thống chiếu sáng, âm thanh tối ưu cho môi trường học tập</li>
-                        <li>Giám sát chặt chẽ, đảm bảo chất lượng và tiến độ</li>
+                        <li data-lang-key="interior_service_construction_item1">Thi công trọn gói theo bản vẽ thiết kế</li>
+                        <li data-lang-key="interior_service_construction_item2">Cung cấp và lắp đặt nội thất chuyên dụng cho giáo dục (bàn ghế, tủ kệ, bảng tương tác,...)</li>
+                        <li data-lang-key="interior_service_construction_item3">Thi công hệ thống chiếu sáng, âm thanh tối ưu cho môi trường học tập</li>
+                        <li data-lang-key="interior_service_construction_item4">Giám sát chặt chẽ, đảm bảo chất lượng và tiến độ</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Dự Án Đã Tham Gia -->
-        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">Dự Án Đã Tham Gia</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center" data-lang-key="interior_projects_title">Dự Án Đã Tham Gia</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1: ANH MỸ GROUP -->
-                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
+                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up">
                     <img src="/images/pages/ivscelestech/noithat-amgphuocthai.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/EBF4FF/2563EB?text=ANH+MY+GROUP';" alt="Hình ảnh dự án ANH MỸ GROUP" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-secondary">Dự án Trung tâm Ngoại ngữ</h3>
-                        <p class="text-gray-700 mb-4">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho Trung tâm ngoại ngữ AMG</p>
-                        <ul class="list-disc list-inside text-gray-600">
-                            <li>Thiết kế không gian đa năng cho các lớp học (Kids, Bees, Teens Leaders).</li>
-                            <li>Khu vực lễ tân và chờ được tối ưu hóa về thẩm mỹ và công năng.</li>
-                            <li>Văn phòng quản lý và giáo vụ được bố trí khoa học, tiện nghi.</li>
+                        <h3 class="text-xl font-semibold mb-2 text-secondary" data-lang-key="interior_project_amg_title">Dự án Trung tâm Ngoại ngữ</h3>
+                        <p class="text-gray-700 mb-4" data-lang-key="interior_project_amg_desc">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho Trung tâm ngoại ngữ AMG</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li data-lang-key="interior_project_amg_item1">Thiết kế không gian đa năng cho các lớp học (Kids, Bees, Teens Leaders).</li>
+                            <li data-lang-key="interior_project_amg_item2">Khu vực lễ tân và chờ được tối ưu hóa về thẩm mỹ và công năng.</li>
+                            <li data-lang-key="interior_project_amg_item3">Văn phòng quản lý và giáo vụ được bố trí khoa học, tiện nghi.</li>
                         </ul>
+                        <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" data-lang-key="interior_project_view_details">Xem chi tiết</a>
                     </div>
                 </div>
                 <!-- Project 2: IELTS STATION -->
-                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
+                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up" data-aos-delay="100">
                     <img src="/images/pages/ivscelestech/noithat-ieltsstation.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/EBF4FF/2563EB?text=IELTS+STATION';" alt="Hình ảnh dự án IELTS STATION" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-secondary">Dự án IELTS STATION</h3>
-                        <p class="text-gray-700 mb-4">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho IELTS STATION.</p>
-                        <ul class="list-disc list-inside text-gray-600">
-                            <li>Các phòng học được thiết kế linh hoạt, phù hợp với nhiều hình thức giảng dạy.</li>
-                            <li>Khu vực tự học và thư viện yên tĩnh, khuyến khích sự tập trung.</li>
-                            <li>Không gian chung và khu vực chờ hiện đại, thân thiện.</li>
+                        <h3 class="text-xl font-semibold mb-2 text-secondary" data-lang-key="interior_project_ielts_title">Dự án IELTS STATION</h3>
+                        <p class="text-gray-700 mb-4" data-lang-key="interior_project_ielts_desc">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho IELTS STATION.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li data-lang-key="interior_project_ielts_item1">Các phòng học được thiết kế linh hoạt, phù hợp với nhiều hình thức giảng dạy.</li>
+                            <li data-lang-key="interior_project_ielts_item2">Khu vực tự học và thư viện yên tĩnh, khuyến khích sự tập trung.</li>
+                            <li data-lang-key="interior_project_ielts_item3">Không gian chung và khu vực chờ hiện đại, thân thiện.</li>
                         </ul>
+                        <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" data-lang-key="interior_project_view_details">Xem chi tiết</a>
                     </div>
-                </div>            
+                </div>
+                <!-- Project 3: Placeholder Project 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/EBF4FF/2563EB?text=DU+AN+KHAC+1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/EBF4FF/2563EB?text=DU+AN+KHAC+1';" alt="Hình ảnh dự án khác 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-secondary" data-lang-key="interior_project_other1_title">Dự án [Tên dự án 1]</h3>
+                        <p class="text-gray-700 mb-4" data-lang-key="interior_project_other1_desc">Mô tả ngắn gọn về dự án này. Đây là nơi bạn có thể thêm thông tin chi tiết về phạm vi công việc, thách thức và giải pháp đã thực hiện.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li data-lang-key="interior_project_other1_item1">Điểm nổi bật 1 của dự án.</li>
+                            <li data-lang-key="interior_project_other1_item2">Điểm nổi bật 2 của dự án.</li>
+                            <li data-lang-key="interior_project_other1_item3">Điểm nổi bật 3 của dự án.</li>
+                        </ul>
+                        <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" data-lang-key="interior_project_view_details">Xem chi tiết</a>
+                    </div>
+                </div>
+                <!-- Project 4: Placeholder Project 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up" data-aos-delay="300">
+                    <img src="https://placehold.co/600x400/EBF4FF/2563EB?text=DU+AN+KHAC+2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/EBF4FF/2563EB?text=DU+AN+KHAC+2';" alt="Hình ảnh dự án khác 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-secondary" data-lang-key="interior_project_other2_title">Dự án [Tên dự án 2]</h3>
+                        <p class="text-gray-700 mb-4" data-lang-key="interior_project_other2_desc">Mô tả ngắn gọn về dự án này. Đây là nơi bạn có thể thêm thông tin chi tiết về phạm vi công việc, thách thức và giải pháp đã thực hiện.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4">
+                            <li data-lang-key="interior_project_other2_item1">Điểm nổi bật 1 của dự án.</li>
+                            <li data-lang-key="interior_project_other2_item2">Điểm nổi bật 2 của dự án.</li>
+                            <li data-lang-key="interior_project_other2_item3">Điểm nổi bật 3 của dự án.</li>
+                        </ul>
+                        <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" data-lang-key="interior_project_view_details">Xem chi tiết</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Liên Hệ Với IVS Celestech -->
-        <section id="contact-us" class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Liên Hệ Với IVS Celestech</h2>
-            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">Bạn đang có ý tưởng cho không gian của mình? Hãy để IVS Celestech biến ý tưởng đó thành hiện thực. Liên hệ với chúng tôi ngay hôm nay để được tư vấn miễn phí!</p>
+        <section id="contact-us" class="bg-white p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 text-center" data-lang-key="interior_contact_title">Liên Hệ Với IVS Celestech</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto" data-lang-key="interior_contact_subtitle">Bạn đang có ý tưởng cho không gian của mình? Hãy để IVS Celestech biến ý tưởng đó thành hiện thực. Liên hệ với chúng tôi ngay hôm nay để được tư vấn miễn phí!</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Contact Information -->
                 <div>
-                    <h3 class="text-xl font-semibold text-secondary mb-4">Thông Tin Liên Hệ</h3>
-                    <p class="mb-2"><i class="fas fa-map-marker-alt text-primary mr-2"></i> Địa chỉ: 1104, Tổ 6, Ấp Đất Mới, Xã Long Phước, Tỉnh Đồng Nai</p>
-                    <p class="mb-2"><i class="fas fa-phone text-primary mr-2"></i> Điện thoại: [Số điện thoại của IVS]</p>
-                    <p class="mb-2"><i class="fas fa-envelope text-primary mr-2"></i> Email: [Email của IVS]</p>
-                    <p class="mb-2"><i class="fas fa-hashtag text-primary mr-2"></i> Mã số thuế: 3603960189</p>
+                    <h3 class="text-xl font-semibold text-secondary mb-4" data-lang-key="interior_contact_info_title">Thông Tin Liên Hệ</h3>
+                    <p class="mb-2" data-lang-key="interior_contact_address"><i class="fas fa-map-marker-alt text-primary mr-2"></i> Địa chỉ: 1104, Tổ 6, Ấp Đất Mới, Xã Long Phước, Tỉnh Đồng Nai</p>
+                    <p class="mb-2" data-lang-key="interior_contact_phone"><i class="fas fa-phone text-primary mr-2"></i> Điện thoại: [Số điện thoại của IVS]</p>
+                    <p class="mb-2" data-lang-key="interior_contact_email"><i class="fas fa-envelope text-primary mr-2"></i> Email: [Email của IVS]</p>
+                    <p class="mb-2" data-lang-key="interior_contact_tax_id"><i class="fas fa-hashtag text-primary mr-2"></i> Mã số thuế: 3603960189</p>
                 </div>
 
                 <!-- Contact Form -->
                 <div>
-                    <h3 class="text-xl font-semibold text-secondary mb-4">Gửi Yêu Cầu Tư Vấn</h3>
+                    <h3 class="text-xl font-semibold text-secondary mb-4" data-lang-key="interior_contact_form_title">Gửi Yêu Cầu Tư Vấn</h3>
                     <form id="contactForm" class="space-y-4">
                         <div>
-                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Họ và Tên:</label>
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="interior_form_name_label">Họ và Tên:</label>
                             <input type="text" id="name" name="name" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="interior_form_email_label">Email:</label>
                             <input type="email" id="email" name="email" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                         </div>
                         <div>
-                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Số Điện Thoại:</label>
+                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="interior_form_phone_label">Số Điện Thoại:</label>
                             <input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div>
-                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Nội Dung:</label>
+                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="interior_form_message_label">Nội Dung:</label>
                             <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
                         </div>
-                        <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">Gửi Yêu Cầu</button>
+                        <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out" data-lang-key="interior_form_submit_button">Gửi Yêu Cầu</button>
                     </form>
                     <div id="formMessage" class="mt-4 text-center hidden"></div>
                 </div>
@@ -236,44 +280,27 @@
         </section>
     </main>
 
-    <footer id="footer-placeholder"></footer>
-    <div id="fab-container-placeholder"></div>
+    <!-- Footer component will be loaded here -->
+    <div id="footer-placeholder"></div>
 
-    <!-- Deferred JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-
-    <!-- Core Application Scripts - Order is crucial -->
-    <!-- 1. Firebase Init (if type="module", load first) -->
-    <script src="/js/firebase-init.js" type="module"></script>
-    <!-- 2. Global Utilities (componentLog, debounce) -->
-    <script src="/js/utils.js" defer></script>
-    <!-- 3. Language System (self-initializes, needed by Header) -->
-    <script src="/js/language.js" defer></script>
-    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
-    <script src="/js/fabController.js" defer></script>
-
-    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
-    <script src="/js/loadComponents.js" defer></script>
-    <!-- 6. Main App Logic (if any, after all components are ready) -->
+    <!-- AOS initialization -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // Example of how to handle the form submission (simplified for client-side)
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const formMessage = document.getElementById('formMessage');
             formMessage.classList.remove('hidden', 'text-red-500', 'text-green-500');
             formMessage.innerHTML = '';
 
-            // In a real application, you would send this data to a server
-            // For now, we'll just simulate a success message
             formMessage.classList.add('text-green-500');
             formMessage.textContent = 'Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất có thể!';
             formMessage.classList.remove('hidden');
 
-            // Clear the form
             this.reset();
         });
     </script>

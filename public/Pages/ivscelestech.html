@@ -25,11 +25,9 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
                         'primary': '#004080', 
                         'primary-dark': '#003366',
@@ -75,33 +73,28 @@
     </script>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Removed local CSS files to prevent errors in Canvas environment -->
-    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
-    <!-- <link rel="stylesheet" href="/dist/output.css"> -->
-     <style>
+    <style>
         .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
         .card-hover-effect { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-hover-effect:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .section-padding { padding-top: 3rem; padding-bottom: 3rem; } /* Consistent padding */
+        .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
         @media (min-width: 768px) { .section-padding { padding-top: 4rem; padding-bottom: 4rem; } }
-        .container-padding { padding-left: 1rem; padding-right: 1rem; } /* Consistent container padding */
+        .container-padding { padding-left: 1rem; padding-right: 1rem; }
         @media (min-width: 640px) { .container-padding { padding-left: 1.5rem; padding-right: 1.5rem; } }
         @media (min-width: 1024px) { .container-padding { padding-left: 2rem; padding-right: 2rem; } }
-        /* Style for the video to cover its container */
         .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the video covers the entire element */
-            z-index: 1; /* Changed from -1 to 1 to ensure video is on top */
+            object-fit: cover;
+            z-index: 1;
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-neutral-200 font-inter">
-    <!-- Header component will be loaded here -->
-    <div id="header-placeholder"></div>
+    <header id="header-placeholder"></header>
 
     <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)]">
         <section class="relative text-white py-20 md:py-28 text-center overflow-hidden">
@@ -130,17 +123,14 @@
                     <div data-aos="fade-left" data-aos-delay="200" class="relative w-full h-auto min-h-[250px] md:min-h-[400px] overflow-hidden rounded-lg shadow-xl">
                         <video class="video-background" autoplay loop muted playsinline>
                             <source src="/videos/ivs-celestech.mp4" type="video/mp4">
-                            <!-- Fallback for browsers that do not support the video tag -->
                             Trình duyệt của bạn không hỗ trợ thẻ video.
                         </video>
-                        <!-- Optional: A placeholder image to show before video loads or if video fails -->
                         <img src="https://placehold.co/600x400/e0f2fe/0c4a6e?text=IVS+Celestech+Innovation" alt="Công nghệ Giáo dục IVS Celestech" class="w-full h-full object-cover absolute inset-0 z-0" onerror="this.style.display='none';">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Updated Section: Các Dịch Vụ Của IVS Celestech (previously Các Giải Pháp & Dịch Vụ Chính) -->
         <section class="section-padding bg-gray-50 dark:bg-neutral-900">
             <div class="container mx-auto container-padding max-w-6xl">
                 <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-12 text-center" data-lang-key="edtech_services_title" data-aos="fade-up">Các Dịch Vụ Của IVS Celestech</h2>
@@ -148,10 +138,9 @@
                     IVS Celestech, là bộ phận công nghệ giáo dục (EdTech) của IVS JSC, cung cấp các giải pháp công nghệ toàn diện nhằm kiến tạo môi trường học tập hiện đại và hiệu quả. Các dịch vụ chính của IVS Celestech bao gồm:
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Service 1: Tư vấn, Thi công & Nội thất Giáo dục -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-hammer"></i> <!-- Icon for Tư vấn, Thi công & Nội thất Giáo dục -->
+                            <i class="fas fa-hammer"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_design_build_title">Tư vấn, Thi công & Nội thất Giáo dục</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
@@ -162,15 +151,14 @@
                                 <li data-lang-key="edtech_service_design_build_item_3">Cung cấp nội thất giáo dục thông minh, tiện nghi (phù hợp mọi lứa tuổi, tối ưu hóa sự tương tác và thoải mái).</li>
                             </ul>
                         </div>
-                        <a href="/Pages/ivscelestech-tcnoithat.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                        <a href="/Pages/ivscelestech-tcnoithat.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300" data-lang-key="edtech_service_design_build_button">
                             Xem thêm dịch vụ thiết kế nội thất
                         </a>
                     </div>
 
-                    <!-- Service 2: Trang thiết bị Thông minh -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-robot"></i> <!-- Icon for Trang thiết bị Thông minh -->
+                            <i class="fas fa-robot"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_smart_equipment_title">Trang thiết bị Thông minh</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
@@ -181,15 +169,14 @@
                                 <li data-lang-key="edtech_service_smart_equipment_item_3">Ứng dụng Trí tuệ nhân tạo (AI) trong học tập (hệ thống học tập thích ứng, trợ lý ảo thông minh, phân tích hiệu suất học tập cá nhân).</li>
                             </ul>
                         </div>
-                        <a href="/Pages/tech_devices.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                        <a href="/Pages/tech_devices.html" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300" data-lang-key="edtech_service_smart_equipment_button">
                             Xem thêm Thiết bị
                         </a>
                     </div>
 
-                    <!-- Service 3: Hệ thống Quản lý Giáo dục -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-cogs"></i> <!-- Icon for Hệ thống Quản lý Giáo dục -->
+                            <i class="fas fa-cogs"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_management_system_title">Hệ thống Quản lý Giáo dục</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
@@ -200,18 +187,17 @@
                                 <li data-lang-key="edtech_service_management_system_item_3">Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược).</li>
                             </ul>
                         </div>
-                        <a href="/apps/ivsapps.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                        <a href="/apps/ivsapps.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300" data-lang-key="edtech_service_management_system_apps_button">
                             Tìm hiểu Apps Quản lý
                         </a>                        
-                        <a href="/games/ivsgames.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                        <a href="/games/ivsgames.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300" data-lang-key="edtech_service_management_system_games_button">
                             IVS Game Arcade
                         </a>  
                     </div>
 
-                    <!-- New Service: Thiết kế Website Giáo dục -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up">
                         <div class="bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-globe"></i> <!-- Icon for Website Design -->
+                            <i class="fas fa-globe"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_website_design_title">Thiết kế Website Giáo dục</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
@@ -223,7 +209,7 @@
                                 <li data-lang-key="edtech_service_website_design_item_4">Tối ưu hóa SEO và hiệu suất website để thu hút người dùng.</li>
                             </ul>
                         </div>
-                        <a href="/Pages/webdesign.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                        <a href="/Pages/webdesign.html" class="mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300" data-lang-key="edtech_service_website_design_button">
                             Tìm hiểu về Thiết kế Web
                         </a>
                     </div>
@@ -289,37 +275,26 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
 
     <!-- Core Application Scripts - Order is crucial -->
-    <!-- 1. Firebase Init (if type="module", load first) -->
-    <script src="/js/firebase-init.js" type="module"></script>
-    <!-- 2. Global Utilities (componentLog, debounce) -->
-    <script src="/js/utils.js" defer></script>
-    <!-- 3. Language System (self-initializes, needed by Header) -->
-    <script src="/js/language.js" defer></script>
-    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
-    <script src="/js/fabController.js" defer></script>
 
-    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
+    <script src="/js/firebase-init.js" type="module"></script>
+
+    <script src="/js/utils.js" defer></script>
+
+    <script src="/js/language.js" defer></script>
+    <script src="/js/fabController.js" defer></script> 
     <script src="/js/loadComponents.js" defer></script>
-    <!-- 6. Main App Logic (if any, after all components are ready) -->
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // Example of how to handle the form submission (simplified for client-side)
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formMessage = document.getElementById('formMessage');
-            formMessage.classList.remove('hidden', 'text-red-500', 'text-green-500');
-            formMessage.innerHTML = '';
-
-            // In a real application, you would send this data to a server
-            // For now, we'll just simulate a success message
-            formMessage.classList.add('text-green-500');
-            formMessage.textContent = 'Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất có thể!';
-            formMessage.classList.remove('hidden');
-
-            // Clear the form
-            this.reset();
-        });
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic',
+            });
+        };
     </script>
 </body>
 </html>
