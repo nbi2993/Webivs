@@ -101,6 +101,55 @@
             border-color: #58a6ff;
             transform: scale(1.05);
         }
+
+        /* Custom styles for Core Philosophy section */
+        .philosophy-grid {
+            display: grid;
+            gap: 2rem; /* Tailwind's gap-8 */
+            grid-template-columns: 1fr; /* Default to single column */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .philosophy-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens and up */
+            }
+        }
+        .philosophy-item-card {
+            background-color: var(--ivs-card); /* bg-ivs-card */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            border: 1px solid var(--ivs-border); /* border border-ivs-border */
+            text-align: center; /* text-center */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* card-hover-effect */
+        }
+        .philosophy-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .philosophy-initial {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 700; /* font-bold */
+            color: var(--ivs-blue); /* text-ivs-blue */
+            margin-bottom: 0.5rem; /* mb-2 */
+            display: block; /* Ensures it takes full width */
+        }
+        .philosophy-logo-container {
+            width: 120px; /* Adjust size as needed */
+            height: 120px; /* Adjust size as needed */
+            margin: 0 auto 1.5rem; /* mx-auto mb-6 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Hide overflow if image is larger */
+            border: 3px solid var(--ivs-blue); /* Add a border */
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3); /* Add a subtle glow */
+        }
+        .philosophy-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the container */
+        }
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -143,41 +192,36 @@
             </div>
         </section>
 
-        <section class="core-philosophy-section">
-            <!-- Vùng chứa logo IVS -->
-            <div class="ivs-logo-container" id="ivsLogoContainer">
-                <!-- Sử dụng logo1.jpg đã được tải lên -->
-                <img src="logo1.jpg" alt="IVS Logo">
-            </div>
-
-            <h2 data-lang-key="philosophy_title">Triết Lý Cốt Lõi: I-V-S</h2>
-
-            <div class="philosophy-content" id="philosophyContent">
-                <!-- Integrate Section -->
-                <div class="philosophy-item integrate">
-                    <div class="logo-part" data-lang-key="philosophy_integrate_initial">
-                        I
+        <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mb-4" data-aos="fade-up" data-lang-key="philosophy_title">Triết Lý Cốt Lõi: I-V-S</h2>
+                    <div class="philosophy-logo-container" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://placehold.co/120x120/161B22/58a6ff?text=IVS+Logo" alt="IVS Logo Placeholder" onerror="this.onerror=null; this.src='https://placehold.co/120x120/161B22/58a6ff?text=IVS+Logo';">
                     </div>
-                    <h3 data-lang-key="philosophy_integrate_heading">Integrate (Tích hợp)</h3>
-                    <p data-lang-key="philosophy_integrate_description">Chúng tôi kiến tạo một hệ sinh thái giáo dục toàn diện, kết nối các phương pháp tiên tiến, công nghệ hiện đại và tri thức đa văn hóa để tối ưu hóa trải nghiệm học tập.</p>
                 </div>
 
-                <!-- Vision Section -->
-                <div class="philosophy-item vision">
-                    <div class="logo-part" data-lang-key="philosophy_vision_initial">
-                        V
+                <div class="philosophy-grid">
+                    <!-- Integrate Section -->
+                    <div class="philosophy-item-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="philosophy-initial" data-lang-key="philosophy_integrate_initial">I</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="philosophy_integrate_heading">Integrate (Tích hợp)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="philosophy_integrate_description">Chúng tôi kiến tạo một hệ sinh thái giáo dục toàn diện, kết nối các phương pháp tiên tiến, công nghệ hiện đại và tri thức đa văn hóa để tối ưu hóa trải nghiệm học tập.</p>
                     </div>
-                    <h3 data-lang-key="philosophy_vision_heading">Vision (Tầm nhìn)</h3>
-                    <p data-lang-key="philosophy_vision_description">IVS định hướng một tương lai giáo dục nơi mỗi cá nhân được khai phóng tối đa tiềm năng, trang bị không chỉ kiến thức mà còn cả kỹ năng sống và tư duy phản biện để hội nhập toàn cầu.</p>
-                </div>
 
-                <!-- Synergy Section -->
-                <div class="philosophy-item synergy">
-                    <div class="logo-part" data-lang-key="philosophy_synergy_initial">
-                        S
+                    <!-- Vision Section -->
+                    <div class="philosophy-item-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="philosophy-initial" data-lang-key="philosophy_vision_initial">V</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="philosophy_vision_heading">Vision (Tầm nhìn)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="philosophy_vision_description">IVS định hướng một tương lai giáo dục nơi mỗi cá nhân được khai phóng tối đa tiềm năng, trang bị không chỉ kiến thức mà còn cả kỹ năng sống và tư duy phản biện để hội nhập toàn cầu.</p>
                     </div>
-                    <h3 data-lang-key="philosophy_synergy_heading">Synergy (Hợp lực)</h3>
-                    <p data-lang-key="philosophy_synergy_description">Chúng tôi tin tưởng vào sức mạnh của sự hợp tác: giữa học viên và giáo viên, giữa gia đình và nhà trường, giữa công nghệ và phương pháp sư phạm, tạo nên một cộng đồng học tập bền vững và hiệu quả.</p>
+
+                    <!-- Synergy Section -->
+                    <div class="philosophy-item-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="philosophy-initial" data-lang-key="philosophy_synergy_initial">S</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="philosophy_synergy_heading">Synergy (Hợp lực)</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="philosophy_synergy_description">Chúng tôi tin tưởng vào sức mạnh của sự hợp tác: giữa học viên và giáo viên, giữa gia đình và nhà trường, giữa công nghệ và phương pháp sư phạm, tạo nên một cộng đồng học tập bền vững và hiệu quả.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -248,22 +292,22 @@
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="text-center leader-card" data-aos="fade-up" data-aos-delay="100">
-                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/nguyen-minh-triet.png" alt="[Ảnh chân dung ông Nguyễn Minh Triết]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=NMT';">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/nguyen-minh-triet.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=NMT';">
                         <h4 class="font-semibold text-white" data-lang-key="about_team_member1_name">Ông Nguyễn Minh Triết</h4>
                         <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member1_title">CEO & Chủ tịch HĐQT</p>
                     </div>
                     <div class="text-center leader-card" data-aos="fade-up" data-aos-delay="200">
-                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/rachid-belferar.png" alt="[Ảnh chân dung ông Rachid Belferar]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=RB';">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/rachid-belferar.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=RB';">
                         <h4 class="font-semibold text-white" data-lang-key="about_team_member2_name">Ông Rachid Belferar</h4>
                         <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member2_title">Giám đốc Kỹ thuật, ParagonCoder</p>
                     </div>
                     <div class="text-center leader-card" data-aos="fade-up" data-aos-delay="300">
-                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/salma-mahzoum.png" alt="[Ảnh chân dung bà Salma Mahzoum]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=SM';">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/salma-mahzoum.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=SM';">
                         <h4 class="font-semibold text-white" data-lang-key="about_team_member3_name">Bà Salma Mahzoum</h4>
                         <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member3_title">Giám đốc R&D</p>
                     </div>
                     <div class="text-center leader-card" data-aos="fade-up" data-aos-delay="400">
-                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/kimball-allen-thomson.png" alt="[Ảnh chân dung ông Kimball Allen Thomson]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=KAT';">
+                        <img class="h-28 w-28 rounded-full object-cover mx-auto mb-4" src="/images/team/kimball-allen-thomson.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=KAT';">
                         <h4 class="font-semibold text-white" data-lang-key="about_team_member4_name">Ông Kimball Allen Thomson</h4>
                         <p class="text-ivs-blue text-sm font-medium" data-lang-key="about_team_member4_title">Đại diện IIVSA tại Hoa Kỳ</p>
                     </div>
@@ -295,18 +339,11 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
 
     <!-- Core Application Scripts - Order is crucial -->
-    <!-- 1. Firebase Init (if type="module", load first) -->
     <script src="/js/firebase-init.js" type="module"></script>
-    <!-- 2. Global Utilities (componentLog, debounce) -->
     <script src="/js/utils.js" defer></script>
-    <!-- 3. Language System (self-initializes, needed by Header) -->
     <script src="/js/language.js" defer></script>
-    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
     <script src="/js/fabController.js" defer></script>
-
-    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
     <script src="/js/loadComponents.js" defer></script>
-    <!-- 6. Main App Logic (if any, after all components are ready) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
