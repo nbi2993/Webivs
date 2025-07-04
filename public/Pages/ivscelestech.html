@@ -94,7 +94,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Ensures the video covers the entire element */
-            z-index: -1; /* Puts the video behind other content */
+            z-index: 1; /* Changed from -1 to 1 to ensure video is on top */
         }
     </style>
 </head>
@@ -138,58 +138,59 @@
             </div>
         </section>
 
+        <!-- Updated Section: Các Dịch Vụ Của IVS Celestech (previously Các Giải Pháp & Dịch Vụ Chính) -->
         <section class="section-padding bg-gray-50 dark:bg-neutral-900">
             <div class="container mx-auto container-padding max-w-6xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-12 text-center" data-lang-key="edtech_solutions_title" data-aos="fade-up">Các Giải Pháp & Dịch Vụ Chính</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-12 text-center" data-aos="fade-up">Các Dịch Vụ Của IVS Celestech</h2>
+                <p class="text-lg text-gray-700 dark:text-neutral-300 text-center max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+                    IVS Celestech, là bộ phận công nghệ giáo dục (EdTech) của IVS JSC, cung cấp các giải pháp công nghệ toàn diện nhằm kiến tạo môi trường học tập hiện đại và hiệu quả. Các dịch vụ chính của IVS Celestech bao gồm:
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1: Tư vấn, Thi công & Nội thất Giáo dục -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="100">
                         <div class="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-building"></i>
+                            <i class="fas fa-hammer"></i> <!-- Icon for Tư vấn, Thi công & Nội thất Giáo dục -->
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_design_build_title">Tư vấn, Thi công & Nội thất Giáo dục</h3>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3">Tư vấn, Thi công & Nội thất Giáo dục</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
-                            <p data-lang-key="edtech_service_design_build_desc_1">
-                                Thiết kế không gian giáo dục hiện đại, thân thiện, tối ưu hiệu quả giảng dạy (lớp học, phòng STEAM, lab...).
-                            </p>
-                            <p data-lang-key="edtech_service_design_build_desc_2">
-                                Thi công xây dựng trường học, phòng chức năng chuyên biệt.
-                            </p>
-                            <p data-lang-key="edtech_service_design_build_desc_3">
-                                Cung cấp, lắp đặt trọn gói nội thất giáo dục chuẩn quốc tế, thẩm mỹ và bền bỉ.
-                            </p>
+                            <p>Chúng tôi kiến tạo không gian học tập đột phá, từ thiết kế kiến trúc đến thi công nội thất, đảm bảo môi trường giáo dục hiện đại, linh hoạt và truyền cảm hứng. Các giải pháp bao gồm:</p>
+                            <ul class="list-disc list-inside text-left mx-auto max-w-prose">
+                                <li>Thiết kế không gian học tập đa năng (lớp học thông minh, phòng STEAM, thư viện số, phòng lab chuyên biệt).</li>
+                                <li>Thi công xây dựng và cải tạo (đảm bảo tiêu chuẩn an toàn, bền vững).</li>
+                                <li>Cung cấp nội thất giáo dục thông minh, tiện nghi (phù hợp mọi lứa tuổi, tối ưu hóa sự tương tác và thoải mái).</li>
+                            </ul>
                         </div>
                     </div>
 
+                    <!-- Service 2: Trang thiết bị Thông minh -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="200">
                         <div class="bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-microchip"></i>
+                            <i class="fas fa-robot"></i> <!-- Icon for Trang thiết bị Thông minh -->
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_smart_equipment_title">Trang thiết bị Thông minh</h3>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3">Trang thiết bị Thông minh</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
-                            <p data-lang-key="edtech_service_smart_equipment_desc_1">
-                                Màn hình tương tác, tivi, máy chiếu thông minh: Hỗ trợ bài giảng trực quan, sinh động.
-                            </p>
-                            <p data-lang-key="edtech_service_smart_equipment_desc_2">
-                                Thiết bị thực tế ảo (VR): Trải nghiệm học tập đột phá, khám phá thế giới trực quan.
-                            </p>
-                            <p data-lang-key="edtech_service_smart_equipment_desc_3">
-                                Giải pháp trí tuệ nhân tạo (AI): Cá nhân hóa lộ trình học tập, nâng cao kỹ năng.
-                            </p>
+                            <p>Nâng tầm trải nghiệm học tập với các thiết bị công nghệ tiên tiến, tích hợp sâu rộng vào chương trình giảng dạy. Bao gồm:</p>
+                            <ul class="list-disc list-inside text-left mx-auto max-w-prose">
+                                <li>Màn hình tương tác và thiết bị trình chiếu thông minh (biến lớp học thành không gian sáng tạo).</li>
+                                <li>Giải pháp Thực tế ảo (VR) và Thực tế tăng cường (AR) (đưa học viên vào thế giới mô phỏng sống động, khám phá kiến thức đa chiều).</li>
+                                <li>Ứng dụng Trí tuệ nhân tạo (AI) trong học tập (hệ thống học tập thích ứng, trợ lý ảo thông minh, phân tích hiệu suất học tập cá nhân).</li>
+                            </ul>
                         </div>
                     </div>
 
+                    <!-- Service 3: Hệ thống Quản lý Giáo dục -->
                     <div class="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 text-center card-hover-effect flex flex-col" data-aos="zoom-in-up" data-aos-delay="300">
                         <div class="bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-5 text-3xl flex-shrink-0">
-                            <i class="fas fa-cogs"></i>
+                            <i class="fas fa-cogs"></i> <!-- Icon for Hệ thống Quản lý Giáo dục -->
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3" data-lang-key="edtech_service_management_system_title">Hệ thống Quản lý Giáo dục</h3>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-neutral-100 mb-3">Hệ thống Quản lý Giáo dục</h3>
                         <div class="text-sm text-gray-600 dark:text-neutral-300 space-y-2 flex-grow">
-                            <p data-lang-key="edtech_service_management_system_desc_1">
-                                Nền tảng quản lý học tập (LMS), quản lý trường học thông minh, tối ưu hóa vận hành và giảng dạy.
-                            </p>
-                            <p data-lang-key="edtech_service_management_system_desc_2">
-                                Ứng dụng di động hỗ trợ phụ huynh, học sinh và giáo viên kết nối hiệu quả.
-                            </p>
+                            <p>Tối ưu hóa quy trình vận hành và nâng cao hiệu quả quản lý với các nền tảng số hóa toàn diện. Các dịch vụ nổi bật:</p>
+                            <ul class="list-disc list-inside text-left mx-auto max-w-prose">
+                                <li>Hệ thống quản lý học tập (LMS) và quản lý trường học (SMS) (tự động hóa điểm danh, quản lý điểm, lịch học, báo cáo chuyên sâu).</li>
+                                <li>Ứng dụng di động kết nối đa chiều (phụ huynh theo dõi tiến độ, học sinh truy cập tài liệu, giáo viên quản lý lớp học mọi lúc mọi nơi).</li>
+                                <li>Phân tích dữ liệu giáo dục (cung cấp cái nhìn sâu sắc về hiệu suất, xu hướng học tập để đưa ra quyết định chiến lược).</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
