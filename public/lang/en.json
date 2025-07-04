@@ -2058,10 +2058,7 @@
   "service_celestech_title": "IVS Celestech",
   "service_celestech_desc": "Supplying smart educational equipment, developing applications and software for educational institutions (Color and monochrome printers, Japanese domestic standard laptops).",
   "service_international_partnership_title": "International Cooperation Partnership",
-   "nav_about_ivs": "About IVS",
-  "nav_about_us": "About Us",
-  "nav_career_opportunities": "Career Opportunities",
-  "nav_non_profit": "Non-profit",
+  "nav_about_ivs": "About IVS",
   "core_philosophy_title": "Core Philosophy: I-V-S",
   "core_philosophy_integrate_title": "Integrate",
   "core_philosophy_integrate_desc": "Closely connect technology, educational programs, and practical needs to create a synchronized, efficient operating system that delivers superior value.",
@@ -2169,5 +2166,8 @@
   "nav_solutions_tech_title": "Applications & Technology",
   "website_consultation_title": "Need a professional website for your business?",
   "website_consultation_description": "Contact IVS Celestech for free consultation, optimal, secure, SEO-friendly website design solutions, and dedicated technical support.",
-  "website_consultation_button": "Get Free Consultation"
+  "website_consultation_button": "Get Free Consultation",
+  "nav_about_us": "About Us",
+  "nav_career_opportunities": "Career Opportunities",
+  "nav_non_profit": "Non-Profit"
 }
