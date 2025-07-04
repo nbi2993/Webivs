@@ -262,117 +262,13 @@
     </main>
 
     <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <script src="js/script.js"></script> <script src="js/language.js"></script> <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            let timeLeft = 120; // 120 giây = 2 phút
-            const timerElement = document.getElementById('redirect-timer-text');
-            const cancelButton = document.getElementById('cancel-redirect');
-            const timerContainer = document.getElementById('redirect-timer-container');
-            let timerInterval = null;
-
-            function updateTimerText() {
-                if (!timerElement) return;
-                const currentLang = localStorage.getItem('preferredLanguage') || 'vi';
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                // Lấy mẫu câu từ translations hoặc dùng fallback
-                let textTemplate = (typeof translations !== 'undefined' && translations[currentLang]?.placement_guide_redirect_text)
-                                    ? translations[currentLang].placement_guide_redirect_text
-                                    : 'Website sẽ tự động chuyển đến Fanpage IVS Academy trong {minutes} phút {seconds} giây...'; // Fallback
-
-                timerElement.textContent = textTemplate
-                                            .replace('{minutes}', minutes)
-                                            .replace('{seconds}', seconds);
-            }
-
-            function startTimer() {
-                if (!timerElement || !cancelButton || !timerContainer) {
-                    console.error("Redirect timer elements not found.");
-                    return;
-                }
-                 timerContainer.style.display = 'block'; // Hiển thị khu vực timer
-                 updateTimerText(); // Cập nhật lần đầu
-
-                 timerInterval = setInterval(() => {
-                    timeLeft--;
-                    updateTimerText();
-                    if (timeLeft <= 0) {
-                        clearInterval(timerInterval);
-                        window.location.href = "https://facebook.com/hr.ivsacademy"; // URL chuyển hướng
-                    }
-                }, 1000);
-            }
-
-            function cancelRedirect() {
-                if (timerInterval) {
-                    clearInterval(timerInterval);
-                }
-                if (timerElement && cancelButton && timerContainer) {
-                    const currentLang = localStorage.getItem('preferredLanguage') || 'vi';
-                    const cancelledText = (typeof translations !== 'undefined' && translations[currentLang]?.placement_guide_redirect_cancelled)
-                                        ? translations[currentLang].placement_guide_redirect_cancelled
-                                        : 'Đã hủy chuyển hướng'; // Fallback
-                    const containerCancelledText = (typeof translations !== 'undefined' && translations[currentLang]?.placement_guide_redirect_container_cancelled)
-                                        ? translations[currentLang].placement_guide_redirect_container_cancelled
-                                        : 'Chuyển hướng đã bị hủy.'; // Fallback
-
-                    cancelButton.textContent = cancelledText;
-                    cancelButton.disabled = true;
-                    timerElement.textContent = containerCancelledText;
-                    // Có thể ẩn luôn container sau một lúc
-                    // setTimeout(() => { timerContainer.style.display = 'none'; }, 3000);
-                }
-            }
-
-            if (cancelButton) {
-                cancelButton.addEventListener("click", cancelRedirect);
-            }
-
-            // Bắt đầu timer khi trang tải xong
-            startTimer();
-
-            // Cập nhật lại text của timer khi đổi ngôn ngữ (nếu timer còn chạy)
-            window.addEventListener('languageChanged', () => { // Giả sử có sự kiện này, hoặc gọi trực tiếp trong handleLanguageChange
-                 if (timerInterval && timeLeft > 0) {
-                     updateTimerText();
-                 } else if (!timerInterval && cancelButton && cancelButton.disabled) {
-                     // Cập nhật text nút hủy nếu đã hủy
-                     const currentLang = localStorage.getItem('preferredLanguage') || 'vi';
-                     const cancelledText = (typeof translations !== 'undefined' && translations[currentLang]?.placement_guide_redirect_cancelled)
-                                         ? translations[currentLang].placement_guide_redirect_cancelled
-                                         : 'Đã hủy chuyển hướng';
-                     const containerCancelledText = (typeof translations !== 'undefined' && translations[currentLang]?.placement_guide_redirect_container_cancelled)
-                                         ? translations[currentLang].placement_guide_redirect_container_cancelled
-                                         : 'Chuyển hướng đã bị hủy.';
-                     cancelButton.textContent = cancelledText;
-                     timerElement.textContent = containerCancelledText;
-                 }
-            });
-        });
-    </script>
-
-        <button id="scrollToTopBtn"
-                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                aria-label="Scroll to top">
-            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
-        </button>
+    <script src="/js/script.js" defer></script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/fabController.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    </div>
-
-    <script>
-        // Get the button element
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-        // Removed the scroll event listener that controlled display
-
-        // Scroll to top when the button is clicked
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Smooth scrolling animation
-            });
-        });
-    </script>
 </body>
 </html>

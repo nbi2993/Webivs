@@ -353,54 +353,15 @@
     </main>
 
     <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
-        <a href="https://m.me/hr.ivsacademy" target="_blank" rel="noopener noreferrer"
-           class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors duration-200"
-           aria-label="Chat on Messenger" data-aos="fade-left" data-aos-delay="500" data-aos-anchor="#page-haynoi">
-            <i class="fab fa-facebook-messenger text-xl" aria-hidden="true"></i>
-        </a>
-        <a href="tel:+84795555789"
-           class="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition-colors duration-200"
-           aria-label="Call Company Phone" data-aos="fade-left" data-aos-delay="600" data-aos-anchor="#page-haynoi">
-            <i class="fas fa-phone-alt text-xl" aria-hidden="true"></i>
-        </a>
-         <button id="scrollToTopBtn"
-                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                aria-label="Scroll to top" data-aos="fade-left" data-aos-delay="700" data-aos-anchor="#page-haynoi">
-            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
-        </button>
-    </div>
-
+    <script src="/js/script.js" defer></script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/fabController.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        offset: 100, 
-        duration: 700, 
-        easing: 'ease-out-quad', 
-        once: true, 
-        mirror: false, 
-        anchorPlacement: 'top-bottom', 
-      });
 
-      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-      if (scrollToTopBtn) {
-          scrollToTopBtn.addEventListener('click', () => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
-      }
-    </script>
-
-        <button id="scrollToTopBtn"
-                class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                aria-label="Scroll to top">
-            <i class="fas fa-arrow-up text-xl" aria-hidden="true"></i>
-        </button>
-    
-    </div>
-    
-    <script src="js/language.js" defer></script>
-    <script src="js/script.js" defer></script>
+ 
     <script>
         // Script tải Header/Footer và gọi AOS.refresh()
         function loadComponent(url, placeholderId, callback) {
