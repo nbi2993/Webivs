@@ -243,7 +243,7 @@
                     <div class="teacher-card" data-aos="fade-up" data-aos-delay="250" data-location="Đồng Nai">
                         <img class="teacher-avatar" src="/images/team/teachers/raphael.png" alt="[Ảnh giáo viên RAPHAEL GALUZ]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV4';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
-                            <h3 class="text-xl font-semibold text-ivs-blue">Raphael Galuz</h3>
+                            <h3 class="text-xl font-semibold text-ivs-blue">RAPHAEL GALUZ</h3>
                             <span class="text-xl font-semibold text-ivs-orange ml-2">(Đồng Nai)</span>
                         </div>
                         <p class="text-ivs-text-primary text-base mb-3">Quốc tịch: Hoa Kỳ</p>
@@ -257,7 +257,7 @@
                         </div>
                     </div>
     
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="650" data-location="Không có thông tin">
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="650" data-location="Đồng Nai, Hồ Chí Minh">
                         <img class="teacher-avatar" src="/images/teachers/englishteacher4.png" alt="[Ảnh giáo viên Jannicar Nayve]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV12';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">Jannicar Nayve</h3>
@@ -274,7 +274,7 @@
                         </div>
                     </div>
     
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2450" data-location="Việt Nam">
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2450" data-location="Đồng Nai, Hồ Chí Minh">
                         <img class="teacher-avatar" src="/images/teachers/englishteacher8.png" alt="[Ảnh giáo viên Madison-Schae Summers]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV48';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">Madison-Schae Summers</h3>
@@ -291,7 +291,7 @@
                         </div>
                     </div>
     
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2500" data-location="Việt Nam">
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2500" data-location="Đồng Nai, Hồ Chí Minh">
                         <img class="teacher-avatar" src="/images/teachers/englishteacher1.png" alt="[Ảnh giáo viên Sloan Pierre Samuel Venter]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV49';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">Sloan Pierre Samuel Venter</h3>
@@ -309,7 +309,7 @@
                     </div>
  
     
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="3150" data-location="Việt Nam">
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="3150" data-location="Đồng Nai, Hồ Chí Minh, Bình Dương">
                         <img class="teacher-avatar" src="/images/teachers/englishteacher6.png" alt="[Ảnh giáo viên William Nanji]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV62';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">William Nanji</h3>
@@ -819,7 +819,7 @@
                         </div>
                     </div>
     
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2100" data-location="Ha noi, Viet nam">
+                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="2100" data-location="Hà Nội">
                         <img class="teacher-avatar" src="/images/teachers/englishteacher1.png" alt="[Ảnh giáo viên Hazel A.Inting]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV41';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">Hazel A.Inting</h3>
@@ -1108,7 +1108,7 @@
             }
         });
         
-        // --- Sắp xếp giáo viên theo địa điểm ưu tiên ---
+        // --- Sắp xếp giáo viên theo địa điểm ưu tiên và tên cụ thể ---
         document.addEventListener('DOMContentLoaded', () => {
             const teacherContainer = document.getElementById('teacher-list-container');
             if (!teacherContainer) return;
@@ -1135,41 +1135,75 @@
                 'Vietnam, stay at Center',
             ].map(loc => loc.toLowerCase().trim()); // Chuyển tất cả về chữ thường và loại bỏ khoảng trắng để so sánh
 
-            // Hàm để lấy địa điểm từ data-location hoặc từ text trong thẻ span
-            function getTeacherLocation(teacherCard) {
-                let location = teacherCard.dataset.location;
-                if (!location) {
-                    // Nếu không có data-location, thử lấy từ span có class text-ivs-orange
-                    const locationSpan = teacherCard.querySelector('.text-ivs-orange');
+            // Định nghĩa thứ tự ưu tiên cho các giáo viên cụ thể theo tên
+            const specialOrderTeachers = [
+                'Rachid Bellafar',
+                'Madison-Schae Summers',
+                'Sloan Pierre Samuel Venter',
+                'Jannicar Nayve',
+                'William Nanji'
+            ];
+
+            // Hàm để lấy dữ liệu giáo viên (tên và địa điểm)
+            function getTeacherData(teacherCard) {
+                const nameElement = teacherCard.querySelector('h3.text-ivs-blue');
+                const locationSpan = teacherCard.querySelector('.text-ivs-orange');
+                
+                const name = nameElement ? nameElement.textContent.trim() : '';
+                let location = teacherCard.dataset.location; // Ưu tiên data-location
+
+                // Nếu data-location không có hoặc là giá trị chung, thử lấy từ span
+                if (!location || location === 'Việt Nam' || location === 'Không rõ' || location === 'Không có thông tin') {
                     if (locationSpan) {
                         location = locationSpan.textContent.replace(/[()]/g, '').trim();
                     }
                 }
-                return location ? location.toLowerCase() : '';
+                
+                return {
+                    name: name,
+                    location: location ? location.toLowerCase() : ''
+                };
             }
 
             // Hàm so sánh tùy chỉnh
             teacherCards.sort((a, b) => {
-                const locA = getTeacherLocation(a);
-                const locB = getTeacherLocation(b);
+                const dataA = getTeacherData(a);
+                const dataB = getTeacherData(b);
+
+                const specialIndexA = specialOrderTeachers.indexOf(dataA.name);
+                const specialIndexB = specialOrderTeachers.indexOf(dataB.name);
+
+                // Ưu tiên sắp xếp theo danh sách đặc biệt
+                if (specialIndexA !== -1 && specialIndexB !== -1) {
+                    return specialIndexA - specialIndexB;
+                }
+                if (specialIndexA !== -1) {
+                    return -1; // A nằm trong danh sách đặc biệt, B thì không -> A lên trước
+                }
+                if (specialIndexB !== -1) {
+                    return 1;  // B nằm trong danh sách đặc biệt, A thì không -> B lên trước
+                }
+
+                // Nếu cả hai đều không nằm trong danh sách đặc biệt, sắp xếp theo địa điểm
+                const locA = dataA.location;
+                const locB = dataB.location;
 
                 const indexA = locationOrder.indexOf(locA);
                 const indexB = locationOrder.indexOf(locB);
 
-                // Nếu cả hai địa điểm đều có trong danh sách ưu tiên
+
                 if (indexA !== -1 && indexB !== -1) {
                     return indexA - indexB;
                 }
-                // Nếu chỉ A có trong danh sách ưu tiên, A lên trước
+
                 if (indexA !== -1) {
                     return -1;
                 }
-                // Nếu chỉ B có trong danh sách ưu tiên, B lên trước
+
                 if (indexB !== -1) {
                     return 1;
                 }
-                // Nếu cả hai đều không có trong danh sách ưu tiên, giữ nguyên thứ tự tương đối
-                return 0;
+                return 0; // Giữ nguyên thứ tự tương đối cho các địa điểm không xác định
             });
 
             // Xóa các thẻ hiện có và thêm lại theo thứ tự đã sắp xếp
