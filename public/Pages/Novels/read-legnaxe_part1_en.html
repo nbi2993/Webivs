@@ -339,201 +339,30 @@
         </div>
     </div>
 
-    <footer id="footer" class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300 ease-in-out">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-            <div class="footer-links mb-6 space-x-2 sm:space-x-4">
-                <a href="readnovel.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm sm:text-base transition-colors">Back to List</a>
-                <a href="read-legnaxe_part1_vi.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm sm:text-base transition-colors">Tiếng Việt</a>
-                <a href="read-legnaxe_part2_en.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm sm:text-base transition-colors">LEGNAXE Part 2</a>
-                <a href="author-about.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm sm:text-base transition-colors">About Author</a>
-            </div>
-            <p class="text-sm text-gray-500 dark:text-gray-400">© <span id="current-year">2025</span> LEGNAXE. All rights reserved. Author: NMT </p>
-            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">Website: <a href="https://ivs.id.vn" target="_blank" rel="noopener noreferrer" class="hover:underline">ivs.id.vn</a></p>
-        </div>
-    </footer>
+    <footer id="footer-placeholder"></footer>
+    <div id="fab-container-placeholder"></div>
 
-    <script src="/js/chapter-loader.js" defer></script>
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Core Application Scripts - Order is crucial -->
+    <script src="/js/firebase-init.js" type="module"></script>
+    <script src="/js/utils.js" defer></script>
+    <script src="/js/language.js" defer></script>
+    <script src="/js/fabController.js" defer></script>
+    <script src="/js/loadComponents.js" defer></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Xác định đường dẫn cơ sở của truyện và tổng số chương
-        const storyPath = 'legnaxe_part1'; // Tên thư mục chứa JSON chương
-        const totalChapters = 30; // Tổng số chương của phần này (Chương 1 đến 30 + Epilogue)
-
-        // Khởi tạo bộ tải chương
-        initializeChapterLoader(storyPath, totalChapters);
-
-        // Các logic hiện có khác (theme toggle, scroll to top, v.v.)
-        const decreaseFontBtn = document.getElementById('decrease-font-btn');
-        const resetFontBtn = document.getElementById('reset-font-btn');
-        const increaseFontBtn = document.getElementById('increase-font-btn');
-        const bodyElement = document.body;
-
-        const fontSizeMultipliers = [0.8, 1.0, 1.2, 1.4];
-        let currentFontSizeIndex = 1;
-
-        const savedFontSizeIndex = localStorage.getItem('fontSizeIndex');
-        if (savedFontSizeIndex !== null) {
-            currentFontSizeIndex = parseInt(savedFontSizeIndex);
-            if (currentFontSizeIndex < 0 || currentFontSizeIndex >= fontSizeMultipliers.length) {
-                currentFontSizeIndex = 1;
-            }
-        }
-
-        function applyFontSize() {
-            bodyElement.style.setProperty('--font-size-multiplier', fontSizeMultipliers[currentFontSizeIndex]);
-            localStorage.setItem('fontSizeIndex', currentFontSizeIndex);
-            decreaseFontBtn.disabled = currentFontSizeIndex === 0;
-            increaseFontBtn.disabled = currentFontSizeIndex === fontSizeMultipliers.length - 1;
-        }
-
-        applyFontSize();
-
-        decreaseFontBtn?.addEventListener('click', () => {
-            if (currentFontSizeIndex > 0) {
-                currentFontSizeIndex--;
-                applyFontSize();
-            }
-        });
-
-        resetFontBtn?.addEventListener('click', () => {
-            currentFontSizeIndex = 1;
-            applyFontSize();
-        });
-
-        increaseFontBtn?.addEventListener('click', () => {
-            if (currentFontSizeIndex < fontSizeMultipliers.length - 1) {
-                currentFontSizeIndex++;
-                applyFontSize();
-            }
-        });
-
-        const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-        scrollToTopBtn?.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.remove('fab-hidden');
-            } else {
-                scrollToTopBtn.classList.add('fab-hidden');
-            }
-            // updateProgressBar(); // This will be handled by chapter-loader.js
-        });
-
-        // window.addEventListener('resize', updateProgressBar); // This will be handled by chapter-loader.js
-
-        const currentYearSpan = document.getElementById('current-year');
-        if (currentYearSpan) {
-            currentYearSpan.textContent = new Date().getFullYear();
-        }
-
-        // Theme toggle functionality (existing)
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        const themeIcon = themeToggle?.querySelector('i');
-
-        function applyTheme(isDark) {
-            htmlElement.classList.toggle('dark', isDark);
-            if (themeIcon) {
-                themeIcon.classList.toggle('fa-moon', !isDark);
-                themeIcon.classList.toggle('fa-sun', isDark);
-            }
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-        
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const savedTheme = localStorage.getItem('theme');
-        let currentIsDarkMode = savedTheme === 'dark' || (savedTheme === null && prefersDarkScheme);
-        applyTheme(currentIsDarkMode);
-
-        themeToggle?.addEventListener('click', () => {
-            currentIsDarkMode = !htmlElement.classList.contains('dark');
-            applyTheme(currentIsDarkMode);
-        });
-
-        // FAB (Floating Action Button) logic (existing)
-        const contactMainBtn = document.getElementById('contact-main-btn');
-        const contactOptions = document.getElementById('contact-options');
-        const shareMainBtn = document.getElementById('share-main-btn');
-        const shareOptions = document.getElementById('share-options');
-
-        function toggleFabOptions(optionsElement, mainButton) {
-            const isHidden = optionsElement.classList.contains('fab-hidden');
-            optionsElement.classList.toggle('fab-hidden', !isHidden);
-            mainButton.setAttribute('aria-expanded', isHidden);
-        }
-
-        contactMainBtn?.addEventListener('click', () => {
-            toggleFabOptions(contactOptions, contactMainBtn);
-            if (!contactOptions.classList.contains('fab-hidden')) {
-                // Populate contact options dynamically if needed
-                if (contactOptions.children.length === 0) {
-                    contactOptions.innerHTML = `
-                        <a href="https://m.me/ivs.edu.vn" target="_blank" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fab fa-facebook-messenger mr-2 text-blue-600"></i>Messenger
-                        </a>
-                        <a href="tel:+84933069179" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fas fa-phone mr-2 text-green-600"></i>Call
-                        </a>
-                        <a href="https://zalo.me/0933069179" target="_blank" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fab fa-zalo mr-2 text-blue-500"></i>Zalo
-                        </a>
-                        <a href="mailto:contact@ivs.id.vn" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fas fa-envelope mr-2 text-gray-600 dark:text-gray-400"></i>Email
-                        </a>
-                    `;
-                }
-            }
-        });
-
-        shareMainBtn?.addEventListener('click', () => {
-            toggleFabOptions(shareOptions, shareMainBtn);
-            if (!shareOptions.classList.contains('fab-hidden')) {
-                // Populate share options dynamically if needed
-                if (shareOptions.children.length === 0) {
-                    const pageUrl = window.location.href;
-                    const pageTitle = document.title;
-                    shareOptions.innerHTML = `
-                        <button onclick="copyToClipboard('${pageUrl}')" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fas fa-copy mr-2 text-blue-500"></i>Copy Link
-                        </button>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fab fa-facebook mr-2 text-blue-700"></i>Facebook
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}" target="_blank" class="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                            <i class="fab fa-twitter mr-2 text-blue-400"></i>Twitter
-                        </a>
-                    `;
-                }
-            }
-        });
-
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                alert('Link copied to clipboard!'); // Replace with custom modal later
-            } catch (err) {
-                console.error('Failed to copy: ', err);
-            }
-            document.body.removeChild(textarea);
-        }
-
-        document.addEventListener('click', (event) => {
-            if (contactMainBtn && !contactMainBtn.contains(event.target) && !contactOptions.contains(event.target)) {
-                contactOptions.classList.add('fab-hidden');
-                contactMainBtn.setAttribute('aria-expanded', 'false');
-            }
-            if (shareMainBtn && !shareMainBtn.contains(event.target) && !shareOptions.contains(event.target)) {
-                shareOptions.classList.add('fab-hidden');
-                shareMainBtn.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
+        // Initialize AOS after all page components are loaded
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                duration: 700, // Animation duration
+                once: true,    // Whether animation should happen only once - while scrolling down
+                offset: 50,    // Offset (in px) from the original trigger point
+                easing: 'ease-out-cubic', // Easing function for animation
+            });
+        };
     </script>
 </body>
 </html>
