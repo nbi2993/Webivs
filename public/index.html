@@ -213,7 +213,7 @@
         <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden">
             <!-- Video Background Container -->
             <div class="absolute inset-0 w-full h-full z-0">
-                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                <video id="backgroundVideo1" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
                     <source src="/videos/ivsstarting.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -520,7 +520,7 @@
         <!-- NEW COMBINED SECTION: About IVS JSC (General Intro) -->
         <section class="about-us-section py-16 md:py-24 bg-ivs-bg border-b border-ivs-border">
             <!-- Background video -->
-            <video autoplay loop muted playsinline class="background-video">
+            <video id="backgroundVideo2" autoplay loop muted playsinline class="background-video">
                 <source src="/videos/videowebdesign.mp4" type="video/mp4">
                 Trình duyệt của bạn không hỗ trợ thẻ video.
             </video>
@@ -564,7 +564,7 @@
                             "Chúng tôi cam kết cống hiến hết mình, không ngừng nỗ lực vì sự phát triển vượt bậc của Giáo dục Việt Nam. Tầm nhìn chiến lược của chúng tôi là tối ưu hóa triệt để các nguồn lực quốc gia, tiết kiệm chi phí cho đất nước và chuyển hóa hiệu quả những khoản đầu tư chưa đạt hiệu suất tối đa. Với tinh thần SYNERGY mạnh mẽ, chúng tôi sẽ tăng cường hợp tác quốc tế sâu rộng, tập trung hỗ trợ toàn diện các cơ sở giáo dục trong nước, nhằm xây dựng một nền giáo dục vững mạnh, hiện đại và hội nhập."
                         </blockquote>
                         <div class="text-lg md:text-xl text-ivs-text-secondary" data-aos="fade-up" data-aos-delay="200">
-                            <img src="/images/team/nguyen-minh-triet.png" alt="Ảnh đại diện Ông Nguyễn Minh Triết" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-ivs-blue shadow-lg object-cover" data-aos="fade-up" data-aos-delay="250" onerror="this.onerror=null;this.src='https://placehold.co/128x128/007bff/ffffff?text=CEO';">
+                            <img src="/images/team/nguyen-minh-triet.png" alt="[Ảnh đại diện Ông Nguyễn Minh Triết]" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-ivs-blue shadow-lg object-cover" data-aos="fade-up" data-aos-delay="250" onerror="this.onerror=null;this.src='https://placehold.co/128x128/007bff/ffffff?text=CEO';">
                             <p class="font-semibold text-ivs-blue" data-lang-key="ceo_name">Ông Nguyễn Minh Triết</p>
                             <p class="text-sm md:text-base" data-lang-key="ceo_title">Tổng Giám đốc (CEO) kiêm Chủ tịch HĐQT IVS JSC</p>
                         </div>
@@ -631,6 +631,23 @@
 
             initAnimatedCounters();
             initSpotlightEffect();
+
+            // Explicitly try to play background videos
+            const video1 = document.getElementById('backgroundVideo1');
+            const video2 = document.getElementById('backgroundVideo2');
+
+            if (video1) {
+                video1.play().catch(error => {
+                    console.warn('Autoplay prevented for video1:', error);
+                    // Fallback for autoplay issues: show a play button or inform user
+                });
+            }
+            if (video2) {
+                video2.play().catch(error => {
+                    console.warn('Autoplay prevented for video2:', error);
+                    // Fallback for autoplay issues: show a play button or inform user
+                });
+            }
         };
 
         function initHero3D() {
