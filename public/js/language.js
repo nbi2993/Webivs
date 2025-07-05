@@ -1,62 +1,87 @@
 /**
- * IVS Language System - Tối ưu hóa và Nâng cao
- * Phiên bản: 3.5 - Giữ nguyên chức năng cốt lõi, tăng cường độ ổn định và xử lý lỗi.
- * Mô tả: Script này quản lý toàn bộ chức năng đa ngôn ngữ, tương thích hoàn toàn
- * với cấu trúc file và thuộc tính `data-lang-key` hiện có của hệ thống.
- * Tích hợp: Giữ nguyên cách tích hợp hiện tại trong các trang HTML.
+ * IVS Language System - Tối ưu hóa cho cấu trúc đa tệp
+ * Phiên bản: 4.0 - Hỗ trợ tải và hợp nhất nhiều tệp ngôn ngữ.
+ * Mô tả: Script này quản lý chức năng đa ngôn ngữ bằng cách tải đồng thời
+ * các tệp -core, -pages, và -components, sau đó gộp chúng thành một đối tượng
+ * dịch thuật duy nhất để sử dụng trên toàn trang.
  */
 'use strict';
 
-// 1. CẤU HÌNH & TRẠNG THÁI TOÀN CỤC (KHÔNG THAY ĐỔI)
+// 1. CẤU HÌNH & TRẠNG THÁI TOÀN CỤC
 window.langSystem = window.langSystem || {
     translations: {},
     defaultLanguage: 'vi',
     currentLanguage: 'vi',
-    languageStorageKey: 'userPreferredLanguage_v3',
+    languageStorageKey: 'userPreferredLanguage_v4', // Cập nhật key để tránh xung đột cache
     languageFilesPath: '/lang/',
     isDebugMode: true,
     initialized: false,
 };
 
 // 2. HÀM TIỆN ÍCH (Sử dụng componentLog từ utils.js)
-// Giữ nguyên, không thay đổi.
+// ...
 
-// 3. LOGIC CỐT LÕI (ĐƯỢC TỐI ƯU HÓA)
+// 3. LOGIC CỐT LÕI (NÂNG CẤP ĐỂ TẢI NHIỀU TỆP)
 
 /**
- * Lấy dữ liệu dịch thuật cho một ngôn ngữ.
- * Tối ưu hóa: Thêm cơ chế cache và xử lý lỗi mạng chi tiết hơn.
+ * Tải và hợp nhất các tệp ngôn ngữ cho một langCode cụ thể.
  * @param {string} langCode - Mã ngôn ngữ (vd: 'vi', 'en').
- * @returns {Promise<object|null>} - Trả về đối tượng dịch thuật hoặc null nếu lỗi.
+ * @returns {Promise<object|null>} - Trả về đối tượng dịch thuật đã hợp nhất hoặc null nếu lỗi.
  */
-async function fetchTranslations(langCode) {
-    // Nếu đã có trong cache, trả về ngay lập tức.
+async function fetchAndMergeTranslations(langCode) {
     if (window.langSystem.translations[langCode]) {
         window.componentLog(`Translations for '${langCode}' loaded from cache.`, 'info');
         return window.langSystem.translations[langCode];
     }
 
-    const filePath = `${window.langSystem.languageFilesPath}${langCode}.json?v=${new Date().getTime()}`;
-    window.componentLog(`Fetching translations for: '${langCode}' from ${filePath}`);
+    const filesToFetch = [
+        `${window.langSystem.languageFilesPath}${langCode}-core.json`,
+        `${window.langSystem.languageFilesPath}${langCode}-pages.json`,
+        `${window.langSystem.languageFilesPath}${langCode}-components.json`
+    ];
+
+    window.componentLog(`Fetching translation files for '${langCode}'...`, 'group');
 
     try {
-        const response = await fetch(filePath);
+        const responses = await Promise.all(
+            filesToFetch.map(file => fetch(`${file}?v=${new Date().getTime()}`).catch(e => {
+                // Bắt lỗi mạng cho từng file
+                window.componentLog(`Network error fetching ${file}: ${e.message}`, 'error');
+                return null; // Trả về null để Promise.all không bị reject ngay lập tức
+            }))
+        );
 
-        if (!response.ok) {
-            // Ném lỗi cụ thể hơn để dễ dàng gỡ lỗi.
-            throw new Error(`Failed to load language file. Status: ${response.status} - ${response.statusText}. URL: ${response.url}`);
+        const successfulResponses = responses.filter(response => response && response.ok);
+        
+        if (successfulResponses.length === 0) {
+             throw new Error(`All language files failed to load for '${langCode}'.`);
         }
+        
+        // Ghi log các file bị lỗi
+        responses.forEach((response, index) => {
+            if (!response || !response.ok) {
+                window.componentLog(`Failed to load ${filesToFetch[index]}. Status: ${response ? response.status : 'Network Error'}`, 'warn');
+            }
+        });
 
-        const data = await response.json();
-        window.langSystem.translations[langCode] = data; // Lưu vào cache
-        window.componentLog(`Successfully loaded and parsed translations for '${langCode}'. Keys: ${Object.keys(data).length}`);
-        return data;
+        const dataObjects = await Promise.all(successfulResponses.map(res => res.json()));
+
+        // Hợp nhất tất cả các đối tượng JSON thành một.
+        // Object.assign({}, ...dataObjects) tạo một đối tượng mới chứa tất cả các khóa.
+        const mergedTranslations = Object.assign({}, ...dataObjects);
+
+        window.langSystem.translations[langCode] = mergedTranslations;
+        window.componentLog(`Successfully merged ${dataObjects.length} files for '${langCode}'. Total keys: ${Object.keys(mergedTranslations).length}`);
+        console.groupEnd();
+        return mergedTranslations;
 
     } catch (error) {
-        window.componentLog(`Failed to fetch or parse translations for '${langCode}': ${error.message}`, 'error');
-        return null; // Trả về null khi có lỗi.
+        window.componentLog(`Could not load language pack for '${langCode}': ${error.message}`, 'error');
+        console.groupEnd();
+        return null;
     }
 }
+
 
 /**
  * Áp dụng các bản dịch lên giao diện người dùng.
@@ -66,7 +91,6 @@ function applyTranslations() {
     const lang = window.langSystem.currentLanguage;
     const defaultLang = window.langSystem.defaultLanguage;
 
-    // Ưu tiên ngôn ngữ hiện tại, nếu không có thì dùng ngôn ngữ mặc định.
     const translations = window.langSystem.translations[lang] || window.langSystem.translations[defaultLang];
 
     if (!translations) {
@@ -84,13 +108,12 @@ function applyTranslations() {
         const key = el.dataset.langKey;
         let translation = translations[key];
 
-        // Nếu không tìm thấy key trong ngôn ngữ hiện tại, thử tìm trong ngôn ngữ mặc định.
         if (translation === undefined && lang !== defaultLang) {
             const defaultTranslations = window.langSystem.translations[defaultLang];
             if (defaultTranslations && defaultTranslations[key] !== undefined) {
                 translation = defaultTranslations[key];
                  if(window.langSystem.isDebugMode) {
-                    el.style.outline = '1px dashed orange'; // Đánh dấu phần tử dùng fallback
+                    el.style.outline = '1px dashed orange';
                     el.title = `Fallback: '${key}' from default language '${defaultLang}'`;
                 }
             }
@@ -102,7 +125,7 @@ function applyTranslations() {
                 if (targetAttr === 'textContent') {
                     el.textContent = translation;
                 } else if (targetAttr === 'innerHTML') {
-                    el.innerHTML = translation; // Giữ nguyên để tương thích chức năng cũ
+                    el.innerHTML = translation;
                 } else {
                     el.setAttribute(targetAttr, translation);
                 }
@@ -113,7 +136,7 @@ function applyTranslations() {
         } else {
             missingKeys.push(key);
             if(window.langSystem.isDebugMode) {
-                el.style.outline = '1px dashed red'; // Đánh dấu key bị thiếu
+                el.style.outline = '1px dashed red';
                 el.title = `Missing translation key: '${key}'`;
             }
         }
@@ -129,50 +152,41 @@ function applyTranslations() {
 
 /**
  * Thiết lập và chuyển đổi ngôn ngữ cho toàn bộ trang.
- * Tối ưu hóa: Hợp nhất logic từ `setLanguage` và `changeLanguage` cũ thành một hàm duy nhất, mạnh mẽ hơn.
  * @param {string} langCode - Mã ngôn ngữ để chuyển đổi (vd: 'vi', 'en').
  */
 async function setLanguage(langCode) {
     window.componentLog(`Request to set language to: '${langCode}'`, 'group');
-
-    // 1. Xác thực ngôn ngữ đầu vào
-    const supportedLanguages = ['vi', 'en']; // Có thể mở rộng sau
+    
+    const supportedLanguages = ['vi', 'en'];
     if (!supportedLanguages.includes(langCode)) {
         window.componentLog(`Invalid language code '${langCode}'. Falling back to default '${window.langSystem.defaultLanguage}'.`, 'warn');
         langCode = window.langSystem.defaultLanguage;
     }
 
-    // 2. Tải bản dịch (nếu cần)
-    await fetchTranslations(langCode);
+    await fetchAndMergeTranslations(langCode);
 
-    // 3. Kiểm tra lại sau khi tải, nếu thất bại thì dùng ngôn ngữ mặc định
     if (!window.langSystem.translations[langCode]) {
         window.componentLog(`Failed to load '${langCode}', ensuring default '${window.langSystem.defaultLanguage}' is active.`, 'warn');
         langCode = window.langSystem.defaultLanguage;
-        // Đảm bảo ngôn ngữ mặc định đã được tải
         if (!window.langSystem.translations[langCode]) {
-            await fetchTranslations(langCode);
+            await fetchAndMergeTranslations(langCode);
         }
     }
-
-    // Kiểm tra cuối cùng trước khi áp dụng
+    
     if (!window.langSystem.translations[langCode]) {
         window.componentLog('CRITICAL: Default language pack could not be loaded. Language system cannot function.', 'error');
         console.groupEnd();
         return;
     }
 
-    // 4. Cập nhật trạng thái hệ thống
-    window.langSystem.currentLanguage = langCode;
-    localStorage.setItem(window.langSystem.languageStorageKey, langCode);
 
-    // 5. Áp dụng lên giao diện
+    window.langSystem.currentLanguage = langCode;
+    localStorage.setItem(window.langSystem.languageStorageKey, langCode);    
     applyTranslations();
 
-    // 6. Cập nhật UI của các nút chuyển ngôn ngữ (nếu có)
     if (window.IVSHeaderController && typeof window.IVSHeaderController.updateLanguageButtonStates === 'function') {
         window.IVSHeaderController.updateLanguageButtonStates(langCode);
-        window.componentLog('Notified IVSHeaderController to update UI.');
+
     }
     
     window.componentLog(`Language successfully set to: '${window.langSystem.currentLanguage}'.`);
@@ -180,7 +194,7 @@ async function setLanguage(langCode) {
 }
 
 
-// 4. KHỞI TẠO HỆ THỐNG (Tối ưu hóa)
+// 4. KHỞI TẠO HỆ THỐNG
 async function initializeLanguageSystem() {
     if (window.langSystem.initialized) {
         window.componentLog('Language system already initialized.', 'info');
@@ -188,17 +202,12 @@ async function initializeLanguageSystem() {
     }
     window.componentLog('Initializing Language System...', 'group');
 
-    // Ưu tiên ngôn ngữ đã lưu, sau đó đến ngôn ngữ trình duyệt, cuối cùng là mặc định.
     const savedLang = localStorage.getItem(window.langSystem.languageStorageKey);
     const browserLang = (navigator.language || navigator.userLanguage).split('-')[0];
     const initialLang = savedLang || browserLang || window.langSystem.defaultLanguage;
 
-    window.componentLog(`Determined initial language: '${initialLang}' (Saved: ${savedLang}, Browser: ${browserLang})`);
-
-    // Luôn tải ngôn ngữ mặc định trước để đảm bảo có fallback
-    await fetchTranslations(window.langSystem.defaultLanguage);
-    
-    // Tải và thiết lập ngôn ngữ ban đầu
+    window.componentLog(`Determined initial language: '${initialLang}'`);
+    await fetchAndMergeTranslations(window.langSystem.defaultLanguage);    
     await setLanguage(initialLang);
 
     window.langSystem.initialized = true;
@@ -207,15 +216,14 @@ async function initializeLanguageSystem() {
 }
 
 // 5. EXPOSE API & THỰC THI
-// Cung cấp hàm `changeLanguage` ra toàn cục để các nút bấm có thể gọi.
-// Nó sẽ trỏ đến hàm `setLanguage` đã được tối ưu hóa.
+
 window.changeLanguage = setLanguage;
 
-// Tự khởi tạo khi DOM đã sẵn sàng (Giữ nguyên)
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeLanguageSystem);
-
+    
 } else {
     initializeLanguageSystem();
-    
+
 }
