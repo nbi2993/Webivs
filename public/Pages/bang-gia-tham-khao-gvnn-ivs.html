@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVS JSC - Hệ Sinh Thái Giáo Dục, Công Nghệ & Nhân Sự Toàn Diện</title>
-    <meta name="description" content="Bảng giá tham khảo dịch vụ cung cấp giáo viên nước ngoài của IVS JSC cho các trường học, trung tâm và doanh nghiệp tại Việt Nam.">
-    <meta name="keywords" content="bảng giá giáo viên nước ngoài, giá GVNN, chi phí thuê giáo viên, IVS JSC, giá giáo viên bản ngữ, giá giáo viên Filipino">
-    <meta property="og:title" content="Bảng Giá Tham Khảo Giáo Viên Nước Ngoài | IVS JSC">
-    <meta property="og:description" content="Chi tiết bảng giá tham khảo cho các gói dịch vụ cung cấp giáo viên nước ngoài Part-time và Full-time từ IVS JSC.">
+    <title>IVS JSC - Bảng Giá Dịch Vụ Giáo Viên Nước Ngoài</title>
+    <meta name="description" content="Bảng giá tham khảo dịch vụ cung cấp giáo viên nước ngoài của IVS JSC cho các trường học, trung tâm và doanh nghiệp tại Việt Nam, tối ưu hiển thị và giao diện người dùng.">
+    <meta name="keywords" content="bảng giá giáo viên nước ngoài, giá GVNN, chi phí thuê giáo viên, IVS JSC, giá giáo viên bản ngữ, giá giáo viên Filipino, giáo viên tiếng Anh">
+    <meta property="og:title" content="Bảng Giá Dịch Vụ Giáo Viên Nước Ngoài | IVS JSC">
+    <meta property="og:description" content="Chi tiết bảng giá tham khảo cho các gói dịch vụ cung cấp giáo viên nước ngoài Part-time và Full-time từ IVS JSC với giao diện được cải thiện.">
     <meta property="og:image" content="https://ivsjsc.github.io/images/banners/price-list-og.png">
     <meta property="og:url" content="https://ivsacademy.edu.vn/Pages/bang-gia-tham-khao-gvnn-ivs.html">
     <meta name="author" content="IVS JSC">
@@ -17,13 +17,19 @@
     <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
     <link rel="manifest" href="/manifest.json">
     
+    <!-- Google Fonts - Lexend for display, Inter for body text, Be Vietnam Pro for overall -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- AOS for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,12 +37,12 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        // Combined font families
+                        // Combined font families for better consistency
                         sans: ['Be Vietnam Pro', 'Inter', 'sans-serif'],
                         display: ['Poppins', 'Lexend', 'sans-serif'],
                     },
                     colors: {
-                        // Retained the softer, more soothing dark palette
+                        // IVS custom color palette
                         'ivs-bg': '#1A202C', 
                         'ivs-card': '#2D3748',
                         'ivs-border': '#4A5568',
@@ -63,50 +69,43 @@
             }
         }
     </script>
-    <!-- Assuming /css/styles.css exists and contains general styles -->
+    <!-- Custom styles for general layout and specific components -->
     <link rel="stylesheet" href="/css/styles.css"> 
     <style>
         body {
             background-color: var(--ivs-bg);
             color: var(--ivs-text-primary);
         }
-        .font-display { font-family: 'Lexend', 'Poppins', sans-serif; } /* Ensure display font is applied */
+        .font-display { font-family: 'Lexend', 'Poppins', sans-serif; } 
 
-        .price-table-container {
-            @apply overflow-x-auto;
+        /* Custom styles for price cards */
+        .price-card {
+            @apply bg-ivs-card border border-ivs-border rounded-lg p-6 shadow-xl flex flex-col h-full;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .price-table {
-            @apply w-full border-collapse;
-            min-width: 700px; /* Ensure table is wide enough on smaller screens */
+        .price-card:hover {
+            @apply transform -translate-y-2 shadow-2xl;
         }
-        .price-table th, .price-table td {
-            @apply py-3 px-4 text-left border border-ivs-border;
+        .price-card-header {
+            @apply text-center pb-4 mb-4 border-b border-ivs-border;
         }
-        .price-table th {
-            @apply bg-ivs-blue text-white font-semibold uppercase text-sm;
+        .price-card-title {
+            @apply text-3xl font-display font-bold text-ivs-text-primary;
         }
-        .price-table td {
-            @apply bg-ivs-card text-ivs-text-secondary;
+        .price-card-price {
+            @apply text-5xl font-display font-extrabold mt-2;
         }
-        .price-table tbody tr:nth-child(odd) td {
-            @apply bg-ivs-bg; /* Alternate row color */
+        .price-card-features {
+            @apply flex-grow space-y-3 py-4;
         }
-        .price-table tbody tr:hover td {
-            @apply bg-ivs-border; /* Hover effect */
+        .price-card-feature-item {
+            @apply flex items-center text-ivs-text-secondary;
         }
-        .price-range {
-            @apply font-bold text-ivs-green;
+        .price-card-feature-item i {
+            @apply text-ivs-green mr-3;
         }
-        .note-column {
-            @apply text-ivs-text-secondary text-sm italic;
-        }
-
-        .cta-button {
-            @apply inline-flex items-center px-8 py-4 text-base font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
-            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3); /* Updated shadow color for muted blue */
-        }
-        .cta-button:hover {
-            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4); /* Updated shadow color for muted blue */
+        .price-card-cta {
+            @apply mt-6 text-center;
         }
 
         /* Styles for spotlight card effect from layout.html */
@@ -142,47 +141,69 @@
         .spotlight-card:hover .absolute.inset-0.bg-gradient-to-br {
             opacity: 0.2;
         }
+
+        /* CTA Button Styling */
+        .cta-button {
+            @apply inline-flex items-center px-8 py-4 text-base font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3); /* Updated shadow color for muted blue */
+        }
+        .cta-button:hover {
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4); /* Updated shadow color for muted blue */
+        }
+
+        /* FAQ Section Styling */
+        .faq-item {
+            @apply bg-ivs-card border border-ivs-border rounded-lg mb-4;
+        }
+        .faq-question {
+            @apply flex justify-between items-center p-5 cursor-pointer text-ivs-text-primary font-semibold text-lg;
+        }
+        .faq-answer {
+            @apply p-5 pt-0 text-ivs-text-secondary hidden;
+        }
+        .faq-answer.open {
+            display: block;
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        .faq-question i.rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="antialiased">
-    
-    <!-- Simple Header Placeholder - Replace with your actual header content -->
-    <header class="bg-ivs-card py-4 shadow-md">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-ivs-blue font-display">IVS JSC</a>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="#" class="text-ivs-text-primary hover:text-ivs-blue transition-colors">Trang chủ</a></li>
-                    <li><a href="#" class="text-ivs-text-primary hover:text-ivs-blue transition-colors">Dịch vụ</a></li>
-                    <li><a href="#" class="text-ivs-text-primary hover:text-ivs-blue transition-colors">Liên hệ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-ivs-bg flex items-center justify-center z-[100] transition-opacity duration-500 opacity-100">
+        <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-ivs-blue"></div>
+    </div>
+
+    <!-- Header will be loaded here by loadComponents.js -->
+    <div id="header-placeholder"></div>
 
     <main>
-        <!-- Hero Section from layout.html -->
+        <!-- Hero Section -->
         <section class="relative h-screen flex items-center justify-center overflow-hidden text-center">
             <div id="hero-canvas-container" class="absolute inset-0 z-0"></div>
             <div class="relative z-10 p-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
                 <h1 class="text-5xl md:text-7xl font-display font-extrabold leading-tight text-ivs-text-primary mb-6 drop-shadow-lg">
-                    IVS JSC
+                    Bảng Giá Dịch Vụ Giáo Viên Nước Ngoài
                 </h1>
                 <p class="text-xl md:text-2xl text-ivs-text-secondary mb-8 leading-relaxed">
-                    Hệ Sinh Thái Giáo Dục, Công Nghệ & Nhân Sự Toàn Diện
+                    Giải pháp giáo dục chất lượng cao với chi phí tối ưu cho mọi nhu cầu
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#services" class="cta-button bg-ivs-blue text-white hover:bg-ivs-blue-darker">
-                        <i class="fas fa-rocket mr-2"></i> Khám Phá Dịch Vụ
+                    <a href="#pricing" class="cta-button bg-ivs-blue text-white hover:bg-ivs-blue-darker">
+                        <i class="fas fa-tags mr-2"></i> Xem Bảng Giá
                     </a>
                     <a href="#contact" class="cta-button bg-ivs-card text-ivs-text-primary border border-ivs-border hover:bg-ivs-border">
-                        <i class="fas fa-envelope mr-2"></i> Liên Hệ Ngay
+                        <i class="fas fa-envelope mr-2"></i> Liên Hệ Tư Vấn
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Impact/Statistics Section from layout.html -->
+        <!-- Impact/Statistics Section -->
         <section id="impact-counters" class="py-16 md:py-24 bg-ivs-card border-t border-b border-ivs-border">
             <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="p-6 rounded-lg bg-ivs-bg border border-ivs-border shadow-lg" data-aos="fade-up">
@@ -200,7 +221,7 @@
             </div>
         </section>
 
-        <!-- Services Section from layout.html -->
+        <!-- Services Section -->
         <section id="services" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up">
@@ -232,110 +253,226 @@
             </div>
         </section>
 
-        <!-- Price Table Section - Original Content of this file -->
-        <section class="py-16 md:py-24">
+        <!-- Pricing Section - Rewritten for better UX -->
+        <section id="pricing" class="py-16 md:py-24 bg-ivs-bg">
             <div class="container mx-auto px-6">
-                <h1 class="font-display text-3xl md:text-4xl font-semibold text-center mb-10 text-ivs-text-primary" data-aos="fade-up">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-10 text-ivs-text-primary" data-aos="fade-up">
                     Bảng Giá Dịch Vụ Cung Cấp Giáo Viên Nước Ngoài 2025
-                </h1>
+                </h2>
                 <p class="text-center text-ivs-text-secondary max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Giá cung cấp giáo viên nước ngoài của IVS JSC có thể thay đổi tùy thuộc vào số giờ giảng dạy hàng tuần, chương trình/giáo trình, địa điểm và các yêu cầu đặc biệt khác của quý đối tác. Vui lòng liên hệ để nhận báo giá chính xác nhất.
+                    IVS JSC cung cấp các gói dịch vụ linh hoạt, đáp ứng đa dạng nhu cầu từ trường học, trung tâm đến doanh nghiệp. Giá cả cạnh tranh, chất lượng đảm bảo.
                 </p>
 
-                <div class="price-table-container" data-aos="fade-up" data-aos-delay="200">
-                    <table class="price-table">
-                        <thead>
-                            <tr>
-                                <th>Mã Gói</th>
-                                <th>Gói</th>
-                                <th>Mô Tả</th>
-                                <th>Đơn Giá (Tham khảo)</th>
-                                <th>Ghi Chú</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Part-time Pricing - Updated to IVS branding -->
-                            <tr>
-                                <td>IVS-SCH</td>
-                                <td>IVS-Trường học</td>
-                                <td>Cung cấp giáo viên tiếng Anh bản ngữ cho các trường học (Trường công, Trường tư & Trường quốc tế)</td>
-                                <td class="price-range">24$ - 29$/giờ</td>
-                                <td class="note-column">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
-                            </tr>
-                            <tr>
-                                <td>IVS-CTR</td>
-                                <td>IVS-Trung tâm</td>
-                                <td>Cung cấp giáo viên tiếng Anh bản ngữ cho các trung tâm ngoại ngữ và nhóm học</td>
-                                <td class="price-range">25$ - 30$/giờ</td>
-                                <td class="note-column">Tùy thuộc vào số giờ giảng dạy hàng tuần & chương trình, giáo trình giảng dạy, địa điểm & các yêu cầu khác.</td>
-                            </tr>
-                            <tr>
-                                <td>IVS-BIZ</td>
-                                <td>IVS-Doanh nghiệp</td>
-                                <td>Cung cấp giáo viên tiếng Anh nước ngoài cho doanh nghiệp dạy theo yêu cầu đào tạo đặc thù</td>
-                                <td class="price-range">26$ - 32$/giờ</td>
-                                <td class="note-column">Tùy thuộc vào thời lượng và chương trình đào tạo.</td>
-                            </tr>
-                            
-                            <!-- Full-time Pricing - Updated to IVS branding -->
-                            <tr>
-                                <td>IVS-FTF</td>
-                                <td>IVS-Full Time (Filipino)</td>
-                                <td>Cung cấp giáo viên tiếng Anh người Philippines dạy full time theo tháng</td>
-                                <td class="price-range">1400$ - 1700$/tháng</td>
-                                <td class="note-column">Giáo viên Filipino.</td>
-                            </tr>
-                            <tr>
-                                <td>IVS-FTN</td>
-                                <td>IVS-Full Time (Bản ngữ)</td>
-                                <td>Cung cấp giáo viên tiếng Anh bản ngữ dạy full time theo tháng</td>
-                                <td class="price-range">2400$ - 2700$/tháng</td>
-                                <td class="note-column">Giáo viên bản ngữ.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Pricing Card: Part-time for Schools -->
+                    <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="price-card-header">
+                            <h3 class="price-card-title text-ivs-blue">Gói IVS-Trường học</h3>
+                            <p class="text-ivs-text-secondary text-lg">Giáo viên tiếng Anh bản ngữ Part-time</p>
+                            <p class="price-card-price text-ivs-blue">24$ - 29$<span class="text-xl text-ivs-text-secondary">/giờ</span></p>
+                        </div>
+                        <div class="price-card-features">
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Cung cấp giáo viên cho trường công, tư, quốc tế</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Linh hoạt theo số giờ giảng dạy hàng tuần</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Phù hợp chương trình & giáo trình riêng</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Hỗ trợ địa điểm và yêu cầu đặc biệt</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-info-circle text-ivs-text-secondary"></i><span class="text-sm italic">Giá có thể thay đổi tùy thuộc vào yêu cầu cụ thể.</span></div>
+                        </div>
+                        <div class="price-card-cta">
+                            <a href="/contact.html?service=foreign-teacher-school" class="cta-button bg-ivs-blue text-white hover:bg-ivs-blue-darker w-full justify-center">
+                                <i class="fas fa-handshake mr-2"></i> Nhận Tư Vấn
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Card: Part-time for Centers/Businesses -->
+                    <div class="price-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="price-card-header">
+                            <h3 class="price-card-title text-ivs-green">Gói IVS-Trung tâm & Doanh nghiệp</h3>
+                            <p class="text-ivs-text-secondary text-lg">Giáo viên tiếng Anh bản ngữ Part-time</p>
+                            <p class="price-card-price text-ivs-green">25$ - 32$<span class="text-xl text-ivs-text-secondary">/giờ</span></p>
+                        </div>
+                        <div class="price-card-features">
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Cung cấp giáo viên cho trung tâm ngoại ngữ</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Đào tạo tiếng Anh theo yêu cầu doanh nghiệp</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Giảng dạy nhóm học nhỏ hoặc cá nhân</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Linh hoạt thời lượng và chương trình đào tạo</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-info-circle text-ivs-text-secondary"></i><span class="text-sm italic">Giá có thể thay đổi tùy thuộc vào thời lượng và chương trình.</span></div>
+                        </div>
+                        <div class="price-card-cta">
+                            <a href="/contact.html?service=foreign-teacher-center-biz" class="cta-button bg-ivs-green text-white hover:bg-ivs-green-darker w-full justify-center">
+                                <i class="fas fa-briefcase mr-2"></i> Yêu Cầu Báo Giá
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Card: Full-time Options -->
+                    <div class="price-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="price-card-header">
+                            <h3 class="price-card-title text-ivs-orange">Gói IVS-Full Time</h3>
+                            <p class="text-ivs-text-secondary text-lg">Giáo viên tiếng Anh Full-time theo tháng</p>
+                            <p class="price-card-price text-ivs-orange">Liên hệ</p>
+                        </div>
+                        <div class="price-card-features">
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Giáo viên Filipino: 1400$ - 1700$/tháng</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Giáo viên bản ngữ: 2400$ - 2700$/tháng</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Đảm bảo chất lượng và sự ổn định</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-check-circle"></i><span>Hỗ trợ toàn diện về thủ tục, chỗ ở</span></div>
+                            <div class="price-card-feature-item"><i class="fas fa-info-circle text-ivs-text-secondary"></i><span class="text-sm italic">Giá mang tính tham khảo, vui lòng liên hệ để có báo giá chính xác.</span></div>
+                        </div>
+                        <div class="price-card-cta">
+                            <a href="/contact.html?service=foreign-teacher-fulltime" class="cta-button bg-ivs-orange text-white hover:bg-orange-600 w-full justify-center">
+                                <i class="fas fa-calendar-alt mr-2"></i> Đặt Lịch Tư Vấn
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
                     <p class="text-lg text-ivs-text-primary mb-6">
-                        Để nhận báo giá chính xác và tư vấn gói dịch vụ tối ưu nhất cho nhu cầu của bạn, vui lòng liên hệ IVS JSC:
+                        Bạn có nhu cầu đặc biệt hoặc muốn biết thêm chi tiết về các gói dịch vụ?
                     </p>
-                    <a href="/contact.html?service=foreign-teacher-price-inquiry" class="cta-button bg-ivs-orange hover:bg-orange-600 text-white">
-                        <i class="fas fa-headset mr-2"></i> Liên Hệ Nhận Báo Giá
+                    <a href="/contact.html" class="cta-button bg-ivs-purple hover:bg-purple-700 text-white">
+                        <i class="fas fa-comments mr-2"></i> Liên Hệ Ngay Với Chúng Tôi
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 bg-ivs-card border-t border-ivs-border">
+            <div class="container mx-auto px-6">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up">
+                    Câu Hỏi Thường Gặp (FAQ)
+                </h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Giáo viên của IVS JSC có chứng chỉ quốc tế không?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tất cả giáo viên nước ngoài do IVS JSC cung cấp đều có đầy đủ các chứng chỉ giảng dạy quốc tế như TESOL, TEFL, CELTA, và có kinh nghiệm giảng dạy phù hợp với từng cấp độ và đối tượng học viên.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>IVS JSC có hỗ trợ thủ tục pháp lý cho giáo viên không?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Có, IVS JSC hỗ trợ toàn diện các thủ tục pháp lý liên quan đến giấy phép lao động, visa, và các giấy tờ cần thiết khác để giáo viên có thể làm việc hợp pháp tại Việt Nam.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Làm thế nào để yêu cầu báo giá chính xác?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Để nhận báo giá chính xác nhất, vui lòng liên hệ trực tiếp với chúng tôi qua số điện thoại, email hoặc điền vào biểu mẫu liên hệ trên website. Chúng tôi sẽ tư vấn và đưa ra giải pháp phù hợp nhất với nhu cầu của quý đối tác.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <span>IVS JSC có cung cấp giáo viên cho các tỉnh thành khác ngoài Đồng Nai không?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Có, IVS JSC cung cấp dịch vụ giáo viên nước ngoài trên toàn quốc. Chúng tôi có mạng lưới giáo viên rộng khắp và sẵn sàng đáp ứng nhu cầu của quý đối tác tại mọi tỉnh thành.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-ivs-text-primary mb-8" data-aos="fade-up">
+                    Liên Hệ Với Chúng Tôi
+                </h2>
+                <p class="text-ivs-text-secondary max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+                    Đội ngũ chuyên gia của IVS JSC luôn sẵn sàng lắng nghe và tư vấn giải pháp tối ưu nhất cho bạn.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-ivs-card p-8 rounded-lg shadow-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-phone-alt text-4xl text-ivs-blue mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-ivs-text-primary mb-2">Gọi điện</h3>
+                        <p class="text-ivs-text-secondary text-lg">Hotline: <a href="tel:+84909123456" class="text-ivs-blue hover:underline">+84 909 123 456</a></p>
+                        <p class="text-ivs-text-secondary text-lg">Hỗ trợ 24/7</p>
+                    </div>
+                    <div class="bg-ivs-card p-8 rounded-lg shadow-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-envelope text-4xl text-ivs-green mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-ivs-text-primary mb-2">Gửi Email</h3>
+                        <p class="text-ivs-text-secondary text-lg">Email: <a href="mailto:info@ivsjsc.edu.vn" class="text-ivs-green hover:underline">info@ivsjsc.edu.vn</a></p>
+                        <p class="text-ivs-text-secondary text-lg">Phản hồi trong 24 giờ làm việc</p>
+                    </div>
+                </div>
+                <div class="mt-10" data-aos="fade-up" data-aos-delay="400">
+                    <p class="text-ivs-text-secondary text-lg mb-4">Hoặc điền vào biểu mẫu dưới đây để chúng tôi liên hệ lại:</p>
+                    <!-- Simple Contact Form Placeholder -->
+                    <form class="bg-ivs-card p-8 rounded-lg shadow-xl border border-ivs-border max-w-2xl mx-auto">
+                        <div class="mb-4">
+                            <input type="text" id="contact-name" name="name" placeholder="Tên của bạn" class="w-full p-3 rounded-md bg-ivs-bg border border-ivs-border text-ivs-text-primary focus:outline-none focus:ring-2 focus:ring-ivs-blue" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" id="contact-email" name="email" placeholder="Email của bạn" class="w-full p-3 rounded-md bg-ivs-bg border border-ivs-border text-ivs-text-primary focus:outline-none focus:ring-2 focus:ring-ivs-blue" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="tel" id="contact-phone" name="phone" placeholder="Số điện thoại (tùy chọn)" class="w-full p-3 rounded-md bg-ivs-bg border border-ivs-border text-ivs-text-primary focus:outline-none focus:ring-2 focus:ring-ivs-blue">
+                        </div>
+                        <div class="mb-4">
+                            <textarea id="contact-message" name="message" rows="5" placeholder="Nội dung tin nhắn của bạn" class="w-full p-3 rounded-md bg-ivs-bg border border-ivs-border text-ivs-text-primary focus:outline-none focus:ring-2 focus:ring-ivs-blue" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button bg-ivs-blue text-white hover:bg-ivs-blue-darker w-full justify-center">
+                            Gửi Tin Nhắn <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Simple Footer Placeholder - Replace with your actual footer content -->
-    <footer class="bg-ivs-card py-8 text-ivs-text-secondary text-center">
-        <div class="container mx-auto px-6">
-            <p>&copy; 2025 IVS JSC. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="text-ivs-text-secondary hover:text-ivs-blue"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-ivs-text-secondary hover:text-ivs-blue"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer will be loaded here by loadComponents.js -->
+    <div id="footer-placeholder"></div>
 
-    <!-- Simple FAB Container Placeholder - Replace with your actual FAB content -->
-    <div class="fixed bottom-5 left-5 z-[90]">
-        <button class="bg-ivs-blue text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-ivs-blue-darker transition-colors duration-200" aria-label="Chat with us">
-            <i class="fas fa-comment-dots text-xl"></i>
-        </button>
-    </div>
+    <!-- FAB Container will be loaded here by loadComponents.js -->
+    <div id="fab-container-placeholder"></div>
         
+    <!-- Scroll to top button -->
     <button id="scrollToTopBtn"
             class="hidden fixed bottom-5 right-5 z-[90] items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-ivs-card text-ivs-text-primary shadow-lg hover:bg-ivs-border transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-offset-2 focus:ring-offset-ivs-bg"
             aria-label="Scroll to top">
         <i class="fas fa-arrow-up text-lg md:text-xl" aria-hidden="true"></i>
     </button>
     
+    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> <!-- Added Three.js for 3D hero -->
+    <!-- Three.js for 3D hero background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> 
+
+    <!-- Custom JS files for dynamic components and page logic -->
+    <script src="/js/app.js"></script>
+    <script src="/js/language.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/headerController.js"></script>
+    <script src="/js/fabController.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/contact-page.js"></script>
+    <script src="/js/firebase-init.js"></script>
+    <script src="/js/check-translations.js"></script>
+    <script src="/js/posts-loader.js"></script>
+    <script src="/js/rss-loader.js"></script>
+    <script src="/js/typescript.js"></script>
+    <script src="/js/tailwind.config.js"></script>
+
     <script>
-        // AOS initialization
+        // Initialize AOS
         AOS.init({
             offset: 80,
             duration: 600,
@@ -425,6 +562,14 @@
             // Initialize 3D hero on window load
             window.onload = function() {
                 init();
+                // Hide loading overlay after all content and 3D hero are loaded
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500); // Match transition duration
+                }
             };
         }
 
@@ -467,12 +612,52 @@
             });
         }
 
-        // Initialize animated counters and spotlight effect after DOM is loaded
+        // FAQ Toggle Logic
+        function initFaqToggle() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+
+                    // Close all other open FAQs
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            otherQuestion.nextElementSibling.classList.remove('open');
+                            otherQuestion.nextElementSibling.style.maxHeight = null;
+                            otherQuestion.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current FAQ
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+        }
+
+        // Initialize all effects and dynamic content after DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
+            // Load common components
+            loadComponent('/components/header.html', 'header-placeholder');
+            loadComponent('/components/footer.html', 'footer-placeholder');
+            loadComponent('/components/fab-container.html', 'fab-container-placeholder');
+
             initAnimatedCounters();
             initSpotlightEffect();
-            // initHero3D is called on window.onload
+            initFaqToggle();
+            
+            // initHero3D is called on window.onload to ensure it runs after full page load
+            // and hides the loading overlay.
         });
+
+        // Call initHero3D on window load
+        window.addEventListener('load', initHero3D);
     </script>
 </body>
 </html>
