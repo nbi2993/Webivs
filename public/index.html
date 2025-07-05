@@ -431,27 +431,60 @@
             </div>
         </section>
 
-        <section id="leader" class="py-20 lg:py-24 bg-ivs-bg">
-            <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
-                <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 bg-ivs-card p-8 md:p-12 rounded-2xl border border-ivs-border">
-                    <figure class="md:w-1/3 text-center">
-                        <img src="/images/team/nguyen-minh-triet.png" onerror="this.onerror=null; this.src='https://placehold.co/200x200/30363d/e6edf3?text=CEO';" alt="[Hình ảnh CEO Nguyễn Minh Triết]" class="rounded-full w-48 h-48 mx-auto shadow-2xl ring-4 ring-ivs-border">
-                        <figcaption class="mt-4">
-                            <div class="font-bold text-lg text-white" data-lang-key="ceo_name">Nguyễn Minh Triết</div>
-                            <div class="text-sm text-ivs-blue" data-lang-key="ceo_title">CEO & Chairman, IVS JSC</div>
-                        </figcaption>
-                    </figure>
-                    <div class="md:w-2/3 relative">
-                        <i class="fas fa-quote-left text-7xl text-ivs-border absolute -top-8 left-0 opacity-50 z-0"></i>
-                        <blockquote class="relative z-10 text-xl lg:text-2xl italic text-ivs-text-secondary leading-relaxed">
-                            <p data-lang-key="ceo_quote">
-                                "Chúng tôi cam kết cống hiến hết mình, không ngừng nỗ lực vì sự phát triển vượt bậc của Giáo dục Việt Nam. Tầm nhìn chiến lược của chúng tôi là tối ưu hóa triệt để các nguồn lực quốc gia, tiết kiệm chi phí cho đất nước và chuyển hóa hiệu quả những khoản đầu tư chưa đạt hiệu suất tối đa. Với tinh thần SYNERGY mạnh mẽ, chúng tôi sẽ tăng cường hợp tác quốc tế sâu rộng, tập trung hỗ trợ toàn diện các cơ sở giáo dục trong nước, nhằm xây dựng một nền giáo dục vững mạnh, hiện đại và hội nhập."
-                            </p>
-                        </blockquote>
-                    </div>
+        <section class="py-16 md:py-24 bg-ivs-bg text-center">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <!-- Quote Icon (Optional but adds visual flair) -->
+                <div class="mb-8" data-aos="fade-up">
+                    <i class="fas fa-quote-left text-ivs-blue text-5xl md:text-6xl opacity-75"></i>
+                </div>
+
+                <!-- The CEO's Quote -->
+                <blockquote class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white leading-tight mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="ceo_quote">
+                    "Chúng tôi cam kết cống hiến hết mình, không ngừng nỗ lực vì sự phát triển vượt bậc của Giáo dục Việt Nam. Tầm nhìn chiến lược của chúng tôi là tối ưu hóa triệt để các nguồn lực quốc gia, tiết kiệm chi phí cho đất nước và chuyển hóa hiệu quả những khoản đầu tư chưa đạt hiệu suất tối đa. Với tinh thần SYNERGY mạnh mẽ, chúng tôi sẽ tăng cường hợp tác quốc tế sâu rộng, tập trung hỗ trợ toàn diện các cơ sở giáo dục trong nước, nhằm xây dựng một nền giáo dục vững mạnh, hiện đại và hội nhập."
+                </blockquote>
+
+                <!-- CEO's Image, Name and Title -->
+                <div class="text-lg md:text-xl text-ivs-text-secondary" data-aos="fade-up" data-aos-delay="200">
+                    <!-- CEO Profile Image -->
+                    <img src="/images/team/nguyen-minh-triet.png" alt="Ảnh đại diện Ông Nguyễn Minh Triết" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-ivs-blue shadow-lg object-cover" data-aos="fade-up" data-aos-delay="250" onerror="this.onerror=null;this.src='https://placehold.co/128x128/007bff/ffffff?text=CEO';">
+                    
+                    <p class="font-semibold text-ivs-blue" data-lang-key="ceo_name">Ông Nguyễn Minh Triết</p>
+                    <p class="text-sm md:text-base" data-lang-key="ceo_title">Tổng Giám đốc (CEO) kiêm Chủ tịch HĐQT IVS JSC</p>
+                </div>
+
+                <!-- Quote Icon (Optional, closing) -->
+                <div class="mt-8" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-quote-right text-ivs-blue text-5xl md:text-6xl opacity-75"></i>
                 </div>
             </div>
-        </section>           
+        </section>
+
+        <!-- Link to Font Awesome for icons (if not already included) -->
+        <!-- You might already have this in your project, ensure it's loaded -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- Link to Tailwind CSS (if not already included) -->
+        <!-- Ensure Tailwind CSS is loaded for the classes to work -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Custom Tailwind CSS configuration (if needed, e.g., for custom colors like ivs-blue) -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'ivs-blue': '#007bff', // Example color, adjust to your brand's blue
+                            'ivs-text-secondary': '#a0aec0', // Example secondary text color
+                            'ivs-bg': '#1a202c', // Example background color
+                        },
+                        fontFamily: {
+                            display: ['Inter', 'sans-serif'], // Assuming 'Inter' as per your general instructions
+                        }
+                    }
+                }
+            }
+        </script>
+       
         
         <!-- VNeID News Preview Section -->
         <section class="py-8 bg-ivs-bg">
