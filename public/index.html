@@ -112,13 +112,19 @@
         }
 
         /* Styles for the new About Hero section with video background */
-        .about-hero-section {
+        .about-us-section { /* Renamed for clarity */
             position: relative;
             overflow: hidden;
-            /* Removed background-image from here as it uses video */
+            /* Ensure enough height for content */
+            min-height: 100vh; /* Minimum height for video to be visible */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Stack content vertically on small screens */
+            text-align: center; /* Center text globally in this section */
         }
 
-        .about-hero-section .background-video {
+        .about-us-section .background-video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -131,11 +137,28 @@
             object-fit: cover; /* Ensure video covers the area */
         }
 
-        .about-hero-section .hero-content-overlay {
+        .about-us-section .hero-content-overlay {
             position: relative;
             z-index: 1; /* Above video */
-            /* No direct background-color here, let the inner quote block have it */
-            padding: 2rem 0; /* Add some padding for content */
+            /* No direct background-color here, let inner blocks have it */
+            width: 100%; /* Ensure it takes full width of container */
+        }
+        
+        /* Specific styling for the video wrapper within the grid */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -492,22 +515,51 @@
         </section>
 
         <!-- NEW COMBINED SECTION: About IVS JSC & CEO Quote -->
-        <section class="about-hero-section pt-28 pb-16 md:pt-40 md:pb-24 border-b border-ivs-border">
+        <section class="about-us-section pt-28 pb-16 md:pt-40 md:pb-24 border-b border-ivs-border">
             <!-- Background video -->
             <video autoplay loop muted playsinline class="background-video">
                 <source src="/videos/ivs_background_video1.mp4" type="video/mp4">
                 Trình duyệt của bạn không hỗ trợ thẻ video.
             </video>
-            <div class="container mx-auto px-6 text-center hero-content-overlay">
-                <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4" data-aos="fade-down" data-lang-key="about_hero_title">
-                    Về IVS JSC
-                </h1>
-                <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200" data-lang-key="about_hero_subtitle">
-                    Kiến tạo hệ sinh thái giáo dục toàn cầu với tầm nhìn chiến lược và đổi mới sáng tạo.
-                </p>
+            <!-- Overlay for readability -->
+            <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
 
-                <!-- CEO Quote content moved here -->
-                <div class="mt-16 md:mt-24 py-10 px-6 bg-ivs-card/80 rounded-xl backdrop-blur-sm border border-ivs-border"> <!-- Added styling for the quote block -->
+            <div class="container mx-auto px-6 hero-content-overlay">
+                <!-- Main "About IVS JSC" title and subtitle -->
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl lg:text-5xl font-bold font-display text-white mb-4" data-aos="fade-down" data-lang-key="about_hero_title">
+                        Về IVS JSC
+                    </h1>
+                    <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200" data-lang-key="about_hero_subtitle">
+                        Kiến tạo hệ sinh thái giáo dục toàn cầu với tầm nhìn chiến lược và đổi mới sáng tạo.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- Left Column: General Introduction Text -->
+                    <div data-aos="fade-right">
+                        <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mb-4" data-lang-key="about_intro_title">
+                            Giới Thiệu Chung
+                        </h2>
+                        <p class="text-ivs-text-secondary mb-8 leading-relaxed" data-lang-key="about_intro_desc">
+                            <strong class="text-ivs-blue">Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC)</strong> là đơn vị tiên phong trong việc cung cấp các giải pháp giáo dục toàn diện và đổi mới sáng tạo tại Việt Nam. Chúng tôi cam kết mang lại những giá trị giáo dục vượt trội. IVS JSC tự hào là thành viên chính của <strong class="text-ivs-blue">IIVSA – Liên minh giáo dục toàn cầu</strong>, khẳng định vị thế và khả năng hợp tác quốc tế của mình. Chúng tôi không chỉ bán chương trình, chúng tôi đồng hành cùng tầm nhìn giáo dục.
+                        </p>
+                        <a href="profile-company-ivsjsc.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20" data-lang-key="about_cta_view_profile">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            <span >Xem Hồ sơ năng lực chi tiết</span>
+                        </a>
+                    </div>
+                    <!-- Right Column: Video -->
+                    <div class="video-wrapper bg-black shadow-2xl border border-ivs-border" data-aos="fade-left">
+                        <iframe src="https://www.youtube.com/embed/WSFdBq4vprY?si=X1lIscHb06k3eJK_" title="YouTube video player: IVS JSC Company Profile" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <h4 class="font-display text-xl md:text-2xl font-semibold text-white mt-4 text-center" data-lang-key="about_intro_video_caption">
+                            Video giới thiệu doanh nghiệp và ca khúc chủ đề của chúng tôi
+                        </h4>
+                    </div>
+                </div>
+
+                <!-- CEO Quote content - now a distinct block within the same section -->
+                <div class="mt-16 md:mt-24 py-10 px-6 bg-ivs-card/80 rounded-xl backdrop-blur-sm border border-ivs-border max-w-4xl mx-auto">
                     <p class="text-xl md:text-2xl font-semibold text-ivs-text-primary mb-6" data-aos="fade-up" data-lang-key="ceo_quote_intro">
                         Thông điệp từ CEO IVS JSC, Ông Nguyễn Minh Triết:
                     </p>
