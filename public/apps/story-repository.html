@@ -51,8 +51,9 @@
     </script>
     <style>
         .section-title { font-family: 'Lexend', sans-serif; }
+        /* Thêm hiệu ứng đổ bóng khi hover cho story-card */
         .story-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .story-card:hover { transform: translateY(-8px); }
+        .story-card:hover { transform: translateY(-8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
         .story-card-image-wrapper {
             position: relative;
             padding-top: 140%; /* Aspect ratio for book covers */
@@ -95,7 +96,7 @@
                     <!-- Story: Legnaxe Part 1 -->
                     <article class="story-card group" data-aos="fade-up" data-aos-delay="100">
                         <div class="story-card-image-wrapper rounded-lg shadow-lg overflow-hidden mb-4">
-                             <img src="/images/pages/novels/legnaxe1vertical.png" alt="Bìa truyện LEGNAXE Phần 1" class="story-card-image group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x560/003366/FFFFFF?text=LEGNAXE+1';">
+                             <img src="/images/pages/novels/legnaxe1vertical.png" alt="Bìa truyện LEGNAXE Phần 1" class="story-card-image group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x560/003366/FFFFFF?text=LEGNAXE+Part+1';">
                         </div>
                         <h3 class="section-title text-xl font-semibold text-neutral-800 dark:text-white mb-1" data-lang-key="story_legnaxe1_title">LEGNAXE: Phần 1</h3>
                         <p class="text-sm font-sans text-neutral-600 dark:text-neutral-400 mb-4" data-lang-key="story_legnaxe1_desc">Bí mật về đại chiến Thiên Giới và khởi đầu của một thiên anh hùng ca.</p>
@@ -108,7 +109,7 @@
                      <!-- Story: Legnaxe Part 2 -->
                     <article class="story-card group" data-aos="fade-up" data-aos-delay="200">
                         <div class="story-card-image-wrapper rounded-lg shadow-lg overflow-hidden mb-4">
-                             <img src="/images/pages/novels/legnaxe2vertical.png" alt="Bìa truyện LEGNAXE Phần 2" class="story-card-image group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x560/a855f7/FFFFFF?text=LEGNAXE+2';">
+                             <img src="/images/pages/novels/legnaxe2vertical.png" alt="Bìa truyện LEGNAXE Phần 2" class="story-card-image group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x560/a855f7/FFFFFF?text=LEGNAXE+Part+2';">
                         </div>
                         <h3 class="section-title text-xl font-semibold text-neutral-800 dark:text-white mb-1" data-lang-key="story_legnaxe2_title">LEGNAXE: Phần 2</h3>
                         <p class="text-sm font-sans text-neutral-600 dark:text-neutral-400 mb-4" data-lang-key="story_legnaxe2_desc">Hành trình khám phá Nhân Giới và chiều sâu của trái tim con người.</p>
