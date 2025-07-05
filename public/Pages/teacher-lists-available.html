@@ -101,7 +101,20 @@
         .teacher-info li span {
             flex-grow: 1; /* Allow text to grow */
         }
-        /* Removed .btn-view-profile styling as the button is removed */
+        /* Styling for the new "More..." button */
+        .btn-view-profile {
+            @apply mt-4 py-2 px-4 bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold rounded-lg transition-colors transform hover:scale-105 inline-flex items-center justify-center;
+        }
+        /* Styles for pagination buttons */
+        .pagination-button {
+            @apply px-4 py-2 rounded-lg font-semibold transition-colors duration-200;
+        }
+        .pagination-button:not(:disabled) {
+            @apply bg-ivs-blue text-white hover:bg-ivs-blue-darker;
+        }
+        .pagination-button:disabled {
+            @apply bg-ivs-border text-ivs-text-secondary cursor-not-allowed;
+        }
 
         /* Styles for the Partnership Form */
         .form-container {
@@ -926,6 +939,19 @@
                     </div>
                 </div>
 
+                <!-- Pagination Controls -->
+                <div class="flex justify-center items-center space-x-4 mt-12" data-aos="fade-up" data-aos-delay="200">
+                    <button id="prevPageBtn" class="pagination-button" disabled data-lang-key="pagination_prev">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <span id="pageInfo" class="text-ivs-text-primary text-lg font-semibold" data-lang-key="pagination_info">
+                        Page 1 of X
+                    </span>
+                    <button id="nextPageBtn" class="pagination-button" data-lang-key="pagination_next">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
                 <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="900">
                     <p class="text-lg text-ivs-text-secondary mb-6" data-lang-key="more_teachers_cta_text">
                         Bạn không tìm thấy giáo viên phù hợp? IVS JSC có một mạng lưới giáo viên rộng lớn và đa dạng.
@@ -1056,8 +1082,6 @@
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
     
-
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
@@ -1109,56 +1133,42 @@
             }
         });
         
-        // --- Sắp xếp giáo viên theo địa điểm ưu tiên và tên cụ thể ---
+        // --- Sắp xếp giáo viên và phân trang ---
         document.addEventListener('DOMContentLoaded', () => {
             const teacherContainer = document.getElementById('teacher-list-container');
             if (!teacherContainer) return;
 
-            const teacherCards = Array.from(teacherContainer.querySelectorAll('.teacher-card'));
+            let allTeacherCards = Array.from(teacherContainer.querySelectorAll('.teacher-card'));
+            const teachersPerPage = 8;
+            let currentPage = 1;
+            let totalPages = 0;
+
+            const prevPageBtn = document.getElementById('prevPageBtn');
+            const nextPageBtn = document.getElementById('nextPageBtn');
+            const pageInfoSpan = document.getElementById('pageInfo');
 
             // Định nghĩa thứ tự ưu tiên các địa điểm
             const locationOrder = [
-                'Đồng Nai',
-                'Hồ Chí Minh',
-                'TP.HCM', // Bao gồm cả TP.HCM như một biến thể của Hồ Chí Minh
-                'Cần Thơ',
-                'Vũng Tàu',
-                'Bình Dương',
-                'Vĩnh Long',
-                'Hà Nội',
-                'Đà Nẵng',
-                'Ha noi, Viet nam', // Các địa điểm chung hoặc không rõ sẽ ở cuối
-                'Việt Nam',
-                'Đa quốc gia',
-                'Filipino', // Các quốc tịch không phải địa điểm sẽ được xử lý như "Không rõ"
-                'Không rõ',
-                'Không có thông tin',
-                'Vietnam, stay at Center',
-            ].map(loc => loc.toLowerCase().trim()); // Chuyển tất cả về chữ thường và loại bỏ khoảng trắng để so sánh
+                'Đồng Nai', 'Hồ Chí Minh', 'TP.HCM', 'Cần Thơ', 'Vũng Tàu', 'Bình Dương', 'Vĩnh Long',
+                'Hà Nội', 'Đà Nẵ', 'Ha noi, Viet nam', 'Việt Nam', 'Đa quốc gia', 'Filipino',
+                'Không rõ', 'Không có thông tin', 'Vietnam, stay at Center',
+            ].map(loc => loc.toLowerCase().trim());
 
             // Định nghĩa thứ tự ưu tiên cho các giáo viên cụ thể theo tên
             const specialOrderTeachers = [
-                'Kimball Thomson',
-                'Salma Nour',
-                'Rachid Bellafar',
-                'Raphael Galuz',
-
-                'Madison-Schae Summers',
-                'Sloan Pierre Samuel Venter',
-                'Jannicar Nayve',
-                'William Nanji'
+                'Kimball Thomson', 'Salma Nour', 'Rachid Bellafar', 'Raphael Galuz',
+                'Madison-Schae Summers', 'Sloan Pierre Samuel Venter', 'Jannicar Nayve', 'William Nanji'
             ];
 
             // Hàm để lấy dữ liệu giáo viên (tên và địa điểm)
             function getTeacherData(teacherCard) {
                 const nameElement = teacherCard.querySelector('h3.text-ivs-blue');
-                const locationSpan = teacherCard.querySelector('.text-ivs-orange');
+                const locationSpan = teacherCard.querySelector('.text-xl.text-ivs-orange');
                 
                 const name = nameElement ? nameElement.textContent.trim() : '';
                 let location = teacherCard.dataset.location; // Ưu tiên data-location
 
-                // Nếu data-location không có hoặc là giá trị chung, thử lấy từ span
-                if (!location || location === 'Việt Nam' || location === 'Không rõ' || location === 'Không có thông tin') {
+                if (!location || ['Việt Nam', 'Không rõ', 'Không có thông tin'].includes(location)) {
                     if (locationSpan) {
                         location = locationSpan.textContent.replace(/[()]/g, '').trim();
                     }
@@ -1170,51 +1180,87 @@
                 };
             }
 
-            // Hàm so sánh tùy chỉnh
-            teacherCards.sort((a, b) => {
-                const dataA = getTeacherData(a);
-                const dataB = getTeacherData(b);
+            // Hàm sắp xếp tùy chỉnh
+            function sortTeachers() {
+                allTeacherCards.sort((a, b) => {
+                    const dataA = getTeacherData(a);
+                    const dataB = getTeacherData(b);
 
-                const specialIndexA = specialOrderTeachers.indexOf(dataA.name);
-                const specialIndexB = specialOrderTeachers.indexOf(dataB.name);
+                    const specialIndexA = specialOrderTeachers.indexOf(dataA.name);
+                    const specialIndexB = specialOrderTeachers.indexOf(dataB.name);
 
-                // Ưu tiên sắp xếp theo danh sách đặc biệt
-                if (specialIndexA !== -1 && specialIndexB !== -1) {
-                    return specialIndexA - specialIndexB;
-                }
-                if (specialIndexA !== -1) {
-                    return -1; // A nằm trong danh sách đặc biệt, B thì không -> A lên trước
-                }
-                if (specialIndexB !== -1) {
-                    return 1;  // B nằm trong danh sách đặc biệt, A thì không -> B lên trước
-                }
+                    if (specialIndexA !== -1 && specialIndexB !== -1) {
+                        return specialIndexA - specialIndexB;
+                    }
+                    if (specialIndexA !== -1) {
+                        return -1;
+                    }
+                    if (specialIndexB !== -1) {
+                        return 1;
+                    }
 
-                // Nếu cả hai đều không nằm trong danh sách đặc biệt, sắp xếp theo địa điểm
-                const locA = dataA.location;
-                const locB = dataB.location;
+                    const locA = dataA.location;
+                    const locB = dataB.location;
 
-                const indexA = locationOrder.indexOf(locA);
-                const indexB = locationOrder.indexOf(locB);
+                    const indexA = locationOrder.indexOf(locA);
+                    const indexB = locationOrder.indexOf(locB);
 
-                if (indexA !== -1 && indexB !== -1) {
-                    return indexA - indexB;
+                    if (indexA !== -1 && indexB !== -1) {
+                        return indexA - indexB;
+                    }
+                    if (indexA !== -1) {
+                        return -1;
+                    }
+                    if (indexB !== -1) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+
+            // Hàm hiển thị giáo viên cho trang hiện tại
+            function displayTeachers(page) {
+                currentPage = page;
+                const startIndex = (currentPage - 1) * teachersPerPage;
+                const endIndex = startIndex + teachersPerPage;
+                const teachersToDisplay = allTeacherCards.slice(startIndex, endIndex);
+
+                teacherContainer.innerHTML = ''; // Xóa các thẻ hiện có
+                teachersToDisplay.forEach(card => {
+                    teacherContainer.appendChild(card);
+                });
+
+                updatePaginationControls();
+            }
+
+            // Cập nhật trạng thái các nút phân trang
+            function updatePaginationControls() {
+                totalPages = Math.ceil(allTeacherCards.length / teachersPerPage);
+                pageInfoSpan.textContent = `Page ${currentPage} of ${totalPages}`;
+
+                prevPageBtn.disabled = currentPage === 1;
+                nextPageBtn.disabled = currentPage === totalPages;
+            }
+
+            // Xử lý sự kiện nút Previous
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    displayTeachers(currentPage - 1);
                 }
-                if (indexA !== -1) {
-                    return -1;
-                }
-                if (indexB !== -1) {
-                    return 1;
-                }
-                return 0; // Giữ nguyên thứ tự tương đối cho các địa điểm không xác định
             });
 
-            // Xóa các thẻ hiện có và thêm lại theo thứ tự đã sắp xếp
-            teacherContainer.innerHTML = '';
-            teacherCards.forEach(card => {
-                teacherContainer.appendChild(card);
+            // Xử lý sự kiện nút Next
+            nextPageBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    displayTeachers(currentPage + 1);
+                }
             });
+
+            // Khởi tạo khi DOM đã tải xong
+            sortTeachers(); // Sắp xếp tất cả giáo viên một lần
+            displayTeachers(1); // Hiển thị trang đầu tiên
         });
-        // --- Kết thúc sắp xếp giáo viên ---
+        // --- Kết thúc sắp xếp giáo viên và phân trang ---
     </script>
 </body>
 </html>
