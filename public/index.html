@@ -433,13 +433,18 @@
 
         <section class="py-16 md:py-24 bg-ivs-bg text-center">
             <div class="container mx-auto px-6 max-w-4xl">
+                <!-- Optional introductory text for the quote -->
+                <p class="text-xl md:text-2xl font-semibold text-ivs-text-primary mb-6" data-aos="fade-up" data-lang-key="ceo_quote_intro">
+                    Thông điệp từ CEO IVS JSC, Ông Nguyễn Minh Triết:
+                </p>
+
                 <!-- Quote Icon (Optional but adds visual flair) -->
-                <div class="mb-8" data-aos="fade-up">
+                <div class="mb-8" data-aos="fade-up" data-aos-delay="50">
                     <i class="fas fa-quote-left text-ivs-blue text-5xl md:text-6xl opacity-75"></i>
                 </div>
 
-                <!-- The CEO's Quote -->
-                <blockquote class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white leading-tight mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="ceo_quote">
+                <!-- The CEO's Quote - Adjusted font size -->
+                <blockquote class="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-white leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="100" data-lang-key="ceo_quote">
                     "Chúng tôi cam kết cống hiến hết mình, không ngừng nỗ lực vì sự phát triển vượt bậc của Giáo dục Việt Nam. Tầm nhìn chiến lược của chúng tôi là tối ưu hóa triệt để các nguồn lực quốc gia, tiết kiệm chi phí cho đất nước và chuyển hóa hiệu quả những khoản đầu tư chưa đạt hiệu suất tối đa. Với tinh thần SYNERGY mạnh mẽ, chúng tôi sẽ tăng cường hợp tác quốc tế sâu rộng, tập trung hỗ trợ toàn diện các cơ sở giáo dục trong nước, nhằm xây dựng một nền giáo dục vững mạnh, hiện đại và hội nhập."
                 </blockquote>
 
@@ -474,11 +479,13 @@
                     extend: {
                         colors: {
                             'ivs-blue': '#007bff', // Example color, adjust to your brand's blue
+                            'ivs-text-primary': '#f4f4f5', // Added for consistency with your index.html
                             'ivs-text-secondary': '#a0aec0', // Example secondary text color
                             'ivs-bg': '#1a202c', // Example background color
                         },
                         fontFamily: {
-                            display: ['Inter', 'sans-serif'], // Assuming 'Inter' as per your general instructions
+                            'sans': ['Be Vietnam Pro', 'sans-serif'], // Added for consistency with your index.html
+                            'display': ['Poppins', 'sans-serif'], // Added for consistency with your index.html
                         }
                     }
                 }
