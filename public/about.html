@@ -203,6 +203,15 @@
             margin-bottom: 1rem;
             display: inline-block; /* To center the icon */
         }
+
+        /* New style for organizational unit cards */
+        .org-unit-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .org-unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -240,7 +249,6 @@
                             <i class="fas fa-arrow-right mr-2"></i>
                             <span data-lang-key="about_cta_view_profile">Xem Hồ sơ năng lực chi tiết</span>
                         </a>
-
                     </div>
                     <div class="video-wrapper bg-black shadow-2xl border border-ivs-border" data-aos="fade-left">
                         <iframe src="https://www.youtube.com/embed/WSFdBq4vprY?si=X1lIscHb06k3eJK_" title="YouTube video player: IVS JSC Company Profile" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -295,28 +303,88 @@
                     <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="100" data-lang-key="about_structure_subtitle">
                         IVS JSC hoạt động với mô hình linh hoạt, hiệu quả, bao gồm các đơn vị chuyên trách.
                     </p>
-                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mb-4" data-aos="fade-up" data-lang-key="about_structure1_title">Các đơn vị trực thuộc</h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mb-4" data-aos="fade-up" data-aos-delay="100" data-lang-key="about_structure1_title">Các đơn vị trực thuộc</h2>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-ivs-bg p-6 rounded-xl border border-ivs-border text-center org-unit-card" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-graduation-cap text-ivs-blue text-4xl mb-4"></i>
                         <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="structure_academy_title">IVS Academy</h3>
-                        <p class="text-ivs-text-secondary text-sm" data-lang-key="structure_academy_desc">Trung tâm đào tạo ngôn ngữ & kỹ năng, nơi ươm mầm tài năng và phát triển toàn diện.</p>
+                        <ul class="text-ivs-text-secondary text-sm list-disc list-inside text-left mx-auto max-w-xs">
+                            <li data-lang-key="academy_service1">Đào tạo tiếng Anh (IELTS, TOEIC, Giao tiếp)</li>
+                            <li data-lang-key="academy_service2">Phát triển kỹ năng mềm (Tư duy phản biện, Giao tiếp, Lãnh đạo)</li>
+                            <li data-lang-key="academy_service3">Luyện thi chứng chỉ quốc tế</li>
+                            <li data-lang-key="academy_service4">Các khóa học chuyên sâu theo yêu cầu</li>
+                        </ul>
                     </div>
                     <div class="bg-ivs-bg p-6 rounded-xl border border-ivs-border text-center org-unit-card" data-aos="fade-up" data-aos-delay="300">
                         <i class="fas fa-lightbulb text-ivs-blue text-4xl mb-4"></i>
                         <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="structure_education_title">IVS Education</h3>
-                        <p class="text-ivs-text-secondary text-sm" data-lang-key="structure_education_desc">Phát triển chương trình STEAM và các giải pháp học tập số tiên tiến, định hình tương lai giáo dục.</p>
+                        <ul class="text-ivs-text-secondary text-sm list-disc list-inside text-left mx-auto max-w-xs">
+                            <li data-lang-key="education_service1">Phát triển chương trình giáo dục STEAM</li>
+                            <li data-lang-key="education_service2">Giải pháp học tập số (nền tảng E-learning, ứng dụng giáo dục)</li>
+                            <li data-lang-key="education_service3">Nghiên cứu và ứng dụng công nghệ giáo dục (EdTech)</li>
+                            <li data-lang-key="education_service4">Tổ chức các workshop và sự kiện giáo dục</li>
+                        </ul>
                     </div>
                     <div class="bg-ivs-bg p-6 rounded-xl border border-ivs-border text-center org-unit-card" data-aos="fade-up" data-aos-delay="400">
                         <i class="fas fa-handshake text-ivs-blue text-4xl mb-4"></i>
                         <h3 class="text-xl font-semibold text-white mb-2" data-lang-key="structure_consulting_title">IVS Consulting</h3>
-                        <p class="text-ivs-text-secondary text-sm" data-lang-key="structure_consulting_desc">Cung cấp dịch vụ tư vấn chiến lược, pháp lý và hỗ trợ thành lập trung tâm giáo dục.</p>
+                        <ul class="text-ivs-text-secondary text-sm list-disc list-inside text-left mx-auto max-w-xs">
+                            <li data-lang-key="consulting_service1">Tư vấn chiến lược phát triển giáo dục</li>
+                            <li data-lang-key="consulting_service2">Tư vấn pháp lý và thủ tục thành lập trung tâm giáo dục</li>
+                            <li data-lang-key="consulting_service3">Hỗ trợ xây dựng và triển khai chương trình đào tạo</li>
+                            <li data-lang-key="consulting_service4">Tư vấn tuyển dụng và phát triển đội ngũ giáo viên</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
         
+
+        <!-- Development Timeline Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mb-4" data-aos="fade-up" data-lang-key="timeline_title">Lịch Sử Phát Triển</h2>
+                    <p class="text-lg text-ivs-text-secondary max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="100" data-lang-key="timeline_subtitle">
+                        Hành trình của IVS JSC qua các mốc thời gian quan trọng.
+                    </p>
+                </div>
+                <div class="timeline relative max-w-2xl mx-auto">
+                    <div class="timeline-line"></div>
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="timeline-dot-custom"></div>
+                        <h3 class="text-xl font-semibold text-white mb-1" data-lang-key="timeline_item1_year">2018</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="timeline_item1_desc">Thành lập IVS JSC, đặt nền móng cho hệ sinh thái giáo dục toàn diện.</p>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="timeline-dot-custom"></div>
+                        <h3 class="text-xl font-semibold text-white mb-1" data-lang-key="timeline_item2_year">2020</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="timeline_item2_desc">Ra mắt IVS Academy, tập trung vào đào tạo ngôn ngữ và kỹ năng.</p>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                        <div class="timeline-dot-custom"></div>
+                        <h3 class="text-xl font-semibold text-white mb-1" data-lang-key="timeline_item3_year">2022</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="timeline_item3_desc">Phát triển IVS Education, mở rộng sang chương trình STEAM và giải pháp học tập số.</p>
+                    </div>
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
+                        <div class="timeline-dot-custom"></div>
+                        <h3 class="text-xl font-semibold text-white mb-1" data-lang-key="timeline_item4_year">2024</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="timeline_item4_desc">Trở thành thành viên chính thức của IIVSA – Liên minh giáo dục toàn cầu.</p>
+                    </div>
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="600">
+                        <div class="timeline-dot-custom"></div>
+                        <h3 class="text-xl font-semibold text-white mb-1" data-lang-key="timeline_item5_year">2025</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="timeline_item5_desc">Mở rộng IVS Consulting, cung cấp dịch vụ tư vấn chiến lược giáo dục.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Partner Network Section -->
         <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
