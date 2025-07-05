@@ -100,28 +100,68 @@
 
     <main>
         <!-- 1. HERO SECTION with Interactive 3D Background -->
+        <!-- 1. HERO SECTION with Interactive 3D Background -->
         <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
             <div id="hero-canvas-container" class="absolute inset-0 z-0"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-ivs-bg via-ivs-bg/50 to-transparent z-10"></div>
             <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline">
+                    <!-- IVS Academy highlighted -->
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
                         IVS Academy
                     </span>
                     <br />
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green" data-lang-key="hero_headline_part1">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline_part1">
                         Kiến Tạo Tương Lai.
-                    </span> <span data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
+                    </span> <span class="text-white" data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
                 </h1>
                 <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10" data-lang-key="hero_description">
                     IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
                 </p>
                 <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-                    <a href="/contact.html" class="btn-explore bg-gradient-to-r from-ivs-blue to-ivs-blue-darker" data-lang-key="hero_cta_consulting">Đăng ký tư vấn</a>
-                    <a href="#services-showcase" class="btn-explore bg-transparent border-2 border-ivs-border hover:bg-ivs-border text-white" data-lang-key="hero_cta_explore_services">Khám phá Dịch vụ</a>
+                    <!-- Nút Đăng ký tư vấn -->
+                    <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_consulting">
+                        <i class="fas fa-headset mr-2"></i> Đăng ký tư vấn
+                    </a>
+                    <!-- Nút Khám phá IVS Academy -->
+                    <a href="/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy">
+                        <i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy
+                    </a>
+                    <!-- Nút Giải pháp Giáo dục -->
+                    <a href="/ivs-education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education">
+                        <i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục
+                    </a>
+                    <!-- Nút Tuyển dụng (ví dụ) -->
+                    <a href="/careers.html" class="btn-secondary" data-lang-key="hero_cta_careers">
+                        <i class="fas fa-briefcase mr-2"></i> Tuyển dụng
+                    </a>
                 </div>
             </div>
         </section>
+
+        <!-- Custom CSS for buttons and additional styles -->
+        <style>
+            /* Base button styles */
+            .btn-primary, .btn-secondary {
+                @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg;
+            }
+
+            /* Primary button style */
+            .btn-primary {
+                @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20;
+            }
+
+            /* Secondary button style */
+            .btn-secondary {
+                @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20;
+            }
+
+            /* Adjust Hero Headline for better visual balance */
+            .hero-section h1 .bg-clip-text {
+                line-height: 1.2; /* Adjust line height for better spacing */
+            }
+        </style>
+
 
         <!-- Section with Video Background -->
         <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden">
