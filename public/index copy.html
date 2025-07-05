@@ -41,10 +41,6 @@
                         'ivs-text-primary': '#f4f4f5', 'ivs-text-secondary': '#a1a1aa',
                         'ivs-blue': '#60a5fa', 'ivs-blue-darker': '#3b82f6', 'ivs-green': '#4ade80',
                         'ivs-purple': '#a78bfa', 'ivs-cyan': '#22d3ee', 'ivs-amber': '#f59e0b',
-                        'ivs-orange': '#fb923c', // Added for consistency with hero headline gradient
-                        'ivs-emerald': '#10b981', // Added for consistency with digital ecosystem
-                        'ivs-rose': '#f43f5e', // Added for consistency with digital ecosystem
-                        'ivs-red': '#ef4444', // Added for consistency with services showcase
                     },
                     fontFamily: {
                         'sans': ['Be Vietnam Pro', 'sans-serif'], 'display': ['Poppins', 'sans-serif'],
@@ -64,6 +60,11 @@
     <!-- External Stylesheet for custom effects -->
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        /* ... (giữ nguyên các style tùy chỉnh) ... */
+        /* CSS for mobile menu to prevent background scroll */
+        body.menu-open {
+            overflow: hidden;
+        }
         /* Custom scrollbar for chatbot messages */
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
@@ -90,26 +91,7 @@
             .hero-section {
                 background-image: url('images/logo/mobile-banner.png'); /* Ảnh dành riêng cho mobile */
             }
-        }
-        /* Base button styles */
-        .btn-primary, .btn-secondary {
-            @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg;
-        }
-
-        /* Primary button style */
-        .btn-primary {
-            @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20;
-        }
-
-        /* Secondary button style */
-        .btn-secondary {
-            @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20;
-        }
-
-        /* Adjust Hero Headline for better visual balance */
-        .hero-section h1 .bg-clip-text {
-            line-height: 1.2; /* Adjust line height for better spacing */
-        }
+        }        
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
@@ -118,6 +100,7 @@
 
     <main>
         <!-- 1. HERO SECTION with Interactive 3D Background -->
+        <!-- 1. HERO SECTION with Interactive 3D Background -->
         <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
             <div id="hero-canvas-container" class="absolute inset-0 z-0"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-ivs-bg via-ivs-bg/50 to-transparent z-10"></div>
@@ -125,7 +108,7 @@
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
                     <!-- IVS Academy highlighted -->
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
-                        IVS Academy
+                        IVS Academy - The Future is Now
                     </span>
                     <br />
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline_part1">
@@ -155,6 +138,30 @@
                 </div>
             </div>
         </section>
+
+        <!-- Custom CSS for buttons and additional styles -->
+        <style>
+            /* Base button styles */
+            .btn-primary, .btn-secondary {
+                @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg;
+            }
+
+            /* Primary button style */
+            .btn-primary {
+                @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20;
+            }
+
+            /* Secondary button style */
+            .btn-secondary {
+                @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20;
+            }
+
+            /* Adjust Hero Headline for better visual balance */
+            .hero-section h1 .bg-clip-text {
+                line-height: 1.2; /* Adjust line height for better spacing */
+            }
+        </style>
+
 
         <!-- Section with Video Background -->
         <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden">
@@ -497,6 +504,35 @@
             </div>
         </section>
 
+        <!-- Link to Font Awesome for icons (if not already included) -->
+        <!-- You might already have this in your project, ensure it's loaded -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- Link to Tailwind CSS (if not already included) -->
+        <!-- Ensure Tailwind CSS is loaded for the classes to work -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Custom Tailwind CSS configuration (if needed, e.g., for custom colors like ivs-blue) -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'ivs-blue': '#007bff', // Example color, adjust to your brand's blue
+                            'ivs-text-primary': '#f4f4f5', // Added for consistency with your index.html
+                            'ivs-text-secondary': '#a0aec0', // Example secondary text color
+                            'ivs-bg': '#1a202c', // Example background color
+                        },
+                        fontFamily: {
+                            'sans': ['Be Vietnam Pro', 'sans-serif'], // Added for consistency with your index.html
+                            'display': ['Poppins', 'sans-serif'], // Added for consistency with your index.html
+                        }
+                    }
+                }
+            }
+        </script>
+       
+        
         <!-- VNeID News Preview Section -->
         <section class="py-8 bg-ivs-bg">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-md">
@@ -577,7 +613,43 @@
                 </div>
             </div>
         </section>
-
+        <!-- SECTION 9: LATEST NEWS -->
+        <section class="py-20 lg:py-24 bg-ivs-bg">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4" data-lang-key="news_title">Tin tức & Phân tích Chuyên sâu</h2>
+                    <p class="text-lg text-ivs-text-secondary" data-lang-key="news_subtitle">Cập nhật những thông tin mới nhất, các bài viết chuyên môn và góc nhìn của IVS về xu hướng giáo dục hiện đại.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- News Card 1 -->
+                    <a href="/Blogs/eov2025.html" class="interactive-card block bg-ivs-card rounded-lg overflow-hidden border border-ivs-border" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://placehold.co/600x400/f59e0b/0d1117?text=EOV+2025" alt="[Hình ảnh bài viết về EOV 2025]" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-ivs-amber font-semibold mb-2" data-lang-key="news1_category">SỰ KIỆN</p>
+                            <h3 class="text-lg font-bold font-display text-white mb-3" data-lang-key="news1_title">Chính thức khởi động English Olympics of Vietnam 2025</h3>
+                            <p class="text-sm text-ivs-text-secondary" data-lang-key="news1_excerpt">Sân chơi tiếng Anh quy mô toàn quốc với sứ mệnh "Empowering Young Leaders" đã trở lại...</p>
+                        </div>
+                    </a>
+                    <!-- News Card 2 -->
+                    <a href="/Blogs/ai-thinking-guide.html" class="interactive-card block bg-ivs-card rounded-lg overflow-hidden border border-ivs-border" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/a78bfa/0d1117?text=AI+in+Edu" alt="[Hình ảnh bài viết về AI trong giáo dục]" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-ivs-purple font-semibold mb-2" data-lang-key="news2_category">PHÂN TÍCH</p>
+                            <h3 class="text-lg font-bold font-display text-white mb-3" data-lang-key="news2_title">Vai trò của AI trong việc định hình lại phương pháp giảng dạy</h3>
+                            <p class="text-sm text-ivs-text-secondary" data-lang-key="news2_excerpt">Trí tuệ nhân tạo không chỉ là công cụ, mà còn là người trợ lý đắc lực cho cả giáo viên và học sinh...</p>
+                        </div>
+                    </a>
+                    <!-- News Card 3 -->
+                    <a href="/news-archive.html" class="interactive-card block bg-ivs-card rounded-lg overflow-hidden border border-ivs-border" data-aos="fade-up" data-aos-delay="300">
+                         <div class="p-6 text-center flex flex-col justify-center h-full">
+                            <i class="fas fa-newspaper text-4xl text-ivs-blue mb-4"></i>
+                            <h3 class="text-lg font-bold font-display text-white mb-3" data-lang-key="news3_title">Xem tất cả Tin tức</h3>
+                            <p class="text-sm text-ivs-text-secondary" data-lang-key="news3_excerpt">Khám phá thêm nhiều bài viết và cập nhật từ IVS.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="footer-placeholder"></footer>
