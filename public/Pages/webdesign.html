@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +10,190 @@
     <meta property="og:image" content="/images/ivs-celestech.png">
     <meta property="og:url" content="https://ivs.id.vn/Pages/webdesign.html">
     <meta property="og:type" content="website">
+
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Kích hoạt chế độ tối dựa trên class 'dark'
+            theme: {
+                extend: {
+                    colors: {
+                        // Định nghĩa lại bảng màu cho chủ đề tối, đồng bộ với ivscelestech-dark-theme
+                        'primary': '#6366F1', // Indigo 500
+                        'primary-dark': '#4F46E5', // Indigo 600
+                        'secondary': '#FACC15', // Amber 400
+                        'secondary-dark': '#EAB308', // Amber 500
+                        'header-orange': '#F97316', // Giữ nguyên
+                        'ivs-neutral-800': '#18181B', // Zinc 900
+                        'ivs-neutral-700': '#27272A', // Zinc 800
+                        'ivs-neutral-600': '#3F3F46', // Zinc 700
+                        'ivs-neutral-300': '#D4D4D8', // Zinc 300
+                        'ivs-neutral-200': '#E4E4E7', // Zinc 200
+                        'ivs-neutral-100': '#F4F4F5', // Zinc 100
+                        'ivs-neutral-50': '#FAFAFA', // Zinc 50
+                        'purple-accent': '#A78BFA', // Purple 400
+                        'warning': '#FACC15', // Amber 400
+                        'blue-50': '#EEF2FF', // Indigo 50
+                        'blue-200': '#C7D2FE', // Indigo 200
+                        'blue-500': '#6366F1', // Indigo 500 (Primary)
+                        'blue-600': '#4F46E5', // Indigo 600 (Primary Dark)
+                        'blue-700': '#4338CA', // Indigo 700
+                        'blue-800': '#3730A3', // Indigo 800
+                        'purple-50': '#F5F3FF', // Purple 50
+                        'purple-500': '#8B5CF6', // Purple 500
+                        'purple-600': '#7C3AED', // Purple 600
+                        'purple-700': '#6D28D9', // Purple 700
+                        'emerald-50': '#ECFDF5', // Emerald 50
+                        'emerald-200': '#A7F3D0', // Emerald 200
+                        'emerald-500': '#10B981', // Emerald 500
+                        'emerald-600': '#059669', // Emerald 600
+                        'amber-200': '#FDE68A', // Amber 200
+                        'amber-500': '#F59E0B', // Amber 500
+                        'orange-200': '#FED7AA', // Orange 200
+                        'orange-500': '#F97316', // Orange 500
+                        'teal-600': '#0D9488', // Teal 600
+                        'indigo-600': '#4F46E5', // Indigo 600
+                        'indigo-700': '#4338CA', // Indigo 700
+                        'pink-500': '#EC4899' // Pink 500
+                    }
+                }
+            },
+            plugins: [],
+        }
+    </script>
+    <!-- Loại bỏ styles.css nếu các style đã được chuyển sang Tailwind hoặc inline -->
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        /* Các biến CSS cho header-height (giữ lại nếu được sử dụng ở các component khác) */
+        :root {
+            --header-height: 4rem;       /* 64px */
+            --header-height-mobile: 3.5rem; /* 56px */
+        }
+
+        /* Điều chỉnh Header Placeholder */
+        #header-placeholder {
+            height: var(--header-height);
+            transition: transform 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            #header-placeholder {
+                height: var(--header-height-mobile);
+            }
+        }
+        /* Đảm bảo nội dung không bị ẩn dưới header cố định */
+        main {
+            position: relative;
+            z-index: 1;
+            padding-top: var(--header-height); /* Đẩy nội dung xuống dưới header */
+        }
+        @media (max-width: 768px) {
+            main {
+                padding-top: var(--header-height-mobile);
+            }
+        }
+        /* Ẩn header khi cuộn xuống */
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+        /* Hiển thị header khi cuộn lên */
+        .header-visible {
+            transform: translateY(0);
+        }
+
+        /* Các kiểu cho phần Hero Section */
+        .hero-rnd {
+            /* background-image: url('/images/banners/webdesign-hero-banner.jpg'); */ /* Nếu muốn dùng ảnh nền */
+            background-size: cover;
+            background-position: center;
+        }
         .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+
+        /* Kiểu cho placeholder khi tải component */
+        #header-placeholder:empty::before,
+        #footer-placeholder:empty::before {
+            content: attr(data-loading-text);
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:100%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+        html.dark #header-placeholder:empty::before,
+        html.dark #footer-placeholder:empty::before {
+            background-color: #374151;
+            color: #9ca3af;
+        }
+
+        /* Kiểu cho Floating Action Buttons (FABs) */
+        .fab-hidden { display: none !important; }
+        #contact-options:not(.fab-hidden),
+        #share-options:not(.fab-hidden) {
+            display: flex; flex-direction: column; align-items: flex-end;
+        }
+        #contact-options, #share-options { z-index: 1000; }
+        
+        /* Kiểu cho nút ngôn ngữ đang hoạt động */
+        #header-placeholder button.active-lang {
+            background-color: var(--ivs-primary) !important;
+            color: var(--ivs-text-white) !important;
+        }
+        /* Hiệu ứng hover cho dropdown/mega menu */
+        .group:hover .group-hover\:opacity-100 {
+            opacity: 1 !important; visibility: visible !important;
+        }
+        .group:hover .group-hover\:visible {
+            visibility: visible !important;
+        }
+
+        /* Thêm các kiểu dáng cho nút chuyển đổi chế độ tối */
+        #darkModeToggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--tw-colors-primary);
+            color: white;
+            border-radius: 9999px; /* rounded-full */
+            padding: 0.75rem; /* p-3 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--tw-colors-primary-dark);
+            transform: scale(1.05);
+        }
+
+        #darkModeToggle svg {
+            width: 1.5rem; /* h-6 */
+            height: 1.5rem; /* w-6 */
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-neutral-700 font-sans antialiased">
+<!-- Điều chỉnh màu nền body cho chủ đề tối -->
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-ivs-neutral-800 text-gray-800 dark:text-ivs-neutral-200 font-inter">
     <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
     <main class="flex-grow">
         <!-- HERO SECTION -->
-        <section class="hero-rnd text-white py-16 md:py-24 text-center shadow-lg bg-gradient-to-br from-blue-700 via-blue-500 to-emerald-500">
+        <!-- Điều chỉnh màu nền gradient cho chủ đề tối -->
+        <section class="hero-rnd text-white py-16 md:py-24 text-center shadow-lg bg-gradient-to-br from-primary via-blue-600 to-indigo-600">
             <div class="container mx-auto px-4">
                 <h1 class="text-3xl md:text-5xl font-bold mb-4 hero-text-shadow" data-aos="fade-up" data-lang-key="webdesign_hero_title">
                     Thiết kế Website chuyên nghiệp, uy tín, chất lượng
@@ -35,17 +201,19 @@
                 <p class="text-lg md:text-xl max-w-2xl mx-auto hero-text-shadow mb-6" data-aos="fade-up" data-aos-delay="100" data-lang-key="webdesign_hero_subtitle">
                     IVS Celestech là đơn vị hàng đầu trong lĩnh vực thiết kế website hiện đại, chuẩn UI/UX, tối ưu tốc độ, bảo mật và chuẩn SEO. Chúng tôi đồng hành cùng doanh nghiệp Việt Nam và quốc tế xây dựng thương hiệu số vững mạnh.
                 </p>
-                <a href="/contact.html" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200" data-lang-key="webdesign_hero_cta">
+                <!-- Điều chỉnh màu nút CTA cho chủ đề tối -->
+                <a href="/contact.html" class="inline-block bg-secondary hover:bg-secondary-dark text-ivs-neutral-800 font-semibold py-3 px-8 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200" data-lang-key="webdesign_hero_cta">
                     Liên hệ tư vấn <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </section>
 
         <!-- GIỚI THIỆU IVS CELESTECH -->
-        <section class="py-12 md:py-16">
+        <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+        <section class="py-12 md:py-16 bg-white dark:bg-ivs-neutral-700">
             <div class="container mx-auto px-4">
-                <div class="prose max-w-full lg:max-w-2xl mx-auto text-neutral-700 bg-white p-6 md:p-8 rounded-lg shadow-md text-left" data-aos="fade-up">
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-lang-key="webdesign_about_title">Về IVS Celestech</h2>
+                <div class="prose max-w-full lg:max-w-2xl mx-auto text-neutral-700 dark:text-ivs-neutral-300 bg-white dark:bg-ivs-neutral-700 p-6 md:p-8 rounded-lg shadow-md text-left" data-aos="fade-up">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-primary dark:text-primary" data-lang-key="webdesign_about_title">Về IVS Celestech</h2>
                     <p data-lang-key="webdesign_about_content_1">
                         IVS Celestech là đối tác công nghệ tin cậy, chuyên cung cấp dịch vụ thiết kế website, phát triển ứng dụng web, tư vấn giải pháp số hóa cho doanh nghiệp, tổ chức giáo dục và cá nhân. Chúng tôi cam kết mang đến sản phẩm chất lượng, bảo mật, giao diện đẹp, trải nghiệm người dùng tối ưu và hỗ trợ kỹ thuật tận tâm.
                     </p>
@@ -60,21 +228,24 @@
         </section>
 
         <!-- DỊCH VỤ NỔI BẬT -->
-        <section class="py-12 md:py-16 bg-neutral-50">
+        <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+        <section class="py-12 md:py-16 bg-neutral-50 dark:bg-ivs-neutral-800">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8" data-lang-key="webdesign_services_title">Dịch vụ thiết kế website tại IVS Celestech</h2>
+                <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8 text-neutral-700 dark:text-ivs-neutral-200" data-lang-key="webdesign_services_title">Dịch vụ thiết kế website tại IVS Celestech</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="card p-6 rounded-lg shadow-md flex flex-col bg-white" data-aos="fade-right" data-aos-delay="100">
-                        <h3 class="text-xl font-semibold mb-4 text-primary" data-lang-key="webdesign_service_uiux_title">Thiết kế UI/UX hiện đại</h3>
-                        <ul class="space-y-2 text-sm text-neutral-600 list-disc pl-5">
+                    <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+                    <div class="card p-6 rounded-lg shadow-md flex flex-col bg-white dark:bg-ivs-neutral-700" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-primary" data-lang-key="webdesign_service_uiux_title">Thiết kế UI/UX hiện đại</h3>
+                        <ul class="space-y-2 text-sm text-neutral-600 dark:text-ivs-neutral-300 list-disc pl-5">
                             <li data-lang-key="webdesign_service_uiux_item_1">Phân tích nhu cầu, nghiên cứu hành vi người dùng.</li>
                             <li data-lang-key="webdesign_service_uiux_item_2">Thiết kế wireframe, prototype, giao diện chuẩn thương hiệu.</li>
                             <li data-lang-key="webdesign_service_uiux_item_3">Đảm bảo trải nghiệm mượt mà trên mọi thiết bị.</li>
                         </ul>
                     </div>
-                    <div class="card p-6 rounded-lg shadow-md flex flex-col bg-white" data-aos="fade-left" data-aos-delay="200">
-                        <h3 class="text-xl font-semibold mb-4 text-secondary" data-lang-key="webdesign_service_development_title">Phát triển website & ứng dụng web</h3>
-                        <ul class="space-y-2 text-sm text-neutral-600 list-disc pl-5">
+                    <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+                    <div class="card p-6 rounded-lg shadow-md flex flex-col bg-white dark:bg-ivs-neutral-700" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="text-xl font-semibold mb-4 text-secondary dark:text-secondary" data-lang-key="webdesign_service_development_title">Phát triển website & ứng dụng web</h3>
+                        <ul class="space-y-2 text-sm text-neutral-600 dark:text-ivs-neutral-300 list-disc pl-5">
                             <li data-lang-key="webdesign_service_development_item_1">Xây dựng website giới thiệu, thương mại điện tử, landing page, cổng thông tin.</li>
                             <li data-lang-key="webdesign_service_development_item_2">Tối ưu tốc độ tải trang, bảo mật, chuẩn SEO.</li>
                             <li data-lang-key="webdesign_service_development_item_3">Tích hợp CMS, CRM, các hệ thống quản lý hiện đại.</li>
@@ -85,20 +256,23 @@
         </section>
 
         <!-- SẢN PHẨM TIÊU BIỂU: KHADOCK.COM -->
-        <section class="py-12 md:py-16 bg-white">
+        <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+        <section class="py-12 md:py-16 bg-white dark:bg-ivs-neutral-700">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4" data-lang-key="webdesign_khadock_title">Sản phẩm tiêu biểu: <span class="text-primary">KhaDock.com</span></h2>
-                <p class="text-base md:text-lg text-neutral-700 mb-8 max-w-2xl mx-auto" data-lang-key="webdesign_khadock_description">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 text-neutral-700 dark:text-ivs-neutral-200" data-lang-key="webdesign_khadock_title">Sản phẩm tiêu biểu: <span class="text-primary dark:text-primary">KhaDock.com</span></h2>
+                <p class="text-base md:text-lg text-neutral-700 dark:text-ivs-neutral-300 mb-8 max-w-2xl mx-auto" data-lang-key="webdesign_khadock_description">
                     <strong>KhaDock.com</strong> là dự án website thương mại điện tử được IVS Celestech thiết kế và phát triển cho đối tác khách hàng tại Bang Florida, Hoa Kỳ. Dự án thể hiện năng lực triển khai quốc tế, đáp ứng các tiêu chuẩn khắt khe về UI/UX, bảo mật, tốc độ và khả năng mở rộng.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <img src="/images/pages/webs/KhaDock.com/khadock-home.png" alt="Trang chủ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="/images/pages/webs/KhaDock.com/khadock-design.jpg" alt="Thiết kế KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="/images/pages/webs/KhaDock.com/khadock-services.jpg" alt="Dịch vụ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="/images/pages/webs/KhaDock.com/khadock-projects.jpg" alt="Quản lý dự án KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/images/pages/webs/KhaDock.com/khadock-contact.jpg" alt="Liên hệ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="500">
+                    <!-- Placeholder image updated for dark theme -->
+                    <img src="/images/pages/webs/KhaDock.com/khadock-home.png" alt="Trang chủ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="100" onerror="this.onerror=null; this.src='https://placehold.co/600x400/27272A/E4E4E7?text=KhaDock+Home';">
+                    <img src="/images/pages/webs/KhaDock.com/khadock-design.jpg" alt="Thiết kế KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="200" onerror="this.onerror=null; this.src='https://placehold.co/600x400/27272A/E4E4E7?text=KhaDock+Design';">
+                    <img src="/images/pages/webs/KhaDock.com/khadock-services.jpg" alt="Dịch vụ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="300" onerror="this.onerror=null; this.src='https://placehold.co/600x400/27272A/E4E4E7?text=KhaDock+Services';">
+                    <img src="/images/pages/webs/KhaDock.com/khadock-projects.jpg" alt="Quản lý dự án KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="400" onerror="this.onerror=null; this.src='https://placehold.co/600x400/27272A/E4E4E7?text=KhaDock+Projects';">
+                    <img src="/images/pages/webs/KhaDock.com/khadock-contact.jpg" alt="Liên hệ KhaDock.com" class="w-full h-auto rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="500" onerror="this.onerror=null; this.src='https://placehold.co/600x400/27272A/E4E4E7?text=KhaDock+Contact';">
                 </div>
                 <div class="mt-8">
+                    <!-- Điều chỉnh màu nút CTA cho chủ đề tối -->
                     <a href="https://khadock.com" target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-6 rounded-md shadow-md transition-all duration-300 transform hover:scale-105" data-lang-key="webdesign_khadock_cta">
                         Truy cập KhaDock.com <i class="fas fa-arrow-up-right-from-square ml-2"></i>
                     </a>
@@ -107,12 +281,14 @@
         </section>
 
         <!-- CTA -->
-        <section class="text-center py-12 md:py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+        <!-- Điều chỉnh màu nền và màu chữ cho chủ đề tối -->
+        <section class="text-center py-12 md:py-16 bg-gradient-to-r from-blue-50 dark:from-ivs-neutral-700 to-purple-50 dark:to-ivs-neutral-700">
             <div class="container mx-auto px-4">
-                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 mb-4" data-lang-key="website_consultation_title">Bạn cần website chuyên nghiệp cho doanh nghiệp?</h2>
-                <p class="text-neutral-600 mb-8 max-w-xl mx-auto text-base md:text-lg" data-lang-key="website_consultation_description">
+                <h2 class="text-2xl md:text-3xl font-semibold text-neutral-700 dark:text-ivs-neutral-200 mb-4" data-lang-key="website_consultation_title">Bạn cần website chuyên nghiệp cho doanh nghiệp?</h2>
+                <p class="text-neutral-600 dark:text-ivs-neutral-300 mb-8 max-w-xl mx-auto text-base md:text-lg" data-lang-key="website_consultation_description">
                     Liên hệ IVS Celestech để nhận tư vấn miễn phí, giải pháp thiết kế website tối ưu, bảo mật, chuẩn SEO, hỗ trợ kỹ thuật tận tâm.
                 </p>
+                <!-- Điều chỉnh màu nút CTA cho chủ đề tối -->
                 <a href="/contact.html" class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-lang-key="website_consultation_button">
                     Nhận tư vấn miễn phí <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -123,13 +299,81 @@
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
 
+    <!-- Nút chuyển đổi chế độ tối/sáng -->
+    <button id="darkModeToggle" aria-label="Toggle dark mode">
+        <svg id="moonIcon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg id="sunIcon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.675l-.707-.707M6.343 17.657l-.707.707M16.95 16.95l.707.707M7.05 7.05l-.707-.707M8 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+    </button>
+
     <script src="/js/script.js" defer></script>
     <script src="/js/language.js" defer></script>
     <script src="/js/fabController.js" defer></script>
     <script src="/js/loadComponents.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({ offset: 100, duration: 700, easing: 'ease-out-quad', once: true, mirror: false, anchorPlacement: 'top-bottom' });
+        // Hàm để áp dụng hoặc loại bỏ chế độ tối
+        function applyDarkMode(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('moonIcon').classList.add('hidden');
+                document.getElementById('sunIcon').classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('moonIcon').classList.remove('hidden');
+                document.getElementById('sunIcon').classList.add('hidden');
+            }
+        }
+
+        // Kiểm tra cài đặt chế độ tối của người dùng hoặc lưu trữ cục bộ
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+        let isDarkMode = localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && prefersDarkMode.matches);
+        applyDarkMode(isDarkMode);
+
+        // Lắng nghe sự kiện click trên nút chuyển đổi
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            applyDarkMode(isDarkMode);
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+
+        // Lắng nghe thay đổi cài đặt hệ thống
+        prefersDarkMode.addEventListener('change', (e) => {
+            if (localStorage.getItem('theme') === null) { // Chỉ thay đổi nếu người dùng chưa đặt tùy chọn thủ công
+                isDarkMode = e.matches;
+                applyDarkMode(isDarkMode);
+            }
+        });
+
+        // Khởi tạo AOS sau khi DOM đã tải hoàn chỉnh
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                offset: 100,
+                duration: 700,
+                easing: 'ease-out-quad',
+                once: true,
+                mirror: false,
+                anchorPlacement: 'top-bottom'
+            });
+        });
+
+        // Hàm initializeTheme được giữ lại ở đây để đảm bảo tính nhất quán nếu trang này được truy cập trực tiếp
+        // Hàm này sẽ được gọi bởi loadComponentsAndInitialize hoặc trực tiếp nếu trang được tải độc lập
+        window.initializeTheme = function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme) {
+                document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+            } else {
+                document.documentElement.classList.toggle('dark', prefersDark);
+            }
+        };
+        // Gọi hàm khởi tạo chủ đề ngay khi script được tải
+        // Điều này đảm bảo theme được áp dụng nhanh chóng, tránh FOUC (Flash of Unstyled Content)
+        initializeTheme();
     </script>
 </body>
 </html>
