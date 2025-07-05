@@ -25,7 +25,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Bật chế độ tối bằng class
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -98,7 +98,7 @@
 
         /* Hero section specific styles */
         .hero-section-bg {
-            background-image: url('/images/logo/webbanner.png'); /* Placeholder image */
+            background-image: url('https://placehold.co/1920x800/007BFF/FFFFFF?text=IVS+JSC+Vision'); /* Placeholder image */
             background-size: cover;
             background-position: center;
             position: relative;
@@ -108,7 +108,6 @@
             inset: 0;
             background: linear-gradient(to bottom, rgba(0, 123, 255, 0.7) 0%, rgba(0, 86, 179, 0.9) 100%); /* Adjusted to new primary colors */
         }
-        /* Dark mode overlay for hero section */
         html.dark .hero-overlay {
             background: linear-gradient(to bottom, rgba(26, 32, 44, 0.7) 0%, rgba(45, 55, 72, 0.9) 100%); /* Dark mode overlay */
         }
@@ -146,7 +145,6 @@
             background-color: var(--light-border); /* Adjusted to new palette */
             color: var(--light-text-secondary); /* Adjusted to new palette */
         }
-        /* Dark mode for placeholders */
         html.dark #header-placeholder:empty::before,
         html.dark #footer-placeholder:empty::before {
             background-color: var(--dark-border); /* Adjusted to new palette */
@@ -174,6 +172,15 @@
             visibility: visible !important;
         }
 
+        /* Dark mode toggle button styles (removed from here, now in fab-container.html) */
+        /* #darkModeToggle {} */
+
+        /* Styles for synergy diagram (removed, but keeping for reference if needed) */
+        /* .synergy-diagram {} */
+
+        /* Styles for tabs (removed, but keeping for reference if needed) */
+        /* .tab {} */
+
         /* Styles for timeline */
         .timeline { list-style: none; padding: 0; position: relative; }
         .timeline::before {
@@ -181,7 +188,6 @@
             left: 1.5rem; width: 3px; background-color: var(--light-border); /* Adjusted to new palette */
             margin-left: -1.5px;
         }
-        /* Dark mode for timeline before pseudo-element */
         html.dark .timeline::before {
             background-color: var(--dark-border); /* Adjusted to new palette */
         }
@@ -194,7 +200,6 @@
             margin-left: -0.625rem; z-index: 1;
             box-shadow: 0 0 10px rgba(0, 123, 255, 0.3); /* Adjusted to new palette */
         }
-        /* Dark mode for timeline li before pseudo-element */
         html.dark .timeline li::before {
             background-color: var(--brand-primary-dark); /* Adjusted to new palette */
             border-color: var(--dark-bg-card); /* Adjusted to new palette */
@@ -213,7 +218,6 @@
             background-color: var(--light-border); /* Adjusted to new palette */
             color: var(--brand-primary); /* Adjusted to new palette */
         }
-        /* Dark mode for accordion header hover */
         html.dark .accordion-header:hover {
             background-color: var(--dark-border); /* Adjusted to new palette */
             color: var(--dark-text-heading); /* Adjusted to new palette */
@@ -244,7 +248,6 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.07);
         }
-        /* Dark mode for chart container */
         html.dark .chart-container {
             background-color: var(--dark-bg-card); /* Adjusted to new palette */
         }
@@ -265,7 +268,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--light-border); /* Adjusted to new palette */
         }
-        /* Dark mode for team member cards */
         html.dark .team-member-card {
             background-color: var(--dark-bg-card); /* Adjusted to new palette */
             border-color: var(--dark-border); /* Adjusted to new palette */
@@ -284,34 +286,6 @@
             object-fit: cover;
             border: 4px solid var(--brand-accent); /* Adjusted to new palette */
             box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3); /* Adjusted to new palette */
-        }
-
-        /* Dark mode toggle button styles */
-        #darkModeToggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: var(--brand-primary); /* Adjusted to new palette */
-            color: white;
-            border-radius: 9999px; /* rounded-full */
-            padding: 0.75rem; /* p-3 */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #darkModeToggle:hover {
-            background-color: var(--brand-primary-dark); /* Adjusted to new palette */
-            transform: scale(1.05);
-        }
-
-        #darkModeToggle svg {
-            width: 1.5rem; /* h-6 */
-            height: 1.5rem; /* w-6 */
         }
     </style>
 </head>
@@ -344,14 +318,14 @@
                             Về IVS JSC: Chất Lượng, Uy Tín & Chuyên Nghiệp
                         </h2>
                         <p class="text-lg leading-relaxed text-light-text-body dark:text-dark-text-body mb-4" data-lang-key="about_ivs_p1">
-                            Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC) là một tổ chức tiên phong trong lĩnh vực giáo dục và công nghệ, được xây dựng trên nền tảng của **chất lượng vượt trội, uy tín hàng đầu và sự chuyên nghiệp** trong mọi hoạt động. Với tầm nhìn chiến lược và đội ngũ chuyên gia tận tâm, chúng tôi không ngừng nỗ lực để cung cấp các giải pháp toàn diện, đáp ứng nhu cầu phát triển của xã hội hiện đại.
+                            Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC) là một tổ chức tiên phong trong lĩnh vực giáo dục và công nghệ, được xây dựng trên nền tảng của chất lượng vượt trội, uy tín hàng đầu và sự chuyên nghiệp trong mọi hoạt động. Với tầm nhìn chiến lược và đội ngũ chuyên gia tận tâm, chúng tôi không ngừng nỗ lực để cung cấp các giải pháp toàn diện, đáp ứng nhu cầu phát triển của xã hội hiện đại.
                         </p>
                         <p class="text-lg leading-relaxed text-light-text-body dark:text-dark-text-body" data-lang-key="about_ivs_p2">
                             Chúng tôi tin rằng sự kết hợp giữa tri thức truyền thống và đổi mới sáng tạo là chìa khóa để mở ra những cơ hội không giới hạn, góp phần vào sự phát triển bền vững của cộng đồng. Mỗi dự án, mỗi sản phẩm của IVS JSC đều là minh chứng cho cam kết về sự xuất sắc và giá trị thực tiễn.
                         </p>
                     </div>
                     <div class="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-xl" data-aos="fade-left">
-                        <img src="/images/ivs-academy.jpg" alt="[Hình ảnh đội ngũ IVS JSC]" data-lang-key="about_team_image_alt" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/007BFF/FFFFFF?text=IVS+JSC+Team';">
+                        <img src="/images/ivs-academy.jpg" alt="Hình ảnh đội ngũ IVS JSC" data-lang-key="about_team_image_alt" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/007BFF/FFFFFF?text=IVS+JSC+Team';">
                         <div class="absolute inset-0 bg-brand-primary opacity-20"></div>
                     </div>
                 </div>
@@ -540,7 +514,7 @@
                     Kế Hoạch Phát Triển: IVS Global School
                 </h2>
                 <p class="mb-8 text-lg text-light-text-body dark:text-dark-text-body text-center" data-aos="fade-up" data-aos-delay="100" data-lang-key="roadmap_intro">
-                    IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp **IVS Global School** theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.
+                    IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp IVS Global School theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.
                 </p>
                 <ul class="timeline max-w-3xl mx-auto">
                     <li data-aos="fade-right">
@@ -553,7 +527,7 @@
                     </li>
                     <li data-aos="fade-right" data-aos-delay="200">
                         <h3 class="text-xl font-semibold text-brand-primary dark:text-brand-primary mb-2" data-lang-key="roadmap_stage3_title">Giai đoạn 3 (2031-2034): Hoàn thiện Hệ sinh thái</h3>
-                        <p class="text-light-text-body dark:text-dark-text-body" data-lang-key="roadmap_stage3_desc">IVS Global School trở thành hệ thống giáo dục liên kết liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.</p>
+                        <p class="text-light-text-body dark:text-dark-text-body" data-lang-key="roadmap_stage3_desc">IVS Global School trở thành hệ thống giáo Liên kết liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.</p>
                     </li>
                 </ul>
             </div>
@@ -596,7 +570,7 @@
                     Cơ Hội Đầu Tư & Đồng Hành: Cùng IVS JSC Vươn Tầm
                 </h2>
                 <p class="mb-12 text-lg text-light-text-body dark:text-dark-text-body text-center" data-aos="fade-up" data-aos-delay="100" data-lang-key="investor_relations_intro">
-                    Chúng tôi mời gọi các nhà đầu tư và đối tác chiến lược cùng đồng hành, **trở thành một phần không thể thiếu** trong hành trình phát triển của IVS JSC. Với định hướng tài chính minh bạch và tiềm năng tăng trưởng vượt trội, IVS JSC cam kết mang lại giá trị bền vững và lợi nhuận hấp dẫn.
+                    Chúng tôi mời gọi các nhà đầu tư và đối tác chiến lược cùng đồng hành, trở thành một phần không thể thiếu trong hành trình phát triển của IVS JSC. Với định hướng tài chính minh bạch và tiềm năng tăng trưởng vượt trội, IVS JSC cam kết mang lại giá trị bền vững và lợi nhuận hấp dẫn.
                 </p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div class="p-8 bg-light-bg-main dark:bg-dark-bg-main rounded-xl shadow-lg card-elegant-hover" data-aos="fade-right">
@@ -605,9 +579,9 @@
                             Định hướng Cổ phần
                         </h3>
                         <ul class="list-disc pl-6 text-lg text-light-text-body dark:text-dark-text-body space-y-3">
-                            <li data-lang-key="share_direction_item1">**Phát triển giá trị nội tại:** Tập trung vào hiệu quả kinh doanh và mở rộng thị trường để gia tăng giá trị cổ phần một cách bền vững.</li>
-                            <li data-lang-key="share_direction_item2">**Minh bạch thông tin:** Công bố đầy đủ, chính xác và kịp thời mọi thông tin tài chính, hoạt động cho cổ đông, đảm bảo tính minh bạch cao nhất.</li>
-                            <li data-lang-key="share_direction_item3">**Chiến lược mở rộng vốn:** Xem xét các hình thức huy động vốn phù hợp trong tương lai, tối ưu lợi ích cổ đông và phục vụ mục tiêu phát triển dài hạn.</li>
+                            <li data-lang-key="share_direction_item1">Phát triển giá trị nội tại: Tập trung vào hiệu quả kinh doanh và mở rộng thị trường để gia tăng giá trị cổ phần một cách bền vững.</li>
+                            <li data-lang-key="share_direction_item2">Minh bạch thông tin: Công bố đầy đủ, chính xác và kịp thời mọi thông tin tài chính, hoạt động cho cổ đông, đảm bảo tính minh bạch cao nhất.</li>
+                            <li data-lang-key="share_direction_item3">Chiến lược mở rộng vốn: Xem xét các hình thức huy động vốn phù hợp trong tương lai, tối ưu lợi ích cổ đông và phục vụ mục tiêu phát triển dài hạn.</li>
                         </ul>
                     </div>
                     <div class="p-8 bg-light-bg-main dark:bg-dark-bg-main rounded-xl shadow-lg card-elegant-hover" data-aos="fade-left">
@@ -616,9 +590,9 @@
                             Chính sách Cổ tức
                         </h3>
                         <ul class="list-disc pl-6 text-lg text-light-text-body dark:text-dark-text-body space-y-3">
-                            <li data-lang-key="dividend_policy_item1">**Cân bằng tăng trưởng & lợi nhuận:** Đảm bảo tái đầu tư cho tăng trưởng dài hạn và chia sẻ lợi nhuận công bằng với cổ đông.</li>
-                            <li data-lang-key="dividend_policy_item2">**Ổn định và bền vững:** Hướng tới chính sách cổ tức có thể dự đoán, phản ánh hiệu quả kinh doanh và dòng tiền mạnh mẽ của công ty.</li>
-                            <li data-lang-key="dividend_policy_item3">**Đa dạng hình thức:** Chi trả bằng tiền mặt, cổ phiếu hoặc kết hợp, tùy theo tình hình thực tế, kế hoạch đầu tư và quyết định của Hội đồng Quản trị, luôn hướng tới lợi ích tối ưu cho cổ đông.</li>
+                            <li data-lang-key="dividend_policy_item1">Cân bằng tăng trưởng & lợi nhuận: Đảm bảo tái đầu tư cho tăng trưởng dài hạn và chia sẻ lợi nhuận công bằng với cổ đông.</li>
+                            <li data-lang-key="dividend_policy_item2">Ổn định và bền vững: Hướng tới chính sách cổ tức có thể dự đoán, phản ánh hiệu quả kinh doanh và dòng tiền mạnh mẽ của công ty.</li>
+                            <li data-lang-key="dividend_policy_item3">Đa dạng hình thức: Chi trả bằng tiền mặt, cổ phiếu hoặc kết hợp, tùy theo tình hình thực tế, kế hoạch đầu tư và quyết định của Hội đồng Quản trị, luôn hướng tới lợi ích tối ưu cho cổ đông.</li>
                         </ul>
                     </div>
                 </div>
@@ -660,16 +634,6 @@
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
 
-    <!-- Nút chuyển đổi chế độ tối/sáng -->
-    <button id="darkModeToggle" aria-label="Toggle dark mode">
-        <svg id="moonIcon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <svg id="sunIcon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.675l-.707-.707M6.343 17.657l-.707.707M16.95 16.95l.707.707M7.05 7.05l-.707-.707M8 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-    </button>
-
     <!-- Deferred JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
@@ -694,7 +658,7 @@
                 hero_subtitle: "Với nền tảng vững chắc trong giáo dục và công nghệ, IVS JSC mời gọi hợp tác để cùng bứt phá, chia sẻ thành công và tạo dựng giá trị bền vững cho cộng đồng.",
                 hero_cta_button: "Liên Hệ Hợp Tác",
                 about_ivs_title: "Về IVS JSC: Chất Lượng, Uy Tín & Chuyên Nghiệp",
-                about_ivs_p1: "Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC) là một tổ chức tiên phong trong lĩnh vực giáo dục và công nghệ, được xây dựng trên nền tảng của **chất lượng vượt trội, uy tín hàng đầu và sự chuyên nghiệp** trong mọi hoạt động. Với tầm nhìn chiến lược và đội ngũ chuyên gia tận tâm, chúng tôi không ngừng nỗ lực để cung cấp các giải pháp toàn diện, đáp ứng nhu cầu phát triển của xã hội hiện đại.",
+                about_ivs_p1: "Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC) là một tổ chức tiên phong trong lĩnh vực giáo dục và công nghệ, được xây dựng trên nền tảng của chất lượng vượt trội, uy tín hàng đầu và sự chuyên nghiệp trong mọi hoạt động. Với tầm nhìn chiến lược và đội ngũ chuyên gia tận tâm, chúng tôi không ngừng nỗ lực để cung cấp các giải pháp toàn diện, đáp ứng nhu cầu phát triển của xã hội hiện đại.",
                 about_ivs_p2: "Chúng tôi tin rằng sự kết hợp giữa tri thức truyền thống và đổi mới sáng tạo là chìa khóa để mở ra những cơ hội không giới hạn, góp phần vào sự phát triển bền vững của cộng đồng. Mỗi dự án, mỗi sản phẩm của IVS JSC đều là minh chứng cho cam kết về sự xuất sắc và giá trị thực tiễn.",
                 ivs_philosophy_title: "Triết Lý Cốt Lõi: I-V-S",
                 philosophy_integrate_title: "Integrate (Tích hợp)",
@@ -756,13 +720,13 @@
                 org_unit_celestech_item3: "Cung cấp trang thiết bị giáo dục chất lượng cao, tối ưu chi phí",
                 org_unit_celestech_item4: "Tư vấn thiết kế – vận hành trung tâm giáo dục, mô hình lớp học tương tác",
                 roadmap_title: "Kế Hoạch Phát Triển: IVS Global School",
-                roadmap_intro: "IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp **IVS Global School** theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.",
+                roadmap_intro: "IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp IVS Global School theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.",
                 roadmap_stage1_title: "Giai đoạn 1 (2024-2026): Nền tảng Mầm non & Tiểu học",
-                roadmap_stage1_desc: "Hoàn thiện và mở rộng IVS Kindergarten. Khởi động chương trình IVS Primary School, tập trung vào song ngữ và STEAM.",
+                roadmap_stage1_desc: "Hoàn thiện và mở rộng các chương trình Liên kết, Giáo trình chất lượng, phù hợp và được đánh giá cao cho nền tảng mầm non và tiểu học, gồm STEAM+ Intelligence cho Mầm non và IVSLifemind cho Tiểu học. Đẩy mạnh tư duy giáo dục đổi mới kết hợp ngoại ngữ cùng kỹ năng sống cho trẻ.",
                 roadmap_stage2_title: "Giai đoạn 2 (2027-2030): Phát triển THCS & THPT",
-                roadmap_stage2_desc: "Xây dựng IVS Secondary & High School. Tăng cường hợp tác quốc tế, chương trình trao đổi và định hướng nghề nghiệp.",
+                roadmap_stage2_desc: "Xây dựng các chương trình phù hợp cho Secondary & High School. Tăng cường hợp tác quốc tế, chương trình trao đổi và định hướng nghề nghiệp.",
                 roadmap_stage3_title: "Giai đoạn 3 (2031-2034): Hoàn thiện Hệ sinh thái",
-                roadmap_stage3_desc: "IVS Global School trở thành hệ thống giáo dục liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.",
+                roadmap_stage3_desc: "IVS Global School trở thành hệ thống giáo Liên kết liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.",
                 strategic_priorities_title: "Ưu Tiên Chiến Lược Của Chúng Tôi",
                 strategic_priorities_intro: "Để hiện thực hóa tầm nhìn, IVS JSC được định hướng bởi bảy ưu tiên chiến lược then chốt nhằm đảm bảo sự tăng trưởng bền vững, đổi mới và giá trị cộng đồng.",
                 strategy_item1_title: "Chất lượng Vượt trội",
@@ -785,24 +749,24 @@
                 impact_chart_label_x: "Mức độ Tác động & Trọng tâm (%)",
                 impact_chart_dataset_label: "Tỷ lệ Tập trung (%)",
                 impact_labels: [
-                    'Nâng cao Giáo dục Địa phương',
-                    'Tiếp cận Học tập Bình đẳng',
-                    'Nguồn nhân lực Sẵn sàng cho Tương lai',
-                    'Văn hóa Học tập Suốt đời',
-                    'Hỗ trợ các Tổ chức Giáo dục',
-                    'Tăng trưởng Kinh tế - Xã hội',
-                    'Cộng đồng Tiến bộ'
+                    "Nâng cao Giáo dục Địa phương",
+                    "Tiếp cận Học tập Bình đẳng",
+                    "Nguồn nhân lực Sẵn sàng cho Tương lai",
+                    "Văn hóa Học tập Suốt đời",
+                    "Hỗ trợ các Tổ chức Giáo dục",
+                    "Tăng trưởng Kinh tế - Xã hội",
+                    "Cộng đồng Tiến bộ"
                 ],
                 investor_relations_title: "Cơ Hội Đầu Tư & Đồng Hành: Cùng IVS JSC Vươn Tầm",
-                investor_relations_intro: "Chúng tôi mời gọi các nhà đầu tư và đối tác chiến lược cùng đồng hành, **trở thành một phần không thể thiếu** trong hành trình phát triển của IVS JSC. Với định hướng tài chính minh bạch và tiềm năng tăng trưởng vượt trội, IVS JSC cam kết mang lại giá trị bền vững và lợi nhuận hấp dẫn.",
+                investor_relations_intro: "Chúng tôi mời gọi các nhà đầu tư và đối tác chiến lược cùng đồng hành, trở thành một phần không thể thiếu trong hành trình phát triển của IVS JSC. Với định hướng tài chính minh bạch và tiềm năng tăng trưởng vượt trội, IVS JSC cam kết mang lại giá trị bền vững và lợi nhuận hấp dẫn.",
                 share_direction_title: "Định hướng Cổ phần",
-                share_direction_item1: "**Phát triển giá trị nội tại:** Tập trung vào hiệu quả kinh doanh và mở rộng thị trường để gia tăng giá trị cổ phần một cách bền vững.",
-                share_direction_item2: "**Minh bạch thông tin:** Công bố đầy đủ, chính xác và kịp thời mọi thông tin tài chính, hoạt động cho cổ đông, đảm bảo tính minh bạch cao nhất.",
-                share_direction_item3: "**Chiến lược mở rộng vốn:** Xem xét các hình thức huy động vốn phù hợp trong tương lai, tối ưu lợi ích cổ đông và phục vụ mục tiêu phát triển dài hạn.",
+                share_direction_item1: "Phát triển giá trị nội tại: Tập trung vào hiệu quả kinh doanh và mở rộng thị trường để gia tăng giá trị cổ phần một cách bền vững.",
+                share_direction_item2: "Minh bạch thông tin: Công bố đầy đủ, chính xác và kịp thời mọi thông tin tài chính, hoạt động cho cổ đông, đảm bảo tính minh bạch cao nhất.",
+                share_direction_item3: "Chiến lược mở rộng vốn: Xem xét các hình thức huy động vốn phù hợp trong tương lai, tối ưu lợi ích cổ đông và phục vụ mục tiêu phát triển dài hạn.",
                 dividend_policy_title: "Chính sách Cổ tức",
-                dividend_policy_item1: "**Cân bằng tăng trưởng & lợi nhuận:** Đảm bảo tái đầu tư cho tăng trưởng dài hạn và chia sẻ lợi nhuận công bằng với cổ đông.",
-                dividend_policy_item2: "**Ổn định và bền vững:** Hướng tới chính sách cổ tức có thể dự đoán, phản ánh hiệu quả kinh doanh và dòng tiền mạnh mẽ của công ty.",
-                dividend_policy_item3: "**Đa dạng hình thức:** Chi trả bằng tiền mặt, cổ phiếu hoặc kết hợp, tùy theo tình hình thực tế, kế hoạch đầu tư và quyết định của Hội đồng Quản trị, luôn hướng tới lợi ích tối ưu cho cổ đông.",
+                dividend_policy_item1: "Cân bằng tăng trưởng & lợi nhuận: Đảm bảo tái đầu tư cho tăng trưởng dài hạn và chia sẻ lợi nhuận công bằng với cổ đông.",
+                dividend_policy_item2: "Ổn định và bền vững: Hướng tới chính sách cổ tức có thể dự đoán, phản ánh hiệu quả kinh doanh và dòng tiền mạnh mẽ của công ty.",
+                dividend_policy_item3: "Đa dạng hình thức: Chi trả bằng tiền mặt, cổ phiếu hoặc kết hợp, tùy theo tình hình thực tế, kế hoạch đầu tư và quyết định của Hội đồng Quản trị, luôn hướng tới lợi ích tối ưu cho cổ đông.",
                 final_cta_title: "Đồng hành cùng IVS JSC: Nơi kiến tạo tương lai giáo dục và công nghệ.",
                 final_cta_subtitle: "Hãy cùng chúng tôi xây dựng những giá trị bền vững và chinh phục những đỉnh cao mới.",
                 contact_us_title: "Liên Hệ Với Chúng Tôi",
@@ -819,22 +783,7 @@
                 contact_cta_partner: "Hợp tác với Chúng tôi",
                 contact_cta_careers: "Gia nhập Đội ngũ IVS",
                 about_team_image_alt: "Hình ảnh đội ngũ IVS JSC",
-                image_team_alt: "Hình ảnh đội ngũ IVS JSC",
-                image_ceo_alt: "Ảnh đại diện Ông Nguyễn Minh Triết",
-                image_amg_alt: "Hình ảnh dự án ANH MỸ GROUP",
-                image_ielts_alt: "Hình ảnh dự án IELTS STATION",
-                image_khadock_home_alt: "Trang chủ KhaDock.com",
-                image_khadock_design_alt: "Thiết kế KhaDock.com",
-                image_khadock_services_alt: "Dịch vụ KhaDock.com",
-                image_khadock_projects_alt: "Quản lý dự án KhaDock.com",
-                image_khadock_contact_alt: "Liên hệ KhaDock.com",
-                image_ivs_academy_alt: "Lớp học tại IVS Academy",
-                image_ivscelestech_innovation_alt: "Công nghệ Giáo dục IVS Celestech",
-                image_webdesign_hero_alt: "Thiết kế Website chuyên nghiệp, uy tín, chất lượng",
-                image_interior_hero_alt: "Quy Trình Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp",
-                image_interior_intro_alt: "Giới Thiệu IVS Celestech",
-                image_interior_project_amg_alt: "Hình ảnh dự án Trung tâm Ngoại ngữ AMG",
-                image_interior_project_ielts_alt: "Hình ảnh dự án IELTS STATION",
+                image_ceo_alt: "Ảnh đại diện Ông Nguyễn Minh Triết"
             },
             en: {
                 company_profile_page_title: "IVS JSC - Company Profile & Development Orientation",
@@ -845,7 +794,7 @@
                 hero_subtitle: "With a solid foundation in education and technology, IVS JSC invites collaboration to break through, share success, and create sustainable value for the community.",
                 hero_cta_button: "Contact for Partnership",
                 about_ivs_title: "About IVS JSC: Quality, Prestige & Professionalism",
-                about_ivs_p1: "Integrate Vision Synergy Joint Stock Company (IVS JSC) is a pioneering organization in the field of education and technology, built on the foundation of **superior quality, leading prestige, and professionalism** in all operations. With a strategic vision and a dedicated team of experts, we constantly strive to provide comprehensive solutions that meet the development needs of modern society.",
+                about_ivs_p1: "Integrate Vision Synergy Joint Stock Company (IVS JSC) is a pioneering organization in the field of education and technology, built on the foundation of superior quality, leading prestige, and professionalism in all operations. With a strategic vision and a dedicated team of experts, we constantly strive to provide comprehensive solutions that meet the development needs of modern society.",
                 about_ivs_p2: "We believe that the combination of traditional knowledge and innovative breakthroughs is the key to unlocking unlimited learning potential, contributing to the sustainable development of the community. Every project and product from IVS JSC is a testament to our commitment to excellence and practical value.",
                 ivs_philosophy_title: "Core Philosophy: I-V-S",
                 philosophy_integrate_title: "Integrate",
@@ -909,11 +858,11 @@
                 roadmap_title: "Development Plan: IVS Global School",
                 roadmap_intro: "IVS JSC aims to build the **IVS Global School** inter-level education system according to international standards within 10 years, starting from the solid foundation of IVS Kindergarten.",
                 roadmap_stage1_title: "Stage 1 (2024-2026): Preschool & Primary Foundation",
-                roadmap_stage1_desc: "Completes and expands IVS Kindergarten. Launches IVS Primary School program, focusing on bilingualism and STEAM.",
+                roadmap_stage1_desc: "Completes and expands joint programs, quality curricula, suitable and highly regarded for preschool and primary foundations, including STEAM+ Intelligence for Preschool and IVSLifemind for Primary. Promotes innovative educational thinking combining foreign languages with life skills for children.",
                 roadmap_stage2_title: "Stage 2 (2027-2030): Secondary & High School Development",
-                roadmap_stage2_desc: "Establishes IVS Secondary & High School. Enhances international cooperation, exchange programs, and career orientation.",
+                roadmap_stage2_desc: "Develops suitable programs for Secondary & High School. Enhances international cooperation, exchange programs, and career orientation.",
                 roadmap_stage3_title: "Stage 3 (2031-2034): Ecosystem Completion",
-                roadmap_stage3_desc: "IVS Global School becomes a complete, internationally recognized inter-level education system. Expands specialized training programs and global collaborations.",
+                roadmap_stage3_desc: "IVS Global School becomes a complete, internationally recognized inter-level joint education system. Expands specialized training programs and global collaborations.",
                 strategic_priorities_title: "Our Strategic Priorities",
                 strategic_priorities_intro: "To realize its vision, IVS JSC is guided by seven key strategic priorities to ensure sustainable growth, innovation, and community value.",
                 strategy_item1_title: "Uncompromising Quality",
@@ -945,15 +894,15 @@
                     'Progressive Community'
                 ],
                 investor_relations_title: "Investment & Partnership Opportunities: Soaring with IVS JSC",
-                investor_relations_intro: "We invite investors and strategic partners to join us, **becoming an integral part** of IVS JSC's growth journey. With transparent financial direction and outstanding growth potential, IVS JSC is committed to delivering sustainable value and attractive returns.",
+                investor_relations_intro: "We invite investors and strategic partners to join us, becoming an integral part of IVS JSC's growth journey. With transparent financial direction and outstanding growth potential, IVS JSC is committed to delivering sustainable value and attractive returns.",
                 share_direction_title: "Share Direction",
-                share_direction_item1: "**Developing Intrinsic Value:** Focusing on business efficiency and market expansion to sustainably increase share value.",
-                share_direction_item2: "**Information Transparency:** Full, accurate, and timely disclosure of all financial and operational information to shareholders, ensuring maximum transparency.",
-                share_direction_item3: "**Capital Expansion Strategy:** Exploring suitable capital raising methods in the future, optimizing shareholder benefits, and serving long-term development goals.",
+                share_direction_item1: "Developing Intrinsic Value: Focusing on business efficiency and market expansion to sustainably increase share value.",
+                share_direction_item2: "Information Transparency: Full, accurate, and timely disclosure of all financial and operational information to shareholders, ensuring maximum transparency.",
+                share_direction_item3: "Capital Expansion Strategy: Exploring suitable capital raising methods in the future, optimizing shareholder benefits, and serving long-term development goals.",
                 dividend_policy_title: "Dividend Policy",
-                dividend_policy_item1: "**Balancing Growth & Profit:** Ensuring reinvestment for long-term growth and fair profit sharing with shareholders.",
-                dividend_policy_item2: "**Stability and Sustainability:** Aiming for a predictable dividend policy that reflects the company's strong financial performance and cash flow.",
-                dividend_policy_item3: "**Diverse Forms:** Dividends may be paid in cash, shares, or a combination, depending on the actual situation, investment plans, and Board of Directors' decisions, always striving for optimal shareholder benefits.",
+                dividend_policy_item1: "Balancing Growth & Profit: Ensuring reinvestment for long-term growth and fair profit sharing with shareholders.",
+                dividend_policy_item2: "Stability and Sustainability: Aiming for a predictable dividend policy that reflects the company's strong financial performance and cash flow.",
+                dividend_policy_item3: "Diverse Forms: Dividends may be paid in cash, shares, or a combination, depending on the actual situation, investment plans, and Board of Directors' decisions, always striving for optimal shareholder benefits.",
                 final_cta_title: "Partner with IVS JSC: Where the future of education and technology is built.",
                 final_cta_subtitle: "Join us in building sustainable values and conquering new heights.",
                 contact_us_title: "Contact Us",
@@ -969,23 +918,8 @@
                 contact_zalo_link: "zalo.me/ivsjsc",
                 contact_cta_partner: "Partner with Us",
                 contact_cta_careers: "Join the IVS Team",
-                about_team_image_alt: "Hình ảnh đội ngũ IVS JSC",
-                image_team_alt: "Hình ảnh đội ngũ IVS JSC",
-                image_ceo_alt: "Ảnh đại diện Ông Nguyễn Minh Triết",
-                image_amg_alt: "Hình ảnh dự án ANH MỸ GROUP",
-                image_ielts_alt: "Hình ảnh dự án IELTS STATION",
-                image_khadock_home_alt: "Trang chủ KhaDock.com",
-                image_khadock_design_alt: "Thiết kế KhaDock.com",
-                image_khadock_services_alt: "Dịch vụ KhaDock.com",
-                image_khadock_projects_alt: "Quản lý dự án KhaDock.com",
-                image_khadock_contact_alt: "Liên hệ KhaDock.com",
-                image_ivs_academy_alt: "Lớp học tại IVS Academy",
-                image_ivscelestech_innovation_alt: "Công nghệ Giáo dục IVS Celestech",
-                image_webdesign_hero_alt: "Thiết kế Website chuyên nghiệp, uy tín, chất lượng",
-                image_interior_hero_alt: "Quy Trình Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp",
-                image_interior_intro_alt: "Giới Thiệu IVS Celestech",
-                image_interior_project_amg_alt: "Hình ảnh dự án Trung tâm Ngoại ngữ AMG",
-                image_interior_project_ielts_alt: "Hình ảnh dự án IELTS STATION",
+                about_team_image_alt: "Image of IVS JSC Team",
+                image_ceo_alt: "Portrait of Mr. Nguyen Minh Triet"
             }
         };
 
@@ -1301,42 +1235,42 @@
             }
         });
 
-        // Dark mode toggle logic
-        function applyDarkMode(isDark) {
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-                const moonIcon = document.getElementById('moonIcon');
-                const sunIcon = document.getElementById('sunIcon');
-                if (moonIcon) moonIcon.classList.add('hidden');
-                if (sunIcon) sunIcon.classList.remove('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                const moonIcon = document.getElementById('moonIcon');
-                const sunIcon = document.getElementById('sunIcon');
-                if (moonIcon) moonIcon.classList.remove('hidden');
-                if (sunIcon) sunIcon.classList.add('hidden');
-            }
-        }
+        // Dark mode toggle logic (Removed from here, now in fabController.js)
+        // function applyDarkMode(isDark) {
+        //     if (isDark) {
+        //         document.documentElement.classList.add('dark');
+        //         const moonIcon = document.getElementById('moonIcon');
+        //         const sunIcon = document.getElementById('sunIcon');
+        //         if (moonIcon) moonIcon.classList.add('hidden');
+        //         if (sunIcon) sunIcon.classList.remove('hidden');
+        //     } else {
+        //         document.documentElement.classList.remove('dark');
+        //         const moonIcon = document.getElementById('moonIcon');
+        //         const sunIcon = document.getElementById('sunIcon');
+        //         if (moonIcon) moonIcon.classList.remove('hidden');
+        //         if (sunIcon) sunIcon.classList.add('hidden');
+        //     }
+        // }
 
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
-        let isDarkMode = localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && prefersDarkMode.matches);
-        applyDarkMode(isDarkMode);
+        // const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+        // let isDarkMode = localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && prefersDarkMode.matches);
+        // applyDarkMode(isDarkMode);
 
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        if (darkModeToggle) {
-            darkModeToggle.addEventListener('click', () => {
-                isDarkMode = !isDarkMode;
-                applyDarkMode(isDarkMode);
-                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            });
-        }
+        // const darkModeToggle = document.getElementById('darkModeToggle');
+        // if (darkModeToggle) {
+        //     darkModeToggle.addEventListener('click', () => {
+        //         isDarkMode = !isDarkMode;
+        //         applyDarkMode(isDarkMode);
+        //         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        //     });
+        // }
 
-        prefersDarkMode.addEventListener('change', (e) => {
-            if (localStorage.getItem('theme') === null) {
-                isDarkMode = e.matches;
-                applyDarkMode(isDarkMode);
-            }
-        });
+        // prefersDarkMode.addEventListener('change', (e) => {
+        //     if (localStorage.getItem('theme') === null) {
+        //         isDarkMode = e.matches;
+        //         applyDarkMode(isDarkMode);
+        //     }
+        // });
 
         // Callback triggered by loadComponents.js (for AOS and other page-specific inits)
         window.onPageComponentsLoadedCallback = function() {
@@ -1346,16 +1280,17 @@
         };
 
         // Initial theme application to prevent FOUC (Flash of Unstyled Content)
-        window.initializeTheme = function() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (savedTheme) {
-                document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-            } else {
-                document.documentElement.classList.toggle('dark', prefersDark);
-            }
-        };
-        initializeTheme();
+        // This function is now managed by fabController.js
+        // window.initializeTheme = function() {
+        //     const savedTheme = localStorage.getItem('theme');
+        //     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        //     if (savedTheme) {
+        //         document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+        //     } else {
+        //         document.documentElement.classList.toggle('dark', prefersDark);
+        //     }
+        // };
+        // initializeTheme();
     </script>
 </body>
 </html>
