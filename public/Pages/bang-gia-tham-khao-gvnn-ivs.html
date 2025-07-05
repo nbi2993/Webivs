@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,28 +33,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            // Removed darkMode: 'class' to default to light theme
+            darkMode: 'class', // Re-enabled dark mode
             theme: {
                 extend: {
                     fontFamily: {
-                        // Combined font families for better consistency
                         sans: ['Be Vietnam Pro', 'Inter', 'sans-serif'],
                         display: ['Poppins', 'Lexend', 'sans-serif'],
                     },
                     colors: {
-                        // IVS custom color palette - Adjusted for light theme
-                        'ivs-bg': '#F7FAFC', // Light background
-                        'ivs-card': '#FFFFFF', // White card background
-                        'ivs-border': '#E2E8F0', // Light border
-                        'ivs-text-primary': '#2D3748', // Dark text for primary
-                        'ivs-text-secondary': '#718096', // Medium text for secondary
-                        'ivs-blue': '#4299E1', /* Muted blue */
-                        'ivs-blue-darker': '#3182CE', /* Muted darker blue */
-                        'ivs-green': '#48BB78', /* Muted green */
-                        'ivs-purple': '#8B5CF6', /* Retained vibrant purple as it's less used */
-                        'ivs-orange': '#ED8936', /* Muted orange */
-                        'ivs-cyan': '#22D3EE', // Added from layout.html
-                        'ivs-amber': '#F59E0B', // Added from layout.html
+                        // IVS custom color palette - Adjusted for dark theme
+                        'ivs-bg': '#0D1117', // Dark background
+                        'ivs-card': '#161B22', // Darker card background
+                        'ivs-border': '#30363d', // Dark border
+                        'ivs-text-primary': '#e6edf3', // Light text for primary
+                        'ivs-text-secondary': '#a1aab4', // Medium light text for secondary
+                        'ivs-blue': '#58a6ff', /* Muted blue */
+                        'ivs-blue-darker': '#3b82f6', /* Muted darker blue */
+                        'ivs-green': '#34d399', /* Muted green */
+                        'ivs-purple': '#8b5cf6', /* Retained vibrant purple as it's less used */
+                        'ivs-orange': '#f59e0b', /* Muted orange */
+                        'ivs-cyan': '#22D3EE',
+                        'ivs-amber': '#F59E0B',
                     },
                     animation: { 
                         'aurora-spin': 'aurora-spin 6s linear infinite' 
@@ -78,9 +77,9 @@
         }
         .font-display { font-family: 'Lexend', 'Poppins', sans-serif; } 
 
-        /* Hero Section - Adjusted for light theme */
+        /* Hero Section - Adjusted for dark theme */
         .hero-section {
-            background-image: url('https://placehold.co/1920x400/E2E8F0/2D3748?text=Pricing+Page'); /* Lighter placeholder background image */
+            background-image: url('https://placehold.co/1920x400/1a202c/ffffff?text=Pricing+Page'); /* Darker placeholder background image */
             background-size: cover;
             background-position: center;
             position: relative;
@@ -90,21 +89,21 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6)); /* Lighter overlay */
+            background: linear-gradient(to bottom, rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.6)); /* Darker overlay */
             z-index: 0;
         }
         .hero-text-shadow {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Lighter shadow for text */
-            color: var(--ivs-text-primary); /* Ensure text is dark on light background */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Darker shadow for text */
+            color: var(--ivs-text-primary); /* Ensure text is light on dark background */
         }
         .hero-section h1 {
-            color: var(--ivs-text-primary); /* Ensure hero title is dark */
+            color: var(--ivs-text-primary); /* Ensure hero title is light */
         }
         .hero-section p {
-            color: var(--ivs-text-secondary); /* Ensure hero subtitle is medium dark */
+            color: var(--ivs-text-primary); /* Changed to primary text color for brightness */
         }
 
-        /* Custom styles for price cards - Adjusted for light theme */
+        /* Custom styles for price cards - Adjusted for dark theme */
         .price-card {
             @apply bg-ivs-card border border-ivs-border rounded-lg p-6 shadow-xl flex flex-col h-full;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -134,7 +133,7 @@
             @apply mt-6 text-center;
         }
 
-        /* Styles for spotlight card effect from layout.html - Adjusted for light theme */
+        /* Styles for spotlight card effect from layout.html - Adjusted for dark theme */
         .spotlight-card {
             --px: 0px;
             --py: 0px;
@@ -150,7 +149,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--px) var(--py), rgba(0, 0, 0, 0.05) 0%, transparent 70%); /* Lighter spotlight effect */
+            background: radial-gradient(circle at var(--px) var(--py), rgba(255, 255, 255, 0.1) 0%, transparent 70%); /* Darker spotlight effect */
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -165,7 +164,7 @@
             pointer-events: none;
         }
         .spotlight-card:hover .absolute.inset-0.bg-gradient-to-br {
-            opacity: 0.1; /* Reduced opacity for lighter theme */
+            opacity: 0.2; /* Increased opacity for darker theme */
         }
 
         /* CTA Button Styling */
@@ -177,7 +176,7 @@
             box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4); /* Updated shadow color for muted blue */
         }
 
-        /* FAQ Section Styling - Adjusted for light theme */
+        /* FAQ Section Styling - Adjusted for dark theme */
         .faq-item {
             @apply bg-ivs-card border border-ivs-border rounded-lg mb-4;
         }
@@ -197,7 +196,7 @@
             transform: rotate(180deg);
         }
 
-        /* Contact Section - Adjusted for light theme */
+        /* Contact Section - Adjusted for dark theme */
         #contact .bg-ivs-card {
             background-color: var(--ivs-card);
             border-color: var(--ivs-border);
@@ -209,10 +208,10 @@
         }
         #contact input:focus, #contact textarea:focus {
             border-color: var(--ivs-blue);
-            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.3);
+            box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3); /* Adjusted for dark theme */
         }
 
-        /* Loading overlay - Adjusted for light theme */
+        /* Loading overlay - Adjusted for dark theme */
         #loading-overlay {
             background-color: var(--ivs-bg);
         }
@@ -235,7 +234,7 @@
                 <h1 class="text-5xl md:text-7xl font-display font-extrabold leading-tight text-ivs-text-primary mb-6 hero-text-shadow">
                     Bảng Giá Dịch Vụ Giáo Viên Nước Ngoài
                 </h1>
-                <p class="text-xl md:text-2xl text-ivs-text-secondary mb-8 leading-relaxed hero-text-shadow">
+                <p class="text-xl md:text-2xl text-ivs-text-primary mb-8 leading-relaxed hero-text-shadow">
                     Giải pháp giáo dục chất lượng cao với chi phí tối ưu cho mọi nhu cầu
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -263,38 +262,6 @@
                 <div class="p-6 rounded-lg bg-ivs-bg border border-ivs-border shadow-lg" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-4xl font-display font-bold text-ivs-amber mb-2" data-target="50">0</h3>
                     <p class="text-ivs-text-secondary">Dự án công nghệ</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up">
-                    Dịch Vụ Nổi Bật của IVS JSC
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Service Card 1 -->
-                    <div class="spotlight-card relative bg-ivs-card border border-ivs-border rounded-lg p-8 shadow-xl overflow-hidden group" data-aos="fade-up">
-                        <div class="absolute inset-0 bg-gradient-to-br from-ivs-blue to-ivs-purple opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" style="mask-image: radial-gradient(circle at var(--px) var(--py), white 10%, transparent 70%);"></div>
-                        <i class="fas fa-graduation-cap text-5xl text-ivs-blue mb-4"></i>
-                        <h3 class="text-2xl font-display font-semibold text-ivs-text-primary mb-3">Đào Tạo STEAM & Ngoại Ngữ</h3>
-                        <p class="text-ivs-text-secondary">Phát triển toàn diện kỹ năng cho học viên thông qua các chương trình giáo dục hiện đại.</p>
-                    </div>
-                    <!-- Service Card 2 -->
-                    <div class="spotlight-card relative bg-ivs-card border border-ivs-border rounded-lg p-8 shadow-xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                        <div class="absolute inset-0 bg-gradient-to-br from-ivs-green to-ivs-cyan opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" style="mask-image: radial-gradient(circle at var(--px) var(--py), white 10%, transparent 70%);"></div>
-                        <i class="fas fa-code text-5xl text-ivs-green mb-4"></i>
-                        <h3 class="text-2xl font-display font-semibold text-ivs-text-primary mb-3">Giải Pháp Công Nghệ Giáo Dục</h3>
-                        <p class="text-ivs-text-secondary">Xây dựng và triển khai các nền tảng học tập số, ứng dụng công nghệ AI.</p>
-                    </div>
-                    <!-- Service Card 3 -->
-                    <div class="spotlight-card relative bg-ivs-card border border-ivs-border rounded-lg p-8 shadow-xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                        <div class="absolute inset-0 bg-gradient-to-br from-ivs-purple to-ivs-amber opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none" style="mask-image: radial-gradient(circle at var(--px) var(--py), white 10%, transparent 70%);"></div>
-                        <i class="fas fa-users-gear text-5xl text-ivs-purple mb-4"></i>
-                        <h3 class="text-2xl font-display font-semibold text-ivs-text-primary mb-3">Tư Vấn & Cung Ứng Nhân Sự</h3>
-                        <p class="text-ivs-text-secondary">Hỗ trợ các tổ chức tìm kiếm và phát triển nguồn nhân lực chất lượng cao.</p>
-                    </div>
                 </div>
             </div>
         </section>
