@@ -1349,7 +1349,7 @@
   "news_card_3_title": "Let's Talk Đồng Nai: IVS đồng hành cùng sinh viên",
   "insights_card_1_category": "TƯ DUY",
   "insights_card_1_title": "AI và Tư duy phản biện trong giáo dục hiện đại",
-  "roadmap_title": "Lộ trình phát triển",
+
   "roadmap_subtitle": "Hành trình kiến tạo hệ sinh thái giáo dục toàn diện của IVS.",
   "roadmap_phase1_date": "2024 - 2026",
   "roadmap_phase1_title": "Giai đoạn Nền tảng",
@@ -2074,13 +2074,7 @@
   "org_unit_celestech_item2": "Thi công, tư vấn, nhận thầu các dự án công nghệ giáo dục",
   "org_unit_celestech_item3": "Cung cấp trang thiết bị giáo dục chất lượng cao, tối ưu chi phí",
   "org_unit_celestech_item4": "Tư vấn thiết kế – vận hành trung tâm giáo dục, mô hình lớp học tương tác",
-  "roadmap_intro": "IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp **IVS Global School** theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.",
-  "roadmap_stage1_title": "Giai đoạn 1 (2024-2026): Nền tảng Mầm non & Tiểu học",
-  "roadmap_stage1_desc": "Hoàn thiện và mở rộng IVS Kindergarten. Khởi động chương trình IVS Primary School, tập trung vào song ngữ và STEAM.",
-  "roadmap_stage2_title": "Giai đoạn 2 (2027-2030): Phát triển THCS & THPT",
-  "roadmap_stage2_desc": "Xây dựng IVS Secondary & High School. Tăng cường hợp tác quốc tế, chương trình trao đổi và định hướng nghề nghiệp.",
-  "roadmap_stage3_title": "Giai đoạn 3 (2031-2034): Hoàn thiện Hệ sinh thái",
-  "roadmap_stage3_desc": "IVS Global School trở thành hệ thống giáo dục liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu.",
+
   "strategic_priorities_title": "Ưu Tiên Chiến Lược Của Chúng Tôi",
   "strategic_priorities_intro": "Để hiện thực hóa tầm nhìn, IVS JSC được định hướng bởi bảy ưu tiên chiến lược then chốt nhằm đảm bảo sự tăng trưởng bền vững, đổi mới và giá trị cộng đồng.",
   "strategy_item1_title": "Chất lượng Vượt trội",
@@ -2135,5 +2129,14 @@
   "contact_cta_partner": "Hợp tác với Chúng tôi",
   "contact_cta_careers": "Gia nhập Đội ngũ IVS",
   "about_team_image_alt": "Hình ảnh đội ngũ IVS JSC",
-  "image_ceo_alt": "Ảnh đại diện Ông Nguyễn Minh Triết"
+  "image_ceo_alt": "Ảnh đại diện Ông Nguyễn Minh Triết",
+  "roadmap_title": "Kế Hoạch Phát Triển: IVS Global School",
+  "roadmap_intro": "IVS JSC đặt mục tiêu dài hạn xây dựng hệ thống giáo dục liên cấp IVS Global School theo tiêu chuẩn quốc tế trong vòng 10 năm, bắt đầu từ nền tảng vững chắc của IVS Kindergarten.",
+  "roadmap_stage1_title": "Giai đoạn 1 (2024-2026): Nền tảng Mầm non & Tiểu học",
+  "roadmap_stage1_desc": "Hoàn thiện và mở rộng các chương trình Liên kết, Giáo trình chất lượng, phù hợp và được đánh giá cao cho nền tảng mầm non và tiểu học, gồm STEAM+ Intelligence cho Mầm non và IVSLifemind cho Tiểu học. Đẩy mạnh tư duy giáo dục đổi mới kết hợp ngoại ngữ cùng kỹ năng sống cho trẻ.",
+  "roadmap_stage2_title": "Giai đoạn 2 (2027-2030): Phát triển THCS & THPT",
+  "roadmap_stage2_desc": "Xây dựng các chương trình phù hợp cho Secondary & High School. Tăng cường hợp tác quốc tế, chương trình trao đổi và định hướng nghề nghiệp.",
+  "roadmap_stage3_title": "Giai đoạn 3 (2031-2034): Hoàn thiện Hệ sinh thái",
+  "roadmap_stage3_desc": "IVS Global School trở thành hệ thống giáo Liên kết liên cấp hoàn chỉnh, được công nhận quốc tế. Mở rộng các chương trình đào tạo chuyên sâu và hợp tác toàn cầu."
+
 }    

@@ -1543,8 +1543,6 @@
     "lifeminds_item1": "**Thinking Programs:** Enhances critical, creative, logical, and systems thinking.",
     "lifeminds_item2": "**Life Skills & Career Guidance:** Training in financial literacy, social skills, and career planning.",
     "lifeminds_item3": "**Workshops & Networking:** Hosts academic forums and events with industry experts.",
-    "roadmap_title": "Development Plan: IVS Global School",
-    "roadmap_intro": "IVS JSC has a long-term goal to build the <strong>IVS Global School</strong> system to international standards within 10 years, starting from the solid foundation of IVS Kindergarten.",
     "ev_plan_phase3_desc": "IVS Global School becomes a complete, internationally recognized K-12 education system. Expand specialized training programs and global partnerships.",
     "strategy_title": "Our Strategic Priorities",
     "strategy_intro": "To achieve our vision, IVS JSC is guided by seven key strategic priorities that ensure sustainable growth, innovation, and community value.",
@@ -2566,12 +2564,6 @@
   "org_unit_celestech_item2": "Constructs, consults, undertakes educational technology projects",
   "org_unit_celestech_item3": "Provides high-quality, cost-optimized educational equipment",
   "org_unit_celestech_item4": "Consults on design – operation of educational centers, interactive classroom models",
-  "roadmap_stage1_title": "Stage 1 (2024-2026): Preschool & Primary Foundation",
-  "roadmap_stage1_desc": "Completes and expands IVS Kindergarten. Launches IVS Primary School program, focusing on bilingualism and STEAM.",
-  "roadmap_stage2_title": "Stage 2 (2027-2030): Secondary & High School Development",
-  "roadmap_stage2_desc": "Establishes IVS Secondary & High School. Enhances international cooperation, exchange programs, and career orientation.",
-  "roadmap_stage3_title": "Stage 3 (2031-2034): Ecosystem Completion",
-  "roadmap_stage3_desc": "IVS Global School becomes a complete, internationally recognized inter-level education system. Expands specialized training programs and global collaborations.",
   "strategic_priorities_title": "Our Strategic Priorities",
   "strategic_priorities_intro": "To realize its vision, IVS JSC is guided by seven key strategic priorities to ensure sustainable growth, innovation, and community value.",
   "csr_title": "Community Impact & Social Responsibility",
@@ -2599,5 +2591,14 @@
   "contact_cta_partner": "Partner with Us",
   "contact_cta_careers": "Join the IVS Team",
   "about_team_image_alt": "Image of IVS JSC Team",
-  "image_ceo_alt": "Portrait of Mr. Nguyen Minh Triet"
+  "image_ceo_alt": "Portrait of Mr. Nguyen Minh Triet",
+  "roadmap_title": "Development Plan: IVS Global School",
+  "roadmap_intro": "IVS JSC aims to build the IVS Global School inter-level education system according to international standards within 10 years, starting from the solid foundation of IVS Kindergarten.",
+  "roadmap_stage1_title": "Stage 1 (2024-2026): Preschool & Primary Foundation",
+  "roadmap_stage1_desc": "Completes and expands joint programs, quality curricula, suitable and highly regarded for preschool and primary foundations, including STEAM+ Intelligence for Preschool and IVSLifemind for Primary. Promotes innovative educational thinking combining foreign languages with life skills for children.",
+  "roadmap_stage2_title": "Stage 2 (2027-2030): Secondary & High School Development",
+  "roadmap_stage2_desc": "Develops suitable programs for Secondary & High School. Enhances international cooperation, exchange programs, and career orientation.",
+  "roadmap_stage3_title": "Stage 3 (2031-2034): Ecosystem Completion",
+  "roadmap_stage3_desc": "IVS Global School becomes a complete, internationally recognized inter-level joint education system. Expands specialized training programs and global collaborations."
+
 }
