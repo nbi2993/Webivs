@@ -2,7 +2,7 @@
  * @fileoverview IVSFabController - Quản lý các chức năng của Floating Action Button (FAB).
  * Script này xử lý các nút cuộn lên đầu trang, tùy chọn liên hệ, tùy chọn chia sẻ và các menu con của chúng.
  * Nó phụ thuộc vào các hàm tiện ích toàn cục từ utils.js (componentLog, debounce).
- * @version 1.9 - Đã tối ưu hóa khởi tạo, loại bỏ JS/CSS nội tuyến khỏi HTML, đồng bộ icon Zalo, cải thiện hiệu suất/UX và đảm bảo các nút xuống hàng.
+ * @version 1.10 - Đã xóa chức năng chế độ tối.
  * @author IVS-Technical-Team
  */
 
@@ -42,7 +42,6 @@ const IVSFabController = {
         }
         this.populateMenus();
         this.bindEvents();
-        // this.initDarkModeToggle(); // Đã xóa khởi tạo nút chuyển đổi chế độ tối
         this.isInitialized = true; // Đánh dấu đã khởi tạo
         window.componentLog("IVSFabController: Khởi tạo hoàn tất.", "info");
     },
@@ -53,7 +52,6 @@ const IVSFabController = {
     cacheDOM() {
         this.fabContainer = document.getElementById('fab-container');
         this.scrollToTopBtn = document.getElementById('scroll-to-top-btn');
-        // this.darkModeToggleBtn = document.getElementById('darkModeToggle'); // Đã xóa nút chuyển đổi chế độ tối
         // Sử dụng Optional Chaining (?) để tránh lỗi nếu fabContainer không tìm thấy
         this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
 
@@ -310,49 +308,6 @@ const IVSFabController = {
         btn.setAttribute('aria-expanded', 'false');
         window.componentLog(`IVSFabController: Đã đóng submenu cho nút: ${btn.id}`);
     },
-
-    // initDarkModeToggle() { // Đã xóa toàn bộ hàm này
-    //     if (!this.darkModeToggleBtn) {
-    //         window.componentLog("IVSFabController: Không tìm thấy nút chuyển đổi chế độ tối (#darkModeToggle).", "warn");
-    //         return;
-    //     }
-
-    //     const moonIcon = this.darkModeToggleBtn.querySelector('#moonIcon');
-    //     const sunIcon = this.darkModeToggleBtn.querySelector('#sunIcon');
-
-    //     const applyDarkMode = (isDark) => {
-    //         if (isDark) {
-    //             document.documentElement.classList.add('dark');
-    //             if (moonIcon) moonIcon.classList.add('hidden');
-    //             if (sunIcon) sunIcon.classList.remove('hidden');
-    //         } else {
-    //             document.documentElement.classList.remove('dark');
-    //             if (moonIcon) moonIcon.classList.remove('hidden');
-    //             if (sunIcon) sunIcon.classList.add('hidden');
-    //         }
-    //     };
-
-    //     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
-    //     let isDarkMode = localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && prefersDarkMode.matches);
-    //     applyDarkMode(isDarkMode);
-
-    //     this.darkModeToggleBtn.addEventListener('click', () => {
-    //         isDarkMode = !isDarkMode;
-    //         applyDarkMode(isDarkMode);
-    //         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    //         window.componentLog(`IVSFabController: Chế độ tối chuyển sang: ${isDarkMode ? 'dark' : 'light'}`);
-    //     });
-
-    //     prefersDarkMode.addEventListener('change', (e) => {
-    //         if (localStorage.getItem('theme') === null) {
-    //             isDarkMode = e.matches;
-    //             applyDarkMode(isDarkMode);
-    //             window.componentLog(`IVSFabController: Chế độ tối hệ thống thay đổi sang: ${isDarkMode ? 'dark' : 'light'}`);
-    //         }
-    //     });
-
-    //     window.componentLog("IVSFabController: Đã khởi tạo nút chuyển đổi chế độ tối.");
-    // }
 };
 
 // Xuất IVSFabController để loadComponents.js có thể truy cập
