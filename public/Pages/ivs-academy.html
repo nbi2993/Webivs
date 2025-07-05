@@ -26,11 +26,9 @@
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
                         'primary': '#004080',
                         'primary-dark': '#003366',
@@ -149,7 +147,7 @@
                     <p class="text-neutral-700 dark:text-neutral-300 mb-10 text-lg leading-relaxed" data-lang-key="about_ivs_academy_desc">
                         IVS Academy là trái tim của hệ sinh thái giáo dục IVS JSC, nơi hội tụ những giá trị cốt lõi: **Chất lượng - Tận tâm - Sáng tạo - Bình đẳng**. Chúng tôi không ngừng đổi mới và phát triển các chương trình đào tạo để đáp ứng nhu cầu đa dạng của học viên và xã hội, từ việc trang bị kiến thức chuyên môn đến việc rèn luyện kỹ năng mềm thiết yếu cho thế kỷ 21.
                     </p>
-                    <img src="/images/logo/webbannermo.png" alt="[Tổng quan IVS Academy]" class="rounded-lg shadow-lg mx-auto max-h-[400px] object-cover w-full" onerror="this.onerror=null; this.src='https://placehold.co/1200x400/eff6ff/1e40af?text=IVS+Academy+Overview';">
+                    <img src="/images/banners/ivs_academy_overview.jpg" alt="[Tổng quan IVS Academy]" class="rounded-lg shadow-lg mx-auto max-h-[400px] object-cover w-full" onerror="this.onerror=null; this.src='https://placehold.co/1200x400/eff6ff/1e40af?text=IVS+Academy+Overview';">
                 </section>
 
                 <!-- Các Lĩnh vực Đào tạo Chính -->
@@ -193,7 +191,7 @@
                             <i class="fas fa-laptop-code text-5xl text-yellow-600 dark:text-yellow-400 mb-4"></i>
                             <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_edtech_solutions_title">Giải pháp Công nghệ Giáo dục</h3>
                             <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_edtech_solutions_desc">Phát triển các nền tảng học tập số, ứng dụng EdTech, và giải pháp công nghệ tùy chỉnh để tối ưu hóa trải nghiệm dạy và học.</p>
-                            <a href="/Pages/ivscelestech-tcnoithat.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
+                            <a href="/Pages/ivscelestech.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
                         </div>
                     </div>
                 </section>
@@ -249,6 +247,12 @@
                             <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_celestech_title">IVS Celestech</h3>
                             <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_celestech_desc">Đơn vị công nghệ chuyên tư vấn, thiết kế, thi công nội thất và cung cấp trang thiết bị giáo dục hiện đại, ứng dụng công nghệ AI, VR/AR để tối ưu không gian học tập.</p>
                             <a href="/Pages/ivscelestech-tcnoithat.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                        <!-- New IVS Consulting Unit -->
+                        <div class="unit-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-l-4 border-amber-500 dark:border-amber-400" data-aos="fade-left" data-aos-delay="400">
+                            <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_consulting_title">IVS Consulting</h3>
+                            <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_consulting_desc">Cung cấp dịch vụ tư vấn chuyên sâu về chuyển đổi số, chiến lược giáo dục và tối ưu hóa vận hành, giúp các tổ chức phát triển bền vững trong kỷ nguyên số.</p>
+                            <a href="/Pages/consulting.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
                         </div>
                     </div>
                 </section>
