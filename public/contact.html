@@ -12,42 +12,88 @@
     <meta property="og:url" content="https://ivsacademy.edu.vn/contact.html">
     <meta property="og:type" content="website">
     <meta name="author" content="IVS JSC">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fonts and Icons (Async loading for performance) -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'ivs-bg': '#0A0A0A', 'ivs-card': '#111111', 'ivs-border': '#27272a',
+                        'ivs-text-primary': '#f4f4f5', 'ivs-text-secondary': '#a1a1aa',
+                        'ivs-blue': '#60a5fa', 'ivs-blue-darker': '#3b82f6', 'ivs-green': '#4ade80',
+                        'ivs-purple': '#a78bfa', 'ivs-cyan': '#22d3ee', 'ivs-amber': '#f59e0b',
+                    },
+                    fontFamily: {
+                        'sans': ['Be Vietnam Pro', 'sans-serif'], 'display': ['Poppins', 'sans-serif'],
+                    },
+                    animation: { 'aurora-spin': 'aurora-spin 6s linear infinite' },
+                    keyframes: {
+                        'aurora-spin': {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- External Stylesheet for custom effects -->
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Dark background for dark mode */
-            color: #e2e8f0; /* Light text for dark mode */
+        /* ... (giữ nguyên các style tùy chỉnh) ... */
+        /* CSS for mobile menu to prevent background scroll */
+        body.menu-open {
+            overflow: hidden;
         }
-        .section-title {
-            position: relative;
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-            display: inline-block;
+        /* Custom scrollbar for chatbot messages */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
         }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60%;
-            height: 4px;
-            background-color: #63b3ed; /* Blue underline */
-            border-radius: 9999px;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111111; /* ivs-card */
+            border-radius: 10px;
         }
-        input[type="text"], input[type="email"], input[type="tel"], textarea {
-            background-color: #2d3748; /* Darker input background */
-            border: 1px solid #4a5568; /* Border for inputs */
-            color: #e2e8f0; /* Text color for inputs */
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a; /* ivs-border */
+            border-radius: 10px;
         }
-        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
-            border-color: #63b3ed; /* Blue border on focus */
-            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5); /* Blue shadow on focus */
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6; /* ivs-blue-darker */
         }
+        .hero-section {
+            background-image: url('images/logo/webbannermo1.png'); /* Ảnh mặc định cho desktop */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Điều chỉnh cho màn hình nhỏ hơn 768px (điện thoại, tablet nhỏ) */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-image: url('images/logo/mobile-banner.png'); /* Ảnh dành riêng cho mobile */
+            }
+        }        
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-ivs-bg text-ivs-text-primary antialiased">
     <header id="header-placeholder"></header>
 
     <main class="container mx-auto px-4 py-8">
@@ -209,28 +255,177 @@
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
 
+    <!-- Deferred JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <!-- Core Application Scripts - Order is crucial -->
+    <!-- 1. Firebase Init (if type="module", load first) -->
+    <script src="/js/firebase-init.js" type="module"></script>
+    <!-- 2. Global Utilities (componentLog, debounce) -->
+    <script src="/js/utils.js" defer></script>
+    <!-- 3. Language System (self-initializes, needed by Header) -->
+    <script src="/js/language.js" defer></script>
+    <!-- 4. Specific Controllers (must be loaded before loadComponents.js calls their init) -->
+    <script src="/js/fabController.js" defer></script>
+
+    <!-- 5. Component Loader (loads HTML and then calls controller inits) -->
+    <script src="/js/loadComponents.js" defer></script>
+    <!-- 6. Main App Logic (if any, after all components are ready) -->
+
+
+    <!-- Page-specific logic initialization -->
     <script>
-        // Placeholder for header and footer loading
-        // In a real deployment, you would load these dynamically or use a templating engine.
+        // Callback triggered by loadComponents.js
+        window.onPageComponentsLoadedCallback = function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-quad' });
+            }
+
+            // Ensure hero-canvas-container exists before initializing 3D
+            const heroCanvasContainer = document.getElementById('hero-canvas-container');
+            if (typeof THREE !== 'undefined' && heroCanvasContainer) {
+                initHero3D();
+            } else if (!heroCanvasContainer) {
+                window.componentLog("Container for 3D hero canvas (#hero-canvas-container) not found. Skipping 3D initialization.", "info");
+            } else {
+                window.componentLog("THREE.js not loaded. Skipping 3D initialization.", "warn");
+            }
+
+            initAnimatedCounters();
+            initSpotlightEffect();
+        };
+
+        function initHero3D() {
+            const container = document.getElementById('hero-canvas-container');
+            if (!container) return;
+
+            let scene, camera, renderer, stars;
+            let mouseX = 0, mouseY = 0;
+
+            function init() {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+                camera.position.z = 1;
+                camera.rotation.x = Math.PI / 2;
+
+                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                container.appendChild(renderer.domElement);
+
+                const starGeo = new THREE.BufferGeometry();
+                const starVertices = [];
+                for (let i = 0; i < 8000; i++) {
+                    starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+                }
+                starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+                let starMaterial = new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.7, transparent: true });
+                stars = new THREE.Points(starGeo, starMaterial);
+                scene.add(stars);
+
+                window.addEventListener('resize', onWindowResize, false);
+                document.addEventListener('mousemove', onMouseMove, false);
+
+                animate();
+            }
+
+            function onMouseMove(e) {
+                mouseX = e.clientX - window.innerWidth / 2;
+                mouseY = e.clientY - window.innerHeight / 2;
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                stars.rotation.y += 0.0001;
+                camera.position.y += (-mouseY * 0.00002 - camera.position.y) * 0.05;
+                camera.position.x += (mouseX * 0.00002 - camera.position.x) * 0.05;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+
+            init();
+        }
+
+        function initAnimatedCounters() {
+            const counters = document.querySelectorAll('#impact-counters h3');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        let start = 0;
+                        const step = (timestamp) => {
+                            if (!start) start = timestamp;
+                            const progress = timestamp - start;
+                            const current = Math.min(Math.floor(progress / duration * target), target);
+                            counter.innerText = current.toLocaleString('en-US');
+                            if (current < target) {
+                                requestAnimationFrame(step);
+                            }
+                        };
+                        requestAnimationFrame(step);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        function initSpotlightEffect() {
+            const cards = document.querySelectorAll('.spotlight-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--px', x + 'px');
+                    card.style.setProperty('--py', y + 'px');
+                });
+            });
+        }
+    </script>
+    
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mock header/footer for demonstration. In a real app, load actual content.
-            document.getElementById('header-placeholder').innerHTML = `
-                <nav class="bg-gray-900 p-4 shadow-lg">
-                    <div class="container mx-auto flex justify-between items-center">
-                        <a href="#" class="text-white text-2xl font-bold">IVS JSC</a>
-                        <div class="space-x-4">
-                            <a href="#" class="text-gray-300 hover:text-white transition duration-300">Trang Chủ</a>
-                            <a href="about.html" class="text-gray-300 hover:text-white transition duration-300">Về Chúng Tôi</a>
-                            <a href="contact.html" class="text-white hover:text-white transition duration-300">Liên Hệ</a>
-                        </div>
-                    </div>
-                </nav>
-            `;
-            document.getElementById('footer-placeholder').innerHTML = `
-                <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-                    <p>&copy; 2025 IVS JSC. All rights reserved.</p>
-                </footer>
-            `;
+            const philosophyContent = document.getElementById('philosophyContent');
+            const ivsLogoContainer = document.getElementById('ivsLogoContainer');
+
+            // Sử dụng Intersection Observer để phát hiện khi phần tử vào viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Khi phần tử philosophyContent vào viewport
+                        philosophyContent.classList.add('is-visible');
+                        // Ẩn logo sau một khoảng thời gian ngắn để tạo hiệu ứng cuộn xuống
+                        setTimeout(() => {
+                            ivsLogoContainer.classList.add('hidden-on-scroll');
+                        }, 500); // Ẩn logo sau 0.5 giây khi các ô bắt đầu xuất hiện
+                        observer.unobserve(entry.target); // Ngừng quan sát sau khi đã hiển thị
+                    }
+                });
+            }, {
+                threshold: 0.2 // Kích hoạt khi 20% của phần tử hiển thị trong viewport
+            });
+
+            // Bắt đầu quan sát phần tử philosophyContent
+            observer.observe(philosophyContent);
+
+            // Đảm bảo logo hiển thị ban đầu nếu trang tải ở vị trí không cuộn
+            // (Thực tế không cần thiết nếu logo ở đầu trang và philosophyContent ở dưới)
+            // Tuy nhiên, nếu philosophyContent có thể hiển thị ngay khi tải, cần xử lý
+            if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
+                philosophyContent.classList.add('is-visible');
+                ivsLogoContainer.classList.add('hidden-on-scroll');
+            }
         });
     </script>
 </body>
