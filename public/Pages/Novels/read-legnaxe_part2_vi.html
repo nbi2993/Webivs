@@ -187,11 +187,24 @@
             <button id="increase-font-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-lang-key="font_size_increase">A+</button>
         </div>
 
+        <!-- New Chapter List button at the top -->
+        <div class="flex justify-center mb-6">
+            <button id="list-chapter-btn-top" class="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                <i class="fas fa-list-ul mr-2"></i>Danh Sách Chương
+            </button>
+        </div>
+
         <div class="story-content-wrapper bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg transition-colors duration-300 ease-in-out">
             <!-- Vùng chứa nội dung chương động -->
             <div id="dynamic-chapter-content"></div>
 
             <div class="navigation flex flex-col sm:flex-row justify-between items-center mt-10 mb-6 space-y-4 sm:space-y-0">
+                <a href="/apps/story-repository.html" class="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                    <i class="fas fa-book-open mr-2"></i>Trở lại Kho truyện
+                </a>
+                <a href="/Pages/Novels/author-about.html" class="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
+                    <i class="fas fa-user-edit mr-2"></i>Về tác giả
+                </a>
                 <button id="list-chapter-btn" class="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
                     <i class="fas fa-list-ul mr-2"></i>Danh Sách Chương
                 </button>
@@ -297,6 +310,28 @@
                 console.log("Chapter Loader initialized.");
             } else {
                 console.error("Error: initializeChapterLoader is not defined. chapter-loader.js might not be loaded correctly or its definition is not global.");
+            }
+
+            // Event listener for the new top chapter list button
+            const listChapterBtnTop = document.getElementById('list-chapter-btn-top');
+            const chapterModal = document.getElementById('chapter-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            if (listChapterBtnTop && chapterModal && closeModalBtn) {
+                listChapterBtnTop.addEventListener('click', () => {
+                    chapterModal.classList.add('modal-active');
+                });
+
+                closeModalBtn.addEventListener('click', () => {
+                    chapterModal.classList.remove('modal-active');
+                });
+
+                // Close modal when clicking outside the content
+                chapterModal.addEventListener('click', (event) => {
+                    if (event.target === chapterModal) {
+                        chapterModal.classList.remove('modal-active');
+                    }
+                });
             }
 
             // Các logic hiện có khác (font size controls, scroll to top, v.v.)
