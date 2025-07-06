@@ -14,16 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
 
     // Hàm tải nội dung chương từ JSON
-    async function fetchChapterContent(storyPath, chapterNum, lang) {
+    async function fetchChapterContent(storyPath, chapterNum) { // Bỏ tham số 'lang' vì tên file không thay đổi theo ngôn ngữ
         let chapterFileName;
-        const langSuffix = lang ? `_${lang}` : ''; // Thêm hậu tố ngôn ngữ nếu có
         // Logic để xác định tên file JSON:
         // Nếu chapterNum là chương cuối cùng (tức là Epilogue), tải epilogue.json
         // Ngược lại, tải chapter_XX.json
         if (chapterNum === totalChapters) {
-            chapterFileName = `chapter_Epilogue${langSuffix}.json`; // Tên file JSON cho Epilogue
+            chapterFileName = `chapter_Epilogue.json`; // Tên file JSON cho Epilogue, không có hậu tố ngôn ngữ
         } else {
-            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}${langSuffix}.json`;
+            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}.json`; // Không có hậu tố ngôn ngữ
         }
 
         const filePath = `/data/novels/${storyPath}/${chapterFileName}`;
@@ -31,15 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(filePath);
             if (!response.ok) {
-                console.error(`Fetch error: ${response.status} - ${response.statusText}`); // Debug log
-                throw new Error(`Could not load chapter: ${response.statusText}`);
+                // Cung cấp thông báo lỗi chi tiết hơn
+                const errorMessage = `Could not load chapter: ${chapterFileName}. Status: ${response.status} - ${response.statusText}. Please ensure the file exists and is accessible.`;
+                console.error(`Fetch error: ${errorMessage}`); // Debug log
+                throw new Error(errorMessage);
             }
             const data = await response.json();
             console.log(`Successfully fetched chapter data for ${chapterFileName}:`, data); // Debug log
             return data;
         } catch (error) {
             console.error('Error fetching chapter content:', error);
-            dynamicChapterContent.innerHTML = `<p class="text-red-600 dark:text-red-400 text-center">Lỗi khi tải chương. Vui lòng thử lại sau.</p>`;
+            dynamicChapterContent.innerHTML = `<p class="text-red-600 dark:text-red-400 text-center">Lỗi khi tải chương: ${error.message}. Vui lòng kiểm tra lại cấu trúc tệp JSON hoặc đường dẫn.</p>`;
             return null;
         }
     }
@@ -51,20 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Sử dụng ngôn ngữ được truyền vào để chọn đúng trường tiêu đề và nội dung
         const titleKey = `title_${lang}`;
         const contentKey = `content_${lang}`;
 
+        // Kiểm tra xem các trường ngôn ngữ có tồn tại không
+        const chapterTitle = chapterData[titleKey] || chapterData.title_en || 'Chapter Title Not Found';
+        const chapterContent = chapterData[contentKey] || chapterData.content_en || '<p>Chapter content not found for this language.</p>';
+
+
         dynamicChapterContent.innerHTML = `
             <h3 class="text-2xl sm:text-3xl font-semibold mb-6 mt-4 text-black dark:text-white border-b pb-3 border-gray-200 dark:border-gray-700">
-                ${chapterData[titleKey]}
+                ${chapterTitle}
             </h3>
             <div class="prose prose-lg dark:prose-invert max-w-none">
-                ${chapterData[contentKey]}
+                ${chapterContent}
             </div>
         `;
         // Cập nhật tiêu đề tài liệu
-        document.title = `${chapterData[titleKey]} - LEGNAXE`;
-        console.log(`Rendered chapter ${currentChapterNumber}: ${chapterData[titleKey]}`); // Debug log
+        document.title = `${chapterTitle} - LEGNAXE`;
+        console.log(`Rendered chapter ${currentChapterNumber}: ${chapterTitle}`); // Debug log
 
         // Cuộn lên đầu nội dung chương sau khi tải
         const storyContentWrapper = document.querySelector('.story-content-wrapper');
@@ -103,10 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hàm điều hướng đến một chương cụ thể
     async function navigateToChapter(chapterNum, lang) {
         console.log(`Navigating to chapter: ${chapterNum}, Language: ${lang}`); // Debug log
-        const chapterData = await fetchChapterContent(storyBasePath, chapterNum, lang);
+        const chapterData = await fetchChapterContent(storyBasePath, chapterNum); // Không truyền lang vào đây nữa
         if (chapterData) {
             currentChapterNumber = chapterNum;
-            renderChapter(chapterData, lang);
+            renderChapter(chapterData, lang); // Truyền lang vào renderChapter để chọn nội dung
             updateNavigationButtons();
             // Cập nhật URL hash, sử dụng chapter_id từ dữ liệu JSON
             let newHash = chapterData.chapter_id;
