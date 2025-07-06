@@ -303,12 +303,15 @@
                 console.warn("window.IVSFabController or init method not found. FAB might not be fully functional.");
             }
 
+            // Determine the current language from the html tag
+            const currentLang = document.documentElement.lang;
+
             // Initialize Chapter Loader
             const storyPath = 'legnaxe_part2'; // Tên thư mục chứa JSON chương
             const totalChapters = 30; // Tổng số chương của phần này (Chương 1 đến 30)
             if (typeof window.initializeChapterLoader === 'function') {
-                window.initializeChapterLoader(storyPath, totalChapters);
-                console.log("Chapter Loader initialized.");
+                window.initializeChapterLoader(storyPath, totalChapters, currentLang); // Pass currentLang
+                console.log("Chapter Loader initialized with language:", currentLang);
             } else {
                 console.error("Error: initializeChapterLoader is not defined. chapter-loader.js might not be loaded correctly or its definition is not global.");
             }

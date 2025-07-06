@@ -11,17 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentChapterNumber = 1;
     let totalChapters = 0; // Sẽ được truyền từ HTML
     let storyBasePath = ''; // Sẽ được truyền từ HTML, ví dụ: 'legnaxe_part1'
+    let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
 
     // Hàm tải nội dung chương từ JSON
     async function fetchChapterContent(storyPath, chapterNum, lang) {
         let chapterFileName;
+        const langSuffix = lang ? `_${lang}` : ''; // Thêm hậu tố ngôn ngữ nếu có
         // Logic để xác định tên file JSON:
         // Nếu chapterNum là chương cuối cùng (tức là Epilogue), tải epilogue.json
         // Ngược lại, tải chapter_XX.json
         if (chapterNum === totalChapters) {
-            chapterFileName = 'chapter_Epilogue.json'; // Tên file JSON cho Epilogue
+            chapterFileName = `chapter_Epilogue${langSuffix}.json`; // Tên file JSON cho Epilogue
         } else {
-            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}.json`;
+            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}${langSuffix}.json`;
         }
 
         const filePath = `/data/novels/${storyPath}/${chapterFileName}`;
@@ -99,9 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Hàm điều hướng đến một chương cụ thể
-    async function navigateToChapter(chapterNum) {
-        console.log(`Navigating to chapter: ${chapterNum}`); // Debug log
-        const lang = document.documentElement.lang; // Lấy ngôn ngữ hiện tại từ thẻ HTML
+    async function navigateToChapter(chapterNum, lang) {
+        console.log(`Navigating to chapter: ${chapterNum}, Language: ${lang}`); // Debug log
         const chapterData = await fetchChapterContent(storyBasePath, chapterNum, lang);
         if (chapterData) {
             currentChapterNumber = chapterNum;
@@ -147,10 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Khởi tạo Chapter Loader
-    window.initializeChapterLoader = function(path, total) {
+    window.initializeChapterLoader = function(path, total, lang) { // Thêm tham số 'lang'
         storyBasePath = path;
         totalChapters = total;
-        console.log(`Chapter Loader initialized: Story Path = ${storyBasePath}, Total Chapters = ${totalChapters}`); // Debug log
+        currentLanguage = lang; // Lưu trữ ngôn ngữ hiện tại
+        console.log(`Chapter Loader initialized: Story Path = ${storyBasePath}, Total Chapters = ${totalChapters}, Language = ${currentLanguage}`); // Debug log
 
         // Lấy chương từ URL hash hoặc mặc định là chương 1
         const hash = window.location.hash.substring(1);
@@ -163,20 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 initialChapter = totalChapters; // Map epilogue to the last chapter number
             }
         }
-        navigateToChapter(initialChapter);
+        navigateToChapter(initialChapter, currentLanguage); // Truyền ngôn ngữ khi khởi tạo
 
         // Event listeners cho nút điều hướng
         prevButton?.addEventListener('click', () => {
             console.log('Previous button clicked'); // Debug log
             if (currentChapterNumber > 1) {
-                navigateToChapter(currentChapterNumber - 1);
+                navigateToChapter(currentChapterNumber - 1, currentLanguage); // Truyền ngôn ngữ
             }
         });
 
         nextButton?.addEventListener('click', () => {
             console.log('Next button clicked'); // Debug log
             if (currentChapterNumber < totalChapters) {
-                navigateToChapter(currentChapterNumber + 1);
+                navigateToChapter(currentChapterNumber + 1, currentLanguage); // Truyền ngôn ngữ
             }
         });
 
@@ -223,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 if (!isNaN(targetChapterNum) && targetChapterNum >= 1 && targetChapterNum <= totalChapters) {
-                    navigateToChapter(targetChapterNum);
+                    navigateToChapter(targetChapterNum, currentLanguage); // Truyền ngôn ngữ
                 }
                 closeModal();
             });
@@ -246,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (targetChapter !== currentChapterNumber) {
-                navigateToChapter(targetChapter);
+                navigateToChapter(targetChapter, currentLanguage); // Truyền ngôn ngữ
             }
         });
 
