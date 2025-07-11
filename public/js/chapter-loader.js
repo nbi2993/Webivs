@@ -13,6 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let storyBasePath = ''; // Sẽ được truyền từ HTML, ví dụ: 'legnaxe_part1'
     let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
 
+    // Bắt đầu: Chức năng chuyển đổi chế độ Sáng/Tối
+    const themeToggleBtn = document.getElementById('theme-toggle-btn'); // Giả định có một nút với ID này trong HTML
+
+    function setupThemeToggle() {
+        // Kiểm tra tùy chọn chủ đề đã lưu trong localStorage
+        const savedTheme = localStorage.getItem('theme');
+        // Nếu có chủ đề đã lưu, sử dụng nó. Nếu không, kiểm tra tùy chọn hệ thống của người dùng.
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark'); // Áp dụng lớp 'dark' cho phần tử html
+        } else {
+            document.documentElement.classList.remove('dark'); // Đảm bảo lớp 'dark' không có
+        }
+
+        // Thêm trình lắng nghe sự kiện cho nút chuyển đổi
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark'); // Chuyển sang chế độ sáng
+                    localStorage.setItem('theme', 'light'); // Lưu tùy chọn vào localStorage
+                } else {
+                    document.documentElement.classList.add('dark'); // Chuyển sang chế độ tối
+                    localStorage.setItem('theme', 'dark'); // Lưu tùy chọn vào localStorage
+                }
+            });
+        }
+    }
+
+    // Gọi hàm thiết lập chủ đề khi DOM được tải
+    setupThemeToggle();
+    // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
+
     // Hàm tải nội dung chương từ JSON
     async function fetchChapterContent(storyPath, chapterNum) {
         let chapterFileName;
