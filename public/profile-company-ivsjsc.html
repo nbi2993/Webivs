@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
     <meta property="og:url" content="https://ivs.id.vn/Pages/company-profile.html">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="icon" href="https://placehold.co/32x32/007BFF/FFFFFF?text=IVS" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/007BFF/FFFFFF?text=IVS">
     <link rel="manifest" href="/manifest.json">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -171,15 +171,7 @@
         .group:hover .group-hover\:visible {
             visibility: visible !important;
         }
-
-        /* Dark mode toggle button styles (removed from here, now in fab-container.html) */
-        /* #darkModeToggle {} */
-
-        /* Styles for synergy diagram (removed, but keeping for reference if needed) */
-        /* .synergy-diagram {} */
-
-        /* Styles for tabs (removed, but keeping for reference if needed) */
-        /* .tab {} */
+        
 
         /* Styles for timeline */
         .timeline { list-style: none; padding: 0; position: relative; }
@@ -290,6 +282,7 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-light-bg-main text-light-text-body dark:bg-dark-bg-main dark:text-dark-text-body font-sans antialiased">
+    <!-- Header Placeholder (will be loaded by loadComponents.js) -->
     <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
 
     <main class="flex-grow">
@@ -325,7 +318,7 @@
                         </p>
                     </div>
                     <div class="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-xl" data-aos="fade-left">
-                        <img src="/images/ivs-academy.jpg" alt="Hình ảnh đội ngũ IVS JSC" data-lang-key="about_team_image_alt" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/007BFF/FFFFFF?text=IVS+JSC+Team';">
+                        <img src="https://placehold.co/600x400/007BFF/FFFFFF?text=IVS+JSC+Team" alt="Hình ảnh đội ngũ IVS JSC" data-lang-key="about_team_image_alt" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-brand-primary opacity-20"></div>
                     </div>
                 </div>
@@ -631,7 +624,9 @@
         </section>
     </main>
 
+    <!-- Footer Placeholder (will be loaded by loadComponents.js) -->
     <footer id="footer-placeholder"></footer>
+    <!-- FAB Container Placeholder (will be loaded by loadComponents.js) -->
     <div id="fab-container-placeholder"></div>
 
     <!-- Deferred JavaScript Libraries -->
@@ -640,11 +635,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Impact Chart -->
 
     <!-- Core Application Scripts - Order is crucial -->
-    <script src="/js/firebase-init.js" type="module"></script>
-    <script src="/js/utils.js" defer></script>
-    <script src="/js/language.js" defer></script>
-    <script src="/js/fabController.js" defer></script> 
-    <script src="/js/loadComponents.js" defer></script>
+    <!-- These scripts are assumed to be loaded externally or provided by the environment -->
+    <!-- <script src="/js/firebase-init.js" type="module"></script> -->
+    <!-- <script src="/js/utils.js" defer></script> -->
+    <!-- <script src="/js/language.js" defer></script> -->
+    <!-- <script src="/js/fabController.js" defer></script> -->
+    <!-- <script src="/js/loadComponents.js" defer></script> -->
     
     <script>
         // Language translations for dynamic content
@@ -800,7 +796,7 @@
                 philosophy_integrate_title: "Integrate",
                 philosophy_integrate_desc: "IVS brings a tight connection between technology platforms, educational programs, and practical needs, creating a synchronized, efficient operational system that delivers superior value to students, partners, and the community. We continuously innovate to optimize learning and management experiences.",
                 philosophy_vision_title: "Vision",
-                philosophy_vision_desc: "IVS is not just about providing educational services; it pioneers in shaping the future of learning. We develop advanced training programs, applying modern technology to unlock comprehensive development opportunities, preparing students for the challenges of the 21st century.",
+                philosophy_vision_desc: "IVS not only aims to provide educational services but also pioneers in shaping the future of learning. We develop advanced training programs, applying modern technology to unlock comprehensive development opportunities, preparing students for the challenges of the 21st century.",
                 philosophy_synergy_title: "Synergy",
                 philosophy_synergy_desc: "The combined strength of organizations, individuals, and the community at IVS creates a powerful synergy, fostering sustainable and long-term development. We build an educational ecosystem where all components collaborate, share values, and together reach new heights in shaping the future.",
                 core_values_title: "Core Values & Commitments",
@@ -811,7 +807,7 @@
                 value_creativity_title: "Creativity",
                 value_creativity_desc: "Continuously innovating, seeking breakthrough solutions, and applying advanced technology to create new value.",
                 value_equality_title: "Equality",
-                value_equality_desc: "Respecting diversity, fostering a fair, transparent collaborative environment, and providing development opportunities for all individuals.",
+                value_equality_desc: "Ensuring diversity, fostering a fair, transparent collaborative environment, and providing development opportunities for all individuals.",
                 our_commitments_title: "Our Commitments",
                 commitment1_strong: "Building a comprehensive educational ecosystem",
                 commitment1_span: ", connecting domestic and international resources to create a diverse and rich learning environment.",
@@ -848,7 +844,7 @@
                 org_unit_education_item1: "Researches & compiles international standard curricula",
                 org_unit_education_item2: "Trains – fosters teachers",
                 org_unit_education_item3: "Shapes innovative teaching methodologies",
-                org_unit_education_item4: "Consults on content, designs international liên kết programs",
+                org_unit_education_item4: "Consults on content, designs international joint programs",
                 org_unit_celestech_title: "IVS CELESTECH",
                 org_unit_celestech_subtitle: "Educational technology & equipment project unit",
                 org_unit_celestech_item1: "Deploys EDTech systems (VR/AR, LMS, teaching equipment)",
@@ -905,8 +901,8 @@
                 dividend_policy_item3: "Diverse Forms: Dividends may be paid in cash, shares, or a combination, depending on the actual situation, investment plans, and Board of Directors' decisions, always striving for optimal shareholder benefits.",
                 final_cta_title: "Partner with IVS JSC: Where the future of education and technology is built.",
                 final_cta_subtitle: "Join us in building sustainable values and conquering new heights.",
-                contact_us_title: "Contact Us",
-                contact_tagline: "IVS JSC – Realizing the Vision of Global Education",
+                contact_us_title: "Get In Touch",
+                contact_tagline: "IVS JSC – Realizing Global Education",
                 contact_address: "No. 1104, Group 6, Dat Moi Hamlet, Long Phuoc Commune, Long Thanh District, Dong Nai Province, Vietnam",
                 contact_website_label: "Website:",
                 contact_website_link: "ivsacademy.edu.vn",
@@ -916,8 +912,8 @@
                 contact_email2_address: "ivscorp.vn@gmail.com",
                 contact_zalo_label: "Zalo OA:",
                 contact_zalo_link: "zalo.me/ivsjsc",
-                contact_cta_partner: "Partner with Us",
-                contact_cta_careers: "Join the IVS Team",
+                contact_cta_partner: "Partner With Us",
+                contact_cta_careers: "Join Our Team",
                 about_team_image_alt: "Image of IVS JSC Team",
                 image_ceo_alt: "Portrait of Mr. Nguyen Minh Triet"
             }
@@ -1235,42 +1231,7 @@
             }
         });
 
-        // Dark mode toggle logic (Removed from here, now in fabController.js)
-        // function applyDarkMode(isDark) {
-        //     if (isDark) {
-        //         document.documentElement.classList.add('dark');
-        //         const moonIcon = document.getElementById('moonIcon');
-        //         const sunIcon = document.getElementById('sunIcon');
-        //         if (moonIcon) moonIcon.classList.add('hidden');
-        //         if (sunIcon) sunIcon.classList.remove('hidden');
-        //     } else {
-        //         document.documentElement.classList.remove('dark');
-        //         const moonIcon = document.getElementById('moonIcon');
-        //         const sunIcon = document.getElementById('sunIcon');
-        //         if (moonIcon) moonIcon.classList.remove('hidden');
-        //         if (sunIcon) sunIcon.classList.add('hidden');
-        //     }
-        // }
 
-        // const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
-        // let isDarkMode = localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && prefersDarkMode.matches);
-        // applyDarkMode(isDarkMode);
-
-        // const darkModeToggle = document.getElementById('darkModeToggle');
-        // if (darkModeToggle) {
-        //     darkModeToggle.addEventListener('click', () => {
-        //         isDarkMode = !isDarkMode;
-        //         applyDarkMode(isDarkMode);
-        //         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        //     });
-        // }
-
-        // prefersDarkMode.addEventListener('change', (e) => {
-        //     if (localStorage.getItem('theme') === null) {
-        //         isDarkMode = e.matches;
-        //         applyDarkMode(isDarkMode);
-        //     }
-        // });
 
         // Callback triggered by loadComponents.js (for AOS and other page-specific inits)
         window.onPageComponentsLoadedCallback = function() {
@@ -1279,18 +1240,7 @@
             }
         };
 
-        // Initial theme application to prevent FOUC (Flash of Unstyled Content)
-        // This function is now managed by fabController.js
-        // window.initializeTheme = function() {
-        //     const savedTheme = localStorage.getItem('theme');
-        //     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        //     if (savedTheme) {
-        //         document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-        //     } else {
-        //         document.documentElement.classList.toggle('dark', prefersDark);
-        //     }
-        // };
-        // initializeTheme();
+
     </script>
 </body>
 </html>
