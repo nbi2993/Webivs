@@ -9,12 +9,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
 
     let currentChapterNumber = 1;
-    let totalChapters = 0; // Sẽ được truyền từ HTML
+    let totalChapters = 0; // Sẽ được cập nhật từ mảng chapterTitles
     let storyBasePath = ''; // Sẽ được truyền từ HTML, ví dụ: 'legnaxe_part1'
     let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
 
+    // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
+    const chapterTitles = [
+        "Bản Hòa Âm Vĩnh Cửu",
+        "Lời Phán Từ Trời",
+        "Những Tia Lửa Nổi Loạn",
+        "Những Tạo Vật Đầu Tiên",
+        "Ánh Sáng Và Bóng Tối",
+        "Lời Thì Thầm Của Con Rắn",
+        "Sự Rạn Nứt",
+        "Sự Ra Đời Của Eve",
+        "Những Bóng Tối Thì Thầm",
+        "Miếng Nếm Đầu Tiên",
+        "Sự Sa Ngã",
+        "Sự Ra Đời Đầu Tiên",
+        "Vết Nứt Đầu Tiên",
+        "Dấu Ấn Của Cain",
+        "Di Sản Của Cain",
+        "Sự Phán Xét Đầu Tiên",
+        "Cửa Lũ Mở Toang",
+        "Cuộc Chiến Ánh Sáng Vĩnh Cửu",
+        "Những Hạt Giống Của Sự Nổi Loạn",
+        "Dư Âm của Những Lựa Chọn",
+        "Sự Vỡ Nát của Tấm Màn",
+        "Bên Kia Tấm Màn",
+        "Sự Thật Bên Kia Tấm Màn",
+        "Cái Giá của Ánh Sáng",
+        "Phán Quyết và Sự Chia Cắt Vĩnh Viễn",
+        "Bình Minh Cuối Cùng",
+        "Ranh Giới Vĩnh Hằng",
+        "Ngã Tư Đường Vĩnh Cửu",
+        "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn" // Đây là chương cuối cùng (Epilogue)
+    ];
+
     // Hàm tải nội dung chương từ JSON
-    async function fetchChapterContent(storyPath, chapterNum) { // Bỏ tham số 'lang' vì tên file không thay đổi theo ngôn ngữ
+    async function fetchChapterContent(storyPath, chapterNum) {
         let chapterFileName;
         // Logic để xác định tên file JSON:
         // Nếu chapterNum là chương cuối cùng (tức là Epilogue), tải epilogue.json
@@ -116,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderChapter(chapterData, lang); // Truyền lang vào renderChapter để chọn nội dung
             updateNavigationButtons();
             // Cập nhật URL hash, sử dụng chapter_id từ dữ liệu JSON
-            let newHash = chapterData.chapter_id;
+            let newHash = `chapter-${chapterNum}`;
             if (currentChapterNumber === totalChapters) {
                 newHash = 'epilogue'; // Đảm bảo hash là 'epilogue' cho chương cuối cùng
             }
@@ -155,11 +188,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Khởi tạo Chapter Loader
-    window.initializeChapterLoader = function(path, total, lang) { // Thêm tham số 'lang'
+    window.initializeChapterLoader = function(path, lang) { // Bỏ tham số 'total' vì giờ đã có chapterTitles
         storyBasePath = path;
-        totalChapters = total;
+        totalChapters = chapterTitles.length; // Cập nhật tổng số chương từ mảng chapterTitles
         currentLanguage = lang; // Lưu trữ ngôn ngữ hiện tại
         console.log(`Chapter Loader initialized: Story Path = ${storyBasePath}, Total Chapters = ${totalChapters}, Language = ${currentLanguage}`); // Debug log
+
+        // Xóa danh sách chương cũ trong modal và tạo mới
+        modalChapterList.innerHTML = '';
+        chapterTitles.forEach((title, index) => {
+            const chapterNum = index + 1;
+            const chapterId = (chapterNum === totalChapters) ? 'epilogue' : `chapter-${chapterNum}`;
+            const chapterLink = document.createElement('a');
+            chapterLink.href = `#${chapterId}`;
+            chapterLink.classList.add(
+                'modal-chapter-link',
+                'block',
+                'py-2',
+                'px-4',
+                'rounded-lg',
+                'hover:bg-gray-100',
+                'dark:hover:bg-gray-700',
+                'transition-colors',
+                'duration-200',
+                'text-black',
+                'dark:text-white'
+            );
+            chapterLink.dataset.chapterId = chapterId;
+            chapterLink.textContent = `Chương ${chapterNum}: ${title}`;
+            modalChapterList.appendChild(chapterLink);
+        });
+
 
         // Lấy chương từ URL hash hoặc mặc định là chương 1
         const hash = window.location.hash.substring(1);
@@ -220,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = ''; // Khôi phục cuộn body
         }
 
+        // Gắn lại event listeners cho các liên kết chương trong modal sau khi chúng được tạo lại
         modalChapterList.querySelectorAll('.modal-chapter-link').forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
