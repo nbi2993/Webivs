@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
     // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (25 chương + Khúc Vĩ Thanh)
     const chapterTitlesPart1 = [
-        "Bản Hòa Âm Vĩnh Cửu",
+        "Bản Hòa Âm Rạn Nứt",
         "Lời Phán Từ Trời",
         "Những Tia Lửa Nổi Loạn",
         "Những Tạo Vật Đầu Tiên",
