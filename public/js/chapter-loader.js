@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
 
     // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
-    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (25 chương + Khúc Vĩ Thanh)
+    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (28 chương + Khúc Vĩ Thanh = 29 chương)
     const chapterTitlesPart1 = [
-        { vi: "Bản Hòa Âm Rạn Nứt", en: "The Fractured Harmony" },
+        { vi: "Bản Hòa Âm Vĩnh Cửu", en: "The Eternal Harmony" },
         { vi: "Lời Phán Từ Trời", en: "The Heavenly Decree" },
         { vi: "Những Tia Lửa Nổi Loạn", en: "Sparks of Rebellion" },
         { vi: "Những Tạo Vật Đầu Tiên", en: "The First Creations" },
@@ -73,10 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         { vi: "Sự Thật Bên Kia Tấm Màn", en: "The Truth Beyond the Veil" },
         { vi: "Cái Giá của Ánh Sáng", en: "The Price of Light" },
         { vi: "Phán Quyết và Sự Chia Cắt Vĩnh Viễn", en: "Judgment and Eternal Division" },
-        { vi: "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn", en: "Epilogue: Soul Meteor Shower" } // Đây là chương cuối cùng của Phần 1 (Chương 26)
+        { vi: "Bình Minh Cuối Cùng", en: "The Last Dawn" },
+        { vi: "Ranh Giới Vĩnh Hằng", en: "The Eternal Boundary" },
+        { vi: "Ngã Tư Đường Vĩnh Cửu", en: "The Eternal Crossroads" },
+        { vi: "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn", en: "Epilogue: Soul Meteor Shower" } // Đây là chương cuối cùng của Phần 1 (Chương 29)
     ];
 
-    // Phần 2: Heavenly, Human’s Heart (30 chương)
+    // Phần 2: Heavenly, Human’s Heart (30 chương) - Giữ nguyên như trước nếu không có thông tin mới
     const chapterTitlesPart2 = [
         { vi: "Lời Từ Biệt Trên Ngai Vàng", en: "Farewell on the Throne" },
         { vi: "Hậu Quả Thiên Đàng", en: "The Heavenly Aftermath" },
