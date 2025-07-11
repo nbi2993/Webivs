@@ -2200,5 +2200,20 @@
   "unit_ivs_consulting_desc": "Cung cấp dịch vụ tư vấn chuyên sâu về chuyển đổi số, chiến lược giáo dục và tối ưu hóa vận hành, giúp các tổ chức phát triển bền vững trong kỷ nguyên số và đạt được mục tiêu.",
   "ivs_academy_cta_title": "Sẵn sàng Khám phá Tiềm năng cùng IVS Academy?",
   "ivs_academy_cta_prompt": "Liên hệ ngay hôm nay để được tư vấn chi tiết về các chương trình đào tạo, giải pháp giáo dục và cơ hội hợp tác cùng chúng tôi!",
-  "contact_us_button_general": "Liên hệ với chúng tôi"
+  "contact_us_button_general": "Liên hệ với chúng tôi",
+  "detailed_programs_title": "Các Chương trình Đào tạo Chuyên sâu",
+  "detailed_programs_intro": "IVS Academy cung cấp các chương trình đào tạo được thiết kế bài bản, phù hợp với từng lứa tuổi và mục tiêu học tập, từ mầm non đến người lớn.",
+  "program_goaldigger_title": "Chương trình Tiếng Anh Goaldigger (Mầm non)",
+  "program_goaldigger_desc": "Thiết kế cho trẻ từ 3-5 tuổi, tập trung vào nền tảng tiếng Anh cơ bản (nghe, nói, đọc, viết) thông qua các hoạt động tương tác và vui nhộn, sử dụng giáo trình Cambridge Adventures.",
+  "program_supermind_title": "Chương trình Tiếng Anh Super Minds (Tiểu học)",
+  "program_supermind_desc": "Chương trình toàn diện cho học sinh tiểu học (6-12 tuổi) dựa trên Cambridge Super Minds, phát triển cả bốn kỹ năng ngôn ngữ và tư duy phản biện.",
+  "program_cambridge_prepare_title": "Chương trình Tiếng Anh Cambridge Prepare (THCS)",
+  "program_cambridge_prepare_desc": "Chuẩn bị học sinh cho các kỳ thi Cambridge English (A2 Key, B1 Preliminary) và phát triển kỹ năng giao tiếp thực tế.",
+  "program_berlitz_title": "Berlitz English - Language for Life (THPT & Người lớn)",
+  "program_berlitz_desc": "Chương trình 10 cấp độ toàn diện, tập trung vào tiếng Anh thực tế cho giao tiếp hàng ngày, công việc và học thuật.",
+  "program_ivs_lifeminds_title": "IVS LifeMinds - Đánh Thức Tiềm Năng (Kỹ năng sống)",
+  "program_ivs_lifeminds_desc": "Giáo trình kỹ năng sống và phát triển cá nhân cho trẻ từ 4-12 tuổi, tập trung vào giao tiếp, tư duy phản biện, sáng tạo và tự quản lý bản thân.",
+  "program_ivs_mastery_title": "IVS Mastery English Program",
+  "program_ivs_mastery_desc": "Chương trình tiếng Anh toàn diện kết hợp các nguyên tắc của Cambridge Prepare, Super Minds và Berlitz English, phát triển cả bốn kỹ năng từ cơ bản đến nâng cao."
+
 }

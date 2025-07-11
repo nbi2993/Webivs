@@ -2662,5 +2662,20 @@
   "unit_ivs_consulting_desc": "Provides in-depth consulting services on digital transformation, educational strategies, and operational optimization, helping organizations achieve sustainable development in the digital age and reach their goals.",
   "ivs_academy_cta_title": "Ready to Unlock Potential with IVS Academy?",
   "ivs_academy_cta_prompt": "Contact us today for detailed consultation on our training programs, educational solutions, and partnership opportunities!",
-  "contact_us_button_general": "Contact Us"  
+  "contact_us_button_general": "Contact Us",
+  "detailed_programs_title": "Detailed Training Programs",
+  "detailed_programs_intro": "IVS Academy offers well-structured training programs, suitable for all ages and learning objectives, from preschool to adults.",
+  "program_goaldigger_title": "Goaldigger English Program (Preschool)",
+  "program_goaldigger_desc": "Designed for children aged 3-5, focusing on foundational English skills (listening, speaking, reading, writing) through interactive and fun activities, using Cambridge Adventures curriculum.",
+  "program_supermind_title": "Super Minds English Program (Primary School)",
+  "program_supermind_desc": "A comprehensive program for primary students (ages 6-12) based on Cambridge Super Minds, developing all four language skills and critical thinking.",
+  "program_cambridge_prepare_title": "Cambridge Prepare English Program (Secondary School)",
+  "program_cambridge_prepare_desc": "Prepares students for Cambridge English exams (A2 Key, B1 Preliminary) and develops practical communication skills.",
+  "program_berlitz_title": "Berlitz English - Language for Life (High School & Adults)",
+  "program_berlitz_desc": "A comprehensive 10-level program focusing on practical English for daily communication, work, and academic purposes.",
+  "program_ivs_lifeminds_title": "IVS LifeMinds - Awaken Potential (Life Skills)",
+  "program_ivs_lifeminds_desc": "Life skills and personal development curriculum for children aged 4-12, focusing on communication, critical thinking, creativity, and self-management.",
+  "program_ivs_mastery_title": "IVS Mastery English Program",
+  "program_ivs_mastery_desc": "A comprehensive English program combining Cambridge Prepare, Super Minds, and Berlitz English principles, developing all four skills from elementary to advanced levels."
+
 }
