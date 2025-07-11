@@ -155,7 +155,7 @@
             z-index: 1; /* Video nằm dưới cùng */
             transform: translate(-50%, -50%); /* Căn giữa video tuyệt đối */
             object-fit: cover; /* Đảm bảo video lấp đầy không gian mà không bị bóp méo/cắt xén */
-            filter: brightness(0.5); /* Làm tối video để nội dung dễ đọc hơn */
+            filter: brightness(0.5) blur(2px); /* Làm tối và mờ video để nội dung dễ đọc hơn */
             /* Optional: transition cho hiệu ứng mượt mà khi video tải (kết hợp JS) */
             opacity: 0; /* Bắt đầu ẩn, sẽ hiện lên bằng JS khi video tải xong */
             transition: opacity 1s ease-in-out;
@@ -176,6 +176,7 @@
             object-fit: cover;
             z-index: 0; /* Nằm dưới video và overlay */
             display: block; /* Mặc định hiển thị */
+            filter: brightness(0.6); /* Làm tối ảnh fallback */
         }
 
         /* Lớp phủ (overlay) cho video */
@@ -203,18 +204,16 @@
                 height: 70vh; /* Giảm chiều cao trên mobile để không chiếm quá nhiều không gian */
             }
             .hero-video {
-                filter: brightness(0.6); /* Có thể làm tối hơn một chút trên di động */
+                display: none; /* Ẩn video trên mobile để tiết kiệm dữ liệu và hiệu suất */
+                filter: none; /* Đảm bảo ảnh dự phòng không bị mờ nếu bạn muốn */
+            }
+            .hero-fallback-image {
+                display: block; /* Đảm bảo ảnh fallback hiển thị */
+                filter: brightness(0.6); /* Ảnh dự phòng không bị mờ */
             }
             .hero-overlay {
                 background: rgba(0, 0, 0, 0.5); /* Lớp phủ có thể đậm hơn trên mobile */
             }
-            /* Để tiết kiệm dữ liệu/hiệu suất trên mobile, bạn có thể cân nhắc ẩn video và chỉ hiển thị ảnh fallback: */
-            /* .hero-video {
-                display: none;
-            }
-            .hero-fallback-image {
-                display: block; // Đảm bảo ảnh fallback hiển thị
-            } */
         }
 
         @media (max-width: 480px) {
@@ -245,7 +244,7 @@
         /* Primary button style */
         .btn-primary {
             /* @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20; */
-            background-image: linear-gradient(to right, #3b82f6, #2563eb); /* Màu ví dụ */
+            background-image: linear-gradient(to right, #60a5fa, #3b82f6); /* Màu ví dụ */
             color: #ffffff;
             box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.2); /* shadow-ivs-blue/20 */
         }
@@ -254,13 +253,13 @@
         .btn-secondary {
             /* @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20; */
             background-color: transparent;
-            border: 2px solid #52525b; /* Màu ví dụ */
+            border: 2px solid #27272a; /* Màu ví dụ */
             color: #ffffff;
         }
 
         .btn-secondary:hover {
-            background-color: #52525b; /* hover:bg-ivs-border */
-            box-shadow: 0 10px 15px -3px rgba(82, 82, 91, 0.2), 0 4px 6px -2px rgba(82, 82, 91, 0.2); /* hover:shadow-ivs-border/20 */
+            background-color: #27272a; /* hover:bg-ivs-border */
+            box-shadow: 0 10px 15px -3px rgba(39, 39, 42, 0.2), 0 4px 6px -2px rgba(39, 39, 42, 0.2); /* hover:shadow-ivs-border/20 */
         }
 
         /* Adjust Hero Headline for better visual balance */
@@ -319,7 +318,7 @@
         /* Thêm vào CSS của bạn */
         .hero-video {
             /* ... các thuộc tính khác ... */
-            filter: blur(2px); /* Làm mờ nhẹ video, điều chỉnh giá trị phù hợp */
+            filter: brightness(0.5) blur(2px); /* Làm mờ nhẹ video, điều chỉnh giá trị phù hợp */
         }
 
         @media (max-width: 768px) {
@@ -329,7 +328,7 @@
             }
             .hero-fallback-image {
                 display: block;
-                filter: none; /* Ảnh dự phòng không bị mờ */
+                filter: brightness(0.6); /* Ảnh dự phòng không bị mờ */
             }
         }
     </style>
@@ -926,6 +925,8 @@
         }
     </script>
     
+    <!-- Removed problematic script block as elements 'philosophyContent' and 'ivsLogoContainer' are not present in the HTML. -->
+    <!--
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const philosophyContent = document.getElementById('philosophyContent');
@@ -960,6 +961,7 @@
             }
         });
     </script>
+    -->
 
 </body>
 </html>
