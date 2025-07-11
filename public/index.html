@@ -112,6 +112,42 @@
 
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        /* Add to your existing styles */
+        :root {
+            --header-height: 4rem;
+            --safe-area-top: env(safe-area-inset-top, 0px);
+        }
+
+        .hero-section {
+            min-height: calc(100vh - var(--header-height));
+            margin-top: var(--header-height);
+        }
+
+        /* Improved card styles */
+        .interactive-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(17,24,39,0.8);
+            backdrop-filter: blur(12px);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            border-color: rgba(59,130,246,0.5);
+        }
+
+        /* Better section spacing */
+        section {
+            scroll-margin-top: calc(var(--header-height) + 1rem);
+            padding: 4rem 1rem;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 2rem;
+            }
+        }
         /* Custom scrollbar for chatbot messages */
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
@@ -322,54 +358,53 @@
     <header id="header-placeholder"></header>
 
     <main>
-        <!-- 1. HERO SECTION with Video Background -->
-        <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-            <!-- Video nền -->
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 hero-video">
-                <source src="/videos/ivs-video-background.webm" type="video/webm"> <source src="/videos/ivs-video-background.mp4" type="video/mp4">
-                <img src="images/logo/webbannermo1.png" alt="IVS Hero Background" class="absolute inset-0 w-full h-full object-cover z-0 hero-fallback-image">
+        <!-- Add these classes to the hero section -->
+        <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-16 md:pt-20">
+            <!-- Improve video loading with sources -->
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-1000" id="heroVideo">
+                <source src="/videos/ivs-video-background.mp4" type="video/mp4">
+                <source src="/videos/hero-background.webm" type="video/webm">
             </video>
-
-            <!-- Lớp phủ gradient hiện có của bạn -->
-            <div class="absolute inset-0 bg-gradient-to-t from-ivs-bg via-ivs-bg/50 to-transparent z-10"></div>
             
-            <!-- Lớp phủ bổ sung để làm tối video, nằm dưới gradient nhưng trên video -->
-            <div class="absolute inset-0 bg-black opacity-40 z-10 hero-overlay"></div>
-
-            <!-- Nội dung chính của hero section -->
-            <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
-                        IVS Academy
-                    </span>
-                    <br />
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline_part1">
-                        Kiến Tạo Tương Lai.
-                    </span> <span class="text-white" data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
-                </h1>
-                <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10" data-lang-key="hero_description">
-                    IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
-                </p>
-                <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-                    <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy">
-                        <i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy
-                    </a>
-                    <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education">
-                        <i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục
-                    </a>
-                    <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting">
-                        <i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp
-                    </a>
-                    <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers">
-                        <i class="fas fa-briefcase mr-2"></i> Tuyển dụng
-                    </a>
-                    <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">
-                        <i class="fas fa-headset mr-2"></i> Đăng ký tư vấn
-                    </a>
+            <!-- Better gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-10"></div>
+            
+            <!-- Enhanced content container -->
+            <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div class="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
+                            IVS Academy
+                        </span>
+                        <br />
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline_part1">
+                            Kiến Tạo Tương Lai.
+                        </span> <span class="text-white" data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
+                    </h1>
+                    <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10" data-lang-key="hero_description">
+                        IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
+                    </p>
+                    <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
+                        <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy">
+                            <i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy
+                        </a>
+                        <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education">
+                            <i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục
+                        </a>
+                        <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting">
+                            <i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp
+                        </a>
+                        <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers">
+                            <i class="fas fa-briefcase mr-2"></i> Tuyển dụng
+                        </a>
+                        <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">
+                            <i class="fas fa-headset mr-2"></i> Đăng ký tư vấn
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
-
+ 
         <!-- Section with Video Background -->
         <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden">
             <!-- Video Background Container -->
@@ -814,65 +849,7 @@
             }
             // If you had backgroundVideo2, add similar logic
         };
-
-        // The initHero3D function is likely no longer needed if replaced by video.
-        // Keeping it commented out for reference.
-        // function initHero3D() {
-        //     const container = document.getElementById('hero-canvas-container');
-        //     if (!container) return;
-        //
-        //     let scene, camera, renderer, stars;
-        //     let mouseX = 0, mouseY = 0;
-        //
-        //     function init() {
-        //         scene = new THREE.Scene();
-        //         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-        //         camera.position.z = 1;
-        //         camera.rotation.x = Math.PI / 2;
-        //
-        //         renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        //         renderer.setSize(window.innerWidth, window.innerHeight);
-        //         container.appendChild(renderer.domElement);
-        //
-        //         const starGeo = new THREE.BufferGeometry();
-        //         const starVertices = [];
-        //         for (let i = 0; i < 8000; i++) {
-        //             starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
-        //         }
-        //         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-        //
-        //         let starMaterial = new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.7, transparent: true });
-        //         stars = new THREE.Points(starGeo, starMaterial);
-        //         scene.add(stars);
-        //
-        //         window.addEventListener('resize', onWindowResize, false);
-        //         document.addEventListener('mousemove', onMouseMove, false);
-        //
-        //         animate();
-        //     }
-        //
-        //     function onMouseMove(e) {
-        //         mouseX = e.clientX - window.innerWidth / 2;
-        //         mouseY = e.clientY - window.innerHeight / 2;
-        //     }
-        //
-        //     function onWindowResize() {
-        //         camera.aspect = window.innerWidth / window.innerHeight;
-        //         camera.updateProjectionMatrix();
-        //         renderer.setSize(window.innerWidth, window.innerHeight);
-        //     }
-        //
-        //     function animate() {
-        //         requestAnimationFrame(animate);
-        //         stars.rotation.y += 0.0001;
-        //         camera.position.y += (-mouseY * 0.00002 - camera.position.y) * 0.05;
-        //         camera.position.x += (mouseX * 0.00002 - camera.position.x) * 0.05;
-        //         camera.lookAt(scene.position);
-        //         renderer.render(scene, camera);
-        //     }
-        //
-        //     init();
-        // }
+        
 
         function initAnimatedCounters() {
             const counters = document.querySelectorAll('#impact-counters h3');
@@ -947,7 +924,40 @@
                 ivsLogoContainer.classList.add('hidden-on-scroll');
             }
         });
-    </script>
+        window.onPageComponentsLoadedCallback = function() {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            easing: 'ease-out-quad',
+            disable: 'mobile' // Better performance on mobile
+        });
+    }
+
+    // Enhanced video loading
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        heroVideo.addEventListener('canplay', () => {
+            heroVideo.classList.add('loaded');
+        });
+        
+        // Fallback for mobile/poor connection
+        heroVideo.addEventListener('error', () => {
+            heroVideo.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.className = 'hero-fallback absolute inset-0 bg-cover bg-center z-0';
+            fallback.style.backgroundImage = 'url("/images/hero-fallback.jpg")';
+            heroVideo.parentElement.insertBefore(fallback, heroVideo);
+        });
+    }
+
+    // Initialize other components
+    initAnimatedCounters();
+    initSpotlightEffect();
+    initSmoothScroll();
+}
+</script>
 
 </body>
 </html>
