@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
 
     let currentChapterNumber = 1;
-    let totalChapters = 0; // Sẽ được truyền từ HTML
+    let totalChapters = 0; // Sẽ được cập nhật từ mảng chapterTitles
     let storyBasePath = ''; // Sẽ được truyền từ HTML, ví dụ: 'legnaxe_part1'
     let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
 
@@ -43,6 +43,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gọi hàm thiết lập chủ đề khi DOM được tải
     setupThemeToggle();
     // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
+
+    // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
+    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (28 chương + Khúc Vĩ Thanh)
+    const chapterTitlesPart1 = [
+        "Bản Hòa Âm Vĩnh Cửu",
+        "Lời Phán Từ Trời",
+        "Những Tia Lửa Nổi Loạn",
+        "Những Tạo Vật Đầu Tiên",
+        "Ánh Sáng Và Bóng Tối",
+        "Lời Thì Thầm Của Con Rắn",
+        "Sự Rạn Nứt",
+        "Sự Ra Đời Của Eve",
+        "Những Bóng Tối Thì Thầm",
+        "Miếng Nếm Đầu Tiên",
+        "Sự Sa Ngã",
+        "Sự Ra Đời Đầu Tiên",
+        "Vết Nứt Đầu Tiên",
+        "Dấu Ấn Của Cain",
+        "Di Sản Của Cain",
+        "Sự Phán Xét Đầu Tiên",
+        "Cửa Lũ Mở Toang",
+        "Cuộc Chiến Ánh Sáng Vĩnh Cửu",
+        "Những Hạt Giống Của Sự Nổi Loạn",
+        "Dư Âm của Những Lựa Chọn",
+        "Sự Vỡ Nát của Tấm Màn",
+        "Bên Kia Tấm Màn",
+        "Sự Thật Bên Kia Tấm Màn",
+        "Cái Giá của Ánh Sáng",
+        "Phán Quyết và Sự Chia Cắt Vĩnh Viễn",
+        "Bình Minh Cuối Cùng",
+        "Ranh Giới Vĩnh Hằng",
+        "Ngã Tư Đường Vĩnh Cửu",
+        "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn" // Đây là chương cuối cùng của Phần 1
+    ];
+
+    // Phần 2: Heavenly, Human’s Heart (17 chương)
+    const chapterTitlesPart2 = [
+        "Lời Từ Biệt Trên Ngai Vàng",
+        "Mưa Sao Băng Linh Hồn", // Chương này có vẻ trùng tên với Khúc Vĩ Thanh phần 1, cần xác nhận lại cấu trúc file JSON
+        "Giáng Trần & Thiên Đàng Hậu Biến Cố",
+        "Tiếng Gọi Của Lòng Trắc Ẩn",
+        "Giữa Dòng Người & Góc Khuất Tâm Hồn",
+        "Bóng Tối Từ Thiện",
+        "Lựa Chọn Trong Màn Đêm",
+        "Bước Vào Thế Giới Mới",
+        "Những Bài Học Đầu Tiên",
+        "Chuyến Đi Đến Los Angeles",
+        "Những Cuộc Gặp Gỡ Đầu Tiên",
+        "Màn Sương Nghi Hoặc",
+        "Bóng Hình Quá Khứ",
+        "Lời Đề Nghị Của Ác Quỷ",
+        "Tiếng Vọng Từ Thiên Đàng",
+        "Quyền Năng Thức Tỉnh",
+        "Cuộn Giấy Cổ Xưa",
+        "Bài Học Đầu Tiên và Bão Tố Thiên Đàng",
+        "Giữa Hai Làn Đạn",
+        "Thử Nghiệm Niềm Tin",
+        "Lằn Ranh Mong Manh",
+        "Tiếng Gọi Bị Chặn",
+        "Những Bước Đi Đầu Tiên Trong Bóng Tối",
+        "Những Con Đường Trong Bóng Tối",
+        "Thăm Dò Vực Thẳm",
+        "Nước Cờ Thực Tế",
+        "Dự Án Đặc Biệt",
+        "Hành Trình Đến Tâm Bão"
+    ];
+
+    // Gộp tất cả các chương lại. Cần điều chỉnh nếu có nhiều phần truyện khác nhau.
+    // Hiện tại, giả định storyBasePath sẽ cho biết đang ở phần nào.
+    let allChapterTitles = [];
 
     // Hàm tải nội dung chương từ JSON
     async function fetchChapterContent(storyPath, chapterNum) {
@@ -188,15 +258,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Khởi tạo Chapter Loader
     window.initializeChapterLoader = function(path, total, lang) { // Đã thêm lại tham số 'total'
         storyBasePath = path;
-        totalChapters = total; // Sử dụng tham số 'total' được truyền vào
         currentLanguage = lang; // Lưu trữ ngôn ngữ hiện tại
         console.log(`Chapter Loader initialized: Story Path = ${storyBasePath}, Total Chapters = ${totalChapters}, Language = ${currentLanguage}`); // Debug log
 
+        // Xác định tổng số chương và danh sách tên chương dựa trên storyBasePath
+        if (storyBasePath === 'legnaxe_part1') {
+            allChapterTitles = chapterTitlesPart1;
+        } else if (storyBasePath === 'legnaxe_part2') {
+            allChapterTitles = chapterTitlesPart2;
+        } else {
+            allChapterTitles = []; // Mặc định nếu không khớp
+        }
+        totalChapters = allChapterTitles.length;
+
+
         // Xóa danh sách chương cũ trong modal và tạo mới
         modalChapterList.innerHTML = '';
-        for (let i = 1; i <= totalChapters; i++) { // Lặp dựa trên totalChapters
-            const chapterNum = i;
-            const chapterId = (chapterNum === totalChapters) ? 'epilogue' : `chapter-${chapterNum}`;
+        allChapterTitles.forEach((title, index) => {
+            const chapterNum = index + 1;
+            const chapterId = (chapterNum === totalChapters && (storyBasePath === 'legnaxe_part1' || storyBasePath === 'legnaxe_part2')) ? 'epilogue' : `chapter-${chapterNum}`;
             const chapterLink = document.createElement('a');
             chapterLink.href = `#${chapterId}`;
             chapterLink.classList.add(
@@ -212,10 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'text-black',
                 'dark:text-white'
             );
-            // Tên chương sẽ là "Chương X" vì không có mảng chapterTitles cứng
-            chapterLink.textContent = `Chương ${chapterNum}`;
+            // Sử dụng tên chương từ mảng allChapterTitles
+            chapterLink.textContent = `Chương ${chapterNum}: ${title}`;
             modalChapterList.appendChild(chapterLink);
-        }
+        });
 
 
         // Lấy chương từ URL hash hoặc mặc định là chương 1
