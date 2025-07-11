@@ -279,7 +279,7 @@
 
             // Initialize Chapter Loader
             const storyPath = 'legnaxe_part1'; // Directory name containing JSON chapters
-            const totalChapters = 31; // Total number of chapters for this part (Chapter 1 to 30 + Epilogue is chapter 31)
+            const totalChapters = 26; // Total number of chapters for this part (Chapter 1 to 25 + Epilogue is chapter 26)
             if (typeof window.initializeChapterLoader === 'function') {
                 window.initializeChapterLoader(storyPath, totalChapters, currentLang); // Pass currentLang
                 console.log("Chapter Loader initialized with language:", currentLang);
@@ -423,7 +423,7 @@
                 try {
                     document.execCommand('copy');
                     const messageBox = document.createElement('div');
-                    messageBox.textContent = 'Link copied to clipboard!';
+                    messageBox.textContent = 'Liên kết đã được sao chép vào clipboard!';
                     messageBox.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000; opacity: 0; transition: opacity 0.5s;';
                     document.body.appendChild(messageBox);
                     setTimeout(() => {

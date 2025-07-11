@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
 
     // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
-    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (30 chương + Khúc Vĩ Thanh)
+    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (25 chương + Khúc Vĩ Thanh)
     const chapterTitlesPart1 = [
         { vi: "Bản Hòa Âm Rạn Nứt", en: "The Fractured Harmony" },
         { vi: "Lời Phán Từ Trời", en: "The Heavenly Decree" },
@@ -73,18 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         { vi: "Sự Thật Bên Kia Tấm Màn", en: "The Truth Beyond the Veil" },
         { vi: "Cái Giá của Ánh Sáng", en: "The Price of Light" },
         { vi: "Phán Quyết và Sự Chia Cắt Vĩnh Viễn", en: "Judgment and Eternal Division" },
-        { vi: "Bình Minh Cuối Cùng", en: "The Last Dawn" },
-        { vi: "Ranh Giới Vĩnh Hằng", en: "The Eternal Boundary" },
-        { vi: "Ngã Tư Đường Vĩnh Cửu", en: "The Eternal Crossroads" },
-        { vi: "Những Lời Thì Thầm Của Sự Rút Lui", en: "Whispers of Retreat" },
-        { vi: "Câu Hỏi Không Lời", en: "The Unanswered Question" },
-        { vi: "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn", en: "Epilogue: Soul Meteor Shower" } // Đây là chương cuối cùng của Phần 1 (Chương 31)
+        { vi: "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn", en: "Epilogue: Soul Meteor Shower" } // Đây là chương cuối cùng của Phần 1 (Chương 26)
     ];
 
     // Phần 2: Heavenly, Human’s Heart (30 chương)
     const chapterTitlesPart2 = [
         { vi: "Lời Từ Biệt Trên Ngai Vàng", en: "Farewell on the Throne" },
-        { vi: "Hậu Quả Thiên Đàng", en: "The Heavenly Aftermath" }, // Đã đổi tên để tránh trùng lặp với Epilogue Part 1
+        { vi: "Hậu Quả Thiên Đàng", en: "The Heavenly Aftermath" },
         { vi: "Giáng Trần & Thiên Đàng Hậu Biến Cố", en: "Descent & Post-Event Heaven" },
         { vi: "Tiếng Gọi Của Lòng Trắc Ẩn", en: "The Call of Compassion" },
         { vi: "Giữa Dòng Người & Góc Khuất Tâm Hồn", en: "Amongst Humanity & Soul's Hidden Corner" },
@@ -111,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { vi: "Nước Cờ Thực Tế", en: "The Real Game" },
         { vi: "Dự Án Đặc Biệt", en: "The Special Project" },
         { vi: "Hành Trình Đến Tâm Bão", en: "Journey to the Eye of the Storm" },
-        { vi: "Bí Mật Bị Chôn Vùi", en: "The Buried Secret" }, // Chương 29 (placeholder)
-        { vi: "Định Mệnh Chờ Đợi", en: "Destiny Awaits" } // Chương 30 (placeholder)
+        { vi: "Bí Mật Bị Chôn Vùi", en: "The Buried Secret" },
+        { vi: "Định Mệnh Chờ Đợi", en: "Destiny Awaits" }
     ];
 
     // Gộp tất cả các chương lại. Cần điều chỉnh nếu có nhiều phần truyện khác nhau.
