@@ -130,7 +130,7 @@
             @apply text-ivs-green mr-3;
         }
         .price-card-cta {
-            @apply mt-6 text-center;
+            @apply mt-6 !text-center;
         }
 
         /* Styles for spotlight card effect from layout.html - Adjusted for dark theme */
@@ -340,51 +340,38 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section id="faq" class="py-16 md:py-24 bg-ivs-card border-t border-ivs-border">
-            <div class="container mx-auto px-6">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up" data-lang-key="faq_title">
-                    Câu Hỏi Thường Gặp (FAQ)
-                </h2>
-                <div class="max-w-3xl mx-auto">
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
-                            <span data-lang-key="faq_q1">Giáo viên của IVS JSC có chứng chỉ quốc tế không?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p data-lang-key="faq_a1">Tất cả giáo viên nước ngoài do IVS JSC cung cấp đều có đầy đủ các chứng chỉ giảng dạy quốc tế như TESOL, TEFL, CELTA, và có kinh nghiệm giảng dạy phù hợp với từng cấp độ và đối tượng học viên.</p>
-                        </div>
+        <!-- 4. Giá trị Cốt lõi - Cải thiện bố cục và hiệu ứng -->
+        <section class="py-16 md:py-24 bg-ivs-bg border-b border-ivs-border">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-ivs-blue mb-4" data-lang-key="core_values_title">
+                        Giá trị Cốt lõi của IVS Academy
+                    </h2>
+                    <p class="text-lg text-ivs-text-secondary leading-relaxed" data-lang-key="core_values_intro">
+                        Những giá trị định hình nên triết lý hoạt động và cam kết của chúng tôi đối với cộng đồng giáo dục.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="feature-card p-8 border-t-4 border-ivs-blue" data-aos="zoom-in-up" data-aos-delay="100">
+                        <i class="fas fa-award text-6xl text-ivs-blue mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_quality_title">Chất lượng</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_quality_desc">Cam kết mang đến các chương trình đào tạo và dịch vụ giáo dục đạt chuẩn mực cao nhất, vượt trội và bền vững.</p>
                     </div>
-
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="faq-question">
-                            <span data-lang-key="faq_q2">IVS JSC có hỗ trợ thủ tục pháp lý cho giáo viên không?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p data-lang-key="faq_a2">Có, IVS JSC hỗ trợ toàn diện các thủ tục pháp lý liên quan đến giấy phép lao động, visa, và các giấy tờ cần thiết khác để giáo viên có thể làm việc hợp pháp tại Việt Nam.</p>
-                        </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-green" data-aos="zoom-in-up" data-aos-delay="200">
+                        <!-- Icon đã được cập nhật cho "Tận tâm" -->
+                        <i class="fas fa-heart-pulse text-6xl text-ivs-green mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_dedication_title">Tận tâm</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_dedication_desc">Luôn lắng nghe, thấu hiểu và đồng hành cùng học viên, đối tác trên hành trình phát triển, với sự chăm sóc chu đáo nhất.</p>
                     </div>
-
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="faq-question">
-                            <span data-lang-key="faq_q3">Làm thế nào để yêu cầu báo giá chính xác?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p data-lang-key="faq_a3">Để nhận báo giá chính xác nhất, vui lòng liên hệ trực tiếp với chúng tôi qua số điện thoại, email hoặc điền vào biểu mẫu liên hệ trên website. Chúng tôi sẽ tư vấn và đưa ra giải pháp phù hợp nhất với nhu cầu của quý đối tác.</p>
-                        </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-purple" data-aos="zoom-in-up" data-aos-delay="300">
+                        <i class="fas fa-lightbulb text-6xl text-ivs-purple mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_innovation_title">Sáng tạo</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_innovation_desc">Không ngừng đổi mới phương pháp, ứng dụng công nghệ để mang lại trải nghiệm học tập hiệu quả và hứng khởi, dẫn đầu xu hướng.</p>
                     </div>
-
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="faq-question">
-                            <span data-lang-key="faq_q4">IVS JSC có cung cấp giáo viên cho các tỉnh thành khác ngoài Đồng Nai không?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p data-lang-key="faq_a4">Có, IVS JSC cung cấp dịch vụ giáo viên nước ngoài trên toàn quốc. Chúng tôi có mạng lưới giáo viên rộng khắp và sẵn sàng đáp ứng nhu cầu của quý đối tác tại mọi tỉnh thành.</p>
-                        </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-amber" data-aos="zoom-in-up" data-aos-delay="400">
+                        <i class="fas fa-scale-balanced text-6xl text-ivs-amber mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_equality_title">Bình đẳng</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_equality_desc">Tạo môi trường học tập công bằng, tôn trọng sự đa dạng và phát huy tối đa tiềm năng của mỗi cá nhân, không phân biệt.</p>
                     </div>
                 </div>
             </div>
@@ -412,7 +399,8 @@
     <!-- Custom JS files for dynamic components and page logic -->
     <script src="/js/app.js"></script>
     <script src="/js/language.js"></script>
-    <script src="/js/loadComponents.js"></script>
+    <!-- Removed this script tag as loadComponent is now inlined -->
+    <!-- <script src="/js/loadComponents.js"></script> -->
     <script src="/js/headerController.js"></script>
     <script src="/js/fabController.js"></script>
     <script src="/js/script.js"></script>
@@ -426,6 +414,20 @@
     <script src="/js/tailwind.config.js"></script>
 
     <script>
+        // Define loadComponent function here to ensure it's available
+        async function loadComponent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const html = await response.text();
+                document.getElementById(elementId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading component ${url}:`, error);
+            }
+        }
+
         // Initialize AOS
         AOS.init({
             offset: 80,
@@ -630,9 +632,9 @@
         // Initialize all effects and dynamic content after DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             // Load common components
-            loadComponent('/components/header.html', 'header-placeholder');
-            loadComponent('/components/footer.html', 'footer-placeholder');
-            loadComponent('/components/fab-container.html', 'fab-container-placeholder');
+            loadComponent('https://ivsacademy.edu.vn/components/header.html', 'header-placeholder');
+            loadComponent('https://ivsacademy.edu.vn/components/footer.html', 'footer-placeholder');
+            loadComponent('https://ivsacademy.edu.vn/components/fab-container.html', 'fab-container-placeholder');
 
             initAnimatedCounters();
             initSpotlightEffect();
