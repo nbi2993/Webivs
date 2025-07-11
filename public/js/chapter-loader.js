@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
 
     // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
-    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (28 chương + Khúc Vĩ Thanh)
+    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (25 chương + Khúc Vĩ Thanh)
     const chapterTitlesPart1 = [
         "Bản Hòa Âm Vĩnh Cửu",
         "Lời Phán Từ Trời",
@@ -71,10 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Bên Kia Tấm Màn",
         "Sự Thật Bên Kia Tấm Màn",
         "Cái Giá của Ánh Sáng",
-        "Phán Quyết và Sự Chia Cắt Vĩnh Viễn",
-        "Bình Minh Cuối Cùng",
-        "Ranh Giới Vĩnh Hằng",
-        "Ngã Tư Đường Vĩnh Cửu",
+        "Phán Quyết và Sự Chia Cắt Vĩnh Viễn",        
         "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn" // Đây là chương cuối cùng của Phần 1
     ];
 
