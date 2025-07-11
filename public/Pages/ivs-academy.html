@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="ivs_academy_page_title">IVS Academy - Hệ Sinh Thái Giáo Dục & Đào Tạo | IVS JSC</title>
-    <meta name="description" content="IVS Academy là trung tâm đào tạo đa lĩnh vực của IVS JSC, cung cấp các chương trình ngoại ngữ, kỹ năng sống, STEM và đào tạo giáo viên chất lượng cao." data-lang-key="ivs_academy_meta_description">
-    <meta name="keywords" content="IVS JSC, IVS Academy, đào tạo ngoại ngữ, kỹ năng sống, STEM, đào tạo giáo viên, Long Thành, Đồng Nai" data-lang-key="ivs_academy_meta_keywords">
+    <meta name="description" content="IVS Academy là trung tâm đào tạo đa lĩnh vực của IVS JSC, cung cấp các chương trình ngoại ngữ, kỹ năng sống, STEAM và đào tạo giáo viên chất lượng cao." data-lang-key="ivs_academy_meta_description">
+    <meta name="keywords" content="IVS JSC, IVS Academy, đào tạo ngoại ngữ, kỹ năng sống, STEAM, đào tạo giáo viên, Long Thành, Đồng Nai" data-lang-key="ivs_academy_meta_keywords">
     <meta property="og:title" content="IVS Academy - Nâng Tầm Tri Thức, Kiến Tạo Tương Lai" data-lang-key="ivs_academy_og_title">
     <meta property="og:description" content="Khám phá các chương trình đào tạo toàn diện và chất lượng cao tại IVS Academy, nơi ươm mầm tài năng và phát triển con người." data-lang-key="ivs_academy_og_description">
     <meta property="og:image" content="/images/banners/ivs_academy_og.jpg">
@@ -87,6 +87,17 @@
                         'yellow-100': '#fef9c3',
                         'yellow-400': '#facc15',
                         'gray-50': '#f9fafb'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'], // Đảm bảo font Inter được sử dụng
+                        'display': ['Lexend', 'sans-serif'], // Hoặc Poppins nếu bạn muốn
+                    },
+                    animation: { 'aurora-spin': 'aurora-spin 6s linear infinite' }, // Giữ nguyên từ trang chủ nếu có
+                    keyframes: {
+                        'aurora-spin': {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
                     }
                 }
             },
@@ -284,8 +295,8 @@
         <!-- 1. HERO SECTION (Video Background) - Đồng bộ với trang chủ -->
         <section class="hero-section">
             <video autoplay muted loop playsinline class="hero-video">
-                <source src="/videos/ivs-video-background.mp4" type="video/mp4"> <!-- Đổi video riêng cho IVS Academy nếu có -->
-                <img src="/images/banners/ivs_academy_og.jpg" alt="IVS Academy Hero Background" class="hero-fallback-image">
+                <source src="/videos/ivs-video-background.mp4" type="video/mp4">
+                <img src="/images/logo/webbannermo.png" alt="[Hình ảnh nền IVS Academy]" class="hero-fallback-image">
             </video>
             <div class="hero-overlay-gradient"></div>
             <div class="hero-overlay-darken"></div>
@@ -322,14 +333,14 @@
                             Về IVS Academy: Nơi Khởi Nguồn Tri Thức
                         </h2>
                         <p class="text-lg text-ivs-text-secondary leading-relaxed mb-6" data-lang-key="about_ivs_academy_desc_long">
-                            IVS Academy là trái tim của hệ sinh thái giáo dục IVS JSC, nơi hội tụ những giá trị cốt lõi: **Chất lượng - Tận tâm - Sáng tạo - Bình đẳng**. Chúng tôi không ngừng đổi mới và phát triển các chương trình đào tạo để đáp ứng nhu cầu đa dạng của học viên và xã hội, từ việc trang bị kiến thức chuyên môn đến việc rèn luyện kỹ năng mềm thiết yếu cho thế kỷ 21. Với đội ngũ chuyên gia giàu kinh nghiệm và tâm huyết, IVS Academy cam kết mang đến môi trường học tập truyền cảm hứng, khuyến khích sự phát triển toàn diện của mỗi cá nhân.
+                            IVS Academy là trái tim của hệ sinh thái giáo dục IVS JSC, nơi hội tụ những giá trị cốt lõi: Chất lượng - Tận tâm - Sáng tạo - Bình đẳng. Chúng tôi không ngừng đổi mới và phát triển các chương trình đào tạo để đáp ứng nhu cầu đa dạng của học viên và xã hội, từ việc trang bị kiến thức chuyên môn đến việc rèn luyện kỹ năng mềm thiết yếu cho thế kỷ 21. Với đội ngũ chuyên gia giàu kinh nghiệm và tâm huyết, IVS Academy cam kết mang đến môi trường học tập truyền cảm hứng, khuyến khích sự phát triển toàn diện của mỗi cá nhân.
                         </p>
                         <a href="/about.html" class="inline-flex items-center text-ivs-blue hover:text-ivs-blue-darker font-semibold transition-colors" data-lang-key="learn_more_about_ivs">
                             Tìm hiểu thêm về IVS JSC <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                     <div data-aos="fade-left" data-aos-delay="200">
-                        <img src="/images/logo/webbannermo.png" alt="[Tổng quan IVS Academy]" class="rounded-xl shadow-2xl mx-auto w-full object-cover border border-ivs-border" onerror="this.onerror=null; this.src='https://placehold.co/1200x800/111111/f4f4f5?text=IVS+Academy+Overview';">
+                        <img src="/images/pages/ivs-academy/ivs-academy-overview.jpg" alt="[Tổng quan IVS Academy]" class="rounded-xl shadow-2xl mx-auto w-full object-cover border border-ivs-border" onerror="this.onerror=null; this.src='https://placehold.co/1200x800/111111/f4f4f5?text=IVS+Academy+Overview';">
                     </div>
                 </div>
             </div>
@@ -378,8 +389,8 @@
                         <div class="mb-6">
                             <i class="fas fa-flask text-6xl text-ivs-emerald"></i>
                         </div>
-                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_stem_title">Giáo dục STEAM & EdTech</h3>
-                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_stem_desc">
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_steam_title">Giáo dục STEAM & EdTech</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_steam_desc">
                             Tích hợp khoa học, công nghệ, kỹ thuật, nghệ thuật và toán học vào chương trình giảng dạy, phát triển tư duy logic, khả năng giải quyết vấn đề và kỹ năng sáng tạo cho thế hệ tương lai.
                         </p>
                         <a href="/Pages/rnd-curriculum.html" class="inline-flex items-center text-ivs-emerald hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
