@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com?plugins=typography,forms,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
@@ -30,18 +30,21 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#004080',
+                        'ivs-bg': '#0A0A0A', 'ivs-card': '#111111', 'ivs-border': '#27272a',
+                        'ivs-text-primary': '#f4f4f5', 'ivs-text-secondary': '#a1a1aa',
+                        'ivs-blue': '#60a5fa', 'ivs-blue-darker': '#3b82f6', 'ivs-green': '#4ade80',
+                        'ivs-purple': '#a78bfa', 'ivs-cyan': '#22d3ee', 'ivs-amber': '#f59e0b',
+                        'ivs-orange': '#fb923c',
+                        'ivs-emerald': '#10b981',
+                        'ivs-rose': '#f43f5e',
+                        'ivs-red': '#ef4444',
+
+                        // Màu sắc từ trang chủ để đồng bộ
+                        'primary': '#004080', // Màu xanh đậm chính
                         'primary-dark': '#003366',
-                        'secondary': '#ffc107',
+                        'secondary': '#ffc107', // Màu vàng phụ
                         'secondary-dark': '#e0a800',
                         'header-orange': '#F97316',
-                        'ivs-neutral-800': '#1f2937',
-                        'ivs-neutral-700': '#374151',
-                        'ivs-neutral-600': '#4B5563',
-                        'ivs-neutral-300': '#D1D5DB',
-                        'ivs-neutral-200': '#e5e7eb',
-                        'ivs-neutral-100': '#f3f4f6',
-                        'ivs-neutral-50': '#f9fafb',
                         'purple-accent': '#8b5cf6',
                         'warning': '#f59e0b',
                         'blue-50': '#eff6ff',
@@ -93,184 +96,462 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/dist/output.css">
+    <!-- <link rel="stylesheet" href="/dist/output.css"> -->
     <style>
-        .hero-text-shadow { text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
-        .feature-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Custom scrollbar for chatbot messages (giữ nguyên) */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111111; /* ivs-card */
+            border-radius: 10px;
         }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a; /* ivs-border */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6; /* ivs-blue-darker */
+        }
+
+        /* Hero Section Styles (tương tự trang chủ) */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Chiếm toàn bộ chiều cao khung nhìn */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            background-color: #0A0A0A; /* ivs-bg */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0; /* Đặt video ở lớp thấp nhất */
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.5); /* Làm tối video để nội dung dễ đọc */
+            opacity: 0; /* Bắt đầu ẩn, sẽ hiện lên bằng JS */
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-video.loaded {
+            opacity: 1;
+        }
+
+        .hero-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            display: block;
+        }
+
+        .hero-overlay-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--tw-colors-ivs-bg) 0%, rgba(10, 10, 10, 0.5) 50%, transparent 100%);
+            z-index: 1; /* Nằm trên video */
+        }
+
+        .hero-overlay-darken {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4); /* Lớp phủ đen trong suốt */
+            z-index: 1; /* Nằm trên video, dưới nội dung */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Nội dung nằm trên cùng */
+            max-width: 90%;
+            padding: 20px;
+        }
+
+        /* Base button styles (tương tự trang chủ) */
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-image: linear-gradient(to right, #3b82f6, #2563eb);
+            color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #52525b;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #52525b;
+            box-shadow: 0 10px 15px -3px rgba(82, 82, 91, 0.2), 0 4px 6px -2px rgba(82, 82, 91, 0.2);
+        }
+
+        /* Adjust Hero Headline for better visual balance */
+        .hero-section h1 .bg-clip-text {
+            line-height: 1.2;
+        }
+
+        /* General Section Styles (tương tự trang chủ) */
         .section-heading-icon {
             font-size: 2.5rem;
             margin-right: 1rem;
-            color: var(--tw-colors-blue-500); /* Default blue */
+            color: var(--tw-colors-blue-500);
         }
         .dark .section-heading-icon {
-            color: var(--tw-colors-blue-400); /* Dark mode blue */
+            color: var(--tw-colors-blue-400);
         }
-        .unit-card {
+
+        .feature-card, .unit-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            @apply rounded-xl border border-ivs-border bg-ivs-card; /* Đồng bộ style card */
         }
-        .unit-card:hover {
+        .feature-card:hover, .unit-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.07);
         }
+
+        /* Màu sắc cho các icon và tiêu đề phụ trong các section */
+        .text-primary { color: var(--tw-colors-ivs-blue); }
+        .dark .text-primary { color: var(--tw-colors-ivs-blue); }
+        .text-secondary { color: var(--tw-colors-ivs-green); }
+        .dark .text-secondary { color: var(--tw-colors-ivs-green); }
+        .border-primary { border-color: var(--tw-colors-ivs-blue); }
+        .dark .border-primary { border-color: var(--tw-colors-ivs-blue); }
+        .border-secondary { border-color: var(--tw-colors-ivs-green); }
+        .dark .border-secondary { border-color: var(--tw-colors-ivs-green); }
+
+        /* Cải thiện style cho các tab */
+        .tab-button {
+            @apply px-6 py-3 font-semibold border-b-2 transition-colors duration-300;
+        }
+        .tab-button.active {
+            @apply text-ivs-blue border-ivs-blue;
+        }
+        .tab-button:not(.active) {
+            @apply text-ivs-text-secondary border-transparent hover:border-ivs-border;
+        }
+
+        /* Cải thiện style cho CTA cuối trang */
+        .cta-section {
+            background: linear-gradient(to right, var(--tw-colors-ivs-blue-darker), var(--tw-colors-ivs-purple));
+            @apply text-white py-16 md:py-24 text-center rounded-xl shadow-2xl;
+        }
+        .cta-section h2 {
+            @apply text-4xl md:text-5xl font-bold font-display mb-6;
+        }
+        .cta-section p {
+            @apply text-lg md:text-xl max-w-3xl mx-auto mb-10;
+        }
+        .cta-section .btn-contact {
+            @apply inline-flex items-center gap-3 bg-white text-ivs-blue font-semibold py-3 px-8 md:py-4 md:px-10 rounded-lg transition duration-300 shadow-xl hover:shadow-2xl text-lg transform hover:scale-105;
+        }
+
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-neutral-900 text-gray-800 dark:text-neutral-200 font-inter">
+<body class="flex flex-col min-h-screen bg-ivs-bg text-ivs-text-primary font-inter">
     <div id="header-placeholder" data-loading-text="Đang tải menu..."></div>
 
     <main class="flex-grow pt-[var(--header-height)] md:pt-[calc(var(--header-height)+1rem)]">
-        <section class="bg-gradient-to-r from-primary via-blue-600 to-indigo-700 text-white py-20 md:py-28 text-center" data-aos="fade-in" data-aos-duration="800">
-            <div class="container mx-auto px-4">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 hero-text-shadow" data-lang-key="ivs_academy_main_title" data-aos="fade-down" data-aos-delay="200">
-                    IVS Academy - Nâng Tầm Tri Thức, Kiến Tạo Tương Lai
+        <!-- 1. HERO SECTION (Video Background) - Đồng bộ với trang chủ -->
+        <section class="hero-section">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="/videos/ivs-academy-hero-video.mp4" type="video/mp4"> <!-- Đổi video riêng cho IVS Academy nếu có -->
+                <img src="/images/banners/ivs_academy_og.jpg" alt="IVS Academy Hero Background" class="hero-fallback-image">
+            </video>
+            <div class="hero-overlay-gradient"></div>
+            <div class="hero-overlay-darken"></div>
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4 hero-text-shadow">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="ivs_academy_main_title">
+                        IVS Academy
+                    </span>
+                    <br />
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="ivs_academy_main_subtitle_part1">
+                        Nâng Tầm Tri Thức.
+                    </span> <span class="text-white" data-lang-key="ivs_academy_main_subtitle_part2">Kiến Tạo Tương Lai.</span>
                 </h1>
-                <p class="text-xl md:text-2xl opacity-95 max-w-3xl mx-auto hero-text-shadow" data-lang-key="ivs_academy_intro" data-aos="fade-up" data-aos-delay="400">
-                    IVS Academy, một đơn vị chủ chốt của IVS JSC, tự hào là hệ sinh thái giáo dục toàn diện, cung cấp các chương trình đào tạo chất lượng cao từ ngoại ngữ, kỹ năng sống, STEM đến phát triển chuyên môn giáo viên. Chúng tôi cam kết ươm mầm tài năng, phát triển con người và kiến tạo tương lai bền vững.
+                <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10 hero-text-shadow" data-lang-key="ivs_academy_intro_long">
+                    IVS Academy, một đơn vị chủ chốt của IVS JSC, tự hào là hệ sinh thái giáo dục toàn diện, cung cấp các chương trình đào tạo chất lượng cao từ ngoại ngữ, kỹ năng sống, STEAM đến phát triển chuyên môn giáo viên. Chúng tôi cam kết ươm mầm tài năng, phát triển con người và kiến tạo tương lai bền vững.
                 </p>
+                <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
+                    <a href="#main-training-areas" class="btn-primary" data-lang-key="explore_programs_btn">
+                        <i class="fas fa-book-open mr-2"></i> Khám phá Chương trình
+                    </a>
+                    <a href="/contact.html" class="btn-secondary" data-lang-key="contact_us_btn">
+                        <i class="fas fa-headset mr-2"></i> Liên hệ Tư vấn
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="container mx-auto px-4 py-12 md:py-16">
-            <div class="bg-white dark:bg-neutral-800 p-6 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:border-neutral-700">
-
-                <!-- Giới thiệu về IVS Academy -->
-                <section class="mb-16" aria-labelledby="about-ivs-academy-heading" data-aos="fade-up">
-                    <h2 id="about-ivs-academy-heading" class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-8 pb-3 border-b-2 border-primary dark:border-blue-500 flex items-center gap-3">
-                        <i class="fas fa-building-columns section-heading-icon"></i>
-                        <span data-lang-key="about_ivs_academy_title">Về IVS Academy</span>
-                    </h2>
-                    <p class="text-neutral-700 dark:text-neutral-300 mb-10 text-lg leading-relaxed" data-lang-key="about_ivs_academy_desc">
-                        IVS Academy là trái tim của hệ sinh thái giáo dục IVS JSC, nơi hội tụ những giá trị cốt lõi: **Chất lượng - Tận tâm - Sáng tạo - Bình đẳng**. Chúng tôi không ngừng đổi mới và phát triển các chương trình đào tạo để đáp ứng nhu cầu đa dạng của học viên và xã hội, từ việc trang bị kiến thức chuyên môn đến việc rèn luyện kỹ năng mềm thiết yếu cho thế kỷ 21.
-                    </p>
-                    <img src="/images/logo/webbannermo.png" alt="[Tổng quan IVS Academy]" class="rounded-lg shadow-lg mx-auto max-h-[400px] object-cover w-full" onerror="this.onerror=null; this.src='https://placehold.co/1200x400/eff6ff/1e40af?text=IVS+Academy+Overview';">
-                </section>
-
-                <!-- Các Lĩnh vực Đào tạo Chính -->
-                <section class="mb-16" aria-labelledby="main-training-areas-heading" data-aos="fade-up">
-                    <h2 id="main-training-areas-heading" class="text-3xl md:text-4xl font-bold text-secondary dark:text-emerald-400 mb-10 pb-3 border-b-2 border-secondary dark:border-emerald-500 flex items-center gap-3">
-                        <i class="fas fa-graduation-cap section-heading-icon text-emerald-500 dark:text-emerald-400"></i>
-                        <span data-lang-key="main_training_areas_title">Các Lĩnh vực Đào tạo Chính</span>
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="feature-card p-6 bg-blue-50 dark:bg-blue-900/50 rounded-xl border border-blue-200 dark:border-blue-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="100">
-                            <i class="fas fa-language text-5xl text-blue-600 dark:text-blue-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_language_title">Đào tạo Ngoại ngữ</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_language_desc">Các khóa học Tiếng Anh (Cambridge, IELTS, Giao tiếp) và Tiếng Trung (HSK) với giáo trình chuẩn quốc tế, giáo viên bản xứ và Việt Nam chất lượng cao.</p>
-                            <a href="/Pages/ivslanguages.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
-                        <div class="feature-card p-6 bg-purple-50 dark:bg-purple-900/50 rounded-xl border border-purple-200 dark:border-purple-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="200">
-                            <i class="fas fa-brain text-5xl text-purple-600 dark:text-purple-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_lifeskills_title">Kỹ năng sống IVS LifeMinds</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_lifeskills_desc">Chương trình phát triển toàn diện tư duy, cảm xúc và kỹ năng xã hội cho trẻ em, giúp các em tự tin vững bước trong cuộc sống.</p>
-                            <a href="/Pages/ivslifeminds.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
-                        <div class="feature-card p-6 bg-emerald-50 dark:bg-emerald-900/50 rounded-xl border border-emerald-200 dark:border-emerald-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="300">
-                            <i class="fas fa-flask text-5xl text-emerald-600 dark:text-emerald-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_stem_title">Giáo dục STEM & EdTech</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_stem_desc">Tích hợp khoa học, công nghệ, kỹ thuật và toán học vào chương trình giảng dạy, phát triển tư duy logic và khả năng giải quyết vấn đề.</p>
-                            <a href="/Pages/rnd-curriculum.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
-                        <div class="feature-card p-6 bg-orange-100 dark:bg-orange-700/30 rounded-xl border border-orange-200 dark:border-orange-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="400">
-                            <i class="fas fa-user-tie text-5xl text-orange-600 dark:text-orange-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_teacher_training_title">Đào tạo Giáo viên</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_teacher_training_desc">Các khóa học chuyên sâu nâng cao năng lực sư phạm, cập nhật phương pháp giảng dạy hiện đại và ứng dụng công nghệ cho giáo viên Việt Nam.</p>
-                            <a href="/Pages/teachertrain.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
-                        <div class="feature-card p-6 bg-red-50 dark:bg-red-900/50 rounded-xl border border-red-200 dark:border-red-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="500">
-                            <i class="fas fa-handshake text-5xl text-red-600 dark:text-red-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_foreign_teacher_supply_title">Cung ứng Giáo viên Nước ngoài</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_foreign_teacher_supply_desc">Dịch vụ tuyển dụng và cung cấp giáo viên nước ngoài chất lượng cao, hỗ trợ toàn diện thủ tục pháp lý cho các trường học và trung tâm.</p>
-                            <a href="/Pages/foreign-teacher-services.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
-                        <div class="feature-card p-6 bg-yellow-100 dark:bg-yellow-700/30 rounded-xl border border-yellow-200 dark:border-yellow-700 shadow-lg text-center" data-aos="zoom-in-up" data-aos-delay="600">
-                            <i class="fas fa-laptop-code text-5xl text-yellow-600 dark:text-yellow-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="area_edtech_solutions_title">Giải pháp Công nghệ Giáo dục</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="area_edtech_solutions_desc">Phát triển các nền tảng học tập số, ứng dụng EdTech, và giải pháp công nghệ tùy chỉnh để tối ưu hóa trải nghiệm dạy và học.</p>
-                            <a href="/Pages/ivscelestech.html" class="mt-4 inline-block text-primary dark:text-blue-400 hover:underline font-medium text-sm" data-lang-key="common_learn_more">Tìm hiểu thêm</a>
-                        </div>
+        <!-- 2. Giới thiệu về IVS Academy - Section mới, hiện đại hơn -->
+        <section class="py-16 md:py-24 bg-ivs-bg border-b border-ivs-border">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-3xl md:text-4xl font-bold font-display text-ivs-blue mb-6" data-lang-key="about_ivs_academy_title">
+                            Về IVS Academy: Nơi Khởi Nguồn Tri Thức
+                        </h2>
+                        <p class="text-lg text-ivs-text-secondary leading-relaxed mb-6" data-lang-key="about_ivs_academy_desc_long">
+                            IVS Academy là trái tim của hệ sinh thái giáo dục IVS JSC, nơi hội tụ những giá trị cốt lõi: **Chất lượng - Tận tâm - Sáng tạo - Bình đẳng**. Chúng tôi không ngừng đổi mới và phát triển các chương trình đào tạo để đáp ứng nhu cầu đa dạng của học viên và xã hội, từ việc trang bị kiến thức chuyên môn đến việc rèn luyện kỹ năng mềm thiết yếu cho thế kỷ 21. Với đội ngũ chuyên gia giàu kinh nghiệm và tâm huyết, IVS Academy cam kết mang đến môi trường học tập truyền cảm hứng, khuyến khích sự phát triển toàn diện của mỗi cá nhân.
+                        </p>
+                        <a href="/about.html" class="inline-flex items-center text-ivs-blue hover:text-ivs-blue-darker font-semibold transition-colors" data-lang-key="learn_more_about_ivs">
+                            Tìm hiểu thêm về IVS JSC <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                </section>
-
-                <!-- Giá trị Cốt lõi -->
-                <section class="mb-16" aria-labelledby="core-values-heading" data-aos="fade-up">
-                    <h2 id="core-values-heading" class="text-3xl md:text-4xl font-bold text-primary dark:text-blue-400 mb-10 pb-3 border-b-2 border-primary dark:border-blue-500 flex items-center gap-3">
-                        <i class="fas fa-heart section-heading-icon text-red-500 dark:text-red-400"></i>
-                        <span data-lang-key="core_values_title">Giá trị Cốt lõi</span>
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                        <div class="feature-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-t-4 border-blue-500 dark:border-blue-400" data-aos="zoom-in-up" data-aos-delay="100">
-                            <i class="fas fa-award text-5xl text-blue-500 dark:text-blue-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="value_quality_title">Chất lượng</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="value_quality_desc">Cam kết mang đến các chương trình đào tạo và dịch vụ giáo dục đạt chuẩn mực cao nhất.</p>
-                        </div>
-                        <div class="feature-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-t-4 border-emerald-500 dark:border-emerald-400" data-aos="zoom-in-up" data-aos-delay="200">
-                            <i class="fas fa-hands-heart text-5xl text-emerald-500 dark:text-emerald-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="value_dedication_title">Tận tâm</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="value_dedication_desc">Luôn lắng nghe, thấu hiểu và đồng hành cùng học viên, đối tác trên hành trình phát triển.</p>
-                        </div>
-                        <div class="feature-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-t-4 border-purple-500 dark:border-purple-400" data-aos="zoom-in-up" data-aos-delay="300">
-                            <i class="fas fa-lightbulb text-5xl text-purple-500 dark:text-purple-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="value_innovation_title">Sáng tạo</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="value_innovation_desc">Không ngừng đổi mới phương pháp, ứng dụng công nghệ để mang lại trải nghiệm học tập hiệu quả và hứng khởi.</p>
-                        </div>
-                        <div class="feature-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-t-4 border-amber-500 dark:border-amber-400" data-aos="zoom-in-up" data-aos-delay="400">
-                            <i class="fas fa-scale-balanced text-5xl text-amber-500 dark:text-amber-400 mb-4"></i>
-                            <h3 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-2" data-lang-key="value_equality_title">Bình đẳng</h3>
-                            <p class="text-sm text-gray-700 dark:text-neutral-300" data-lang-key="value_equality_desc">Tạo môi trường học tập công bằng, tôn trọng sự đa dạng và phát huy tiềm năng của mỗi cá nhân.</p>
-                        </div>
+                    <div data-aos="fade-left" data-aos-delay="200">
+                        <img src="/images/pages/ivs-academy/ivs-academy-overview.jpg" alt="[Tổng quan IVS Academy]" class="rounded-xl shadow-2xl mx-auto w-full object-cover border border-ivs-border" onerror="this.onerror=null; this.src='https://placehold.co/1200x800/111111/f4f4f5?text=IVS+Academy+Overview';">
                     </div>
-                </section>
-
-                <!-- Các Đơn vị Trực thuộc -->
-                <section class="mb-16" aria-labelledby="affiliated-units-heading" data-aos="fade-up">
-                    <h2 id="affiliated-units-heading" class="text-3xl md:text-4xl font-bold text-secondary dark:text-emerald-400 mb-10 pb-3 border-b-2 border-secondary dark:border-emerald-500 flex items-center gap-3">
-                        <i class="fas fa-sitemap section-heading-icon text-emerald-500 dark:text-emerald-400"></i>
-                        <span data-lang-key="affiliated_units_title">Các Đơn vị Trực thuộc</span>
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="unit-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-l-4 border-blue-500 dark:border-blue-400" data-aos="fade-right" data-aos-delay="100">
-                            <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_languages_title">IVS Languages</h3>
-                            <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_languages_desc">Trung tâm đào tạo ngoại ngữ chuyên sâu Tiếng Anh (Cambridge, IELTS, Giao tiếp) và Tiếng Trung (HSK), với giáo trình và phương pháp giảng dạy chuẩn quốc tế.</p>
-                            <a href="/Pages/ivslanguages.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
-                        </div>
-                        <div class="unit-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-l-4 border-purple-500 dark:border-purple-400" data-aos="fade-left" data-aos-delay="200">
-                            <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_education_title">IVS Education</h3>
-                            <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_education_desc">Chuyên phát triển chương trình giáo dục (R&D), biên soạn học liệu STEAM, Kỹ năng sống, và cung cấp giải pháp học tập số (EdTech) cho các cơ sở giáo dục.</p>
-                            <a href="/Pages/education.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
-                        </div>
-                         <div class="unit-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-l-4 border-teal-600 dark:border-teal-400" data-aos="fade-right" data-aos-delay="300">
-                            <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_celestech_title">IVS Celestech</h3>
-                            <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_celestech_desc">Đơn vị công nghệ chuyên tư vấn, thiết kế, thi công nội thất và cung cấp trang thiết bị giáo dục hiện đại, ứng dụng công nghệ AI, VR/AR để tối ưu không gian học tập.</p>
-                            <a href="/Pages/ivscelestech-tcnoithat.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
-                        </div>
-                        <!-- New IVS Consulting Unit -->
-                        <div class="unit-card p-6 bg-gray-50 dark:bg-neutral-700 rounded-xl shadow-lg border-l-4 border-amber-500 dark:border-amber-400" data-aos="fade-left" data-aos-delay="400">
-                            <h3 class="text-2xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3" data-lang-key="unit_ivs_consulting_title">IVS Consulting</h3>
-                            <p class="text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed" data-lang-key="unit_ivs_consulting_desc">Cung cấp dịch vụ tư vấn chuyên sâu về chuyển đổi số, chiến lược giáo dục và tối ưu hóa vận hành, giúp các tổ chức phát triển bền vững trong kỷ nguyên số.</p>
-                            <a href="/Pages/consulting.html" class="inline-block text-primary dark:text-blue-400 hover:underline font-medium" data-lang-key="common_learn_more">Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="text-center mt-16 pt-12 border-t border-gray-200 dark:border-neutral-700" data-aos="fade-up">
-                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-neutral-100 mb-6" data-lang-key="ivs_academy_cta_title">
-                        Sẵn sàng Khám phá Tiềm năng cùng IVS Academy?
-                    </h2>
-                    <p class="text-gray-600 dark:text-neutral-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed" data-lang-key="ivs_academy_cta_prompt">
-                         Liên hệ ngay hôm nay để được tư vấn chi tiết về các chương trình đào tạo, giải pháp giáo dục và cơ hội hợp tác cùng chúng tôi!
-                    </p>
-                    <a href="/contact.html" class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 md:py-4 md:px-10 rounded-lg transition duration-300 shadow-xl hover:shadow-2xl text-lg transform hover:scale-105">
-                        <i class="fas fa-envelope"></i> <span data-lang-key="contact_us_button_general">Liên hệ với chúng tôi</span>
-                    </a>
-                </section>
-
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 3. Các Lĩnh vực Đào tạo Chính - Cải thiện bố cục và hiệu ứng -->
+        <section id="main-training-areas" class="py-16 md:py-24 bg-ivs-card border-b border-ivs-border">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-ivs-green mb-4" data-lang-key="main_training_areas_title">
+                        Các Lĩnh vực Đào tạo Chính tại IVS Academy
+                    </h2>
+                    <p class="text-lg text-ivs-text-secondary leading-relaxed" data-lang-key="main_training_areas_intro">
+                        Chúng tôi cung cấp đa dạng các chương trình đào tạo được thiết kế khoa học, đáp ứng nhu cầu học tập và phát triển của mọi lứa tuổi.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Đào tạo Ngoại ngữ -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="mb-6">
+                            <i class="fas fa-language text-6xl text-ivs-blue"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_language_title">Đào tạo Ngoại ngữ</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_language_desc">
+                            Các khóa học Tiếng Anh (Cambridge, IELTS, Giao tiếp) và Tiếng Trung (HSK) với giáo trình chuẩn quốc tế, giáo viên bản xứ và Việt Nam chất lượng cao, giúp học viên tự tin giao tiếp và đạt chứng chỉ quốc tế.
+                        </p>
+                        <a href="/Pages/ivslanguages.html" class="inline-flex items-center text-ivs-blue hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Kỹ năng sống IVS LifeMinds -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="mb-6">
+                            <i class="fas fa-brain text-6xl text-ivs-purple"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_lifeskills_title">Kỹ năng sống IVS LifeMinds</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_lifeskills_desc">
+                            Chương trình phát triển toàn diện tư duy, cảm xúc và kỹ năng xã hội cho trẻ em, giúp các em tự tin vững bước trong cuộc sống và phát triển bản thân một cách bền vững.
+                        </p>
+                        <a href="/Pages/ivslifeminds.html" class="inline-flex items-center text-ivs-purple hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Giáo dục STEAM & EdTech -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="300">
+                        <div class="mb-6">
+                            <i class="fas fa-flask text-6xl text-ivs-emerald"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_stem_title">Giáo dục STEAM & EdTech</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_stem_desc">
+                            Tích hợp khoa học, công nghệ, kỹ thuật, nghệ thuật và toán học vào chương trình giảng dạy, phát triển tư duy logic, khả năng giải quyết vấn đề và kỹ năng sáng tạo cho thế hệ tương lai.
+                        </p>
+                        <a href="/Pages/rnd-curriculum.html" class="inline-flex items-center text-ivs-emerald hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Đào tạo Giáo viên -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="400">
+                        <div class="mb-6">
+                            <i class="fas fa-user-tie text-6xl text-ivs-amber"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_teacher_training_title">Đào tạo Giáo viên</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_teacher_training_desc">
+                            Các khóa học chuyên sâu nâng cao năng lực sư phạm, cập nhật phương pháp giảng dạy hiện đại và ứng dụng công nghệ cho giáo viên Việt Nam, đáp ứng chuẩn quốc tế.
+                        </p>
+                        <a href="/Pages/teachertrain.html" class="inline-flex items-center text-ivs-amber hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Cung ứng Giáo viên Nước ngoài -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="500">
+                        <div class="mb-6">
+                            <i class="fas fa-handshake text-6xl text-ivs-rose"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_foreign_teacher_supply_title">Cung ứng Giáo viên Nước ngoài</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_foreign_teacher_supply_desc">
+                            Dịch vụ tuyển dụng và cung cấp giáo viên nước ngoài chất lượng cao, hỗ trợ toàn diện thủ tục pháp lý cho các trường học và trung tâm, đảm bảo nguồn nhân lực chất lượng.
+                        </p>
+                        <a href="/Pages/foreign-teacher-services.html" class="inline-flex items-center text-ivs-rose hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <!-- Giải pháp Công nghệ Giáo dục -->
+                    <div class="feature-card p-8 text-center" data-aos="zoom-in-up" data-aos-delay="600">
+                        <div class="mb-6">
+                            <i class="fas fa-laptop-code text-6xl text-ivs-cyan"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="area_edtech_solutions_title">Giải pháp Công nghệ Giáo dục</h3>
+                        <p class="text-base text-ivs-text-secondary mb-4" data-lang-key="area_edtech_solutions_desc">
+                            Phát triển các nền tảng học tập số, ứng dụng EdTech, và giải pháp công nghệ tùy chỉnh để tối ưu hóa trải nghiệm dạy và học, nâng cao hiệu quả giáo dục.
+                        </p>
+                        <a href="/Pages/ivscelestech.html" class="inline-flex items-center text-ivs-cyan hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                            Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Giá trị Cốt lõi - Cải thiện bố cục và hiệu ứng -->
+        <section class="py-16 md:py-24 bg-ivs-bg border-b border-ivs-border">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-ivs-blue mb-4" data-lang-key="core_values_title">
+                        Giá trị Cốt lõi của IVS Academy
+                    </h2>
+                    <p class="text-lg text-ivs-text-secondary leading-relaxed" data-lang-key="core_values_intro">
+                        Những giá trị định hình nên triết lý hoạt động và cam kết của chúng tôi đối với cộng đồng giáo dục.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="feature-card p-8 border-t-4 border-ivs-blue" data-aos="zoom-in-up" data-aos-delay="100">
+                        <i class="fas fa-award text-6xl text-ivs-blue mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_quality_title">Chất lượng</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_quality_desc">Cam kết mang đến các chương trình đào tạo và dịch vụ giáo dục đạt chuẩn mực cao nhất, vượt trội và bền vững.</p>
+                    </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-green" data-aos="zoom-in-up" data-aos-delay="200">
+                        <i class="fas fa-hands-heart text-6xl text-ivs-green mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_dedication_title">Tận tâm</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_dedication_desc">Luôn lắng nghe, thấu hiểu và đồng hành cùng học viên, đối tác trên hành trình phát triển, với sự chăm sóc chu đáo nhất.</p>
+                    </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-purple" data-aos="zoom-in-up" data-aos-delay="300">
+                        <i class="fas fa-lightbulb text-6xl text-ivs-purple mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_innovation_title">Sáng tạo</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_innovation_desc">Không ngừng đổi mới phương pháp, ứng dụng công nghệ để mang lại trải nghiệm học tập hiệu quả và hứng khởi, dẫn đầu xu hướng.</p>
+                    </div>
+                    <div class="feature-card p-8 border-t-4 border-ivs-amber" data-aos="zoom-in-up" data-aos-delay="400">
+                        <i class="fas fa-scale-balanced text-6xl text-ivs-amber mb-4"></i>
+                        <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="value_equality_title">Bình đẳng</h3>
+                        <p class="text-base text-ivs-text-secondary" data-lang-key="value_equality_desc">Tạo môi trường học tập công bằng, tôn trọng sự đa dạng và phát huy tối đa tiềm năng của mỗi cá nhân, không phân biệt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Các Đơn vị Trực thuộc - Cải thiện bố cục và thêm hình ảnh/biểu tượng -->
+        <section class="py-16 md:py-24 bg-ivs-card border-b border-ivs-border">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-ivs-green mb-4" data-lang-key="affiliated_units_title">
+                        Hệ Thống Đơn Vị Trực Thuộc IVS Academy
+                    </h2>
+                    <p class="text-lg text-ivs-text-secondary leading-relaxed" data-lang-key="affiliated_units_intro">
+                        Mỗi đơn vị là một mảnh ghép quan trọng, cùng nhau tạo nên hệ sinh thái giáo dục toàn diện của IVS Academy.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="unit-card p-8 flex items-start gap-6" data-aos="fade-right" data-aos-delay="100">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-book-open-reader text-6xl text-ivs-blue"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_languages_title">IVS Languages</h3>
+                            <p class="text-base text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_languages_desc">
+                                Trung tâm đào tạo ngoại ngữ chuyên sâu Tiếng Anh (Cambridge, IELTS, Giao tiếp) và Tiếng Trung (HSK), với giáo trình và phương pháp giảng dạy chuẩn quốc tế, giúp học viên tự tin giao tiếp và đạt chứng chỉ quốc tế.
+                            </p>
+                            <a href="/Pages/ivslanguages.html" class="inline-flex items-center text-ivs-blue hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                                Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="unit-card p-8 flex items-start gap-6" data-aos="fade-left" data-aos-delay="200">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-lightbulb text-6xl text-ivs-purple"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_education_title">IVS Education</h3>
+                            <p class="text-base text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_education_desc">
+                                Chuyên phát triển chương trình giáo dục (R&D), biên soạn học liệu STEAM, Kỹ năng sống, và cung cấp giải pháp học tập số (EdTech) cho các cơ sở giáo dục, tiên phong trong đổi mới giáo dục.
+                            </p>
+                            <a href="/Pages/education.html" class="inline-flex items-center text-ivs-purple hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                                Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="unit-card p-8 flex items-start gap-6" data-aos="fade-right" data-aos-delay="300">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-microchip text-6xl text-ivs-cyan"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_celestech_title">IVS Celestech</h3>
+                            <p class="text-base text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_celestech_desc">
+                                Đơn vị công nghệ chuyên tư vấn, thiết kế, thi công nội thất và cung cấp trang thiết bị giáo dục hiện đại, ứng dụng công nghệ AI, VR/AR để tối ưu không gian học tập và trải nghiệm giáo dục.
+                            </p>
+                            <a href="/Pages/ivscelestech-tcnoithat.html" class="inline-flex items-center text-ivs-cyan hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                                Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="unit-card p-8 flex items-start gap-6" data-aos="fade-left" data-aos-delay="400">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-handshake-angle text-6xl text-ivs-amber"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_consulting_title">IVS Consulting</h3>
+                            <p class="text-base text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_consulting_desc">
+                                Cung cấp dịch vụ tư vấn chuyên sâu về chuyển đổi số, chiến lược giáo dục và tối ưu hóa vận hành, giúp các tổ chức phát triển bền vững trong kỷ nguyên số và đạt được mục tiêu.
+                            </p>
+                            <a href="/Pages/consulting.html" class="inline-flex items-center text-ivs-amber hover:text-ivs-blue-darker font-semibold transition-colors text-sm" data-lang-key="common_learn_more">
+                                Tìm hiểu thêm <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. CTA cuối trang - Nổi bật hơn -->
+        <section class="cta-section py-16 md:py-24 bg-ivs-bg">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold font-display text-white mb-6" data-aos="fade-up" data-lang-key="ivs_academy_cta_title">
+                    Sẵn sàng Khám phá Tiềm năng cùng IVS Academy?
+                </h2>
+                <p class="text-lg md:text-xl text-white opacity-90 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="ivs_academy_cta_prompt">
+                     Liên hệ ngay hôm nay để được tư vấn chi tiết về các chương trình đào tạo, giải pháp giáo dục và cơ hội hợp tác cùng chúng tôi!
+                </p>
+                <a href="/contact.html" class="btn-contact" data-aos="zoom-in" data-aos-delay="200" data-lang-key="contact_us_button_general">
+                    <i class="fas fa-envelope"></i> Liên hệ với chúng tôi
+                </a>
+            </div>
+        </section>
+
     </main>
 
     <footer id="footer-placeholder"></footer>
@@ -306,6 +587,25 @@
                 scrollToTopBtn.classList.add('hidden');
               }
           }
+
+        // JavaScript để xử lý video nền và hiệu ứng loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                heroVideo.play().catch(error => {
+                    console.warn('Autoplay prevented for hero video:', error);
+                    heroVideo.style.display = 'none'; // Ẩn video nếu autoplay thất bại
+                    const fallbackImage = heroVideo.querySelector('.hero-fallback-image');
+                    if (fallbackImage) fallbackImage.style.display = 'block'; // Hiển thị ảnh fallback
+                });
+                heroVideo.oncanplaythrough = () => {
+                    heroVideo.classList.add('loaded');
+                };
+                if (heroVideo.readyState >= 3) {
+                    heroVideo.classList.add('loaded');
+                }
+            }
+        });
     </script>
 </body>
 </html>
