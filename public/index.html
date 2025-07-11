@@ -79,31 +79,140 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #3b82f6; /* ivs-blue-darker */
         }
-        /* Existing hero-section styles (kept for the main hero) */
+
+        /* --- Hero Section Styles (Video Background) --- */
         .hero-section {
-            background-image: url('images/logo/webbannermo1.png'); /* Ảnh mặc định cho desktop */
-            background-size: cover;
-            background-position: center;
+            position: relative; /* Quan trọng: để các phần tử con (video, overlay, content) định vị theo nó */
+            width: 100%;
+            height: 100vh; /* Chiếm toàn bộ chiều cao khung nhìn */
+            overflow: hidden; /* Đảm bảo video không tràn ra ngoài */
+            display: flex;
+            flex-direction: column; /* Sắp xếp nội dung theo cột */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff; /* Màu chữ cho nội dung chính trên video */
+            background-color: #000; /* Màu nền dự phòng nếu video và ảnh đều không tải được */
+            /* Các thuộc tính background-image cũ đã bị loại bỏ ở đây */
         }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1; /* Video nằm dưới cùng */
+            transform: translate(-50%, -50%); /* Căn giữa video tuyệt đối */
+            object-fit: cover; /* Đảm bảo video lấp đầy không gian mà không bị bóp méo/cắt xén */
+            filter: brightness(0.5); /* Làm tối video để nội dung dễ đọc hơn */
+            /* Optional: transition cho hiệu ứng mượt mà khi video tải (kết hợp JS) */
+            opacity: 0; /* Bắt đầu ẩn, sẽ hiện lên bằng JS khi video tải xong */
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Khi video đã sẵn sàng (thường thêm class 'loaded' bằng JS) */
+        .hero-video.loaded {
+            opacity: 1;
+        }
+
+        /* Định kiểu cho ảnh fallback (nếu video không tải được) */
+        .hero-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0; /* Nằm dưới video và overlay */
+            display: block; /* Mặc định hiển thị */
+        }
+
+        /* Lớp phủ (overlay) cho video */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Lớp phủ đen trong suốt 40% */
+            z-index: 2; /* Nằm trên video, dưới nội dung */
+        }
+
+        /* Nội dung của hero-section */
+        .hero-content {
+            position: relative;
+            z-index: 3; /* Nội dung nằm trên cùng */
+            max-width: 90%; /* Giới hạn chiều rộng trên mobile */
+            padding: 20px;
+        }
+
+        /* --- Responsive cho thiết bị di động --- */
         @media (max-width: 768px) {
             .hero-section {
-                background-image: url('images/logo/mobile-banner.png'); /* Ảnh dành riêng cho mobile */
+                height: 70vh; /* Giảm chiều cao trên mobile để không chiếm quá nhiều không gian */
+            }
+            .hero-video {
+                filter: brightness(0.6); /* Có thể làm tối hơn một chút trên di động */
+            }
+            .hero-overlay {
+                background: rgba(0, 0, 0, 0.5); /* Lớp phủ có thể đậm hơn trên mobile */
+            }
+            /* Để tiết kiệm dữ liệu/hiệu suất trên mobile, bạn có thể cân nhắc ẩn video và chỉ hiển thị ảnh fallback: */
+            /* .hero-video {
+                display: none;
+            }
+            .hero-fallback-image {
+                display: block; // Đảm bảo ảnh fallback hiển thị
+            } */
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 60vh;
             }
         }
 
         /* Base button styles */
+        /* Lưu ý: Nếu bạn đang dùng TailwindCSS, hãy giữ @apply. Nếu không, hãy dùng CSS thuần bên dưới */
         .btn-primary, .btn-secondary {
-            @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg;
+            /* @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg; */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem; /* px-6 py-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            transition: all 0.3s ease; /* transition-all */
+            transform: scale(1); /* Initial scale */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: scale(1.05); /* hover:scale-105 */
         }
 
         /* Primary button style */
         .btn-primary {
-            @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20;
+            /* @apply bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white shadow-ivs-blue/20; */
+            background-image: linear-gradient(to right, #3b82f6, #2563eb); /* Màu ví dụ */
+            color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.2); /* shadow-ivs-blue/20 */
         }
 
         /* Secondary button style */
         .btn-secondary {
-            @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20;
+            /* @apply bg-transparent border-2 border-ivs-border text-white hover:bg-ivs-border hover:shadow-ivs-border/20; */
+            background-color: transparent;
+            border: 2px solid #52525b; /* Màu ví dụ */
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #52525b; /* hover:bg-ivs-border */
+            box-shadow: 0 10px 15px -3px rgba(82, 82, 91, 0.2), 0 4px 6px -2px rgba(82, 82, 91, 0.2); /* hover:shadow-ivs-border/20 */
         }
 
         /* Adjust Hero Headline for better visual balance */
@@ -111,7 +220,7 @@
             line-height: 1.2; /* Adjust line height for better spacing */
         }
 
-        /* Styles for the About Us section with video background */
+        /* Styles for the About Us section with video background (giữ nguyên từ trước) */
         .about-us-section {
             position: relative;
             overflow: hidden;
@@ -141,7 +250,7 @@
             z-index: 1;
             width: 100%;
         }
-        
+
         /* Specific styling for the video wrapper within the grid */
         .video-wrapper {
             position: relative;
@@ -167,11 +276,17 @@
     <main>
         <!-- 1. HERO SECTION with Interactive 3D Background -->
         <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-            <div id="hero-canvas-container" class="absolute inset-0 z-0"></div>
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 hero-video">
+                <source src="/videos/ivs-video-background.mp4" type="video/mp4">
+                <img src="images/logo/webbannermo1.png" alt="IVS Hero Background" class="absolute inset-0 w-full h-full object-cover z-0 hero-fallback-image">
+            </video>
+
             <div class="absolute inset-0 bg-gradient-to-t from-ivs-bg via-ivs-bg/50 to-transparent z-10"></div>
+            
+            <div class="absolute inset-0 bg-black opacity-40 z-10 hero-overlay"></div>
+
             <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
-                    <!-- IVS Academy highlighted -->
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
                         IVS Academy
                     </span>
@@ -184,24 +299,18 @@
                     IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
                 </p>
                 <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-
-                    <!-- Nút Khám phá IVS Academy -->
                     <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy">
                         <i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy
                     </a>
-                    <!-- Nút Giải pháp Giáo dục -->
                     <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education">
                         <i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục
                     </a>
-                    <!-- Nút Giải pháp Giáo dục -->
                     <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting">
                         <i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp
                     </a>
-                    <!-- Nút Tuyển dụng (ví dụ) -->
                     <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers">
                         <i class="fas fa-briefcase mr-2"></i> Tuyển dụng
                     </a>
-                     <!-- Nút Đăng ký tư vấn -->
                     <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">
                         <i class="fas fa-headset mr-2"></i> Đăng ký tư vấn
                     </a>
