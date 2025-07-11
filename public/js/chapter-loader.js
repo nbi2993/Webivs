@@ -2,50 +2,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const dynamicChapterContent = document.getElementById('dynamic-chapter-content');
     const prevButton = document.getElementById('prev-chapter-btn');
     const nextButton = document.getElementById('next-chapter-btn');
-    const listChapterButton = document.getElementById('list-chapter-btn');
+    const listChapterButton = document.getElementById('list-chapter-btn'); // Bottom list chapter button
+    const listChapterButtonTop = document.getElementById('list-chapter-btn-top'); // Top list chapter button
     const chapterModal = document.getElementById('chapter-modal');
     const closeModalButton = document.getElementById('close-modal-btn');
     const modalChapterList = document.getElementById('modal-chapter-list');
     const progressBar = document.querySelector('.progress-bar');
 
     let currentChapterNumber = 1;
-    let totalChapters = 0; // Sẽ được cập nhật từ mảng chapterTitles
-    let storyBasePath = ''; // Sẽ được truyền từ HTML, ví dụ: 'legnaxe_part1'
-    let currentLanguage = ''; // Biến mới để lưu trữ ngôn ngữ hiện tại
+    let totalChapters = 0; // Will be updated from the chapterTitles array
+    let storyBasePath = ''; // Will be passed from HTML, e.g., 'legnaxe_part1'
+    let currentLanguage = ''; // New variable to store the current language
 
-    // Bắt đầu: Chức năng chuyển đổi chế độ Sáng/Tối
-    const themeToggleBtn = document.getElementById('theme-toggle-btn'); // Giả định có một nút với ID này trong HTML
+    // Start: Dark/Light Mode Toggle Functionality
+    const themeToggleBtn = document.getElementById('theme-toggle-btn'); // Assuming there's a button with this ID in HTML
 
     function setupThemeToggle() {
-        // Kiểm tra tùy chọn chủ đề đã lưu trong localStorage
+        // Check saved theme preference in localStorage
         const savedTheme = localStorage.getItem('theme');
-        // Nếu có chủ đề đã lưu, sử dụng nó. Nếu không, kiểm tra tùy chọn hệ thống của người dùng.
+        // If a theme is saved, use it. Otherwise, check the user's system preference.
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark'); // Áp dụng lớp 'dark' cho phần tử html
+            document.documentElement.classList.add('dark'); // Apply 'dark' class to the html element
         } else {
-            document.documentElement.classList.remove('dark'); // Đảm bảo lớp 'dark' không có
+            document.documentElement.classList.remove('dark'); // Ensure 'dark' class is not present
         }
 
-        // Thêm trình lắng nghe sự kiện cho nút chuyển đổi
+        // Add event listener for the toggle button
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark'); // Chuyển sang chế độ sáng
-                    localStorage.setItem('theme', 'light'); // Lưu tùy chọn vào localStorage
+                    document.documentElement.classList.remove('dark'); // Switch to light mode
+                    localStorage.setItem('theme', 'light'); // Save preference to localStorage
                 } else {
-                    document.documentElement.classList.add('dark'); // Chuyển sang chế độ tối
-                    localStorage.setItem('theme', 'dark'); // Lưu tùy chọn vào localStorage
+                    document.documentElement.classList.add('dark'); // Switch to dark mode
+                    localStorage.setItem('theme', 'dark'); // Save preference to localStorage
                 }
             });
         }
     }
 
-    // Gọi hàm thiết lập chủ đề khi DOM được tải
+    // Call theme setup function when DOM is loaded
     setupThemeToggle();
-    // Kết thúc: Chức năng chuyển đổi chế độ Sáng/Tối
+    // End: Dark/Light Mode Toggle Functionality
 
-    // Định nghĩa danh sách tên chương dựa trên tài liệu đã cung cấp
-    // Phần 1: Bí Mật Cuộc Đại Chiến Thiên Đàng (25 chương + Khúc Vĩ Thanh)
+    // Define chapter title lists based on provided documents
+    // Part 1: The Secret of Great Heaven War (25 chapters + Epilogue)
     const chapterTitlesPart1 = [
         "Bản Hòa Âm Rạn Nứt",
         "Lời Phán Từ Trời",
@@ -72,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         "Sự Thật Bên Kia Tấm Màn",
         "Cái Giá của Ánh Sáng",
         "Phán Quyết và Sự Chia Cắt Vĩnh Viễn",        
-        "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn" // Đây là chương cuối cùng của Phần 1
+        "Khúc Vĩ Thanh: Mưa Sao Băng Linh Hồn" // This is the last chapter for Part 1
     ];
 
-    // Phần 2: Heavenly, Human’s Heart (17 chương)
+    // Part 2: Heavenly, Human’s Heart (17 chapters)
     const chapterTitlesPart2 = [
         "Lời Từ Biệt Trên Ngai Vàng",
-        "Mưa Sao Băng Linh Hồn", // Chương này có vẻ trùng tên với Khúc Vĩ Thanh phần 1, cần xác nhận lại cấu trúc file JSON
+        "Mưa Sao Băng Linh Hồn", // This chapter title seems to overlap with Part 1's Epilogue, need to confirm JSON file structure
         "Giáng Trần & Thiên Đàng Hậu Biến Cố",
         "Tiếng Gọi Của Lòng Trắc Ẩn",
         "Giữa Dòng Người & Góc Khuất Tâm Hồn",
@@ -107,20 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
         "Hành Trình Đến Tâm Bão"
     ];
 
-    // Gộp tất cả các chương lại. Cần điều chỉnh nếu có nhiều phần truyện khác nhau.
-    // Hiện tại, giả định storyBasePath sẽ cho biết đang ở phần nào.
+    // Combine all chapters. Needs adjustment if there are multiple story parts.
+    // Currently, assume storyBasePath will indicate which part.
     let allChapterTitles = [];
 
-    // Hàm tải nội dung chương từ JSON
+    // Function to fetch chapter content from JSON
     async function fetchChapterContent(storyPath, chapterNum) {
         let chapterFileName;
-        // Logic để xác định tên file JSON:
-        // Nếu chapterNum là chương cuối cùng (tức là Epilogue), tải epilogue.json
-        // Ngược lại, tải chapter_XX.json
-        if (chapterNum === totalChapters) {
-            chapterFileName = `chapter_Epilogue.json`; // Tên file JSON cho Epilogue, không có hậu tố ngôn ngữ
+        // Logic to determine JSON file name:
+        // If chapterNum is the last chapter (i.e., Epilogue), load epilogue.json
+        // Otherwise, load chapter_XX.json
+        if (chapterNum === totalChapters && storyPath === 'legnaxe_part1') { // Only part 1 has an explicit epilogue file
+            chapterFileName = `epilogue.json`; // JSON file name for Epilogue, no language suffix
         } else {
-            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}.json`; // Không có hậu tố ngôn ngữ
+            chapterFileName = `chapter_${String(chapterNum).padStart(2, '0')}.json`; // No language suffix
         }
 
         const filePath = `/data/novels/${storyPath}/${chapterFileName}`;
@@ -128,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(filePath);
             if (!response.ok) {
-                // Cung cấp thông báo lỗi chi tiết hơn
+                // Provide more detailed error message
                 const errorMessage = `Could not load chapter: ${chapterFileName}. Status: ${response.status} - ${response.statusText}. Please ensure the file exists and is accessible.`;
                 console.error(`Fetch error: ${errorMessage}`); // Debug log
                 throw new Error(errorMessage);
@@ -143,18 +144,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Hàm hiển thị nội dung chương
+    // Function to render chapter content
     function renderChapter(chapterData, lang) {
         if (!chapterData) {
             console.warn('No chapter data to render.'); // Debug log
             return;
         }
 
-        // Sử dụng ngôn ngữ được truyền vào để chọn đúng trường tiêu đề và nội dung
+        // Use the passed language to select the correct title and content fields
         const titleKey = `title_${lang}`;
         const contentKey = `content_${lang}`;
 
-        // Kiểm tra xem các trường ngôn ngữ có tồn tại không
+        // Check if language fields exist
         const chapterTitle = chapterData[titleKey] || chapterData.title_en || 'Chapter Title Not Found';
         const chapterContent = chapterData[contentKey] || chapterData.content_en || '<p>Chapter content not found for this language.</p>';
 
@@ -167,11 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${chapterContent}
             </div>
         `;
-        // Cập nhật tiêu đề tài liệu
+        // Update document title
         document.title = `${chapterTitle} - LEGNAXE`;
         console.log(`Rendered chapter ${currentChapterNumber}: ${chapterTitle}`); // Debug log
 
-        // Cuộn lên đầu nội dung chương sau khi tải
+        // Scroll to the top of the chapter content after loading
         const storyContentWrapper = document.querySelector('.story-content-wrapper');
         if (storyContentWrapper) {
             window.scrollTo({
@@ -181,13 +182,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Hàm cập nhật trạng thái nút điều hướng
+    // Function to update navigation button states
     function updateNavigationButtons() {
         prevButton.disabled = currentChapterNumber <= 1;
         nextButton.disabled = currentChapterNumber >= totalChapters;
         console.log(`Navigation buttons updated: Prev disabled=${prevButton.disabled}, Next disabled=${nextButton.disabled}`); // Debug log
 
-        // Đánh dấu chương hiện tại trong danh sách modal
+        // Highlight current chapter in the modal list
         modalChapterList.querySelectorAll('.modal-chapter-link').forEach(link => {
             const chapterId = link.dataset.chapterId;
             let linkChapterNum;
@@ -205,25 +206,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Hàm điều hướng đến một chương cụ thể
+    // Function to navigate to a specific chapter
     async function navigateToChapter(chapterNum, lang) {
         console.log(`Navigating to chapter: ${chapterNum}, Language: ${lang}`); // Debug log
-        const chapterData = await fetchChapterContent(storyBasePath, chapterNum); // Không truyền lang vào đây nữa
+        const chapterData = await fetchChapterContent(storyBasePath, chapterNum); // Don't pass lang here anymore
         if (chapterData) {
             currentChapterNumber = chapterNum;
-            renderChapter(chapterData, lang); // Truyền lang vào renderChapter để chọn nội dung
+            renderChapter(chapterData, lang); // Pass lang to renderChapter to select content
             updateNavigationButtons();
-            // Cập nhật URL hash, sử dụng chapter_id từ dữ liệu JSON
+            // Update URL hash, use chapter_id from JSON data
             let newHash = `chapter-${chapterNum}`;
-            if (currentChapterNumber === totalChapters) {
-                newHash = 'epilogue'; // Đảm bảo hash là 'epilogue' cho chương cuối cùng
+            if (currentChapterNumber === totalChapters && storyBasePath === 'legnaxe_part1') {
+                newHash = 'epilogue'; // Ensure hash is 'epilogue' for the last chapter of part 1
             }
             window.location.hash = newHash;
-            updateProgressBar(); // Cập nhật thanh tiến độ sau khi nội dung được hiển thị
+            updateProgressBar(); // Update progress bar after content is displayed
         }
     }
 
-    // Hàm cập nhật thanh tiến độ đọc
+    // Function to update reading progress bar
     function updateProgressBar() {
         const chapterContent = dynamicChapterContent.querySelector('.prose');
         if (!chapterContent) {
@@ -252,28 +253,41 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log(`Progress: ${progress.toFixed(2)}%`); // Debug log
     }
 
-    // Khởi tạo Chapter Loader
-    window.initializeChapterLoader = function(path, total, lang) { // Đã thêm lại tham số 'total'
+    // Function to close the modal
+    function closeModal() {
+        console.log('Closing modal'); // Debug log
+        chapterModal.classList.remove('modal-active');
+        setTimeout(() => {
+            // Ensure display: none is applied only after transition completes
+            if (!chapterModal.classList.contains('modal-active')) {
+                chapterModal.style.display = 'none';
+            }
+        }, 300); // Matches transition duration in CSS
+        document.body.style.overflow = ''; // Restore body scroll
+    }
+
+    // Initialize Chapter Loader
+    window.initializeChapterLoader = function(path, total, lang) { // Added 'total' parameter again
         storyBasePath = path;
-        currentLanguage = lang; // Lưu trữ ngôn ngữ hiện tại
+        currentLanguage = lang; // Store current language
         console.log(`Chapter Loader initialized: Story Path = ${storyBasePath}, Total Chapters = ${totalChapters}, Language = ${currentLanguage}`); // Debug log
 
-        // Xác định tổng số chương và danh sách tên chương dựa trên storyBasePath
+        // Determine total chapters and chapter title list based on storyBasePath
         if (storyBasePath === 'legnaxe_part1') {
             allChapterTitles = chapterTitlesPart1;
         } else if (storyBasePath === 'legnaxe_part2') {
             allChapterTitles = chapterTitlesPart2;
         } else {
-            allChapterTitles = []; // Mặc định nếu không khớp
+            allChapterTitles = []; // Default if no match
         }
         totalChapters = allChapterTitles.length;
 
 
-        // Xóa danh sách chương cũ trong modal và tạo mới
+        // Clear old chapter list in modal and create new one
         modalChapterList.innerHTML = '';
         allChapterTitles.forEach((title, index) => {
             const chapterNum = index + 1;
-            const chapterId = (chapterNum === totalChapters && (storyBasePath === 'legnaxe_part1' || storyBasePath === 'legnaxe_part2')) ? 'epilogue' : `chapter-${chapterNum}`;
+            const chapterId = (chapterNum === totalChapters && storyBasePath === 'legnaxe_part1') ? 'epilogue' : `chapter-${chapterNum}`;
             const chapterLink = document.createElement('a');
             chapterLink.href = `#${chapterId}`;
             chapterLink.classList.add(
@@ -289,49 +303,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 'text-black',
                 'dark:text-white'
             );
-            // Sử dụng tên chương từ mảng allChapterTitles
-            chapterLink.textContent = `Chương ${chapterNum}: ${title}`;
+            // Use chapter name from allChapterTitles array
+            chapterLink.textContent = `${lang === 'vi' ? 'Chương' : 'Chapter'} ${chapterNum}: ${title}`;
+            chapterLink.dataset.chapterId = chapterId; // Set data-chapter-id for easy lookup
             modalChapterList.appendChild(chapterLink);
         });
 
 
-        // Lấy chương từ URL hash hoặc mặc định là chương 1
+        // Get chapter from URL hash or default to chapter 1
         const hash = window.location.hash.substring(1);
         let initialChapter = 1;
         if (hash) {
             const match = hash.match(/chapter-(\d+)/);
             if (match && parseInt(match[1]) >= 1 && parseInt(match[1]) < totalChapters) { // chapter-1 to chapter-(totalChapters-1)
                 initialChapter = parseInt(match[1]);
-            } else if (hash === 'epilogue') {
-                initialChapter = totalChapters; // Map epilogue to the last chapter number
+            } else if (hash === 'epilogue' && storyBasePath === 'legnaxe_part1') {
+                initialChapter = totalChapters; // Map epilogue to the last chapter number for part 1
             }
         }
-        navigateToChapter(initialChapter, currentLanguage); // Truyền ngôn ngữ khi khởi tạo
+        navigateToChapter(initialChapter, currentLanguage); // Pass language on initialization
 
-        // Event listeners cho nút điều hướng
+        // Event listeners for navigation buttons
         prevButton?.addEventListener('click', () => {
             console.log('Previous button clicked'); // Debug log
             if (currentChapterNumber > 1) {
-                navigateToChapter(currentChapterNumber - 1, currentLanguage); // Truyền ngôn ngữ
+                navigateToChapter(currentChapterNumber - 1, currentLanguage); // Pass language
             }
         });
 
         nextButton?.addEventListener('click', () => {
             console.log('Next button clicked'); // Debug log
             if (currentChapterNumber < totalChapters) {
-                navigateToChapter(currentChapterNumber + 1, currentLanguage); // Truyền ngôn ngữ
+                navigateToChapter(currentChapterNumber + 1, currentLanguage); // Pass language
             }
         });
 
-        // Event listeners cho modal danh sách chương
+        // Event listeners for chapter list modal buttons
         listChapterButton?.addEventListener('click', () => {
-            console.log('List Chapters button clicked'); // Debug log
-            chapterModal.style.display = 'flex';
+            console.log('List Chapters button (bottom) clicked'); // Debug log
+            chapterModal.style.display = 'flex'; // Ensure it's visible before adding active class
             setTimeout(() => {
                 chapterModal.classList.add('modal-active');
             }, 10);
-            document.body.style.overflow = 'hidden'; // Ngăn cuộn body khi modal mở
-            updateNavigationButtons(); // Cập nhật highlight khi modal mở
+            document.body.style.overflow = 'hidden'; // Prevent body scroll when modal is open
+            updateNavigationButtons(); // Update highlight when modal opens
+        });
+
+        listChapterButtonTop?.addEventListener('click', () => {
+            console.log('List Chapters button (top) clicked'); // Debug log
+            chapterModal.style.display = 'flex'; // Ensure it's visible before adding active class
+            setTimeout(() => {
+                chapterModal.classList.add('modal-active');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent body scroll when modal is open
+            updateNavigationButtons(); // Update highlight when modal opens
         });
 
         closeModalButton?.addEventListener('click', closeModal);
@@ -342,21 +367,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        function closeModal() {
-            console.log('Closing modal'); // Debug log
-            chapterModal.classList.remove('modal-active');
-            setTimeout(() => {
-                // Đảm bảo display: none chỉ được áp dụng khi transition đã hoàn tất
-                if (!chapterModal.classList.contains('modal-active')) {
-                    chapterModal.style.display = 'none';
-                }
-            }, 300); // Phù hợp với transition duration trong CSS
-            document.body.style.overflow = ''; // Khôi phục cuộn body
-        }
-
-        // Gắn lại event listeners cho các liên kết chương trong modal sau khi chúng được tạo lại
-        modalChapterList.querySelectorAll('.modal-chapter-link').forEach(link => {
-            link.addEventListener('click', (event) => {
+        // Re-attach event listeners for chapter links in the modal after they are re-created
+        // This needs to be done dynamically as links are added to modalChapterList
+        // The current implementation in initializeChapterLoader already adds listeners,
+        // but if modalChapterList is re-rendered without re-initializing, they might be lost.
+        // A better approach is to use event delegation for modalChapterList.
+        modalChapterList.addEventListener('click', (event) => {
+            const link = event.target.closest('.modal-chapter-link');
+            if (link) {
                 event.preventDefault();
                 const chapterId = link.getAttribute('data-chapter-id');
                 let targetChapterNum;
@@ -367,17 +385,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 if (!isNaN(targetChapterNum) && targetChapterNum >= 1 && targetChapterNum <= totalChapters) {
-                    navigateToChapter(targetChapterNum, currentLanguage); // Truyền ngôn ngữ
+                    navigateToChapter(targetChapterNum, currentLanguage); // Pass language
                 }
                 closeModal();
-            });
+            }
         });
 
-        // Cập nhật thanh tiến độ khi cuộn và thay đổi kích thước cửa sổ
+        // Update progress bar on scroll and window resize
         window.addEventListener('scroll', updateProgressBar);
         window.addEventListener('resize', updateProgressBar);
 
-        // Xử lý thay đổi hash cho các liên kết chương trực tiếp
+        // Handle hash changes for direct chapter links
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.substring(1);
             let targetChapter = 1;
@@ -385,16 +403,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const match = hash.match(/chapter-(\d+)/);
                 if (match) {
                     targetChapter = parseInt(match[1]);
-                } else if (hash === 'epilogue') {
+                } else if (hash === 'epilogue' && storyBasePath === 'legnaxe_part1') {
                     targetChapter = totalChapters;
                 }
             }
             if (targetChapter !== currentChapterNumber) {
-                navigateToChapter(targetChapter, currentLanguage); // Truyền ngôn ngữ
+                navigateToChapter(targetChapter, currentLanguage); // Pass language
             }
         });
 
-        // Cập nhật ban đầu trạng thái nút điều hướng và thanh tiến độ
+        // Initial update of navigation button states and progress bar
         updateNavigationButtons();
         updateProgressBar();
     };
