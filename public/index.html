@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IVS JSC - Comprehensive Ecosystem for Education, Technology & Human Resources - IVS Academy</title>
+    <title>IVS JSC - Hệ sinh thái giáo dục toàn diện - IVS Academy</title>
     <meta name="description" content="Khám phá câu chuyện, tầm nhìn, sứ mệnh, triết lý hoạt động và đội ngũ lãnh đạo của IVS JSC - Tổ chức tiên phong kiến tạo hệ sinh thái giáo dục toàn cầu." data-lang-key="about_meta_description">
     <meta name="keywords" content="IVS JSC, về chúng tôi, tầm nhìn, sứ mệnh, integrate vision synergy, Nguyễn Minh Triết, giáo dục, EdTech, hồ sơ năng lực" data-lang-key="about_meta_keywords">
     <meta property="og:title" content="Về IVS JSC - Tầm Nhìn & Sứ Mệnh" data-lang-key="about_og_title">
@@ -338,17 +338,21 @@
     <header id="header-placeholder"></header>
 
     <main>
-        <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+        <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden hero-section">
             <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 hero-video">
-                <source src="/videos/ivs-video-background.webm" type="video/webm"> <source src="/videos/ivs-video-background.mp4" type="video/mp4">
+                <source src="/videos/ivs-video-background.webm" type="video/webm">
+                <source src="/videos/ivs-video-background.mp4" type="video/mp4">
+                <!-- Fallback image if video fails to load or on mobile -->
                 <img src="images/logo/webbannermo1.png" alt="IVS Hero Background" class="absolute inset-0 w-full h-full object-cover z-0 hero-fallback-image">
             </video>
 
+            <!-- Gradient overlay for better text readability -->
             <div class="absolute inset-0 bg-gradient-to-t from-ivs-bg via-ivs-bg/50 to-transparent z-10"></div>
             
+            <!-- Dark overlay for better text readability -->
             <div class="absolute inset-0 bg-black opacity-40 z-10 hero-overlay"></div>
 
-            <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+            <div class="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 hero-content" data-aos="fade-up">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">
                         IVS Academy
@@ -381,7 +385,7 @@
             </div>
         </section>
 
-        <!-- Section with Video Background -->
+        <!-- Section with Video Background: IVS Global Teacher Hub -->
         <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden">
             <!-- Video Background Container -->
             <div class="absolute inset-0 w-full h-full z-0">
@@ -596,11 +600,11 @@
                     </p>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="200" x-data="{ tab: 'schools' }">
-                    <div class="mb-8 border-b border-ivs-border flex justify-center">
-                        <button @click="tab = 'schools'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'schools', 'text-ivs-text-secondary border-transparent': tab !== 'schools' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_schools">Trường học</button>
-                        <button @click="tab = 'centers'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'centers', 'text-ivs-text-secondary border-transparent': tab !== 'centers' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_centers">Trung tâm</button>
-                        <button @click="tab = 'corporate'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'corporate', 'text-ivs-text-secondary border-transparent': tab !== 'corporate' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_corporate">Doanh nghiệp</button>
-                        <button @click="tab = 'individual'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'individual', 'text-ivs-text-secondary border-transparent': tab !== 'individual' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_individual">Cá nhân</button>
+                    <div class="mb-8 border-b border-ivs-border flex justify-center flex-wrap"> <!-- Added flex-wrap for mobile -->
+                        <button @click="tab = 'schools'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'schools', 'text-ivs-text-secondary border-transparent': tab !== 'schools' }" class="px-4 py-3 sm:px-6 font-semibold border-b-2 transition-colors text-sm sm:text-base" data-lang-key="solutions_tab_schools">Trường học</button>
+                        <button @click="tab = 'centers'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'centers', 'text-ivs-text-secondary border-transparent': tab !== 'centers' }" class="px-4 py-3 sm:px-6 font-semibold border-b-2 transition-colors text-sm sm:text-base" data-lang-key="solutions_tab_centers">Trung tâm</button>
+                        <button @click="tab = 'corporate'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'corporate', 'text-ivs-text-secondary border-transparent': tab !== 'corporate' }" class="px-4 py-3 sm:px-6 font-semibold border-b-2 transition-colors text-sm sm:text-base" data-lang-key="solutions_tab_corporate">Doanh nghiệp</button>
+                        <button @click="tab = 'individual'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'individual', 'text-ivs-text-secondary border-transparent': tab !== 'individual' }" class="px-4 py-3 sm:px-6 font-semibold border-b-2 transition-colors text-sm sm:text-base" data-lang-key="solutions_tab_individual">Cá nhân</button>
                     </div>
                     <div class="bg-ivs-card p-8 rounded-lg border border-ivs-border">
                         <div x-show="tab === 'schools'">
@@ -953,7 +957,7 @@
             observer.observe(philosophyContent);
 
             // Đảm bảo logo hiển thị ban đầu nếu trang tải ở vị trí không cuộn
-            // (Thực tế không cần thiết nếu logo ở đầu trang và philosophyContent ở dưới)
+            // (Thực tế không cần thiết nếu philosophyContent ở đầu trang và philosophyContent ở dưới)
             // Tuy nhiên, nếu philosophyContent có thể hiển thị ngay khi tải, cần xử lý
             if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
                 philosophyContent.classList.add('is-visible');
