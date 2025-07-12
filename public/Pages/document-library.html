@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="doc_library_page_title">Thư viện Tài liệu Giáo dục - IVS JSC</title>
-    <meta name="description" content="Khám phá các tài liệu, giáo trình, nghiên cứu và học liệu chuyên sâu từ IVS JSC, hỗ trợ học tập và giảng dạy hiệu quả." data-lang-key="doc_library_meta_description">
+    <meta name="description" data-lang-key="doc_library_meta_description" content="Khám phá các tài liệu, giáo trình, nghiên cứu và học liệu chuyên sâu từ IVS JSC, hỗ trợ học tập và giảng dạy hiệu quả.">
     <meta name="keywords" content="IVS JSC, thư viện tài liệu, giáo dục, học liệu, nghiên cứu, giáo trình, tài nguyên giáo dục">
-    <meta property="og:title" content="Thư viện Tài liệu Giáo dục IVS - Kho tri thức cho tương lai" data-lang-key="doc_library_og_title">
-    <meta property="og:description" content="Tìm kiếm và tải về các tài liệu giáo dục chất lượng cao, được biên soạn bởi đội ngũ chuyên gia IVS." data-lang-key="doc_library_og_description">
+    <meta property="og:title" data-lang-key="doc_library_og_title" content="Thư viện Tài liệu Giáo dục IVS - Kho tri thức cho tương lai">
+    <meta property="og:description" data-lang-key="doc_library_og_description" content="Tìm kiếm và tải về các tài liệu giáo dục chất lượng cao, được biên soạn bởi đội ngũ chuyên gia IVS.">
     <meta property="og:image" content="/images/banners/document-library-banner.png">
     <meta property="og:url" content="https://ivsacademy.edu.vn/pages/document-library.html">
     <meta property="og:type" content="website">
@@ -16,10 +16,13 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
     <link rel="manifest" href="/manifest.json">
+    
+    <!-- Chỉ tải font Inter để đảm bảo tính nhất quán và hiệu suất -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
@@ -47,10 +50,18 @@
                         'ivs-amber': '#f59e0b',
                         'ivs-text-primary': '#f8fafc',
                         'ivs-text-secondary': '#94a3b8',
+                        // Thêm các màu sắc mới từ styles.css để Tailwind nhận diện
+                        'brown-medium': '#6a4e42',
+                        'brown-light': '#8d6e63',
+                        'brown-dark': '#4e342e',
+                        'cream': '#f5f5dc',
+                        'gold': '#ffd700',
                     },
                     fontFamily: {
-                        'serif': ['Georgia', 'serif', 'Merriweather'], /* Added Merriweather */
-                        'sans': ['Inter', 'sans-serif', 'Open Sans'], /* Added Open Sans */
+                        // Đảm bảo font chính là Inter
+                        'sans': ['Inter', 'sans-serif'], 
+                        'display': ['Inter', 'sans-serif'], // Sử dụng Inter cho cả display
+                        'serif': ['Inter', 'sans-serif'], // Sử dụng Inter cho cả serif để đồng bộ
                     },
                     keyframes: {
                         float: {
@@ -71,11 +82,12 @@
         }
     </script>
     <style>
+        /* Đảm bảo body sử dụng font Inter */
         body {
             background-color: #0f172a;
             color: #e2e8f0;
             overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Đã cập nhật font */
         }
 
         /* Hero Section */
@@ -122,7 +134,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 1.5rem;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Đã cập nhật font */
         }
 
         .shelf {
@@ -230,14 +242,14 @@
 
         /* Features Section */
         .features {
-            background-color: #1e293b;
+            background-color: var(--ivs-neutral-900); /* Đã điều chỉnh màu nền */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4rem 0;
         }
 
         .feature-card {
-            background-color: #0f172a;
+            background-color: var(--ivs-bg); /* Đã điều chỉnh màu nền */
             padding: 2rem;
             border-radius: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -263,15 +275,15 @@
 
         /* Features - Reverted to original design but with new colors */
         .features {
-            background: var(--tw-colors-ivs-light-bg); /* Adjusted to match body background for continuity */
+            background: var(--ivs-neutral-900); /* Adjusted to match body background for continuity */
             padding: 80px 20px;
             margin: 60px auto; /* Centered with margin */
             max-width: 1200px; /* Constrain width */
         }
 
         .feature-card {
-            background: #fff; /* White background for feature cards */
-            border: 1px solid #e0e0e0; /* Subtle border */
+            background: var(--ivs-bg); /* Dark background for feature cards */
+            border: 1px solid var(--ivs-border); /* Subtle border */
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Lighter shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -279,42 +291,42 @@
         .feature-card:hover {
             transform: translateY(-8px); /* Slightly less aggressive hover */
             box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* More prominent shadow on hover */
-            border-color: var(--tw-colors-brown-medium); /* Brown border on hover */
+            border-color: var(--ivs-blue); /* Blue border on hover */
         }
 
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: var(--tw-colors-brown-medium); /* Changed icon color to brown */
+            color: var(--ivs-blue); /* Changed icon color to blue */
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--tw-colors-ivs-text-dark); /* Changed heading color to dark text */
+            color: var(--ivs-text-primary); /* Changed heading color to light text */
         }
 
         .feature-card p {
-            color: var(--tw-colors-ivs-text-dark); /* Changed paragraph color to dark text */
+            color: var(--ivs-text-secondary); /* Changed paragraph color to secondary text */
             line-height: 1.6;
         }
 
         /* Footer */
         .footer {
-            background: var(--tw-colors-ivs-brown-header); /* Consistent with header */
+            background: var(--ivs-bg); /* Consistent with header */
             padding: 50px 20px 20px;
             text-align: center;
-            color: white; /* Footer text color */
+            color: var(--ivs-text-white); /* Footer text color */
         }
 
         .footer-links a {
-            color: white;
+            color: var(--ivs-text-white);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--tw-colors-gold);
+            color: var(--ivs-blue);
         }
 
         .footer-bottom {
@@ -343,150 +355,237 @@
         }
     </style>
 </head>
-<body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 antialiased font-serif">
+<body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 antialiased font-sans">
     <div id="header-placeholder"></div>
 
     <main class="flex-grow pt-[var(--header-height)] md:pt-[var(--desktop-header-height)]">
         <!-- Hero Section -->
         <section class="hero relative min-h-[450px] flex items-center justify-center" id="home">
-        <div class="hero-content max-w-4xl mx-auto text-center px-4 py-12">
-            <h1 class="text-4xl md:text-6xl font-bold font-display mb-6 tracking-tight">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-                    Thư viện Số IVS
-                </span>
-            </h1>
-            <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
-                Khám phá thế giới tri thức với hàng nghìn cuốn sách quý giá
-            </p>
-            <div class="search-container relative max-w-2xl mx-auto">
-                <div class="search-box">
-                    <input type="text" 
-                           placeholder="Tìm kiếm sách, tác giả, thể loại..." 
-                           class="w-full px-6 py-4 text-lg">
-                    <button type="button" 
-                            class="flex items-center gap-2 hover:bg-blue-600 transition-colors">
-                        <i class="fas fa-search"></i>
-                        <span>Tìm Kiếm</span>
-                    </button>
+            <div class="hero-content max-w-4xl mx-auto text-center px-4 py-12" data-aos="fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-bold font-display mb-6 tracking-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400" data-lang-key="doc_library_hero_main_title">
+                        Thư viện Số IVS
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto" data-lang-key="doc_library_hero_sub_title">
+                    Khám phá thế giới tri thức với hàng nghìn cuốn sách quý giá
+                </p>
+                <div class="search-container relative max-w-2xl mx-auto">
+                    <div class="search-box">
+                        <input type="text" 
+                               data-lang-key="doc_library_search_placeholder" 
+                               placeholder="Tìm kiếm sách, tác giả, thể loại..." 
+                               class="w-full px-6 py-4 text-lg">
+                        <button type="button" 
+                                class="flex items-center gap-2 hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-search"></i>
+                            <span data-lang-key="doc_library_search_button">Tìm Kiếm</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 pointer-events-none"></div>
-    </section>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 pointer-events-none"></div>
+        </section>
 
-    <!-- Library Shelves - New Releases -->
-    <section class="shelf-container bg-ivs-card" id="new-releases">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="shelf-title flex items-center gap-3">
-                <i class="fas fa-star text-ivs-blue"></i>
-                <span>Sách Mới Phát Hành</span>
-            </h2>
-            <div class="shelf">
-                <div class="book-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden rounded-lg">
-                        <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+1" alt="Tư Duy Chiến Lược"
-                             class="transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <!-- Library Shelves - New Releases -->
+        <section class="shelf-container bg-ivs-card" id="new-releases">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="shelf-title flex items-center gap-3">
+                    <i class="fas fa-star text-ivs-blue"></i>
+                    <span data-lang-key="doc_library_new_releases_title">Sách Mới Phát Hành</span>
+                </h2>
+                <div class="shelf">
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+1" alt="Tư Duy Chiến Lược"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Tư Duy Chiến Lược</h3>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="book-title group-hover:text-ivs-blue transition-colors">Tư Duy Chiến Lược</h3>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="150">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+2" alt="Kỹ Năng Sống Cho Trẻ"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Kỹ Năng Sống Cho Trẻ</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+3" alt="Lập trình Python cơ bản"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Lập trình Python cơ bản</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="250">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+4" alt="Giáo dục sớm Montessori"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Giáo dục sớm Montessori</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+5" alt="Trí tuệ cảm xúc"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Trí tuệ cảm xúc</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="350">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+6" alt="Kỹ thuật Robot cơ bản"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Kỹ thuật Robot cơ bản</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+7" alt="Lịch sử văn minh thế giới"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Lịch sử văn minh thế giới</h3>
+                        </div>
                     </div>
                 </div>
-                <div class="book-card group" data-aos="fade-up" data-aos-delay="150">
-                    <div class="relative overflow-hidden rounded-lg">
-                        <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+2" alt="Kỹ Năng Sống Cho Trẻ"
-                             class="transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="book-title group-hover:text-ivs-blue transition-colors">Kỹ Năng Sống Cho Trẻ</h3>
-                    </div>
-                </div>
-                <!-- Repeat similar structure for other new books -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Library Shelves - Most Popular -->
-    <section class="shelf-container bg-ivs-bg" id="most-popular">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="shelf-title flex items-center gap-3">
-                <i class="fas fa-heart text-ivs-blue"></i>
-                <span>Được Yêu Thích</span>
-            </h2>
-            <div class="shelf">
-                <div class="book-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden rounded-lg">
-                        <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+8" alt="Hợp Tác Quốc Tế Giáo Dục"
-                             class="transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <!-- Library Shelves - Most Popular -->
+        <section class="shelf-container bg-ivs-bg" id="most-popular">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="shelf-title flex items-center gap-3">
+                    <i class="fas fa-heart text-ivs-blue"></i>
+                    <span data-lang-key="doc_library_most_popular_title">Được Yêu Thích</span>
+                </h2>
+                <div class="shelf">
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+8" alt="Hợp Tác Quốc Tế Giáo Dục"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Hợp Tác Quốc Tế Giáo Dục</h3>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="book-title group-hover:text-ivs-blue transition-colors">Hợp Tác Quốc Tế Giáo Dục</h3>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="150">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+9" alt="STEAM Cho Mầm Non"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">STEAM Cho Mầm Non</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+10" alt="Kết Nối Tri Thức"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Kết Nối Tri Thức</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="250">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+11" alt="Tâm Lý Học Đường"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Tâm Lý Học Đường</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+12" alt="Kinh Tế Học"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Kinh Tế Học</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="350">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+13" alt="Lịch Sử Thế Giới"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Lịch Sử Thế Giới</h3>
+                        </div>
+                    </div>
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="https://placehold.co/180x260/1e293b/ffffff?text=Book+14" alt="Văn Hóa Việt Nam"
+                                 class="transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="book-title group-hover:text-ivs-blue transition-colors">Văn Hóa Việt Nam</h3>
+                        </div>
                     </div>
                 </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+9" alt="STEAM Cho Mầm Non">
-                <div class="book-title">STEAM Cho Mầm Non</div>
             </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+10" alt="Kết Nối Tri Thức">
-                <div class="book-title">Kết Nối Tri Thức</div>
-            </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+11" alt="Tâm Lý Học Đường">
-                <div class="book-title">Tâm Lý Học Đường</div>
-            </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+12" alt="Kinh Tế Học">
-                <div class="book-title">Kinh Tế Học</div>
-            </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+13" alt="Lịch Sử Thế Giới">
-                <div class="book-title">Lịch Sử Thế Giới</div>
-            </div>
-            <div class="book-card">
-                <img src="https://placehold.co/150x220/6a4e42/ffffff?text=Book+14" alt="Văn Hóa Việt Nam">
-                <div class="book-title">Văn Hóa Việt Nam</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features -->
-    <section class="features py-16 px-4 md:px-5 my-8">
-        <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">📖</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Đọc Trực Tuyến</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Đọc sách ngay trên trình duyệt với giao diện thân thiện và dễ sử dụng</p>
+        <!-- Features -->
+        <section class="features py-16 px-4 md:px-5 my-8">
+            <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">📖</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_read_online_title">Đọc Trực Tuyến</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_read_online_desc">Đọc sách ngay trên trình duyệt với giao diện thân thiện và dễ sử dụng</p>
+                </div>
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">💾</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_personal_storage_title">Lưu Trữ Cá Nhân</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_personal_storage_desc">Tạo thư viện cá nhân để lưu trữ những cuốn sách yêu thích</p>
+                </div>
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">🎧</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_audiobooks_title">Sách Nói</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_audiobooks_desc">Nghe sách với chất lượng âm thanh cao, thuận tiện cho mọi hoạt động</p>
+                </div>
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">👥</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_community_title">Cộng Đồng</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_community_desc">Kết nối với những người yêu sách, chia sẻ và thảo luận</p>
+                </div>
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">🔍</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_smart_search_title">Tìm Kiếm Thông Minh</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_smart_search_desc">Tìm sách theo nhiều tiêu chí: thể loại, tác giả, năm xuất bản</p>
+                </div>
+                <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-4xl md:text-5xl mb-4 text-ivs-blue feature-icon">📱</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-primary" data-lang-key="doc_library_feature_multiplatform_title">Đa Nền Tảng</h3>
+                    <p class="text-ivs-text-secondary leading-relaxed text-sm md:text-base" data-lang-key="doc_library_feature_multiplatform_desc">Truy cập mọi lúc mọi nơi trên điện thoại, máy tính bảng, laptop</p>
+                </div>
             </div>
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">💾</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Lưu Trữ Cá Nhân</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Tạo thư viện cá nhân để lưu trữ những cuốn sách yêu thích</p>
-            </div>
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="300">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">🎧</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Sách Nói</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Nghe sách với chất lượng âm thanh cao, thuận tiện cho mọi hoạt động</p>
-            </div>
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="400">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">👥</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Cộng Đồng</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Kết nối với những người yêu sách, chia sẻ và thảo luận</p>
-            </div>
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="500">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">🔍</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Tìm Kiếm Thông Minh</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Tìm sách theo nhiều tiêu chí: thể loại, tác giả, năm xuất bản</p>
-            </div>
-            <div class="feature-card text-center p-6 md:p-8 rounded-lg shadow-md transition-transform duration-300 hover:translate-y-[-8px] hover:shadow-lg hover:border-brown-medium" data-aos="fade-up" data-aos-delay="600">
-                <div class="text-4xl md:text-5xl mb-4 text-brown-medium feature-icon">📱</div>
-                <h3 class="text-xl md:text-2xl font-semibold mb-3 text-ivs-text-dark">Đa Nền Tảng</h3>
-                <p class="text-ivs-text-dark leading-relaxed text-sm md:text-base">Truy cập mọi lúc mọi nơi trên điện thoại, máy tính bảng, laptop</p>
-            </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
@@ -523,12 +622,16 @@
                     const searchTerm = document.querySelector('.search-box input').value;
                     if (searchTerm.trim()) {
                         // Using a custom modal/message box instead of alert()
+                        // Sử dụng window.system.get
+                        const messageText = window.system.get('doc_library_message_searching').replace('{searchTerm}', searchTerm);
+                        const closeButtonText = window.system.get('doc_library_message_close');
+
                         const messageBox = document.createElement('div');
                         messageBox.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
                         messageBox.innerHTML = `
                             <div class="bg-brown-dark p-8 rounded-lg shadow-xl text-cream text-center max-w-sm">
-                                <p class="text-xl mb-4">Đang tìm kiếm: "${searchTerm}"</p>
-                                <button class="bg-brown-medium hover:bg-brown-light text-white font-bold py-2 px-4 rounded-full transition-colors duration-300" onclick="this.parentNode.parentNode.remove()">Đóng</button>
+                                <p class="text-xl mb-4">${messageText}</p>
+                                <button class="bg-brown-medium hover:bg-brown-light text-white font-bold py-2 px-4 rounded-full transition-colors duration-300" onclick="this.parentNode.parentNode.remove()">${closeButtonText}</button>
                             </div>
                         `;
                         document.body.appendChild(messageBox);
@@ -544,12 +647,16 @@
                 book.addEventListener('click', function() {
                     const title = this.querySelector('.book-title').textContent; // Get title from inner text
                     // Using a custom modal/message box instead of alert()
+                    // Sử dụng window.system.get
+                    const messageText = window.system.get('doc_library_message_selected_book').replace('{title}', title);
+                    const closeButtonText = window.system.get('doc_library_message_close');
+
                     const messageBox = document.createElement('div');
                     messageBox.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
                     messageBox.innerHTML = `
                         <div class="bg-brown-dark p-8 rounded-lg shadow-xl text-cream text-center max-w-sm">
-                            <p class="text-xl mb-4">Bạn đã chọn sách: "${title}"</p>
-                            <button class="bg-brown-medium hover:bg-brown-light text-white font-bold py-2 px-4 rounded-full transition-colors duration-300" onclick="this.parentNode.parentNode.remove()">Đóng</button>
+                            <p class="text-xl mb-4">${messageText}</p>
+                            <button class="bg-brown-medium hover:bg-brown-light text-white font-bold py-2 px-4 rounded-full transition-colors duration-300" onclick="this.parentNode.parentNode.remove()">${closeButtonText}</button>
                         </div>
                     `;
                     document.body.appendChild(messageBox);
