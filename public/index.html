@@ -87,11 +87,17 @@
                         'teal-600': '#0D9488',
                         'indigo-600': '#4F46E5',
                         'indigo-700': '#4338CA',
-                        'pink-500': '#EC4899'
+                        'pink-500': '#EC4899',
+                        // Thêm các màu light cho biểu tượng
+                        'ivs-blue-light': '#DBEAFE', // blue-100
+                        'ivs-purple-light': '#EDE9FE', // purple-100
+                        'ivs-cyan-light': '#ECFEFF', // cyan-100
+                        'ivs-amber-light': '#FFFBEB', // amber-100
                     },
                     fontFamily: {
                         'sans': ['Be Vietnam Pro', 'sans-serif'],
-                        'display': ['Poppins', 'sans-serif']
+                        'display': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'] // Thêm font Inter
                     },
                     animation: {
                         'aurora-spin': 'aurora-spin 6s linear infinite'
@@ -110,6 +116,9 @@
 
     <link rel="stylesheet" href="/css/styles.css">
     <style>
+        /* Import Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
         :root {
             --header-height: 4rem;
             --safe-area-top: env(safe-area-inset-top, 0px);
@@ -362,7 +371,7 @@
                 <li><a href="/education.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Giáo dục</a></li>
                 <li><a href="/solutions.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Doanh nghiệp</a></li>
                 <li><a href="/Pages/careervn.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Tuyển dụng</a></li>
-                <li><a href="/contact.html" class="text-ivs-blue font-semibold">Đăng ký tư vấn</a></li>
+                <li><a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">Đăng ký tư vấn</a></li>
             </ul>
         </div>
     </nav>
@@ -373,7 +382,7 @@
             <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
                 <source src="/videos/ivs-video-background.mp4" type="video/mp4">
                 <source src="/videos/hero-background.webm" type="video/webm">
-                <img src="/images/hero-fallback.jpg" class="hero-fallback-image" alt="Hero fallback image">
+                <img src="https://placehold.co/1920x1080/000000/ffffff?text=Hero+Fallback+Image" class="hero-fallback-image" alt="Hero fallback image">
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -429,7 +438,7 @@
                 <video id="backgroundVideo1" autoplay loop muted playsinline class="background-video">
                     <source src="/videos/ivsstarting.mp4" type="video/mp4">
                     <source src="/videos/about-background.webm" type="type/webm"> <!-- Added webm source for broader compatibility -->
-                    <img src="/images/about-fallback.jpg" class="hero-fallback-image" alt="About section fallback image">
+                    <img src="https://placehold.co/1920x1080/000000/ffffff?text=About+Fallback+Image" class="hero-fallback-image" alt="About section fallback image">
                 </video>
                 <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
             </div>
@@ -539,7 +548,7 @@
                         </div>
                     </div>
                     <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="200">
-                        <img src="/images/pages/eov2025/eov2025.jpg" alt="Mockup của EOV 2025 trên các thiết bị" class="max-w-full h-auto rounded-lg shadow-xl">
+                        <img src="https://placehold.co/600x400/000000/ffffff?text=EOV+2025+Mockup" alt="Mockup của EOV 2025 trên các thiết bị" class="max-w-full h-auto rounded-lg shadow-xl">
                     </div>
                 </div>
             </div>
@@ -738,7 +747,7 @@
                             "Chúng tôi cam kết cống hiến hết mình, không ngừng nỗ lực vì sự phát triển vượt bậc của Giáo dục Việt Nam. Tầm nhìn chiến lược của chúng tôi là tối ưu hóa triệt để các nguồn lực quốc gia, tiết kiệm chi phí cho đất nước và chuyển hóa hiệu quả những khoản đầu tư chưa đạt hiệu suất tối đa. Với tinh thần SYNERGY mạnh mẽ, chúng tôi sẽ tăng cường hợp tác quốc tế sâu rộng, tập trung hỗ trợ toàn diện các cơ sở giáo dục trong nước, nhằm xây dựng một nền giáo dục vững mạnh, hiện đại và hội nhập."
                         </blockquote>
                         <div class="text-lg md:text-xl text-ivs-text-secondary" data-aos="fade-up" data-aos-delay="200">
-                            <img src="/images/team/nguyen-minh-triet.png" alt="Ảnh đại diện Ông Nguyễn Minh Triết" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-ivs-blue shadow-lg object-cover" data-aos="fade-up" data-aos-delay="250" onerror="this.onerror=null;this.src='https://placehold.co/128x128/007bff/ffffff?text=CEO';">
+                            <img src="https://placehold.co/128x128/007bff/ffffff?text=CEO" alt="Ảnh đại diện Ông Nguyễn Minh Triết" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-ivs-blue shadow-lg object-cover" data-aos="fade-up" data-aos-delay="250" onerror="this.onerror=null;this.src='https://placehold.co/128x128/007bff/ffffff?text=CEO';">
                             <p class="font-semibold text-ivs-blue" data-lang-key="ceo_name">Ông Nguyễn Minh Triết</p>
                             <p class="text-sm md:text-base" data-lang-key="ceo_title">Tổng Giám đốc (CEO) kiêm Chủ tịch HĐQT IVS JSC</p>
                         </div>
@@ -820,11 +829,11 @@
             const videos = {
                 hero: {
                     element: document.getElementById('heroVideo'),
-                    fallback: '/images/hero-fallback.jpg'
+                    fallback: 'https://placehold.co/1920x1080/000000/ffffff?text=Hero+Fallback+Image' // Updated fallback
                 },
                 background: {
                     element: document.getElementById('backgroundVideo1'),
-                    fallback: '/images/about-fallback.jpg' // Ensure this fallback image exists
+                    fallback: 'https://placehold.co/1920x1080/000000/ffffff?text=About+Fallback+Image' // Updated fallback
                 }
             };
 
@@ -963,5 +972,3 @@
 </body>
 
 </html>
-
-
