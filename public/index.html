@@ -356,25 +356,20 @@
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
     <!-- Placeholder for Header - Content loaded by loadComponents.js -->
     <header id="header-placeholder"></header>
-    <!-- Audio Player Button and Dropdown -->
-    <div class="absolute top-4 right-4 z-50">
-        <button id="audioMenuButton" class="p-3 rounded-full bg-ivs-blue hover:bg-ivs-blue-darker text-white shadow-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-opacity-75">
-            <i class="fas fa-volume-up text-xl" id="audioIcon"></i>
-        </button>
-        <div id="audioDropdown" class="absolute right-0 mt-2 w-60 bg-ivs-card border border-ivs-border rounded-lg shadow-xl overflow-hidden hidden transform origin-top-right scale-95 opacity-0 transition-all duration-200 ease-out">
-            <ul class="py-2">
-                <li>
-                    <button id="playVietnameseAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
-                        <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_vi">Bước chuyển mình của IVS</span>
-                    </button>
-                </li>
-                <li>
-                    <button id="playEnglishAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
-                        <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_en">The transformation of IVS</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
+    <!-- Audio Player Dropdown -->
+    <div id="audioDropdown" class="fixed top-24 right-4 z-50 w-60 bg-ivs-card/95 backdrop-blur-sm border border-ivs-border rounded-lg shadow-xl overflow-hidden hidden transform origin-top-right scale-95 opacity-0 transition-all duration-200 ease-out">
+        <ul class="py-2">
+            <li>
+                <button id="playVietnameseAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
+                    <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_vi">Bước chuyển mình của IVS</span>
+                </button>
+            </li>
+            <li>
+                <button id="playEnglishAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
+                    <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_en">The transformation of IVS</span>
+                </button>
+            </li>
+        </ul>
     </div>
 
     <!-- Mobile Navigation (Assumed to be loaded via loadComponents.js or similar) -->
@@ -416,6 +411,18 @@
                     <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10" data-lang-key="hero_description">
                         IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
                     </p>
+                    <div class="flex flex-col items-center gap-6">
+                    <!-- Audio Button -->
+                    <button id="audioMenuButton" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-500/50 group relative">
+                        <i class="fas fa-volume-up text-2xl mr-3 group-hover:scale-110 transition-transform duration-200" id="audioIcon"></i>
+                        <span class="relative">
+                            <span data-lang-key="audio_button_text_vi">Bước chuyển mình của IVS</span>
+                            <span data-lang-key="audio_button_text_en" class="hidden">The transformation of IVS</span>
+                            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                        </span>
+                    </button>
+
+                    <!-- Main CTA Buttons -->
                     <div class="flex flex-col sm:flex-row sm:justify-center flex-wrap gap-2">
                         <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy"><i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy</a>
                         <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục</a>
@@ -423,6 +430,7 @@
                         <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers"><i class="fas fa-briefcase mr-2"></i> Tuyển dụng</a>
                         <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact"><i class="fas fa-headset mr-2"></i> Đăng ký tư vấn</a>
                     </div>
+                </div>
                 </div>
             </div>
             <div class="absolute bottom-8 left-0 right-0 flex justify-center z-20">
