@@ -2333,5 +2333,17 @@
   "rnd_testimonial_author_1": "- Đại diện Trường Mầm non ABC",
   "rnd_cta_heading_v2": "Sẵn sàng Nâng tầm Chương trình Đào tạo của Bạn?",
   "rnd_contact_cta_v2": "Hãy để đội ngũ chuyên gia của IVS Education và IVS Celestech giúp bạn xây dựng những học liệu và giải pháp công nghệ giáo dục đột phá. Liên hệ với chúng tôi ngay hôm nay!",
-  "menu_contact": "Liên hệ Tư vấn"
-}
+  "menu_contact": "Liên hệ Tư vấn",
+  "video_section": {
+    "unsupported_browser": "Trình duyệt của bạn không hỗ trợ thẻ video.",
+    "title": "Giải pháp EdTech của chúng tôi trong hành động",
+    "description": "Xem cách chúng tôi biến các ý tưởng giáo dục thành hiện thực thông qua công nghệ tiên tiến, tạo ra môi trường học tập tương tác và hiệu quả."
+  },
+  "common": {
+    "home": "Trang chủ",
+    "about_us": "Về chúng tôi",
+    "services": "Dịch vụ",
+    "contact": "Liên hệ"
+  }
+  
+}  

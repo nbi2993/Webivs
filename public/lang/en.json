@@ -2747,7 +2747,7 @@
   "celestech_project_ivs_academy_desc": "Interior design and construction for IVS Academy's headquarters, a modern and inspiring educational space.",
   "celestech_project_view_details": "View details",
   "celestech_projects_cta": "View all projects",
-  
+
   "celestech_contact_title": "Ready to Create Your Space?",
   "celestech_contact_subtitle": "Let IVS Celestech turn your ideas into reality. Contact us today for a free consultation and detailed quotation!",
   "celestech_contact_cta": "Get Free Consultation Now",
@@ -2784,5 +2784,17 @@
   "rnd_testimonial_author_1": "- Representative of ABC Preschool",
   "rnd_cta_heading_v2": "Ready to Elevate Your Training Program?",
   "rnd_contact_cta_v2": "Let the expert team of IVS Education and IVS Celestech help you build groundbreaking learning materials and educational technology solutions. Contact us today!",
-  "menu_contact": "Contact for Consultation"
-}
+  "menu_contact": "Contact for Consultation",
+  "video_section": {
+    "unsupported_browser": "Your browser does not support the video tag.",
+    "title": "Our EdTech Solutions in Action",
+    "description": "See how we transform educational ideas into reality through advanced technology, creating interactive and effective learning environments."
+  },
+  "common": {
+    "home": "Home",
+    "about_us": "About Us",
+    "services": "Services",
+    "contact": "Contact"
+  }
+  
+}  

@@ -50,7 +50,7 @@
             background-color: var(--tw-colors-ivs-bg); /* Use IVS background color */
             color: var(--tw-colors-ivs-text-primary); /* Use IVS primary text color */
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            -moz-osx-smoothing: grayscale;
         }
         
         /* Hero section specific styles for a modern, immersive feel */
@@ -77,6 +77,27 @@
             background: linear-gradient(to top, var(--tw-colors-ivs-bg) 0%, rgba(13, 17, 23, 0.8) 50%, transparent 100%); /* Enhanced gradient overlay for depth */
             z-index: 1;
         }
+        /* New: Sparkling star background effect */
+        .hero-rnd::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.8"/></svg>') repeat;
+            background-size: 10px 10px; /* Adjust size of stars */
+            animation: twinkle 10s infinite alternate; /* Twinkling animation */
+            opacity: 0.2; /* Subtle opacity */
+            z-index: 0; /* Behind content and gradient */
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
         .hero-rnd .container {
             position: relative;
             z-index: 2; 
@@ -432,20 +453,19 @@
                 </div>
             </div>
         </section>
-
-        <!-- Video Showcase Section -->
+        
         <section class="video-section section-spacing bg-ivs-bg">
             <div class="relative w-full">
                 <video class="w-full h-auto block" autoplay loop muted playsinline>
                     <source src="/videos/videowebdesign.mp4" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                    <span data-lang-key="video_unsupported_browser">Trình duyệt của bạn không hỗ trợ thẻ video.</span>
                 </video>
                 <div class="video-overlay">
                     <div class="video-overlay-content text-white px-4">
-                        <h2 class="font-display font-bold mb-4" data-aos="fade-up" data-aos-duration="1000">
+                        <h2 class="font-display font-bold mb-4" data-aos="fade-up" data-aos-duration="1000" data-lang-key="edtech_solution_title">
                             Giải pháp EdTech của chúng tôi trong hành động
                         </h2>
-                        <p class="text-lg" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                        <p class="text-lg" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-lang-key="edtech_solution_description">
                             Xem cách chúng tôi biến các ý tưởng giáo dục thành hiện thực thông qua công nghệ tiên tiến, tạo ra môi trường học tập tương tác và hiệu quả.
                         </p>
                     </div>
@@ -518,8 +538,8 @@
                         <li data-lang-key="rnd_benefit_item1"><i class="fas fa-check-circle text-ivs-blue mr-2"></i> Sản phẩm được "may đo" theo đúng nhu cầu đặc thù.</li>
                         <li data-lang-key="rnd_benefit_item2"><i class="fas fa-check-circle text-ivs-blue mr-2"></i> Chất lượng chuyên môn cao, cập nhật xu hướng mới nhất.</li>
                         <li data-lang-key="rnd_benefit_item3"><i class="fas fa-check-circle text-ivs-blue mr-2"></i> Tích hợp công nghệ hiện đại, nâng cao trải nghiệm học tập.</li>
-                        <li data-lang-key="rnd_benefit_item4"><i class="fas fa-check-circle text-ivs-blue mr-2"></i> Tiết kiệm thời gian và nguồn lực tự phát triển.</li>
-                        <li data-lang-key="rnd_benefit_item5"><i class="fas fa-check-circle text-ivs-blue mr-2"></i> Hỗ trợ kỹ thuật và đào tạo sử dụng hiệu quả.</li>
+                        <li data-lang-key="rnd_benefit_item4">Tiết kiệm thời gian và nguồn lực tự phát triển.</li>
+                        <li data-lang-key="rnd_benefit_item5">Hỗ trợ kỹ thuật và đào tạo sử dụng hiệu quả.</li>
                     </ul>
                 </div>
             </div>
