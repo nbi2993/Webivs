@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,10 @@
     <meta name="description" content="Biến không gian sống và làm việc của bạn thành những kiệt tác đầy cảm hứng cùng IVS Celestech." data-lang-key="interior_meta_description">
     <meta property="og:title" content="IVS Celestech - Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp" data-lang-key="interior_og_title">
     <meta property="og:description" content="IVS Celestech cam kết kiến tạo những không gian không chỉ đẹp về mặt thẩm mỹ mà còn tối ưu về công năng và phản ánh rõ nét cá tính của gia chủ hoặc văn hóa doanh nghiệp." data-lang-key="interior_og_description">
-    <meta property="og:image" content="/images/banners/interior_hero_banner.jpg">
+    <meta property="og:image" content="https://placehold.co/1200x630/161B22/E4E4E7?text=IVS+Celestech+Interior+Design">
     <meta property="og:url" content="https://ivs.id.vn/Pages/ivscelestech-tcnoithat.html">
     <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
 
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
@@ -24,6 +25,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Lexend', 'sans-serif'], // Thêm font Lexend cho tiêu đề
                     },
                     colors: {
                         // Định nghĩa lại bảng màu cho chủ đề tối, đồng bộ với các trang khác
@@ -33,13 +35,13 @@
                         'secondary-dark': '#EAB308', // Amber 500
                         'accent': '#FACC15', // Amber 400 (sử dụng secondary cho accent)
                         'header-orange': '#F97316', // Giữ nguyên
-                        'ivs-neutral-800': '#18181B', // Zinc 900
-                        'ivs-neutral-700': '#27272A', // Zinc 800
-                        'ivs-neutral-600': '#3F3F46', // Zinc 700
-                        'ivs-neutral-300': '#D4D4D8', // Zinc 300
-                        'ivs-neutral-200': '#E4E4E7', // Zinc 200
-                        'ivs-neutral-100': '#F4F4F5', // Zinc 100
-                        'ivs-neutral-50': '#FAFAFA', // Zinc 50
+                        'ivs-neutral-800': '#18181B', // Zinc 900 - Background chính
+                        'ivs-neutral-700': '#27272A', // Zinc 800 - Nền card/section
+                        'ivs-neutral-600': '#3F3F46', // Zinc 700 - Nền các phần tử nhỏ hơn trong card
+                        'ivs-neutral-300': '#D4D4D8', // Zinc 300 - Text phụ
+                        'ivs-neutral-200': '#E4E4E7', // Zinc 200 - Text chính light mode
+                        'ivs-neutral-100': '#F4F4F5', // Zinc 100 - Text chính dark mode
+                        'ivs-neutral-50': '#FAFAFA', // Zinc 50 - Nền light mode
                         'purple-accent': '#A78BFA', // Purple 400
                         'warning': '#FACC15', // Amber 400
                         'blue-50': '#EEF2FF', // Indigo 50
@@ -69,8 +71,8 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- AOS for animations -->
@@ -186,6 +188,52 @@
             width: 1.5rem; /* h-6 */
             height: 1.5rem; /* w-6 */
         }
+
+        /* Hero Section specific styling for this page */
+        .hero-celestech {
+            position: relative;
+            width: 100%;
+            height: 80vh; /* Adjust height as needed */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            background-color: #000; /* Fallback background */
+        }
+
+        .hero-celestech video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.4); /* Darken video for text readability */
+        }
+
+        .hero-celestech .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Stronger overlay */
+            z-index: 2;
+        }
+
+        .hero-celestech .content {
+            position: relative;
+            z-index: 3;
+            max-width: 90%;
+            padding: 20px;
+        }
     </style>
 </head>
 <!-- Điều chỉnh màu nền body cho chủ đề tối -->
@@ -194,138 +242,162 @@
     <div id="header-placeholder"></div>
 
     <main class="container mx-auto px-4 py-8 md:py-12">
-        <!-- Hero Section -->
-        <section class="text-center py-16 md:py-24 bg-gradient-to-r from-primary to-secondary text-white rounded-xl shadow-lg mb-12" data-aos="fade-up">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight" data-lang-key="interior_hero_title">Quy Trình Thiết Kế & Thi Công Nội Thất Chuyên Nghiệp</h1>
-            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto" data-lang-key="interior_hero_subtitle">Biến không gian sống và làm việc của bạn thành những kiệt tác đầy cảm hứng cùng IVS Celestech.</p>
-            <a href="#contact-us" class="inline-block bg-accent hover:bg-secondary-dark text-ivs-neutral-800 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" data-lang-key="interior_hero_cta">Tư Vấn Ngay</a>
+        <!-- Hero Section for IVS Celestech -->
+        <section class="hero-celestech rounded-xl shadow-lg mb-12">
+            <video autoplay muted loop playsinline poster="https://placehold.co/1920x1080/18181B/E4E4E7?text=Celestech+Hero+Fallback" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover transform -translate-x-1/2 -translate-y-1/2 filter brightness-75">
+                <source src="/videos/ivs_background_video1.mp4" type="video/mp4">
+                <source src="/videos/ivs_background_video1.webm" type="video/webm">
+                <!-- Fallback Image if video fails to load -->
+                <img src="https://placehold.co/1920x1080/18181B/E4E4E7?text=Celestech+Hero+Fallback" alt="Hình ảnh nền Hero IVS Celestech" class="w-full h-full object-cover">
+            </video>
+            <div class="overlay"></div>
+            <div class="content max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10" data-aos="fade-up">
+                <h1 class="text-3xl md:text-5xl font-extrabold font-display mb-4 leading-tight text-white" data-lang-key="interior_hero_title">
+                    IVS Celestech: Kiến Tạo Không Gian Giáo Dục & Cung Cấp Trang Thiết Bị Hiện Đại
+                </h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-ivs-neutral-100" data-lang-key="interior_hero_subtitle">
+                    Chuyên nghiệp, hiệu quả, chất lượng, sang trọng, vững vàng – Chúng tôi kiến tạo môi trường học tập lý tưởng cho thế hệ tương lai.
+                </p>
+                <a href="#contact-us" class="inline-block bg-accent hover:bg-secondary-dark text-ivs-neutral-800 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" data-lang-key="interior_hero_cta">
+                    Tư Vấn Miễn Phí Ngay
+                </a>
+            </div>
         </section>
 
         <!-- Giới Thiệu IVS Celestech -->
-        <section class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="100">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-6 text-center" data-lang-key="interior_intro_title">Giới Thiệu IVS Celestech</h2>
-            <p class="text-lg leading-relaxed text-justify text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_intro_content_1">IVS Celestech, một đơn vị trực thuộc Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC), tự hào mang đến các giải pháp thiết kế và thi công nội thất toàn diện, từ không gian sống đến môi trường làm việc. Chúng tôi cam kết kiến tạo những không gian không chỉ đẹp về mặt thẩm mỹ mà còn tối ưu về công năng và phản ánh rõ nét cá tính của gia chủ hoặc văn hóa doanh nghiệp.</p>
-            <p class="text-lg leading-relaxed text-justify mt-4 text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_intro_content_2">Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công giàu kinh nghiệm, IVS Celestech luôn đặt chất lượng, sự tận tâm và sáng tạo lên hàng đầu trong mỗi dự án. Chúng tôi tin rằng, một không gian được thiết kế tỉ mỉ sẽ nâng tầm chất lượng cuộc sống và hiệu suất công việc.</p>
+        <section id="intro" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-6 text-center" data-lang-key="interior_intro_title">Giới Thiệu IVS Celestech</h2>
+            <p class="text-lg leading-relaxed text-justify text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_intro_content_1">IVS Celestech, một đơn vị trực thuộc Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC), chuyên cung cấp các giải pháp thiết kế, thi công nội thất và trang thiết bị cho các công trình giáo dục. Chúng tôi cam kết kiến tạo những không gian học tập không chỉ đẹp về mặt thẩm mỹ mà còn tối ưu về công năng, an toàn và phản ánh rõ nét triết lý giáo dục của nhà trường.</p>
+            <p class="text-lg leading-relaxed text-justify mt-4 text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_intro_content_2">Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công giàu kinh nghiệm trong lĩnh vực giáo dục, IVS Celestech luôn đặt chất lượng, sự tận tâm và sáng tạo lên hàng đầu trong mỗi dự án. Chúng tôi tin rằng, một môi trường học tập được thiết kế tỉ mỉ sẽ truyền cảm hứng, thúc đẩy sự phát triển toàn diện cho học sinh và nâng cao hiệu suất giảng dạy cho giáo viên.</p>
         </section>
 
         <!-- Tại Sao Chọn IVS Celestech? -->
-        <section class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_why_choose_title">Tại Sao Chọn IVS Celestech?</h2>
+        <section id="why-choose" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_why_choose_title">Tại Sao Chọn IVS Celestech?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="flex flex-col items-center text-center p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="300">
                     <div class="text-4xl text-accent dark:text-secondary mb-4">💡</div>
-                    <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_quality_title">Chất Lượng Vượt Trội</h3>
-                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_why_quality_desc">Chúng tôi cam kết sử dụng vật liệu cao cấp và quy trình thi công chuẩn mực để đảm bảo mỗi công trình đều đạt độ bền và thẩm mỹ tối ưu.</p>
+                    <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_quality_title">Chất Lượng Vượt Trội</h3>
+                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_why_quality_desc">Cam kết vật liệu cao cấp, trang thiết bị giáo dục hiện đại và quy trình thi công chuẩn mực, đảm bảo độ bền và thẩm mỹ tối ưu.</p>
                 </div>
                 <div class="flex flex-col items-center text-center p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="400">
                     <div class="text-4xl text-red-500 dark:text-red-400 mb-4">❤️</div>
-                    <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_dedication_title">Tận Tâm Với Khách Hàng</h3>
-                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_why_dedication_desc">Luôn lắng nghe, thấu hiểu mọi mong muốn của khách hàng để đưa ra những giải pháp thiết kế và thi công phù hợp nhất.</p>
+                    <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_dedication_title">Tận Tâm Với Giáo Dục</h3>
+                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_why_dedication_desc">Luôn lắng nghe, thấu hiểu đặc thù của từng cơ sở giáo dục để đưa ra những giải pháp thiết kế và cung cấp thiết bị phù hợp nhất.</p>
                 </div>
                 <div class="flex flex-col items-center text-center p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="500">
                     <div class="text-4xl text-blue-500 dark:text-blue-400 mb-4">🎨</div>
-                    <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_creativity_title">Thiết Kế Sáng Tạo</h3>
-                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_why_creativity_desc">Đội ngũ kiến trúc sư tài năng không ngừng đổi mới, mang đến những ý tưởng độc đáo, tạo nên không gian sống động và khác biệt.</p>
+                    <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_creativity_title">Thiết Kế Sáng Tạo & Thân Thiện</h3>
+                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_why_creativity_desc">Đội ngũ kiến trúc sư tài năng không ngừng đổi mới, mang đến những ý tưởng độc đáo, tạo nên không gian học tập sống động và truyền cảm hứng.</p>
                 </div>
                 <div class="flex flex-col items-center text-center p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="600">
                     <div class="text-4xl text-green-500 dark:text-green-400 mb-4">🤝</div>
-                    <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_transparency_title">Bình Đẳng & Minh Bạch</h3>
-                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_why_transparency_desc">Mọi giao dịch, quy trình đều được thực hiện minh bạch, rõ ràng, đảm bảo quyền lợi và sự hài lòng cho tất cả các bên.</p>
+                    <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_why_transparency_title">Giải Pháp Toàn Diện & Minh Bạch</h3>
+                    <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_why_transparency_desc">Cung cấp giải pháp trọn gói từ tư vấn, thiết kế, thi công đến cung cấp thiết bị, với mọi giao dịch và quy trình đều minh bạch, rõ ràng.</p>
                 </div>
             </div>
         </section>
 
         <!-- Quy Trình Thiết Kế & Thi Công Nội Thất -->
-        <section class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_process_title">Quy Trình Thiết Kế & Thi Công Nội Thất</h2>
+        <section id="process" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_process_title">Quy Trình Thiết Kế & Thi Công Công Trình Giáo Dục</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Step 1 -->
                 <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">1</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step1_title">Tiếp Nhận Thông Tin & Tư Vấn Sơ Bộ</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step1_desc">Chúng tôi lắng nghe nhu cầu, mong muốn và ngân sách của bạn để đưa ra những tư vấn ban đầu về phong cách, vật liệu và giải pháp tối ưu.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step1_title">Tiếp Nhận Thông Tin & Tư Vấn Sơ Bộ</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step1_desc">Chúng tôi lắng nghe nhu cầu, mong muốn và ngân sách của nhà trường để đưa ra những tư vấn ban đầu về phong cách, vật liệu và giải pháp tối ưu cho không gian giáo dục.</p>
                     </div>
                 </div>
                 <!-- Step 2 -->
                 <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="100">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">2</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step2_title">Khảo Sát Hiện Trạng & Lên Ý Tưởng Thiết Kế</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step2_desc">Đội ngũ IVS Celestech sẽ tiến hành khảo sát thực tế mặt bằng, thu thập dữ liệu và bắt đầu phác thảo các ý tưởng thiết kế sơ bộ.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step2_title">Khảo Sát Hiện Trạng & Lên Ý Tưởng Thiết Kế</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step2_desc">Đội ngũ IVS Celestech sẽ tiến hành khảo sát thực tế mặt bằng, thu thập dữ liệu và bắt đầu phác thảo các ý tưởng thiết kế sơ bộ, tập trung vào tính sư phạm và an toàn.</p>
                     </div>
                 </div>
                 <!-- Step 3 -->
                 <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="200">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">3</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step3_title">Ký Kết Hợp Đồng Thiết Kế & Triển Khai Hồ Sơ</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step3_desc">Sau khi thống nhất ý tưởng, chúng ta sẽ ký kết hợp đồng thiết kế và IVS Celestech sẽ triển khai hồ sơ thiết kế chi tiết (2D, 3D).</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step3_title">Ký Kết Hợp Đồng Thiết Kế & Triển Khai Hồ Sơ</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step3_desc">Sau khi thống nhất ý tưởng, chúng ta sẽ ký kết hợp đồng thiết kế và IVS Celestech sẽ triển khai hồ sơ thiết kế chi tiết (2D, 3D), bao gồm cả vị trí trang thiết bị.</p>
                     </div>
                 </div>
                 <!-- Step 4 -->
                 <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="300">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">4</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step4_title">Duyệt Thiết Kế & Báo Giá Thi Công</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step4_desc">Khách hàng duyệt bản vẽ thiết kế cuối cùng. Chúng tôi sẽ lập báo giá thi công chi tiết dựa trên hồ sơ thiết kế đã được duyệt.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step4_title">Duyệt Thiết Kế & Báo Giá Thi Công</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step4_desc">Khách hàng duyệt bản vẽ thiết kế cuối cùng. Chúng tôi sẽ lập báo giá thi công chi tiết dựa trên hồ sơ thiết kế đã được duyệt, bao gồm cả chi phí thiết bị.</p>
                     </div>
                 </div>
                 <!-- Step 5 -->
-                <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="500">
+                <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="400">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">5</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step6_title">Nghiệm Thu & Bàn Giao</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step7_desc">Sau khi hoàn thành, khách hàng sẽ cùng chúng tôi nghiệm thu công trình. IVS Celestech sẽ bàn giao không gian hoàn thiện đúng như thiết kế.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step5_title">Thi Công & Lắp Đặt Nội Thất & Thiết Bị</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step5_desc">Tiến hành thi công và lắp đặt nội thất theo bản vẽ đã duyệt, đồng thời cung cấp và lắp đặt các trang thiết bị giáo dục hiện đại, đảm bảo chất lượng và tiến độ.</p>
                     </div>
                 </div>
                 <!-- Step 6 -->
-                <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="600">
+                <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="500">
                     <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">6</div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step7_title">Bảo Hành & Hậu Mãi</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_process_step8_desc">Chúng tôi cam kết chính sách bảo hành rõ ràng và dịch vụ hậu mãi chu đáo, đảm bảo sự an tâm tuyệt đối cho khách hàng sau khi dự án hoàn thành.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step6_title">Nghiệm Thu & Bàn Giao</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step7_desc">Khách hàng nghiệm thu toàn bộ công trình và trang thiết bị. IVS Celestech bàn giao không gian giáo dục hoàn thiện đúng như thiết kế và cam kết.</p>
+                    </div>
+                </div>
+                <!-- Step 7 -->
+                <div class="flex items-start p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="fade-right" data-aos-delay="600">
+                    <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full text-lg font-bold mr-4">7</div>
+                    <div>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-ivs-neutral-800 dark:text-ivs-neutral-100" data-lang-key="interior_process_step7_title">Bảo Hành & Hậu Mãi</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm" data-lang-key="interior_process_step8_desc">Chúng tôi cam kết chính sách bảo hành rõ ràng và dịch vụ hậu mãi chu đáo cho cả công trình và thiết bị, đảm bảo sự an tâm tuyệt đối cho khách hàng.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Các Dịch Vụ Chính -->
-        <section class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_main_services_title">Các Dịch Vụ Chính</h2>
+        <section id="services" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_main_services_title">Các Dịch Vụ Chính</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up">
-                    <h3 class="text-xl font-semibold text-secondary dark:text-secondary mb-3" data-lang-key="interior_service_design_title"><i class="fas fa-drafting-compass mr-2"></i>Thiết Kế Nội Thất Giáo Dục</h3>
+                    <h3 class="text-xl font-semibold font-display text-secondary dark:text-secondary mb-3" data-lang-key="interior_service_design_title"><i class="fas fa-drafting-compass mr-2"></i>Thiết Kế & Thi Công Nội Thất Giáo Dục</h3>
                     <ul class="list-disc list-inside text-ivs-neutral-700 dark:text-ivs-neutral-300 space-y-2">
-                        <li data-lang-key="interior_service_design_item1">Thiết kế phòng học đa năng, linh hoạt</li>
-                        <li data-lang-key="interior_service_design_item2">Thiết kế khu vực thư viện, phòng đọc</li>
-                        <li data-lang-key="interior_service_design_item3">Thiết kế không gian vui chơi, hoạt động ngoại khóa</li>
-                        <li data-lang-key="interior_service_design_item4">Thiết kế phòng thí nghiệm, xưởng thực hành STEAM</li>
-                        <li data-lang-key="interior_service_design_item5">Thiết kế khu vực văn phòng, phòng giáo viên</li>
+                        <li data-lang-key="interior_service_design_item1">Thiết kế phòng học đa năng, linh hoạt, tối ưu diện tích.</li>
+                        <li data-lang-key="interior_service_design_item2">Thiết kế khu vực thư viện, phòng đọc sáng tạo, khuyến khích văn hóa đọc.</li>
+                        <li data-lang-key="interior_service_design_item3">Thiết kế không gian vui chơi, hoạt động ngoại khóa an toàn, truyền cảm hứng.</li>
+                        <li data-lang-key="interior_service_design_item4">Thiết kế phòng thí nghiệm, xưởng thực hành STEAM hiện đại, đạt chuẩn.</li>
+                        <li data-lang-key="interior_service_design_item5">Thiết kế khu vực văn phòng, phòng giáo viên tiện nghi, hỗ trợ tối đa công việc.</li>
+                        <li data-lang-key="interior_service_design_item6">Thi công trọn gói theo bản vẽ thiết kế, đảm bảo chất lượng và tiến độ.</li>
                     </ul>
                 </div>
                 <div class="p-6 bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm card-hover-effect" data-aos="zoom-in-up" data-aos-delay="100">
-                    <h3 class="text-xl font-semibold text-secondary dark:text-secondary mb-3" data-lang-key="interior_service_construction_title"><i class="fas fa-hammer mr-2"></i>Thi Công & Lắp Đặt Nội Thất</h3>
+                    <h3 class="text-xl font-semibold font-display text-secondary dark:text-secondary mb-3" data-lang-key="interior_service_equipment_title"><i class="fas fa-laptop-house mr-2"></i>Cung Cấp Trang Thiết Bị Giáo Dục Hiện Đại</h3>
                     <ul class="list-disc list-inside text-ivs-neutral-700 dark:text-ivs-neutral-300 space-y-2">
-                        <li data-lang-key="interior_service_construction_item1">Thi công trọn gói theo bản vẽ thiết kế</li>
-                        <li data-lang-key="interior_service_construction_item2">Cung cấp và lắp đặt nội thất chuyên dụng cho giáo dục (bàn ghế, tủ kệ, bảng tương tác,...)</li>
-                        <li data-lang-key="interior_service_construction_item3">Thi công hệ thống chiếu sáng, âm thanh tối ưu cho môi trường học tập</li>
-                        <li data-lang-key="interior_service_construction_item4">Giám sát chặt chẽ, đảm bảo chất lượng và tiến độ</li>
+                        <li data-lang-key="interior_service_equipment_item1">Cung cấp và lắp đặt nội thất chuyên dụng cho giáo dục (bàn ghế, tủ kệ, bảng tương tác, v.v.).</li>
+                        <li data-lang-key="interior_service_equipment_item2">Thiết bị công nghệ giáo dục (màn hình tương tác, máy chiếu, hệ thống âm thanh, VR/AR).</li>
+                        <li data-lang-key="interior_service_equipment_item3">Máy tính, máy in, laptop (đa số hàng nội địa Nhật chất lượng cao).</li>
+                        <li data-lang-key="interior_service_equipment_item4">Giải pháp quản lý học tập thông minh (LMS, phần mềm quản lý trường học).</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Dự Án Đã Tham Gia -->
-        <section class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_projects_title">Dự Án Đã Tham Gia</h2>
+        <section id="projects" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-8 text-center" data-lang-key="interior_projects_title">Dự Án Tiêu Biểu Trong Lĩnh Vực Giáo Dục</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1: ANH MỸ GROUP -->
                 <div class="bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up">
-                    <img src="/images/pages/ivscelestech/noithat-amgphuocthai.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=ANH+MY+GROUP';" alt="Hình ảnh dự án ANH MỸ GROUP" class="w-full h-48 object-cover">
+                    <img src="/images/pages/ivscelestech/noithat-amgphuocthai.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=ANH+MY+GROUP';" alt="Hình ảnh dự án Trung tâm Ngoại ngữ ANH MỸ GROUP" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_amg_title">Dự án Trung tâm Ngoại ngữ</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_amg_desc">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho Trung tâm ngoại ngữ AMG</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_amg_title">Thiết Kế & Thi Công Trung Tâm Ngoại Ngữ ANH MỸ GROUP</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_amg_desc">Dự án trọng điểm về thiết kế và thi công nội thất giáo dục, tối ưu không gian học tập và làm việc.</p>
                         <ul class="list-disc list-inside text-ivs-neutral-600 dark:text-ivs-neutral-300 mb-4">
                             <li data-lang-key="interior_project_amg_item1">Thiết kế không gian đa năng cho các lớp học (Kids, Bees, Teens Leaders).</li>
                             <li data-lang-key="interior_project_amg_item2">Khu vực lễ tân và chờ được tối ưu hóa về thẩm mỹ và công năng.</li>
@@ -338,8 +410,8 @@
                 <div class="bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up" data-aos-delay="100">
                     <img src="/images/pages/ivscelestech/noithat-ieltsstation.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=IELTS+STATION';" alt="Hình ảnh dự án IELTS STATION" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_ielts_title">Dự án IELTS STATION</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_ielts_desc">Kết hợp với các đơn vị Thiết kế và thi công nội thất cho IELTS STATION.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_ielts_title">Thiết Kế & Thi Công Trung Tâm IELTS STATION</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_ielts_desc">Dự án tạo ra môi trường học tập chuyên biệt, hiện đại cho luyện thi IELTS.</p>
                         <ul class="list-disc list-inside text-ivs-neutral-600 dark:text-ivs-neutral-300 mb-4">
                             <li data-lang-key="interior_project_ielts_item1">Các phòng học được thiết kế linh hoạt, phù hợp với nhiều hình thức giảng dạy.</li>
                             <li data-lang-key="interior_project_ielts_item2">Khu vực tự học và thư viện yên tĩnh, khuyến khích sự tập trung.</li>
@@ -348,12 +420,12 @@
                         <a href="#" class="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" data-lang-key="interior_project_view_details">Xem chi tiết</a>
                     </div>
                 </div> 
-
+                <!-- Project 3: IVS Academy -->
                 <div class="bg-ivs-neutral-50 dark:bg-ivs-neutral-600 rounded-lg shadow-sm overflow-hidden card-hover-effect" data-aos="zoom-in-up" data-aos-delay="200">
                     <img src="/images/ivs-academy.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/27272A/E4E4E7?text=IVS+ACADEMY';" alt="Hình ảnh dự án IVS Academy" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_ivs_academy_title">Dự án IVS Academy</h3>
-                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_ivs_academy_desc">Thiết kế và thi công nội thất cho trụ sở chính của IVS Academy, một không gian giáo dục hiện đại và truyền cảm hứng.</p>
+                        <h3 class="text-xl font-semibold font-display mb-2 text-secondary dark:text-secondary" data-lang-key="interior_project_ivs_academy_title">Thiết Kế & Thi Công Trụ Sở IVS Academy</h3>
+                        <p class="text-ivs-neutral-700 dark:text-ivs-neutral-300 mb-4" data-lang-key="interior_project_ivs_academy_desc">Dự án kiến tạo không gian giáo dục hiện đại và truyền cảm hứng cho trụ sở chính của IVS Academy.</p>
                         <ul class="list-disc list-inside text-ivs-neutral-600 dark:text-ivs-neutral-300 mb-4">
                             <li data-lang-key="interior_project_ivs_academy_item1">Khu vực ghi danh và tư vấn tuyển sinh hiện đại, thân thiện.</li>
                             <li data-lang-key="interior_project_ivs_academy_item2">Các phòng học được tối ưu hóa cho nhiều mô hình đào tạo (ngôn ngữ, kỹ năng, STEAM).</li>
@@ -367,13 +439,13 @@
 
         <!-- Liên Hệ Với IVS Celestech -->
         <section id="contact-us" class="bg-white dark:bg-ivs-neutral-700 p-8 md:p-12 rounded-xl shadow-md mb-12" data-aos="fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold text-primary dark:text-primary mb-6 text-center" data-lang-key="interior_contact_title">Liên Hệ Với IVS Celestech</h2>
-            <p class="text-lg mb-8 text-center max-w-3xl mx-auto text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_contact_subtitle">Bạn đang có ý tưởng cho không gian của mình? Hãy để IVS Celestech biến ý tưởng đó thành hiện thực. Liên hệ với chúng tôi ngay hôm nay để được tư vấn miễn phí!</p>
+            <h2 class="text-2xl md:text-3xl font-bold font-display text-primary dark:text-primary mb-6 text-center" data-lang-key="interior_contact_title">Liên Hệ Với IVS Celestech</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_contact_subtitle">Bạn đang có ý tưởng cho công trình giáo dục hoặc cần trang thiết bị hiện đại? Hãy để IVS Celestech biến ý tưởng đó thành hiện thực. Liên hệ với chúng tôi ngay hôm nay để được tư vấn miễn phí!</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Contact Information -->
                 <div>
-                    <h3 class="text-xl font-semibold text-secondary dark:text-secondary mb-4" data-lang-key="interior_contact_info_title">Thông Tin Liên Hệ</h3>
+                    <h3 class="text-xl font-semibold font-display text-secondary dark:text-secondary mb-4" data-lang-key="interior_contact_info_title">Thông Tin Liên Hệ</h3>
                     <p class="mb-2 text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_contact_address"><i class="fas fa-map-marker-alt text-primary dark:text-primary mr-2"></i> Địa chỉ: 1104, Tổ 6, Ấp Đất Mới, Xã Long Phước, Tỉnh Đồng Nai</p>
                     <p class="mb-2 text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_contact_phone"><i class="fas fa-phone text-primary dark:text-primary mr-2"></i> Điện thoại: [Số điện thoại của IVS]</p>
                     <p class="mb-2 text-ivs-neutral-700 dark:text-ivs-neutral-300" data-lang-key="interior_contact_email"><i class="fas fa-envelope text-primary dark:text-primary mr-2"></i> Email: [Email của IVS]</p>
@@ -382,7 +454,7 @@
 
                 <!-- Contact Form -->
                 <div>
-                    <h3 class="text-xl font-semibold text-secondary dark:text-secondary mb-4" data-lang-key="interior_contact_form_title">Gửi Yêu Cầu Tư Vấn</h3>
+                    <h3 class="text-xl font-semibold font-display text-secondary dark:text-secondary mb-4" data-lang-key="interior_contact_form_title">Gửi Yêu Cầu Tư Vấn</h3>
                     <form id="contactForm" class="space-y-4">
                         <div>
                             <label for="name" class="block text-ivs-neutral-700 dark:text-ivs-neutral-300 text-sm font-bold mb-2" data-lang-key="interior_form_name_label">Họ và Tên:</label>
