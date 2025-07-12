@@ -988,9 +988,76 @@
             initSpotlightEffect();
             initSmoothScroll();
             initMobileNav();
-            initAudioPlayer(); // Khởi tạo trình phát âm thanh
+            initAudioMenu(); // Initialize audio menu controls
             // initPhilosophyContent(); // This function seems to be for a different page/feature, keeping it commented unless needed
         };
+
+        // Initialize audio menu functionality
+        function initAudioMenu() {
+            const audioMenuButton = document.getElementById('audioMenuButton');
+            const audioIcon = document.getElementById('audioIcon');
+            const audioDropdown = document.getElementById('audioDropdown');
+            const playVietnameseAudio = document.getElementById('playVietnameseAudio');
+            const playEnglishAudio = document.getElementById('playEnglishAudio');
+            const audioPlayer = document.getElementById('audioPlayer');
+            let isPlaying = false;
+
+            if (!audioMenuButton || !audioIcon || !audioDropdown || !audioPlayer) {
+                console.warn('Some audio elements are missing');
+                return;
+            }
+
+            // Toggle dropdown visibility
+            audioMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                audioDropdown.classList.toggle('hidden');
+                audioDropdown.classList.toggle('scale-95');
+                audioDropdown.classList.toggle('opacity-0');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!audioMenuButton.contains(e.target) && !audioDropdown.contains(e.target)) {
+                    audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
+                }
+            });
+
+            // Function to handle play/pause
+            function toggleAudio() {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                    audioIcon.classList.remove('fa-pause');
+                    audioIcon.classList.add('fa-volume-up');
+                } else {
+                    audioPlayer.play();
+                    audioIcon.classList.remove('fa-volume-up');
+                    audioIcon.classList.add('fa-pause');
+                }
+                isPlaying = !isPlaying;
+                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
+            }
+
+            // Vietnamese audio button
+            playVietnameseAudio?.addEventListener('click', toggleAudio);
+
+            // English audio button (for future implementation)
+            playEnglishAudio?.addEventListener('click', toggleAudio);
+
+            // Update button state when audio ends
+            audioPlayer.addEventListener('ended', () => {
+                isPlaying = false;
+                audioIcon.classList.remove('fa-pause');
+                audioIcon.classList.add('fa-volume-up');
+            });
+
+            // Optional: Add keyboard support for accessibility
+            audioMenuButton.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleAudio();
+                }
+            });
+        }
 
         // Initialize AOS library for scroll animations
         function initAOS() {
