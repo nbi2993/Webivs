@@ -986,19 +986,25 @@
             }
         }
     </script>
+    <script>
         function initPhilosophyContent() {
             const philosophyContent = document.getElementById('philosophyContent');
             const ivsLogoContainer = document.getElementById('ivsLogoContainer');
 
             if (!philosophyContent || !ivsLogoContainer) return;
 
+            function handleVisibility(element) {
+                philosophyContent.classList.add('is-visible');
+                setTimeout(() => {
+                    ivsLogoContainer.classList.add('hidden-on-scroll');
+                }, 500);
+            }
+
+            // Observer for scrolling into view
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        philosophyContent.classList.add('is-visible');
-                        setTimeout(() => {
-                            ivsLogoContainer.classList.add('hidden-on-scroll');
-                        }, 500);
+                        handleVisibility(entry.target);
                         observer.unobserve(entry.target);
                     }
                 });
@@ -1008,10 +1014,10 @@
 
             // Check if content is already in view on page load
             if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
-                philosophyContent.classList.add('is-visible');
-                ivsLogoContainer.classList.add('hidden-on-scroll');
+                handleVisibility(philosophyContent);
             }
         }
+    </script>
 </script>
 
 </body>
