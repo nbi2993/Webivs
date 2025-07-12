@@ -23,9 +23,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind Configuration -->
     <script>
-        tailwind.config = {
+        window.tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -65,45 +66,78 @@
                 </p>
             </section>
 
-            <!-- Thiết bị Văn phòng & Công nghệ -->
-            <section class="grid md:grid-cols-3 gap-8 mb-12">
-                <!-- Apple Products -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-right">
-                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_apple_title">Apple Products</h2>
-                    <div class="fb-post mb-4" data-href="https://www.facebook.com/permalink.php?story_fbid=pfbid0GoRxryZpqgVYZMBz2wqhP4aSahAzTBgcEyYpoMqV1bKmghQ8qrnzD2YUuLYYmZcsl&amp;id=61557353867835" data-width="auto" data-show-text="true"></div>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                        <li data-lang-key="tech_devices_apple_item_1">iMac & Mac Pro</li>
-                        <li data-lang-key="tech_devices_apple_item_2">MacBook Pro & Air</li>
-                        <li data-lang-key="tech_devices_apple_item_3">iPad Pro & Accessories</li>
-                    </ul>
-                </div>
+            <!-- Featured Products -->
+            <section class="mb-12">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Apple Products Showcase -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-aos="fade-right">
+                        <div class="p-6">
+                            <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_apple_title">
+                                Apple Products
+                            </h2>
+                            <div class="fb-post mb-6" data-href="https://www.facebook.com/permalink.php?story_fbid=pfbid0GoRxryZpqgVYZMBz2wqhP4aSahAzTBgcEyYpoMqV1bKmghQ8qrnzD2YUuLYYmZcsl&amp;id=61557353867835" data-width="500" data-show-text="true"></div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-desktop text-indigo-500"></i>
+                                        <span data-lang-key="tech_devices_apple_item_1">iMac & Mac Pro</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-laptop text-indigo-500"></i>
+                                        <span data-lang-key="tech_devices_apple_item_2">MacBook Pro & Air</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-tablet-alt text-indigo-500"></i>
+                                        <span data-lang-key="tech_devices_apple_item_3">iPad Pro & Accessories</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Thiết bị Văn phòng -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-up">
-                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_office_title">Thiết Bị Văn Phòng</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_office_description">
-                        Giải pháp thiết bị văn phòng hiện đại, tối ưu không gian làm việc.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                        <li data-lang-key="tech_devices_office_item_1">Bàn ghế văn phòng cao cấp</li>
-                        <li data-lang-key="tech_devices_office_item_2">Trang thiết bị quầy lễ tân</li>
-                        <li data-lang-key="tech_devices_office_item_3">Máy in, scan, photocopy</li>
-                        <li data-lang-key="tech_devices_office_item_4">Màn hình tương tác thông minh</li>
-                    </ul>
-                </div>
-
-                <!-- Giải pháp CNTT -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-left">
-                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_it_title">Giải Pháp CNTT</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_it_description">
-                        Hệ thống CNTT toàn diện cho doanh nghiệp hiện đại.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                        <li data-lang-key="tech_devices_it_item_1">Hệ thống mạng & bảo mật</li>
-                        <li data-lang-key="tech_devices_it_item_2">Giải pháp lưu trữ đám mây</li>
-                        <li data-lang-key="tech_devices_it_item_3">Phần mềm quản lý doanh nghiệp</li>
-                        <li data-lang-key="tech_devices_it_item_4">Hỗ trợ kỹ thuật 24/7</li>
-                    </ul>
+                    <!-- Office Equipment -->
+                    <div class="grid md:grid-cols-2 gap-4" data-aos="fade-left">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_office_title">Thiết Bị Văn Phòng</h2>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-chair text-blue-500 mt-1"></i>
+                                    <div>
+                                        <h3 class="font-semibold" data-lang-key="tech_devices_office_item_1">Bàn ghế văn phòng cao cấp</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Ergonomic & Modern Design</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-desktop text-green-500 mt-1"></i>
+                                    <div>
+                                        <h3 class="font-semibold" data-lang-key="tech_devices_office_item_2">Trang thiết bị quầy lễ tân</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Professional Reception Setup</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_it_title">Giải Pháp CNTT</h2>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-network-wired text-purple-500 mt-1"></i>
+                                    <div>
+                                        <h3 class="font-semibold" data-lang-key="tech_devices_it_item_1">Hệ thống mạng & bảo mật</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Enterprise Security</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-cloud text-cyan-500 mt-1"></i>
+                                    <div>
+                                        <h3 class="font-semibold" data-lang-key="tech_devices_it_item_2">Giải pháp lưu trữ đám mây</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Cloud Solutions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
