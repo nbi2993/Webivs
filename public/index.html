@@ -915,15 +915,24 @@
                             <i class="fas fa-quote-right text-ivs-blue text-5xl md:text-6xl opacity-75"></i>
                         </div>
                     </div>
-                    <div class="p-6 bg-ivs-card/80 rounded-xl backdrop-blur-sm border border-ivs-border" data-aos="fade-left">
-                        <div class="video-wrapper bg-black shadow-2xl">
-                            <iframe src="https://www.youtube.com/embed/WSFdBq4vprY?si=X1lIscHb06k3eJK_" title="YouTube video player: IVS JSC Company Profile" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="p-6 bg-ivs-card/80 rounded-xl backdrop-blur-sm border border-ivs-border flex flex-col items-center" data-aos="fade-left">
+                        <div class="video-wrapper bg-black shadow-2xl w-full mb-4">
+                            <iframe src="https://www.youtube.com/embed/WSFdBq4vprY?si=X1lIscHb06k3eJK_" title="YouTube video player: IVS JSC Company Profile" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full h-full"></iframe>
                         </div>
                         <h1 class="font-display text-xl md:text-2xl font-semibold text-white mt-4 text-center" data-lang-key="about_intro_video_caption">Video giới thiệu doanh nghiệp và ca khúc chủ đề của chúng tôi</h1>
-                        <p class="text-ivs-text-secondary mb-8 leading-relaxed" data-lang-key="about_intro_desc">
+                        <p class="text-ivs-text-secondary mb-8 leading-relaxed text-center" data-lang-key="about_intro_desc">
                             <strong class="text-ivs-blue">Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC)</strong> là đơn vị tiên phong trong việc cung cấp các giải pháp giáo dục toàn diện và đổi mới sáng tạo tại Việt Nam. Chúng tôi cam kết mang lại những giá trị giáo dục vượt trội. IVS JSC tự hào là thành viên chính của <strong class="text-ivs-blue">IIVSA – Liên minh giáo dục toàn cầu</strong>, khẳng định vị thế và khả năng hợp tác quốc tế của mình. Chúng tôi không chỉ bán chương trình, chúng tôi đồng hành cùng tầm nhìn giáo dục.
                         </p>
-                        <a href="/profile-company-ivsjsc.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20" data-lang-key="about_cta_view_profile"><i class="fas fa-arrow-right mr-2"></i> Xem Hồ sơ năng lực chi tiết</a>
+                        <!-- Audio Player -->
+                        <audio id="audioPlayer" src="/audio/ivs-transformation.mp3" preload="auto"></audio>
+                        <!-- Play/Pause Button -->
+                        <button id="playAudioButton" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-green hover:bg-ivs-emerald text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out group mt-4">
+                            <i class="fas fa-play mr-2" id="playIcon"></i>
+                            <i class="fas fa-pause mr-2 hidden" id="pauseIcon"></i>
+                            <span data-lang-key="audio_button_text_vi">Bước chuyển mình của IVS</span>
+                            <span data-lang-key="audio_button_text_en" class="hidden">The transformation of IVS</span>
+                        </button>
+                        <a href="/profile-company-ivsjsc.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20 mt-4" data-lang-key="about_cta_view_profile"><i class="fas fa-arrow-right mr-2"></i> Xem Hồ sơ năng lực chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -968,6 +977,7 @@
             initSpotlightEffect();
             initSmoothScroll();
             initMobileNav();
+            initAudioPlayer(); // Khởi tạo trình phát âm thanh
             // initPhilosophyContent(); // This function seems to be for a different page/feature, keeping it commented unless needed
         };
 
@@ -1125,6 +1135,73 @@
                     card.style.setProperty('--py', y + 'px');
                 });
             });
+        }
+
+        // Initialize audio player functionality
+        function initAudioPlayer() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playAudioButton = document.getElementById('playAudioButton');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const audioButtonTextVi = document.querySelector('[data-lang-key="audio_button_text_vi"]');
+            const audioButtonTextEn = document.querySelector('[data-lang-key="audio_button_text_en"]');
+
+            if (audioPlayer && playAudioButton) {
+                playAudioButton.addEventListener('click', () => {
+                    if (audioPlayer.paused) {
+                        audioPlayer.play();
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                        audioButtonTextVi.textContent = 'Đang phát âm thanh...';
+                        audioButtonTextEn.textContent = 'Playing audio...';
+                    } else {
+                        audioPlayer.pause();
+                        playIcon.classList.remove('hidden');
+                        pauseIcon.classList.add('hidden');
+                        audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
+                        audioButtonTextEn.textContent = 'The transformation of IVS';
+                    }
+                });
+
+                audioPlayer.addEventListener('ended', () => {
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                    audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
+                    audioButtonTextEn.textContent = 'The transformation of IVS';
+                });
+
+                // Set initial text based on current language
+                // Assuming `currentLanguage` is available from language.js
+                if (typeof currentLanguage !== 'undefined' && currentLanguage === 'en') {
+                    audioButtonTextVi.classList.add('hidden');
+                    audioButtonTextEn.classList.remove('hidden');
+                } else {
+                    audioButtonTextVi.classList.remove('hidden');
+                    audioButtonTextEn.classList.add('hidden');
+                }
+
+                // Listen for language changes (assuming language.js has an event or a way to notify)
+                // This part might need adjustment based on how language.js is implemented
+                document.addEventListener('languageChanged', (event) => {
+                    if (event.detail.lang === 'en') {
+                        audioButtonTextVi.classList.add('hidden');
+                        audioButtonTextEn.classList.remove('hidden');
+                        if (!audioPlayer.paused) {
+                            audioButtonTextEn.textContent = 'Playing audio...';
+                        } else {
+                            audioButtonTextEn.textContent = 'The transformation of IVS';
+                        }
+                    } else {
+                        audioButtonTextVi.classList.remove('hidden');
+                        audioButtonTextEn.classList.add('hidden');
+                        if (!audioPlayer.paused) {
+                            audioButtonTextVi.textContent = 'Đang phát âm thanh...';
+                        } else {
+                            audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
+                        }
+                    }
+                });
+            }
         }
 
     </script>
