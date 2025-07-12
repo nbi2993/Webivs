@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVS JSC - Comprehensive Ecosystem for Education, Technology & Human Resources - IVS Academy</title>
+    
+    <!-- SEO Meta Tags -->
     <meta name="description" content="Khám phá câu chuyện, tầm nhìn, sứ mệnh, triết lý hoạt động và đội ngũ lãnh đạo của IVS JSC - Tổ chức tiên phong kiến tạo hệ sinh thái giáo dục toàn cầu." data-lang-key="about_meta_description">
     <meta name="keywords" content="IVS JSC, về chúng tôi, tầm nhìn, sứ mệnh, integrate vision synergy, Nguyễn Minh Triết, giáo dục, EdTech, hồ sơ năng lực" data-lang-key="about_meta_keywords">
     <meta property="og:title" content="Về IVS JSC - Tầm Nhìn & Sứ Mệnh" data-lang-key="about_og_title">
@@ -13,16 +15,19 @@
     <meta property="og:type" content="website">
     <meta name="author" content="IVS JSC">
 
+    <!-- Favicons and Manifest -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
     <link rel="manifest" href="/manifest.json">
     
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Consolidated Tailwind Config -->
@@ -110,24 +115,15 @@
             --safe-area-top: env(safe-area-inset-top, 0px);
         }
 
-        .hero-section {
-            min-height: calc(100vh - var(--header-height));
-            margin-top: var(--header-height);
+        /* Base body styling */
+        body {
+            background-color: #0A0A0A;
+            color: #f4f4f5;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            overflow-x: hidden;
         }
 
-        .interactive-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(17,24,39,0.8);
-            backdrop-filter: blur(12px);
-        }
-
-        .interactive-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
-            border-color: rgba(59,130,246,0.5);
-        }
-
+        /* Section padding and scroll margin adjustments */
         section {
             scroll-margin-top: calc(var(--header-height) + 1rem);
             padding: 4rem 1rem;
@@ -139,21 +135,7 @@
             }
         }
 
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #111111;
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
-
+        /* Hero Section specific styling */
         .hero-section {
             position: relative;
             width: 100%;
@@ -165,7 +147,9 @@
             align-items: center;
             text-align: center;
             color: #ffffff;
-            background-color: #000;
+            background-color: #000; /* Fallback background for hero */
+            min-height: calc(100vh - var(--header-height)); /* Adjust for fixed header */
+            margin-top: var(--header-height); /* Push content down by header height */
         }
 
         .hero-video {
@@ -179,13 +163,13 @@
             z-index: 1;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.5);
-            opacity: 0;
+            filter: brightness(0.5); /* Darken video for text readability */
+            opacity: 0; /* Start hidden for smooth transition */
             transition: opacity 1s ease-in-out;
         }
 
         .hero-video.loaded {
-            opacity: 1;
+            opacity: 1; /* Fade in when video is ready */
         }
 
         .hero-fallback-image {
@@ -196,7 +180,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            display: block;
+            display: block; /* Ensure fallback is visible if video fails */
         }
 
         .hero-overlay {
@@ -205,7 +189,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.4); /* Overlay for text readability */
             z-index: 2;
         }
 
@@ -216,24 +200,26 @@
             padding: 20px;
         }
 
+        /* Responsive adjustments for hero section */
         @media (max-width: 768px) {
             .hero-section {
-                height: 70vh;
+                height: 70vh; /* Shorter height on smaller screens */
             }
             .hero-video {
-                filter: brightness(0.6);
+                filter: brightness(0.6); /* Slightly brighter on mobile */
             }
             .hero-overlay {
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.5); /* Stronger overlay on mobile */
             }
         }
 
         @media (max-width: 480px) {
             .hero-section {
-                height: 60vh;
+                height: 60vh; /* Even shorter height on very small screens */
             }
         }
 
+        /* Button styling */
         .btn-primary, .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -247,7 +233,7 @@
         }
 
         .btn-primary:hover, .btn-secondary:hover {
-            transform: scale(1.05);
+            transform: scale(1.05); /* Slight scale up on hover */
         }
 
         .btn-primary {
@@ -271,6 +257,7 @@
             line-height: 1.2;
         }
 
+        /* About Us Section with video background */
         .about-us-section {
             position: relative;
             overflow: hidden;
@@ -301,9 +288,10 @@
             width: 100%;
         }
 
+        /* Video embed wrapper for responsiveness */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 0.75rem;
@@ -316,77 +304,127 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Interactive card styling */
+        .interactive-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(17,24,39,0.8);
+            backdrop-filter: blur(12px);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            border-color: rgba(59,130,246,0.5);
+        }
+
+        /* Custom scrollbar for tab buttons */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111111;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        /* Hide default scrollbar for specific elements */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
+    <!-- Placeholder for Header - Content loaded by loadComponents.js -->
     <header id="header-placeholder"></header>
+
+    <!-- Mobile Navigation (Assumed to be loaded via loadComponents.js or similar) -->
+    <!-- This nav structure is for visual representation, actual mobile nav logic might be in external JS -->
+    <nav class="mobile-nav lg:hidden">
+        <img src="https://placehold.co/100x40/3b82f6/ffffff?text=IVS+Logo" alt="IVS Academy Logo" class="mobile-nav-logo">
+        <button class="mobile-menu-btn mobile-menu-button">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Mobile menu content, hidden by default and toggled by JS -->
+        <div class="mobile-menu absolute top-full left-0 w-full bg-ivs-bg border-t border-ivs-border py-4 hidden">
+            <ul class="flex flex-col items-center space-y-4">
+                <li><a href="/Pages/ivs-academy.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">IVS Academy</a></li>
+                <li><a href="/education.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Giáo dục</a></li>
+                <li><a href="/solutions.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Doanh nghiệp</a></li>
+                <li><a href="/Pages/careervn.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Tuyển dụng</a></li>
+                <li><a href="/contact.html" class="text-ivs-blue font-semibold">Đăng ký tư vấn</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <main>
-        <section class="relative min-h-[100vh] flex flex-col items-center justify-center text-center overflow-hidden pt-16 md:pt-20 hero-section">
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover hero-video" id="heroVideo">
+        <!-- SECTION 1: HERO -->
+        <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden hero-section">
+            <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
                 <source src="/videos/ivs-video-background.mp4" type="video/mp4">
-                <source src="/videos/ivs-video-background.webm" type="video/webm">
-                <img src="/images/hero-fallback.jpg" class="hero-fallback-image absolute inset-0 w-full h-full object-cover" alt="Hero fallback image">
+                <source src="/videos/hero-background.webm" type="video/webm">
+                <img src="/images/hero-fallback.jpg" class="hero-fallback-image" alt="Hero fallback image">
             </video>
-            <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] hero-overlay"></div>
-            <div class="hero-content container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-                <div class="max-w-5xl mx-auto backdrop-blur-md bg-black/40 p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold font-display text-white mb-6 tracking-tight">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue via-ivs-green to-ivs-blue animate-gradient-x" data-lang-key="hero_headline">IVS Academy</span>
+            <div class="hero-overlay"></div>
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                <div class="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display text-white mb-4">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-green text-5xl sm:text-6xl lg:text-7xl" data-lang-key="hero_headline">IVS Academy</span>
                         <br />
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue via-ivs-orange to-ivs-blue animate-gradient-x text-4xl sm:text-5xl lg:text-6xl" data-lang-key="hero_headline_part1">Kiến Tạo Tương Lai.</span>
-                        <br>
-                        <span class="text-white text-4xl sm:text-5xl lg:text-6xl" data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-ivs-blue to-ivs-orange" data-lang-key="hero_headline_part1">Kiến Tạo Tương Lai.</span>
+                        <span class="text-white" data-lang-key="hero_headline_part2">Dẫn Lối Thành Công.</span>
                     </h1>
-                    <p class="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed" data-lang-key="hero_description">
-                        Đối tác chiến lược toàn diện cho các tổ chức giáo dục, kiến tạo hệ sinh thái đa dạng và hiệu quả vượt trội.
+                    <p class="text-base sm:text-lg lg:text-xl text-ivs-text-primary max-w-3xl mx-auto mb-10" data-lang-key="hero_description">
+                        IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
                     </p>
-                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-4xl mx-auto">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
-                            <a href="/Pages/ivs-academy.html" class="btn-hero group" data-lang-key="hero_cta_ivs_academy">
-                                <i class="fas fa-graduation-cap text-xl group-hover:scale-110 transition-transform"></i>
-                                <span>IVS Academy</span>
-                            </a>
-                            <a href="/education.html" class="btn-hero group" data-lang-key="hero_cta_ivs_education">
-                                <i class="fas fa-lightbulb text-xl group-hover:scale-110 transition-transform"></i>
-                                <span>Giải pháp Giáo dục</span>
-                            </a>
-                            <a href="/solutions.html" class="btn-hero group" data-lang-key="hero_cta_ivs_consulting">
-                                <i class="fas fa-building text-xl group-hover:scale-110 transition-transform"></i>
-                                <span>Giải pháp Doanh nghiệp</span>
-                            </a>
-                            <a href="/Pages/careervn.html" class="btn-hero group" data-lang-key="hero_cta_careers">
-                                <i class="fas fa-briefcase text-xl group-hover:scale-110 transition-transform"></i>
-                                <span>Tuyển dụng</span>
-                            </a>
-                        </div>
-                        <a href="/contact.html" class="btn-cta group" data-lang-key="hero_cta_contact">
-                            <i class="fas fa-headset text-xl group-hover:scale-110 transition-transform"></i>
-                            <span>Tư vấn ngay</span>
-                        </a>
+                    <div class="flex flex-col sm:flex-row sm:justify-center flex-wrap gap-2">
+                        <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy"><i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy</a>
+                        <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục</a>
+                        <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp</a>
+                        <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers"><i class="fas fa-briefcase mr-2"></i> Tuyển dụng</a>
+                        <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact"><i class="fas fa-headset mr-2"></i> Đăng ký tư vấn</a>
                     </div>
+                </div>
+            </div>
+            <div class="absolute bottom-8 left-0 right-0 flex justify-center z-20">
+                <div class="animate-bounce w-10 h-10 rounded-full bg-ivs-blue/20 flex items-center justify-center">
+                    <i class="fas fa-chevron-down text-ivs-blue"></i>
                 </div>
             </div>
         </section>
 
-        <section class="relative py-24 mt-0 bg-ivs-bg overflow-hidden about-us-section">
+        <!-- SECTION 2: IVS GLOBAL TEACHER HUB INTRO -->
+        <section class="relative py-24 bg-ivs-bg overflow-hidden about-us-section">
             <div class="absolute inset-0 w-full h-full z-0">
                 <video id="backgroundVideo1" autoplay loop muted playsinline class="background-video">
                     <source src="/videos/ivsstarting.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    <source src="/videos/about-background.webm" type="video/webm"> <!-- Added webm source for broader compatibility -->
+                    <img src="/images/about-fallback.jpg" class="hero-fallback-image" alt="About section fallback image">
                 </video>
                 <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
             </div>
             <div id="ivs-teacher-hub-intro-section" class="hero-content-overlay container mx-auto px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold font-display text-white" data-lang-key="welcome_title">Welcome to the IVS Global Teacher Hub!</h2>
-                <p class="text-lg md:text-xl text-white mt-4 max-w-3xl mx-auto" data-lang-key="welcome_description">
+                <h2 class="text-3xl md:text-5xl font-extrabold font-display text-white" data-aos="fade-up" data-lang-key="welcome_title">Welcome to the IVS Global Teacher Hub!</h2>
+                <p class="text-lg md:text-xl text-white mt-4 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-lang-key="welcome_description">
                     Discover a world of opportunities in international education. The IVS Global Teacher Hub is your gateway to connecting with leading educational projects, enhancing your professional skills, and contributing to the future of learning.
                 </p>
-                <a href="/ivs-global-teacher-hub.html" class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-lang-key="explore_opportunities_button">
+                <a href="/ivs-global-teacher-hub.html" class="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-aos="fade-up" data-aos-delay="200" data-lang-key="explore_opportunities_button">
                     Explore Opportunities Now <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </section>
 
+        <!-- SECTION 3: IMPACT COUNTERS -->
         <section class="py-16 lg:py-24 bg-ivs-bg">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center" id="impact-counters">
@@ -406,6 +444,7 @@
             </div>
         </section>
 
+        <!-- SECTION 4: EOV SPOTLIGHT -->
         <section class="py-20 lg:py-24 eov-section border-y border-ivs-border">
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -419,12 +458,79 @@
                         </div>
                     </div>
                     <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="200">
-                        <img src="/images/pages/eov2025/eov2025.jpg" alt="Mockup của EOV 2025 trên các thiết bị" class="max-w-full h-auto">
+                        <img src="/images/pages/eov2025/eov2025.jpg" alt="Mockup của EOV 2025 trên các thiết bị" class="max-w-full h-auto rounded-lg shadow-xl">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 5: DETAILED SERVICES SHOWCASE -->
+        <section id="services-showcase" class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4" data-lang-key="services_main_title">Hệ sinh thái Giải pháp & Dịch vụ</h2>
+                    <p class="text-lg text-ivs-text-secondary" data-lang-key="services_main_subtitle">Từ nền tảng giáo dục đến các giải pháp công nghệ và tư vấn chiến lược, chúng tôi cung cấp một hệ sinh thái toàn diện để đáp ứng mọi nhu cầu của bạn.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mb-4"><i class="fas fa-balance-scale text-3xl text-gray-400"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_legal_consulting_title">Tư vấn Pháp luật Dân sự (Cá nhân)</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_legal_consulting_desc">Cung cấp dịch vụ tư vấn pháp luật dân sự chuyên sâu cho cá nhân, đảm bảo quyền lợi và tuân thủ pháp luật.</p>
+                        <a href="/Pages/legal-consulting.html" class="font-semibold text-sm text-gray-400 hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mb-4"><i class="fas fa-handshake-angle text-3xl text-ivs-green"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_consulting_title">Tư vấn Toàn diện</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_consulting_desc">Hỗ trợ từ A-Z trong việc thành lập, vận hành trung tâm giáo dục, đảm bảo pháp lý và tối ưu chiến lược.</p>
+                        <a href="/consulting.html" class="font-semibold text-sm text-ivs-green hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="300">
+                        <div class="mb-4"><i class="fas fa-book-reader text-3xl text-ivs-amber"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_rnd_title">Phát triển Chương trình (R&D)</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_rnd_desc">Nghiên cứu và phát triển các chương trình đào tạo STEAM, Kỹ năng sống, và Anh ngữ theo chuẩn quốc tế.</p>
+                        <a href="/Pages/rnd-curriculum.html" class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="400">
+                        <div class="mb-4"><i class="fas fa-school text-3xl text-ivs-blue"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_partnership_title">Liên kết Đào tạo</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_partnership_desc">Cung cấp các chương trình hợp tác toàn diện cho Mầm non, Tiểu học, và các trung tâm ngoại ngữ.</p>
+                        <a href="/partner-solutions" class="font-semibold text-sm text-ivs-blue hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="500">
+                        <div class="mb-4"><i class="fas fa-globe-americas text-3xl text-ivs-purple"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_international_partnership_title">Liên kết Hợp tác Quốc tế</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_international_partnership_desc">Mở rộng cơ hội học bổng du học, du học hè, trao đổi sinh viên, và các khóa học liên kết quốc tế, thúc đẩy giao lưu văn hóa.</p>
+                        <a href="/Pages/international-partnership.html" class="font-semibold text-sm text-ivs-purple hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="600">
+                        <div class="mb-4"><i class="fas fa-microchip text-3xl text-ivs-cyan"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_celestech_title">IVS Celestech</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_celestech_desc">Cung cấp trang thiết bị giáo dục thông minh, phát triển ứng dụng, phần mềm phục vụ nhu cầu các cơ sở giáo dục (Máy in màu, trắng đen, laptop chuẩn nội địa Nhật).</p>
+                        <a href="/Pages/ivscelestech.html" class="font-semibold text-sm text-ivs-cyan hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="700">
+                        <div class="mb-4"><i class="fas fa-code text-3xl text-ivs-red"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_webdesign_title">Thiết kế & Phát triển Web</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_webdesign_desc">Xây dựng website chuyên nghiệp, chuẩn SEO, tối ưu trải nghiệm người dùng cho các tổ chức giáo dục và doanh nghiệp.</p>
+                        <a href="/Pages/webdesign.html" class="font-semibold text-sm text-ivs-red hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="800">
+                        <div class="mb-4"><i class="fas fa-user-tie text-3xl text-ivs-green"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_hr_title">Cung ứng Nhân sự & GVNN</h3>
+                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_hr_desc">Cung cấp nguồn giáo viên nước ngoài chất lượng cao và các giải pháp nhân sự chuyên biệt cho ngành giáo dục.</p>
+                        <a href="/Pages/foreign-teacher-services.html" class="font-semibold text-sm text-ivs-green hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="900">
+                        <div class="mb-4"><i class="fas fa-cubes text-3xl text-ivs-amber"></i></div>
+                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_digital_title">Hệ sinh thái Số</h3>
+                        <p class="text-ivs-text-secondary text-sm" data-lang-key="digital_apps_desc">Khám phá các ứng dụng, game giáo dục và nền tảng số được thiết kế để nâng cao hiệu quả dạy và học.</p>
+                        <a href="#digital-ecosystem" class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: AFFILIATED UNITS -->
         <section class="py-16 md:py-24 bg-ivs-card border-b border-ivs-border">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
@@ -476,71 +582,7 @@
             </div>
         </section>
 
-        <section id="services-showcase" class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4" data-lang-key="services_main_title">Hệ sinh thái Giải pháp & Dịch vụ</h2>
-                    <p class="text-lg text-ivs-text-secondary" data-lang-key="services_main_subtitle">Từ nền tảng giáo dục đến các giải pháp công nghệ và tư vấn chiến lược, chúng tôi cung cấp một hệ sinh thái toàn diện để đáp ứng mọi nhu cầu của bạn.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="100">
-                        <div class="mb-4"><i class="fas fa-balance-scale text-3xl text-gray-400"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_legal_consulting_title">Tư vấn Pháp luật Dân sự (Cá nhân)</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_legal_consulting_desc">Cung cấp dịch vụ tư vấn pháp luật dân sự chuyên sâu cho cá nhân, đảm bảo quyền lợi và tuân thủ pháp luật.</p>
-                        <a href="/Pages/legal-consulting.html" class="font-semibold text-sm text-gray-400 hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="200">
-                        <div class="mb-4"><i class="fas fa-handshake-angle text-3xl text-ivs-green"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_consulting_title">Tư vấn Toàn diện</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_consulting_desc">Hỗ trợ từ A-Z trong việc thành lập, vận hành trung tâm giáo dục, đảm bảo pháp lý và tối ưu chiến lược.</p>
-                        <a href="/consulting.html" class="font-semibold text-sm text-ivs-green hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="300">
-                        <div class="mb-4"><i class="fas fa-book-reader text-3xl text-ivs-amber"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_rnd_title">Phát triển Chương trình (R&D)</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_rnd_desc">Nghiên cứu và phát triển các chương trình đào tạo STEAM, Kỹ năng sống, và Anh ngữ theo chuẩn quốc tế.</p>
-                        <a href="/Pages/rnd-curriculum.html" class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="400">
-                        <div class="mb-4"><i class="fas fa-school text-3xl text-ivs-blue"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_partnership_title">Liên kết Đào tạo</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_partnership_desc">Cung cấp các chương trình hợp tác toàn diện cho Mầm non, Tiểu học, và các trung tâm ngoại ngữ.</p>
-                        <a href="/partner-solutions" class="font-semibold text-sm text-ivs-blue hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="500">
-                        <div class="mb-4"><i class="fas fa-globe-americas text-3xl text-ivs-purple"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_international_partnership_title">Liên kết Hợp tác Quốc tế</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_international_partnership_desc">Mở rộng cơ hội học bổng du học, du học hè, trao đổi sinh viên, và các khóa học liên kết quốc tế, thúc đẩy giao lưu văn hóa.</p>
-                        <a href="/Pages/international-partnership.html" class="font-semibold text-sm text-ivs-purple hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="600">
-                        <div class="mb-4"><i class="fas fa-microchip text-3xl text-ivs-cyan"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_celestech_title">IVS Celestech</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_celestech_desc">Cung cấp trang thiết bị giáo dục thông minh, phát triển ứng dụng, phần mềm phục vụ nhu cầu các cơ sở giáo dục (Máy in màu, trắng đen, laptop chuẩn nội địa Nhật).</p>
-                        <a href="/Pages/ivscelestech.html" class="font-semibold text-sm text-ivs-cyan hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="700">
-                        <div class="mb-4"><i class="fas fa-code text-3xl text-ivs-red"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_webdesign_title">Thiết kế & Phát triển Web</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_webdesign_desc">Xây dựng website chuyên nghiệp, chuẩn SEO, tối ưu trải nghiệm người dùng cho các tổ chức giáo dục và doanh nghiệp.</p>
-                        <a href="/Pages/webdesign.html" class="font-semibold text-sm text-ivs-red hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="800">
-                        <div class="mb-4"><i class="fas fa-user-tie text-3xl text-ivs-green"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_hr_title">Cung ứng Nhân sự & GVNN</h3>
-                        <p class="text-ivs-text-secondary text-sm mb-4" data-lang-key="service_hr_desc">Cung cấp nguồn giáo viên nước ngoài chất lượng cao và các giải pháp nhân sự chuyên biệt cho ngành giáo dục.</p>
-                        <a href="/Pages/foreign-teacher-services.html" class="font-semibold text-sm text-ivs-green hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                    <div class="interactive-card bg-ivs-bg p-8 rounded-xl border border-ivs-border" data-aos="fade-up" data-aos-delay="900">
-                        <div class="mb-4"><i class="fas fa-cubes text-3xl text-ivs-amber"></i></div>
-                        <h3 class="text-xl font-bold font-display text-white mb-2" data-lang-key="service_digital_title">Hệ sinh thái Số</h3>
-                        <p class="text-ivs-text-secondary text-sm" data-lang-key="digital_apps_desc">Khám phá các ứng dụng, game giáo dục và nền tảng số được thiết kế để nâng cao hiệu quả dạy và học.</p>
-                        <a href="#digital-ecosystem" class="font-semibold text-sm text-ivs-amber hover:text-white transition-colors" data-lang-key="learn_more_pillar">Khám phá →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- SECTION 7: SOLUTIONS FOR PARTNERS (Tabs) -->
         <section id="partner-solutions" class="py-20 lg:py-24 bg-ivs-bg">
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
@@ -548,11 +590,11 @@
                     <p class="text-lg text-ivs-text-secondary" data-lang-key="solutions_subtitle">Chúng tôi thiết kế các gói giải pháp chuyên biệt, đáp ứng chính xác nhu cầu và mục tiêu của từng loại hình đối tác.</p>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="200" x-data="{ tab: 'schools' }">
-                    <div class="mb-8 border-b border-ivs-border flex justify-center">
-                        <button @click="tab = 'schools'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'schools', 'text-ivs-text-secondary border-transparent': tab !== 'schools' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_schools">Trường học</button>
-                        <button @click="tab = 'centers'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'centers', 'text-ivs-text-secondary border-transparent': tab !== 'centers' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_centers">Trung tâm</button>
-                        <button @click="tab = 'corporate'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'corporate', 'text-ivs-text-secondary border-transparent': tab !== 'corporate' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_corporate">Doanh nghiệp</button>
-                        <button @click="tab = 'individual'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'individual', 'text-ivs-text-secondary border-transparent': tab !== 'individual' }" class="px-6 py-3 font-semibold border-b-2 transition-colors" data-lang-key="solutions_tab_individual">Cá nhân</button>
+                    <div class="mb-8 border-b border-ivs-border flex justify-center custom-scrollbar overflow-x-auto pb-2">
+                        <button @click="tab = 'schools'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'schools', 'text-ivs-text-secondary border-transparent': tab !== 'schools' }" class="px-6 py-3 font-semibold border-b-2 transition-colors whitespace-nowrap" data-lang-key="solutions_tab_schools">Trường học</button>
+                        <button @click="tab = 'centers'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'centers', 'text-ivs-text-secondary border-transparent': tab !== 'centers' }" class="px-6 py-3 font-semibold border-b-2 transition-colors whitespace-nowrap" data-lang-key="solutions_tab_centers">Trung tâm</button>
+                        <button @click="tab = 'corporate'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'corporate', 'text-ivs-text-secondary border-transparent': tab !== 'corporate' }" class="px-6 py-3 font-semibold border-b-2 transition-colors whitespace-nowrap" data-lang-key="solutions_tab_corporate">Doanh nghiệp</button>
+                        <button @click="tab = 'individual'" :class="{ 'text-ivs-blue border-ivs-blue': tab === 'individual', 'text-ivs-text-secondary border-transparent': tab !== 'individual' }" class="px-6 py-3 font-semibold border-b-2 transition-colors whitespace-nowrap" data-lang-key="solutions_tab_individual">Cá nhân</button>
                     </div>
                     <div class="bg-ivs-card p-8 rounded-lg border border-ivs-border">
                         <div x-show="tab === 'schools'">
@@ -571,7 +613,7 @@
                                 <a href="/Pages/tech_devices.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-darker transition-colors font-semibold" data-lang-key="solutions_individual_btn3">Thiết bị Công nghệ</a>
                             </div>
                         </div>
-                        <div x-show="tab === 'centers'">
+                        <div x-show="tab === 'centers'" style="display: none;">
                             <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_centers_title">Giải pháp cho Trung tâm Ngoại ngữ & Kỹ năng</h3>
                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
                                 <li data-lang-key="solutions_centers_item1">Tư vấn thành lập, setup và vận hành từ A-Z.</li>
@@ -586,7 +628,7 @@
                                 <a href="/Pages/tech_devices.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-darker transition-colors font-semibold" data-lang-key="solutions_individual_btn3">Thiết bị Công nghệ</a>
                             </div>
                         </div>
-                        <div x-show="tab === 'corporate'">
+                        <div x-show="tab === 'corporate'" style="display: none;">
                             <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_corporate_title">Giải pháp cho Doanh nghiệp</h3>
                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
                                 <li data-lang-key="solutions_corporate_item1">Chương trình đào tạo tiếng Anh thương mại (Business English) cho nhân viên.</li>
@@ -601,7 +643,7 @@
                                 <a href="/Pages/tech_devices.html" class="bg-ivs-blue text-white px-5 py-2 rounded-lg hover:bg-ivs-blue-darker transition-colors font-semibold" data-lang-key="solutions_individual_btn3">Thiết bị Công nghệ</a>
                             </div>
                         </div>
-                        <div x-show="tab === 'individual'">
+                        <div x-show="tab === 'individual'" style="display: none;">
                             <h3 class="text-2xl font-bold font-display text-white mb-4" data-lang-key="solutions_individual_title">Giải pháp cho Cá nhân</h3>
                             <ul class="space-y-3 text-ivs-text-secondary list-disc list-inside">
                                 <li data-lang-key="solutions_individual_item1">Tư vấn pháp lý và tranh tụng trong lĩnh vực giáo dục.</li>
@@ -619,6 +661,7 @@
             </div>
         </section>
 
+        <!-- SECTION 8: DIGITAL ECOSYSTEM PORTAL -->
         <section id="digital-ecosystem" class="py-20 lg:py-24 bg-ivs-card border-y border-ivs-border">
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
@@ -650,6 +693,7 @@
             </div>
         </section>
 
+        <!-- SECTION 9: CEO MESSAGE & VIDEO -->
         <section class="ceo-message-video-section py-16 md:py-24 bg-ivs-bg text-center border-b border-ivs-border">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-12" data-aos="fade-up" data-lang-key="ceo_video_section_title">Thông điệp & Âm nhạc từ IVS JSC</h2>
@@ -686,11 +730,28 @@
                 </div>
             </div>
         </section>
+
+        <!-- SECTION 10: FINAL CALL TO ACTION -->
+        <section class="bg-ivs-blue/5 border-t border-ivs-border">
+            <div class="container mx-auto px-6 py-20 lg:py-24 text-center" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-bold font-display text-white mb-4" data-lang-key="cta_title">Sẵn sàng để Nâng tầm Tổ chức của bạn?</h2>
+                <p class="text-ivs-text-secondary text-lg max-w-2xl mx-auto mb-8" data-lang-key="cta_subtitle">
+                    Hãy để các chuyên gia của IVS lắng nghe và tư vấn giải pháp chiến lược được thiết kế riêng cho tầm nhìn và mục tiêu của bạn.
+                </p>
+                <a href="/contact.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20" data-lang-key="cta_button">
+                    Yêu cầu Tư vấn
+                </a>
+            </div>
+        </section>
+            
     </main>
 
+    <!-- Placeholder for Footer - Content loaded by loadComponents.js -->
     <footer id="footer-placeholder"></footer>
+    <!-- Placeholder for FAB Container - Content loaded by loadComponents.js -->
     <div id="fab-container-placeholder"></div>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
@@ -701,6 +762,7 @@
     <script src="/js/loadComponents.js" defer></script>
 
     <script>
+        // Main initialization function, called after all components are loaded
         window.onPageComponentsLoadedCallback = function() {
             initAOS();
             initVideos();
@@ -708,8 +770,10 @@
             initSpotlightEffect();
             initSmoothScroll();
             initMobileNav();
+            // initPhilosophyContent(); // This function seems to be for a different page/feature, keeping it commented unless needed
         };
 
+        // Initialize AOS library for scroll animations
         function initAOS() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
@@ -717,145 +781,21 @@
                     once: true,
                     offset: 50,
                     easing: 'ease-out-quad',
-                    disable: 'mobile'
+                    disable: 'mobile' // Disable AOS animations on mobile for better performance
                 });
             }
         }
 
-        function initVideos() {
-            const heroVideo = document.getElementById('heroVideo');
-            const backgroundVideo1 = document.getElementById('backgroundVideo1');
-
-            if (heroVideo) initVideoWithFallback(heroVideo, '/videos/ivsstarting.png');
-            if (backgroundVideo1) initVideoWithFallback(backgroundVideo1, '/videos/ivs-video-background.png');
-        }
-
-        function initVideoWithFallback(video, fallbackPath) {
-            if (!video) return;
-
-            video.play().catch(error => {
-                console.warn('Video autoplay prevented:', error);
-                video.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'absolute inset-0 bg-cover bg-center z-0';
-                fallback.style.backgroundImage = `url("${fallbackPath}")`;
-                video.parentElement.insertBefore(fallback, video);
-            });
-
-            video.addEventListener('canplay', () => {
-                video.classList.add('loaded');
-                video.style.opacity = '1';
-            });
-        }
-
-        function initAnimatedCounters() {
-            const counters = document.querySelectorAll('#impact-counters h3');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounter(entry.target);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            counters.forEach(counter => observer.observe(counter));
-        }
-
-        function animateCounter(counter) {
-            const target = +counter.getAttribute('data-target');
-            const duration = 2000;
-            let start = 0;
-            const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
-                const current = Math.min(Math.floor(progress / duration * target), target);
-                counter.textContent = current.toLocaleString('en-US');
-                if (current < target) {
-                    requestAnimationFrame(step);
-                }
-            };
-            requestAnimationFrame(step);
-        }
-
-        function initSpotlightEffect() {
-            const cards = document.querySelectorAll('.spotlight-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--px', x + 'px');
-                    card.style.setProperty('--py', y + 'px');
-                });
-            });
-        }
-
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerOffset = 80;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition - headerOffset;
-
-                        window.scrollBy({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-
-        function initMobileNav() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('active');
-                    mobileMenuButton.setAttribute(
-                        'aria-expanded',
-                        mobileMenu.classList.contains('active')
-                    );
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                        mobileMenu.classList.remove('active');
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        }
-
-        // Initialize AOS library
-        function initAOS() {
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 800,
-                    once: true,
-                    offset: 50,
-                    easing: 'ease-out-quad',
-                    disable: 'mobile'
-                });
-            }
-        }
-
-        // Initialize video elements with fallback
+        // Initialize video elements with autoplay and fallback mechanisms
         function initVideos() {
             const videos = {
                 hero: {
                     element: document.getElementById('heroVideo'),
-                    fallback: '/videos/ivsstarting.png'
+                    fallback: '/images/hero-fallback.jpg'
                 },
                 background: {
                     element: document.getElementById('backgroundVideo1'),
-                    fallback: '/videos/ivs-video-background.png'
+                    fallback: '/images/about-fallback.jpg' // Ensure this fallback image exists
                 }
             };
 
@@ -866,19 +806,27 @@
             });
         }
 
+        // Helper function to handle video autoplay and image fallback
         function initVideoWithFallback(videoElement, fallbackPath) {
             videoElement.play().catch(error => {
                 console.warn('Video autoplay prevented:', error);
-                videoElement.style.display = 'none';
-                insertFallbackImage(videoElement, fallbackPath);
+                videoElement.style.display = 'none'; // Hide video if autoplay fails
+                insertFallbackImage(videoElement, fallbackPath); // Insert fallback image
             });
 
             videoElement.addEventListener('canplay', () => {
+                videoElement.classList.add('loaded'); // Add 'loaded' class for CSS transition
+                videoElement.style.opacity = '1'; // Ensure video fades in
+            });
+
+            // If video is already ready (e.g., cached), add 'loaded' class immediately
+            if (videoElement.readyState >= 3) { // HAVE_FUTURE_DATA or higher
                 videoElement.classList.add('loaded');
                 videoElement.style.opacity = '1';
-            });
+            }
         }
 
+        // Helper function to insert a fallback image if video autoplay fails
         function insertFallbackImage(videoElement, fallbackPath) {
             const fallback = document.createElement('div');
             fallback.className = 'absolute inset-0 bg-cover bg-center z-0';
@@ -886,16 +834,16 @@
             videoElement.parentElement.insertBefore(fallback, videoElement);
         }
 
-        // Initialize counters animation
+        // Initialize animated counters for impact section
         function initAnimatedCounters() {
             const counters = document.querySelectorAll('#impact-counters h3');
-            const options = { threshold: 0.5 };
+            const options = { threshold: 0.5 }; // Trigger when 50% of element is visible
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         animateCounter(entry.target);
-                        observer.unobserve(entry.target);
+                        observer.unobserve(entry.target); // Stop observing once animated
                     }
                 });
             }, options);
@@ -903,15 +851,17 @@
             counters.forEach(counter => observer.observe(counter));
         }
 
+        // Helper function to animate a single counter
         function animateCounter(counter) {
             const target = +counter.getAttribute('data-target');
-            const duration = 2000;
+            const duration = 2000; // Animation duration in milliseconds
             let start = 0;
+
             const step = (timestamp) => {
                 if (!start) start = timestamp;
                 const progress = timestamp - start;
                 const current = Math.min(Math.floor(progress / duration * target), target);
-                counter.textContent = current.toLocaleString('en-US');
+                counter.textContent = current.toLocaleString('en-US'); // Format number with commas
                 if (current < target) {
                     requestAnimationFrame(step);
                 }
@@ -919,14 +869,14 @@
             requestAnimationFrame(step);
         }
 
-        // Initialize smooth scroll behavior
+        // Initialize smooth scroll for anchor links
         function initSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
-                        const headerOffset = 80;
+                        const headerOffset = 80; // Adjust for fixed header height
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition - headerOffset;
 
@@ -939,31 +889,33 @@
             });
         }
 
-        // Initialize mobile navigation
+        // Initialize mobile navigation toggle
         function initMobileNav() {
             const mobileMenu = document.querySelector('.mobile-menu');
             const mobileMenuButton = document.querySelector('.mobile-menu-button');
 
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('active');
+                    mobileMenu.classList.toggle('hidden'); // Toggle hidden class
                     mobileMenuButton.setAttribute(
                         'aria-expanded',
-                        mobileMenu.classList.contains('active')
+                        !mobileMenu.classList.contains('hidden') // Set aria-expanded based on visibility
                     );
                 });
 
-                // Close menu when clicking outside
+                // Close menu when clicking outside (optional, but good for UX)
                 document.addEventListener('click', (e) => {
                     if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-                        mobileMenu.classList.remove('active');
-                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        if (!mobileMenu.classList.contains('hidden')) { // Only hide if it's currently visible
+                            mobileMenu.classList.add('hidden');
+                            mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        }
                     }
                 });
             }
         }
 
-        // Initialize spotlight effect on cards
+        // Initialize spotlight effect on cards (if any elements have 'spotlight-card' class)
         function initSpotlightEffect() {
             const cards = document.querySelectorAll('.spotlight-card');
             cards.forEach(card => {
@@ -977,66 +929,7 @@
             });
         }
 
-        // Initialize philosophy content visibility
-        function initPhilosophyContent() {
-            const philosophyContent = document.getElementById('philosophyContent');
-            const ivsLogoContainer = document.getElementById('ivsLogoContainer');
-
-            if (!philosophyContent || !ivsLogoContainer) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        philosophyContent.classList.add('is-visible');
-                        setTimeout(() => {
-                            ivsLogoContainer.classList.add('hidden-on-scroll');
-                        }, 500);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            observer.observe(philosophyContent);
-
-            if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
-                philosophyContent.classList.add('is-visible');
-                ivsLogoContainer.classList.add('hidden-on-scroll');
-            }
-        }
     </script>
-    <script>
-        function initPhilosophyContent() {
-            const philosophyContent = document.getElementById('philosophyContent');
-            const ivsLogoContainer = document.getElementById('ivsLogoContainer');
-
-            if (!philosophyContent || !ivsLogoContainer) return;
-
-            function handleVisibility(element) {
-                philosophyContent.classList.add('is-visible');
-                setTimeout(() => {
-                    ivsLogoContainer.classList.add('hidden-on-scroll');
-                }, 500);
-            }
-
-            // Observer for scrolling into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        handleVisibility(entry.target);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            observer.observe(philosophyContent);
-
-            // Check if content is already in view on page load
-            if (philosophyContent.getBoundingClientRect().top < window.innerHeight) {
-                handleVisibility(philosophyContent);
-            }
-        }
-    </script>
-</script>
 
 </body>
 
