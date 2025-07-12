@@ -113,7 +113,8 @@
 
         /* Các kiểu cho phần Hero Section */
         .hero-rnd {
-            /* background-image: url('/images/banners/webdesign-hero-banner.jpg'); */ /* Nếu muốn dùng ảnh nền */
+            position: relative; /* Thêm để video background có thể định vị tuyệt đối */
+            overflow: hidden; /* Ẩn phần video thừa ra ngoài */
             background-size: cover;
             background-position: center;
         }
@@ -185,9 +186,9 @@
             width: 1.5rem; /* h-6 */
             height: 1.5rem; /* w-6 */
         }
-        /* Style for the background video */
+        /* Style for the background video within a section */
         .video-background {
-            position: fixed;
+            position: absolute; /* Changed from fixed to absolute for section background */
             top: 0;
             left: 0;
             width: 100%;
@@ -200,18 +201,21 @@
 </head>
 <!-- Điều chỉnh màu nền body cho chủ đề tối -->
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-ivs-neutral-800 text-gray-800 dark:text-ivs-neutral-200 font-inter">
-    <!-- Background Video -->
-    <video class="video-background" autoplay loop muted playsinline>
-        <source src="/videos/videowebdesign.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ thẻ video.
-    </video>
+    <!-- Removed the global background video from here -->
 
     <header id="header-placeholder" data-loading-text="Đang tải menu..."></header>
     <main class="flex-grow">
         <!-- HERO SECTION -->
         <!-- Điều chỉnh màu nền gradient cho chủ đề tối -->
         <section class="hero-rnd text-white py-16 md:py-24 text-center shadow-lg bg-gradient-to-br from-primary via-blue-600 to-indigo-600">
-            <div class="container mx-auto px-4">
+            <!-- Video Background -->
+            <video class="video-background" autoplay loop muted playsinline>
+                <source src="/videos/videowebdesign.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ thẻ video.
+            </video>
+            <!-- Gradient Overlay for better text readability -->
+            <div class="absolute inset-0 bg-gradient-to-t from-ivs-neutral-800 via-ivs-neutral-800/70 to-transparent z-0"></div>
+            <div class="container mx-auto px-4 relative z-10"> <!-- Added relative z-10 for content to be above video and overlay -->
                 <h1 class="text-3xl md:text-5xl font-bold mb-4 hero-text-shadow" data-aos="fade-up" data-lang-key="webdesign_hero_title">
                     Thiết kế Website chuyên nghiệp, uy tín, chất lượng
                 </h1>
