@@ -519,18 +519,44 @@
 
     /* Mobile menu styles */
     /* Updated to use 'hidden' class with JS toggle */
-    #ivs-mobile-menu-panel.hidden {
-        display: none;
+    /* Mobile Menu Panel Styling */
+    #ivs-mobile-menu-panel {
+        transition: visibility 0.3s;
     }
+    
+    #ivs-mobile-menu-panel.hidden {
+        visibility: hidden;
+    }
+
     #ivs-mobile-menu-backdrop {
         opacity: 0;
-        /* backdrop-filter handled by class */
+        backdrop-filter: blur(8px);
+        background: linear-gradient(to bottom right, 
+            rgba(17, 24, 39, 0.8),
+            rgba(17, 24, 39, 0.95)
+        );
+        transition: opacity 0.3s ease-in-out;
     }
-    #ivs-mobile-menu-panel:not(.hidden) #ivs-mobile-menu-backdrop { /* Only apply opacity when not hidden */
-        opacity: 1; 
+
+    #ivs-mobile-menu-panel:not(.hidden) #ivs-mobile-menu-backdrop {
+        opacity: 1;
     }
+
     #ivs-mobile-menu-container {
-        /* transform and transition properties are now defined inline to work with JS toggle */
+        background: linear-gradient(135deg, 
+            rgba(31, 41, 55, 0.95),
+            rgba(17, 24, 39, 0.98)
+        );
+        backdrop-filter: blur(12px);
+        box-shadow: 
+            -10px 0 30px rgba(0, 0, 0, 0.3),
+            inset 1px 0 rgba(255, 255, 255, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #ivs-mobile-menu-panel:not(.hidden) #ivs-mobile-menu-container {
+        transform: translateX(0);
     }
     
     .mobile-submenu-content {
