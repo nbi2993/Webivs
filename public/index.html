@@ -398,15 +398,38 @@
                         IVS là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
                     </p>
                     <div class="flex flex-col items-center gap-6">
-                    <!-- Main CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row sm:justify-center flex-wrap gap-2">
-                        <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy"><i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy</a>
-                        <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục</a>
-                        <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp</a>
-                        <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers"><i class="fas fa-briefcase mr-2"></i> Tuyển dụng</a>
-                        <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact"><i class="fas fa-headset mr-2"></i> Đăng ký tư vấn</a>
+                        <!-- Audio Button and Dropdown Container -->
+                        <div class="relative inline-block text-left">
+                            <button id="audioMenuButton" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-ivs-blue to-ivs-blue-darker text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-500/50 group relative">
+                                <i class="fas fa-volume-up text-2xl mr-3 group-hover:scale-110 transition-transform duration-200" id="audioIcon"></i>
+                                <span class="relative">
+                                    <span data-lang-key="audio_button_text_vi">Bước chuyển mình của IVS</span>
+                                    <span data-lang-key="audio_button_text_en" class="hidden">The transformation of IVS</span>
+                                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                </span>
+                            </button>
+
+                            <!-- Audio Dropdown Menu -->
+                            <div id="audioDropdown" class="origin-top-right absolute left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg bg-ivs-card ring-1 ring-black ring-opacity-5 focus:outline-none hidden transform opacity-0 scale-95 transition-all duration-200 ease-out z-50" role="menu" aria-orientation="vertical" aria-labelledby="audioMenuButton">
+                                <div class="py-1" role="none">
+                                    <button id="playVietnameseAudio" class="text-ivs-text-primary block w-full text-left px-4 py-2 text-sm hover:bg-ivs-neutral-600 hover:text-ivs-blue rounded-md" role="menuitem" data-lang-key="audio_option_vi">
+                                        <i class="fas fa-play mr-2"></i> Bước chuyển mình của IVS (Tiếng Việt)
+                                    </button>
+                                    <button id="playEnglishAudio" class="text-ivs-text-primary block w-full text-left px-4 py-2 text-sm hover:bg-ivs-neutral-600 hover:text-ivs-blue rounded-md" role="menuitem" data-lang-key="audio_option_en">
+                                        <i class="fas fa-play mr-2"></i> The transformation of IVS (English)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Main CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row sm:justify-center flex-wrap gap-2">
+                            <a href="/Pages/ivs-academy.html" class="btn-secondary" data-lang-key="hero_cta_ivs_academy"><i class="fas fa-graduation-cap mr-2"></i> Khám phá IVS Academy</a>
+                            <a href="/education.html" class="btn-secondary" data-lang-key="hero_cta_ivs_education"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Giáo dục</a>
+                            <a href="/solutions.html" class="btn-secondary" data-lang-key="hero_cta_ivs_consulting"><i class="fas fa-lightbulb mr-2"></i> Giải pháp Doanh nghiệp</a>
+                            <a href="/Pages/careervn.html" class="btn-secondary" data-lang-key="hero_cta_careers"><i class="fas fa-briefcase mr-2"></i> Tuyển dụng</a>
+                            <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact"><i class="fas fa-headset mr-2"></i> Đăng ký tư vấn</a>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             <div class="absolute bottom-8 left-0 right-0 flex justify-center z-20">
@@ -953,6 +976,13 @@
     <!-- Placeholder for FAB Container - Content loaded by loadComponents.js -->
     <div id="fab-container-placeholder"></div>
 
+    <!-- Hidden Audio Player -->
+    <audio id="audioPlayer" preload="auto" style="display:none;">
+        <source src="/audios/IVSJSC.mp3" type="audio/mpeg">
+        <source src="/audios/IVSJSC_ENGLISH.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -972,75 +1002,137 @@
             initSpotlightEffect();
             initSmoothScroll();
             initMobileNav();
-
+            initAudioMenu(); // Initialize audio menu controls
             // initPhilosophyContent(); // This function seems to be for a different page/feature, keeping it commented unless needed
         };
 
         // Initialize audio menu functionality
         function initAudioMenu() {
             const audioMenuButton = document.getElementById('audioMenuButton');
-            const audioIcon = document.getElementById('audioIcon');
             const audioDropdown = document.getElementById('audioDropdown');
-            const playVietnameseAudio = document.getElementById('playVietnameseAudio');
-            const playEnglishAudio = document.getElementById('playEnglishAudio');
-            const audioPlayer = document.getElementById('audioPlayer');
-            let isPlaying = false;
+            const audioIcon = document.getElementById('audioIcon');
+            const playVietnameseAudioButton = document.getElementById('playVietnameseAudio');
+            const playEnglishAudioButton = document.getElementById('playEnglishAudio');
+            const audioPlayer = document.getElementById('audioPlayer'); // Get the audio player element
 
-            if (!audioMenuButton || !audioIcon || !audioDropdown || !audioPlayer) {
-                console.warn('Some audio elements are missing');
+            let vietnameseAudioSource = '/audios/IVSJSC.mp3';
+            let englishAudioSource = '/audios/IVSJSC_ENGLISH.mp3';
+
+            let currentPlayingAudioSrc = null; // To keep track of the currently playing audio URL
+
+            if (!audioMenuButton || !audioDropdown || !audioIcon || !playVietnameseAudioButton || !playEnglishAudioButton || !audioPlayer) {
+                console.warn('Some audio elements are missing for initAudioMenu. Please check HTML IDs.');
                 return;
             }
 
+            // Function to stop currently playing audio and reset icon
+            function stopCurrentAudio() {
+                if (audioPlayer && !audioPlayer.paused) {
+                    audioPlayer.pause();
+                    audioPlayer.currentTime = 0; // Reset to start
+                }
+                audioIcon.classList.remove('fa-volume-mute');
+                audioIcon.classList.add('fa-volume-up');
+                currentPlayingAudioSrc = null;
+            }
+
+            // Function to play a specific audio
+            function playSpecificAudio(audioSrc) {
+                if (currentPlayingAudioSrc === audioSrc && !audioPlayer.paused) {
+                    // If the same audio is playing, pause it
+                    stopCurrentAudio();
+                } else {
+                    stopCurrentAudio(); // Stop any other audio first
+                    audioPlayer.src = audioSrc;
+                    audioPlayer.load(); // Load the new source
+                    audioPlayer.play().then(() => {
+                        audioIcon.classList.remove('fa-volume-up');
+                        audioIcon.classList.add('fa-volume-mute'); // Change icon to mute/pause
+                        currentPlayingAudioSrc = audioSrc;
+                    }).catch(error => {
+                        console.error("Error playing audio:", error);
+                        // Optionally show a user-friendly message
+                    });
+                }
+                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0'); // Hide dropdown after selection
+                audioDropdown.classList.remove('scale-100', 'opacity-100');
+            }
+
             // Toggle dropdown visibility
-            audioMenuButton.addEventListener('click', (e) => {
-                e.stopPropagation();
+            audioMenuButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from closing immediately
                 audioDropdown.classList.toggle('hidden');
-                audioDropdown.classList.toggle('scale-95');
-                audioDropdown.classList.toggle('opacity-0');
+                if (!audioDropdown.classList.contains('hidden')) {
+                    audioDropdown.classList.add('scale-100', 'opacity-100');
+                    audioDropdown.classList.remove('scale-95', 'opacity-0');
+                } else {
+                    audioDropdown.classList.remove('scale-100', 'opacity-100');
+                    audioDropdown.classList.add('scale-95', 'opacity-0');
+                }
             });
 
             // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!audioMenuButton.contains(e.target) && !audioDropdown.contains(e.target)) {
+            document.addEventListener('click', (event) => {
+                if (!audioDropdown.contains(event.target) && !audioMenuButton.contains(event.target)) {
                     audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
+                    audioDropdown.classList.remove('scale-100', 'opacity-100');
                 }
             });
 
-            // Function to handle play/pause
-            function toggleAudio() {
-                if (isPlaying) {
-                    audioPlayer.pause();
-                    audioIcon.classList.remove('fa-pause');
-                    audioIcon.classList.add('fa-volume-up');
+            // Play Vietnamese audio
+            playVietnameseAudioButton.addEventListener('click', () => {
+                playSpecificAudio(vietnameseAudioSource);
+            });
+
+            // Play English audio
+            playEnglishAudioButton.addEventListener('click', () => {
+                playSpecificAudio(englishAudioSource);
+            });
+
+            // Reset icon when audio ends
+            audioPlayer.addEventListener('ended', stopCurrentAudio);
+
+            // Handle language changes for dropdown text and main button text
+            document.addEventListener('languageChanged', (event) => {
+                const lang = event.detail.lang;
+                const viTextOption = document.querySelector('[data-lang-key="audio_option_vi"]');
+                const enTextOption = document.querySelector('[data-lang-key="audio_option_en"]');
+                const mainButtonViText = document.querySelector('[data-lang-key="audio_button_text_vi"]');
+                const mainButtonEnText = document.querySelector('[data-lang-key="audio_button_text_en"]');
+
+                if (lang === 'en') {
+                    if (viTextOption) viTextOption.textContent = 'The transformation of IVS (Vietnamese)';
+                    if (enTextOption) enTextOption.textContent = 'The transformation of IVS (English)';
+                    if (mainButtonViText) mainButtonViText.classList.add('hidden');
+                    if (mainButtonEnText) mainButtonEnText.classList.remove('hidden');
                 } else {
-                    audioPlayer.play();
-                    audioIcon.classList.remove('fa-volume-up');
-                    audioIcon.classList.add('fa-pause');
+                    if (viTextOption) viTextOption.textContent = 'Bước chuyển mình của IVS (Tiếng Việt)';
+                    if (enTextOption) enTextOption.textContent = 'The transformation of IVS (English)';
+                    if (mainButtonViText) mainButtonViText.classList.remove('hidden');
+                    if (mainButtonEnText) mainButtonEnText.classList.add('hidden');
                 }
-                isPlaying = !isPlaying;
-                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
+            });
+
+            // Initial language setting for the dropdown text on load
+            if (typeof currentLanguage !== 'undefined') {
+                const lang = currentLanguage;
+                const viTextOption = document.querySelector('[data-lang-key="audio_option_vi"]');
+                const enTextOption = document.querySelector('[data-lang-key="audio_option_en"]');
+                const mainButtonViText = document.querySelector('[data-lang-key="audio_button_text_vi"]');
+                const mainButtonEnText = document.querySelector('[data-lang-key="audio_button_text_en"]');
+
+                if (lang === 'en') {
+                    if (viTextOption) viTextOption.textContent = 'The transformation of IVS (Vietnamese)';
+                    if (enTextOption) enTextOption.textContent = 'The transformation of IVS (English)';
+                    if (mainButtonViText) mainButtonViText.classList.add('hidden');
+                    if (mainButtonEnText) mainButtonEnText.classList.remove('hidden');
+                } else {
+                    if (viTextOption) viTextOption.textContent = 'Bước chuyển mình của IVS (Tiếng Việt)';
+                    if (enTextOption) enTextOption.textContent = 'The transformation of IVS (English)';
+                    if (mainButtonViText) mainButtonViText.classList.remove('hidden');
+                    if (mainButtonEnText) mainButtonEnText.classList.add('hidden');
+                }
             }
-
-            // Vietnamese audio button
-            playVietnameseAudio?.addEventListener('click', toggleAudio);
-
-            // English audio button (for future implementation)
-            playEnglishAudio?.addEventListener('click', toggleAudio);
-
-            // Update button state when audio ends
-            audioPlayer.addEventListener('ended', () => {
-                isPlaying = false;
-                audioIcon.classList.remove('fa-pause');
-                audioIcon.classList.add('fa-volume-up');
-            });
-
-            // Optional: Add keyboard support for accessibility
-            audioMenuButton.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleAudio();
-                }
-            });
         }
 
         // Initialize AOS library for scroll animations
@@ -1198,111 +1290,6 @@
                 });
             });
         }
-
-        // Initialize audio player functionality
-        function initAudioPlayer() {
-            const audioMenuButton = document.getElementById('audioMenuButton');
-            const audioDropdown = document.getElementById('audioDropdown');
-            const audioIcon = document.getElementById('audioIcon');
-            const playVietnameseAudioButton = document.getElementById('playVietnameseAudio');
-            const playEnglishAudioButton = document.getElementById('playEnglishAudio');
-
-            let currentAudio = null; // To keep track of the currently playing audio
-            let vietnameseAudio = new Audio('/audios/IVSJSC.mp3');
-            let englishAudio = new Audio('/audios/IVSJSC_ENGLISH.mp3');
-
-            // Function to stop currently playing audio
-            function stopCurrentAudio() {
-                if (currentAudio && !currentAudio.paused) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0; // Reset to start
-                }
-                audioIcon.classList.remove('fa-volume-mute');
-                audioIcon.classList.add('fa-volume-up');
-            }
-
-            // Function to play a specific audio
-            function playAudio(audioElement) {
-                stopCurrentAudio(); // Stop any currently playing audio
-                currentAudio = audioElement;
-                currentAudio.play().catch(error => {
-                    console.error("Error playing audio:", error);
-                    // Optionally show a user-friendly message
-                });
-                audioIcon.classList.remove('fa-volume-up');
-                audioIcon.classList.add('fa-volume-mute'); // Change icon to mute/pause
-            }
-
-            // Toggle dropdown visibility
-            audioMenuButton.addEventListener('click', (event) => {
-                event.stopPropagation(); // Prevent click from closing immediately
-                audioDropdown.classList.toggle('hidden');
-                if (!audioDropdown.classList.contains('hidden')) {
-                    audioDropdown.classList.add('scale-100', 'opacity-100');
-                    audioDropdown.classList.remove('scale-95', 'opacity-0');
-                } else {
-                    audioDropdown.classList.remove('scale-100', 'opacity-100');
-                    audioDropdown.classList.add('scale-95', 'opacity-0');
-                }
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (event) => {
-                if (!audioDropdown.contains(event.target) && !audioMenuButton.contains(event.target)) {
-                    audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
-                    audioDropdown.classList.remove('scale-100', 'opacity-100');
-                }
-            });
-
-            // Play Vietnamese audio
-            playVietnameseAudioButton.addEventListener('click', () => {
-                playAudio(vietnameseAudio);
-                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0'); // Hide dropdown after selection
-                audioDropdown.classList.remove('scale-100', 'opacity-100');
-            });
-
-            // Play English audio
-            playEnglishAudioButton.addEventListener('click', () => {
-                playAudio(englishAudio);
-                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0'); // Hide dropdown after selection
-                audioDropdown.classList.remove('scale-100', 'opacity-100');
-            });
-
-            // Reset icon when audio ends
-            vietnameseAudio.addEventListener('ended', stopCurrentAudio);
-            englishAudio.addEventListener('ended', stopCurrentAudio);
-
-            // Handle language changes for dropdown text
-            document.addEventListener('languageChanged', (event) => {
-                const lang = event.detail.lang;
-                const viText = document.querySelector('[data-lang-key="audio_option_vi"]');
-                const enText = document.querySelector('[data-lang-key="audio_option_en"]');
-
-                if (lang === 'en') {
-                    if (viText) viText.textContent = 'The transformation of IVS';
-                    if (enText) enText.textContent = 'The transformation of IVS (English)'; // Clarify for English option
-                } else {
-                    if (viText) viText.textContent = 'Bước chuyển mình của IVS';
-                    if (enText) enText.textContent = 'The transformation of IVS (English)'; // Keep English text for English option
-                }
-            });
-
-            // Initial language setting for the dropdown text
-            // This assumes `currentLanguage` is globally available or can be retrieved
-            if (typeof currentLanguage !== 'undefined') {
-                const lang = currentLanguage;
-                const viText = document.querySelector('[data-lang-key="audio_option_vi"]');
-                const enText = document.querySelector('[data-lang-key="audio_option_en"]');
-                if (lang === 'en') {
-                    if (viText) viText.textContent = 'The transformation of IVS';
-                    if (enText) enText.textContent = 'The transformation of IVS (English)';
-                } else {
-                    if (viText) viText.textContent = 'Bước chuyển mình của IVS';
-                    if (enText) enText.textContent = 'The transformation of IVS (English)';
-                }
-            }
-        }
-
     </script>
 
 </body>
