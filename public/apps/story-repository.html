@@ -26,6 +26,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     
+    <!-- Add support for default language -->
+    <script>
+        document.documentElement.lang = localStorage.getItem('selectedLanguage') || 'vi';
+    </script>
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
