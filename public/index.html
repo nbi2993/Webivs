@@ -324,7 +324,7 @@
         <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-16 md:pt-20 hero-section">
             <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
                 <source src="/videos/ivs-video-background.mp4" type="video/mp4">
-                <source src="/videos/hero-background.webm" type="video/webm">
+                <source src="/videos/ivs-video-background.mp4" type="video/webm">
                 <img src="/images/hero-fallback.jpg" class="hero-fallback-image" alt="Hero fallback image">
             </video>
             <div class="hero-overlay"></div>
@@ -703,13 +703,13 @@
                 });
             }
         }
-
+        
         function initVideos() {
             const heroVideo = document.getElementById('heroVideo');
             const backgroundVideo1 = document.getElementById('backgroundVideo1');
 
-            if (heroVideo) initVideoWithFallback(heroVideo, '/images/hero-fallback.jpg');
-            if (backgroundVideo1) initVideoWithFallback(backgroundVideo1, '/images/about-fallback.jpg');
+            if (heroVideo) initVideoWithFallback(heroVideo, '/videos/ivsstarting.png');
+            if (backgroundVideo1) initVideoWithFallback(backgroundVideo1, '/videos/ivs-video-background.png');
         }
 
         function initVideoWithFallback(video, fallbackPath) {
@@ -833,11 +833,11 @@
             const videos = {
                 hero: {
                     element: document.getElementById('heroVideo'),
-                    fallback: '/images/hero-fallback.jpg'
+                    fallback: '/videos/ivsstarting.png'
                 },
                 background: {
                     element: document.getElementById('backgroundVideo1'),
-                    fallback: '/images/about-fallback.jpg'
+                    fallback: '/videos/ivs-video-background.png'
                 }
             };
 
