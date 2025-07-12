@@ -1,38 +1,61 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark scroll-smooth">
+<html lang="vi" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="tech_devices_page_title">Thiết Bị Công Nghệ & Giải Pháp Cơ Sở - IVS JSC</title>
+    <meta name="description" content="Khám phá các giải pháp công nghệ và thiết bị văn phòng chất lượng cao từ IVS JSC. Cung cấp giải pháp toàn diện cho doanh nghiệp và tổ chức." data-lang-key="tech_devices_meta_description">
+    <meta property="og:title" content="Thiết Bị Công Nghệ & Giải Pháp Văn Phòng - IVS JSC" data-lang-key="tech_devices_og_title">
+    <meta property="og:description" content="Giải pháp công nghệ toàn diện, thiết bị văn phòng chất lượng cao và dịch vụ chuyên nghiệp từ IVS JSC." data-lang-key="tech_devices_og_description">
+    <meta property="og:image" content="/images/banners/tech-devices-banner.jpg">
+    <meta property="og:url" content="https://ivsacademy.edu.vn/pages/tech_devices.html">
+    <meta property="og:type" content="website">
+    <meta name="author" content="IVS JSC">
 
-    <!-- SEO Meta Tags -->
-    <!-- Thêm các thẻ meta SEO nếu có từ index.html -->
-
-    <!-- Favicons and Manifest -->
-    <!-- Thêm các thẻ favicon và manifest nếu có từ index.html -->
-
-    <!-- Preconnect to CDNs for faster resource loading -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
+    <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Fonts and Icons (Async loading for performance) -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/styles.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'ivs-bg': '#0f172a',
+                        'ivs-card': '#1e293b',
+                        'ivs-border': 'rgba(255, 255, 255, 0.1)',
+                        'ivs-text': '#e2e8f0',
+                        'ivs-blue': '#3b82f6',
+                        'ivs-blue-darker': '#2563eb',
+                        'ivs-cyan': '#22d3ee',
+                        'ivs-green': '#10b981',
+                        'ivs-amber': '#f59e0b'
+                    },
+                    fontFamily: {
+                        'serif': ['Merriweather', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Lexend', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans leading-normal tracking-tight">
-    <!-- Header Placeholder -->
-    <header id="header-placeholder"></header>
+<body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 antialiased font-serif">
+    <div id="header-placeholder"></div>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto">
+    <main class="flex-grow pt-[var(--header-height)] md:pt-[var(--desktop-header-height)]">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="max-w-4xl mx-auto">
             <section class="mb-12" data-aos="fade-up">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-6 text-indigo-700 dark:text-indigo-400">
                     <span data-lang-key="tech_devices_hero_title">Thiết Bị Công Nghệ & Giải Pháp Cơ Sở</span>
@@ -42,32 +65,44 @@
                 </p>
             </section>
 
-            <section class="grid md:grid-cols-2 gap-8 mb-12">
-                <!-- Thiết bị công nghệ -->
+            <!-- Thiết bị Văn phòng & Công nghệ -->
+            <section class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Apple Products -->
                 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-right">
-                    <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_category_1_title">Thiết Bị Công Nghệ</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_category_1_description">
-                        Chúng tôi cung cấp đa dạng các thiết bị công nghệ hiện đại, từ máy tính, thiết bị mạng đến các giải pháp phần mềm chuyên biệt.
-                    </p>
+                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_apple_title">Apple Products</h2>
+                    <div class="fb-post mb-4" data-href="https://www.facebook.com/permalink.php?story_fbid=pfbid0GoRxryZpqgVYZMBz2wqhP4aSahAzTBgcEyYpoMqV1bKmghQ8qrnzD2YUuLYYmZcsl&amp;id=61557353867835" data-width="auto" data-show-text="true"></div>
                     <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                        <li data-lang-key="tech_devices_item_1">Máy tính cá nhân và máy chủ</li>
-                        <li data-lang-key="tech_devices_item_2">Thiết bị mạng (router, switch, firewall)</li>
-                        <li data-lang-key="tech_devices_item_3">Thiết bị ngoại vi (máy in, máy chiếu, màn hình tương tác)</li>
-                        <li data-lang-key="tech_devices_item_4">Phần mềm quản lý và ứng dụng chuyên ngành</li>
+                        <li data-lang-key="tech_devices_apple_item_1">iMac & Mac Pro</li>
+                        <li data-lang-key="tech_devices_apple_item_2">MacBook Pro & Air</li>
+                        <li data-lang-key="tech_devices_apple_item_3">iPad Pro & Accessories</li>
                     </ul>
                 </div>
 
-                <!-- Giải pháp cơ sở hạ tầng -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-left">
-                    <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_category_2_title">Giải Pháp Cơ Sở Hạ Tầng</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_category_2_description">
-                        Xây dựng và tối ưu hóa hệ thống cơ sở hạ tầng công nghệ thông tin vững chắc cho doanh nghiệp của bạn.
+                <!-- Thiết bị Văn phòng -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_office_title">Thiết Bị Văn Phòng</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_office_description">
+                        Giải pháp thiết bị văn phòng hiện đại, tối ưu không gian làm việc.
                     </p>
                     <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-                        <li data-lang-key="tech_devices_item_5">Thiết kế và triển khai hệ thống mạng</li>
-                        <li data-lang-key="tech_devices_item_6">Giải pháp lưu trữ dữ liệu và bảo mật</li>
-                        <li data-lang-key="tech_devices_item_7">Hệ thống điện toán đám mây (Cloud Computing)</li>
-                        <li data-lang-key="tech_devices_item_8">Tư vấn và hỗ trợ kỹ thuật 24/7</li>
+                        <li data-lang-key="tech_devices_office_item_1">Bàn ghế văn phòng cao cấp</li>
+                        <li data-lang-key="tech_devices_office_item_2">Trang thiết bị quầy lễ tân</li>
+                        <li data-lang-key="tech_devices_office_item_3">Máy in, scan, photocopy</li>
+                        <li data-lang-key="tech_devices_office_item_4">Màn hình tương tác thông minh</li>
+                    </ul>
+                </div>
+
+                <!-- Giải pháp CNTT -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" data-aos="fade-left">
+                    <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-300 mb-4" data-lang-key="tech_devices_it_title">Giải Pháp CNTT</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4" data-lang-key="tech_devices_it_description">
+                        Hệ thống CNTT toàn diện cho doanh nghiệp hiện đại.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                        <li data-lang-key="tech_devices_it_item_1">Hệ thống mạng & bảo mật</li>
+                        <li data-lang-key="tech_devices_it_item_2">Giải pháp lưu trữ đám mây</li>
+                        <li data-lang-key="tech_devices_it_item_3">Phần mềm quản lý doanh nghiệp</li>
+                        <li data-lang-key="tech_devices_it_item_4">Hỗ trợ kỹ thuật 24/7</li>
                     </ul>
                 </div>
             </section>
@@ -171,41 +206,67 @@
                 </div>
             </section>
 
-            <!-- Facebook Post Embed Section -->
-            <section class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-700 dark:text-indigo-400 mb-6">Bài Viết Nổi Bật từ Facebook</h2>
-                <div class="flex justify-center">
-                    <div class="fb-post" data-href="https://www.facebook.com/permalink.php?story_fbid=pfbid0GoRxryZpqgVYZMBz2wqhP4aSahAzTBgcEyYpoMqV1bKmghQ8qrnzD2YUuLYYmZcsl&amp;id=61557353867835" data-width="500" data-show-text="false">
-                        <blockquote cite="https://www.facebook.com/permalink.php?story_fbid=122231394092245128&amp;id=61557353867835" class="fb-xfbml-parse-ignore">
-                            <p>🌟 IVS Celestech: Nâng tầm không gian với Apple iMac - Sức mạnh và Đẳng cấp! 🌟 
-                            Bạn đang tìm kiếm một giải pháp công nghệ...</p>
-                            Người đăng: <a href="https://www.facebook.com/people/IVS-Cung-%E1%BB%A9ng-D%E1%BB%8Bch-v%E1%BB%A5-Doanh-nghi%E1%BB%87p/61557353867835/">IVS - Cung Ứng Dịch vụ Doanh nghiệp</a> vào&nbsp;<a href="https://www.facebook.com/permalink.php?story_fbid=122231394092245128&amp;id=61557353867835">Thứ Bảy, 12 tháng 7, 2025</a>
-                        </blockquote>
+            <!-- CTA Section -->
+            <section class="bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-xl shadow-lg p-8 mb-12" data-aos="fade-up">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4" data-lang-key="tech_devices_cta_title">
+                        Bắt đầu nâng cấp không gian làm việc của bạn
+                    </h2>
+                    <p class="text-lg mb-8 text-white/90" data-lang-key="tech_devices_cta_description">
+                        Liên hệ với chúng tôi ngay hôm nay để được tư vấn giải pháp phù hợp nhất cho doanh nghiệp của bạn
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/contact.html" class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-lg font-semibold rounded-full hover:bg-white hover:text-indigo-600 transition-colors duration-300" data-lang-key="tech_devices_cta_button_contact">
+                            Liên hệ ngay
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-6 py-3 bg-white text-indigo-600 text-lg font-semibold rounded-full hover:bg-indigo-100 transition-colors duration-300" data-lang-key="tech_devices_cta_button_catalog">
+                            Xem catalog
+                        </a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer id="footer-placeholder"></footer>
+    <div id="footer-placeholder"></div>
     <div id="fab-container-placeholder"></div>
 
     <!-- Facebook SDK -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v23.0"></script>
-
-    <!-- Deferred JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    
+    <!-- Third party libraries -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-
-    <!-- Core Application Scripts - Order is crucial -->
+    
+    <!-- Application scripts -->
     <script src="/js/firebase-init.js" type="module"></script>
     <script src="/js/utils.js" defer></script>
     <script src="/js/language.js" defer></script>
     <script src="/js/fabController.js" defer></script>
     <script src="/js/loadComponents.js" defer></script>
-    
+
+    <script>
+        // Initialize page components after everything is loaded
+        window.onPageComponentsLoadedCallback = function() {
+            AOS.init({
+                duration: 700,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic'
+            });
+
+            // Apply translations after components are loaded and AOS is initialized
+            if (window.system && typeof window.system.applyTranslations === 'function') {
+                window.system.applyTranslations();
+            }
+
+            // Re-render Facebook plugins after component load
+            if (typeof FB !== 'undefined' && FB !== null) {
+                FB.XFBML.parse();
+            }
+        };
+    </script>
 </body>
 
 </html>
