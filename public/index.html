@@ -356,6 +356,26 @@
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
     <!-- Placeholder for Header - Content loaded by loadComponents.js -->
     <header id="header-placeholder"></header>
+    <!-- Audio Player Button and Dropdown -->
+    <div class="absolute top-4 right-4 z-50">
+        <button id="audioMenuButton" class="p-3 rounded-full bg-ivs-blue hover:bg-ivs-blue-darker text-white shadow-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-ivs-blue focus:ring-opacity-75">
+            <i class="fas fa-volume-up text-xl" id="audioIcon"></i>
+        </button>
+        <div id="audioDropdown" class="absolute right-0 mt-2 w-60 bg-ivs-card border border-ivs-border rounded-lg shadow-xl overflow-hidden hidden transform origin-top-right scale-95 opacity-0 transition-all duration-200 ease-out">
+            <ul class="py-2">
+                <li>
+                    <button id="playVietnameseAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
+                        <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_vi">Bước chuyển mình của IVS</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="playEnglishAudio" class="w-full text-left px-4 py-2 text-ivs-text-primary hover:bg-ivs-neutral-600 flex items-center">
+                        <i class="fas fa-play mr-3"></i> <span data-lang-key="audio_option_en">The transformation of IVS</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Mobile Navigation (Assumed to be loaded via loadComponents.js or similar) -->
     <!-- This nav structure is for visual representation, actual mobile nav logic might be in external JS -->
@@ -923,15 +943,6 @@
                         <p class="text-ivs-text-secondary mb-8 leading-relaxed text-center" data-lang-key="about_intro_desc">
                             <strong class="text-ivs-blue">Công ty Cổ phần Dịch vụ Thương mại Integrate Vision Synergy (IVS JSC)</strong> là đơn vị tiên phong trong việc cung cấp các giải pháp giáo dục toàn diện và đổi mới sáng tạo tại Việt Nam. Chúng tôi cam kết mang lại những giá trị giáo dục vượt trội. IVS JSC tự hào là thành viên chính của <strong class="text-ivs-blue">IIVSA – Liên minh giáo dục toàn cầu</strong>, khẳng định vị thế và khả năng hợp tác quốc tế của mình. Chúng tôi không chỉ bán chương trình, chúng tôi đồng hành cùng tầm nhìn giáo dục.
                         </p>
-                        <!-- Audio Player -->
-                        <audio id="audioPlayer" src="/audio/ivs-transformation.mp3" preload="auto"></audio>
-                        <!-- Play/Pause Button -->
-                        <button id="playAudioButton" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-green hover:bg-ivs-emerald text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out group mt-4">
-                            <i class="fas fa-play mr-2" id="playIcon"></i>
-                            <i class="fas fa-pause mr-2 hidden" id="pauseIcon"></i>
-                            <span data-lang-key="audio_button_text_vi">Bước chuyển mình của IVS</span>
-                            <span data-lang-key="audio_button_text_en" class="hidden">The transformation of IVS</span>
-                        </button>
                         <a href="/profile-company-ivsjsc.html" class="inline-block bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/20 mt-4" data-lang-key="about_cta_view_profile"><i class="fas fa-arrow-right mr-2"></i> Xem Hồ sơ năng lực chi tiết</a>
                     </div>
                 </div>
@@ -1139,68 +1150,105 @@
 
         // Initialize audio player functionality
         function initAudioPlayer() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            const playAudioButton = document.getElementById('playAudioButton');
-            const playIcon = document.getElementById('playIcon');
-            const pauseIcon = document.getElementById('pauseIcon');
-            const audioButtonTextVi = document.querySelector('[data-lang-key="audio_button_text_vi"]');
-            const audioButtonTextEn = document.querySelector('[data-lang-key="audio_button_text_en"]');
+            const audioMenuButton = document.getElementById('audioMenuButton');
+            const audioDropdown = document.getElementById('audioDropdown');
+            const audioIcon = document.getElementById('audioIcon');
+            const playVietnameseAudioButton = document.getElementById('playVietnameseAudio');
+            const playEnglishAudioButton = document.getElementById('playEnglishAudio');
 
-            if (audioPlayer && playAudioButton) {
-                playAudioButton.addEventListener('click', () => {
-                    if (audioPlayer.paused) {
-                        audioPlayer.play();
-                        playIcon.classList.add('hidden');
-                        pauseIcon.classList.remove('hidden');
-                        audioButtonTextVi.textContent = 'Đang phát âm thanh...';
-                        audioButtonTextEn.textContent = 'Playing audio...';
-                    } else {
-                        audioPlayer.pause();
-                        playIcon.classList.remove('hidden');
-                        pauseIcon.classList.add('hidden');
-                        audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
-                        audioButtonTextEn.textContent = 'The transformation of IVS';
-                    }
-                });
+            let currentAudio = null; // To keep track of the currently playing audio
+            let vietnameseAudio = new Audio('/audios/IVSJSC.mp3');
+            let englishAudio = new Audio('/audios/IVSJSC_ENGLISH.mp3');
 
-                audioPlayer.addEventListener('ended', () => {
-                    playIcon.classList.remove('hidden');
-                    pauseIcon.classList.add('hidden');
-                    audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
-                    audioButtonTextEn.textContent = 'The transformation of IVS';
-                });
-
-                // Set initial text based on current language
-                // Assuming `currentLanguage` is available from language.js
-                if (typeof currentLanguage !== 'undefined' && currentLanguage === 'en') {
-                    audioButtonTextVi.classList.add('hidden');
-                    audioButtonTextEn.classList.remove('hidden');
-                } else {
-                    audioButtonTextVi.classList.remove('hidden');
-                    audioButtonTextEn.classList.add('hidden');
+            // Function to stop currently playing audio
+            function stopCurrentAudio() {
+                if (currentAudio && !currentAudio.paused) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0; // Reset to start
                 }
+                audioIcon.classList.remove('fa-volume-mute');
+                audioIcon.classList.add('fa-volume-up');
+            }
 
-                // Listen for language changes (assuming language.js has an event or a way to notify)
-                // This part might need adjustment based on how language.js is implemented
-                document.addEventListener('languageChanged', (event) => {
-                    if (event.detail.lang === 'en') {
-                        audioButtonTextVi.classList.add('hidden');
-                        audioButtonTextEn.classList.remove('hidden');
-                        if (!audioPlayer.paused) {
-                            audioButtonTextEn.textContent = 'Playing audio...';
-                        } else {
-                            audioButtonTextEn.textContent = 'The transformation of IVS';
-                        }
-                    } else {
-                        audioButtonTextVi.classList.remove('hidden');
-                        audioButtonTextEn.classList.add('hidden');
-                        if (!audioPlayer.paused) {
-                            audioButtonTextVi.textContent = 'Đang phát âm thanh...';
-                        } else {
-                            audioButtonTextVi.textContent = 'Bước chuyển mình của IVS';
-                        }
-                    }
+            // Function to play a specific audio
+            function playAudio(audioElement) {
+                stopCurrentAudio(); // Stop any currently playing audio
+                currentAudio = audioElement;
+                currentAudio.play().catch(error => {
+                    console.error("Error playing audio:", error);
+                    // Optionally show a user-friendly message
                 });
+                audioIcon.classList.remove('fa-volume-up');
+                audioIcon.classList.add('fa-volume-mute'); // Change icon to mute/pause
+            }
+
+            // Toggle dropdown visibility
+            audioMenuButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent click from closing immediately
+                audioDropdown.classList.toggle('hidden');
+                if (!audioDropdown.classList.contains('hidden')) {
+                    audioDropdown.classList.add('scale-100', 'opacity-100');
+                    audioDropdown.classList.remove('scale-95', 'opacity-0');
+                } else {
+                    audioDropdown.classList.remove('scale-100', 'opacity-100');
+                    audioDropdown.classList.add('scale-95', 'opacity-0');
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!audioDropdown.contains(event.target) && !audioMenuButton.contains(event.target)) {
+                    audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0');
+                    audioDropdown.classList.remove('scale-100', 'opacity-100');
+                }
+            });
+
+            // Play Vietnamese audio
+            playVietnameseAudioButton.addEventListener('click', () => {
+                playAudio(vietnameseAudio);
+                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0'); // Hide dropdown after selection
+                audioDropdown.classList.remove('scale-100', 'opacity-100');
+            });
+
+            // Play English audio
+            playEnglishAudioButton.addEventListener('click', () => {
+                playAudio(englishAudio);
+                audioDropdown.classList.add('hidden', 'scale-95', 'opacity-0'); // Hide dropdown after selection
+                audioDropdown.classList.remove('scale-100', 'opacity-100');
+            });
+
+            // Reset icon when audio ends
+            vietnameseAudio.addEventListener('ended', stopCurrentAudio);
+            englishAudio.addEventListener('ended', stopCurrentAudio);
+
+            // Handle language changes for dropdown text
+            document.addEventListener('languageChanged', (event) => {
+                const lang = event.detail.lang;
+                const viText = document.querySelector('[data-lang-key="audio_option_vi"]');
+                const enText = document.querySelector('[data-lang-key="audio_option_en"]');
+
+                if (lang === 'en') {
+                    if (viText) viText.textContent = 'The transformation of IVS';
+                    if (enText) enText.textContent = 'The transformation of IVS (English)'; // Clarify for English option
+                } else {
+                    if (viText) viText.textContent = 'Bước chuyển mình của IVS';
+                    if (enText) enText.textContent = 'The transformation of IVS (English)'; // Keep English text for English option
+                }
+            });
+
+            // Initial language setting for the dropdown text
+            // This assumes `currentLanguage` is globally available or can be retrieved
+            if (typeof currentLanguage !== 'undefined') {
+                const lang = currentLanguage;
+                const viText = document.querySelector('[data-lang-key="audio_option_vi"]');
+                const enText = document.querySelector('[data-lang-key="audio_option_en"]');
+                if (lang === 'en') {
+                    if (viText) viText.textContent = 'The transformation of IVS';
+                    if (enText) enText.textContent = 'The transformation of IVS (English)';
+                } else {
+                    if (viText) viText.textContent = 'Bước chuyển mình của IVS';
+                    if (enText) enText.textContent = 'The transformation of IVS (English)';
+                }
             }
         }
 
