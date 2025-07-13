@@ -353,6 +353,39 @@
                 /* No change needed, overflow-x handles it */
             }
         }
+
+        /* Keyframes cho hiệu ứng Fade-in-scale-up */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Keyframes cho hiệu ứng Fade-out-scale-down */
+        @keyframes fadeOutScaleDown {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
+        /* Class để áp dụng animation */
+        .modal-open-animation {
+            animation: fadeInScaleUp 0.3s ease-out forwards;
+        }
+
+        .modal-close-animation {
+            animation: fadeOutScaleDown 0.3s ease-in forwards;
+        }
     </style>
 </head>
 <body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 antialiased font-sans">
@@ -477,6 +510,23 @@
                             </div>
                             <div class="p-4">
                                 <h3 class="book-title group-hover:text-ivs-blue transition-colors">Lịch sử văn minh thế giới</h3>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Book card for "Thực hành Kỹ năng sống - Kỹ năng Quản lý thời gian" -->
+                    <div class="book-card group" data-aos="fade-up" data-aos-delay="450">
+                        <a href="#" class="block open-book-modal" 
+                           data-book-title="Thực hành Kỹ năng sống - Kỹ năng Quản lý thời gian" 
+                           data-iframe-src="https://books.google.com.vn/books?id=OLBnPneRd7gC&newbks=0&lpg=PA8&dq=Th%E1%BB%B1c%20h%C3%A0nh%20k%E1%BB%B9%20n%C4%83ng%20s%E1%BB%91ng&hl=vi&pg=PA21&output=embed">
+                            <div class="relative overflow-hidden rounded-lg">
+                                <img src="https://books.google.com/books/publisher/content?id=OLBnPneRd7gC&printsec=frontcover&img=1&zoom=1&imgtk=AOLxpe_9iK_kY0w2_7z8Jb_3xYgX0f_1C-KjF_2wX2F4N3M0V4Q6M7A6P1C8V3N7M9A0X2Y3Z0W1Q0C0J0T0V7M1L8O5A7B3X4V8M7Y6Z2X0Y2F2&source=gbs_api" 
+                                     alt="Thực hành Kỹ năng sống - Kỹ năng Quản lý thời gian"
+                                     class="transform group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="book-title group-hover:text-ivs-blue transition-colors">Thực hành Kỹ năng sống - Kỹ năng Quản lý thời gian</h3>
                             </div>
                         </a>
                     </div>
@@ -620,6 +670,28 @@
     <div id="footer-placeholder"></div>
     <div id="fab-container-placeholder"></div>
 
+    <!-- Book Viewer Modal -->
+    <div id="bookViewerModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 opacity-0 invisible transition-opacity duration-300">
+        <div class="relative bg-ivs-card p-4 rounded-lg shadow-2xl max-w-5xl w-11/12 h-5/6 overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
+            <!-- Close button -->
+            <button class="absolute top-3 right-3 text-ivs-text-primary hover:text-ivs-blue text-3xl z-10" onclick="closeBookModal()">
+                <i class="fas fa-times-circle"></i>
+            </button>
+
+            <h3 id="modalBookTitle" class="text-ivs-text-primary text-xl md:text-2xl font-bold mb-3 text-center"></h3>
+            
+            <!-- Loading spinner -->
+            <div id="loadingSpinner" class="absolute inset-0 flex items-center justify-center bg-ivs-card/90 z-20">
+                <i class="fas fa-spinner fa-spin text-ivs-blue text-5xl"></i>
+            </div>
+
+            <!-- Iframe container -->
+            <div class="flex-grow relative overflow-hidden rounded-lg border border-ivs-border">
+                <iframe id="bookIframe" frameborder="0" scrolling="auto" allowfullscreen="true" class="w-full h-full" src=""></iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="/js/firebase-init.js" type="module"></script>
@@ -671,34 +743,30 @@
                 console.error("Search button not found.");
             }
 
-            // Book hover effects (for .book-card)
-            // Removed the click event listener on .book-card as the <a> tag will handle navigation
-            // document.querySelectorAll('.book-card').forEach(book => {
-            //     book.addEventListener('click', function() {
-            //         const title = this.querySelector('.book-title').textContent; // Get title from inner text
-            //         // Using a custom modal/message box instead of alert()
-            //         // Sử dụng window.system.get
-            //         const messageText = window.system.get('doc_library_message_selected_book').replace('{title}', title);
-            //         const closeButtonText = window.system.get('doc_library_message_close');
-
-            //         const messageBox = document.createElement('div');
-            //         messageBox.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-            //         messageBox.innerHTML = `
-            //             <div class="bg-brown-dark p-8 rounded-lg shadow-xl text-cream text-center max-w-sm">
-            //                 <p class="text-xl mb-4">${messageText}</p>
-            //                 <button class="bg-brown-medium hover:bg-brown-light text-white font-bold py-2 px-4 rounded-full transition-colors duration-300" onclick="this.parentNode.parentNode.remove()">${closeButtonText}</button>
-            //             </div>
-            //         `;
-            //         document.body.appendChild(messageBox);
-            //     });
-            // });
-
             // Parallax effect for hero section
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const hero = document.querySelector('.hero');
                 if (hero) {
                     hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
+                }
+            });
+
+            // Event listeners for opening book modals
+            document.querySelectorAll('.open-book-modal').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default link behavior
+                    const bookTitle = this.getAttribute('data-book-title');
+                    const iframeSrc = this.getAttribute('data-iframe-src');
+                    openBookModal(bookTitle, iframeSrc);
+                });
+            });
+
+            // Close modal on outside click
+            const bookViewerModal = document.getElementById('bookViewerModal');
+            bookViewerModal.addEventListener('click', function(event) {
+                if (event.target === bookViewerModal) {
+                    closeBookModal();
                 }
             });
         });
@@ -718,6 +786,56 @@
                 window.system.applyTranslations();
             }
         };
+
+        // Function to open the book modal
+        function openBookModal(title, iframeSrc) {
+            const modal = document.getElementById('bookViewerModal');
+            const modalContent = modal.querySelector('.relative'); // The inner content div
+            const modalBookTitle = document.getElementById('modalBookTitle');
+            const bookIframe = document.getElementById('bookIframe');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            modalBookTitle.textContent = title;
+            bookIframe.src = iframeSrc;
+
+            // Show loading spinner while iframe loads
+            loadingSpinner.classList.remove('hidden'); // Ensure it's visible
+            
+            // Listen for iframe load
+            bookIframe.onload = function() {
+                loadingSpinner.classList.add('hidden'); // Hide spinner when loaded
+            };
+
+            // Apply fade-in-scale-up animation
+            modal.classList.remove('opacity-0', 'invisible');
+            modalContent.classList.remove('scale-95'); // Reset scale for animation
+            modalContent.classList.add('modal-open-animation');
+            
+            // Prevent scrolling on the body when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close the book modal
+        function closeBookModal() {
+            const modal = document.getElementById('bookViewerModal');
+            const modalContent = modal.querySelector('.relative');
+
+            // Apply fade-out-scale-down animation
+            modalContent.classList.remove('modal-open-animation');
+            modalContent.classList.add('modal-close-animation');
+
+            // After animation, hide modal and reset iframe src
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'invisible');
+                modalContent.classList.remove('modal-close-animation');
+                modalContent.classList.add('scale-95'); // Reset scale for next open
+                document.getElementById('bookIframe').src = ''; // Clear iframe content
+                document.getElementById('loadingSpinner').classList.add('hidden'); // Ensure spinner is hidden
+            }, 300); // Match animation duration
+            
+            // Re-enable scrolling on the body
+            document.body.style.overflow = '';
+        }
     </script>
 </body>
 </html>

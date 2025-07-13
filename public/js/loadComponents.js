@@ -156,7 +156,7 @@ const IVSHeaderController = {
         this.onScroll();
         if (this.mobilePanel) {
             this.mobilePanel.classList.add('hidden', 'opacity-0');
-            this.mobileMenuContainer.classList.add('translate-x-full');
+            this.mobileMenuContainer.classList.add('-translate-x-full');
         }
         window.componentLog("IVSHeaderController: Khởi tạo hoàn tất.", "info");
     },
@@ -183,19 +183,35 @@ const IVSHeaderController = {
         window.addEventListener('scroll', window.debounce(() => this.onScroll(), 50), { passive: true });
         window.componentLog("IVSHeaderController: Đã gắn sự kiện Scroll.");
         if (this.mobileOpenBtn) {
-            this.mobileOpenBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+            this.mobileOpenBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu(true);
+            });
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-open-btn.");
         }
         if (this.mobileCloseBtn) {
-            this.mobileCloseBtn.addEventListener('click', () => this.toggleMobileMenu(false));
+            this.mobileCloseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu(false);
+            });
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-close-btn.");
         }
         if (this.mobileBackdrop) {
-            this.mobileBackdrop.addEventListener('click', () => this.toggleMobileMenu(false));
+            this.mobileBackdrop.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu(false);
+            });
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho mobile-menu-backdrop.");
         }
         if (this.bottomNavMenuBtn) {
-            this.bottomNavMenuBtn.addEventListener('click', () => this.toggleMobileMenu(true));
+            this.bottomNavMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu(true);
+            });
             window.componentLog("IVSHeaderController: Đã gắn sự kiện click cho bottom-nav-menu-btn.");
         }
         document.addEventListener('keydown', (e) => {
@@ -204,12 +220,21 @@ const IVSHeaderController = {
             }
         });
         window.componentLog("IVSHeaderController: Đã gắn sự kiện Keydown (Escape).", "info");
+        
+        // Đảm bảo các submenu toggle hoạt động đúng
         this.submenuToggles.forEach((toggle, index) => {
-            toggle.addEventListener('click', () => this.toggleSubmenu(toggle));
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleSubmenu(toggle);
+            });
             window.componentLog(`IVSHeaderController: Đã gắn sự kiện click cho Submenu Toggle ${index}.`);
         });
+        
         this.langToggleButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 const lang = button.dataset.lang;
                 if (lang) {
                     this.setLanguage(lang);
@@ -217,6 +242,11 @@ const IVSHeaderController = {
             });
             window.componentLog(`IVSHeaderController: Đã gắn sự kiện click cho nút ngôn ngữ data-lang="${button.dataset.lang}".`);
         });
+        
+        // Thêm logic cho logo menu và swipe gesture
+        this.initMobileMenuLogoLogic();
+        this.initSwipeGesture();
+        
         window.componentLog("IVSHeaderController: Gắn kết sự kiện hoàn tất.", "info");
     },
     setLanguage(lang) {
@@ -282,20 +312,46 @@ const IVSHeaderController = {
             window.componentLog("IVSHeaderController: Missing mobile menu elements", "error");
             return;
         }
+        
         if (show) {
+            // Mở menu
             this.mobilePanel.classList.remove('hidden');
             document.body.classList.add('menu-open'); // Chặn scroll nền khi mở menu
-            setTimeout(() => {
+            
+            // Sử dụng requestAnimationFrame để đảm bảo DOM đã cập nhật
+            requestAnimationFrame(() => {
                 this.mobilePanel.classList.remove('opacity-0');
-                this.mobileMenuContainer.classList.remove('translate-x-full');
-            }, 10);
+                this.mobileMenuContainer.classList.remove('-translate-x-full');
+                this.mobileMenuContainer.classList.add('menu-animate-in');
+                
+                // Reset các submenu khi mở menu
+                const submenus = document.querySelectorAll('.mobile-submenu-content');
+                submenus.forEach(submenu => {
+                    submenu.style.maxHeight = '0px';
+                    submenu.style.opacity = '0';
+                    submenu.classList.remove('submenu-open');
+                });
+                
+                const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+                submenuToggles.forEach(toggle => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    const icon = toggle.querySelector('i.fa-chevron-down');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                });
+            });
         } else {
+            // Đóng menu
+            this.mobileMenuContainer.classList.remove('menu-animate-in');
+            this.mobileMenuContainer.classList.add('menu-animate-out');
             this.mobilePanel.classList.add('opacity-0');
-            this.mobileMenuContainer.classList.add('translate-x-full');
+            this.mobileMenuContainer.classList.add('-translate-x-full');
+            
+            // Đợi animation hoàn thành rồi mới ẩn menu
             setTimeout(() => {
                 this.mobilePanel.classList.add('hidden');
                 document.body.classList.remove('menu-open'); // Bỏ chặn scroll khi đóng menu
-            }, 300);
+                this.mobileMenuContainer.classList.remove('menu-animate-out');
+            }, 400);
         }
     },
     toggleSubmenu(toggle) {
@@ -305,12 +361,40 @@ const IVSHeaderController = {
             window.componentLog("IVSHeaderController: Nội dung submenu không tìm thấy.", 'warn');
             return;
         }
-        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+        
+        // Kiểm tra trạng thái hiện tại của submenu
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        // Đặt thuộc tính aria-expanded
+        toggle.setAttribute('aria-expanded', !isExpanded);
+        
+        // Xử lý hiệu ứng xoay icon
         if (icon) {
             icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
         }
-        toggle.setAttribute('aria-expanded', !isExpanded);
-        content.style.maxHeight = isExpanded ? '0px' : `${content.scrollHeight}px`;
+        
+        // Xử lý hiển thị/ẩn submenu
+        if (isExpanded) {
+            // Đóng submenu
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+            content.classList.add('submenu-closing');
+            setTimeout(() => {
+                content.classList.remove('submenu-closing');
+                content.classList.remove('submenu-open');
+            }, 300);
+        } else {
+            // Mở submenu
+            content.classList.add('submenu-open');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+            
+            // Đảm bảo submenu vẫn hiển thị đúng khi nội dung thay đổi
+            setTimeout(() => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }, 50);
+        }
+        
         window.componentLog(`IVSHeaderController: Submenu ${isExpanded ? 'đóng' : 'mở'} cho ${toggle.textContent.trim()}.`);
     },
     updateActiveLinks() {
@@ -325,6 +409,184 @@ const IVSHeaderController = {
             }
         });
         window.componentLog("IVSHeaderController: Đã cập nhật các liên kết đang hoạt động.");
+    },
+    
+    // --- Logic hiển thị logo thay cho chữ Menu khi mở menu mobile ---
+    initMobileMenuLogoLogic() {
+        const menuTitle = document.querySelector('.menu-title');
+        const logo = document.getElementById('mobile-menu-logo');
+        
+        if (!menuTitle || !logo) {
+            window.componentLog("IVSHeaderController: Không tìm thấy menu title hoặc logo cho mobile menu.", "warn");
+            return;
+        }
+        
+        function showLogo() {
+            menuTitle.classList.add('hidden');
+            logo.classList.remove('hidden');
+        }
+        
+        function showTitle() {
+            menuTitle.classList.remove('hidden');
+            logo.classList.add('hidden');
+        }
+        
+        // Khi mở menu
+        if (this.mobileOpenBtn) {
+            this.mobileOpenBtn.addEventListener('click', function() {
+                setTimeout(showLogo, 200); // Đợi menu trượt ra xong mới đổi
+            });
+        }
+        
+        // Khi đóng menu
+        if (this.mobileCloseBtn) {
+            this.mobileCloseBtn.addEventListener('click', function() {
+                setTimeout(showTitle, 200);
+            });
+        }
+        
+        // Nếu menu đóng bằng click ngoài hoặc phím Esc
+        document.addEventListener('click', (e) => {
+            if (this.mobilePanel && !this.mobilePanel.classList.contains('hidden')) {
+                if (!this.mobilePanel.contains(e.target) && e.target.id !== 'mobile-menu-open-btn') {
+                    setTimeout(showTitle, 200);
+                }
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setTimeout(showTitle, 200);
+        });
+        
+        window.componentLog("IVSHeaderController: Đã khởi tạo logic logo menu mobile.", "info");
+    },
+    
+    // --- Swipe từ trái sang phải để mở menu hamburger trên mobile ---
+    initSwipeGesture() {
+        // Mobile Menu Touch Gestures
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let menuOpen = false;
+        let initialMenuTransform = 0;
+        let currentMenuTransform = 0;
+        const SWIPE_THRESHOLD = 50; // Minimum distance for swipe
+        const EDGE_THRESHOLD = 24; // Chỉ nhận vuốt mở menu khi bắt đầu từ rìa trái 0-24px
+        const VELOCITY_THRESHOLD = 0.5; // Minimum velocity for swipe
+        let lastTouchTime = 0;
+        let lastTouchX = 0;
+
+        const mobileMenuPanel = document.getElementById('ivs-mobile-menu-panel');
+        const mobileMenuContainer = document.getElementById('ivs-mobile-menu-container');
+        const mobileMenuBackdrop = document.getElementById('ivs-mobile-menu-backdrop');
+
+        function handleTouchStart(e) {
+            touchStartX = e.touches[0].clientX;
+            lastTouchX = touchStartX;
+            lastTouchTime = Date.now();
+            initialMenuTransform = currentMenuTransform;
+            menuOpen = !mobileMenuPanel.classList.contains('hidden');
+
+            // Chỉ cho phép vuốt mở menu khi bắt đầu từ rìa trái (0-24px) và menu đang đóng
+            if (!menuOpen && touchStartX > EDGE_THRESHOLD) return;
+
+            mobileMenuContainer.style.transition = 'none';
+            mobileMenuBackdrop.style.transition = 'none';
+        }
+
+        function handleTouchMove(e) {
+            if (!menuOpen && touchStartX > EDGE_THRESHOLD) return;
+
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - touchStartX;
+            const currentTime = Date.now();
+            const timeDiff = currentTime - lastTouchTime;
+            const velocity = (currentX - lastTouchX) / (timeDiff || 1);
+            lastTouchX = currentX;
+            lastTouchTime = currentTime;
+
+            if (menuOpen) {
+                currentMenuTransform = Math.min(0, Math.max(-100, deltaX));
+                const progress = 1 + (currentMenuTransform / mobileMenuContainer.offsetWidth);
+                const opacity = Math.max(0, Math.min(1, progress));
+                mobileMenuContainer.style.transform = `translateX(${currentMenuTransform}px)`;
+                mobileMenuBackdrop.style.opacity = opacity;
+            } else {
+                currentMenuTransform = Math.max(-mobileMenuContainer.offsetWidth, Math.min(0, deltaX - mobileMenuContainer.offsetWidth));
+                const progress = 1 + (currentMenuTransform / mobileMenuContainer.offsetWidth);
+                const opacity = Math.max(0, Math.min(1, progress));
+                mobileMenuContainer.style.transform = `translateX(${currentMenuTransform}px)`;
+                mobileMenuBackdrop.style.opacity = opacity;
+            }
+
+            // Haptic feedback nhẹ khi vuốt đủ xa
+            if ('vibrate' in navigator) {
+                if (Math.abs(currentMenuTransform) % 50 === 0) {
+                    navigator.vibrate(1);
+                }
+            }
+        }
+
+        function handleTouchEnd(e) {
+            touchEndX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : lastTouchX;
+            const deltaX = touchEndX - touchStartX;
+            const velocity = (touchEndX - lastTouchX) / ((Date.now() - lastTouchTime) || 1);
+
+            mobileMenuContainer.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            mobileMenuBackdrop.style.transition = 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+
+            if (menuOpen) {
+                if (deltaX < -SWIPE_THRESHOLD || velocity < -VELOCITY_THRESHOLD) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            } else {
+                // Chỉ mở menu nếu vuốt từ rìa trái
+                if (touchStartX <= EDGE_THRESHOLD && (deltaX > SWIPE_THRESHOLD || velocity > VELOCITY_THRESHOLD)) {
+                    openMenu();
+                } else {
+                    closeMenu();
+                }
+            }
+        }
+
+        function openMenu() {
+            menuOpen = true;
+            mobileMenuPanel.classList.remove('hidden');
+            mobileMenuContainer.style.transform = 'translateX(0)';
+            mobileMenuBackdrop.style.opacity = '1';
+            document.body.style.overflow = 'hidden';
+            if ('vibrate' in navigator) {
+                navigator.vibrate(3);
+            }
+        }
+
+        function closeMenu() {
+            menuOpen = false;
+            mobileMenuContainer.style.transform = 'translateX(-100%)';
+            mobileMenuBackdrop.style.opacity = '0';
+            setTimeout(() => {
+                if (!menuOpen) {
+                    mobileMenuPanel.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            }, 400);
+            if ('vibrate' in navigator) {
+                navigator.vibrate(2);
+            }
+        }
+
+        // Add touch event listeners
+        if (mobileMenuPanel && mobileMenuContainer) {
+            mobileMenuPanel.addEventListener('touchstart', handleTouchStart, { passive: true });
+            mobileMenuPanel.addEventListener('touchmove', handleTouchMove, { passive: true });
+            mobileMenuPanel.addEventListener('touchend', handleTouchEnd);
+            // Button handlers
+            document.getElementById('mobile-menu-open-btn')?.addEventListener('click', openMenu);
+            document.getElementById('mobile-menu-close-btn')?.addEventListener('click', closeMenu);
+            mobileMenuBackdrop?.addEventListener('click', closeMenu);
+        }
+        window.componentLog("IVSHeaderController: Đã khởi tạo enhanced swipe gesture cho mobile menu.", "info");
     }
 };
 window.IVSHeaderController = IVSHeaderController; // Expose globally

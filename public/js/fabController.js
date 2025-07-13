@@ -2,7 +2,7 @@
  * @fileoverview IVSFabController - Quản lý các chức năng của Floating Action Button (FAB).
  * Script này xử lý các nút cuộn lên đầu trang, tùy chọn liên hệ, tùy chọn chia sẻ và các menu con của chúng.
  * Nó phụ thuộc vào các hàm tiện ích toàn cục từ utils.js (componentLog, debounce).
- * @version 1.10 - Đã xóa chức năng chế độ tối.
+ * @version 2.1 - Cải thiện chức năng đóng/mở submenu và hiệu ứng animation.
  * @author IVS-Technical-Team
  */
 
@@ -42,7 +42,18 @@ const IVSFabController = {
         }
         this.populateMenus();
         this.bindEvents();
+        this.addRippleEffect();
         this.isInitialized = true; // Đánh dấu đã khởi tạo
+        
+        // Thêm hiệu ứng shake cho nút liên hệ sau 3 giây để thu hút sự chú ý
+        setTimeout(() => {
+            const contactBtn = document.getElementById('contact-main-btn');
+            if (contactBtn) {
+                contactBtn.classList.add('fab-shake');
+                setTimeout(() => contactBtn.classList.remove('fab-shake'), 1000);
+            }
+        }, 3000);
+        
         window.componentLog("IVSFabController: Khởi tạo hoàn tất.", "info");
     },
 
@@ -56,6 +67,57 @@ const IVSFabController = {
         this.buttonsWithSubmenu = this.fabContainer?.querySelectorAll('button[aria-haspopup="true"]') || [];
 
         window.componentLog(`IVSFabController: FAB Container: ${!!this.fabContainer}, ScrollToTopBtn: ${!!this.scrollToTopBtn}, ButtonsWithSubmenu count: ${this.buttonsWithSubmenu.length}`, 'info');
+    },
+
+    /**
+     * Thêm hiệu ứng ripple cho các nút FAB.
+     */
+    addRippleEffect() {
+        const fabButtons = this.fabContainer?.querySelectorAll('.fab-item') || [];
+        fabButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.createRipple(e, button);
+            });
+        });
+    },
+
+    /**
+     * Tạo hiệu ứng ripple khi click.
+     * @param {Event} e Sự kiện click.
+     * @param {HTMLElement} button Nút được click.
+     */
+    createRipple(e, button) {
+        // Xóa ripple cũ nếu có
+        const oldRipple = button.querySelector('.ripple');
+        if (oldRipple) {
+            oldRipple.remove();
+        }
+
+        const ripple = document.createElement('span');
+        button.appendChild(ripple);
+        
+        const diameter = Math.max(button.clientWidth, button.clientHeight);
+        const radius = diameter / 2;
+        
+        ripple.style.width = ripple.style.height = `${diameter}px`;
+        
+        if (e) {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - radius;
+            const y = e.clientY - rect.top - radius;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+        } else {
+            // Nếu không có sự kiện, đặt ripple ở giữa
+            ripple.style.left = `${button.clientWidth / 2 - radius}px`;
+            ripple.style.top = `${button.clientHeight / 2 - radius}px`;
+        }
+        
+        ripple.classList.add('ripple');
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
     },
 
     /**
@@ -94,7 +156,7 @@ const IVSFabController = {
             const link = document.createElement('a');
             link.href = c.href;
             link.setAttribute('role', 'menuitem');
-            // THAY ĐỔI: Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
+            // Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
             link.className = 'fab-submenu-item group w-full';
             link.setAttribute('data-lang-key', c.key);
             if (c.href.startsWith('http')) {
@@ -133,7 +195,7 @@ const IVSFabController = {
             const btnId = `share-action-${index}`;
             btn.id = btnId;
             btn.setAttribute('role', 'menuitem');
-            // THAY ĐỔI: Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
+            // Thêm 'w-full' để mỗi mục chiếm toàn bộ chiều rộng và xuống hàng
             btn.className = 'fab-submenu-item group w-full';
             btn.innerHTML = `<i class="${s.icon} fa-fw ${s.color}"></i><span>${s.text}</span>`;
             fragment.appendChild(btn);
@@ -179,11 +241,11 @@ const IVSFabController = {
         const message = 'Đã sao chép!';
         const confirmationDiv = document.createElement('div');
         confirmationDiv.textContent = message;
-        confirmationDiv.className = 'absolute z-10 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap';
+        confirmationDiv.className = 'absolute z-50 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs px-3 py-2 rounded-lg shadow-xl opacity-0 transition-all duration-300 pointer-events-none whitespace-nowrap backdrop-blur-sm border border-green-400/30';
 
         // Định vị tương đối với nút mục tiêu
         const rect = targetElement.getBoundingClientRect();
-        confirmationDiv.style.top = `${rect.top - 30}px`; // Phía trên nút
+        confirmationDiv.style.top = `${rect.top - 40}px`; // Phía trên nút
         confirmationDiv.style.left = `${rect.left + rect.width / 2}px`; // Căn giữa theo chiều ngang
         confirmationDiv.style.transform = 'translateX(-50%)';
 
@@ -202,7 +264,7 @@ const IVSFabController = {
             confirmationDiv.addEventListener('transitionend', () => {
                 confirmationDiv.remove();
             }, { once: true });
-        }, 1500); // Hiển thị trong 1.5 giây
+        }, 2000); // Hiển thị trong 2 giây
     },
 
     /**
@@ -211,30 +273,53 @@ const IVSFabController = {
     bindEvents() {
         if (this.scrollToTopBtn) {
             const handleScroll = () => {
-                if (window.scrollY > 200) { // Sử dụng window.scrollY để nhất quán
+                if (window.scrollY > 200) {
                     this.scrollToTopBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+                    this.scrollToTopBtn.classList.add('opacity-100', 'scale-100');
                 } else {
                     this.scrollToTopBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                    this.scrollToTopBtn.classList.remove('opacity-100', 'scale-100');
                 }
             };
-            // Sử dụng debounce để tối ưu hóa hiệu suất khi cuộn
             window.addEventListener('scroll', window.debounce(handleScroll, 100), { passive: true });
             this.scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            handleScroll(); // Kiểm tra ban đầu khi tải trang
+            handleScroll();
             window.componentLog("IVSFabController: Đã gắn sự kiện cho nút cuộn lên đầu trang.");
         }
 
+        // Đảm bảo chỉ một menu con mở tại một thời điểm, click lại sẽ đóng, focus/blur accessibility
         if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(btn => btn.addEventListener('click', e => {
-                e.stopPropagation(); // Ngăn sự kiện click vào document đóng ngay lập tức
-                this.toggleSubmenu(btn);
-            }));
-            window.componentLog("IVSFabController: Đã gắn sự kiện click cho các nút có submenu.");
+            this.buttonsWithSubmenu.forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
+                    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                    if (isOpen) {
+                        this.closeSubmenu(btn);
+                    } else {
+                        // Đóng tất cả các menu con khác trước khi mở cái mới
+                        this.buttonsWithSubmenu.forEach(otherBtn => {
+                            if (otherBtn !== btn) this.closeSubmenu(otherBtn);
+                        });
+                        this.openSubmenu(btn);
+                        btn.focus(); // Giữ focus trên nút chính
+                    }
+                });
+                // Đóng menu khi mất focus (tab ra ngoài menu)
+                btn.addEventListener('blur', (e) => {
+                    setTimeout(() => {
+                        // Nếu không focus vào menu con thì đóng
+                        const menu = document.getElementById(btn.getAttribute('aria-controls'));
+                        if (menu && !menu.contains(document.activeElement)) {
+                            this.closeSubmenu(btn);
+                        }
+                    }, 100); // Độ trễ nhỏ để cho phép chuyển focus vào các mục trong menu
+                });
+            });
+            window.componentLog("IVSFabController: Đã gắn sự kiện click/focus cho các nút có submenu.");
         }
 
-        // Đóng submenu khi click ra ngoài
+        // Đóng submenu khi click ra ngoài FAB container
         document.addEventListener('click', (e) => {
-            // Kiểm tra xem click có nằm ngoài fabContainer hay không
             if (this.fabContainer && !this.fabContainer.contains(e.target)) {
                 if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
                     this.buttonsWithSubmenu.forEach(btn => this.closeSubmenu(btn));
@@ -255,36 +340,23 @@ const IVSFabController = {
     },
 
     /**
-     * Bật/tắt hiển thị của một menu con.
-     * @param {HTMLElement} btn Nút điều khiển menu con.
-     */
-    toggleSubmenu(btn) {
-        const isCurrentlyOpen = btn.getAttribute('aria-expanded') === 'true';
-        if (this.buttonsWithSubmenu && this.buttonsWithSubmenu.forEach) {
-            this.buttonsWithSubmenu.forEach(otherBtn => {
-                if (otherBtn !== btn) {
-                    this.closeSubmenu(otherBtn); // Đóng các menu con khác
-                }
-            });
-        }
-        if (!isCurrentlyOpen) this.openSubmenu(btn);
-        else this.closeSubmenu(btn);
-    },
-
-    /**
      * Mở một menu con cụ thể.
      * @param {HTMLElement} btn Nút có menu con cần mở.
      */
     openSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
+        
+        // Loại bỏ 'hidden' và 'pointer-events-none' ngay lập tức để animation có thể chạy
         menu.classList.remove('hidden', 'pointer-events-none');
-        // Sử dụng rAF để đảm bảo trình duyệt đã sẵn sàng cho thay đổi trạng thái
-        requestAnimationFrame(() => {
-            menu.classList.remove('opacity-0', 'scale-95', 'translate-y-2');
-            menu.classList.add('opacity-100', 'scale-100', 'translate-y-0'); // Đảm bảo các lớp cuối cùng cho trạng thái mở
-        });
+        // Thêm lớp 'show' để kích hoạt animation 'fab-panel-in'
+        menu.classList.add('show'); 
+        
         btn.setAttribute('aria-expanded', 'true');
+        
+        // Thêm hiệu ứng active cho nút
+        btn.classList.add('fab-active');
+        
         window.componentLog(`IVSFabController: Đã mở submenu cho nút: ${btn.id}`);
     },
 
@@ -295,20 +367,44 @@ const IVSFabController = {
     closeSubmenu(btn) {
         const menu = document.getElementById(btn.getAttribute('aria-controls'));
         if (!menu) return;
-        menu.classList.remove('opacity-100', 'scale-100', 'translate-y-0'); // Xóa các lớp trạng thái mở
-        menu.classList.add('opacity-0', 'scale-95', 'translate-y-2'); // Thêm các lớp trạng thái đóng
+        
+        // Xóa lớp 'show' để kích hoạt animation 'fab-panel-out'
+        menu.classList.remove('show');
 
+        // Lắng nghe sự kiện kết thúc animation để thêm lại 'hidden' và 'pointer-events-none'
         const onTransitionEnd = () => {
-            if (menu.classList.contains('opacity-0')) {
+            // Kiểm tra lại xem menu có thực sự ẩn sau animation không
+            if (!menu.classList.contains('show')) { // Nếu không có lớp 'show' nữa
                 menu.classList.add('hidden', 'pointer-events-none');
             }
-            menu.removeEventListener('transitionend', onTransitionEnd);
+            menu.removeEventListener('animationend', onTransitionEnd); // Sử dụng 'animationend' thay vì 'transitionend' cho keyframes
         };
-        menu.addEventListener('transitionend', onTransitionEnd);
+        menu.addEventListener('animationend', onTransitionEnd); // Gắn listener cho 'animationend'
+        
         btn.setAttribute('aria-expanded', 'false');
+        
+        // Xóa hiệu ứng active cho nút
+        btn.classList.remove('fab-active');
+        
         window.componentLog(`IVSFabController: Đã đóng submenu cho nút: ${btn.id}`);
     },
 };
+
+// Thêm CSS cho hiệu ứng ripple (nếu chưa có trong fab-container-new.html)
+// Lưu ý: Phần này đã được chuyển vào fab-container-new.html để giữ CSS và HTML cùng nhau.
+// Nếu bạn muốn giữ nó ở đây, hãy đảm bảo nó không bị trùng lặp.
+/*
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+*/
 
 // Xuất IVSFabController để loadComponents.js có thể truy cập
 window.IVSFabController = IVSFabController;
@@ -320,6 +416,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Kiểm tra xem phần tử fabContainer có tồn tại trước khi khởi tạo
     if (document.getElementById('fab-container')) {
         IVSFabController.init();
+        // Apply initial theme after init
+        const savedTheme = localStorage.theme;
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
     } else {
         // Nếu fab-container không có sẵn ngay lập tức, nó có thể được tải động.
         // Trong trường hợp đó, loadComponents.js (hoặc tương tự) nên gọi IVSFabController.init() một cách rõ ràng

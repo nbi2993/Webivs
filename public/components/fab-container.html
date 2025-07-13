@@ -1,19 +1,21 @@
-<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-3 bottom-28 md:bottom-8">
+<div id="fab-container" class="fixed right-4 z-30 flex flex-col items-end space-y-5 bottom-5 md:bottom-3">
     
     <!-- Nút Cuộn lên đầu trang -->
     <button id="scroll-to-top-btn" title="Lên đầu trang" aria-label="Lên đầu trang"
-            class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-neutral-600 dark:bg-neutral-700 text-white rounded-full shadow-lg hover:bg-neutral-700 dark:hover:bg-neutral-600 transition-all duration-300 ease-out transform active:scale-90 opacity-0 scale-90 pointer-events-none">
-        <i class="fas fa-arrow-up text-base sm:text-lg"></i>
+            class="fab-item flex items-center justify-center opacity-0 scale-90 pointer-events-none w-12 h-12 md:w-14 md:h-14"
+            tabindex="0" role="button">
+        <i class="fas fa-arrow-up text-lg"></i>
     </button>
 
     <!-- Nút FAB Chia Sẻ -->
     <div class="relative group/fab">
         <button id="share-main-btn" title="Chia sẻ" aria-label="Mở menu chia sẻ" aria-haspopup="true" aria-expanded="false" aria-controls="share-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-share-alt text-xl sm:text-2xl"></i>
+                class="fab-item flex items-center justify-center w-14 h-14 md:w-16 md:h-16 shadow-xl hover:shadow-2xl focus:ring-2 focus:ring-orange-400 outline-none"
+                tabindex="0" role="button">
+            <i class="fas fa-share-alt text-xl"></i>
         </button>
         <div id="share-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex flex-wrap justify-start gap-2 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[200px] md:w-auto"
+             class="fab-submenu-panel hidden absolute bottom-full mb-3 p-3 flex flex-wrap justify-start gap-2 transition-all duration-300 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[240px] md:w-auto"
              role="menu" aria-orientation="vertical" aria-labelledby="share-main-btn">
             <!-- Nội dung cho share-options sẽ được JavaScript chèn vào đây -->
         </div>
@@ -22,24 +24,134 @@
     <!-- Nút FAB Liên Hệ (chính) -->
     <div class="relative group/fab">
         <button id="contact-main-btn" title="Liên hệ" aria-label="Mở menu liên hệ" aria-haspopup="true" aria-expanded="false" aria-controls="contact-options"
-                class="fab-item flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition-transform duration-200 transform hover:scale-110 active:scale-95">
-            <i class="fas fa-comment-dots text-xl sm:text-2xl"></i>
+                class="fab-item flex items-center justify-center w-14 h-14 md:w-16 md:h-16 shadow-xl hover:shadow-2xl focus:ring-2 focus:ring-orange-400 outline-none"
+                tabindex="0" role="button">
+            <i class="fas fa-comment-dots text-xl"></i>
         </button>
         <div id="contact-options" 
-             class="fab-submenu-panel hidden absolute bottom-full mb-2 p-2 bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex flex-wrap justify-start gap-2 transition-all duration-200 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[220px] md:w-auto"
+             class="fab-submenu-panel hidden absolute bottom-full mb-3 p-3 flex flex-wrap justify-start gap-2 transition-all duration-300 ease-out opacity-0 scale-95 transform origin-bottom-right pointer-events-none right-0 w-auto max-w-[calc(100vw-32px)] md:min-w-[260px] md:w-auto"
              role="menu" aria-orientation="vertical" aria-labelledby="contact-main-btn">
             <!-- Nội dung cho contact-options sẽ được JavaScript chèn vào đây -->
         </div>
     </div>
-
-    <!-- Nút chuyển đổi chế độ tối/sáng -->
-    <button id="darkModeToggle" title="Chế độ sáng/tối" aria-label="Toggle dark mode"
-            class="fab-item flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 dark:bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 ease-out transform active:scale-90">
-        <svg id="moonIcon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-        <svg id="sunIcon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.675l-.707-.707M6.343 17.657l-.707.707M16.95 16.95l.707.707M7.05 7.05l-.707-.707M8 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-    </button>
 </div>
+
+<style>
+    /* FAB Container Styles */
+    .fab-item {
+        background: linear-gradient(145deg, #f97316, #ea580c);
+        color: white;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        position: relative;
+        overflow: hidden;
+        touch-action: manipulation;
+    }
+    
+    .fab-item:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+    
+    .fab-item:active {
+        transform: translateY(0) scale(0.95);
+        box-shadow: 0 2px 10px rgba(249, 115, 22, 0.25);
+        transition: transform 0.1s, box-shadow 0.1s;
+    }
+    
+    /* Ripple effect for FAB buttons */
+    .fab-item::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 70%);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        transform: scale(10, 10);
+        opacity: 0;
+        transition: transform 0.5s, opacity 0.8s;
+    }
+    
+    .fab-item:active::after {
+        transform: scale(0, 0);
+        opacity: 0.3;
+        transition: 0s;
+    }
+    
+    /* FAB Submenu Panel */
+    .fab-submenu-panel {
+        background: rgba(31, 41, 55, 0.95);
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Keyframes for submenu entry/exit */
+    @keyframes fab-panel-in {
+        0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fab-panel-out {
+        0% { opacity: 1; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(10px) scale(0.95); }
+    }
+
+    /* Apply animations based on 'show' class */
+    .fab-submenu-panel.show {
+        animation: fab-panel-in 0.3s ease forwards;
+    }
+
+    .fab-submenu-panel:not(.show) {
+        animation: fab-panel-out 0.3s ease forwards;
+    }
+    
+    /* FAB Submenu Items */
+    .fab-submenu-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: #f3f4f6;
+        border-radius: 0.75rem;
+        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 0.25rem;
+        min-width: 120px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .fab-submenu-item:hover {
+        background: rgba(249, 115, 22, 0.15);
+        transform: translateX(2px);
+    }
+    
+    .fab-submenu-item:active {
+        transform: scale(0.98);
+        background: rgba(249, 115, 22, 0.2);
+    }
+    
+    /* Shake animation for attention */
+    @keyframes shake {
+        0% { transform: rotate(0); }
+        15% { transform: rotate(5deg); }
+        30% { transform: rotate(-5deg); }
+        45% { transform: rotate(4deg); }
+        60% { transform: rotate(-4deg); }
+        75% { transform: rotate(2deg); }
+        85% { transform: rotate(-2deg); }
+        92% { transform: rotate(1deg); }
+        100% { transform: rotate(0); }
+    }
+    
+    .fab-shake {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    }
+</style>
