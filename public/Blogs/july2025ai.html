@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Cuộc Đua AI Toàn Cầu 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Link to the system's main stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200">
+
+    <!-- Header will be loaded here by loadComponents.js -->
+    <div id="header-placeholder"></div>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-cyan-400 tracking-tight" data-i18n="ai_strongest_world">AI MẠNH NHẤT THẾ GIỚI</h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-2" data-i18n="global_ai_competition_overview">Bức Tranh Toàn Cảnh Cạnh Tranh 2025</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-slate-300 text-lg" data-i18n="ai_power_era_description">
+                Trong kỷ nguyên AI tạo sinh, "sức mạnh" không còn là một chỉ số duy nhất. Đây là cuộc chiến của các hệ sinh thái, năng lực chuyên biệt và hiệu quả kinh tế.
+            </p>
+        </header>
+
+        <section id="dimensions-of-power" class="my-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white" data-i18n="deconstruct_ai_power">Giải Cấu Trúc "Sức Mạnh" AI</h3>
+                <p class="mt-2 text-slate-400 max-w-2xl mx-auto" data-i18n="core_capability_vectors">Để đánh giá toàn diện, chúng ta cần nhìn vào 6 vector năng lực cốt lõi.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">🧠</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="reasoning_problem_solving_title">Lý Luận & Giải Quyết Vấn Đề</h4>
+                    <p class="text-slate-300" data-i18n="reasoning_problem_solving_desc">Đo lường "trí thông minh thô" qua các bài toán logic, khoa học và toán học phức tạp.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">🎨</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="multimodal_intelligence_title">Trí Tuệ Đa Phương Thức</h4>
+                    <p class="text-slate-300" data-i18n="multimodal_intelligence_desc">Khả năng hiểu và tạo ra nội dung liền mạch qua văn bản, hình ảnh, âm thanh và video.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">💻</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="programming_capability_title">Năng Lực Lập Trình</h4>
+                    <p class="text-slate-300" data-i18n="programming_capability_desc">Không chỉ viết code, mà còn hiểu, gỡ lỗi và tự động hóa các quy trình phát triển phần mềm.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">💰</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="economic_efficiency_title">Hiệu Quả Kinh Tế</h4>
+                    <p class="text-slate-300" data-i18n="economic_efficiency_desc">Sự cân bằng giữa hiệu suất đỉnh cao, chi phí API, tốc độ xử lý và độ trễ.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">🔗</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="scale_accessibility_title">Quy Mô & Tiếp Cận</h4>
+                    <p class="text-slate-300" data-i18n="scale_accessibility_desc">Khả năng xử lý lượng thông tin khổng lồ (cửa sổ ngữ cảnh) và hệ sinh thái API vững chắc.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <p class="text-4xl mb-4">🛡️</p>
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2" data-i18n="safety_ethics_title">An Toàn & Đạo Đức</h4>
+                    <p class="text-slate-300" data-i18n="safety_ethics_desc">Xây dựng các mô hình đáng tin cậy, có trách nhiệm đang trở thành lợi thế cạnh tranh cốt lõi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="benchmark-battles" class="my-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white" data-i18n="intelligence_arena_title">Đấu Trường Trí Tuệ: Các Benchmark Dẫn Đầu</h3>
+                <p class="mt-2 text-slate-400 max-w-2xl mx-auto" data-i18n="standard_tests_reveal">Các bài kiểm tra tiêu chuẩn hé lộ những người dẫn đầu trong các lĩnh vực chuyên biệt.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <h4 class="text-2xl font-bold text-white mb-2" data-i18n="reasoning_knowledge_race_title">Cuộc Đua Lý Luận & Kiến Thức Chuyên Sâu</h4>
+                    <p class="text-slate-400 mb-6" data-i18n="gpqa_diamond_desc">Điểm số trên GPQA Diamond, một benchmark cực khó về kiến thức khoa học, cho thấy sự cạnh tranh khốc liệt ở đỉnh cao. Gemini 2.5 Pro của Google đang tạm dẫn trước.</p>
+                    <div class="chart-container h-96 md:h-[450px]">
+                        <canvas id="reasoningChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                    <h4 class="text-2xl font-bold text-white mb-2" data-i18n="ultimate_coding_companion_title">Người Đồng Hành Lập Trình Tối Thượng</h4>
+                    <p class="text-slate-400 mb-6" data-i18n="swe_bench_desc">Trên SWE-bench, một bài kiểm tra thực tế về kỹ thuật phần mềm, Claude 4 của Anthropic đã thống trị tuyệt đối, trở thành lựa chọn hàng đầu cho các nhà phát triển chuyên nghiệp.</p>
+                    <div class="chart-container h-96 md:h-[450px]">
+                        <canvas id="codingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cost-performance" class="my-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white" data-i18n="economic_equation_title">Phương Trình Kinh Tế: Chi Phí vs. Hiệu Suất</h3>
+                <p class="mt-2 text-slate-400 max-w-3xl mx-auto" data-i18n="best_value_model_desc">Mô hình "mạnh nhất" thường là mô hình mang lại giá trị tốt nhất. Biểu đồ phân tán này so sánh chi phí API với hiệu suất được người dùng đánh giá (điểm Elo trên Chatbot Arena) để tìm ra nhà vô địch về hiệu quả.</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+                <div class="chart-container h-[500px] max-h-[60vh]">
+                    <canvas id="costPerformanceChart"></canvas>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-slate-400" data-i18n="cost_efficiency_champions_desc">Các mô hình ở góc dưới cùng bên phải như GPT-4o mini và Llama 4 Maverick đang định nghĩa lại thị trường bằng cách cung cấp hiệu suất cao với chi phí cực thấp.</p>
+        </section>
+        
+        <section id="ecosystem-war" class="my-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white" data-i18n="ecosystem_war_title">Cuộc Chiến Hệ Sinh Thái: Mở vs. Đóng</h3>
+                <p class="mt-2 text-slate-400 max-w-2xl mx-auto" data-i18n="ai_power_amplified_desc">Sức mạnh của AI được khuếch đại bởi hệ sinh thái chiến lược mà nó thuộc về. Đây là cuộc đối đầu giữa hai triết lý hoàn toàn khác biệt.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-800 p-8 rounded-xl shadow-lg border border-slate-700 flex flex-col items-center text-center">
+                    <h4 class="text-2xl font-bold text-cyan-400 mb-4" data-i18n="walled_garden_title">Khu Vườn Có Tường Bao</h4>
+                    <p class="text-slate-300 mb-6" data-i18n="walled_garden_desc">Google và Microsoft tích hợp sâu AI vào các sản phẩm hiện có (Workspace, Office 365, Azure), tạo ra trải nghiệm liền mạch và giữ chân người dùng.</p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-700 rounded-lg p-3 text-lg font-semibold" data-i18n="google_gemini_integration">Google Gemini 🤝 (Gmail, Docs, Chrome)</div>
+                        <div class="text-2xl">➕</div>
+                        <div class="bg-slate-700 rounded-lg p-3 text-lg font-semibold" data-i18n="openai_microsoft_integration">OpenAI (Microsoft) 🤝 (Office, Azure, Windows)</div>
+                    </div>
+                    <p class="mt-6 font-semibold text-teal-400" data-i18n="walled_garden_advantage">Lợi thế: Tiện lợi, Tích hợp sâu, Chi phí chuyển đổi cao.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl shadow-lg border border-slate-700 flex flex-col items-center text-center">
+                    <h4 class="text-2xl font-bold text-cyan-400 mb-4" data-i18n="open_source_community_title">Cộng Đồng Mã Nguồn Mở</h4>
+                    <p class="text-slate-300 mb-6" data-i18n="open_source_community_desc">Meta sử dụng Llama miễn phí như một vũ khí để phá vỡ thị trường, thúc đẩy đổi mới và xây dựng một cộng đồng nhà phát triển trung thành trên toàn cầu.</p>
+                    <div class="space-y-4">
+                        <div class="bg-slate-700 rounded-lg p-3 text-lg font-semibold" data-i18n="meta_llama_advantage">Meta Llama 🚀 (Miễn phí & Mạnh mẽ)</div>
+                        <div class="text-2xl">⬇️</div>
+                        <div class="bg-slate-700 rounded-lg p-3 text-lg font-semibold" data-i18n="community_developers">Cộng đồng (Developers, Startups, Researchers)</div>
+                    </div>
+                    <p class="mt-6 font-semibold text-teal-400" data-i18n="open_source_advantage">Lợi thế: Đổi mới nhanh, Chi phí thấp, Linh hoạt, Minh bạch.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="verdicts" class="my-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white" data-i18n="final_verdict_title">Phán Quyết Cuối Cùng: "AI Mạnh Nhất" Theo Từng Hạng Mục</h3>
+                <p class="mt-2 text-slate-400 max-w-2xl mx-auto" data-i18n="no_absolute_winner_desc">Không có một người chiến thắng tuyệt đối. "Sức mạnh" được định nghĩa bởi từng trường hợp sử dụng cụ thể.</p>
+            </div>
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex items-center space-x-4">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <p class="font-bold text-cyan-400 text-lg" data-i18n="scientific_engineering_reasoning_category">Lý luận Khoa học & Kỹ thuật:</p>
+                        <p class="font-semibold text-white text-xl" data-i18n="scientific_engineering_reasoning_winner">Gemini 2.5 Pro / Grok 3</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex items-center space-x-4">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <p class="font-bold text-cyan-400 text-lg" data-i18n="software_development_category">Phát triển Phần mềm:</p>
+                        <p class="font-semibold text-white text-xl" data-i18n="software_development_winner">Claude 4 Opus</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex items-center space-x-4">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <p class="font-bold text-cyan-400 text-lg" data-i18n="creative_multimodal_category">Sáng tạo & Đa phương thức (Sử dụng chung):</p>
+                        <p class="font-semibold text-white text-xl" data-i18n="creative_multimodal_winner">OpenAI GPT-4o</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex items-center space-x-4">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <p class="font-bold text-cyan-400 text-lg" data-i18n="open_source_ecosystem_category">Hệ sinh thái Mã nguồn mở:</p>
+                        <p class="font-semibold text-white text-xl" data-i18n="open_source_ecosystem_winner">Meta Llama 4</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex items-center space-x-4">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <p class="font-bold text-cyan-400 text-lg" data-i18n="enterprise_integration_safety_category">Tích hợp Doanh nghiệp & An toàn:</p>
+                        <p class="font-semibold text-white text-xl" data-i18n="enterprise_integration_safety_winner">Anthropic Claude 4</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer will be loaded here by loadComponents.js -->
+    <div id="footer-placeholder"></div>
+    <!-- FAB will be loaded here by loadComponents.js -->
+    <div id="fab-container-placeholder"></div>
+
+    <script>
+        // Define colors for Chart.js
+        const brilliantBlues = {
+            deepBlue: '#0052CC',
+            cyan: '#00A3BF',
+            mintGreen: '#79F2C0',
+            lightBlue: '#B3D4FF',
+            white: '#FFFFFF',
+            slate400: '#94a3b8',
+            slate200: '#e2e8f0'
+        };
+
+        // Function to wrap long labels in Chart.js
+        function wrapLabel(str, max_width) {
+            const words = str.split(' ');
+            const lines = [];
+            let current_line = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((current_line + " " + words[i]).length > max_width) {
+                    lines.push(current_line);
+                    current_line = words[i];
+                } else {
+                    current_line += " " + words[i];
+                }
+            }
+            lines.push(current_line);
+            return lines;
+        }
+
+        // Default tooltip callback for Chart.js to handle wrapped labels
+        const defaultTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Reasoning Chart
+        const reasoningChartCtx = document.getElementById('reasoningChart');
+        if (reasoningChartCtx) {
+            new Chart(reasoningChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Gemini 2.5 Pro', 'Grok 3 (Beta)', 'Claude 4 Opus', 'OpenAI o3', 'Llama 4 Behemoth', 'OpenAI o4-mini'],
+                    datasets: [{
+                        label: 'GPQA Diamond Score (%)',
+                        data: [86.4, 84.6, 84.0, 83.3, 82.2, 81.4],
+                        backgroundColor: brilliantBlues.cyan,
+                        borderColor: brilliantBlues.deepBlue,
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: brilliantBlues.slate400, font: { weight: '600' } },
+                            grid: { color: 'rgba(148, 163, 184, 0.2)' }
+                        },
+                        y: {
+                            ticks: { color: brilliantBlues.slate200, font: { weight: '600', size: 14 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        ...defaultTooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Coding Chart
+        const codingChartCtx = document.getElementById('codingChart');
+        if (codingChartCtx) {
+            new Chart(codingChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Claude 4 Sonnet (direct)',
+                        'Claude 4 Opus (direct)',
+                        'ExpeRepair-v1.0 (uses Claude 4)',
+                        'Refact.ai Agent',
+                        'SWE-agent (uses Claude 4)'
+                    ].map(label => wrapLabel(label, 20)),
+                    datasets: [{
+                        label: 'SWE-bench - Tỷ lệ giải quyết (%)',
+                        data: [72.7, 72.5, 60.33, 60.00, 56.67],
+                        backgroundColor: brilliantBlues.mintGreen,
+                        borderColor: brilliantBlues.cyan,
+                        borderWidth: 2,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 80,
+                            ticks: { color: brilliantBlues.slate400, font: { weight: '600' } },
+                            grid: { color: 'rgba(148, 163, 184, 0.2)' }
+                        },
+                        y: {
+                            ticks: { color: brilliantBlues.slate200, font: { weight: '600', size: 14 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        ...defaultTooltipCallback.plugins,
+                        legend: {
+                            display: false,
+                        }
+                    }
+                }
+            });
+        }
+
+        // Cost Performance Chart
+        const costPerformanceChartCtx = document.getElementById('costPerformanceChart');
+        if (costPerformanceChartCtx) {
+            const costData = {
+                datasets: [{
+                    label: 'Hiệu suất đỉnh cao',
+                    data: [{ x: 93.75, y: 1398, model: 'GPT-4.5 (Preview)' }],
+                    backgroundColor: '#ef4444',
+                }, {
+                    label: 'Chuyên dụng',
+                    data: [
+                        { x: 26.25, y: 1380, model: 'Claude Opus 4' },
+                        { x: 28.00, y: 1411, model: 'o3-pro' }
+                    ],
+                    backgroundColor: '#f97316',
+                }, {
+                    label: 'Cân bằng cao cấp',
+                    data: [
+                        { x: 4.38, y: 1429, model: 'GPT-4o' },
+                        { x: 5.25, y: 1375, model: 'Claude Sonnet 4' }
+                    ],
+                    backgroundColor: '#eab308',
+                },{
+                    label: 'Hiệu quả cao',
+                    data: [
+                        { x: 1.93, y: 1351, model: 'o4-mini' },
+                        { x: 0.8, y: 1425, model: 'DeepSeek-R1' } 
+                    ],
+                    backgroundColor: brilliantBlues.cyan,
+                }, {
+                    label: 'Nhà vô địch hiệu quả',
+                    data: [
+                        { x: 0.26, y: 1318, model: 'GPT-4o mini' },
+                        { x: 0.34, y: 1417, model: 'Llama 4 Maverick' }
+                    ],
+                    backgroundColor: brilliantBlues.mintGreen,
+                }]
+            };
+
+            new Chart(costPerformanceChartCtx, {
+                type: 'scatter',
+                data: costData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Giá hỗn hợp ($/M tokens) - Trục Log',
+                                color: brilliantBlues.slate200,
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            ticks: { color: brilliantBlues.slate400 },
+                            grid: { color: 'rgba(148, 163, 184, 0.2)' }
+                        },
+                        y: {
+                            beginAtZero: false,
+                            min: 1300,
+                            title: {
+                                display: true,
+                                text: 'Điểm Arena (Elo) - Hiệu suất',
+                                color: brilliantBlues.slate200,
+                                font: { size: 14, weight: 'bold' }
+                            },
+                            ticks: { color: brilliantBlues.slate400 },
+                            grid: { color: 'rgba(148, 163, 184, 0.2)' }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const modelInfo = context.dataset.data[context.dataIndex];
+                                    return `${modelInfo.model}: (Giá: $${modelInfo.x}, Elo: ${modelInfo.y})`;
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: brilliantBlues.slate200,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+    <!-- Include the system's JavaScript files -->
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/fabController.js"></script>
+    <script src="/js/headerController.js"></script>
+    <script src="/js/language.js"></script>
+    <script>
+        // Load the components after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHeader();
+            loadFooter();
+            loadFab();
+            // Initialize language after components are loaded
+            initializeLanguage();
+        });
+    </script>
+</body>
+</html>

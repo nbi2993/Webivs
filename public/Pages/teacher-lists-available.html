@@ -1,28 +1,26 @@
+```html
 <!DOCTYPE html>
 <html lang="vi" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="available_teachers_page_title">IVS JSC | Giáo Viên Nước Ngoài [Active now]</title>
-    <meta name="description" content="Danh sách các giáo viên nước ngoài chất lượng cao đang tìm kiếm cơ hội việc làm tại Việt Nam thông qua IVS JSC. Xem hồ sơ và liên hệ ngay." data-lang-key="available_teachers_meta_description">
-    <meta name="keywords" content="giáo viên nước ngoài, giáo viên bản ngữ, tuyển dụng giáo viên, việc làm giáo viên, IVS JSC, TESOL, CELTA" data-lang-key="available_teachers_meta_keywords">
-    <meta property="og:title" content="Giáo Viên Nước Ngoài Đang Tìm Việc | IVS JSC" data-lang-key="available_teachers_og_title">
-    <meta property="og:description" content="Khám phá hồ sơ các giáo viên tiếng Anh bản ngữ và nước ngoài chất lượng, sẵn sàng cho các vị trí giảng dạy tại trường học và trung tâm tại Việt Nam." data-lang-key="available_teachers_og_description">
+    <title>IVS JSC | Giáo Viên Nước Ngoài [Active now]</title>
+    <meta name="description" content="Danh sách các giáo viên nước ngoài chất lượng cao đang tìm kiếm cơ hội việc làm tại Việt Nam thông qua IVS JSC. Xem hồ sơ và liên hệ ngay.">
+    <meta name="keywords" content="giáo viên nước ngoài, giáo viên bản ngữ, tuyển dụng giáo viên, việc làm giáo viên, IVS JSC, TESOL, CELTA">
+    <meta property="og:title" content="Giáo Viên Nước Ngoài Đang Tìm Việc | IVS JSC">
+    <meta property="og:description" content="Khám phá hồ sơ các giáo viên tiếng Anh bản ngữ và nước ngoài chất lượng, sẵn sàng cho các vị trí giảng dạy tại trường học và trung tâm tại Việt Nam.">
     <meta property="og:image" content="https://ivsjsc.github.io/images/banners/available-teachers-og.png">
     <meta property="og:url" content="https://ivsacademy.edu.vn/Pages/teacher-lists-available.html">
     <meta property="og:type" content="website">
     <meta name="author" content="IVS JSC">
-
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
     <link rel="manifest" href="/manifest.json">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -49,11 +47,10 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="/css/styles.css">
     <style>
         .font-display { font-family: 'Lexend', sans-serif; }
         .hero-section {
-            background-image: url('https://placehold.co/1920x400/1a202c/ffffff?text=Available+Teachers'); /* Placeholder background image */
+            background-image: url('https://placehold.co/1920x400/1a202c/ffffff?text=Available+Teachers');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -73,7 +70,6 @@
         .hero-text-shadow {
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
-
         .teacher-card {
             @apply bg-ivs-card p-6 rounded-xl border border-ivs-border shadow-lg flex flex-col items-center text-center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -87,25 +83,23 @@
         }
         .teacher-info ul {
             @apply text-ivs-text-secondary text-sm list-none p-0 space-y-1;
-            text-align: left; /* Align text left within the list */
-            width: 100%; /* Ensure list takes full width for alignment */
+            text-align: left;
+            width: 100%;
         }
         .teacher-info li {
-            @apply flex items-center justify-start; /* Align icon and text to start */
+            @apply flex items-center justify-start;
         }
         .teacher-info li i {
             @apply text-ivs-green mr-2;
-            width: 1.25rem; /* Fixed width for icon to align text */
+            width: 1.25rem;
             flex-shrink: 0;
         }
         .teacher-info li span {
-            flex-grow: 1; /* Allow text to grow */
+            flex-grow: 1;
         }
-        /* Styling for the new "More..." button */
         .btn-view-profile {
             @apply mt-4 py-2 px-4 bg-ivs-blue hover:bg-ivs-blue-darker text-white font-semibold rounded-lg transition-colors transform hover:scale-105 inline-flex items-center justify-center;
         }
-        /* Styles for pagination buttons */
         .pagination-button {
             @apply px-4 py-2 rounded-lg font-semibold transition-colors duration-200;
         }
@@ -115,8 +109,6 @@
         .pagination-button:disabled {
             @apply bg-ivs-border text-ivs-text-secondary cursor-not-allowed;
         }
-
-        /* Styles for the Partnership Form */
         .form-container {
             background-color: var(--ivs-card);
             border: 1px solid var(--ivs-border);
@@ -174,35 +166,31 @@
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
-    
     <header id="header-placeholder"></header>
-
     <main>
         <!-- Hero Section for Available Teachers -->
         <section class="py-20 md:py-28 text-white text-center">
             <div class="container mx-auto px-6 hero-content" data-aos="fade-up">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-4 hero-text-shadow" data-lang-key="available_teachers_hero_title">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-4 hero-text-shadow">
                     IVS Academy | Giáo Viên Nước Ngoài [Active now]
                 </h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow leading-relaxed" data-aos="fade-up" data-aos-delay="200" data-lang-key="available_teachers_hero_subtitle">
+                <p class="text-lg md:text-xl max-w-3xl mx-auto hero-text-shadow leading-relaxed" data-aos="fade-up" data-aos-delay="200">
                     Khám phá hồ sơ giáo viên chất lượng, đã được chọn lọc kỹ càng, làm việc hợp pháp tại VN và sẵn sàng cho các cơ hội giảng dạy tại trường học và trung tâm của bạn.
                 </p>
             </div>
         </section>
-
         <!-- Teacher Listings Section -->
         <section class="py-16 md:py-24">
             <div class="container mx-auto px-6">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary" data-aos="fade-up" data-lang-key="teacher_listing_title">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-center mb-12 text-ivs-text-primary">
                     Danh Sách Giáo Viên Tiêu Biểu
                 </h2>
-                <p class="text-center text-ivs-text-secondary max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100" data-lang-key="teacher_listing_intro">
+                <p class="text-center text-ivs-text-secondary max-w-2xl mx-auto mb-10">
                     Dưới đây là danh sach giáo viên hoạt động theo thời gian thật [on active]
                 </p>
-
                 <div id="teacher-list-container" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    
-                    <div class="teacher-card" data-aos="fade-up" data-aos-delay="100" data-location="Đồng Nai">
+
+                                        <div class="teacher-card" data-aos="fade-up" data-aos-delay="100" data-location="Đồng Nai">
                         <img class="teacher-avatar" src="/images/team/kimball-allen-thomson.png" alt="[Ảnh giáo viên Kimball Thomson]" onerror="this.onerror=null; this.src='https://placehold.co/112x112/161B22/FFFFFF?text=GV1';">
                         <div class="flex items-baseline justify-center flex-wrap mb-2">
                             <h3 class="text-xl font-semibold text-ivs-blue">Kimball Thomson</h3>
@@ -934,137 +922,140 @@
                         Next <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
-
-                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="900">
-                    <p class="text-lg text-ivs-text-secondary mb-6" data-lang-key="more_teachers_cta_text">
+                    <!-- Teacher Cards will be dynamically populated here -->
+                </div>
+                <!-- Pagination Controls -->
+                <div class="flex justify-center items-center space-x-4 mt-12" data-aos="fade-up" data-aos-delay="200">
+                    <button id="prevPageBtn" class="pagination-button" disabled>
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <span id="pageInfo" class="text-ivs-text-primary text-lg font-semibold">
+                        Page 1 of X
+                    </span>
+                    <button id="nextPageBtn" class="pagination-button">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="text-center mt-12">
+                    <p class="text-lg text-ivs-text-secondary mb-6">
                         Bạn không tìm thấy giáo viên phù hợp? IVS JSC có một mạng lưới giáo viên rộng lớn và đa dạng.
                     </p>
-                    <a href="" class="btn-view-profile bg-ivs-green hover:bg-ivs-green-darker text-white" data-lang-key="request_custom_match_button">
+                    <a href="#" class="bg-ivs-green hover:bg-ivs-green-darker text-white py-3 px-6 rounded-lg font-bold inline-flex items-center transition-colors">
                         <i class="fas fa-search-plus mr-2"></i> Yêu Cầu Tìm Giáo Viên Theo Yêu Cầu
                     </a>
                 </div>
             </div>
         </section>
-
         <!-- IVS - Partnership Education Linking Form -->
         <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
             <div class="container mx-auto px-6 max-w-3xl">
-                <div class="text-center mb-12" data-aos="fade-down">
-                    <h2 class="text-4xl lg:text-5xl font-bold font-display text-ivs-blue mb-4" data-lang-key="partnership_hero_title">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl lg:text-5xl font-bold font-display text-ivs-blue mb-4">
                         IVS - Partnership Education Linking
                     </h2>
-                    <p class="text-lg text-ivs-text-secondary max-w-2xl mx-auto" data-lang-key="partnership_hero_subtitle">
+                    <p class="text-lg text-ivs-text-secondary max-w-2xl mx-auto">
                         Cùng IVS kiến tạo tương lai giáo dục. Vui lòng điền thông tin dưới đây để bắt đầu hành trình hợp tác.
                     </p>
                 </div>
-
-                <div class="form-container" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-semibold text-ivs-text-primary mb-8 text-center" data-lang-key="partnership_form_headline">
+                <div class="form-container">
+                    <h3 class="text-2xl font-semibold text-ivs-text-primary mb-8 text-center">
                         Đăng Ký Hợp Tác Giáo Dục
                     </h3>
                     <form id="partnershipForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfftr8CX5gB7OkPAUSf-khuZR-YQ8LG03jeEWB34RwKypNbHA/formResponse" method="POST" enctype="multipart/form-data" target="_blank">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div class="form-group">
-                                <label for="organizationName" data-lang-key="form_org_name_label">Tên Cơ Sở Giáo Dục (thường gọi)</label>
+                                <label for="organizationName">Tên Cơ Sở Giáo Dục (thường gọi)</label>
                                 <input type="text" id="organizationName" name="entry.1517655153" placeholder="Ví dụ: Trường Mầm non ABC, Trung tâm Anh ngữ XYZ" required>
                             </div>
                             <div class="form-group">
-                                <label for="parentOrganization" data-lang-key="form_parent_org_label">CSGD trực thuộc, Tên Doanh nghiệp/ Tổ chức</label>
+                                <label for="parentOrganization">CSGD trực thuộc, Tên Doanh nghiệp/ Tổ chức</label>
                                 <input type="text" id="parentOrganization" name="entry.59438074" placeholder="Ví dụ: Công ty TNHH Giáo dục ABC">
                             </div>
                         </div>
-
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div class="form-group">
-                                <label for="taxId" data-lang-key="form_tax_id_label">Mã số thuế Doanh nghiệp</label>
+                                <label for="taxId">Mã số thuế Doanh nghiệp</label>
                                 <input type="text" id="taxId" name="entry.866799846" placeholder="Nhập mã số thuế của doanh nghiệp/tổ chức">
                             </div>
                             <div class="form-group">
-                                <label for="location" data-lang-key="form_location_label">Địa điểm có nhu cầu</label>
+                                <label for="location">Địa điểm có nhu cầu</label>
                                 <input type="text" id="location" name="entry.1745495925" placeholder="Ví dụ: Đồng Nai, TP.HCM, Hà Nội">
                             </div>
                         </div>
-
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div class="form-group">
-                                <label for="phoneNumber" data-lang-key="form_phone_label">Số điện thoại</label>
+                                <label for="phoneNumber">Số điện thoại</label>
                                 <input type="tel" id="phoneNumber" name="entry.138806801" placeholder="Nhập số điện thoại liên hệ" required>
                             </div>
                             <div class="form-group">
-                                <label for="email" data-lang-key="form_email_label">Email</label>
+                                <label for="email">Email</label>
                                 <input type="email" id="email" name="entry.396944312" placeholder="Nhập địa chỉ email liên hệ" required>
                             </div>
                         </div>
-
                         <div class="form-group mb-6">
-                            <label for="selectedTeachers" data-lang-key="form_selected_teachers_label">Giáo viên đã chọn</label>
+                            <label for="selectedTeachers">Giáo viên đã chọn</label>
                             <textarea id="selectedTeachers" name="entry.778899001" rows="3" placeholder="Liệt kê tên các giáo viên bạn quan tâm từ danh sách trên (ví dụ: John Smith, Sarah Johnson)"></textarea>
                             <p class="text-ivs-text-secondary text-xs mt-1">
                                 (Lưu ý: ID cho trường này có thể cần được kiểm tra lại từ Google Form của bạn)
                             </p>
                         </div>
-
                         <div class="form-group mb-6">
-                            <label for="detailedNeeds" data-lang-key="form_needs_label">Mô tả về nhu cầu chi tiết</label>
+                            <label for="detailedNeeds">Mô tả về nhu cầu chi tiết</label>
                             <textarea id="detailedNeeds" name="entry.556677889" rows="5" placeholder="Ví dụ: Yêu cầu về giáo viên (quốc tịch, kinh nghiệm, chuyên môn), số lượng lớp, độ tuổi học viên, chương trình mong muốn, các yêu cầu đặc biệt khác..."></textarea>
-                             <p class="text-ivs-text-secondary text-xs mt-1">
+                            <p class="text-ivs-text-secondary text-xs mt-1">
                                 (Lưu ý: ID cho trường này có thể cần được kiểm tra lại từ Google Form của bạn)
                             </p>
                         </div>
-
                         <div class="form-group mb-8">
-                            <label for="attachments" class="file-upload-label" data-lang-key="form_attachments_label">
+                            <label class="file-upload-label">
                                 <i class="fas fa-upload mr-2"></i> Tệp đính kèm (GPKD, Quyết định thành lập cơ sở,...)
                             </label>
-                            <input type="file" id="attachments" name="entry.667788990" multiple class="file-upload-input" accept=".pdf,.doc,.docx,.jpg,.png">
-                            <div id="fileList" class="file-list"></div>
-                            <p class="text-ivs-text-secondary text-xs mt-1" data-lang-key="form_attachments_hint">
+                            <div class="border-2 border-dashed border-ivs-border rounded-lg p-6 text-center cursor-pointer hover:border-ivs-blue transition-colors">
+                                <p class="text-ivs-text-secondary mb-2">Kéo thả tệp vào đây hoặc click để chọn tệp</p>
+                                <p class="text-xs text-ivs-text-secondary">Tối đa 5MB mỗi tệp, định dạng: PDF, DOC, DOCX, JPG, PNG</p>
+                            </div>
+                            <p class="text-ivs-text-secondary text-xs mt-1">
                                 (Tối đa 5MB mỗi tệp, định dạng: PDF, DOC, DOCX, JPG, PNG. Lưu ý: ID cho trường này có thể cần được kiểm tra lại từ Google Form của bạn để đảm bảo tải tệp hoạt động.)
                             </p>
                         </div>
-
-                        <button type="submit" class="submit-button" data-lang-key="form_submit_button">
+                        <button type="submit" class="submit-button">
                             Gửi Yêu Cầu Hợp Tác
                         </button>
                     </form>
                 </div>
             </div>
         </section>
-
-        <!-- New Section: Liên kết Bảng giá Tham khảo -->
+        <!-- Price List Section -->
         <section class="py-16 md:py-24 bg-ivs-card border-y border-ivs-border">
-            <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6 text-ivs-text-primary" data-lang-key="price_link_title">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6 text-white">
                     Xem Bảng Giá Dịch Vụ Tham Khảo
                 </h2>
-                <p class="text-lg text-ivs-text-secondary max-w-2xl mx-auto mb-8" data-lang-key="price_link_description">
+                <p class="text-lg text-ivs-text-secondary max-w-2xl mx-auto mb-8">
                     Để có cái nhìn tổng quan về chi phí, vui lòng tham khảo bảng giá dịch vụ cung cấp giáo viên nước ngoài của IVS JSC.
                 </p>
-                <a href="/Pages/bang-gia-tham-khao-gvnn-ivs.html" class="btn-primary bg-ivs-green hover:bg-ivs-green-darker text-white" data-lang-key="view_price_list_button">
+                <a href="#" class="bg-ivs-green hover:bg-ivs-green-darker text-white py-3 px-6 rounded-lg font-bold inline-flex items-center transition-colors">
                     <i class="fas fa-file-invoice-dollar mr-2"></i> Xem Bảng Giá Chi Tiết
                 </a>
             </div>
         </section>
-
-        <!-- Call to Action Section (Existing) -->
-        <section id="contact-cta" class="py-16 md:py-24 bg-ivs-blue text-white text-center">
-            <div class="container mx-auto px-6 max-w-3xl" data-aos="zoom-in">
-                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6 hero-text-shadow" data-lang-key="final_cta_title">
+        <!-- Call to Action Section -->
+        <section class="py-16 md:py-24 bg-ivs-blue text-white text-center">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6">
                     Sẵn Sàng Nâng Tầm Chất Lượng Giáo Dục Của Bạn?
                 </h2>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 hero-text-shadow" data-lang-key="final_cta_description">
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10">
                     Liên hệ với IVS JSC ngay hôm nay để nhận tư vấn miễn phí và tìm kiếm giải pháp nhân sự giáo viên nước ngoài tối ưu nhất cho tổ chức của bạn.
                 </p>
-                <a href="/contact.html?service=foreign-teacher" class="btn-primary bg-ivs-orange hover:bg-orange-600 text-white" data-lang-key="final_cta_button">
+                <a href="#" class="bg-ivs-orange hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-bold inline-flex items-center transition-colors">
                     <i class="fas fa-envelope mr-2"></i> Yêu Cầu Tư Vấn Ngay
                 </a>
             </div>
         </section>
     </main>
-
     <footer id="footer-placeholder"></footer>
     <div id="fab-container-placeholder"></div>
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/js/loadComponents.js"></script>
     <script src="/js/language.js"></script>
@@ -1078,172 +1069,7 @@
             mirror: false,
             anchorPlacement: 'top-bottom',
         });
-
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 200) {
-                    scrollToTopBtn.classList.remove('hidden');
-                    scrollToTopBtn.classList.add('flex');
-                } else {
-                    scrollToTopBtn.classList.remove('flex');
-                    scrollToTopBtn.classList.add('hidden');
-                }
-            }, { passive: true });
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            if (window.pageYOffset <= 200) {
-                scrollToTopBtn.classList.add('hidden');
-            }
-        }
-
-        // Handle file input display
-        document.getElementById('attachments').addEventListener('change', function() {
-            const fileListContainer = document.getElementById('fileList');
-            fileListContainer.innerHTML = ''; // Clear previous list
-            if (this.files.length > 0) {
-                for (let i = 0; i < this.files.length; i++) {
-                    const file = this.files[i];
-                    const fileName = document.createElement('span');
-                    fileName.textContent = file.name;
-                    fileName.classList.add('block', 'text-sm', 'text-ivs-text-secondary');
-                    fileListContainer.appendChild(fileName);
-                }
-            } else {
-                fileListContainer.textContent = '';
-            }
-        });
-        
-        // --- Sắp xếp giáo viên và phân trang ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const teacherContainer = document.getElementById('teacher-list-container');
-            if (!teacherContainer) return;
-
-            let allTeacherCards = Array.from(teacherContainer.querySelectorAll('.teacher-card'));
-            const teachersPerPage = 8;
-            let currentPage = 1;
-            let totalPages = 0;
-
-            const prevPageBtn = document.getElementById('prevPageBtn');
-            const nextPageBtn = document.getElementById('nextPageBtn');
-            const pageInfoSpan = document.getElementById('pageInfo');
-
-            // Định nghĩa thứ tự ưu tiên các địa điểm
-            const locationOrder = [
-                'Đồng Nai', 'Hồ Chí Minh', 'TP.HCM', 'Cần Thơ', 'Vũng Tàu', 'Bình Dương', 'Vĩnh Long',
-                'Hà Nội', 'Đà Nẵ', 'Ha noi, Viet nam', 'Việt Nam', 'Đa quốc gia', 'Filipino',
-                'Không rõ', 'Không có thông tin', 'Vietnam, stay at Center',
-            ].map(loc => loc.toLowerCase().trim());
-
-            // Định nghĩa thứ tự ưu tiên cho các giáo viên cụ thể theo tên
-            const specialOrderTeachers = [
-                'Kimball Thomson', 'Salma Nour', 'Rachid Bellafar', 'Raphael Galuz',
-                'Madison-Schae Summers', 'Sloan Pierre Samuel Venter', 'Jannicar Nayve', 'William Nanji'
-            ];
-
-            // Hàm để lấy dữ liệu giáo viên (tên và địa điểm)
-            function getTeacherData(teacherCard) {
-                const nameElement = teacherCard.querySelector('h3.text-ivs-blue');
-                const locationSpan = teacherCard.querySelector('.text-xl.text-ivs-orange');
-                
-                const name = nameElement ? nameElement.textContent.trim() : '';
-                let location = teacherCard.dataset.location; // Ưu tiên data-location
-
-                if (!location || ['Việt Nam', 'Không rõ', 'Không có thông tin'].includes(location)) {
-                    if (locationSpan) {
-                        location = locationSpan.textContent.replace(/[()]/g, '').trim();
-                    }
-                }
-                
-                return {
-                    name: name,
-                    location: location ? location.toLowerCase() : ''
-                };
-            }
-
-            // Hàm sắp xếp tùy chỉnh
-            function sortTeachers() {
-                allTeacherCards.sort((a, b) => {
-                    const dataA = getTeacherData(a);
-                    const dataB = getTeacherData(b);
-
-                    const specialIndexA = specialOrderTeachers.indexOf(dataA.name);
-                    const specialIndexB = specialOrderTeachers.indexOf(dataB.name);
-
-                    if (specialIndexA !== -1 && specialIndexB !== -1) {
-                        return specialIndexA - specialIndexB;
-                    }
-                    if (specialIndexA !== -1) {
-                        return -1;
-                    }
-                    if (specialIndexB !== -1) {
-                        return 1;
-                    }
-
-                    const locA = dataA.location;
-                    const locB = dataB.location;
-
-                    const indexA = locationOrder.indexOf(locA);
-                    const indexB = locationOrder.indexOf(locB);
-
-                    if (indexA !== -1 && indexB !== -1) {
-                        return indexA - indexB;
-                    }
-                    if (indexA !== -1) {
-                        return -1;
-                    }
-                    if (indexB !== -1) {
-                        return 1;
-                    }
-                    return 0;
-                });
-            }
-
-            // Hàm hiển thị giáo viên cho trang hiện tại
-            function displayTeachers(page) {
-                currentPage = page;
-                const startIndex = (currentPage - 1) * teachersPerPage;
-                const endIndex = startIndex + teachersPerPage;
-                const teachersToDisplay = allTeacherCards.slice(startIndex, endIndex);
-
-                teacherContainer.innerHTML = ''; // Xóa các thẻ hiện có
-                teachersToDisplay.forEach(card => {
-                    teacherContainer.appendChild(card);
-                });
-
-                updatePaginationControls();
-            }
-
-            // Cập nhật trạng thái các nút phân trang
-            function updatePaginationControls() {
-                totalPages = Math.ceil(allTeacherCards.length / teachersPerPage);
-                pageInfoSpan.textContent = `Page ${currentPage} of ${totalPages}`;
-
-                prevPageBtn.disabled = currentPage === 1;
-                nextPageBtn.disabled = currentPage === totalPages;
-            }
-
-            // Xử lý sự kiện nút Previous
-            prevPageBtn.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    displayTeachers(currentPage - 1);
-                }
-            });
-
-            // Xử lý sự kiện nút Next
-            nextPageBtn.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    displayTeachers(currentPage + 1);
-                }
-            });
-
-            // Khởi tạo khi DOM đã tải xong
-            sortTeachers(); // Sắp xếp tất cả giáo viên một lần
-            displayTeachers(1); // Hiển thị trang đầu tiên
-        });
-        // --- Kết thúc sắp xếp giáo viên và phân trang ---
     </script>
 </body>
 </html>
+```
