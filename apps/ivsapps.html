@@ -5,30 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang-key="page_title_ivsapps">Bộ Ứng Dụng IVS - Công Cụ Cho Giáo Dục & Hợp Tác</title>
     <meta name="description" content="Khám phá bộ ứng dụng được phát triển bởi IVS JSC, thiết kế để tăng cường giáo dục, tối ưu hóa hợp tác và trao quyền cho người dùng." data-lang-key="meta_description_ivsapps">
-    <meta name="keywords" content="IVS Applications, IVS Apps, phần mềm giáo dục, công cụ hợp tác, nền tảng EdTech, IVS Global Teacher Hub" data-lang-key="meta_keywords_ivsapps">
+    <meta name="keywords" content="IVS Applications, IVS Apps, phần mềm giáo dục, công cụ hợp tác, nền tảng EdTech, IVS Global Teacher Hub, Học tiếng Trung, Kinderlink" data-lang-key="meta_keywords_ivsapps">
     <meta property="og:title" content="IVS Apps - Công Cụ Sáng Tạo Cho Tương Lai" data-lang-key="og_title_ivsapps">
     <meta property="og:description" content="Khám phá các ứng dụng của IVS JSC, bao gồm IVS Global Teacher Hub, được xây dựng để hỗ trợ các nhà giáo dục và người học trên toàn thế giới." data-lang-key="og_description_ivsapps">
-    <meta property="og:image" content="/images/banners/ivs-apps-banner.png">
+    <meta property="og:image" content="https://placehold.co/1200x630/003366/FFFFFF?text=IVS+Apps">
     <meta property="og:url" content="https://ivsacademy.edu.vn/apps/ivsapps.html">
     <meta property="og:type" content="website">
     <meta name="author" content="IVS JSC">
 
     <!-- Preconnect and basic meta -->
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/images/logo/logo-192.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="https://placehold.co/32x32/003366/FFFFFF?text=IVS">
+    <link rel="apple-touch-icon" href="https://placehold.co/192x192/003366/FFFFFF?text=IVS">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Fonts and Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Scripts and Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
     
     <script>
         tailwind.config = {
@@ -53,30 +50,50 @@
         .section-title { font-family: 'Lexend', sans-serif; }
         .app-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Make cards of equal height */
         }
         .app-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
         .dark .app-card:hover {
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 25px -5px rgba(255,255,255,0.05), 0 10px 10px -5px rgba(255,255,255,0.02);
+        }
+        .app-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .app-card-description {
+            flex-grow: 1;
+        }
+        .btn-launch {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .btn-launch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body class="bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 antialiased">
 
-    <div id="header-placeholder"></div>
+    <!-- Removed header placeholder to prevent loading issues -->
 
-    <main class="flex-grow pt-[var(--header-height)] md:pt-[var(--desktop-header-height)]">
+    <!-- Added padding-top to main content to compensate for removed header -->
+    <main class="flex-grow pt-16 sm:pt-20">
         <!-- Hero Section -->
-        <section class="bg-white dark:bg-neutral-800 py-20 md:py-28" aria-labelledby="apps-main-title">
+        <section class="bg-white dark:bg-neutral-800 py-20 md:py-24" aria-labelledby="apps-main-title">
             <div class="container mx-auto px-4 text-center">
                 <span class="inline-block p-4 bg-primary/10 dark:bg-secondary/20 rounded-2xl mb-6" data-aos="fade-down">
                     <i class="fas fa-shapes fa-3x text-primary dark:text-secondary"></i>
                 </span>
-                <h1 id="apps-main-title" class="section-title text-4xl md:text-5xl font-bold text-neutral-800 dark:text-white mb-4" data-aos="fade-down" data-aos-delay="100" data-lang-key="ivsapps_main_title">Bộ Ứng Dụng IVS</h1>
+                <h1 id="apps-main-title" class="section-title text-4xl md:text-5xl font-bold text-neutral-800 dark:text-white mb-4" data-aos="fade-down" data-aos-delay="100" data-lang-key="ivsapps_main_title">Hệ Sinh Thái Ứng Dụng IVS</h1>
                 <p class="text-lg text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto" data-aos="fade-down" data-aos-delay="200" data-lang-key="ivsapps_main_subtitle">
-                    Khám phá hệ sinh thái ứng dụng được thiết kế để nâng cao hiệu quả học tập, tối ưu hóa hợp tác và trao quyền cho cộng đồng giáo dục toàn cầu.
+                    Khám phá các công cụ số được thiết kế để nâng cao hiệu quả học tập, tối ưu hóa hợp tác và trao quyền cho cộng đồng giáo dục toàn cầu.
                 </p>
             </div>
         </section>
@@ -84,74 +101,113 @@
         <!-- Apps List Section -->
         <section class="py-16 md:py-24" aria-labelledby="apps-list-title">
             <div class="container mx-auto px-4">
-                <h2 id="apps-list-title" class="sr-only" data-lang-key="ivsapps_list_title">Các Ứng Dụng Hiện Có</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <h2 id="apps-list-title" class="section-title text-3xl font-bold text-center text-neutral-800 dark:text-white mb-12" data-lang-key="ivsapps_list_title">Các Ứng Dụng Nổi Bật</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                     
-                    <!-- App Card: IVS Kinderlink -->
-                    <article class="app-card bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row" data-aos="fade-up">
-                        <div class="md:w-1/3">
-                            <img src="/images/apps/ivs-kinderlink.jpg" 
-                                 alt="Giao diện ứng dụng IVS Kinderlink" 
-                                 class="object-cover w-full h-48 md:h-full"
-                                 onerror="this.src='https://placehold.co/400x450/dc2626/FFFFFF?text=Kinderlink';">
+                    <!-- App Card: Ứng dụng học tiếng Trung (HSK) -->
+                    <article class="app-card bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up">
+                        <img src="https://placehold.co/600x350/059669/FFFFFF?text=IVS+HSK" 
+                             alt="Giao diện ứng dụng học tiếng Trung HSK" 
+                             class="object-cover w-full h-48"
+                             onerror="this.src='https://placehold.co/600x350/059669/FFFFFF?text=HSK+App';">
+                        <div class="p-6 app-card-content">
+                            <div>
+                                <div class="mb-3">
+                                    <span class="text-xs font-semibold inline-block py-1 px-2.5 uppercase rounded-full text-emerald-600 bg-emerald-200 dark:bg-emerald-800 dark:text-emerald-300" data-lang-key="tag_language">
+                                        Ngôn ngữ
+                                    </span>
+                                </div>
+                                <h3 class="section-title text-2xl font-semibold text-neutral-800 dark:text-white mb-2" data-lang-key="hsk_app_title">Học Tiếng Trung (HSK)</h3>
+                                <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-5 app-card-description" data-lang-key="hsk_app_desc">
+                                    Chinh phục các cấp độ HSK với lộ trình học tập cá nhân hóa, bài giảng tương tác và hệ thống luyện thi toàn diện.
+                                </p>
+                            </div>
+                            <a href="https://ivs-education-hsk-learning-910278613224.us-west1.run.app/" target="_blank" rel="noopener noreferrer" class="btn-launch mt-auto w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-5 rounded-lg" data-lang-key="button_launch_app">
+                                Khởi chạy ứng dụng <i class="fas fa-rocket fa-xs ml-2"></i>
+                            </a>
                         </div>
-                        <div class="p-6 md:p-8 flex flex-col flex-grow md:w-2/3">
-                            <h3 class="section-title text-2xl font-semibold text-red-600 dark:text-red-400 mb-2" data-lang-key="ivs_kinderlink_title">IVS Kinderlink</h3>
-                            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-5 flex-grow" data-lang-key="ivs_kinderlink_desc">
-                               Nền tảng kết nối toàn diện giữa nhà trường, giáo viên và phụ huynh trong giáo dục mầm non, giúp theo dõi và cập nhật quá trình phát triển của trẻ.
-                            </p>
-                            <a href="/apps/ivskinderlink.html" class="mt-auto inline-block text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-lg transition" data-lang-key="button_access_app">
-                               Truy cập Ứng dụng <i class="fas fa-arrow-right fa-xs ml-1"></i>
+                    </article>
+
+                    <!-- App Card: IVS Kinderlink -->
+                    <article class="app-card bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://placehold.co/600x350/dc2626/FFFFFF?text=Kinderlink" 
+                             alt="Giao diện ứng dụng IVS Kinderlink" 
+                             class="object-cover w-full h-48"
+                             onerror="this.src='https://placehold.co/600x350/dc2626/FFFFFF?text=Kinderlink';">
+                        <div class="p-6 app-card-content">
+                           <div>
+                                <div class="mb-3">
+                                    <span class="text-xs font-semibold inline-block py-1 px-2.5 uppercase rounded-full text-red-600 bg-red-200 dark:bg-red-800 dark:text-red-300" data-lang-key="tag_education">
+                                        Giáo dục
+                                    </span>
+                                </div>
+                                <h3 class="section-title text-2xl font-semibold text-neutral-800 dark:text-white mb-2" data-lang-key="ivs_kinderlink_title">IVS Kinderlink</h3>
+                                <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-5 app-card-description" data-lang-key="ivs_kinderlink_desc">
+                                    Nền tảng kết nối toàn diện giữa nhà trường, giáo viên và phụ huynh trong giáo dục mầm non, giúp theo dõi và cập nhật tiến trình phát triển của trẻ.
+                                </p>
+                           </div>
+                            <a href="https://ivs-kinderlink-910278613224.us-west1.run.app/" target="_blank" rel="noopener noreferrer" class="btn-launch mt-auto w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-5 rounded-lg" data-lang-key="button_access_app">
+                                Truy cập ứng dụng <i class="fas fa-arrow-right fa-xs ml-2"></i>
                             </a>
                         </div>
                     </article>
 
                     <!-- App Card: IVS Global Teacher Hub -->
-                    <article class="app-card bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row" data-aos="fade-up" data-aos-delay="100">
-                         <div class="md:w-1/3">
-                            <img src="/images/apps/teacher-hub.jpg" 
-                                 alt="Giao diện IVS Global Teacher Hub" 
-                                 class="object-cover w-full h-48 md:h-full"
-                                 onerror="this.src='https://placehold.co/400x450/003366/FFFFFF?text=Teacher+Hub';">
-                        </div>
-                        <div class="p-6 md:p-8 flex flex-col flex-grow md:w-2/3">
-                            <h3 class="section-title text-2xl font-semibold text-primary dark:text-secondary mb-2" data-lang-key="app_teacher_hub_title">IVS Global Teacher Hub</h3>
-                            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-5 flex-grow" data-lang-key="app_teacher_hub_desc">
-                                Cổng thông tin dành riêng cho giáo viên quốc tế kết nối với IVS, khám phá cơ hội giảng dạy, quản lý hồ sơ và phát triển chuyên môn.
-                            </p>
-                            <a href="/apps/ivs-global-teacher-hub.html" class="mt-auto inline-block text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg transition" data-lang-key="button_access_hub">
-                                Truy cập Hub <i class="fas fa-arrow-right fa-xs ml-1"></i>
+                    <article class="app-card bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                         <img src="https://placehold.co/600x350/003366/FFFFFF?text=Teacher+Hub" 
+                             alt="Giao diện IVS Global Teacher Hub" 
+                             class="object-cover w-full h-48"
+                             onerror="this.src='https://placehold.co/600x350/003366/FFFFFF?text=Teacher+Hub';">
+                        <div class="p-6 app-card-content">
+                            <div>
+                                <div class="mb-3">
+                                    <span class="text-xs font-semibold inline-block py-1 px-2.5 uppercase rounded-full text-blue-800 bg-blue-200 dark:bg-blue-900 dark:text-blue-300" data-lang-key="tag_platform">
+                                        Nền tảng
+                                    </span>
+                                </div>
+                                <h3 class="section-title text-2xl font-semibold text-neutral-800 dark:text-white mb-2" data-lang-key="app_teacher_hub_title">IVS Global Teacher Hub</h3>
+                                <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-5 app-card-description" data-lang-key="app_teacher_hub_desc">
+                                    Cổng thông tin dành riêng cho giáo viên quốc tế kết nối với IVS, khám phá cơ hội giảng dạy, quản lý hồ sơ và phát triển chuyên môn.
+                                </p>
+                            </div>
+                            <a href="ivs-global-teacher-hub.html" class="btn-launch mt-auto w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-5 rounded-lg" data-lang-key="button_access_hub">
+                                Truy cập Hub <i class="fas fa-sign-in-alt fa-xs ml-2"></i>
                             </a>
                         </div>
                     </article>
 
-                     <!-- Coming Soon Card -->
-                    <div class="md:col-span-2 rounded-2xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 p-8 text-center flex flex-col justify-center items-center" data-aos="fade-up">
-                        <i class="fas fa-cogs fa-3x text-neutral-400 dark:text-neutral-500 mb-4"></i>
-                        <h3 class="section-title text-2xl font-semibold text-neutral-700 dark:text-neutral-300 mb-2" data-lang-key="app_coming_soon_title">Hệ Sinh Thái Đang Mở Rộng</h3>
-                        <p class="text-neutral-500 dark:text-neutral-400 max-w-md mx-auto" data-lang-key="app_coming_soon_desc">
-                           Chúng tôi đang không ngừng nghiên cứu và phát triển các công cụ mới để phục vụ cộng đồng. Hãy đón chờ những cập nhật tiếp theo!
-                        </p>
+                </div>
+
+                <!-- Coming Soon Section -->
+                <div class="mt-20 text-center" data-aos="fade-up">
+                     <div class="inline-block bg-neutral-200 dark:bg-neutral-800 rounded-full p-4 mb-4">
+                        <i class="fas fa-cogs fa-2x text-neutral-500 dark:text-neutral-400"></i>
                     </div>
+                    <h3 class="section-title text-2xl font-semibold text-neutral-700 dark:text-neutral-300 mb-2" data-lang-key="app_coming_soon_title">Hệ Sinh Thái Đang Mở Rộng</h3>
+                    <p class="text-neutral-500 dark:text-neutral-400 max-w-md mx-auto" data-lang-key="app_coming_soon_desc">
+                       Chúng tôi đang không ngừng nghiên cứu và phát triển các công cụ mới để phục vụ cộng đồng. Hãy đón chờ những cập nhật tiếp theo!
+                    </p>
                 </div>
             </div>
         </section>
     </main>
     
-    <div id="fab-container-placeholder"></div>
-    <div id="footer-placeholder"></div>
+    <!-- Removed footer and other placeholders -->
     
     <!-- Scripts -->
-    <script src="/js/language.js" defer></script>
-    <script src="/js/loadComponents.js" defer></script> 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        window.onPageComponentsLoadedCallback = function() {
-            AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-quad' });
-            if (window.system && typeof window.system.applyTranslations === 'function') {
-                window.system.applyTranslations();
-            }
-        };
+        // Initialize AOS library for scroll animations.
+        // This script now runs independently after the document is loaded.
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ 
+                duration: 800, 
+                once: true, 
+                offset: 50, 
+                easing: 'ease-out-quad' 
+            });
+        });
     </script>
 </body>
 </html>
