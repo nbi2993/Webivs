@@ -279,7 +279,7 @@
 
             // Initialize Chapter Loader
             const storyPath = 'legnaxe_part1'; // Directory name containing JSON chapters
-            const totalChapters = 28; // FIXED: Total number of chapters for this part (Chapter 1 to 27 + Epilogue is chapter 28)
+            const totalChapters = 27; // Total number of chapters for this part (Chapter 1 to 27)
             if (typeof window.initializeChapterLoader === 'function') {
                 window.initializeChapterLoader(storyPath, totalChapters, currentLang); // Pass currentLang
                 console.log("Chapter Loader initialized with language:", currentLang);
@@ -405,9 +405,9 @@
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             }
             
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const savedTheme = localStorage.getItem('theme');
-            let currentIsDarkMode = savedTheme === 'dark' || (savedTheme === null && prefersDarkScheme);
+            // Default to dark unless 'light' is explicitly saved.
+            let currentIsDarkMode = savedTheme !== 'light';
             applyTheme(currentIsDarkMode);
 
             darkModeToggle?.addEventListener('click', () => {
