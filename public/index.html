@@ -10,10 +10,13 @@
     <meta name="keywords" content="IVS JSC, về chúng tôi, tầm nhìn, sứ mệnh, integrate vision synergy, Nguyễn Minh Triết, giáo dục, EdTech, hồ sơ năng lực" data-lang-key="about_meta_keywords">
     <meta property="og:title" content="Về IVS JSC - Tầm Nhìn & Sứ Mệnh" data-lang-key="about_og_title">
     <meta property="og:description" content="Tìm hiểu sâu hơn về IVS JSC: triết lý Integrate-Vision-Synergy, hành trình phát triển, đội ngũ chuyên gia và cam kết đối với một nền giáo dục toàn cầu." data-lang-key="about_og_description">
-    <meta property="og:image" content="https://ivsacademy.edu.vn/images/banners/ivs_about_og.jpg">
-    <meta property="og:url" content="https://ivsacademy.edu.vn/about.html">
+    <meta property="og:image" content="https://ivs.edu.vn/images/banners/ivs_about_og.jpg">
+    <meta property="og:url" content="https://ivs.edu.vn/index.html">
     <meta property="og:type" content="website">
     <meta name="author" content="IVS JSC">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://ivs.edu.vn/images/logo/ivs_logo_32.png">
 
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +86,6 @@
                         'indigo-600': '#4F46E5',
                         'indigo-700': '#4338CA',
                         'pink-500': '#EC4899',
-                        // Thêm các màu light cho biểu tượng (không dùng trong phiên bản này)
                         'ivs-blue-light': '#DBEAFE', // blue-100
                         'ivs-purple-light': '#EDE9FE', // purple-100
                         'ivs-cyan-light': '#ECFEFF', // cyan-100
@@ -92,7 +94,7 @@
                     fontFamily: {
                         'sans': ['Be Vietnam Pro', 'sans-serif'],
                         'display': ['Poppins', 'sans-serif'],
-                        'inter': ['Inter', 'sans-serif'] // Thêm font Inter
+                        'inter': ['Inter', 'sans-serif']
                     },
                     animation: {
                         'aurora-spin': 'aurora-spin 6s linear infinite'
@@ -110,7 +112,6 @@
     </script>
 
     <style>
-        /* Import Inter font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         :root {
@@ -118,27 +119,24 @@
             --safe-area-top: env(safe-area-inset-top, 0px);
         }
 
-        /* Base body styling */
         body {
             background-color: #0A0A0A;
             color: #f4f4f5;
             font-family: 'Be Vietnam Pro', sans-serif;
             overflow-x: hidden;
-            padding-top: var(--header-height); /* Ensure content starts below the fixed header */
+            padding-top: var(--header-height);
         }
-
-        /* Add fixed positioning to the header placeholder */
+        
         #header-placeholder {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: var(--header-height); /* Ensure it has a defined height */
-            z-index: 1000; /* Ensure it stays on top of other content */
-            background-color: #0A0A0A; /* Match body background or header background */
+            height: var(--header-height);
+            z-index: 1000;
+            background-color: #0A0A0A;
         }
 
-        /* Section padding and scroll margin adjustments */
         section {
             scroll-margin-top: calc(var(--header-height) + 1rem);
             padding: 4rem 1rem;
@@ -150,12 +148,11 @@
             }
         }
 
-        /* Hero Section specific styling */
         .hero-section {
             position: relative;
             width: 100%;
-            min-height: calc(100vh - var(--header-height)); /* Adjusted to account for body padding */
-            height: auto; /* Allow content to define height, but ensure minimum */
+            min-height: calc(100vh - var(--header-height));
+            height: auto;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -163,7 +160,7 @@
             align-items: center;
             text-align: center;
             color: #ffffff;
-            background-color: #000; /* Fallback background for hero */
+            background-color: #000;
         }
 
         .hero-video {
@@ -177,13 +174,13 @@
             z-index: 1;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.5); /* Darken video for text readability */
-            opacity: 0; /* Start hidden for smooth transition */
+            filter: brightness(0.5);
+            opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
         .hero-video.loaded {
-            opacity: 1; /* Fade in when video is ready */
+            opacity: 1;
         }
 
         .hero-fallback-image {
@@ -194,7 +191,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            display: block; /* Ensure fallback is visible if video fails */
+            display: block;
         }
 
         .hero-overlay {
@@ -203,7 +200,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Overlay for text readability */
+            background: rgba(0, 0, 0, 0.4);
             z-index: 2;
         }
 
@@ -213,21 +210,19 @@
             max-width: 90%;
             padding: 20px;
         }
-
-        /* Responsive adjustments for hero section */
+        
         @media (max-width: 768px) {
             .hero-section {
-                min-height: calc(70vh - var(--header-height)); /* Shorter height on smaller screens, accounting for header */
+                min-height: calc(70vh - var(--header-height));
             }
         }
 
         @media (max-width: 480px) {
             .hero-section {
-                min-height: calc(60vh - var(--header-height)); /* Even shorter height on very small screens, accounting for header */
+                min-height: calc(60vh - var(--header-height));
             }
         }
 
-        /* Button styling */
         .btn-primary, .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -241,7 +236,7 @@
         }
 
         .btn-primary:hover, .btn-secondary:hover {
-            transform: scale(1.05); /* Slight scale up on hover */
+            transform: scale(1.05);
         }
 
         .btn-primary {
@@ -265,7 +260,6 @@
             line-height: 1.2;
         }
 
-        /* About Us Section with video background */
         .about-us-section {
             position: relative;
             overflow: hidden;
@@ -296,7 +290,6 @@
             width: 100%;
         }
 
-        /* Video embed wrapper for responsiveness */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -312,8 +305,7 @@
             width: 100%;
             height: 100%;
         }
-
-        /* Interactive card styling */
+        
         .interactive-card {
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
@@ -326,61 +318,19 @@
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
             border-color: rgba(59,130,246,0.5);
         }
-
-        /* Custom scrollbar for tab buttons */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #111111;
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #27272a;
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
-        /* Hide default scrollbar for specific elements */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #111111; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-ivs-bg text-ivs-text-primary antialiased">
-    <!-- Placeholder for Header -->
-    <header id="header-placeholder">
-        <nav class="bg-ivs-card p-4 rounded-b-xl shadow-lg border-b border-ivs-border">
-            <div class="container mx-auto flex justify-between items-center">
-                <a href="/" class="flex items-center space-x-2">
-                    <img src="https://placehold.co/100x40/3b82f6/ffffff?text=IVS+Logo" alt="IVS Academy Logo" class="h-10">
-                </a>
-                <div class="hidden lg:flex items-center space-x-6">
-                    <a href="/Pages/ivs-academy.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">IVS Academy</a>
-                    <a href="/education.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Giáo dục</a>
-                    <a href="/solutions.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Doanh nghiệp</a>
-                    <a href="/Pages/careervn.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Tuyển dụng</a>
-                    <a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">Đăng ký tư vấn</a>
-                </div>
-                <button class="lg:hidden text-ivs-text-primary mobile-menu-button">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </nav>
-        <div class="mobile-menu hidden lg:hidden bg-ivs-card border-t border-ivs-border py-4">
-            <ul class="flex flex-col items-center space-y-4">
-                <li><a href="/Pages/ivs-academy.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">IVS Academy</a></li>
-                <li><a href="/education.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Giáo dục</a></li>
-                <li><a href="/solutions.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Giải pháp Doanh nghiệp</a></li>
-                <li><a href="/Pages/careervn.html" class="text-ivs-text-primary hover:text-ivs-blue font-semibold">Tuyển dụng</a></li>
-                <li><a href="/contact.html" class="btn-primary" data-lang-key="hero_cta_contact">Đăng ký tư vấn</a></li>
-            </ul>
-        </div>
+    <!-- Header -->
+    <header id="header-placeholder" class="w-full fixed top-0 left-0 z-50 transition-all duration-300">
+         <!-- This content will be dynamically loaded by headerController.js -->
     </header>
 
 
@@ -390,7 +340,7 @@
             <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
                 <source src="https://storage.googleapis.com/ivs-public-assets/videos/ivs-video-background.mp4" type="video/mp4">
                 <source src="https://storage.googleapis.com/ivs-public-assets/videos/hero-background.webm" type="video/webm">
-                <img src="https://placehold.co/1920x1080/000000/ffffff?text=Hero+Fallback+Image" class="hero-fallback-image" alt="Hero fallback image">
+                <img src="https://storage.googleapis.com/ivs-public-assets/images/banners/ivs_about_og.jpg" class="hero-fallback-image" alt="Hero fallback image">
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -554,7 +504,7 @@
                         <i class="fas fa-shapes text-5xl text-ivs-cyan mb-4"></i>
                         <h3 class="text-2xl font-semibold font-display text-ivs-text-primary mb-3">Xem tất cả ứng dụng</h3>
                         <p class="text-base text-ivs-text-secondary mb-6">Khám phá toàn bộ hệ sinh thái ứng dụng của IVS.</p>
-                        <a href="https://ivsacademy.edu.vn/apps/ivsapps.html" class="inline-flex items-center justify-center px-8 py-3 bg-ivs-cyan text-white text-base font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-200 ease-in-out group">
+                        <a href="https://ivs.edu.vn/apps/ivsapps.html" class="inline-flex items-center justify-center px-8 py-3 bg-ivs-cyan text-white text-base font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-200 ease-in-out group">
                             Đi đến IVS Apps
                             <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
                         </a>
@@ -568,7 +518,7 @@
             <div class="absolute inset-0 w-full h-full z-0">
                 <video id="backgroundVideo1" autoplay loop muted playsinline class="background-video">
                     <source src="https://storage.googleapis.com/ivs-public-assets/videos/ivsstarting.mp4" type="video/mp4">
-                    <source src="https://storage.googleapis.com/ivs-public-assets/videos/about-background.webm" type="type/webm">
+                    <source src="https://storage.googleapis.com/ivs-public-assets/videos/about-background.webm" type="video/webm">
                     <img src="https://storage.googleapis.com/ivs-public-assets/images/pages/eov2025/eov2025.jpg" class="hero-fallback-image" alt="About section fallback image">
                 </video>
                 <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
@@ -584,7 +534,7 @@
             </div>
         </section>
 
-        <!-- SECTION 6: AFFILIATED UNITS - Cải tiến toàn diện (Phiên bản 3 - Cải thiện rõ ràng và thẩm mỹ) -->
+        <!-- SECTION 6: AFFILIATED UNITS -->
         <section class="py-16 md:py-24 bg-ivs-card border-b border-ivs-border font-inter">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
@@ -617,7 +567,7 @@
                         <div class="flex-grow">
                             <h3 class="text-2xl md:text-3xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_education_title">IVS Education</h3>
                             <p class="text-base md:text-lg text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_education_desc">Chuyên phát triển chương trình giáo dục (R&D), biên soạn học liệu STEAM, Kỹ năng sống, và cung cấp giải pháp học tập số (EdTech) cho các cơ sở giáo dục, tiên phong trong đổi mới giáo dục.</p>
-                            <a href="/education.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-purple text-white text-base font-semibold rounded-lg shadow-md hover:bg-ivs-purple-darker hover:shadow-lg transition-all duration-200 ease-in-out group">
+                            <a href="/education.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-purple text-white text-base font-semibold rounded-lg shadow-md hover:bg-purple-700 hover:shadow-lg transition-all duration-200 ease-in-out group">
                                 Tìm hiểu thêm
                                 <svg class="ml-2 -mr-1 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -634,7 +584,7 @@
                         <div class="flex-grow">
                             <h3 class="text-2xl md:text-3xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_celestech_title">IVS Celestech</h3>
                             <p class="text-base md:text-lg text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_celestech_desc">Đơn vị công nghệ chuyên tư vấn, thiết kế, thi công nội thất và cung cấp trang thiết bị giáo dục hiện đại, ứng dụng công nghệ AI, VR/AR để tối ưu không gian học tập và trải nghiệm giáo dục.</p>
-                            <a href="/Pages/ivscelestech.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-cyan text-white text-base font-semibold rounded-lg shadow-md hover:bg-ivs-cyan-darker hover:shadow-lg transition-all duration-200 ease-in-out group">
+                            <a href="/Pages/ivscelestech.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-cyan text-white text-base font-semibold rounded-lg shadow-md hover:bg-cyan-600 hover:shadow-lg transition-all duration-200 ease-in-out group">
                                 Tìm hiểu thêm
                                 <svg class="ml-2 -mr-1 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -651,7 +601,7 @@
                         <div class="flex-grow">
                             <h3 class="text-2xl md:text-3xl font-semibold font-display text-ivs-text-primary mb-3" data-lang-key="unit_ivs_consulting_title">IVS Consulting</h3>
                             <p class="text-base md:text-lg text-ivs-text-secondary mb-4 leading-relaxed" data-lang-key="unit_ivs_consulting_desc">Cung cấp dịch vụ tư vấn chuyên sâu về chuyển đổi số, chiến lược giáo dục và tối ưu hóa vận hành, giúp các tổ chức phát triển bền vững trong kỷ nguyên số và đạt được mục tiêu.</p>
-                            <a href="/consulting.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-amber text-white text-base font-semibold rounded-lg shadow-md hover:bg-ivs-amber-darker hover:shadow-lg transition-all duration-200 ease-in-out group">
+                            <a href="/consulting.html" class="inline-flex items-center justify-center px-6 py-3 bg-ivs-amber text-white text-base font-semibold rounded-lg shadow-md hover:bg-amber-600 hover:shadow-lg transition-all duration-200 ease-in-out group">
                                 Tìm hiểu thêm
                                 <svg class="ml-2 -mr-1 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -785,7 +735,7 @@
                             <p class="text-lg leading-relaxed text-ivs-neutral-300" data-lang-key="celestech_intro_content_2">
                                 Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công giàu kinh nghiệm, IVS Celestech luôn đặt chất lượng, sự tận tâm và sáng tạo lên hàng đầu trong mỗi dự án. Chúng tôi tin rằng, một không gian được thiết kế tỉ mỉ sẽ nâng tầm chất lượng cuộc sống và hiệu suất công việc.
                             </p>
-                            <a href="https://ivsacademy.edu.vn/Pages/ivscelestech-tcnoithat.html#intro" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold mt-4 transition-colors" data-lang-key="celestech_intro_cta">
+                            <a href="https://ivs.edu.vn/Pages/ivscelestech-tcnoithat.html#intro" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold mt-4 transition-colors" data-lang-key="celestech_intro_cta">
                                 Đọc thêm về IVS Celestech <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -820,7 +770,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-8">
-                            <a href="https://ivsacademy.edu.vn/Pages/ivscelestech-tcnoithat.html#why-choose" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_why_choose_cta">
+                            <a href="https://ivs.edu.vn/Pages/ivscelestech-tcnoithat.html#why-choose" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_why_choose_cta">
                                 Tìm hiểu sâu hơn <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -880,7 +830,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-8">
-                            <a href="https://ivsacademy.edu.vn/Pages/ivscelestech-tcnoithat.html#process" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_process_cta">
+                            <a href="https://ivs.edu.vn/Pages/ivscelestech-tcnoithat.html#process" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_process_cta">
                                 Tìm hiểu chi tiết quy trình <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -911,7 +861,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-8">
-                            <a href="https://ivsacademy.edu.vn/Pages/ivscelestech-tcnoithat.html#services" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_services_cta">
+                            <a href="https://ivs.edu.vn/Pages/ivscelestech-tcnoithat.html#services" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-colors" data-lang-key="celestech_services_cta">
                                 Xem tất cả dịch vụ <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -1070,62 +1020,14 @@
                 </a>
             </div>
         </section>
-            
+                
     </main>
 
-    <!-- Placeholder for Footer -->
-    <footer id="footer-placeholder">
-        <div class="bg-ivs-neutral-700 py-12 text-ivs-neutral-300">
-            <div class="container mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Logo & Intro -->
-                <div class="md:col-span-1 lg:col-span-1">
-                    <a href="#" class="flex items-center mb-4">
-                        <img src="https://placehold.co/120x50/3b82f6/ffffff?text=IVS+JSC" alt="IVS JSC Logo" class="h-12 w-auto">
-                    </a>
-                    <p class="text-sm leading-relaxed">
-                        IVS JSC là hệ sinh thái giáo dục toàn diện, cung cấp các giải pháp đột phá từ đào tạo ngôn ngữ, kỹ năng đến tư vấn chiến lược cho các tổ chức giáo dục.
-                    </p>
-                </div>
-                <!-- Links Column 1 -->
-                <div>
-                    <h4 class="text-lg font-semibold text-ivs-text-primary mb-4">IVS JSC</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Về chúng tôi</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Đơn vị trực thuộc</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Hồ sơ năng lực</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Tin tức & Sự kiện</a></li>
-                    </ul>
-                </div>
-                <!-- Links Column 2 -->
-                <div>
-                    <h4 class="text-lg font-semibold text-ivs-text-primary mb-4">Giải pháp</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Giáo dục</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Doanh nghiệp</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Công nghệ</a></li>
-                        <li><a href="#" class="hover:text-ivs-blue transition-colors">Tuyển dụng</a></li>
-                    </ul>
-                </div>
-                <!-- Contact & Social -->
-                <div>
-                    <h4 class="text-lg font-semibold text-ivs-text-primary mb-4">Liên hệ</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="tel:+84918790079" class="hover:text-ivs-blue transition-colors">Hotline: (+84) 918 790 079</a></li>
-                        <li><a href="mailto:contact@ivsjsc.com" class="hover:text-ivs-blue transition-colors">Email: contact@ivsjsc.com</a></li>
-                        <li>Địa chỉ: 1104, Ấp Đất Mới, Long Phước, Đồng Nai</li>
-                    </ul>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="https://www.facebook.com/ivs.jsc" target="_blank" class="text-xl hover:text-ivs-blue transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@ivsjsc.official" target="_blank" class="text-xl hover:text-ivs-blue transition-colors"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.linkedin.com/company/ivs-jsc/" target="_blank" class="text-xl hover:text-ivs-blue transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-sm mt-12 border-t border-ivs-border pt-8">
-                &copy; 2025 IVS JSC. All rights reserved.
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder">
+        <!-- This content will be dynamically loaded by footerController.js -->
+    </div>
+    
     <!-- Custom Message Modal -->
     <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000] hidden">
         <div class="bg-ivs-card p-8 rounded-lg shadow-xl max-w-sm w-full text-center border border-ivs-border">
@@ -1145,20 +1047,24 @@
     </audio>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/loadComponents.js"></script>
+    <script src="/js/language.js"></script>
+    
     <script>
-        // Main initialization function, called after all components are loaded
-        window.onload = function() {
-            initAOS();
-            initVideos();
-            initAnimatedCounters();
-            initSmoothScroll();
-            initMobileNav();
-            initAudioMenu();
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+            // Main initialization function, called after all components are loaded
+            // window.onload doesn't work well with dynamic component loading
+            setTimeout(() => {
+                initAOS();
+                initVideos();
+                initAnimatedCounters();
+                initSmoothScroll();
+                initAudioMenu();
+                // Mobile nav is now part of headerController.js
+            }, 500); // Delay to ensure components are loaded
+        });
 
         // Function to show custom modal
         function showMessageModal(title, message) {
@@ -1176,7 +1082,6 @@
                     modal.classList.add('hidden');
                 };
 
-                // Close modal on outside click
                 modal.onclick = (event) => {
                     if (event.target === modal) {
                         modal.classList.add('hidden');
@@ -1184,7 +1089,6 @@
                 };
             } else {
                 console.error("Message modal elements not found.");
-                // Fallback to console log if modal elements are missing
                 console.error(`Modal Error: ${title} - ${message}`);
             }
         }
@@ -1200,11 +1104,10 @@
 
             let vietnameseAudioSource = 'https://storage.googleapis.com/ivs-public-assets/audios/IVSJSC.mp3';
             let englishAudioSource = 'https://storage.googleapis.com/ivs-public-assets/audios/IVSJSC_ENGLISH.mp3';
-
             let currentPlayingAudioSrc = null;
 
             if (!audioMenuButton || !audioDropdown || !audioIcon || !playVietnameseAudioButton || !playEnglishAudioButton || !audioPlayer) {
-                console.warn('Some audio elements are missing for initAudioMenu. Please check HTML IDs.');
+                console.warn('Some audio elements are missing for initAudioMenu.');
                 return;
             }
 
@@ -1274,31 +1177,14 @@
             audioPlayer.addEventListener('ended', stopCurrentAudio);
 
             audioPlayer.addEventListener('error', (e) => {
-                let errorMessage = 'Không thể tải âm thanh. Vui lòng kiểm tra đường dẫn file.';
-                switch (e.target.error.code) {
-                    case e.target.error.MEDIA_ERR_ABORTED:
-                        errorMessage = 'Quá trình tải âm thanh bị hủy.';
-                        break;
-                    case e.target.error.MEDIA_ERR_NETWORK:
-                        errorMessage = 'Lỗi mạng khi tải âm thanh.';
-                        break;
-                    case e.target.error.MEDIA_ERR_DECODE:
-                        errorMessage = 'Lỗi giải mã âm thanh. Định dạng không được hỗ trợ hoặc file bị hỏng.';
-                        break;
-                    case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-                        errorMessage = 'Nguồn âm thanh không được hỗ trợ hoặc không tìm thấy file.';
-                        break;
-                    default:
-                        errorMessage = 'Lỗi không xác định khi tải âm thanh.';
-                        break;
-                }
+                let errorMessage = 'Không thể tải âm thanh.';
                 console.error(`Audio loading error: ${errorMessage}`, e.target.error);
                 showMessageModal('Lỗi Tải Âm Thanh', errorMessage);
                 stopCurrentAudio();
             });
         }
 
-        // Initialize AOS library for scroll animations
+        // Initialize AOS library
         function initAOS() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
@@ -1311,43 +1197,23 @@
             }
         }
 
-        // Initialize video elements with autoplay and fallback mechanisms
+        // Initialize videos
         function initVideos() {
-            const videos = {
-                hero: {
-                    element: document.getElementById('heroVideo')
-                },
-                background: {
-                    element: document.getElementById('backgroundVideo1')
-                }
-            };
-
-            Object.values(videos).forEach(({element}) => {
-                if (element) {
-                    initVideo(element);
-                }
-            });
-        }
-
-        function initVideo(videoElement) {
-            videoElement.play().catch(error => {
-                console.warn('Video autoplay prevented:', error);
-            });
-            videoElement.addEventListener('canplay', () => {
-                videoElement.classList.add('loaded');
-                videoElement.style.opacity = '1';
-            });
-            if (videoElement.readyState >= 3) {
-                videoElement.classList.add('loaded');
-                videoElement.style.opacity = '1';
+            const heroVideo = document.getElementById('heroVideo');
+            if(heroVideo) {
+                heroVideo.play().catch(error => console.warn('Hero video autoplay prevented:', error));
+                heroVideo.addEventListener('canplay', () => heroVideo.classList.add('loaded'));
+                if (heroVideo.readyState >= 3) heroVideo.classList.add('loaded');
+            }
+            const backgroundVideo = document.getElementById('backgroundVideo1');
+            if(backgroundVideo) {
+                backgroundVideo.play().catch(error => console.warn('Background video autoplay prevented:', error));
             }
         }
         
-        // Initialize animated counters for impact section
+        // Initialize animated counters
         function initAnimatedCounters() {
             const counters = document.querySelectorAll('#impact-counters h3');
-            const options = { threshold: 0.5 };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1355,7 +1221,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, options);
+            }, { threshold: 0.5 });
 
             counters.forEach(counter => observer.observe(counter));
         }
@@ -1363,11 +1229,10 @@
         function animateCounter(counter) {
             const target = +counter.getAttribute('data-target');
             const duration = 2000;
-            let start = 0;
-
+            let startTimestamp = null;
             const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = timestamp - start;
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = timestamp - startTimestamp;
                 const current = Math.min(Math.floor(progress / duration * target), target);
                 counter.textContent = current.toLocaleString('en-US');
                 if (current < target) {
@@ -1377,7 +1242,7 @@
             requestAnimationFrame(step);
         }
 
-        // Initialize smooth scroll for anchor links
+        // Initialize smooth scroll
         function initSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1386,9 +1251,9 @@
                     if (target) {
                         const headerOffset = 80;
                         const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition - headerOffset;
+                        const offsetPosition = window.pageYOffset + elementPosition - headerOffset;
 
-                        window.scrollBy({
+                        window.scrollTo({
                             top: offsetPosition,
                             behavior: 'smooth'
                         });
@@ -1396,18 +1261,7 @@
                 });
             });
         }
-
-        // Initialize mobile navigation toggle
-        function initMobileNav() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-        }
     </script>
 </body>
 </html>
+
